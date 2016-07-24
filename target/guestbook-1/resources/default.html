@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>title</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="Keywords" content="keywords" />
+<meta name="Description" content="description" />
+<link rel="stylesheet" href="css/screen.css" type="text/css" />
+<script>
+function modifyCommentToggle(articleNo) {
+    var p_id = "comment" + articleNo;
+    var p = document.getElementById(p_id);
+    var form_id = "modifyCommentForm" + articleNo;
+    var form = document.getElementById(form_id);
+    var p_display;
+    var form_display;
+    if (p.style.display) {
+            p_display = '';
+            form_display = 'none';
+    } else {
+            p_display = 'none';
+            form_display = '';
+    }
+    p.style.display = p_display;
+    form.style.display = form_display;
+}
+</script>
+</head>
+<body>
+	<div id="wrap">
+		<header>header</header>
+		<nav id="mainNav">
+			<ul id="main-menu">
+				<li class="main-menu-item"><a href="/java/Features">Java</a></li>
+				<li class="main-menu-item"><a href="/bbs/list">BBS</a>
+			</ul>
+		</nav>
+		<div id="login">#login</div>
+		<div id="content-wrap">
+			<article>
+<!--본문 시작 -->
+<h1>자유 게시판</h1>
+<h2>글쓰기</h2>
+<form id="writeForm" method="post" enctype="multipart/form-data">
+<p style="margin: 0;padding: 0;">
+<input type="hidden" name="boardCd" value="free" />
+</p>
+<table style="width: 100%">
+<tr>
+    <td>제목</td>
+    <td><input type="text" name="title" style="width: 90%;" /></td>
+</tr>
+<tr>
+    <td colspan="2">
+        <textarea name="content" style="width: 99%;height: 200px;"></textarea>
+    </td>
+</tr>
+<tr>
+    <td>첨부 파일</td>
+    <td><input type="file" name="attachFile" /></td>
+</tr>
+</table>
+<div style="text-align: center;padding-top: 10px;">
+    <input type="submit" value="전송" />
+    <input type="button" value="취소" />
+    <input type="button" value="목록" />
+</div>
+</form>
+<!--본문 끝   -->
+			</article>
+		</div>
+		<div id="sidebar">
+			<nav id="secondaryNav">
+				<strong id="main-menu-title">java</strong>
+				<ul id="sub-menu">
+					<li class="sub-section-title">Java Introduction</li>
+					<li class="sub-menu-item"><a href="/java/Features">자바의 특징</a></li>
+					<li class="sub-menu-item"><a href="/java/Object-and-Class">객체와 클래스</a></li>
+				</ul>
+			</nav>
+		</div>
+		<aside>aside</aside>
+		<footer>footer</footer>
+	</div>
+</body>
+</html>

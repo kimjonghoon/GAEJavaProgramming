@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+   PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+      <typeAlias type="net.java_school.bbs.Board" alias="Board" />
+      <typeAlias type="net.java_school.bbs.Article" alias="Article" />
+      <typeAlias type="net.java_school.bbs.AttachFile" alias="AttachFile" />
+   </typeAliases>
+   <mappers>
+      <mapper resource="net/java_school/mybatis/BoardMapper.xml" />
+   </mappers>
+</configuration>

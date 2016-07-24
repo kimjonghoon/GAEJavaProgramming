@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Pass a JavaScript function as parameter</title>
+<script>
+function x(a, y) {
+	var ret = y(a);
+	alert(ret);
+}
+
+function z(a) {
+    return a * a
+}
+
+x(2, z);
+</script>
+</head>
+</html>
