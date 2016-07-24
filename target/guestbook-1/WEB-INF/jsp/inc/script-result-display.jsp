@@ -1,1 +1,0 @@
-<script src="/resources/js/script-result-display.js"></script>
