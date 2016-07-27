@@ -52,7 +52,6 @@ public class BlogController {
 		return "redirect:/blog/list";
 	}
 
-
 	@RequestMapping(value="{category}/{id}", method=RequestMethod.GET)
 	public String blog(@PathVariable("category") String category, 
 			@PathVariable("id") String id, Model model) {

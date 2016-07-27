@@ -32,12 +32,12 @@
     </listener>
 <!-- [END Objectify] -->
 	<servlet>
-		<servlet-name>javaschool</servlet-name>
+		<servlet-name>guestbook</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>javaschool</servlet-name>
+		<servlet-name>guestbook</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>

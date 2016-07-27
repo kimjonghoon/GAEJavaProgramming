@@ -41,7 +41,7 @@
 		<put-attribute name="article" value="/WEB-INF/views/blog/new.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
-	<definition name="*/*" extends="defaultTemplate">
+	<definition name="*/*" extends="defaultTemplate2">
 		<put-attribute name="article" value="/WEB-INF/views/blog/content.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/inc/sub.jsp" />
 	</definition>
