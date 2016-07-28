@@ -8,6 +8,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <tiles:insertAttribute name="title-keywords-description" />
 <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="/resources/css/print.css" type="text/css" media="print" />
+<link rel="stylesheet" href="/resources/css/prettify.css" type="text/css" />
+<script src="/resources/js/prettify.js"></script>
+<script src="/resources/js/jquery-1.10.2.min.js"></script>
+<script src="/resources/js/commons.js"></script>
+<script>
+$(document).ready(function() {
+	prettyPrint();
+	$('pre.prettyprint').html(function() {
+		return this.innerHTML.replace(/\t/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
+	});
+	$('pre.prettyprint').dblclick(function() {
+		selectRange(this);
+	});
+});
+</script>
 </head>
 <body>
 <div id="wrap">
