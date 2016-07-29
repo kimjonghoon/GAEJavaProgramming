@@ -1,6 +1,7 @@
-<strong id="chapter-title">CSS Layout</strong>
-
-<ul id="book-section">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<strong id="main-menu-title">JavaScript</strong>
+<ul id="sub-menu">
 
 	<li><strong class="book-section-title">3 column fixed width layout</strong>
 		<ul class="book-section-items">	

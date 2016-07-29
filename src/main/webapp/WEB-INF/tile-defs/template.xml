@@ -415,7 +415,7 @@
 		<put-attribute name="article" value="/WEB-INF/views/jdbc/JDBC-Intro.jsp" />
 		<put-attribute name="next-link" value="How-to-install-Oracle" />
 		<put-attribute name="next-title" value="How to install Oracle" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/How-to-install-Oracle" extends="defaultTemplate">
 		<put-attribute name="title" value="Oracle Install" />
@@ -429,7 +429,7 @@
 		<put-attribute name="next-title" value="Login to the scott accout" />
 		<put-attribute name="prev-link" value="How-to-install-Oracle" />
 		<put-attribute name="prev-title" value="How to install Oracle" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/Login-to-the-scott-account" extends="defaultTemplate">
 		<put-attribute name="title" value="To practice sql from scott account" />
@@ -443,7 +443,7 @@
 		<put-attribute name="next-title" value="SELECT Statement" />
 		<put-attribute name="prev-link" value="How-to-install-Oracle" />
 		<put-attribute name="prev-title" value="How to install Oracle" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/SQL-SELECT-Statement" extends="defaultTemplate">
 		<put-attribute name="title" value="To practice SELECT Statement " />
@@ -456,7 +456,7 @@
 		<put-attribute name="next-title" value="SQL DML Statement" />
 		<put-attribute name="prev-link" value="Login-to-the-scott-account" />
 		<put-attribute name="prev-title" value="Login to the scott accout" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/SQL-DML-Statement" extends="defaultTemplate">
 		<put-attribute name="title" value="DML" />
@@ -468,7 +468,7 @@
 		<put-attribute name="next-title" value="Oracle JDBC Test" />
 		<put-attribute name="prev-link" value="SQL-SELECT-Statement" />
 		<put-attribute name="prev-title" value="SELECT Statement" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/Oracle-JDBC-Test" extends="defaultTemplate">
 		<put-attribute name="title" value="Oracle JDBC Test" />
@@ -482,7 +482,7 @@
 		<put-attribute name="next-title" value="Guide to using JDBC" />
 		<put-attribute name="prev-link" value="SQL-DML-Statement" />
 		<put-attribute name="prev-title" value="SQL DML Statement" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/Guide-to-using-JDBC" extends="defaultTemplate">
 		<put-attribute name="title" value="Guide to using JDBC" />
@@ -496,7 +496,7 @@
 		<put-attribute name="next-title" value="Create table using JDBC" />
 		<put-attribute name="prev-link" value="Oracle-JDBC-Test" />
 		<put-attribute name="prev-title" value="Oracle JDBC Test" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/JDBC-Create-Table" extends="defaultTemplate">
 		<put-attribute name="title" value="JDBC Introduction" />
@@ -509,7 +509,7 @@
 		<put-attribute name="next-title" value="Insert record using JDBC" />
 		<put-attribute name="prev-link" value="Guide-to-using-JDBC" />
 		<put-attribute name="prev-title" value="Guide to using JDBC" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/JDBC-Insert" extends="defaultTemplate">
 		<put-attribute name="title" value="To insert records using JDBC" />
@@ -521,7 +521,7 @@
 		<put-attribute name="next-title" value="Select records using JDBC" />
 		<put-attribute name="prev-link" value="JDBC-Create-Table" />
 		<put-attribute name="prev-title" value="Create table using JDBC" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/JDBC-Select" extends="defaultTemplate">
 		<put-attribute name="title" value="Select records using JDBC" />
@@ -533,7 +533,7 @@
 		<put-attribute name="next-title" value="Update records using JDBC" />
 		<put-attribute name="prev-link" value="JDBC-Insert" />
 		<put-attribute name="prev-title" value="Insert record using JDBC" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/JDBC-Update" extends="defaultTemplate">
 		<put-attribute name="title" value="Update records using JDBC" />
@@ -545,7 +545,7 @@
 		<put-attribute name="next-title" value="PreparedStatement" />
 		<put-attribute name="prev-link" value="JDBC-Select" />
 		<put-attribute name="prev-title" value="Select records using JDBC" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/PreparedStatement" extends="defaultTemplate">
 		<put-attribute name="title" value="PreparedStatement" />
@@ -558,7 +558,7 @@
 		<put-attribute name="next-title" value="Join tables using JDBC" />
 		<put-attribute name="prev-link" value="JDBC-Update" />
 		<put-attribute name="prev-title" value="Update records using JDBC" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/JDBC-Join" extends="defaultTemplate">
 		<put-attribute name="title" value="How to join tables using JDBC" />
@@ -570,7 +570,7 @@
 		<put-attribute name="next-title" value="Transaction using JDBC" />
 		<put-attribute name="prev-link" value="PreparedStatement" />
 		<put-attribute name="prev-title" value="PreparedStatement" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/JDBC-Transaction" extends="defaultTemplate">
 		<put-attribute name="title" value="Transaction using JDBC" />
@@ -583,7 +583,7 @@
 		<put-attribute name="next-title" value="Connection Pool" />
 		<put-attribute name="prev-link" value="JDBC-Join" />
 		<put-attribute name="prev-title" value="Join tables using JDBC" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/Connection-Pool" extends="defaultTemplate">
 		<put-attribute name="title" value="Connection Pool" />
@@ -596,7 +596,7 @@
 		<put-attribute name="next-title" value="Namecard" />
 		<put-attribute name="prev-link" value="JDBC-Transaction" />
 		<put-attribute name="prev-title" value="Transaction using JDBC" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/Namecard" extends="defaultTemplate">
 		<put-attribute name="title" value="JDBC,Namecard Mini Project" />
@@ -608,7 +608,7 @@
 		<put-attribute name="next-title" value="JavaBank" />
 		<put-attribute name="prev-link" value="Connection-Pool" />
 		<put-attribute name="prev-title" value="Connection Pool" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<definition name="jdbc/JavaBank" extends="defaultTemplate">
 		<put-attribute name="title" value="JavaBank" />
@@ -618,7 +618,7 @@
 		<put-attribute name="article" value="/WEB-INF/views/jdbc/JavaBank.jsp" />
 		<put-attribute name="prev-link" value="Namecard" />
 		<put-attribute name="prev-title" value="Namecard" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jdbc/jdbc-sub.jsp" />
 	</definition>
 	<!-- JSP -->
 	<definition name="jsp/How-to-install-Tomcat" extends="defaultTemplate">
@@ -630,7 +630,7 @@
 			value="/WEB-INF/views/jsp/How-to-install-Tomcat.jsp" />
 		<put-attribute name="next-link" value="Namecard-Webapp" />
 		<put-attribute name="next-title" value="Namecard Webapplication" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/Namecard-Webapp" extends="defaultTemplate">
 		<put-attribute name="title" value="Namecard Webapp" />
@@ -643,7 +643,7 @@
 		<put-attribute name="next-title" value="Web Application" />
 		<put-attribute name="prev-link" value="How-to-install-Tomcat" />
 		<put-attribute name="prev-title" value="How to install Tomcat" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/Web-Application" extends="defaultTemplate">
 		<put-attribute name="title" value="Web Application" />
@@ -659,7 +659,7 @@
 			value="Web Application Directory Structure" />
 		<put-attribute name="prev-link" value="Namecard-Webapp" />
 		<put-attribute name="prev-title" value="Namecard Webapp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/Web-Application-Directory-Structure"
 		extends="defaultTemplate">
@@ -675,7 +675,7 @@
 		<put-attribute name="next-title" value="Servlets" />
 		<put-attribute name="prev-link" value="Web-Application" />
 		<put-attribute name="prev-title" value="Web Application" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/Servlets" extends="defaultTemplate">
 		<put-attribute name="title" value="Servlets" />
@@ -690,7 +690,7 @@
 			value="Web-Application-Directory-Structure" />
 		<put-attribute name="prev-title"
 			value="Web Application Directory Structure" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/JSP" extends="defaultTemplate">
 		<put-attribute name="title" value="JSP" />
@@ -705,7 +705,7 @@
 			value="Accessing database from JSP Servlets" />
 		<put-attribute name="prev-link" value="Servlets" />
 		<put-attribute name="prev-title" value="Servlets" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/Accessing-database-from-JSP_Servlets"
 		extends="defaultTemplate">
@@ -721,7 +721,7 @@
 		<put-attribute name="next-title" value="BBS Study" />
 		<put-attribute name="prev-link" value="JSP" />
 		<put-attribute name="prev-title" value="JSP" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/BBS-Study" extends="defaultTemplate">
 		<put-attribute name="title" value="BBS Study" />
@@ -734,7 +734,7 @@
 			value="Accessing-database-from-JSP_Servlets" />
 		<put-attribute name="prev-title"
 			value="Accessing database from JSP, Servlets" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/Thread-BBS" extends="defaultTemplate">
 		<put-attribute name="title" value="Thread BBS" />
@@ -746,7 +746,7 @@
 		<put-attribute name="next-title" value="BBS Model1" />
 		<put-attribute name="prev-link" value="BBS-Study" />
 		<put-attribute name="prev-title" value="BBS Study" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/BBS-Model1" extends="defaultTemplate">
 		<put-attribute name="title" value="To create BBS in the Model1" />
@@ -758,7 +758,7 @@
 		<put-attribute name="next-title" value="DataSource" />
 		<put-attribute name="prev-link" value="Thread-BBS" />
 		<put-attribute name="prev-title" value="Thread BBS" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/DataSource" extends="defaultTemplate">
 		<put-attribute name="title" value="DataSource" />
@@ -771,7 +771,7 @@
 		<put-attribute name="next-title" value="Model2" />
 		<put-attribute name="prev-link" value="BBS-Model1" />
 		<put-attribute name="prev-title" value="BBS Model1" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/Model2" extends="defaultTemplate">
 		<put-attribute name="title" value="Model2" />
@@ -783,7 +783,7 @@
 		<put-attribute name="next-title" value="Paging" />
 		<put-attribute name="prev-link" value="DataSource" />
 		<put-attribute name="prev-title" value="DataSource" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<definition name="jsp/Paging" extends="defaultTemplate">
 		<put-attribute name="title" value="Try to reuse Paging Process" />
@@ -794,7 +794,7 @@
 		<put-attribute name="article" value="/WEB-INF/views/jsp/Paging.jsp" />
 		<put-attribute name="prev-link" value="Model2" />
 		<put-attribute name="prev-title" value="Model2" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp_menu.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub.jsp" />
 	</definition>
 	<!-- CSS-Layout -->
 	<definition name="css-layout/div-element-arrangement"
@@ -809,7 +809,7 @@
 		<put-attribute name="next-link" value="main-menu-styling" />
 		<put-attribute name="next-title" value="Main Elements Arrangement" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/css-layout/css-layout_menu.jsp" />
+			value="/WEB-INF/views/css-layout/css-layout-sub.jsp" />
 	</definition>
 	<definition name="css-layout/main-menu-styling" extends="defaultTemplate">
 		<put-attribute name="title" value="main-menu styling" />
@@ -823,7 +823,7 @@
 		<put-attribute name="prev-link" value="div-element-arrangement" />
 		<put-attribute name="prev-title" value="Main Elements Arrangement" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/css-layout/css-layout_menu.jsp" />
+			value="/WEB-INF/views/css-layout/css-layout-sub.jsp" />
 	</definition>
 	<definition name="css-layout/sub-menu-styling" extends="defaultTemplate">
 		<put-attribute name="title" value="sub-menu styling" />
@@ -837,7 +837,7 @@
 		<put-attribute name="prev-link" value="main-menu-styling" />
 		<put-attribute name="prev-title" value="main-menu styling" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/css-layout/css-layout_menu.jsp" />
+			value="/WEB-INF/views/css-layout/css-layout-sub.jsp" />
 	</definition>
 	<definition name="css-layout/header-footer-content-styling"
 		extends="defaultTemplate">
@@ -852,7 +852,7 @@
 		<put-attribute name="prev-link" value="sub-menu-styling" />
 		<put-attribute name="prev-title" value="sub-menu styling" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/css-layout/css-layout_menu.jsp" />
+			value="/WEB-INF/views/css-layout/css-layout-sub.jsp" />
 	</definition>
 	<definition name="css-layout/bbs-list-styling" extends="defaultTemplate">
 		<put-attribute name="title" value="bbs list styling" />
@@ -866,7 +866,7 @@
 		<put-attribute name="prev-link" value="header-footer-content-styling" />
 		<put-attribute name="prev-title" value="header, footer, content styling" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/css-layout/css-layout_menu.jsp" />
+			value="/WEB-INF/views/css-layout/css-layout-sub.jsp" />
 	</definition>
 	<definition name="css-layout/bbs-view-styling" extends="defaultTemplate">
 		<put-attribute name="title" value="bbs view styling" />
@@ -880,7 +880,7 @@
 		<put-attribute name="prev-link" value="bbs-list-styling" />
 		<put-attribute name="prev-title" value="bbs list styling" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/css-layout/css-layout_menu.jsp" />
+			value="/WEB-INF/views/css-layout/css-layout-sub.jsp" />
 	</definition>
 	<definition name="css-layout/bbs-write_form-styling"
 		extends="defaultTemplate">
@@ -893,7 +893,7 @@
 		<put-attribute name="prev-link" value="bbs-view-styling" />
 		<put-attribute name="prev-title" value="bbs view styling" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/css-layout/css-layout_menu.jsp" />
+			value="/WEB-INF/views/css-layout/css-layout-sub.jsp" />
 	</definition>
 	<!-- JSP Project -->
 	<definition name="jsp-pjt/Dynamic-Web-Project-Set-Up"
@@ -908,7 +908,7 @@
 		<put-attribute name="next-link" value="database-design" />
 		<put-attribute name="next-title" value="database design" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/jsp-pjt/jsp-pjt_menu.jsp" />
+			value="/WEB-INF/views/jsp-pjt/jsp-pjt-sub.jsp" />
 	</definition>
 	<definition name="jsp-pjt/database-design" extends="defaultTemplate">
 		<put-attribute name="title" value="Database Design" />
@@ -923,7 +923,7 @@
 		<put-attribute name="prev-link" value="Dynamic-Web-Project-Set-Up" />
 		<put-attribute name="prev-title" value="Dynamic Web Project SetUp" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/jsp-pjt/jsp-pjt_menu.jsp" />
+			value="/WEB-INF/views/jsp-pjt/jsp-pjt-sub.jsp" />
 	</definition>
 	<definition name="jsp-pjt/how-to-use-log4j" extends="defaultTemplate">
 		<put-attribute name="title" value="How to use log4j" />
@@ -937,7 +937,7 @@
 		<put-attribute name="prev-link" value="database-design" />
 		<put-attribute name="prev-title" value="Database Design" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/jsp-pjt/jsp-pjt_menu.jsp" />
+			value="/WEB-INF/views/jsp-pjt/jsp-pjt-sub.jsp" />
 	</definition>
 	<definition name="jsp-pjt/bbs-prototype" extends="defaultTemplate">
 		<put-attribute name="title" value="BBS project's prototype" />
@@ -951,7 +951,7 @@
 		<put-attribute name="prev-link" value="how-to-use-log4j" />
 		<put-attribute name="prev-title" value="How to use log4j" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/jsp-pjt/jsp-pjt_menu.jsp" />
+			value="/WEB-INF/views/jsp-pjt/jsp-pjt-sub.jsp" />
 	</definition>
 	<definition name="jsp-pjt/bbs-javabeans" extends="defaultTemplate">
 		<put-attribute name="title" value="BBS project's javabeans" />
@@ -965,7 +965,7 @@
 		<put-attribute name="prev-link" value="bbs-prototype" />
 		<put-attribute name="prev-title" value="BBS project's prototype" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/jsp-pjt/jsp-pjt_menu.jsp" />
+			value="/WEB-INF/views/jsp-pjt/jsp-pjt-sub.jsp" />
 	</definition>
 	<definition name="jsp-pjt/bbs-implementation" extends="defaultTemplate">
 		<put-attribute name="title" value="BBS mini project implementation" />
@@ -979,7 +979,7 @@
 		<put-attribute name="prev-link" value="bbs-javabeans" />
 		<put-attribute name="prev-title" value="BBS'project's javabeans" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/jsp-pjt/jsp-pjt_menu.jsp" />
+			value="/WEB-INF/views/jsp-pjt/jsp-pjt-sub.jsp" />
 	</definition>
 	<definition name="jsp-pjt/bbs-model-2" extends="defaultTemplate">
 		<put-attribute name="title" value="Migrate Model1 to Model2" />
@@ -991,7 +991,7 @@
 		<put-attribute name="prev-link" value="bbs-implementation" />
 		<put-attribute name="prev-title" value="BBS mini project implementation" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/jsp-pjt/jsp-pjt_menu.jsp" />
+			value="/WEB-INF/views/jsp-pjt/jsp-pjt-sub.jsp" />
 	</definition>
 	<!-- Spring -->
 	<definition name="spring/building-java-projects-with-maven"
@@ -1005,7 +1005,7 @@
 		<put-attribute name="next-link" value="di" />
 		<put-attribute name="next-title" value="Spring DI" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/di" extends="defaultTemplate">
 		<put-attribute name="title" value="Spring DI" />
@@ -1018,7 +1018,7 @@
 		<put-attribute name="prev-link" value="building-java-projects-with-maven" />
 		<put-attribute name="prev-title" value="Building java projects with maven" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/aop" extends="defaultTemplate">
 		<put-attribute name="title" value="Spring AOP" />
@@ -1031,7 +1031,7 @@
 		<put-attribute name="prev-link" value="di" />
 		<put-attribute name="prev-title" value="Spring DI" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/jdbc" extends="defaultTemplate">
 		<put-attribute name="title" value="Spring JDBC" />
@@ -1044,7 +1044,7 @@
 		<put-attribute name="prev-link" value="aop" />
 		<put-attribute name="prev-title" value="Spring AOP" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/transaction" extends="defaultTemplate">
 		<put-attribute name="title" value="Spring Transaction" />
@@ -1058,7 +1058,7 @@
 		<put-attribute name="prev-link" value="jdbc" />
 		<put-attribute name="prev-title" value="Spring JDBC" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/spring-mvc-with-maven" extends="defaultTemplate">
 		<put-attribute name="title" value="Spring MVC with maven" />
@@ -1072,7 +1072,7 @@
 		<put-attribute name="prev-link" value="transaction" />
 		<put-attribute name="prev-title" value="Spring Transaction" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/spring-mvc-bbs" extends="defaultTemplate">
 		<put-attribute name="title" value="BBS with Spring MVC" />
@@ -1086,7 +1086,7 @@
 		<put-attribute name="prev-link" value="spring-mvc-with-maven" />
 		<put-attribute name="prev-title" value="Spring MVC with maven" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/spring-security-config" extends="defaultTemplate">
 		<put-attribute name="title" value="Spring Security Configuration" />
@@ -1100,7 +1100,7 @@
 		<put-attribute name="prev-link" value="spring-mvc-bbs" />
 		<put-attribute name="prev-title" value="BBS with Spring MVC" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/method-security" extends="defaultTemplate">
 		<put-attribute name="title" value="Method Security" />
@@ -1115,7 +1115,7 @@
 		<put-attribute name="prev-link" value="spring-security-config" />
 		<put-attribute name="prev-title" value="Spring Security Configuration" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 
 	<definition name="spring/security-at-view-layer" extends="defaultTemplate">
@@ -1131,7 +1131,7 @@
 		<put-attribute name="prev-link" value="method-security" />
 		<put-attribute name="prev-title" value="Method Security" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 
 	<definition name="spring/bean-validation-at-signUp" extends="defaultTemplate">
@@ -1146,7 +1146,7 @@
 		<put-attribute name="prev-link" value="security-at-view-layer" />
 		<put-attribute name="prev-title" value="Security at view layer" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 
 	<definition name="spring/bean-validation-at-editAccount"
@@ -1162,7 +1162,7 @@
 		<put-attribute name="prev-link" value="bean-validation-at-signUp" />
 		<put-attribute name="prev-title" value="Bean validation at signUp" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/bean-validation-at-changePasswd"
 		extends="defaultTemplate">
@@ -1177,7 +1177,7 @@
 		<put-attribute name="prev-link" value="bean-validation-at-editAccount" />
 		<put-attribute name="prev-title" value="Bean validation at editAccount" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/bean-validation-at-write-article"
 		extends="defaultTemplate">
@@ -1192,7 +1192,7 @@
 		<put-attribute name="prev-link" value="bean-validation-at-changePasswd" />
 		<put-attribute name="prev-title" value="Bean validation at changePasswd" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/bean-validation-at-modify-article"
 		extends="defaultTemplate">
@@ -1207,7 +1207,7 @@
 		<put-attribute name="prev-link" value="bean-validation-at-write-article" />
 		<put-attribute name="prev-title" value="Bean validation at write article" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/i18n" extends="defaultTemplate">
 		<put-attribute name="title" value="i18n" />
@@ -1219,7 +1219,7 @@
 		<put-attribute name="prev-link" value="bean-validation-at-modify-article" />
 		<put-attribute name="prev-title" value="Bean validation at modify article" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/downloadController" extends="defaultTemplate">
 		<put-attribute name="title" value="Controller for download" />
@@ -1235,7 +1235,7 @@
 		<put-attribute name="prev-link" value="i18n" />
 		<put-attribute name="prev-title" value="i18n" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/Setting-development-environment-in-Ubuntu"
 		extends="defaultTemplate">
@@ -1251,7 +1251,7 @@
 		<put-attribute name="prev-link" value="downloadController" />
 		<put-attribute name="prev-title" value="Controller for download" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/SpringBbs-with-MySql" extends="defaultTemplate">
 		<put-attribute name="title" value="SpringBbs with MySql" />
@@ -1267,7 +1267,7 @@
 		<put-attribute name="prev-title"
 			value="Setting development environment in Ubuntu" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/migrating-to-spring-security-4"
 		extends="defaultTemplate">
@@ -1284,7 +1284,7 @@
 		<put-attribute name="prev-link" value="SpringBbs-with-MySql" />
 		<put-attribute name="prev-title" value="SpringBbs with MySql" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/spring-security-access-denied-handling"
 		extends="defaultTemplate">
@@ -1300,7 +1300,7 @@
 		<put-attribute name="prev-link" value="migrating-to-spring-security-4" />
 		<put-attribute name="prev-title" value="Migrating to Spring Security 4" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<definition name="spring/spring-security-password-encoder"
 		extends="defaultTemplate">
@@ -1315,7 +1315,7 @@
 		<put-attribute name="prev-title"
 			value="Spring Security Access Denied Handling" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/spring/spring_menu.jsp" />
+			value="/WEB-INF/views/spring/spring-sub.jsp" />
 	</definition>
 	<!-- JavaScript -->
 	<definition name="javascript/introduction" extends="defaultTemplate">
@@ -1327,7 +1327,7 @@
 		<put-attribute name="next-link" value="dataType" />
 		<put-attribute name="next-title" value="JavaScript Data Type" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/dataType" extends="defaultTemplate">
 		<put-attribute name="title" value="JavaScript Data Type" />
@@ -1341,7 +1341,7 @@
 		<put-attribute name="prev-link" value="introduction" />
 		<put-attribute name="prev-title" value="JavaScript Introduction" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/handling-select-items" extends="defaultTemplate">
 		<put-attribute name="title"
@@ -1358,7 +1358,7 @@
 		<put-attribute name="prev-link" value="dataType" />
 		<put-attribute name="prev-title" value="JavaScript Data Type" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/difference-between-javascript-and-java"
 		extends="defaultTemplate">
@@ -1375,7 +1375,7 @@
 		<put-attribute name="prev-title"
 			value="Handling select element with javascript" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/Number" extends="defaultTemplate">
 		<put-attribute name="title" value="Number" />
@@ -1389,7 +1389,7 @@
 		<put-attribute name="prev-title"
 			value="Difference between javascript and java" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/String" extends="defaultTemplate">
 		<put-attribute name="title" value="String" />
@@ -1401,7 +1401,7 @@
 		<put-attribute name="prev-link" value="Number" />
 		<put-attribute name="prev-title" value="Number" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/RegExp" extends="defaultTemplate">
 		<put-attribute name="title" value="RegExp" />
@@ -1413,7 +1413,7 @@
 		<put-attribute name="prev-link" value="String" />
 		<put-attribute name="prev-title" value="String" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/Date" extends="defaultTemplate">
 		<put-attribute name="title" value="Date" />
@@ -1425,7 +1425,7 @@
 		<put-attribute name="prev-link" value="RegExp" />
 		<put-attribute name="prev-title" value="RegExp" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/Array" extends="defaultTemplate">
 		<put-attribute name="title" value="Array" />
@@ -1437,7 +1437,7 @@
 		<put-attribute name="prev-link" value="Date" />
 		<put-attribute name="prev-title" value="Date" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/Math" extends="defaultTemplate">
 		<put-attribute name="title" value="Math" />
@@ -1449,7 +1449,7 @@
 		<put-attribute name="prev-link" value="Array" />
 		<put-attribute name="prev-title" value="Array" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/Function" extends="defaultTemplate">
 		<put-attribute name="title" value="Function" />
@@ -1462,7 +1462,7 @@
 		<put-attribute name="prev-link" value="Math" />
 		<put-attribute name="prev-title" value="Math" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/javascript-form-validation"
 		extends="defaultTemplate">
@@ -1476,7 +1476,7 @@
 		<put-attribute name="prev-link" value="Function" />
 		<put-attribute name="prev-title" value="Function" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/Cookie" extends="defaultTemplate">
 		<put-attribute name="title" value="Handling Cookie with JavaScript" />
@@ -1488,7 +1488,7 @@
 		<put-attribute name="prev-link" value="p" />
 		<put-attribute name="prev-title" value="p" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/decoupling-html-and-javascript"
 		extends="defaultTemplate">
@@ -1500,6 +1500,6 @@
 		<put-attribute name="prev-link" value="Cookie" />
 		<put-attribute name="prev-title" value="Cookie" />
 		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript_menu.jsp" />
+			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 </tiles-definitions>
