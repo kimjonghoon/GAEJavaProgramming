@@ -6,6 +6,7 @@ html, body {
 	font-family: "Liberation Sans", Helvetica, "돋움", dotum, sans-serif;
 	font-size: 1em;
 }
+
 table {
 	border-collapse: collapse;
 }
@@ -23,21 +24,20 @@ input, select, textarea, td, th {
 	font-weight: bold;
 }
 #mainNav > ul {
-	margin: 0;
 	padding: 0;
 }
 .main-menu-item {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	text-align: center;
 	font-size: 14px;
 	border: 2px solid #DAEAAA;
 }
 .main-menu-item > a {
+	text-align: center;
 	margin: 0;
 	padding-top: 7px;
-	height: 30px;
+	height: 35px;
 	display: block;
 	text-decoration: none;
 	color: #FFF;
@@ -564,6 +564,8 @@ footer > ul > li {
 	}
 	#mainNav {
 		height: 35px;
+		padding: 0;
+		padding-left: 20px;
 		font-size: 12px;
 		background: #92B91C;
 		border: 2px solid #DAEAAA;
@@ -571,11 +573,24 @@ footer > ul > li {
 	.main-menu-item {
 		float: left;
 		border: none;
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
 	}
 	.main-menu-item > a {
-		padding-left: 20px;
+		display: inline;
+		margin: 0;
+		padding-top: 0;
+		padding-left: 8px;
 		padding-right: 20px;
+		background: url('../images/bull_circle.gif') no-repeat 0 50%;
+		position: relative;
+		top: -4px;
 	}
+	.main-menu-item > a:hover {
+		color: #FFF;
+		text-decoration: underline;
+	}	
 	#login {
 		clear: both;
 	}
