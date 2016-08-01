@@ -5,7 +5,7 @@
 	<strong id="main-menu-title">${category }</strong>
 	<ul id="sub-menu">
 	<c:forEach var="i" items="${articles }" varStatus="status">
-		<li class="sub-menu-item"><a href="/${i.category }/${i.id }">${i.title }</a></li>
+		<li class="sub-menu-item"><a href="/datastore/${i.category }/${i.id }">${i.title }</a></li>
 	</c:forEach>
 	</ul>
 </nav>

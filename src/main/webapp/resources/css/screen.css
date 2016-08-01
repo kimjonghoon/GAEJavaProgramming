@@ -6,7 +6,6 @@ html, body {
 	font-family: "Liberation Sans", Helvetica, "돋움", dotum, sans-serif;
 	font-size: 1em;
 }
-
 table {
 	border-collapse: collapse;
 }
@@ -30,14 +29,14 @@ input, select, textarea, td, th {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	text-align: center;
 	font-size: 14px;
 	border: 2px solid #DAEAAA;
 }
 .main-menu-item > a {
-	text-align: center;
 	margin: 0;
 	padding-top: 7px;
-	height: 35px;
+	height: 30px;
 	display: block;
 	text-decoration: none;
 	color: #FFF;
@@ -62,6 +61,9 @@ article {
 	margin: 0;
 	padding: 0;
 }
+article img {
+	width: 100%;
+}
 #sidebar {
 	font-family: Verdana, sans-serif;
 	background: #FFF;
@@ -80,6 +82,16 @@ article {
 	background: #92B91C;
 	text-transform: capitalize;
 }
+.sub-section-title {
+	list-style-type: none;
+	padding: 6px 10px;
+	color: #64615d;
+	background-color: #DAEAAA;
+	border-bottom: 1px solid #fff;
+	font-weight: bold;
+	font-size: 12px;
+}
+
 .sub-menu-item {
 	list-style-type: none;
 	margin: 0;
@@ -96,21 +108,12 @@ article {
 	font-weight: normal;
 	text-decoration: none;
 	border-bottom: 1px solid #fff;
-	background: #fff url('../images/circle.gif') no-repeat 5% 50%;
+	background: #fff url('../images/circle.gif') no-repeat 5% 50%; <!--추가 -->
 }
 
 .sub-menu-item > a:hover {
 	background-color: #EDFEBA;
 	color: #64615d;
-}
-.sub-menu-heading {
-	list-style-type: none;
-	padding: 6px 10px;
-	color: #64615d;
-	background-color: #DAEAAA;
-	border-bottom: 1px solid #fff;
-	font-weight: bold;
-	font-size: 12px;
 }
 
 aside {
@@ -583,7 +586,7 @@ footer > ul > li {
 		padding-top: 0;
 		padding-left: 8px;
 		padding-right: 20px;
-		background: url('../images/bull_circle.gif') no-repeat 0 50%;
+		background: url('../images/bull_circle.gif') no-repeat 0 50%;<!-- 추가 -->
 		position: relative;
 		top: -4px;
 	}
@@ -607,7 +610,7 @@ footer > ul > li {
 		margin-left: -1004px;
 	}
  	.sub-menu-item > a {
-		padding: 5px 3px 4px 17px;
+		padding: 5px 3px 4px 17px;<!--12px에서 17px로 변경 -->
 	}
 	aside {
 		float: left;

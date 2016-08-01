@@ -187,10 +187,31 @@ public class BlogController {
 		}
 		String[] me = getMe(dir_path);
 		model.addAttribute("category", me[2] + " - " + me[1]);
+		//3장 데이터스토어를 이용하는 블로그와 통합
+		Key<Category> categoryKey = Key.create(Category.class, category);    
+		List<Article> articles = ofy()
+				.load()
+				.type(Article.class)
+				.ancestor(categoryKey)
+				.project("title")
+				.order("order")
+				.list();
+		model.addAttribute("articles", articles);
 		return category + "/" + path;
 	}	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String home() {
+	public String home(Model model) {
+		//3장 데이터스토어를 이용하는 블로그와 통합
+		Key<Category> categoryKey = Key.create(Category.class, "home");    
+		List<Article> articles = ofy()
+				.load()
+				.type(Article.class)
+				.ancestor(categoryKey)
+				.project("title")
+				.order("order")
+				.list();
+		model.addAttribute("articles", articles);
+
 		return "/";
 	}
 	@RequestMapping(value="blog/new", method=RequestMethod.GET)
@@ -266,7 +287,8 @@ public class BlogController {
 	    ofy().delete().key(key).now();
 	    return "redirect:/blog/list";
 	}
-/*	@RequestMapping(value="{category}/{id}", method=RequestMethod.GET)
+	//3장 데이터스토어 이용한 블로그
+	@RequestMapping(value="datastore/{category}/{id}", method=RequestMethod.GET)
 	public String blog(@PathVariable("category") String category, 
 			@PathVariable("id") String id, Model model) {
 		Key<Category> categoryKey = Key.create(Category.class, category);    
@@ -284,6 +306,6 @@ public class BlogController {
 				.order("order")
 				.list();
 		model.addAttribute("articles", articles);
-		return category + "/" + id;
-	}*/
+		return "datastore/" + category + "/" + id;
+	}
 }
