@@ -28,9 +28,31 @@ public class BbsController {
 		this.boardService = boardService;
 	}
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String list(Model model) {
+	public String list(String boardCd, Integer curPage, String searchWord, Model model) {
 		List<Board> boards = boardService.getAllBoard();
 		model.addAttribute("boards", boards);
+		
+		int numPerPage = 10;
+		int pagePerBlock = 10;
+		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
+		PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+		boardService.setPagingHelper(pagingHelper);
+		List<Article> list = boardService.getArticleList(boardCd, searchWord);
+		String boardNm = boardService.getBoardNm(boardCd);
+		Integer listItemNo = pagingHelper.getListItemNo();
+		Integer prevPage = pagingHelper.getPrevPage();
+		Integer nextPage = pagingHelper.getNextPage();
+		Integer firstPage = pagingHelper.getFirstPage();
+		Integer lastPage = pagingHelper.getLastPage();
+		
+		model.addAttribute("list", list);
+		model.addAttribute("boardNm", boardNm);
+		model.addAttribute("listItemNo", listItemNo);
+		model.addAttribute("prevPage", prevPage);
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("firstPage", firstPage);
+		model.addAttribute("lastPage", lastPage);
+		
 		return "bbs/list";
 	}
 	@RequestMapping(value="view", method=RequestMethod.GET)
@@ -81,7 +103,7 @@ public class BbsController {
 		return "redirect:/bbs/blob?blob-key=" + blobKey.getKeyString();
 	}
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String write(Article article, Model model, HttpServletRequest req) {
+	public String write(Article article, String curPage, String searchWord, Model model, HttpServletRequest req) {
 		article.setEmail("tester@tester.org");
 		boardService.addArticle(article);
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
@@ -109,7 +131,7 @@ public class BbsController {
 				boardService.addAttachFile(attachFile);
 			}
 		}
-		return "redirect:/bbs/write?boardCd=" + article.getBoardCd();
+		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + "&curPage=" + curPage + "&searchWord=" + searchWord;
 	}	
 
 }

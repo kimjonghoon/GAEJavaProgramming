@@ -10,5 +10,11 @@ public interface BoardService {
    public int addArticle(Article article);
    public void addAttachFile(AttachFile attachFile);
    public void removeAttachFile(String filekey);
+	//목록
+	public List<Article> getArticleList(String boardCd, String searchWord);
+	//총 레코드 수
+	public int getTotalRecord(String boardCd, String searchWord);
+	
+	public void setPagingHelper(PagingHelper pagingHelper);
+   
 }
-

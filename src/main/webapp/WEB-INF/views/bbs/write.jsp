@@ -10,6 +10,8 @@ BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService(
 <form id="writeForm" action="<%=blobstoreService.createUploadUrl("/bbs/write") %>" method="post" enctype="multipart/form-data">
 <p style="margin: 0;padding: 0;">
 <input type="hidden" name="boardCd" value="${param.boardCd }" />
+<input type="hidden" name="curPage" value="${param.curPage }" />
+<input type="hidden" name="searchWord" value="${param.searchWord }" />
 </p>
 <table style="width: 98%">
 <tr>
