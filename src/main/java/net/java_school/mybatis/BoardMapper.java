@@ -46,5 +46,7 @@ public interface BoardMapper {
 	public List<Comments> selectListOfComments(int articleNo);
 	//첨부파일 찾기
 	public AttachFile selectOneAttachFile(int attachFileNo);
+	//댓글 삭제
+	public void deleteComments(int commentNo);
 	
 }

@@ -31,5 +31,7 @@ public interface BoardService {
 	public List<Comments> getCommentsList(int articleNo);
 	//첨부파일 찾기
 	public AttachFile getAttachFile(int attachFileNo);
+	//댓글 삭제
+	public void removeComments(int commentNo);
    
 }

@@ -139,4 +139,8 @@
 		WHERE
 			attachfileno = #{attachfileno}
 	</select>
+	<delete id="deleteComments" parameterType="int">
+		DELETE FROM comments WHERE commentno = #{commentNo}
+	</delete>
+	
 </mapper>

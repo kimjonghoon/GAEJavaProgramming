@@ -215,6 +215,22 @@ public class BbsController {
 				"&searchWord=" + searchWord;
 
 	}
+	@RequestMapping(value="/deleteComments", method=RequestMethod.POST)
+	public String deleteComments(Integer commentNo, 
+			Integer articleNo, 
+			String boardCd, 
+			Integer curPage, 
+			String searchWord) throws Exception {
 
+		boardService.removeComments(commentNo);
+
+		searchWord = URLEncoder.encode(searchWord,"UTF-8");
+
+		return "redirect:/bbs/view?articleNo=" + articleNo + 
+				"&boardCd=" + boardCd + 
+				"&curPage=" + curPage + 
+				"&searchWord=" + searchWord;
+
+	}
 
 }

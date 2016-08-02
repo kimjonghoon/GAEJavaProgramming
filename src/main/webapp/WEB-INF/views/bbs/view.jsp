@@ -19,11 +19,11 @@ $(document).ready(function() {
 		}
 		return false;
 	});
-//	덧글반복
+	//덧글반복
 	$('.comments').click(function(e) {
-		if ($(e.target).is('.comment-toggle')) {
-			var $form = $(e.target).parent().parent().find('.modify-comment');
-			var $p = $(e.target).parent().parent().find('.view-comment');
+		if ($(e.target).is('.comments-toggle')) {
+			var $form = $(e.target).parent().parent().find('.comments-modify-form');
+			var $p = $(e.target).parent().parent().find('.comments-content');
 			if ($form.is(':hidden') == true) {
 				$form.show();
 				$p.hide();
@@ -32,12 +32,12 @@ $(document).ready(function() {
 				$p.show();
 			}
 			return false;
-		} else if ($(e.target).is('.comment-delete')) {
+		} else if ($(e.target).is('.comments-delete')) {
 			var chk = confirm("정말로 삭제하시겠습니까?");
 			if (chk == true) {
 				var $commentNo = $(e.target).attr('title');
-				$('#deleteCommentForm input[name*=commentNo]').val($commentNo);
-				$('#deleteCommentForm').submit();
+				$('#deleteCommentsForm input[name*=commentNo]').val($commentNo);
+				$('#deleteCommentsForm').submit();
 			}
 			return false;
 		}
@@ -65,7 +65,7 @@ $(document).ready(function() {
 		goView($articleNo);
 		return false;
 	});
-//	수정 버튼
+	//수정 버튼
 	$('.goModify').click(function() {
 		$('#modifyForm').submit();
 	});
@@ -154,7 +154,7 @@ function goList(curPage) {
 	<a href="#" title="${file.filekey }">x</a><br />
 </c:forEach>
 </p>
-<form id="addCommentForm" action="addComments" method="post">
+<form id="addCommentForm" action="addComments" method="post" style="margin-bottom: 5px;">
 	<p style="margin: 0;padding: 0">
 		<input type="hidden" name="articleNo" value="${param.articleNo }" />
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -179,7 +179,7 @@ function goList(curPage) {
 		| <a href="#" class="comments-delete" title="${comments.commentNo }">삭제</a>
     </span>
     <p class="comments-content">${comments.memo }</p>
-    <form class="modify-comments" method="post" style="display: none;">
+    <form class="comments-modify-form" method="post" style="display: none;">
     <p>
         <input type="hidden" name="commentNo" value="${comments.commentNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -326,7 +326,7 @@ function goList(curPage) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
-    <form id="deleteCommentForm" action="deleteComment" method="post">
+    <form id="deleteCommentsForm" action="deleteComments" method="post">
     <p>
         <input type="hidden" name="commentNo" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />

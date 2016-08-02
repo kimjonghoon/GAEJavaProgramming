@@ -107,5 +107,10 @@ public class BoardServiceImpl implements BoardService {
 	public AttachFile getAttachFile(int attachFileNo) {
 		return boardMapper.selectOneAttachFile(attachFileNo);
 	}
+	//댓글 삭제
+	@Override
+	public void removeComments(int commentNo) {
+		boardMapper.deleteComments(commentNo);
+	}
 	
 }
