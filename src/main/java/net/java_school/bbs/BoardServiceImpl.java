@@ -56,5 +56,56 @@ public class BoardServiceImpl implements BoardService {
 	public void setPagingHelper(PagingHelper pagingHelper) {
 		this.pagingHelper = pagingHelper;
 	}
+	//조회수 증가
+	@Override
+	public void increaseHit(int articleNo) {
+		boardMapper.updateHitPlusOne(articleNo);
+	}
+
+	//상세보기
+	@Override
+	public Article getArticle(int articleNo) {
+		return boardMapper.selectOne(articleNo);
+	}
+
+	//다음글
+	@Override
+	public Article getNextArticle(int articleNo, String boardCd, String searchWord) {
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		Integer no = articleNo;
+		hashmap.put("articleNo", no.toString());
+		hashmap.put("boardCd", boardCd);
+		hashmap.put("searchWord", searchWord);
+		
+		return boardMapper.selectNextOne(hashmap);
+	}
+	
+	//이전글
+	@Override
+	public Article getPrevArticle(int articleNo, String boardCd, String searchWord) {
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		Integer no = articleNo;
+		hashmap.put("articleNo", no.toString());
+		hashmap.put("boardCd", boardCd);
+		hashmap.put("searchWord", searchWord);
+		
+		return boardMapper.selectPrevOne(hashmap);
+	}
+
+	//첨부파일 리스트
+	@Override
+	public List<AttachFile> getAttachFileList(int articleNo) {
+		return boardMapper.selectListOfAttachFiles(articleNo);
+	}
+	//댓글 리스트
+	@Override
+	public List<Comments> getCommentsList(int articleNo) {
+		return boardMapper.selectListOfComments(articleNo);
+	}
+	//첨부파일 찾기
+	@Override
+	public AttachFile getAttachFile(int attachFileNo) {
+		return boardMapper.selectOneAttachFile(attachFileNo);
+	}
 	
 }

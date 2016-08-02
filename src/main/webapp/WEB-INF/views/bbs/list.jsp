@@ -15,7 +15,7 @@
 	<tr>
 		<td style="text-align: center;">${listItemNo - status.index }</td>
 		<td>
-			<a href="view.jsp?articleNo=${article.articleNo }&boardCd=${param.boardCd }&curPage=${param.curPage }&searchWord=${param.searchWord }">${article.title }</a>
+			<a href="view?articleNo=${article.articleNo }&boardCd=${param.boardCd }&curPage=${param.curPage }&searchWord=${param.searchWord }">${article.title }</a>
 			<c:if test="${article.attachFileNum > 0 }">
 				<strong class="attach">[${article.attachFileNum }]</strong>
 			</c:if> 

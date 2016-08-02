@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import net.java_school.bbs.Article;
 import net.java_school.bbs.AttachFile;
 import net.java_school.bbs.Board;
+import net.java_school.bbs.Comments;
 
 public interface BoardMapper {
 	//모든 게시판
@@ -27,5 +28,23 @@ public interface BoardMapper {
 	
 	//총 레코드
 	public int selectCountOfArticles(HashMap<String, String> hashmap);
+	//조회수 증가
+	public void updateHitPlusOne(int articleNo);	
+	
+	//상세보기
+	public Article selectOne(int articleNo);
+	
+	//다음글
+	public Article selectNextOne(HashMap<String, String> hashmap); 
+	
+	//이전글
+	public Article selectPrevOne(HashMap<String, String> hashmap);
+
+	//첨부파일 리스트
+	public List<AttachFile> selectListOfAttachFiles(int articleNo);	
+	//댓글 리스트
+	public List<Comments> selectListOfComments(int articleNo);
+	//첨부파일 찾기
+	public AttachFile selectOneAttachFile(int attachFileNo);
 	
 }

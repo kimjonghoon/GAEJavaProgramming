@@ -1,5 +1,6 @@
 package net.java_school.bbs;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 public class BbsController {
 	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 	private BoardService boardService;
-	
+
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
@@ -31,7 +32,7 @@ public class BbsController {
 	public String list(String boardCd, Integer curPage, String searchWord, Model model) {
 		List<Board> boards = boardService.getAllBoard();
 		model.addAttribute("boards", boards);
-		
+
 		int numPerPage = 10;
 		int pagePerBlock = 10;
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
@@ -44,7 +45,7 @@ public class BbsController {
 		Integer nextPage = pagingHelper.getNextPage();
 		Integer firstPage = pagingHelper.getFirstPage();
 		Integer lastPage = pagingHelper.getLastPage();
-		
+
 		model.addAttribute("list", list);
 		model.addAttribute("boardNm", boardNm);
 		model.addAttribute("listItemNo", listItemNo);
@@ -52,15 +53,76 @@ public class BbsController {
 		model.addAttribute("nextPage", nextPage);
 		model.addAttribute("firstPage", firstPage);
 		model.addAttribute("lastPage", lastPage);
-		
+
 		return "bbs/list";
 	}
-	@RequestMapping(value="view", method=RequestMethod.GET)
-	public String view(Model model) {
+
+	@RequestMapping(value="/view", method=RequestMethod.GET)
+	public String view(Integer articleNo, 
+			String boardCd, 
+			Integer curPage,
+			String searchWord,
+			Model model) {
+
 		List<Board> boards = boardService.getAllBoard();
 		model.addAttribute("boards", boards);
+
+		boardService.increaseHit(articleNo);
+
+		Article article = boardService.getArticle(articleNo);//상세보기에서 볼 게시글
+		List<AttachFile> attachFileList = boardService.getAttachFileList(articleNo);
+		Article nextArticle = boardService.getNextArticle(articleNo, boardCd, searchWord);
+		Article prevArticle = boardService.getPrevArticle(articleNo, boardCd, searchWord);
+		List<Comments> commentsList = boardService.getCommentsList(articleNo);
+		String boardNm = boardService.getBoardNm(boardCd);
+
+		//상세보기에서 볼 게시글 관련 정보
+		String title = article.getTitle();//제목
+		String content = article.getContent();//내용
+		content = content.replaceAll(System.getProperty("line.separator"), "<br />");
+		int hit = article.getHit();//조회수
+		String name = article.getName();//작성자 이름
+		String email = article.getEmail();//작성자 ID
+		Date regdate = article.getRegdate();//작성일
+
+		model.addAttribute("title", title);
+		model.addAttribute("content", content);
+		model.addAttribute("hit", hit);
+		model.addAttribute("name", name);
+		model.addAttribute("email", email);
+		model.addAttribute("regdate", regdate);
+		model.addAttribute("attachFileList", attachFileList);
+		model.addAttribute("nextArticle", nextArticle);
+		model.addAttribute("prevArticle", prevArticle);
+		model.addAttribute("commentsList", commentsList);
+
+		//목록관련
+		int numPerPage = 10;//페이지당 레코드 수
+		int pagePerBlock = 10;//블록당 페이지 링크수
+
+		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
+		PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+		boardService.setPagingHelper(pagingHelper);
+
+		List<Article> list = boardService.getArticleList(boardCd, searchWord);
+
+		int listItemNo = pagingHelper.getListItemNo();
+		int prevPage = pagingHelper.getPrevPage();
+		int nextPage = pagingHelper.getNextPage();
+		int firstPage = pagingHelper.getFirstPage();
+		int lastPage = pagingHelper.getLastPage();
+
+		model.addAttribute("list", list);
+		model.addAttribute("listItemNo", listItemNo);
+		model.addAttribute("prevPage", prevPage);
+		model.addAttribute("firstPage", firstPage);
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("boardNm", boardNm);
+
 		return "bbs/view";
 	}
+
 	@RequestMapping(value="write", method=RequestMethod.GET)
 	public String write(String boardCd, Model model) {
 		List<Board> boards = boardService.getAllBoard();
@@ -132,6 +194,7 @@ public class BbsController {
 			}
 		}
 		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + "&curPage=" + curPage + "&searchWord=" + searchWord;
-	}	
+	}
+	
 
 }

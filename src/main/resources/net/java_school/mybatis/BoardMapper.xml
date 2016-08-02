@@ -47,7 +47,6 @@
 		DESC
 		LIMIT #{offset}, #{rowCount}
 	</select>
-
 	<select id="selectCountOfArticles" parameterType="hashmap"
 		resultType="int">
 		SELECT count(*) FROM article
@@ -57,6 +56,88 @@
 			AND (title LIKE '%${searchWord}%' OR content LIKE
 			'%${searchWord}%')
 		</if>
+	</select>
+	<update id="updateHitPlusOne" parameterType="int">
+		UPDATE article SET hit = hit + 1 WHERE articleno = #{articleNo}
+	</update>
+	<select id="selectOne" parameterType="int" resultType="Article">
+		SELECT 
+			articleno,
+			title,
+			content,
+			a.email,
+			ifNull(name, 'Anonymous') name,
+			hit,
+			regdate
+		FROM article as a left join member as m on a.email = m.email
+		WHERE 
+			articleno = #{articleNo}
+	</select>
+	<select id="selectNextOne" parameterType="hashmap" resultType="Article">
+		SELECT articleno, title 
+		FROM article 
+		WHERE 
+			boardCd = #{boardCd} 
+			AND articleno &gt; #{articleNo}
+		<if test="searchWord != null and searchWord != ''">
+			AND (title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%')
+		</if> 
+		ORDER BY articleno
+		LIMIT 1
+	</select>
+	<select id="selectPrevOne" parameterType="hashmap" resultType="Article">
+		SELECT articleno, title 
+		FROM article 
+		WHERE 
+			boardCd = #{boardCd} 
+			AND articleno &lt; #{articleNo}
+		<if test="searchWord != null and searchWord != ''">
+			AND (title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%')
+		</if> 
+		ORDER BY articleno DESC
+		LIMIT 1
+	</select>
+	<select id="selectListOfAttachFiles" parameterType="int" resultType="AttachFile">
+		SELECT 
+			attachfileno,
+			filename,
+			filetype,
+			filesize,
+			articleno,
+			email,
+			filekey,
+			creation 
+		FROM attachfile 
+		WHERE articleno = #{articleNo} 
+		ORDER BY attachfileno
+	</select>
+	<select id="selectListOfComments" parameterType="int" resultType="Comments">
+		SELECT 
+			commentno, 
+			articleno, 
+			c.email, 
+			ifNull(name, 'Anonymous') name,
+			memo, 
+			regdate
+		FROM comments as c left join member as m on c.email = m.email
+		WHERE 
+			articleno = #{articleNo}
+		ORDER BY commentno DESC
+	</select>
+	<select id="selectOneAttachFile" parameterType="int" resultType="AttachFile">
+		SELECT
+			attachfileno,
+			filename,
+			filetype,
+			filesize,
+			articleno,
+			email,
+			filekey,
+			creation
+		FROM
+			attachfile
+		WHERE
+			attachfileno = #{attachfileno}
 	</select>
 
 </mapper>

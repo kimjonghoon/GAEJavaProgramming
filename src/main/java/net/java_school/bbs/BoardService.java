@@ -14,7 +14,22 @@ public interface BoardService {
 	public List<Article> getArticleList(String boardCd, String searchWord);
 	//총 레코드 수
 	public int getTotalRecord(String boardCd, String searchWord);
-	
 	public void setPagingHelper(PagingHelper pagingHelper);
+	//조회수 증가
+	public void increaseHit(int articleNo);
+	//상세보기
+	public Article getArticle(int articleNo);
+	//다음글
+	public Article getNextArticle(int articleNo, 
+			String boardCd, String searchWord);
+	//이전글
+	public Article getPrevArticle(int articleNo, 
+			String boardCd, String searchWord);
+	//첨부파일 리스트
+	public List<AttachFile> getAttachFileList(int articleNo);
+	//댓글 리스트
+	public List<Comments> getCommentsList(int articleNo);
+	//첨부파일 찾기
+	public AttachFile getAttachFile(int attachFileNo);
    
 }

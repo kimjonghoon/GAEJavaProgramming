@@ -7,6 +7,7 @@
       <typeAlias type="net.java_school.bbs.Board" alias="Board" />
       <typeAlias type="net.java_school.bbs.Article" alias="Article" />
       <typeAlias type="net.java_school.bbs.AttachFile" alias="AttachFile" />
+      <typeAlias type="net.java_school.bbs.Comments" alias="Comments" />
    </typeAliases>
    <mappers>
       <mapper resource="net/java_school/mybatis/BoardMapper.xml" />
