@@ -13,8 +13,8 @@ $(document).ready(function() {
 	$('#file-list a:not(.download)').click(function() {
 		var chk = confirm("정말로 삭제하시겠습니까?");
 		if (chk == true) {
-			var $attachFileNo = this.title;
-			$('#deleteAttachFileForm input[name*=attachFileNo]').val($attachFileNo);
+			var $filekey = this.title;
+			$('#deleteAttachFileForm input[name*=filekey]').val($filekey);
 			$('#deleteAttachFileForm').submit();
 		}
 		return false;
@@ -151,7 +151,7 @@ function goList(curPage) {
 <p id="file-list" style="text-align: right">
 <c:forEach var="file" items="${attachFileList }" varStatus="status">
 	<a href="#" title="${file.filekey }" class="download">${file.filename }</a>
-	<a href="#" title="${file.attachFileNo }">x</a><br />
+	<a href="#" title="${file.filekey }">x</a><br />
 </c:forEach>
 </p>
 <form id="addCommentForm" action="addComments" method="post">
@@ -337,7 +337,7 @@ function goList(curPage) {
     </form>
     <form id="deleteAttachFileForm" action="deleteAttachFile" method="post">
     <p>
-        <input type="hidden" name="attachFileNo" />
+        <input type="hidden" name="filekey" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="curPage" value="${param.curPage }" />

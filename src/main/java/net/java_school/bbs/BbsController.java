@@ -1,5 +1,6 @@
 package net.java_school.bbs;
 
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -195,6 +196,25 @@ public class BbsController {
 		}
 		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + "&curPage=" + curPage + "&searchWord=" + searchWord;
 	}
-	
+	@RequestMapping(value="/deleteAttachFile", method=RequestMethod.POST)
+	public String deleteAttachFile(String filekey, 
+			Integer articleNo, 
+			String boardCd, 
+			Integer curPage, 
+			String searchWord) throws Exception {
+
+		BlobKey blobKey = new BlobKey(filekey);
+		blobstoreService.delete(blobKey);
+		boardService.removeAttachFile(filekey);
+
+		searchWord = URLEncoder.encode(searchWord,"UTF-8");
+
+		return "redirect:/bbs/view?articleNo=" + articleNo + 
+				"&boardCd=" + boardCd + 
+				"&curPage=" + curPage + 
+				"&searchWord=" + searchWord;
+
+	}
+
 
 }
