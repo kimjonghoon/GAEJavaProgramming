@@ -2,6 +2,8 @@ package net.java_school.bbs;
 
 import java.util.List;
 
+import net.java_school.bbs.Article;
+
 public interface BoardService {
    //모든 게시판
    public List<Board> getAllBoard();
@@ -37,5 +39,6 @@ public interface BoardService {
 	public void addComments(Comments comments);
 	//댓글 수정
 	public void modifyComments(Comments comments);
-   
+	//게시글 수정
+	public void modifyArticle(Article article);   
 }

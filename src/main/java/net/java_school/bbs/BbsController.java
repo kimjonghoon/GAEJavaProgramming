@@ -58,7 +58,7 @@ public class BbsController {
 		return "bbs/list";
 	}
 
-	@RequestMapping(value="/view", method=RequestMethod.GET)
+	@RequestMapping(value="view", method=RequestMethod.GET)
 	public String view(Integer articleNo, 
 			String boardCd, 
 			Integer curPage,
@@ -132,18 +132,12 @@ public class BbsController {
 		model.addAttribute("boardNm", boardNm);
 		return "bbs/write";
 	}
-	@RequestMapping(value="modify", method=RequestMethod.GET)
-	public String modify(Model model) {
-		List<Board> boards = boardService.getAllBoard();
-		model.addAttribute("boards", boards);
-		return "bbs/modify";
-	}
-	@RequestMapping(value="/upload", method=RequestMethod.GET)
+	@RequestMapping(value="upload", method=RequestMethod.GET)
 	public String uploadForm() {
 		return "bbs/upload";
 	}
 
-	@RequestMapping(value="/upload", method=RequestMethod.POST)
+	@RequestMapping(value="upload", method=RequestMethod.POST)
 	public String upload(HttpServletRequest req) {
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
 		List<BlobKey> blobKeys = blobs.get("attachFile");
@@ -153,19 +147,19 @@ public class BbsController {
 			return "redirect:/bbs/blob?blob-key=" + blobKeys.get(0).getKeyString();
 		}
 	}
-	@RequestMapping(value="/blob", method=RequestMethod.GET)
+	@RequestMapping(value="blob", method=RequestMethod.GET)
 	public String blob() {
 		return "bbs/blob";
 	}
 
-	@RequestMapping(value="/deleteFile", method=RequestMethod.POST)
+	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
 	public String deleteAttachFile(String filekey) throws Exception {
 		BlobKey blobKey = new BlobKey(filekey);
 		blobstoreService.delete(blobKey);
 		boardService.removeAttachFile(filekey);
 		return "redirect:/bbs/blob?blob-key=" + blobKey.getKeyString();
 	}
-	@RequestMapping(value="/write", method=RequestMethod.POST)
+	@RequestMapping(value="write", method=RequestMethod.POST)
 	public String write(Article article, String curPage, String searchWord, Model model, HttpServletRequest req) {
 		article.setEmail("tester@tester.org");
 		boardService.addArticle(article);
@@ -196,7 +190,7 @@ public class BbsController {
 		}
 		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + "&curPage=" + curPage + "&searchWord=" + searchWord;
 	}
-	@RequestMapping(value="/deleteAttachFile", method=RequestMethod.POST)
+	@RequestMapping(value="deleteAttachFile", method=RequestMethod.POST)
 	public String deleteAttachFile(String filekey, 
 			Integer articleNo, 
 			String boardCd, 
@@ -215,7 +209,7 @@ public class BbsController {
 				"&searchWord=" + searchWord;
 
 	}
-	@RequestMapping(value="/deleteComments", method=RequestMethod.POST)
+	@RequestMapping(value="deleteComments", method=RequestMethod.POST)
 	public String deleteComments(Integer commentNo, 
 			Integer articleNo, 
 			String boardCd, 
@@ -232,7 +226,7 @@ public class BbsController {
 				"&searchWord=" + searchWord;
 
 	}
-    @RequestMapping(value="/addComments", method=RequestMethod.POST)
+    @RequestMapping(value="addComments", method=RequestMethod.POST)
     public String addComment(Comments comments,
     		String boardCd, 
             Integer curPage, 
@@ -249,7 +243,7 @@ public class BbsController {
             "&curPage=" + curPage + 
             "&searchWord=" + searchWord;
     }
-    @RequestMapping(value="/modifyComments", method=RequestMethod.POST)
+    @RequestMapping(value="modifyComments", method=RequestMethod.POST)
     public String updateComment(Comments comments, 
             String boardCd, 
             Integer curPage, 
@@ -264,5 +258,63 @@ public class BbsController {
             "&curPage=" + curPage + 
             "&searchWord=" + searchWord;
     }
+	@RequestMapping(value="modify", method=RequestMethod.GET)
+	public String modify(Integer articleNo, String boardCd, Model model) {
+		List<Board> boards = boardService.getAllBoard();
+		model.addAttribute("boards", boards);
+
+		Article article = boardService.getArticle(articleNo);
+		String boardNm = boardService.getBoardNm(boardCd);
+
+		//수정페이지에서의 보일 게시글 정보
+		model.addAttribute("article", article);
+		model.addAttribute("boardNm", boardNm);
+
+		return "bbs/modify";
+	}
+	@RequestMapping(value="modify", method=RequestMethod.POST)
+	public String modify(Article article,
+			Integer curPage, String searchWord, Model model, 
+			HttpServletRequest req) throws Exception {
+
+		boardService.modifyArticle(article);
+
+		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
+		List<BlobKey> blobKeys = blobs.get("attachFile");
+
+		if (blobKeys != null && !blobKeys.isEmpty()) {
+			BlobInfoFactory blobInfoFactory = new BlobInfoFactory();
+			BlobInfo blobInfo = null;
+			int size = blobKeys.size();
+
+			for (int i = 0;i < size;i++) {
+				blobInfo = blobInfoFactory.loadBlobInfo(blobKeys.get(i));
+				long filesize = blobInfo.getSize();
+				if (filesize <= 0) {
+					blobstoreService.delete(blobKeys.get(i));
+					continue;
+				}
+				AttachFile attachFile = new AttachFile();
+				String filekey = blobKeys.get(i).getKeyString();
+				attachFile.setFilekey(filekey);
+				attachFile.setFilename(blobInfo.getFilename());
+				attachFile.setFiletype(blobInfo.getContentType());
+				attachFile.setFilesize(filesize);
+				attachFile.setCreation(blobInfo.getCreation());
+				attachFile.setArticleNo(article.getArticleNo());
+				attachFile.setEmail(article.getEmail());
+				boardService.addAttachFile(attachFile);
+			}
+
+		}
+
+		searchWord = URLEncoder.encode(searchWord, "UTF-8");
+
+		return "redirect:/bbs/view?articleNo=" + article.getArticleNo() 
+		+ "&boardCd=" + article.getBoardCd() 
+		+ "&curPage=" + curPage 
+		+ "&searchWord=" + searchWord;
+
+	}
 
 }

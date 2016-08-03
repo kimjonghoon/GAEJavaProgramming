@@ -122,5 +122,10 @@ public class BoardServiceImpl implements BoardService {
 	public void modifyComments(Comments comments) {
 		boardMapper.updateComments(comments);
 	}
+	//게시글 수정
+	@Override
+	public void modifyArticle(Article article) {
+		boardMapper.updateArticle(article);
+	}
 	
 }

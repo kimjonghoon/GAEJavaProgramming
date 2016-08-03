@@ -149,5 +149,9 @@
 	<update id="updateComments" parameterType="Comments">
 		UPDATE comments SET memo = #{memo} WHERE commentno = #{commentNo}
 	</update>
-
+	<update id="updateArticle" parameterType="Article">
+		UPDATE article
+		SET title = #{title}, content = #{content} 
+		WHERE articleno = #{articleNo}
+	</update>
 </mapper>

@@ -52,5 +52,5 @@ public interface BoardMapper {
 	public void insertComments(Comments comments);	
 	//댓글 수정
 	public void updateComments(Comments comments);
-	
+	public void updateArticle(Article article);	
 }
