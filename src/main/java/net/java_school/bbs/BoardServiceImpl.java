@@ -112,5 +112,15 @@ public class BoardServiceImpl implements BoardService {
 	public void removeComments(int commentNo) {
 		boardMapper.deleteComments(commentNo);
 	}
+	//댓글 쓰기
+	@Override
+	public void addComments(Comments comments) {
+		boardMapper.insertComments(comments);
+	}
+	//댓글 수정
+	@Override
+	public void modifyComments(Comments comments) {
+		boardMapper.updateComments(comments);
+	}
 	
 }

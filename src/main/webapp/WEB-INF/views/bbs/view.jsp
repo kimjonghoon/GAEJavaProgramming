@@ -43,14 +43,14 @@ $(document).ready(function() {
 		}
 	});
 	//form 안의 수정하기 링크
-	$('.modify-comment a.comments-modify-submit').click(function(e) {
+	$('.comments-modify-form a.comments-modify-submit').click(function(e) {
 		$(e.target).parent().parent().submit();
 		return false;
 	});
 	//form 안의 취소 링크
-	$('.modify-comment a:contains("취소")').click(function(e) {
+	$('.comments-modify-form a:contains("취소")').click(function(e) {
 		var $form = $(e.target).parent().parent();
-		var $p = $(e.target).parent().parent().parent().find('.view-comment');
+		var $p = $(e.target).parent().parent().parent().find('.comments-content');
 		if ($form.is(':hidden') == true) {
 			$form.show();
 			$p.hide();
@@ -160,7 +160,6 @@ function goList(curPage) {
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
 		<input type="hidden" name="curPage" value="${param.curPage }" />
 		<input type="hidden" name="searchWord" value="${param.searchWord }" />
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</p>
     <div id="add-comments">
         <textarea name="memo" rows="7" cols="50"></textarea>
@@ -179,11 +178,11 @@ function goList(curPage) {
 		| <a href="#" class="comments-delete" title="${comments.commentNo }">삭제</a>
     </span>
     <p class="comments-content">${comments.memo }</p>
-    <form class="comments-modify-form" method="post" style="display: none;">
+    <form class="comments-modify-form" action="modifyComments" method="post" style="display: none;">
     <p>
         <input type="hidden" name="commentNo" value="${comments.commentNo }" />
-        <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="curPage" value="${param.curPage }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
@@ -222,7 +221,7 @@ function goList(curPage) {
         <input type="button" value="새 글쓰기" class="goWrite" />
     </div>
 </div>
-<table class="bbs-table">
+<table id="list-table" class="bbs-table">
 <tr>
 	<th style="width: 60px;">NO</th>
 	<th>TITLE</th>
@@ -302,7 +301,7 @@ function goList(curPage) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
-    <form id="writeForm" action="write_form" method="get">
+    <form id="writeForm" action="write" method="get">
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -310,7 +309,7 @@ function goList(curPage) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
-    <form id="modifyForm" action="modify_form" method="get">
+    <form id="modifyForm" action="modify" method="get">
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />

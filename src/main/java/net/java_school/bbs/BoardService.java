@@ -33,5 +33,9 @@ public interface BoardService {
 	public AttachFile getAttachFile(int attachFileNo);
 	//댓글 삭제
 	public void removeComments(int commentNo);
+	//댓글 쓰기
+	public void addComments(Comments comments);
+	//댓글 수정
+	public void modifyComments(Comments comments);
    
 }

@@ -48,5 +48,9 @@ public interface BoardMapper {
 	public AttachFile selectOneAttachFile(int attachFileNo);
 	//댓글 삭제
 	public void deleteComments(int commentNo);
+	//댓글 쓰기
+	public void insertComments(Comments comments);	
+	//댓글 수정
+	public void updateComments(Comments comments);
 	
 }

@@ -232,5 +232,37 @@ public class BbsController {
 				"&searchWord=" + searchWord;
 
 	}
+    @RequestMapping(value="/addComments", method=RequestMethod.POST)
+    public String addComment(Comments comments,
+    		String boardCd, 
+            Integer curPage, 
+            String searchWord) throws Exception {
+        
+        comments.setEmail("hong@gmail.org");
+        
+        boardService.addComments(comments);
+        
+        searchWord = URLEncoder.encode(searchWord, "UTF-8");
+        
+        return "redirect:/bbs/view?articleNo=" + comments.getArticleNo() + 
+            "&boardCd=" + boardCd + 
+            "&curPage=" + curPage + 
+            "&searchWord=" + searchWord;
+    }
+    @RequestMapping(value="/modifyComments", method=RequestMethod.POST)
+    public String updateComment(Comments comments, 
+            String boardCd, 
+            Integer curPage, 
+            String searchWord) throws Exception {
+        
+        boardService.modifyComments(comments);
+        
+        searchWord = URLEncoder.encode(searchWord, "UTF-8");
+        
+        return "redirect:/bbs/view?articleNo=" + comments.getArticleNo() + 
+            "&boardCd=" + boardCd + 
+            "&curPage=" + curPage + 
+            "&searchWord=" + searchWord;
+    }
 
 }

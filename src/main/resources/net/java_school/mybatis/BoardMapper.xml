@@ -142,5 +142,12 @@
 	<delete id="deleteComments" parameterType="int">
 		DELETE FROM comments WHERE commentno = #{commentNo}
 	</delete>
-	
+	<insert id="insertComments" parameterType="Comments">
+		INSERT INTO comments (articleno, email, memo, regdate)
+		VALUES (#{articleNo}, #{email}, #{memo}, now())
+	</insert>
+	<update id="updateComments" parameterType="Comments">
+		UPDATE comments SET memo = #{memo} WHERE commentno = #{commentNo}
+	</update>
+
 </mapper>
