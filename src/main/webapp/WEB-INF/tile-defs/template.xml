@@ -80,16 +80,16 @@
 		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub.jsp" />
 	</definition>
 	<definition name="bbs/upload" extends="defaultTemplate3">
-		<put-attribute name="title" value="test" />
-		<put-attribute name="keywords" value="test" />
-		<put-attribute name="description" value="test" />
+		<put-attribute name="title" value="blob test" />
+		<put-attribute name="keywords" value="blob test" />
+		<put-attribute name="description" value="blob test" />
 		<put-attribute name="article" value="/WEB-INF/views/bbs/upload.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
 	<definition name="bbs/blob" extends="defaultTemplate3">
-		<put-attribute name="title" value="test" />
-		<put-attribute name="keywords" value="test" />
-		<put-attribute name="description" value="test" />
+		<put-attribute name="title" value="blob test" />
+		<put-attribute name="keywords" value="blob test" />
+		<put-attribute name="description" value="blob test" />
 		<put-attribute name="article" value="/WEB-INF/views/bbs/blob.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>

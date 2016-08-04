@@ -2,8 +2,6 @@ package net.java_school.bbs;
 
 import java.util.List;
 
-import net.java_school.bbs.Article;
-
 public interface BoardService {
    //모든 게시판
    public List<Board> getAllBoard();

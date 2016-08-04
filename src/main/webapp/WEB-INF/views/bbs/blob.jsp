@@ -55,13 +55,11 @@ if (blobInfo != null) {
 <form id="deleteAttachFileForm" action="/bbs/deleteFile" method="post">
 <p>
 	<input type="hidden" name="filekey" />
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </p>
 </form>
 <form id="downForm" action="../serve" method="get">
 <p>
 	<input type="hidden" name="filekey" />
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </p>
 </form>
 </div>

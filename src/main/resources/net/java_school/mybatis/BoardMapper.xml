@@ -4,11 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.java_school.mybatis.BoardMapper">
 	<select id="selectAllBoard" resultType="Board">
-		SELECT boardcd,boardnm
-		FROM board
+		SELECT boardcd,boardnm FROM board
 	</select>
-	<select id="selectOneBoardName" parameterType="string"
-		resultType="string">
+	<select id="selectOneBoardName" parameterType="string" resultType="string">
 		SELECT boardnm FROM board WHERE boardcd = #{boardCd}
 	</select>
 	<insert id="insert" parameterType="Article" useGeneratedKeys="true" keyProperty="articleNo">
@@ -17,11 +15,10 @@
 		(#{boardCd}, #{title}, #{content}, #{email}, #{nickname}, 0, now())
 	</insert>
 	<insert id="insertAttachFile" parameterType="AttachFile">
-		INSERT INTO
-		attachfile (filekey, filename, filetype, filesize, creation, articleno, email)
+		INSERT INTO attachfile 
+		(filekey, filename, filetype, filesize, creation, articleno, email)
 		VALUES
-		(#{filekey}, #{filename}, #{filetype},
-		#{filesize}, #{creation}, #{articleNo}, #{email})
+		(#{filekey}, #{filename}, #{filetype}, #{filesize}, #{creation}, #{articleNo}, #{email})
 	</insert>
 	<delete id="deleteFile" parameterType="string">
 		DELETE FROM attachfile WHERE filekey = #{filekey}

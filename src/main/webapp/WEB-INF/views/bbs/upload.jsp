@@ -6,9 +6,5 @@
 BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 %>
 <form action="<%=blobstoreService.createUploadUrl("/bbs/upload") %>" method="post" enctype="multipart/form-data">
-<p>
-	<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
-	Attach File <input type="file" name="attachFile" />
-	<input type="submit" value="Submit" />
-</p>
+<p>	Attach File <input type="file" name="attachFile" /><input type="submit" value="Submit" /></p>
 </form>
