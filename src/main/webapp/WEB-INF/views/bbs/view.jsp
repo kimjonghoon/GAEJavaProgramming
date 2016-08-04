@@ -145,7 +145,7 @@ function goList(curPage) {
 </table>
 <div id="date-writer-read">
 	<fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${regdate }" />
-	by ${name } hit ${hit }
+	by ${nickname } hit ${hit }
 </div>
 <p>${content }</p>
 <p id="file-list" style="text-align: right">
@@ -171,7 +171,7 @@ function goList(curPage) {
 <!--  댓글 반복 시작 -->
 <c:forEach var="comments" items="${commentsList }" varStatus="status">
 <div class="comments">
-    <span class="comments-writer">${comments.name }</span>
+    <span class="comments-writer">${comments.nickname }</span>
     <span class="comments-date">${comments.regdate }</span>
     <span class="comments-modify-del">
         <a href="#" class="comments-toggle">수정</a>
@@ -317,7 +317,7 @@ function goList(curPage) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
-    <form id="delForm" action="del" method="post">
+    <form id="delForm" action="deleteArticle" method="post">
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />

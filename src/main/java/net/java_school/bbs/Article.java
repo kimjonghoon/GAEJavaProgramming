@@ -8,7 +8,7 @@ public class Article {
 	private String title;
 	private String content;
 	private String email;
-	private String name;
+	private String nickname;
 	private int hit;
 	private Date regdate;
 	private int attachFileNum;
@@ -50,11 +50,11 @@ public class Article {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getName() {
-		return name;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public int getHit() {
 		return hit;

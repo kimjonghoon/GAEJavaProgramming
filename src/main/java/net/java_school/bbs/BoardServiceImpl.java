@@ -104,8 +104,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	//첨부파일 찾기
 	@Override
-	public AttachFile getAttachFile(int attachFileNo) {
-		return boardMapper.selectOneAttachFile(attachFileNo);
+	public AttachFile getAttachFile(String filekey) {
+		return boardMapper.selectOneAttachFile(filekey);
 	}
 	//댓글 삭제
 	@Override
@@ -126,6 +126,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modifyArticle(Article article) {
 		boardMapper.updateArticle(article);
+	}
+	//글삭제
+	@Override
+	public void removeArticle(int articleNo) {
+		boardMapper.deleteArticle(articleNo);
+	}
+	//댓글 찾기
+	@Override
+	public Comments getComments(int commentNo) {
+		return boardMapper.selectOneComments(commentNo);
 	}
 	
 }

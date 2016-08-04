@@ -6,7 +6,7 @@ public class Comments {
 	private int commentNo;
 	private int articleNo;
 	private String email;
-	private String name;
+	private String nickname;
 	private String memo;
 	private Date regdate;
 
@@ -28,11 +28,11 @@ public class Comments {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getName() {
-		return name;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getMemo() {
 		return memo;

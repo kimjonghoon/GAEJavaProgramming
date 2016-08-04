@@ -32,7 +32,7 @@ public interface BoardService {
 	//댓글 리스트
 	public List<Comments> getCommentsList(int articleNo);
 	//첨부파일 찾기
-	public AttachFile getAttachFile(int attachFileNo);
+	public AttachFile getAttachFile(String filekey);
 	//댓글 삭제
 	public void removeComments(int commentNo);
 	//댓글 쓰기
@@ -40,5 +40,10 @@ public interface BoardService {
 	//댓글 수정
 	public void modifyComments(Comments comments);
 	//게시글 수정
-	public void modifyArticle(Article article);   
+	public void modifyArticle(Article article);
+	//게시글 삭제
+	public void removeArticle(int articleNo);
+	//댓글 찾기
+	public Comments getComments(int commentNo);
+	
 }

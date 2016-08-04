@@ -11,11 +11,10 @@
 		resultType="string">
 		SELECT boardnm FROM board WHERE boardcd = #{boardCd}
 	</select>
-	<insert id="insert" parameterType="Article" useGeneratedKeys="true"
-		keyProperty="articleNo">
-		INSERT INTO article (boardcd, title, content, email, hit, regdate)
+	<insert id="insert" parameterType="Article" useGeneratedKeys="true" keyProperty="articleNo">
+		INSERT INTO article (boardcd, title, content, email, nickname, hit, regdate)
 		VALUES
-		(#{boardCd}, #{title}, #{content}, #{email}, 0, now())
+		(#{boardCd}, #{title}, #{content}, #{email}, #{nickname}, 0, now())
 	</insert>
 	<insert id="insertAttachFile" parameterType="AttachFile">
 		INSERT INTO
@@ -29,20 +28,20 @@
 	</delete>
 	<select id="selectListOfArticles" resultType="Article">
 		SELECT
-		a.articleno, a.title, a.regdate, a.hit, m.name,
+		a.articleno, a.title, a.regdate, a.hit, a.nickname,
 		count(distinct(f.attachfileno)) attachfileNum,
 		count(distinct(c.commentno)) commentNum
 		FROM
-		article as a left join attachfile as f on a.articleno = f.articleno
+		article as a 
+		left join attachfile as f on a.articleno = f.articleno
 		left join comments as c on a.articleno = c.articleno
-		left join member as m on a.email = m.email
 		WHERE
 		a.boardcd = #{boardCd}
 		<if test="searchWord != null and searchWord != ''">
 			AND (title LIKE '%${searchWord}%' OR content LIKE
 			'%${searchWord}%')
 		</if>
-		GROUP BY a.articleno, title, a.regdate, hit, m.name
+		GROUP BY a.articleno, title, a.regdate, hit, a.nickname
 		ORDER BY articleno
 		DESC
 		LIMIT #{offset}, #{rowCount}
@@ -65,11 +64,11 @@
 			articleno,
 			title,
 			content,
-			a.email,
-			ifNull(name, 'Anonymous') name,
+			email,
+			ifNull(nickname, 'Anonymous') nickname,
 			hit,
 			regdate
-		FROM article as a left join member as m on a.email = m.email
+		FROM article
 		WHERE 
 			articleno = #{articleNo}
 	</select>
@@ -115,16 +114,16 @@
 		SELECT 
 			commentno, 
 			articleno, 
-			c.email, 
-			ifNull(name, 'Anonymous') name,
+			email, 
+			ifNull(nickname, 'Anonymous') nickname,
 			memo, 
 			regdate
-		FROM comments as c left join member as m on c.email = m.email
+		FROM comments
 		WHERE 
 			articleno = #{articleNo}
 		ORDER BY commentno DESC
 	</select>
-	<select id="selectOneAttachFile" parameterType="int" resultType="AttachFile">
+	<select id="selectOneAttachFile" parameterType="string" resultType="AttachFile">
 		SELECT
 			attachfileno,
 			filename,
@@ -137,14 +136,14 @@
 		FROM
 			attachfile
 		WHERE
-			attachfileno = #{attachfileno}
+			filekey = #{filekey}
 	</select>
 	<delete id="deleteComments" parameterType="int">
 		DELETE FROM comments WHERE commentno = #{commentNo}
 	</delete>
 	<insert id="insertComments" parameterType="Comments">
-		INSERT INTO comments (articleno, email, memo, regdate)
-		VALUES (#{articleNo}, #{email}, #{memo}, now())
+		INSERT INTO comments (articleno, email, nickname, memo, regdate)
+		VALUES (#{articleNo}, #{email}, #{nickname}, #{memo}, now())
 	</insert>
 	<update id="updateComments" parameterType="Comments">
 		UPDATE comments SET memo = #{memo} WHERE commentno = #{commentNo}
@@ -154,4 +153,19 @@
 		SET title = #{title}, content = #{content} 
 		WHERE articleno = #{articleNo}
 	</update>
+	<delete id="deleteArticle" parameterType="int">
+		DELETE FROM article WHERE articleno = #{articleNo}
+	</delete>
+	<select id="selectOneComments" parameterType="int" resultType="Comments">
+		SELECT 
+			commentno,
+			articleno,
+			email,
+			nickname,
+			memo,
+			regdate 
+		FROM comments 
+		WHERE
+			commentno = #{commentNo}
+	</select>
 </mapper>

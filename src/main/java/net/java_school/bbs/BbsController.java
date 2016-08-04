@@ -19,6 +19,9 @@ import com.google.appengine.api.blobstore.BlobInfoFactory;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 @Controller
 @RequestMapping("bbs")
@@ -82,14 +85,14 @@ public class BbsController {
 		String content = article.getContent();//내용
 		content = content.replaceAll(System.getProperty("line.separator"), "<br />");
 		int hit = article.getHit();//조회수
-		String name = article.getName();//작성자 이름
+		String nickname = article.getNickname();//작성자 이름
 		String email = article.getEmail();//작성자 ID
 		Date regdate = article.getRegdate();//작성일
 
 		model.addAttribute("title", title);
 		model.addAttribute("content", content);
 		model.addAttribute("hit", hit);
-		model.addAttribute("name", name);
+		model.addAttribute("nickname", nickname);
 		model.addAttribute("email", email);
 		model.addAttribute("regdate", regdate);
 		model.addAttribute("attachFileList", attachFileList);
@@ -123,45 +126,33 @@ public class BbsController {
 
 		return "bbs/view";
 	}
-
 	@RequestMapping(value="write", method=RequestMethod.GET)
 	public String write(String boardCd, Model model) {
+		//로그인되지 않은 사용자는 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+		
 		List<Board> boards = boardService.getAllBoard();
 		String boardNm = boardService.getBoardNm(boardCd);
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardNm", boardNm);
 		return "bbs/write";
 	}
-	@RequestMapping(value="upload", method=RequestMethod.GET)
-	public String uploadForm() {
-		return "bbs/upload";
-	}
-
-	@RequestMapping(value="upload", method=RequestMethod.POST)
-	public String upload(HttpServletRequest req) {
-		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
-		List<BlobKey> blobKeys = blobs.get("attachFile");
-		if (blobKeys == null || blobKeys.isEmpty()) {
-			return "bbs/upload";
-		} else {
-			return "redirect:/bbs/blob?blob-key=" + blobKeys.get(0).getKeyString();
-		}
-	}
-	@RequestMapping(value="blob", method=RequestMethod.GET)
-	public String blob() {
-		return "bbs/blob";
-	}
-
-	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
-	public String deleteAttachFile(String filekey) throws Exception {
-		BlobKey blobKey = new BlobKey(filekey);
-		blobstoreService.delete(blobKey);
-		boardService.removeAttachFile(filekey);
-		return "redirect:/bbs/blob?blob-key=" + blobKey.getKeyString();
-	}
 	@RequestMapping(value="write", method=RequestMethod.POST)
-	public String write(Article article, String curPage, String searchWord, Model model, HttpServletRequest req) {
-		article.setEmail("tester@tester.org");
+	public String write(Article article, 
+			String curPage, 
+			String searchWord, 
+			Model model, 
+			HttpServletRequest req) {
+		
+		//로그인되지 않은 사용자는 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+
+		article.setEmail(user.getEmail());
+		article.setNickname(user.getNickname());
 		boardService.addArticle(article);
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
 		List<BlobKey> blobKeys = blobs.get("attachFile");
@@ -184,11 +175,13 @@ public class BbsController {
 				attachFile.setFilesize(filesize);
 				attachFile.setCreation(blobInfo.getCreation());
 				attachFile.setArticleNo(article.getArticleNo());
-				attachFile.setEmail("tester@tester.org");
+				attachFile.setEmail(user.getEmail());
 				boardService.addAttachFile(attachFile);
 			}
 		}
-		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + "&curPage=" + curPage + "&searchWord=" + searchWord;
+		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + 
+				"&curPage=" + curPage + 
+				"&searchWord=" + searchWord;
 	}
 	@RequestMapping(value="deleteAttachFile", method=RequestMethod.POST)
 	public String deleteAttachFile(String filekey, 
@@ -196,6 +189,15 @@ public class BbsController {
 			String boardCd, 
 			Integer curPage, 
 			String searchWord) throws Exception {
+
+		//작성자나 관리자가 아니면 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+		AttachFile currentAttachFile = boardService.getAttachFile(filekey);
+		if (!user.getEmail().equals(currentAttachFile.getEmail())) {
+			if (!userService.isUserAdmin()) return "redirect:/";
+		}
 
 		BlobKey blobKey = new BlobKey(filekey);
 		blobstoreService.delete(blobKey);
@@ -216,6 +218,15 @@ public class BbsController {
 			Integer curPage, 
 			String searchWord) throws Exception {
 
+		//작성자나 관리자가 아니면 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+		Comments currentComments = boardService.getComments(commentNo);
+		if (!user.getEmail().equals(currentComments.getEmail())) {
+			if (!userService.isUserAdmin()) return "redirect:/";
+		}
+
 		boardService.removeComments(commentNo);
 
 		searchWord = URLEncoder.encode(searchWord,"UTF-8");
@@ -226,48 +237,70 @@ public class BbsController {
 				"&searchWord=" + searchWord;
 
 	}
-    @RequestMapping(value="addComments", method=RequestMethod.POST)
-    public String addComment(Comments comments,
-    		String boardCd, 
-            Integer curPage, 
-            String searchWord) throws Exception {
-        
-        comments.setEmail("hong@gmail.org");
-        
-        boardService.addComments(comments);
-        
-        searchWord = URLEncoder.encode(searchWord, "UTF-8");
-        
-        return "redirect:/bbs/view?articleNo=" + comments.getArticleNo() + 
-            "&boardCd=" + boardCd + 
-            "&curPage=" + curPage + 
-            "&searchWord=" + searchWord;
-    }
-    @RequestMapping(value="modifyComments", method=RequestMethod.POST)
-    public String updateComment(Comments comments, 
-            String boardCd, 
-            Integer curPage, 
-            String searchWord) throws Exception {
-        
-        boardService.modifyComments(comments);
-        
-        searchWord = URLEncoder.encode(searchWord, "UTF-8");
-        
-        return "redirect:/bbs/view?articleNo=" + comments.getArticleNo() + 
-            "&boardCd=" + boardCd + 
-            "&curPage=" + curPage + 
-            "&searchWord=" + searchWord;
-    }
+	@RequestMapping(value="addComments", method=RequestMethod.POST)
+	public String addComment(Comments comments,
+			String boardCd, 
+			Integer curPage, 
+			String searchWord) throws Exception {
+
+		//로그인되지 않은 사용자는 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+
+		comments.setEmail(user.getEmail());
+		comments.setNickname(user.getNickname());
+		boardService.addComments(comments);
+
+		searchWord = URLEncoder.encode(searchWord, "UTF-8");
+
+		return "redirect:/bbs/view?articleNo=" + comments.getArticleNo() + 
+				"&boardCd=" + boardCd + 
+				"&curPage=" + curPage + 
+				"&searchWord=" + searchWord;
+	}
+	@RequestMapping(value="modifyComments", method=RequestMethod.POST)
+	public String updateComment(Comments comments, 
+			String boardCd, 
+			Integer curPage, 
+			String searchWord) throws Exception {
+
+		//작성자나 관리자가 아니면 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+		Comments currentComments = boardService.getComments(comments.getCommentNo());
+		if (!user.getEmail().equals(currentComments.getEmail())) {
+			if (!userService.isUserAdmin()) return "redirect:/";
+		}
+		
+		boardService.modifyComments(comments);
+
+		searchWord = URLEncoder.encode(searchWord, "UTF-8");
+
+		return "redirect:/bbs/view?articleNo=" + comments.getArticleNo() + 
+				"&boardCd=" + boardCd + 
+				"&curPage=" + curPage + 
+				"&searchWord=" + searchWord;
+	}
 	@RequestMapping(value="modify", method=RequestMethod.GET)
 	public String modify(Integer articleNo, String boardCd, Model model) {
+		//작성자나 관리자가 아니면 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+		Article currentArticle = boardService.getArticle(articleNo);
+		if (!user.getEmail().equals(currentArticle.getEmail())) {
+			if (!userService.isUserAdmin()) return "redirect:/";
+		}
+		
 		List<Board> boards = boardService.getAllBoard();
 		model.addAttribute("boards", boards);
 
-		Article article = boardService.getArticle(articleNo);
 		String boardNm = boardService.getBoardNm(boardCd);
 
 		//수정페이지에서의 보일 게시글 정보
-		model.addAttribute("article", article);
+		model.addAttribute("article", currentArticle);
 		model.addAttribute("boardNm", boardNm);
 
 		return "bbs/modify";
@@ -276,6 +309,14 @@ public class BbsController {
 	public String modify(Article article,
 			Integer curPage, String searchWord, Model model, 
 			HttpServletRequest req) throws Exception {
+		//작성자나 관리자가 아니면 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+		Article currentArticle = boardService.getArticle(article.getArticleNo());
+		if (!user.getEmail().equals(currentArticle.getEmail())) {
+			if (!userService.isUserAdmin()) return "redirect:/";
+		}
 
 		boardService.modifyArticle(article);
 
@@ -311,10 +352,59 @@ public class BbsController {
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 
 		return "redirect:/bbs/view?articleNo=" + article.getArticleNo() 
-		+ "&boardCd=" + article.getBoardCd() 
-		+ "&curPage=" + curPage 
-		+ "&searchWord=" + searchWord;
+				+ "&boardCd=" + article.getBoardCd() 
+				+ "&curPage=" + curPage 
+				+ "&searchWord=" + searchWord;
 
+	}
+	@RequestMapping(value="deleteArticle", method=RequestMethod.POST)
+	public String del(Integer articleNo, 
+			String boardCd, 
+			Integer curPage, 
+			String searchWord) throws Exception {
+		//작성자나 관리자가 아니면 홈페이지로 리다이렉트
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null) return "redirect:/";
+		Article currentArticle = boardService.getArticle(articleNo);
+		if (!user.getEmail().equals(currentArticle.getEmail())) {
+			if (!userService.isUserAdmin()) return "redirect:/";
+		}
+		
+		boardService.removeArticle(articleNo);
+
+		searchWord = URLEncoder.encode(searchWord, "UTF-8");
+
+		return "redirect:/bbs/list?boardCd=" + boardCd + 
+				"&curPage=" + curPage + 
+				"&searchWord=" + searchWord;
+	}
+	
+	/* 아래 메서드는 Blobstore 예제로 게시판이 완성되면 삭제하는 것이 좋다. */
+	@RequestMapping(value="upload", method=RequestMethod.GET)
+	public String uploadForm() {
+		return "bbs/upload";
+	}
+	@RequestMapping(value="upload", method=RequestMethod.POST)
+	public String upload(HttpServletRequest req) {
+		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
+		List<BlobKey> blobKeys = blobs.get("attachFile");
+		if (blobKeys == null || blobKeys.isEmpty()) {
+			return "bbs/upload";
+		} else {
+			return "redirect:/bbs/blob?blob-key=" + blobKeys.get(0).getKeyString();
+		}
+	}
+	@RequestMapping(value="blob", method=RequestMethod.GET)
+	public String blob() {
+		return "bbs/blob";
+	}
+	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
+	public String deleteAttachFile(String filekey) throws Exception {
+		BlobKey blobKey = new BlobKey(filekey);
+		blobstoreService.delete(blobKey);
+		boardService.removeAttachFile(filekey);
+		return "redirect:/bbs/blob?blob-key=" + blobKey.getKeyString();
 	}
 
 }
