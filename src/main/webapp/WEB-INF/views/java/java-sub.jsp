@@ -6,9 +6,8 @@
 	<ul id="sub-menu">
 		<li class="sub-section-title">Java Introduction</li>
 		<li class="sub-menu-item"><a href="/java/Features">자바의 특징</a></li>
-		<li class="sub-menu-item"><a href="/java/Object-and-Class">객체와 클래스</a></li>
-		<li class="sub-section-title">Java Basic</li>
 		<li class="sub-menu-item"><a href="/java/Class-Object">Class and Object</a></li>
+		<li class="sub-section-title">Java Basic</li>
 		<li class="sub-menu-item"><a href="/java/Keyword_Indentifiers_Comment">Indentifiers</a></li>
 		<li class="sub-menu-item"><a href="/java/DataType_Casting">Data Type</a></li>
 		<li class="sub-menu-item"><a href="/java/Arrays">Arrays</a></li>

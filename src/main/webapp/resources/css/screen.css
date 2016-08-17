@@ -6,6 +6,11 @@ html, body {
 	font-family: "Liberation Sans", Helvetica, "돋움", dotum, sans-serif;
 	font-size: 1em;
 }
+pre {
+	font-family: "Liberation Mono", "돋움", dotum, monospace;	
+	font-size: 0.93em;
+	line-height: 1.3;
+}
 table {
 	border-collapse: collapse;
 }
@@ -18,15 +23,35 @@ input, select, textarea, td, th {
 	font-family: "돋움", dotum, sans-serif;
 	font-size: 12px;
 }
+a:link {
+	color: #2C80D0;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #2C80D0;
+	text-decoration: none;
+}
+
+a:active {
+	color: #2C80D0;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #2C80D0;
+	text-decoration: underline;
+}
 #mainNav {
 	font-family: Verdana, sans-serif;
 	font-weight: bold;
 }
-#mainNav > ul {
+#main-menu {
+	margin: 0;
 	padding: 0;
+	list-style-type: none;
 }
 .main-menu-item {
-	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	text-align: center;
@@ -60,6 +85,9 @@ input, select, textarea, td, th {
 article {
 	margin: 0;
 	padding: 0;
+	font-size: 0.94em;
+	line-height: 1.5;
+	color: #2f2f2f;
 }
 article img {
 	width: 100%;
@@ -118,12 +146,6 @@ article img {
 
 aside {
 	display: none;
-}
-
-article>h1 {
-	margin: 0;
-	padding: 5px 0;
-	font-size: 1.3em;
 }
 
 .bbs-table {
@@ -307,17 +329,7 @@ article>h1 {
 	text-decoration: underline;
 }
 
-article > h2 {
-	margin: 9px 0 0 0;
-	padding: 0;
-	font-size: 1.1em;
-	border-bottom: 1px solid #ebebeb;
-}
 
-pre {
-	font-size: 0.93em;
-	line-height: 1.3;
-}
 
 .code {
 	margin: 10px 0 5px 0;
@@ -414,6 +426,15 @@ article > h5 {
 	font-weight: bold;
 	line-height: 1;
 	border-bottom: 2px solid #236CAC;
+}
+#comments {
+	display: block;
+	margin-top: 15px;
+	padding-bottom: 3px;
+	color: #666;
+	font-weight: bold;
+	line-height: 1;
+	border-bottom: 1px solid #999;
 }
 footer {
 	font-family: "돋움", dotum, sans-serif;
@@ -648,6 +669,34 @@ footer > ul > li {
 	font-size: 11px; 
 }
 
+article > h1 {
+	margin: 0;
+	font-size: 1.4em;	
+}
+
+article > h2 {
+	margin-top: 15px;
+	margin-bottom: 0;
+	font-size: 1.3em;
+}
+
+article > h3 {
+	margin-top: 10px;
+	margin-bottom: 0;
+	font-size: 1.2em;
+}
+
+article > h4 {
+	margin-top: 5px;
+	margin-bottom: 0;
+	font-size: 1.1em;
+}
+
+article > h5 {
+	margin-top: 3px;
+	margin-bottom: 0;
+	font-size: 1em;
+}
 
 @media ( min-width : 768px) {
 	#wrap {
@@ -659,28 +708,25 @@ footer > ul > li {
 	}
 	#mainNav {
 		height: 35px;
-		padding: 0;
-		padding-left: 20px;
-		font-size: 12px;
 		background: #92B91C;
 		border: 2px solid #DAEAAA;
 	}
+	#main-menu {
+		height: 20px;
+		margin: 10px 0 0 17px;
+	}
 	.main-menu-item {
 		float: left;
-		border: none;
-		margin: 0;
-		padding: 0;
+		padding-left: 8px;
+		padding-right: 24px;
 		font-size: 12px;
+		background: url('../images/bull_circle.gif') no-repeat 0 70%;
+		border: none;
 	}
 	.main-menu-item > a {
 		display: inline;
 		margin: 0;
-		padding-top: 0;
-		padding-left: 8px;
-		padding-right: 20px;
-		background: url('../images/bull_circle.gif') no-repeat 0 50%;<!-- 추가 -->
-		position: relative;
-		top: -4px;
+		padding: 0;		
 	}
 	.main-menu-item > a:hover {
 		color: #FFF;
@@ -702,7 +748,7 @@ footer > ul > li {
 		margin-left: -1004px;
 	}
  	.sub-menu-item > a {
-		padding: 5px 3px 4px 17px;<!--12px에서 17px로 변경 -->
+		padding: 5px 3px 4px 17px;
 	}
 	aside {
 		float: left;

@@ -1,73 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko">
-<? require('../inc/common_start.php'); ?>
-<head>
-<meta charset="UTF-8" />
-<title>팩키지와 접근자</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="Keywords" content="팩키지(Package),팩키지 적용 실습,public,protected,default,private," />
-<meta name="Description" content="자바의 팩키지(package)의 대한 개념과 팩키지와 연관이 깊은 접근자에 대해서 설명합니다." />
-<link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
-<link rel="stylesheet" href="/css/dtree.css" type="text/css" />
-<script type="text/javascript" src="/js/dtree.js"></script>
-<style type="text/css">
-.command {
-	display: block;
-	color : white;
-	font-family: "Liberation Mono";
-	font-style: normal;
-	font-weight: bold;
-	font-size: 1.1em;
-	background-color: black;
-	padding: 4px;
-}
-</style>
-<link rel="stylesheet" href="/css/prettify.css" type="text/css" />
-<script src="/js/prettify.js"></script>
-<script src="/js/jquery-1.10.2.min.js"></script>
-<script src="/js/commons.js"></script>
-<script type="text/javascript">
-//<![CDATA[
-$(document).ready(function() {
-
-	prettyPrint();
-
-	$('pre.prettyprint').html(function() {
-		return this.innerHTML.replace(/\t/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
-	});
-	
-	$('pre.prettyprint').dblclick(function() {
-		selectRange(this);
-	});
-
-});	
-//]]>
-</script>
-</head>
-<body onload="prettyPrint()">
-<div id="wrap">
-	
-	<header>
-		<? require('../inc/header.php'); ?>
-	</header>
-	
-	<nav id="mainNav">
-		<? require('../inc/main_menu.php'); ?>
-	</nav>
-
-	<div id="login">
-		<form id="frm_login" action="../inc/login.php" method="post">
-			<? require('../inc/membership.php'); ?>
-		</form>
-	</div>
-
-	<div id="content-wrap">
-	
-<!-- 본문 시작 -->	
-<article>
-<div id="navigator">Java - Java 기초</div>
-<div id="last-modified" class="floatstop">Last Modified : 2014.3.26</div>
+<div id="last-modified">Last Modified : 2014.3.26</div>
 
 <h1 class="heading1">팩키지와 접근자</h1>
 
@@ -654,8 +585,6 @@ console 뷰가 생기면서 Hello World !가 출력된다.<br />
 
 <img src="https://lh5.googleusercontent.com/-xC4-RE1ObLk/TjJ6Atp4agI/AAAAAAAAAXU/9fcwiLYVlH4/console_view.gif" alt="console view" />
 
-
-<hr />
 <span id="comments">주석</span>
 <ol>
 	<li>자바 인터프리터(java)를 실행하면 클래스 로더(Class Loader)가
@@ -668,40 +597,3 @@ console 뷰가 생기면서 Hello World !가 출력된다.<br />
 	<li>Log 클래스에 대한 설명은 따로 하지 않는다. Log 클래스의 out 메소드는 static 메소드로 static 키워드에 대한 설명은 
 	<a href="Static">static</a>에서 다룬다.</li>
 </ol>
-
-
-<div id="prev-next">
-	<ul>
-		<li>다음 : <a href="Inheritance">상속</a></li>
-		<li>이전 : <a href="Operators_if_loops">연산자, if문과 반복문</a></li>
-	</ul>
-</div>
-
-</article>
-<!--  본문 끝 -->
-				
-	</div>
-		
-	<div id="sidebar">
-		<nav id="secondaryNav">
-			<? require('java_menu.php'); ?>
-		</nav>
-	</div>
-	
-	<aside>
-		<?// require('../inc/product_menu.php'); ?>
-		<? require('../inc/showAds.php'); ?>
-	</aside>
-	
-	<footer class="floatstop">
-		<? require('../inc/footer.php'); ?>
-	</footer>
-
-</div>
-
-<div id="form_grp">
-	<? require('../inc/forms.php'); ?>
-</div>
-
-</body>
-</html>

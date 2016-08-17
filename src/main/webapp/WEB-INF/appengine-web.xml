@@ -6,9 +6,5 @@
     <use-google-connector-j>true</use-google-connector-j>
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
-<!-- 		<property name="ae-cloudsql.cloudsql-database-url"
-			value="jdbc:google:mysql://metal-node-135508:sky/javaschool?user=java&amp;password=school" />
-		<property name="ae-cloudsql.local-database-url"
-			value="jdbc:mysql://localhost/javaschool?user=java&amp;PASSWORD=school&amp;useSSL=false" /> -->
     </system-properties>
 </appengine-web-app>
