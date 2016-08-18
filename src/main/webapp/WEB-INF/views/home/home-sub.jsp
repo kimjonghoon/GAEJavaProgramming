@@ -4,11 +4,12 @@
 <nav id="secondaryNav">    
 	<strong id="main-menu-title">Home</strong>
 	<ul id="sub-menu">
-		<li class="sub-section-title">Java Introduction</li>
-		<li class="sub-menu-item"><a href="/java/JDK-Install">자바 설치</a></li>
-		<li class="sub-section-title">Blogs using Datastore</li>
-<c:forEach var="i" items="${articles }" varStatus="status">
-		<li class="sub-menu-item"><a href="/datastore/${i.category }/${i.id }">${i.title }</a></li>
-</c:forEach>		
+		<li class="sub-menu-item"><a href="/">JDK 설치</a></li>
+		<li class="sub-section-title">Github</li>
+		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/JSPProject">JSP Project</a></li>
+		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/model2">model2</a></li>
+		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/SpringBbs">SpringBbs</a></li>
+		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/SpringBbsMySql">SpringBbsMySql</a></li>
+		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/GAEJavaProgramming">GAEJavaProgramming</a></li>
 	</ul>
 </nav>
