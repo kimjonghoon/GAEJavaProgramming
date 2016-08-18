@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <h1>${boardNm }</h1>
 <table class="bbs-table">
 <tr>
@@ -60,7 +61,7 @@
 		<input type="hidden" name="boardCd" value="${param.boardCd }" /> 
 		<input type="hidden" name="curPage" value="1" /> 
 		<input type="text" name="searchWord" size="15" maxlength="30" /> 
-		<input type="submit" value="검색" />
+		<input type="submit" value="<spring:message code="search" />" />
 	</div>
 	</form>
 </div>

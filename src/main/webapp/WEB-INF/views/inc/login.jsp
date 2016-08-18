@@ -6,11 +6,14 @@
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%
 	UserService userService = UserServiceFactory.getUserService();
 	User user = userService.getCurrentUser();
 	if (user != null && userService.isUserAdmin()) {
-%>    
+%>
+
+    
 <a href="/blog/list">Blog Manager</a>
 <%
 	}

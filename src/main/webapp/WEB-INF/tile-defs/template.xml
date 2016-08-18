@@ -80,31 +80,31 @@
 		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub.jsp" />
 	</definition>
 	<definition name="bbs/upload" extends="defaultTemplate3">
-		<put-attribute name="title" value="blob test" />
-		<put-attribute name="keywords" value="blob test" />
-		<put-attribute name="description" value="blob test" />
+		<put-attribute name="title" value="blobstore 테스트" />
+		<put-attribute name="keywords" value="blobstore 테스트" />
+		<put-attribute name="description" value="blobstore 테스트" />
 		<put-attribute name="article" value="/WEB-INF/views/bbs/upload.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
 	<definition name="bbs/blob" extends="defaultTemplate3">
-		<put-attribute name="title" value="blob test" />
-		<put-attribute name="keywords" value="blob test" />
-		<put-attribute name="description" value="blob test" />
+		<put-attribute name="title" value="blobstore 테스트" />
+		<put-attribute name="keywords" value="blobstore 테스트" />
+		<put-attribute name="description" value="blobstore 테스트" />
 		<put-attribute name="article" value="/WEB-INF/views/bbs/blob.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
 	<definition name="/" extends="defaultTemplate3">
-		<put-attribute name="title" value="Homepage" />
-		<put-attribute name="keywords" value="Homepage" />
-		<put-attribute name="description" value="Homepage" />
+		<put-attribute name="title" value="홈페이지" />
+		<put-attribute name="keywords" value="홈페이지" />
+		<put-attribute name="description" value="자바스쿨에 오신 것을 환영합니다." />
 		<put-attribute name="article" value="/WEB-INF/views/index.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
 	</definition>
 	<definition name="java/Features" extends="defaultTemplate">
 		<put-attribute name="title" value="Features" />
-		<put-attribute name="keywords" value="Features" />
-		<put-attribute name="description" value="This Chapter dicusses Java Features" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Features-content.jsp" />
+		<put-attribute name="keywords" value="자바의 특징,JVM,OOP" />
+		<put-attribute name="description" value="자바 언어의 특징을 설명합니다." />
+		<put-attribute name="article" value="/WEB-INF/views/java/Features.jsp" />
 		<put-attribute name="next-link" value="Class-Object" />
 		<put-attribute name="next-title" value="객체와 클래스" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />

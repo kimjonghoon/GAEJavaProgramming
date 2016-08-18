@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script>
 $(document).ready(function() {
 	$('#file-list a.download').click(function() {
@@ -281,7 +282,7 @@ function goList(curPage) {
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
 		<input type="hidden" name="curPage" value="${param.curPage }" />
 		<input type="text" name="searchWord" size="15" maxlength="${param.searchWord }" />
-		<input type="submit" value="검색" />
+		<input type="submit" value="<spring:message code="search" />" />
 	</p>
 	</form>
 </div>
