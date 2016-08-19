@@ -113,21 +113,18 @@
 		<put-attribute name="title" value="Class and Object" />
 		<put-attribute name="keywords" value="Class, Object" />
 		<put-attribute name="description" value="Class and Object" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Class_Object-content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Class_Object_en.jsp" />
 		<put-attribute name="next-link" value="Keyword_Indentifiers_Comment" />
 		<put-attribute name="next-title" value="Keyword, Indentifiers, Comment" />
 		<put-attribute name="prev-link" value="Features" />
 		<put-attribute name="prev-title" value="Java Features" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
 	</definition>
-	<definition name="java/Keyword_Indentifiers_Comment"
-		extends="defaultTemplate">
+	<definition name="java/Keyword_Indentifiers_Comment" extends="defaultTemplate">
 		<put-attribute name="title" value="Keyword, Indentifiers, Comment" />
 		<put-attribute name="keywords" value="Keyword, Indentifiers, Comment" />
 		<put-attribute name="description" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Keyword_Indentifiers_Comment-content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Keyword_Indentifiers_Comment-content.jsp" />
 		<put-attribute name="next-link" value="DataType_Casting" />
 		<put-attribute name="next-title" value="Data Type and Type Casting" />
 		<put-attribute name="prev-link" value="Class-Object" />
@@ -136,12 +133,9 @@
 	</definition>
 	<definition name="java/DataType_Casting" extends="defaultTemplate">
 		<put-attribute name="title" value="Data Type and Type Casting" />
-		<put-attribute name="keywords"
-			value="Data Type,Literal,Variable,Primitive Type,Reference Type,boolean,char,byte,short,int,long,float,double,null,Casting,Up-Casting,Down-Casting" />
-		<put-attribute name="description"
-			value="This chapter describes about Java Data Type and Type Casting" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/DataType_Casting-content.jsp" />
+		<put-attribute name="keywords" value="Data Type,Literal,Variable,Primitive Type,Reference Type,boolean,char,byte,short,int,long,float,double,null,Casting,Up-Casting,Down-Casting" />
+		<put-attribute name="description" value="This chapter describes about Java Data Type and Type Casting" />
+		<put-attribute name="article" value="/WEB-INF/views/java/DataType_Casting_en.jsp" />
 		<put-attribute name="next-link" value="Arrays" />
 		<put-attribute name="next-title" value="Arrays" />
 		<put-attribute name="prev-link" value="Keyword_Indentifiers_Comment" />
@@ -150,10 +144,8 @@
 	</definition>
 	<definition name="java/Arrays" extends="defaultTemplate">
 		<put-attribute name="title" value="Java Arrays" />
-		<put-attribute name="keywords"
-			value="Java Arrays,Array of primitive type,Array of reference type,length,String[] parameter in main method" />
-		<put-attribute name="description"
-			value="This chapter describes about Java Arrays" />
+		<put-attribute name="keywords" value="Java Arrays,Array of primitive type,Array of reference type,length,String[] parameter in main method" />
+		<put-attribute name="description" value="This chapter describes about Java Arrays" />
 		<put-attribute name="article" value="/WEB-INF/views/java/Arrays_en.jsp" />
 		<put-attribute name="prev-link" value="DataType_Casting" />
 		<put-attribute name="prev-title" value="Data Type and Type Casting" />

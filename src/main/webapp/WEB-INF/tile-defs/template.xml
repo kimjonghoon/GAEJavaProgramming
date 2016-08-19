@@ -136,7 +136,7 @@
 		<put-attribute name="title" value="Data Type and Type Casting" />
 		<put-attribute name="keywords" value="Data Type,Literal,Variable,Primitive Type,Reference Type,boolean,char,byte,short,int,long,float,double,null,Casting,Up-Casting,Down-Casting" />
 		<put-attribute name="description" value="This chapter describes about Java Data Type and Type Casting" />
-		<put-attribute name="article" value="/WEB-INF/views/java/DataType_Casting-content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/DataType_Casting.jsp" />
 		<put-attribute name="next-link" value="Arrays" />
 		<put-attribute name="next-title" value="배열" />
 		<put-attribute name="prev-link" value="Keyword_Indentifiers_Comment" />
