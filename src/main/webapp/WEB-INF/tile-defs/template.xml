@@ -113,7 +113,7 @@
 		<put-attribute name="title" value="Class and Object" />
 		<put-attribute name="keywords" value="Class, Object" />
 		<put-attribute name="description" value="Class and Object" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Class_Object-content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Class_Object.jsp" />
 		<put-attribute name="next-link" value="Keyword_Indentifiers_Comment" />
 		<put-attribute name="next-title" value="키워드, 식별자, 주석" />
 		<put-attribute name="prev-link" value="Features" />
