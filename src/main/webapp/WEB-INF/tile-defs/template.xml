@@ -224,7 +224,7 @@
 		<put-attribute name="title" value="Exception" />
 		<put-attribute name="keywords" value="Exception,try catch finally,Exception Handling Mechanisms in Java	,The exception hierarchy in Java,RuntimeException,IOException,ArithmeticException,NullPointerException,IndexOutOfBoundException,EOFException,FileNotFoundException,NegativeArraySizeException,ArrayIndexOutOfBoundException,throws,throw,Java Custom Exception" />
 		<put-attribute name="description" value="This chapter describes that Java Exception" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Collection.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Exception.jsp" />
 		<put-attribute name="prev-link" value="Collection" />
 		<put-attribute name="prev-title" value="Collection" />
 		<put-attribute name="next-link" value="Javabank-Requirements-analysis" />
