@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h1>New</h1>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<h1><spring:message code="blog.new" /></h1>
 <form action="new" method="post">
    <div>
       category:

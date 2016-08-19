@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
@@ -14,18 +14,18 @@
 %>
 
     
-<a href="/blog/list">Blog Manager</a>
+<a href="/blog/list"><spring:message code="blog.manage" /></a>
 <%
 	}
     if (user != null) {
         pageContext.setAttribute("user", user);
 %>
 
-${fn:escapeXml(user.nickname)} <a href="<%= userService.createLogoutURL("/")%>">Sign out</a>
+${fn:escapeXml(user.nickname)} <a href="<%= userService.createLogoutURL("/")%>"><spring:message code="sign.out" /></a>
 <%
     } else {
 %>
-<a href="<%= userService.createLoginURL("/") %>">Sign in</a>
+<a href="<%= userService.createLoginURL("/") %>"><spring:message code="sign.in" /></a>
 <%
     }
 %>

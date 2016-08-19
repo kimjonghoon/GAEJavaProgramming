@@ -442,13 +442,12 @@ article > h5 {
 	list-style-type: none;
 }
 footer {
+	padding-top: 5px;
 	font-family: "돋움", dotum, sans-serif;
 	font-size: 11px;
-	margin-bottom: 7px;
-	padding-top: 5px;
-	padding-bottom: 5px;
 	color: #8d8d8d;
 	border-top: 1px solid #DAEAAA;
+	margin-bottom: 17px;
 }
 footer > ul {
 	margin: 0;
@@ -575,7 +574,7 @@ footer > ul > li {
 	display: block;
 }
 
-#footer-ad {
+ins {
 	display: none;
 }
 
@@ -676,7 +675,7 @@ footer > ul > li {
 
 article > h1 {
 	margin: 0;
-	font-size: 1.4em;	
+	font-size: 1.4em;
 }
 
 article > h2 {
@@ -761,11 +760,15 @@ article > h5 {
 		width: 161px;
 		margin-left: -161px;
 	}
+	ins {
+		display: block;
+	}
 	footer {
 		clear: both;
-		height: 70px;
 		position: relative;
 		top: 10px;
+		padding-top: 7px;
+		padding-bottom: 17px;
 	}
 	#ci {
 		float: left;

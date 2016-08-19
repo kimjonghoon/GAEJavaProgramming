@@ -15,20 +15,19 @@
 		<li class="sub-menu-item"><a href="/java/if_switch_loops">if, switch, loops</a></li>
 		<li class="sub-menu-item"><a href="/java/Package_Modifiers">Package, Modifiers</a></li>
 		<li class="sub-menu-item"><a href="/java/Inheritance">Inheritance</a></li>
-		<li class="sub-menu-item"><a href="/java/Static">Static</a></li>
+		<li class="sub-menu-item"><a href="/java/Static">static keyword</a></li>
 		<li class="sub-menu-item"><a href="/java/Collection">Collection</a></li>
 		<li class="sub-menu-item"><a href="/java/Exception">Exception</a></li>
-		<li class="sub-section-title">Bank example</li>
-		<li class="sub-menu-item"><a href="/java/Javabank-Requirements-analysis">Javabank<br />Requirements analysis</a></li>
-		<li class="sub-menu-item"><a href="/java/Javabank-Design">Javabank<br />Design</a></li>
-		<li class="sub-menu-item"><a href="/java/Javabank-Apply-inheritance">Javabank<br />inheritance</a></li>
-		<li class="sub-menu-item"><a href="/java/Javabank-Apply-abstract-class">Javabank<br />Abstract Class</a></li>
-		<li class="sub-menu-item"><a href="/java/Javabank-Apply-interface">Javabank<br />Interface</a></li>
-		<li class="sub-section-title">Advanced</li>
+		<li class="sub-section-title">Javabank example</li>
+		<li class="sub-menu-item"><a href="/java/Javabank-Requirements-analysis">Requirements Analysis</a></li>
+		<li class="sub-menu-item"><a href="/java/Javabank-Design">Application Design</a></li>
+		<li class="sub-menu-item"><a href="/java/Javabank-Apply-inheritance">Inheritance</a></li>
+		<li class="sub-menu-item"><a href="/java/Javabank-Apply-abstract-class">Abstract Class</a></li>
+		<li class="sub-menu-item"><a href="/java/Javabank-Apply-interface">Interface</a></li>
+		<li class="sub-section-title">Java Advanced</li>
 		<li class="sub-menu-item"><a href="/java/Thread">Thread</a></li>
 		<li class="sub-menu-item"><a href="/java/Stream">Stream</a></li>
 		<li class="sub-menu-item"><a href="/java/Logging">Logging</a></li>
-		<li class="sub-section-title">Java Network</li>
 		<li class="sub-menu-item"><a href="/java/Socket">Socket</a></li>
 		<li class="sub-menu-item"><a href="/java/RMI">RMI</a></li>
 		<li class="sub-section-title">Blogs using Datastore</li>

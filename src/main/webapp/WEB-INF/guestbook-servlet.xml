@@ -29,14 +29,15 @@
 		<property name="configLocation"
 			value="classpath:net/java_school/mybatis/Configuration.xml" />
 	</bean>
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
   	
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/javaschool?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false" />
 
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.GoogleDriver"/> 
-		<property name="url" value="jdbc:google:mysql://{인스턴스 연결 이름}:sky/javaschool"/> -->
+<!-- 	
+		<property name="driverClassName" value="com.mysql.jdbc.GoogleDriver"/> 
+		<property name="url" value="jdbc:google:mysql://{인스턴스 연결 이름}:sky/javaschool"/> 
+-->
 		<property name="username" value="java" />
 		<property name="password" value="school" />
 		<property name="maxActive" value="100" />

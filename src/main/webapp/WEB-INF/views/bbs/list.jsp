@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<h1>${boardNm }</h1>
+<h1><spring:message code="${param.boardCd }" /></h1>
 <table class="bbs-table">
 <tr>
 	<th style="width: 60px;">NO</th>
@@ -31,7 +31,7 @@
 </table>
 
 <c:if test="${prevPage > 0 }">
-	<a href="list?boardCd=${param.boardCd }&curPage=${prevPage }&searchWord=${param.searchWord }">[ ${prevPage } ]</a>
+	<a href="list?boardCd=${param.boardCd }&curPage=${prevPage }&searchWord=${param.searchWord }">[<spring:message code="prev" />]</a>
 </c:if>
 
 <div id="paging">
@@ -48,11 +48,11 @@
 </div>
 
 <c:if test="${nextPage > 0 }">
-	<a href="list?boardCd=${param.boardCd }&curPage=${nextPage }&searchWord=${param.searchWord }">[ ${nextPage } ]</a>
+	<a href="list?boardCd=${param.boardCd }&curPage=${nextPage }&searchWord=${param.searchWord }">[<spring:message code="next" />]</a>
 </c:if>
 
 <div id="list-menu">
-	<input type="button" value="새 글쓰기" onclick="location.href='write?boardCd=${param.boardCd}&curPage=${param.curPage }&searchWord=${param.searchWord }'" />
+	<input type="button" value="<spring:message code="bbs.write" />" onclick="location.href='write?boardCd=${param.boardCd}&curPage=${param.curPage }&searchWord=${param.searchWord }'" />
 </div>
 
 <div id="search">

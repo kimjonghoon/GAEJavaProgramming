@@ -4,10 +4,10 @@
 <nav id="secondaryNav">
 	<strong id="main-menu-title">Java</strong>
 	<ul id="sub-menu">
-		<li class="sub-section-title">소개</li>
+		<li class="sub-section-title">자바 소개</li>
 		<li class="sub-menu-item"><a href="/java/Features">자바의 특징</a></li>
 		<li class="sub-menu-item"><a href="/java/Class-Object">객체와 클래스</a></li>
-		<li class="sub-section-title">기초</li>
+		<li class="sub-section-title">자바 기초</li>
 		<li class="sub-menu-item"><a href="/java/Keyword_Indentifiers_Comment">키워드, 식별자, 주석</a></li>
 		<li class="sub-menu-item"><a href="/java/DataType_Casting">자료형과 형변환</a></li>
 		<li class="sub-menu-item"><a href="/java/Arrays">배열</a></li>
@@ -24,11 +24,10 @@
 		<li class="sub-menu-item"><a href="/java/Javabank-Apply-inheritance">상속 적용</a></li>
 		<li class="sub-menu-item"><a href="/java/Javabank-Apply-abstract-class">추상 클래스 적용</a></li>
 		<li class="sub-menu-item"><a href="/java/Javabank-Apply-interface">인터페이스 적용</a></li>
-		<li class="sub-section-title">고급</li>
+		<li class="sub-section-title">자바 고급</li>
 		<li class="sub-menu-item"><a href="/java/Thread">스레드</a></li>
 		<li class="sub-menu-item"><a href="/java/Stream">스트림</a></li>
 		<li class="sub-menu-item"><a href="/java/Logging">로깅</a></li>
-		<li class="sub-section-title">자바 네트워크</li>
 		<li class="sub-menu-item"><a href="/java/Socket">소켓</a></li>
 		<li class="sub-menu-item"><a href="/java/RMI">RMI</a></li>
 		<li class="sub-section-title">데이터스토어에 저장한 블로그</li>

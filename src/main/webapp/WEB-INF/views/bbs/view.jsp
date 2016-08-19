@@ -12,7 +12,7 @@ $(document).ready(function() {
 		return false;
 	});
 	$('#file-list a:not(.download)').click(function() {
-		var chk = confirm("정말로 삭제하시겠습니까?");
+		var chk = confirm('<spring:message code="delete.confirm" />');
 		if (chk == true) {
 			var $filekey = this.title;
 			$('#deleteAttachFileForm input[name*=filekey]').val($filekey);
@@ -20,7 +20,7 @@ $(document).ready(function() {
 		}
 		return false;
 	});
-	//덧글반복
+	//comments
 	$('.comments').click(function(e) {
 		if ($(e.target).is('.comments-toggle')) {
 			var $form = $(e.target).parent().parent().find('.comments-modify-form');
@@ -34,7 +34,7 @@ $(document).ready(function() {
 			}
 			return false;
 		} else if ($(e.target).is('.comments-delete')) {
-			var chk = confirm("정말로 삭제하시겠습니까?");
+			var chk = confirm("<spring:message code="delete.confirm" />");
 			if (chk == true) {
 				var $commentNo = $(e.target).attr('title');
 				$('#deleteCommentsForm input[name*=commentNo]').val($commentNo);
@@ -43,13 +43,13 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-	//form 안의 수정하기 링크
+	//modify comments link in form
 	$('.comments-modify-form a.comments-modify-submit').click(function(e) {
 		$(e.target).parent().parent().submit();
 		return false;
 	});
-	//form 안의 취소 링크
-	$('.comments-modify-form a:contains("취소")').click(function(e) {
+	//cancel link in form
+	$('.comments-modify-form a:contains("<spring:message code="cancel" />")').click(function(e) {
 		var $form = $(e.target).parent().parent();
 		var $p = $(e.target).parent().parent().parent().find('.comments-content');
 		if ($form.is(':hidden') == true) {
@@ -66,48 +66,48 @@ $(document).ready(function() {
 		goView($articleNo);
 		return false;
 	});
-	//수정 버튼
+	//modify button
 	$('.goModify').click(function() {
 		$('#modifyForm').submit();
 	});
-	//삭제 버튼
+	//del button
 	$('.goDelete').click(function() {
-		var chk = confirm('정말로 삭제하시겠습니까?');
+		var chk = confirm('<spring:message code="delete.confirm" />');
 		if (chk == true) {
 			$('#delForm').submit();
 		}
 	});
-	//다음글 버튼
+	//Next Post button
 	$('.next-article').click(function() {
 		var $articleNo = this.title;
 		goView($articleNo);
 	});
-	//이전글 버튼
+	//Prev Post button
 	$('.prev-article').click(function() {
 		var $articleNo = this.title;
 		goView($articleNo);
 	});
-	//목록버튼
+	//list button
 	$('.goList').click(function() {
 		$('#listForm').submit();
 	});
-	//새글쓰기 버튼
+	//write button
 	$('.goWrite').click(function() {
 		$('#writeForm').submit();
 	});
-	//상세보기 안의 목록의 제목링크
+	//list title link in view
 	$('#list-table a').click(function() {
 		var $articleNo = this.title;
 		goView($articleNo);
 		return false;
 	});
-	//페이징 처리
+	//paging
 	$('#paging a').click(function() {
 		var $curPage = this.title;
 		goList($curPage);
 		return false;
 	});
-	//검색 버튼 위의 새글쓰기 버튼
+	//write button 
 	$('#list-menu input').click(function() {
 		$('#writeForm').submit();
 	});
@@ -121,21 +121,21 @@ function goList(curPage) {
 	$('#listForm').submit();
 }
 </script>
-<h1>${boardNm }</h1>
+<h1><spring:message code="${param.boardCd }" /></h1>
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
     <div style="float: left;">
-        <input type="button" value="수정" class="goModify" />
-        <input type="button" value="삭제" class="goDelete" />
+        <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
+        <input type="button" value="<spring:message code="bbs.delete" />" class="goDelete" />
     </div>
     <div style="float: right;">
 		<c:if test="${nextArticle != null }">
-        <input type="button" value="다음 글" title="${nextArticle.articleNo }" class="next-article" />
+        <input type="button" value="<spring:message code="bbs.next" />" title="${nextArticle.articleNo }" class="next-article" />
 		</c:if>
 		<c:if test="${prevArticle != null }">
-        <input type="button" value="이전 글" title="${prevArticle.articleNo}" class="prev-article" />
+        <input type="button" value="<spring:message code="bbs.prev" />" title="${prevArticle.articleNo}" class="prev-article" />
 		</c:if>
-        <input type="button" value="목록" class="goList" />
-        <input type="button" value="새 글쓰기" class="goWrite" />
+        <input type="button" value="<spring:message code="bbs.list" />" class="goList" />
+        <input type="button" value="<spring:message code="bbs.write" />" class="goWrite" />
     </div>
 </div>
 <table class="bbs-table">
@@ -166,17 +166,17 @@ function goList(curPage) {
         <textarea name="memo" rows="7" cols="50"></textarea>
     </div>
     <div style="text-align: right;">
-        <input type="submit" value="댓글 남기기" />
+        <input type="submit" value="<spring:message code="bbs.add.comments" />" />
     </div>
 </form>
-<!--  댓글 반복 시작 -->
+<!--  comments start -->
 <c:forEach var="comments" items="${commentsList }" varStatus="status">
 <div class="comments">
     <span class="comments-writer">${comments.nickname }</span>
     <span class="comments-date">${comments.regdate }</span>
     <span class="comments-modify-del">
-        <a href="#" class="comments-toggle">수정</a>
-		| <a href="#" class="comments-delete" title="${comments.commentNo }">삭제</a>
+        <a href="#" class="comments-toggle"><spring:message code="bbs.modify" /></a>
+		| <a href="#" class="comments-delete" title="${comments.commentNo }"><spring:message code="bbs.delete" /></a>
     </span>
     <p class="comments-content">${comments.memo }</p>
     <form class="comments-modify-form" action="modifyComments" method="post" style="display: none;">
@@ -188,8 +188,8 @@ function goList(curPage) {
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     <div style="text-align: right;">
-		<a href="#" class="comments-modify-submit">수정하기</a>
-		 | <a href="#">취소</a>
+		<a href="#" class="comments-modify-submit"><spring:message code="bbs.modify.comments" /></a>
+		 | <a href="#"><spring:message code="cancel" /></a>
     </div>
     <div>
         <textarea class="modify-comments-ta" name="memo" rows="7" cols="50">${comments.memo }</textarea>
@@ -197,29 +197,29 @@ function goList(curPage) {
     </form>
 </div>
 </c:forEach>
-<!--  댓글 반복 끝 -->
+<!--  comments end -->
 <div class="next-prev">
     <c:if test="${nextArticle != null }">
-    <p>다음 글 : <a href="#" title="${nextArticle.articleNo }">${nextArticle.title }</a></p>
+    <p><spring:message code="bbs.next" /> : <a href="#" title="${nextArticle.articleNo }">${nextArticle.title }</a></p>
     </c:if>
     <c:if test="${prevArticle != null }">
-    <p>이전 글 : <a href="#" title="${prevArticle.articleNo }">${prevArticle.title }</a></p>
+    <p><spring:message code="bbs.prev" /> : <a href="#" title="${prevArticle.articleNo }">${prevArticle.title }</a></p>
     </c:if>
 </div>
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
     <div style="float: left;">
-        <input type="button" value="수정" class="goModify" />
-        <input type="button" value="삭제" class="goDelete" />
+        <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
+        <input type="button" value="<spring:message code="bbs.delete" />" class="goDelete" />
     </div>
     <div style="float: right;">
 		<c:if test="${nextArticle != null }">    
-        <input type="button" value="다음 글" title="${nextArticle.articleNo }" class="next-article" />
+        <input type="button" value="<spring:message code="bbs.next" />" title="${nextArticle.articleNo }" class="next-article" />
 		</c:if>
 		<c:if test="${prevArticle != null }">        
-        <input type="button" value="이전 글" title="${prevArticle.articleNo}" class="prev-article" />
+        <input type="button" value="<spring:message code="bbs.prev" />" title="${prevArticle.articleNo}" class="prev-article" />
 		</c:if>
-        <input type="button" value="목록" class="goList" />
-        <input type="button" value="새 글쓰기" class="goWrite" />
+        <input type="button" value="<spring:message code="bbs.list" />" class="goList" />
+        <input type="button" value="<spring:message code="bbs.write" />" class="goWrite" />
     </div>
 </div>
 <table id="list-table" class="bbs-table">
@@ -234,7 +234,7 @@ function goList(curPage) {
 	<td style="text-align: center;">
 	<c:choose>
 		<c:when test="${param.articleNo == article.articleNo }">	
-		<img src="/resources/images/arrow-current.gif" alt="현재 글" style="width: 7px;" />
+		<img src="/resources/images/arrow-current.gif" alt="Current Post" style="width: 7px;" />
 		</c:when>
 		<c:otherwise>
 		${listItemNo - status.index }
@@ -257,7 +257,7 @@ function goList(curPage) {
 </table>
 <div id="paging">
 	<c:if test="${prevPage > 0 }">
-		<a href="#" title="${prevPage }">[이전]</a>
+		<a href="#" title="${prevPage }">[<spring:message code="prev" />]</a>
 	</c:if>
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
@@ -270,11 +270,11 @@ function goList(curPage) {
 		</c:choose>
 	</c:forEach>
 	<c:if test="${nextPage > 0 }">
-		<a href="#" title="${nextPage }">[다음]</a>
+		<a href="#" title="${nextPage }">[<spring:message code="bbs.next" />]</a>
 	</c:if>
 </div>
 <div id="list-menu">
-	<input type="button" value="새 글쓰기" />
+	<input type="button" value="<spring:message code="bbs.write" />" />
 </div>
 <div id="search">
 	<form action="list" method="get">

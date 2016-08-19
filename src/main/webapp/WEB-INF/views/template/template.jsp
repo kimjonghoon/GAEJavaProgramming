@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html> 
 <html>
 <head>
@@ -43,8 +44,8 @@ $(document).ready(function() {
 			<tiles:insertAttribute name="article" />
 			<div id="prev-next">
 			<ul>
-				<li>Next : <a href="<tiles:insertAttribute name="next-link" />"><tiles:insertAttribute name="next-title" /></a></li>
-				<li>Prev : <a href="<tiles:insertAttribute name="prev-link" />"><tiles:insertAttribute name="prev-title" /></a></li>
+				<li><spring:message code="next" /> : <a href="<tiles:insertAttribute name="next-link" />"><tiles:insertAttribute name="next-title" /></a></li>
+				<li><spring:message code="prev" /> : <a href="<tiles:insertAttribute name="prev-link" />"><tiles:insertAttribute name="prev-title" /></a></li>
 			</ul>
 			</div>
 		</article>
