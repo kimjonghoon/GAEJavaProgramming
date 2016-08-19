@@ -6,7 +6,7 @@
 
 An array is a container object that holds values of a same type.
 
-<img src="https://lh3.googleusercontent.com/-iLIT7b27vBo/Vvy0K3Fs5eI/AAAAAAAACto/WJw-WrH8EtENW0RZRVweV-vjoMqqXb4DACCo/s913-Ic42/variable-array.png" alt="variable and array" style="width: 590px;" /><br />
+<img src="https://lh3.googleusercontent.com/-iLIT7b27vBo/Vvy0K3Fs5eI/AAAAAAAACto/WJw-WrH8EtENW0RZRVweV-vjoMqqXb4DACCo/s913-Ic42/variable-array.png" alt="variable and array"/><br />
 
 Each item in an array is called an element, 
 and each element is accessed by its numerical index, 

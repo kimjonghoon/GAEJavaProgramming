@@ -145,12 +145,9 @@
 	</definition>
 	<definition name="java/Arrays" extends="defaultTemplate">
 		<put-attribute name="title" value="Java Arrays" />
-		<put-attribute name="keywords"
-			value="Java Arrays,Array of primitive type,Array of reference type,length,String[] parameter in main method" />
-		<put-attribute name="description"
-			value="This chapter describes about Java Arrays" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Arrays-content.jsp" />
+		<put-attribute name="keywords" value="Java Arrays,Array of primitive type,Array of reference type,length,String[] parameter in main method" />
+		<put-attribute name="description" value="This chapter describes about Java Arrays" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Arrays.jsp" />
 		<put-attribute name="prev-link" value="DataType_Casting" />
 		<put-attribute name="prev-title" value="자료형과 형변환" />
 		<put-attribute name="next-link" value="Operators" />

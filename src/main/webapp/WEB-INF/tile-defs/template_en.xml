@@ -154,8 +154,7 @@
 			value="Java Arrays,Array of primitive type,Array of reference type,length,String[] parameter in main method" />
 		<put-attribute name="description"
 			value="This chapter describes about Java Arrays" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Arrays-content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Arrays_en.jsp" />
 		<put-attribute name="prev-link" value="DataType_Casting" />
 		<put-attribute name="prev-title" value="Data Type and Type Casting" />
 		<put-attribute name="next-link" value="Operators" />
