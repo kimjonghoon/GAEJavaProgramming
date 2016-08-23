@@ -1,12 +1,12 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.6.4</div>
 
-<h1 class="heading1">Spring DI(종속객체 주입)</h1>
+<h1>Spring DI(종속객체 주입)</h1>
 
 워크스페이스가 <em class="path">C:\java</em>라고 가정한다.<br />
 명령 프롬프트로 <em class="path">C:\java</em>로 이동한다.<br />
 
-<h2 class="heading2">명령 프롬프트에서 메이븐 프로젝트 생성</h2>
+<h2>명령 프롬프트에서 메이븐 프로젝트 생성</h2>
 <pre class="screen">
 C:\java&gt;<span class="prompt-selection">mvn archetype:generate</span>
 
@@ -37,7 +37,7 @@ package: net.java_school
  Y: : 
 </pre>
 
-<h2 class="heading2">소스 코드 복사</h2>
+<h2>소스 코드 복사</h2>
 <a href="/jdbc/JavaBank">자바은행</a>에서 작성한 소스를 복사하여 다음과 같이 붙여넣는다.
 
 <pre class="code">C:\java\bank
@@ -206,13 +206,13 @@ pom.xml 파일을 아래와 같이 수정한다.<br />
 &lt;/project&gt;
 </pre>
 
-<h2 class="heading2">컴파일과 실행</h2>
+<h2>컴파일과 실행</h2>
 <pre class="screen">C:\java\bank&gt;<span class="prompt-selection">mvn clean compile</span>
 
 C:\java\bank&gt;<span class="prompt-selection">mvn exec:java -Dexec.mainClass=net.java_school.bank.BankUi</span>
 </pre>
 
-<h2 class="heading2">이클립스 작업환경 구축</h2>
+<h2>이클립스 작업환경 구축</h2>
 이클립스를 시작하고 워크스페이스를 <em class="path">C:\java</em>로 선택한다.<br />
 Project Explorer 뷰에서 마우스 오른쪽 버튼을 사용하여 컨텍스트 메뉴를 보이게 한다.<br />
 Import를 사용하여 spring-bbs 프로젝트를 이클립스로 불러온다.<br />

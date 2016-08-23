@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.21</div>
 
-<h1 class="heading1">SELECT</h1>
+<h1>SELECT</h1>
 
 이번 장에서는 NAMECARD 테이블의 레코드를 SELECT 하는 JDBC 예제를 구현한다.<br />
 아래 NamecardSelect.java 파일을 아래 JDBC 프로그래밍 순서를 참조하여 작성한다.<br />

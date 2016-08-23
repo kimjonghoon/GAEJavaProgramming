@@ -1,7 +1,7 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.5.19</div>
 
-<h1 class="heading1">Spring MVC 게시판</h1>
+<h1>Spring MVC 게시판</h1>
 
 게시판 프로젝트 최종 결과물에 Spring MVC를 적용해보자.<br />
 기존 모델 2게시판의 코드를 보존하기 위해서 새로운 프로젝트에서 작업하기로 한다.<br />
@@ -271,7 +271,7 @@ web.xml에 요청 캐릭터 셋을 UTF-8로 설정하는 필터가 있다.<br />
 코드는 필요 없게 된다.<br />
 에러 페이지 설정은 최종 테스트 단계에서 하는 것이 좋으므로 주석 처리했다.<br />
  
-<h2 class="heading2">CSS, 이미지, JSP 파일 복사</h2>
+<h2>CSS, 이미지, JSP 파일 복사</h2>
 
 <em class="path">C:\www\spring-bbs\src\main\webapp</em>가 도큐먼트 베이스다.<br />
 도큐먼트 베이스에 모델 2게시판의 css와 images 폴더를 복사하여 붙여넣는다.<br />
@@ -281,7 +281,7 @@ JSP 페이지를 WEB-INF 아래에 두는 이유는 웹 브라우저로 바로 �
 스프링 MVC에서는 모든 요청을 디스패처 서블릿을 거쳐 컨트롤러에 전달되도록 하는 것을 권장한다.<br />
 JSP를 바로 요청할 수 있으면서 어떤 요청은 디스패처 서블릿을 거치도록 프로그래밍하는 것은 프로그램을 복잡하게 하고 유지 보수에도 좋지 않다.<br />
 
-<h2 class="heading2">자바 소스 복사</h2>
+<h2>자바 소스 복사</h2>
 
 C:/www/spring-bbs/src/main/java에 모델 2에서 구현한 자바 소스를 복사한다.<br />
 만약 src/main/java 디렉터리가 없다면 메이븐 프로젝트의 기본 디렉터리이니 만들어야 한다.<br />
@@ -340,7 +340,7 @@ public class WebContants {
 모델 2에서는 웹 브라우저로 접근할 수 있는 디렉터리였으나 여기서는 접근할 수 없는 디렉터리를 선택했다.<br />
 
 
-<h2 class="heading2">JSP 수정</h2>
+<h2>JSP 수정</h2>
 
 스프링 컨트롤러가 특별한 확장자를 포함한 요청만이 아니라 모든 요청을 담당하도록 설정할 것이다.<br />
 모든 JSP 파일에서 확장자 ".do"를 모두 제거한다.<br />
@@ -374,7 +374,7 @@ list.jsp와 view.jsp 열고 아랫부분을 수정한다.<br />
 &lt;!-- 반복 구간 끝 --&gt;
 </pre>
 
-<h2 class="heading2">첨부 파일을 내려받는 JSP 추가</h2>
+<h2>첨부 파일을 내려받는 JSP 추가</h2>
 
 기존 상세보기(view.jsp)에서는 첨부 파일을 단순히 링크 거는 것으로 구현했었는데 스프링 MVC에서는 
 /WEB-INF/jsp/inc/download.jsp를 이용하는 것으로 수정할 것이다.<br />
@@ -434,14 +434,14 @@ out.flush();
 %&gt;
 </pre>
 
-<h2 class="heading2">로그 관련 파일 복사</h2>
+<h2>로그 관련 파일 복사</h2>
 
 log4j.xml과 commons-logging.properties 파일을 src/main/resources에 복사한다.<br />
 이 폴더가 없다면 만들고 Maven - Update Project... 를 실행한다.<br />
 log4j.xml 파일을 열고 로그 파일의 위치를 <em class="path">C:/www/spring-bbs/logs/debug.log</em>로 수정한다.<br />
 로그 파일의 위치가 웹 브라우저로 접근할 수 없는 디렉터리임에 주목하자.<br />
 
-<h2 class="heading2">회원</h2>
+<h2>회원</h2>
 자바빈즈를 마이바티스와 연동하도록 수정할 것이다.<br />
 마이바티스 공식 문서에서 스프링과 마이바티스의 연동에 관한 여러 가지 방법을 소개하고 있다.<br />
 여기서는 DAO 패턴을 이용하지 않는 방법을 소개한다.<br />
@@ -1010,7 +1010,7 @@ sprng-bbs-servlet.xml라는 이름으로 web.xml과 같은 위치인 WEB-INF에 
 &lt;/beans&gt;
 </pre>
 
-<h3 class="heading3">spring-bbs-servlet.xml 설정 설명</h3>
+<h3>spring-bbs-servlet.xml 설정 설명</h3>
 
 <strong>&lt;mvc:resources location=..</strong><br />
 디스패쳐 서블릿에 정적 자원의 위치를 알려준다.<br />
@@ -1068,7 +1068,7 @@ web.xml에서 에러 페이지에 대한 경로를 /WEB-INF/jsp/error.jsp라고 
 web.xml의 에러 페이지 설정과 마찬가지로 이 부분 역시 주석으로 처리했다.<br />
 최종 테스트 전까지 주석을 제거하지 않는 것이 개발에 도움이 된다.<br /> 
 
-<h2 class="heading2">게시판</h2>
+<h2>게시판</h2>
 Configuration.xml의 설정대로, BoardMapper.xml 파일을 UserMapper.xml와 같은 위치에 만든다.<br />
 
 <em class="filename">BoardMapper.xml</em>
@@ -1270,7 +1270,7 @@ Configuration.xml의 설정대로, BoardMapper.xml 파일을 UserMapper.xml와 �
 &lt;/mapper&gt;
 </pre>
 
-<h3 class="heading3">MyBatis에서 인서트 후 고유번호가 반환되게 하는 방법</h3>
+<h3>MyBatis에서 인서트 후 고유번호가 반환되게 하는 방법</h3>
 
 <em class="path">&lt;insert id="insert" ..&gt;</em>부분이 새 글을 추가할 때 쓰인다.<br />
 모델 2 게시판의 BoardDao.insert() 메서드에서는<br />
@@ -2161,7 +2161,7 @@ public class BbsController {
 }
 </pre>
 
-<h3 class="heading3">BbsController.java에 적용된 어노테이션 설명</h3>
+<h3>BbsController.java에 적용된 어노테이션 설명</h3>
 다음은 컨트롤러에 적용된 어노테이션을 정리한 것이다.<br />
 
 <ul>
@@ -2172,7 +2172,7 @@ public class BbsController {
   <li>멤버 변수에 @Autowired를 적용하면 변수의 접근자가 private이고 공개된 setter가 없어도 종속객체가 주입된다.</li>
 </ul>
 
-<h3 class="heading3">목록 요청</h3>
+<h3>목록 요청</h3>
 목록 요청 URL은 /bbs/list이다.<br />
 컨트롤러에서 이 요청을 메서드에 매핑하려면 메서드 레벨로 @RequestMapping을 사용한다.<br />
 
@@ -2231,7 +2231,7 @@ Integer firstPage = boardService.getFirstPage();
 Integer lastPage = boardService.getLastPage();
 </pre>
 
-<h3 class="heading3">글쓰기 폼 요청</h3>
+<h3>글쓰기 폼 요청</h3>
 writeForm() 메서드는 GET방식의 /bbs/write_form 요청에 매핑된다.<br />
 
 <pre>@RequestMapping(value="/write_form", method=RequestMethod.GET)
@@ -2243,7 +2243,7 @@ curPage와 searchWord는 포워딩 되므로 아규먼트로 받을 특별한 �
 게시판은 로그인 사용자만 이용할 수 있으므로 메서드는 먼저 로그인 체크로 시작하고,
 로그인 체크가 통과하면 게시판 이름을 생성하고 write_form.jsp로 포워딩한다.<br />
 
-<h3 class="heading3">글쓰기 처리 요청</h3>
+<h3>글쓰기 처리 요청</h3>
 write() 메서드는 POST방식의 /bbs/write 요청에 매핑된다.<br />
 
 <pre>@RequestMapping(value="/write", method=RequestMethod.POST)
@@ -2355,7 +2355,7 @@ maxInMemorySize는 메모리에 저장되는 파일의 크기로 10M로 설정�
 여기서는 서버스의 addArticle(article)과 addAttachFile(attachFile) 2개의 메서드를 
 사용했다는 점도 기억하자.<br />
 
-<h3 class="heading3">상세보기 요청</h3>
+<h3>상세보기 요청</h3>
 
 상세보기 요청(/bbs/view)에 매핑되는 메서드는 view()이다.<br />
 메서드에 전달되는 파라미터는 articleNo, boardCd, curPage, searchWord이다.<br />
@@ -2446,7 +2446,7 @@ model.addAttribute("boardNm", boardNm);
 return "bbs/view";
 </pre>
 
-<h3 class="heading3">댓글 쓰기 처리 요청</h3>
+<h3>댓글 쓰기 처리 요청</h3>
 addComment() 메서드는 POST방식의 /bbs/addComment 요청에 매핑되는 메서드다.<br />
 
 <pre>@RequestMapping(value="/addComment", method=RequestMethod.POST)
@@ -2491,7 +2491,7 @@ boardService.addComment(comment);
     "&amp;searchWord=" + searchWord;
 </pre>
 
-<h3 class="heading3">댓글 수정 요청</h3>
+<h3>댓글 수정 요청</h3>
 updateComment() 메서드는 POST 방식의 댓글 수정 요청 /bbs/updateComment에 매핑된다.<br />
 
 <pre>@RequestMapping(value="/updateComment", method=RequestMethod.POST)
@@ -2537,7 +2537,7 @@ return "redirect:/bbs/view?articleNo=" + articleNo +
     "&amp;searchWord=" + searchWord;
 </pre>
 
-<h3 class="heading3">댓글 삭제 요청</h3>
+<h3>댓글 삭제 요청</h3>
 deleteComment() 메서드는 POST방식의 /bbs/deleteComment 요청에 매핑되는 메서드다.<br />
 
 <pre>@RequestMapping(value="/deleteComment", method=RequestMethod.POST)
@@ -2576,7 +2576,7 @@ return "redirect:/bbs/view?articleNo=" + articleNo +
     "&amp;searchWord=" + searchWord;
 </pre>
 
-<h3 class="heading3">글 수정 폼 요청</h3>
+<h3>글 수정 폼 요청</h3>
 modifyForm() 메서드는 GET 방식의 게시글 수정 폼 요청 /bbs/modify_form에 매핑되는 메서드다.<br />
 
 <pre>@RequestMapping(value="/modify_form", method=RequestMethod.GET)
@@ -2615,7 +2615,7 @@ model.addAttribute("boardNm", boardNm);
 return "bbs/modify_form";
 </pre>
 
-<h3 class="heading3">글 수정 처리 요청</h3>
+<h3>글 수정 처리 요청</h3>
 modify() 메서드는 POST 방식의 글 수정 처리 요청 /bbs/modify에 매핑되는 메서드다.<br />
 
 <pre>@RequestMapping(value="/modify", method=RequestMethod.POST)
@@ -2697,7 +2697,7 @@ return "redirect:/bbs/view?articleNo=" + articleNo
     + "&amp;searchWord=" + searchWord;
 </pre>
 
-<h3 class="heading3">첨부 파일 다운로드 요청</h3>
+<h3>첨부 파일 다운로드 요청</h3>
 download() 메서드는 POST 방식의 파일 다운로드 요청 /bbs/download에 매핑되는 메서드다.<br />
 사실 다운로드는 게시판이 아닌 다른 모듈에서도 이용될 수 있으므로 파일 다운로드만을 위한 컨트롤러를 
 만들어 처리할 수 있다.<br />
@@ -2723,7 +2723,7 @@ if (user == null) {
 return "inc/download";
 </pre>
 
-<h3 class="heading3">첨부 파일 삭제 처리 요청</h3>
+<h3>첨부 파일 삭제 처리 요청</h3>
 deleteAttachFile() 메서드는 POST 방식의 첨부 파일 삭제 요청 /bbs/deleteAttachFile에 매핑되는 메서드다.<br />
 
 <pre>@RequestMapping(value="/deleteAttachFile", method=RequestMethod.POST)
@@ -2759,7 +2759,7 @@ return "redirect:/bbs/view?articleNo=" + articleNo +
     "&amp;searchWord=" + searchWord;
 </pre>
 
-<h3 class="heading3">게시글 삭제 처리 요청</h3>
+<h3>게시글 삭제 처리 요청</h3>
 del() 메서드는 POST 방식의 게시글 삭제 처리 요청 /bbs/del에 매핑되는 메서드다.<br />
 
 <pre>@RequestMapping(value="/del", method=RequestMethod.POST)
@@ -2793,7 +2793,7 @@ return "redirect:/bbs/list?boardCd=" + boardCd +
     "&amp;searchWord=" + searchWord;
 </pre>
 
-<h3 class="heading3">view.jsp에서 파일 다운로드 부분 수정</h3>
+<h3>view.jsp에서 파일 다운로드 부분 수정</h3>
 모델 2와 달리 첨부 파일을 단순히 링크를 거는 것이 아니라 자바의 입출력 클래스를 이용해서 파일을 다운로드하는 것으로 변경했다.<br />
 view.jsp에 다음 자바스크립트 함수를 추가한다.<br />
 
@@ -2818,7 +2818,7 @@ view.jsp에 다음 자바스크립트 함수를 추가한다.<br />
 <pre>&lt;a href="javascript:download('${file.filename }')"&gt;${file.filename }&lt;/a&gt;</pre>
 
 
-<h2 class="heading2">테스트</h2>
+<h2>테스트</h2>
 sprng-bbs-servlet.xml에서 SimpleMappingExceptionResolver 부분의 주석을 제거한다.<br />
 web.xml에서 에러 페이지의 주석을 제거한다.<br />
 Proejct Explorer 뷰에서 프로젝트를 선택한다.<br />
@@ -2874,11 +2874,11 @@ JSP 프로젝트나 모델 2에서 테스트했던 데이터가 있다면 보일
 
 테스트 단계에서는 로그인 화면의 이메일과 비밀번호 입력 필드에 디폴트 값을 주는 것이 좋다.<br />
 
-<h2 class="heading2">Spring MVC 프로젝트에서의 사용자 인증 정리</h2>
+<h2>Spring MVC 프로젝트에서의 사용자 인증 정리</h2>
 스프링 시큐리티를 적용하기 전에 현재 인증 처리를 어떻게 구현했는지 다시 정리해 볼 필요가 있다.<br />
 다음은 게시판 컨트롤러의 메서드에 적용된 인증 코드이다.<br />
 
-<h3 class="heading3">목록보기, 상세보기, 글쓰기 폼</h3>
+<h3>목록보기, 상세보기, 글쓰기 폼</h3>
 <pre class="prettyprint">//로그인 체크
 User user = (User) session.getAttribute(WebContants.USER_KEY);
 if (user == null) {
@@ -2892,7 +2892,7 @@ if (user == null) {
 }
 </pre>
 
-<h3 class="heading3">글쓰기, 댓글 쓰기</h3>
+<h3>글쓰기, 댓글 쓰기</h3>
 <pre class="prettyprint">//로그인 체크
 User user = (User) session.getAttribute(WebContants.USER_KEY);
 if (user == null) {
@@ -2900,21 +2900,21 @@ if (user == null) {
 }
 </pre>
 
-<h3 class="heading3">댓글 수정, 댓글 삭제</h3>
+<h3>댓글 수정, 댓글 삭제</h3>
 <pre class="prettyprint">//로그인 사용자가 댓글 소유자인지  검사
 if (user == null || !user.getEmail().equals(comment.getEmail())) {
   throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 }
 </pre>
 
-<h3 class="heading3">수정 폼, 수정하기, 글 삭제</h3>
+<h3>수정 폼, 수정하기, 글 삭제</h3>
 <pre class="prettyprint">//로그인 사용자가 글 작성자인지 검사
 if (user == null || !user.getEmail().equals(article.getEmail())) {
   throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
 }
 </pre>
 
-<h3 class="heading3">첨부 파일 삭제</h3>
+<h3>첨부 파일 삭제</h3>
 <pre class="prettyprint">//로그인 사용자가 첨부 파일 소유자인지 검사
 if (user == null || !user.getEmail().equals(attachFile.getEmail())) {
   throw new AuthenticationException(WebContants.AUTHENTICATION_FAILED);
@@ -2924,7 +2924,7 @@ if (user == null || !user.getEmail().equals(attachFile.getEmail())) {
 다음은 회원 컨트롤러에 적용된 사용자 인증 로직이다.<br />
 회원 컨트롤러의 대부분의 메서드는 인증 로직을 포함한다.<br />
 
-<h3 class="heading3">로그인</h3>
+<h3>로그인</h3>
 <pre class="prettyprint">User user = userService.login(email, passwd);
 if (user == null) {
   return "redirect:/users/login?url=" + url + "&amp;msg=Login-Failed";
@@ -2937,7 +2937,7 @@ if (user == null) {
 return "redirect:/";
 </pre>
 
-<h3 class="heading3">내 정보 수정 폼, 비밀번호 변경 폼, 탈퇴</h3>
+<h3>내 정보 수정 폼, 비밀번호 변경 폼, 탈퇴</h3>
 <pre class="prettyprint">User user = (User) session.getAttribute(WebContants.USER_KEY);
 if (user == null) {
   //로그인 후 다시 돌아오기 위해
@@ -2951,7 +2951,7 @@ if (user == null) {
 
 </pre>
 
-<h3 class="heading3">내 정보 수정</h3>
+<h3>내 정보 수정</h3>
 <pre class="prettyprint">User loginUser = (User) session.getAttribute(WebContants.USER_KEY);
 
 if (loginUser == null) {
@@ -2963,7 +2963,7 @@ if (userService.login(loginUser.getEmail(), user.getPasswd()) == null) {
 }
 </pre>
 
-<h3 class="heading3">비밀번호 변경</h3>
+<h3>비밀번호 변경</h3>
 <pre class="prettyprint">String email = ((User)session.getAttribute(WebContants.USER_KEY)).getEmail();
 </pre>
 
@@ -3012,7 +3012,7 @@ TOMCAT_HOME/logs에 있는 로그 파일을 뒤져서 해결해야 한다.<br />
 키워야 한다.<br />
  
 
-<h2 class="heading2">남겨진 과제</h2>
+<h2>남겨진 과제</h2>
 <ol>
 	<li>게시글로 유튜브 동영상 소스 코드를 올렸을 때,
 동영상를 보면서 댓글은 작성하거나 수정하거나 삭제하면 다시 상세보기 /bbs/view를 요청하므로 

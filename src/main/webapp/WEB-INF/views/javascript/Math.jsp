@@ -2,7 +2,7 @@
 
 <div id="last-modified">Last Modified : 2013.11.12</div>
 			
-<h1 class="heading1">Math</h1>
+<h1>Math</h1>
 
 <pre class="prettyprint">
 var random = Math.random() * 10;
@@ -19,7 +19,7 @@ var round = Math.round(random);
 alert("반올림 : " + round);
 </pre>
 
-<h4 class="heading4">로또번호 생성기 자바스크립트 버전</h4>
+<h4>로또번호 생성기 자바스크립트 버전</h4>
 <pre class="prettyprint">
 var lotto = new Array();
 var index = 0;

@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.3.3</div>
 	
-<h1 class="heading1">JDBC 소개</h1>
+<h1>JDBC 소개</h1>
 
 JDBC(Java Database Connectivity)란 <strong>데이터베이스</strong>에 접근하여 <strong>SQL</strong>문을 
 실행하기 위한 자바 라이브러리를 말한다.<br />

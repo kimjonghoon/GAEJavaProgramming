@@ -1,9 +1,9 @@
 <div id="last-modified">Last Modified : 2014.5.19</div>
 	
-<h1 class="heading1">SQL 연습 - DML</h1>
+<h1>SQL 연습 - DML</h1>
 
-<h2 class="heading2">INSERT 문</h2>
-<h3 class="heading3">사용형식</h3>
+<h2>INSERT 문</h2>
+<h3>사용형식</h3>
 <pre>
 INSERT INTO 테이블명 
 [(컬럼1,컬럼2, ...)]
@@ -37,8 +37,8 @@ VALUES (1697,'장길산','MANAGER',7839,SYSDATE,3000,30);
 이러면 COMM 컬럼값은 NULL 이 된다.<br />
 이것은 컬럼에 NULL 을 입력하는 방법 중 하나이다.<br />  
 
-<h2 class="heading2">UPDATE 문</h2>
-<h3 class="heading3">사용형식</h3>
+<h2>UPDATE 문</h2>
+<h3>사용형식</h3>
 <pre>
 UPDATE 테이블 
 SET 컬럼1='값1', 컬럼2='값2', ...
@@ -53,14 +53,14 @@ SET 컬럼1='값1', 컬럼2='값2', ...
 [WHERE 조건]: 조건을 주어 원하는 컬럼의 값을 변경할 때 사용한다.<br />
 UPDATE 문에서 WhERE 조건을 생략하면 해당 테이블에 존재하는 모든 레코드가 지정된 값으로 변경된다.<br />
 
-<h3 class="heading3">사원테이블에서 임꺽정의 월급여를 2800 으로 변경</h3>
+<h3>사원테이블에서 임꺽정의 월급여를 2800 으로 변경</h3>
 <pre class="prettyprint">
 UPDATE EMP 
 SET SAL=2800
 WHERE ENAME='임꺽정';
 </pre>
 
-<h3 class="heading3">사원테이블에서 홍길동의 월급여를 300 만큼 인상하고 COMM 은 500 으로 변경</h3>
+<h3>사원테이블에서 홍길동의 월급여를 300 만큼 인상하고 COMM 은 500 으로 변경</h3>
 <pre class="prettyprint">
 UPDATE EMP 
 SET SAL=SAL + 300,COMM=500
@@ -71,15 +71,15 @@ WHERE ENAME='홍길동';
 COMMIT;
 </pre>
 
-<h2 class="heading2">DELETE 문</h2>
-<h3 class="heading3">사용형식</h3>
+<h2>DELETE 문</h2>
+<h3>사용형식</h3>
 <pre>
 DELETE FROM 테이블명 
 [Where 조건]
 </pre>
 DELETE 문에서 WHERE 조건을 주지 않으면 테이블에 있는 모든 레코드를 삭제된다.
 
-<h3 class="heading3">사원테이블에서 홍길동,임꺽정,장길산을 삭제</h3>
+<h3>사원테이블에서 홍길동,임꺽정,장길산을 삭제</h3>
 <pre class="prettyprint">
 DELETE FROM EMP 
 WHERE ENAME IN ('홍길동','임꺽정','장길산');

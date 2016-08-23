@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.4.11</div>
 
-<h1 class="heading1">예외</h1>
+<h1>예외</h1>
 
 예외(exception)란 일반적이지 않는 것을 의미한다.<br />
 예를 들어 "에스컬레이터가 갑자기 중간에서 멈춘다면 예외적인 상황이다."라고 할 때 그 예외이다.<br />
@@ -23,7 +23,7 @@
 </dd>
 </dl>
 
-<h2 class="heading2">예외를 컨트롤하는 코드</h2>
+<h2>예외를 컨트롤하는 코드</h2>
 
 예외 클래스들은 계층적인 구조를 가지는데, 이중 Exception클래스는 모든 예외 클래스의 최상위 클래스이다.
 다음은 예외를 다루는 예이다.<br />
@@ -60,7 +60,7 @@ finally블록은 없거나 하나이다.<br />
 </dd>
 </dl>
 
-<h2 class="heading2">예외 매커니즘</h2>
+<h2>예외 매커니즘</h2>
 
 아래와 같이 메소드1에서 메소드2를 호출, 메소드2에서 메소드3를 호출한다고 가정한다.<br />
 
@@ -72,11 +72,11 @@ finally블록은 없거나 하나이다.<br />
 메인 메소드를 호출한 JVM까지 익셉션이 전달되면 프로그램은 종료된다.<br />
 이와같은 종료를 비정상적인 종료라 한다.<br />
 
-<h3 class="heading3">익셉션 클래스 계층 구조</h3>
+<h3>익셉션 클래스 계층 구조</h3>
 
 <img src="https://lh3.googleusercontent.com/-UKDWi65X4sRbRXolBLM9k1_vmUwPbTnOKUbl8z-z_jikNv49nsUz3C0ZG3qCTWSfxk5BsSu9jnYtEGH8HBobtqvBkWLRj2Msrsb9V6Rhiqld0InAAwKxc1Diqh7UT26dlZhncbimcfICGq9jV9OmZOsYq-7UZdoA33t79BUSi1rxOXLiWn3Yy9zRCmgpkejxBb6_9VtPe5AH_JaRMhBmFENZ6LgbZNNFEgv17MmRu1-CrjWG71TyIKWbPRkILuResDiCmTUHhyK6zG23_e6V5cf70_G3pOGPCpuS20CymlSQXtHEc0AEWAE6Prskk9omwPo7CSfM2zMAzLBv-CQmnkUjR6vxNwY3LKuQE4Sy0UzAKZ923rD9BzGiEoyL3WiIW_O3CTuqQvr2FqXQugM-Nqe1XgRywFtSsolCBy3xPfePCFwXAJa7Ya1MBWiah-HaRFXACypZ3s3ZdIrVuKj1SL15GT4DoGSboZ68hsHswcdKo9_EGkeCq6-gaMEMPeupsg5nyExUAQcpU6m2uu6-2lZ8E_EmQXfyJMF2-b6HKHgkNMWpLHaD26Solx9lcj6flomXeGuzx_I6AVbrAf8k8L8pEsOquM=w390-h141-no" alt="Exception API" /><br />
 
-<h3 class="heading3">자주 발생하는 익셉션</h3>
+<h3>자주 발생하는 익셉션</h3>
 <table class="table-in-article">
 <tr>
 	<th class="table-in-article-th">발생하는 익셉션</th>
@@ -105,7 +105,7 @@ finally블록은 없거나 하나이다.<br />
 </tr>
 </table>
 
-<h3 class="heading3">메소드 선언부에 <em>throws 익셉션클래스</em> 가 쓰인 경우</h3>
+<h3>메소드 선언부에 <em>throws 익셉션클래스</em> 가 쓰인 경우</h3>
 
 메소드의 코드에서 throws다음에 나오는 익셉션이 발생할 수 있다는 것을 명시하는 것이다.<br />
 외부에서 이 메소드를 호출할 때 throws다음에 정의된 익셉션을 적절히 처리하는 코드를 추가하지 않으면 컴파일 에러를 만나게 된다.<br />
@@ -117,7 +117,7 @@ finally블록은 없거나 하나이다.<br />
 첫번째와 두번째 방법 그 어느것도 사용하지 않는다면 컴파일 에러가 만나게 된다.<br />
 여기에도 예외가 있는데, 발생하는 익셉션이 RuntimeException의 서브 클래스인 경우 메소드 선언부에 throws를 사용하지 않아도 컴파일이 된다.<a href="#comments"><sup>2</sup></a><br />
 
-<h3 class="heading3">익셉션 예제</h3>
+<h3>익셉션 예제</h3>
 
 지금까지의 설명을 토대로 예제를 숙지한다.<br/>
 unchecked 익셉션 예부터 본다.<br/>
@@ -949,7 +949,7 @@ e.printStackTrace();가 출력하는 이런 형태의 메시지는 자주 보게
     ClassNotFoundException은 클래스를 클래스 패스에서 클래스 로더가 찾지 못한다는 것이다.<br/>
     경우에 따라서는 구글링이 답일 수 있다.
     
-<h3 class="heading3">사용자 정의 익셉션</h3>
+<h3>사용자 정의 익셉션</h3>
 
 익셉션이 발생할 상황이 되면 JVM이 자바 API의 익셉션 클래스로부터 익셉션 객체를 생성하고 익셉션이 발생한 코드에 던진다고 했다.
 그런데 이런 익셉션 클래스를 프로그래머가 필요에 따라 만들 수 있다.
@@ -994,7 +994,7 @@ public class InsufficientBalanceException extends Exception {
 throw new InsufficientBalanceException("잔액이 부족합니다.");
 </pre>
 
-<h3 class="heading3">문제</h3>
+<h3>문제</h3>
 아래와 같이 실행되는 클래스를 작성한다.<br />
 
 <pre class="screen">

@@ -1,7 +1,7 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.5.22</div>
 
-<h1 class="heading1">내 정보 수정에서의 빈 유효성 검사</h1>
+<h1>내 정보 수정에서의 빈 유효성 검사</h1>
 
 <em class="filename">UsersController.java</em>
 <pre class="prettyprint">
@@ -64,7 +64,7 @@ public String editAccount(<strong>@Valid</strong> User user,
 <strong>&lt;/sf:form&gt;</strong>
 </pre>
 
-<h2 class="heading2">테스트</h2>
+<h2>테스트</h2>
 로그인 후, 내 정보 수정 화면에서 기존 정보 값을 모두 지우고 전송한다.<br />
 
 <span id="refer">참고</span>

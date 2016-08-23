@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.8.8</div>
 
-<h1 class="heading1">게시판 컨트롤러 최종본</h1>
+<h1>게시판 컨트롤러 최종본</h1>
 
 지금까지 작성한 BbsController.java 최종 결과물이다.<br />
 
@@ -332,7 +332,7 @@ public class BbsController {
 }
 </pre>
 
-<h3 class="heading3">게시판 최종본</h3>
+<h3>게시판 최종본</h3>
 <a href="src/board/css.zip">css.zip</a><br />
 <a href="src/board/images.zip">images.zip</a><br />
 <a href="src/board/java.zip">java.zip</a><br />

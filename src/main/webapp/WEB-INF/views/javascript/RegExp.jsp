@@ -1,7 +1,7 @@
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 <div id="last-modified">Last Modified : 2014.1.16</div>
 
-<h1 class="heading1">정규 표현식</h1>
+<h1>정규 표현식</h1>
 
 RegExp는 정규 표현식 객체이다.<br />
 / ~ /로 표현된다. ("/ ~ /"이나 '/ ~ /'이 아니다.)<br />
@@ -16,7 +16,7 @@ var retArr = regExp.exec(testStr);
 alert(retArr[0]);
 </pre>
 
-<h3 class="heading3">i flag</h3>
+<h3>i flag</h3>
 정규 표현식 객체의 끝의 / 다음에 오는 문자열은 플래그다.<br />
 i 플래그가 붙으면 대소문자를 가리지 않는다.<br />
 
@@ -27,7 +27,7 @@ var retArr = regExp.exec(testStr);
 alert(retArr[0]);
 </pre>
 
-<h3 class="heading3">g flag</h3>
+<h3>g flag</h3>
 g 플래그를 사용하면 마지막으로 매칭 된 위치를 기억하고 있다가 
 다음번의 exec()를 호출되면 그다음 위치부터 매칭 되는 곳을 찾게 된다.<br />
 
@@ -39,7 +39,7 @@ retArr = regExp.exec(testStr);
 alert(retArr[0]);
 </pre>
 
-<h3 class="heading3">/../ 사이의 문자</h3>
+<h3>/../ 사이의 문자</h3>
 <table class="table-in-article">
 <tr>
 	<th class="table-in-article-th" colspan="2">횟수</th>
@@ -188,7 +188,7 @@ function check() {
 </tr>
 </table>
 
-<h3 class="heading3">필요한 정규 표현식 얻기</h3>
+<h3>필요한 정규 표현식 얻기</h3>
 다음 사이트에서 이메일에 대한 정규 표현식을 얻을 수 있다.<br />
 <a href="http://regexlib.com">http://regexlib.com</a><br />
 

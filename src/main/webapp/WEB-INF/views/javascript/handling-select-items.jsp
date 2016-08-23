@@ -1,20 +1,20 @@
 <div id="last-modified">Last Modified : 2013.11.11</div>
 
-<h1 class="heading1">select 엘리먼트 다루기</h1>
+<h1>select 엘리먼트 다루기</h1>
 
-<h3 class="heading3">동적으로 항목 추가</h3>
+<h3>동적으로 항목 추가</h3>
 <pre class="prettyprint no-border">
 opts[opts.length] = new Option("옵션 text", "옵션 value");
 </pre>
 
-<h3 class="heading3">동적으로 항목 제거</h3>
+<h3>동적으로 항목 제거</h3>
 <pre class="prettyprint no-border">
 opts[2] = null;
 </pre>
 
 중간에 생긴 빈 공간은 없어지고 자동으로 배열이 정렬된다.<br />
 
-<h3 class="heading3">모든 항목 제거</h3>
+<h3>모든 항목 제거</h3>
 <pre class="prettyprint no-border">
 opts.length = 0;
 </pre>

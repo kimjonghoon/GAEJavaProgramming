@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2013.07.03</div>
 
-<h1 class="heading1">자바스크립트 DOM</h1>
+<h1>자바스크립트 DOM</h1>
 
-<h2 class="heading2">문서 객체 모델</h2>
+<h2>문서 객체 모델</h2>
 
 DOM 은 언어에 중립적인 인터페이스이다.<br /> 
 돔을 이용하면 문서의 내용,구조, 스타일을 동적으로 변경할 수 있다.<br />

@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.7.10</div>
 
-<h1 class="heading1">웹 애플리케이션 작성 실습</h1>
+<h1>웹 애플리케이션 작성 실습</h1>
 
 {톰캣홈}/webapps에 새로운 웹 애플리케이션을 추가하는 방법은 이미 알고 있다.<br />
 이번 과정에서는 톰캣 디폴트 웹 애플리케이션 디렉토리에 있지 않는 웹 애플리케이션을 톰캣이 서비스하도록 하는 방법을 알아볼 것이다.<br />
@@ -33,7 +33,7 @@ JSP 에러 역시 마찬가지다.<br />
 되는 코드를 그대로 복사해서 테스트하는 것은 프로그래밍을 학습하는 것이 아니다.<br />
 프로그래밍 학습의 90%는 다양한 에러를 접하고 에러를 수정하는 과정이다.<br />
   div id="content"
-<h3 class="heading3">톰캣 Context 파일 작성</h3>
+<h3>톰캣 Context 파일 작성</h3>
 myapp 자바 웹 애플리케이션을 위한 Context 파일을 만든다.<br />
 
 <em class="filename">myapp.xml</em>
@@ -80,7 +80,7 @@ myapp.xml 파일을 만든 후 {톰캣 홈}/conf/Catalina/localhost 에 복사�
 </tr>
 </table>
 
-<h3 class="heading3">ROOT 애플리케이션 변경</h3>
+<h3>ROOT 애플리케이션 변경</h3>
 http://localhost:포트번호/로 접근할 수 있는 웹 애플리케이션이 ROOT 애플리케이션이다.<br />
 톰캣을 멈추고 myapp.xml 파일를 ROOT.xml 로 파일명을 바꾼다.<br />
 톰캣을 재실행하고 http://localhost:8989/test.html를 방문하여 테스트한다.<br />

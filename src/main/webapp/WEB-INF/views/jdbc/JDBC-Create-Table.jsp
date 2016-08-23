@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.22</div>
 
-<h1 class="heading1">테이블 생성</h1>
+<h1>테이블 생성</h1>
 
 GetEmp.java 파일 테스트가 성공했다면 이제부터 본격적인 JDBC 프로그래밍 예제를 실습하자.<br />
 준비한 예제는 명함관리 프로그램이다.<br />
@@ -34,7 +34,7 @@ JDBC 프로그래밍 순서를 다시 한번 기억해 보자.<br />
 Package Explorer 뷰에서 jdbc 프로젝트에 팩키지는 net.java_school.jdbc.test로 하여
 NamecardDDL.java 를 만든다. 모든 코드는 메인 메소드에 구현하도록 하겠다.<br />
 
-<h3 class="heading3">1. JDBC 드라이버 로딩</h3>
+<h3>1. JDBC 드라이버 로딩</h3>
 Class.forName() 메소드를 이용해서 오라클 JDBC 드라이버의 시작 클래스를 메모리에 로딩한다.<br />
 forName() 메소드의 인자값인 문자열 oracle.jdbc.driver.OracleDriver 는 GetEmp.java 에서 참고한다.<br />
 
@@ -47,7 +47,7 @@ Class 클래스의 forName()메소드는 ClassNotFoundException 을 핸들링 �
 
 <img src="https://lh3.googleusercontent.com/-sHbmlQZnRZI/VYFYS179a0I/AAAAAAAACSU/9QTapUDaiI46N8X0GK5oacIbtwh00FhegCCo/s590-Ic42/load-oracle-jdbc-driver-02.gif" alt="JDBC 드라이버 로딩 ClassNotFoundException 익셉션 핸들링" /><br />
 
-<h3 class="heading3">2. Connection 맺기</h3>
+<h3>2. Connection 맺기</h3>
 커넥션은 DriverManager 클래스의 getConnection(,,) 메소드를 이용한다.<br />
 
 <img src="https://lh3.googleusercontent.com/-02QVTXr0ILA/VYFYRCr35dI/AAAAAAAACRo/A10c9ajp8_0_OLo8taIVpCmGTJ_3wl9VQCCo/s590-Ic42/get-connection-03.gif" alt="커넥션 맺기" /><br />
@@ -75,14 +75,14 @@ DriverManager.getConnection(,,) 메소드는 SQLException 익셉션을 핸들링
 
 <img src="https://lh3.googleusercontent.com/-RZuwZr7HGvk/VYFYSH9QfVI/AAAAAAAACSA/9lSKf6Xh3pMqIE5Cz6XIN1VlLGHq_7B_QCCo/s590-Ic42/get-connection-07.gif" alt="커넥션 맺기 con 변수 선언을 try 블록밖으로" /><br />
 
-<h3 class="heading3">3. Statement 얻기</h3>
+<h3>3. Statement 얻기</h3>
 Statement 타입의 stmt 의  변수 선언부 역시 나중에 자원 반납을 위한 코드구현을 고려해서 try 블록 밖에 둔다.<br />
 Statement 가 해석되지 않는 타입이라는 컴파일 에러를 만나면 코드 어시스트 도움을 받아<br />
 import java.sql.Statement; 문이 삽입되도록 한다.<br />
 
 <img src="https://lh3.googleusercontent.com/--gpG2olXCOo/VYFYROuMdZI/AAAAAAAACRg/tVY0Z8JkzugUT4bfwm2WQNzGPN3pWVNaQCCo/s512-Ic42/createStatement-08.gif" alt="Statement 얻기, stmt 변수 선언을 try 블록밖으로, import java.sql.Statement; 추가" /><br />
 
-<h3 class="heading3">4. SQL 실행</h3>
+<h3>4. SQL 실행</h3>
 다음은 SQL문을 실행하는 단계이다.<br />
 먼저 실행시킬 SQL문을 문자열로 만든다.<br />
 <em>아래 코드처럼 --로 시작하는 SQL 주석을 지운 SQL문으로 자바 문자열를 만든다.</em><br />
@@ -140,7 +140,7 @@ try {
 }
 </pre>
 
-<h3 class="heading3">5. 자원 반납</h3>
+<h3>5. 자원 반납</h3>
 finally 블록을 만들고 finally 블록안에 자원 반납 코드를 삽입한다.<br />
 생성되는 순서의 역순으로 자원을 반납해야 하므로 stmt.close(); 가 먼저 나와야 한다.<br />
 

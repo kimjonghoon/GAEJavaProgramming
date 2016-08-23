@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2016.6.4</div>
 
-<h1 class="heading1">Spring 트랜잭션</h1>
+<h1>Spring 트랜잭션</h1>
 
 <em class="filename">applicationContext.xml</em>
 <pre class="prettyprint">

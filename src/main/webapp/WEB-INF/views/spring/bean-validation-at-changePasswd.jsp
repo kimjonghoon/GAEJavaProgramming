@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.5.22</div>
 
-<h1 class="heading1">비밀번호 변경에서의 빈 유효성 검사</h1>
+<h1>비밀번호 변경에서의 빈 유효성 검사</h1>
 
 <em class="filename">Password.java</em>
 <pre class="prettyprint">

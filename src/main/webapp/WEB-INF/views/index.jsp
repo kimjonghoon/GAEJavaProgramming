@@ -20,7 +20,7 @@
 JDK는 <em class="path">C:\Program Files\Java\jdk1.8.0_&lt;version&gt;</em> 디렉터리에서 위치한다.<br />
 
 
-<h3 class="heading3">환경변수 PATH에 JDK의 bin 디렉터리 추가</h3>
+<h3>환경변수 PATH에 JDK의 bin 디렉터리 추가</h3>
 
 시작을 클릭하고, 제어판, 시스템,
 고급, 환경 변수를 차례로 선택한다.<br /> 
@@ -58,7 +58,7 @@ PATH에 JDK의 bin 폴더를 추가하면
 </dd>
 </dl>
 
-<h2 class="heading2">테스트</h2>
+<h2>테스트</h2>
 
 <em class="filename">Test.java</em>
 <pre class="prettyprint">
@@ -92,7 +92,7 @@ Test.class 파일이 없는 디렉터리에서 java Test를 실행할 때 이런
 </dd>
 </dl>
 
-<h2 class="heading2">에디터</h2>
+<h2>에디터</h2>
 <a href="/java/Package_Modifiers">팩키지와 접근자</a>까지 
 <a href="http://www.editplus.com/kr/">에디트플러스</a>같은 단순한 에디터를 사용하는 것이 낫다.<br />
 팩키지와 접근자를 공부한 다음에 이클립스를 설치한다.<br />

@@ -2,7 +2,7 @@
 
 <div id="last-modified">Last Modified : 2013.11.11</div>
 
-<h1 class="heading1">String</h1>
+<h1>String</h1>
 
 <pre class="prettyprint">
 <strong>var name = new String("홍길동");//또는 var name = "홍길동";</strong>

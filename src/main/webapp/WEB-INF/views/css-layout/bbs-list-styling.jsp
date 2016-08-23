@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.7.31</div>
 
-<h1 class="heading1">목록</h1>
+<h1>목록</h1>
 
 먼저 게시판뿐 아니라 웹사이트에 전체에 적용될 스타일을 설정한다.<br />
 아래 강조된 코드를 /*** The Essential Code ***/ 가장 위에 추가한다.
@@ -135,7 +135,7 @@ index.html의 #content에 다음을 붙여넣는다.<br />
 
 <img alt="게시판 디자인 1" src="https://lh3.googleusercontent.com/-O6uvKRmmCbE/VYLFqU8MyLI/AAAAAAAACdI/cOzIxPn1cVs/s1036/bbs-list-01.png" /><br />
 
-<h3 class="heading3">#content 패딩, 폰트 크기, 줄 간격 설정</h3>
+<h3>#content 패딩, 폰트 크기, 줄 간격 설정</h3>
 
 <pre class="prettyprint">
 #content {
@@ -152,7 +152,7 @@ index.html의 #content에 다음을 붙여넣는다.<br />
 
 <img alt="게시판 디자인 2" src="https://lh3.googleusercontent.com/-GlYv3s8McTw/VYLFqUq5BbI/AAAAAAAACdc/9bOWjKBqzBw/s1031/bbs-list-02.png" /><br />
 
-<h3 class="heading3">#url-navi 추가</h3>
+<h3>#url-navi 추가</h3>
 <em class="path">Eclipse &gt; Eclipse Tutorial</em> 부분의 스타일을 지정한다.
 
 <pre class="prettyprint">
@@ -169,7 +169,7 @@ index.html의 #content에 다음을 붙여넣는다.<br />
 
 <img alt="게시판 디자인 3" src="https://lh3.googleusercontent.com/-Bo-rpGzAJJo/VYLFqWtvvWI/AAAAAAAACdM/KBcnQZJPXsM/s1034/bbs-list-03.png" /><br />
 
-<h3 class="heading3">게시판 제목 스타일</h3>
+<h3>게시판 제목 스타일</h3>
 게시판 제목에 해당하는 #content h1을 추가한다.<br />
 
 <pre class="prettyprint">
@@ -182,7 +182,7 @@ index.html의 #content에 다음을 붙여넣는다.<br />
 
 <img alt="게시판 디자인 4" src="https://lh3.googleusercontent.com/-3PxH2IIHliY/VYLFrOMMZQI/AAAAAAAACdY/564yq1o3jkE/s1027/bbs-list-04.png" /><br />
 
-<h3 class="heading3">목록 머릿글 스타일</h3>
+<h3>목록 머릿글 스타일</h3>
 사실 여기까지는 게시판 디자인이 아니라 일반적인 content 디자인이다.<br />
 bbs 엘리먼트가 감싸고 있는 부분이 게시판 부분이다.<br />
 게시판 목록 머릿글에 해당하는 th 스타일을 지정한다.<br />
@@ -201,7 +201,7 @@ bbs 엘리먼트가 감싸고 있는 부분이 게시판 부분이다.<br />
 
 <img alt="게시판 디자인 5" src="https://lh3.googleusercontent.com/-cEVUzFpbsdU/VYLFrXNIKvI/AAAAAAAACd4/PkyBlw5pBcs/s1039/bbs-list-05.png" /><br />
 
-<h3 class="heading3">게시판 목록 아이템 디자인</h3>
+<h3>게시판 목록 아이템 디자인</h3>
 번호, 제목, 등록일, 조회 수 부분에 대한 스타일을 지정한다.
 
 <pre class="prettyprint">
@@ -255,7 +255,7 @@ bbs 엘리먼트가 감싸고 있는 부분이 게시판 부분이다.<br />
 
 <img alt="게시판 디자인 8" src="https://lh3.googleusercontent.com/-XxjTX59J-pQ/VYLFsXhjucI/AAAAAAAACd8/sahK93njaVk/s1036/bbs-list-08.png" /><br />
 
-<h3 class="heading3">페이지 이동 링크 스타일 지정</h3>
+<h3>페이지 이동 링크 스타일 지정</h3>
 
 <pre class="prettyprint"><b>#paging {
     text-align: center;
@@ -313,7 +313,7 @@ bbs-string 스타일을 댓글 개수와 현재 페이지 번호에 적용한다
 
 <img alt="게시판 디자인 10" src="https://lh3.googleusercontent.com/-v0E_e_JDtak/VYLFtOpuREI/AAAAAAAACeE/TfdfXoeT-BE/s1036/bbs-list-10.png" />
 
-<h3 class="heading3">새 글쓰기 버튼 위치 조정</h3>
+<h3>새 글쓰기 버튼 위치 조정</h3>
 새 글쓰기 버튼이 화면 오른쪽에 있도록 스타일을 지정한다.<br />
 
 <pre class="prettyprint"><strong>#list-menu {
@@ -323,7 +323,7 @@ bbs-string 스타일을 댓글 개수와 현재 페이지 번호에 적용한다
 
 <img alt="게시판 디자인 11" src="https://lh3.googleusercontent.com/-TVEzMSPCsoE/VYLFtZ3vH2I/AAAAAAAACec/DVoKJoCmjhE/s1035/bbs-list-11.png" />
 
-<h3 class="heading3">검색을 중앙으로</h3>
+<h3>검색을 중앙으로</h3>
 검색을 화면 중앙으로 이동시킨다.<br />
 
 <pre class="prettyprint"><strong>#search {
@@ -333,7 +333,7 @@ bbs-string 스타일을 댓글 개수와 현재 페이지 번호에 적용한다
 
 <img alt="게시판 디자인 12" src="https://lh3.googleusercontent.com/-iPXtwDabEUA/VYLFtZ0VLBI/AAAAAAAACeY/j6d37Rs7KUg/s1030/bbs-list-12.png" />
 
-<h3 class="heading3">화면 간격 조정</h3>
+<h3>화면 간격 조정</h3>
 목록 테이블과 페이지 이동 링크 사이에 간격을 준다.<br />
 기존 #bbs table에 다음 강조된 부분을 추가한다.<br />
 

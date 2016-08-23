@@ -1,9 +1,9 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.5.20</div>
 
-<h1 class="heading1">웹 요청 보안</h1>
+<h1>웹 요청 보안</h1>
 
-<h2 class="heading2">Spring Security 의존 라이브러리 설정 추가</h2>
+<h2>Spring Security 의존 라이브러리 설정 추가</h2>
 
 <em class="filename">pom.xml</em>
 <pre class="prettyprint">
@@ -29,7 +29,7 @@ Spring Security를 사용하기 위해서 회원과 권한 테이블이 필요�
 회원 테이블은 member를 그대로 사용한다.<br />
 권한 테이블을 새로 만들고 테스트를 위한 데이터를 인서트한다.<br />
 
-<h2 class="heading2">권한 테이블 생성과 테스트 레코드 추가</h2>
+<h2>권한 테이블 생성과 테스트 레코드 추가</h2>
 <pre class="prettyprint">
 CREATE TABLE authorities (
   email VARCHAR2(60) NOT NULL,
@@ -54,7 +54,7 @@ ROLE_USER은 일반 사용자 권한, ROLE_ADMIN은 관리자 권한이다.<br /
 
 
 
-<h2 class="heading2">스프링 시큐리티 설정파일 생성</h2>
+<h2>스프링 시큐리티 설정파일 생성</h2>
 스프링 시큐리티만을 위한 스프링 설정 파일을 /WEB-INF 폴더에 security.xml란 이름으로 생성한다.<br />
 
 <em class="filename">security.xml</em>
@@ -200,7 +200,7 @@ spring-bbs-servlet.xml 파일을 수정한다.<br />
 </pre>
 
 
-<h2 class="heading2">web.xml 수정</h2>
+<h2>web.xml 수정</h2>
 
 <em class="filename">web.xml</em>
 <pre class="prettyprint">
@@ -326,7 +326,7 @@ public String logout(HttpSession session) {
 */
 </pre>
 
-<h2 class="heading2">JSP</h2>
+<h2>JSP</h2>
 
 <em class="filename">/WEB-INF/jsp/noAuthority.jsp</em>
 <pre class="prettyprint">
@@ -408,7 +408,7 @@ login.jsp, header.jsp, loginUsers-menu.jsp를 수정한다.<br />
 &lt;/ul&gt;
 </pre>
 
-<h2 class="heading2">테스트</h2>
+<h2>테스트</h2>
 라이브러리가 추가되었으니 빌드를 한다.<br />
 설정이 바뀌었으니 톰캣을 재실행한다.<br />
 http://localhost:port/spring-bbs/list?boardCd=free&amp;curPage=1를 방문한다.<br />
@@ -416,7 +416,7 @@ http://localhost:port/spring-bbs/list?boardCd=free&amp;curPage=1를 방문한다
 주소창에 http://localhost:port/spring-bbs/admin를 입력하여 방문을 시도한다.<br />
 임꺽정은 일반 사용자 권한만 가지고 있으므로 noAuthority.jsp로 이동하게 된다.<br />
 
-<h2 class="heading2">소스 수정</h2>
+<h2>소스 수정</h2>
 
 <em class="filename">UserMapper.xml</em>
 <pre class="prettyprint">

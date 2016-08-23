@@ -1,5 +1,5 @@
 <div id="last-modified">Last Modified : 2014.7.31</div>
-<h1 class="heading1">#header, #footer, #content 스타일</h1>
+<h1>#header, #footer, #content 스타일</h1>
 
 index.html 문서를 열고 #header 사이에 아래 코드를 삽입한다.<br /> 
 
@@ -17,7 +17,7 @@ index.html 문서를 열고 #header 사이에 아래 코드를 삽입한다.<br 
 
 <img src="https://lh3.googleusercontent.com/-zkaWuyyK0R4/VYJ6erZcR2I/AAAAAAAACcI/1Fg4Wy87ju4/s1000/footer-footer-content-01.png" alt="예제보기 1" /><br />
 
-<h3 class="heading3">#header h1 위치 재지정</h3>
+<h3>#header h1 위치 재지정</h3>
 h1 엘리먼트는 디폴트 마진을 가지고 있기 때문에 #header가 
 웹 브라우저 화면에서 조금 아래로 떨어진다.<br />
 h1의 디폴트 마진과 패딩을 없애고 9px 아래로 이동시킨다.<br />
@@ -34,7 +34,7 @@ h1의 디폴트 마진과 패딩을 없애고 9px 아래로 이동시킨다.<br 
 
 <img src="https://lh3.googleusercontent.com/-J4qU8KSupGk/VYJ6eo-XExI/AAAAAAAACcQ/kSQfTlWC5ms/s1002/footer-footer-content-02.png" alt="예제보기 2" /><br />
 
-<h2 class="heading2">#footer 스타일</h2>
+<h2>#footer 스타일</h2>
 index.html 문서의 footer 안에 아래 코드를 삽입한다.<br />
 
 <pre class="prettyprint">
@@ -68,7 +68,7 @@ index.html 문서의 footer 안에 아래 코드를 삽입한다.<br />
 
 <img src="https://lh3.googleusercontent.com/-AfkKpP1pR1M/VYJ6ekeDFqI/AAAAAAAACcM/IrP5L5QgTjU/s1000/footer-footer-content-03.png" alt="예제보기 3" /><br />
 
-<h3 class="heading3">#footer 메뉴를 가로로 보이게 수정</h3>
+<h3>#footer 메뉴를 가로로 보이게 수정</h3>
 다음 코드를 /*** The Essential Code ***/에 추가한다.<br />
 
 <pre class="prettyprint">
@@ -85,7 +85,7 @@ index.html 문서의 footer 안에 아래 코드를 삽입한다.<br />
 
 <img src="https://lh3.googleusercontent.com/-64dB4b_CBOs/VYJ6fb9WYgI/AAAAAAAACco/Ee4J9XledEo/s999/footer-footer-content-04.png" alt="예제보기 4" /><br />
 
-<h3 class="heading3">footer 글로벌 메뉴 스타일</h3>
+<h3>footer 글로벌 메뉴 스타일</h3>
 글로벌(global) 메뉴 스타일을 지정한다.<br />
 
 
@@ -122,7 +122,7 @@ index.html 문서의 footer 안에 아래 코드를 삽입한다.<br />
 
 <img src="https://lh3.googleusercontent.com/-Xw4-LR7LP4s/VYJ6fhSDuUI/AAAAAAAACck/SQIHnqkciT4/s1004/footer-footer-content-05.png" alt="예제보기 5" /><br />
 
-<h2 class="heading2">#content 스타일</h2>
+<h2>#content 스타일</h2>
 #content 마진을 5px씩 늘려 #sidebar와 #extra 사이에 간격을 두도록 설정한다.
 보더를 추가하여 경계를 구분한다.<br />
 

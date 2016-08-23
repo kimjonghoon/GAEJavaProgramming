@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2016.4.7</div>
 
-<h1 class="heading1">자료형(Data Type)과 형변환(Type Casting)</h1>
+<h1>자료형(Data Type)과 형변환(Type Casting)</h1>
 
-<h2 class="heading2">리터럴과 변수</h2>
+<h2>리터럴과 변수</h2>
 
 <pre class="prettyprint no-border">
 int year = 2016;
@@ -13,7 +13,7 @@ int year = 2016;
 year처럼 쓰이는 프로그램 요소를 변수라 한다.
 변수란 값을 저장하기 위해 이름 붙인 메모리 기억공간으로 기억공간의 크기는 자료형으로 결정된다.<br />
 
-<h2 class="heading2">자바의 자료형(Data Type)</h2>
+<h2>자바의 자료형(Data Type)</h2>
 자바의 자료형은 크게 두 종류로 나뉜다.<br />
 
 <ul>
@@ -24,7 +24,7 @@ year처럼 쓰이는 프로그램 요소를 변수라 한다.
 기본형은 일반적인 데이터를 위한 자료형이다.
 참조형은 객체지향 프로그래밍 언어에서 추가된 자료형으로 참조형 테이터를 위한 자료형이다.
 
-<h3 class="heading3">기본형</h3>
+<h3>기본형</h3>
 <table class="table-in-article">
 <tr>
 	<th class="table-in-article-th">자료형</th>
@@ -86,7 +86,7 @@ year처럼 쓰이는 프로그램 요소를 변수라 한다.
 </tr>
 </table>
 
-<h3 class="heading3">값의 자료형</h3>
+<h3>값의 자료형</h3>
 
 <pre class="prettyprint no-border">
 int i1 = 3;//정수형 숫자 뒤에 아무것도 붙지 않으면 int 리터럴
@@ -112,7 +112,7 @@ float f2 = 3.14f;//3.14f는 float 리터럴
 float f3 = 3.14F;//3.14F는 float 리터럴
 </pre>
 
-<h3 class="heading3">int 리터럴이 int형 값이 아닐 수 있다.</h3>
+<h3>int 리터럴이 int형 값이 아닐 수 있다.</h3>
 자바에는 byte와 short를 위한 리터럴이 없다.<br />
 아래와 같은 경우에 int 리터럴이 int 값이 아니다.<br />
 
@@ -121,7 +121,7 @@ byte b = 1; //1은 int 리터럴이지만 byte형 값이 된다.
 short s = 2; //2는 int 리터럴이지만 short형 값이 된다.
 </pre>
 
-<h3 class="heading3">참조형</h3>
+<h3>참조형</h3>
 
 <pre class="prettyprint no-border">
 Student kim = new Student();
@@ -144,12 +144,12 @@ kim.name = "김선달";
 kim = <em>null</em>;
 </pre>
 
-<h2 class="heading2">형변환(Type Casting)</h2>
+<h2>형변환(Type Casting)</h2>
 
 형변환이란 값의 자료형을 원하는 자료형으로 변환하는 작업을 말한다.<br />
 형변환에는 JVM이 판단해서 행하는 자동 형변환과 프로그래머가 의도적으로 일으키는 명시적 형변환이 있다.<br />
  
-<h3 class="heading3">자동 형변환(Up-Casting)</h3>
+<h3>자동 형변환(Up-Casting)</h3>
 
 <pre class="prettyprint no-border">
 long money = 300;//300은 int 리터럴
@@ -172,7 +172,7 @@ long에서 float으로 자동 형변환된다.
 float x = 10L;//JVM은 long형 값 10을 float형의 값 10으로 형변환한다.
 </pre>
 
-<h4 class="heading4">사칙연산에서 일어나는 자동 형변환</h4>
+<h4>사칙연산에서 일어나는 자동 형변환</h4>
 <pre class="prettyprint no-border">
 int x = 3 + <em>3.5</em> + 4; //컴파일 에러!
 </pre>
@@ -196,7 +196,7 @@ int x = 10; int y = 4; int z = x / y;
 z에는 2가 할당된다.(2.5가 아니다)
 이유는 x와 y가 모두 int형 값이므로 연산 결과 역시 int형이여야 하기 때문이다.<br />
 
-<h3 class="heading3">명시적 형변환(Down-Casting)</h3>
+<h3>명시적 형변환(Down-Casting)</h3>
 
 <pre class="prettyprint no-border">
 float f = 1.1; //컴파일 에러!
@@ -234,7 +234,7 @@ double z = <b>(double)</b> x / y;
 double z = x / <b>(double)</b> y; 
 </pre>
 
-<h3 class="heading3">byte 또는 short형 값이 참여하는 산술연산에서의 자동 형변환</h3>
+<h3>byte 또는 short형 값이 참여하는 산술연산에서의 자동 형변환</h3>
 byte형이나 short형 값이 참여하는 산술연산은, 연산이 실행되기 전에 모든 값이 int형으로 변환된다.
 
 <pre class="prettyprint no-border">
@@ -249,7 +249,7 @@ short sum = s1 + s2; //컴파일 에러!
 short sum = <em>(short)</em> (s1 + s2);
 </pre>
 
-<h2 class="heading2">String 클래스 : 자바 프로그램에서 문자열을 사용하려면</h2>
+<h2>String 클래스 : 자바 프로그램에서 문자열을 사용하려면</h2>
 
 자바에서 문자열을 표현하는 방법은 String 클래스로부터 String 객체를 생성하여 사용하는 것이다.
 String 클래스는 자바 API에 존재한다.

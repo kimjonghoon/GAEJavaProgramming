@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.5.21</div>
 
-<h1 class="heading1">메소드 보안</h1>
+<h1>메소드 보안</h1>
 
 스프링 시큐리티는 메소드 보안을 서비스 레이어에 하는 것을 권고한다.<br />
 BoardService.java와 UserService.java에 메소드 보안을 적용한다.<br />
@@ -127,7 +127,7 @@ public int getNextPage();
 public void setPagingHelper(PagingHelper pagingHelper);
 </pre>
 
-<h3 class="heading3">테스트</h3>
+<h3>테스트</h3>
 빌드하고 http://localhost:port/spring-bbs/users/login을 방문하여
 im@gmail.org/1111로 로그인한다.<br />
 게시판 목록에서 hong@gmail.org 메일을 쓰는 홍길동이 작성한 게시글을 클릭한다.<br /> 

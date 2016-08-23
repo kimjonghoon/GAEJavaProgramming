@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.6.20</div>
 
-<h1 class="heading1">프로토타입(prototype)</h1>
+<h1>프로토타입(prototype)</h1>
 
 프로토타입이란 개발 초기에 만드는 일종의 모형이다.<br />
 웹 애플리케이션의 프로토타입은 화면에 해당하는 JSP 페이지를 위주로 작성한다.<br />
@@ -10,7 +10,7 @@
 프로토타입에 로그인 로직을 포함하려 한다.<br />
 프로젝트 초반에 로그인 정책을 정하는 것이 바람직하다고 생각하기 때문이다.<br />
 
-<h2 class="heading2">메인 페이지, 서브 페이지</h2>
+<h2>메인 페이지, 서브 페이지</h2>
 웹사이트 프로토타입을 만들 때 첫 번째로 해야 할 작업은 메인 페이지와 서브 페이지를 디자인하는 것이다.<br />
 메인 페이지는 웹사이트를 방문할 때 처 보이는 페이지를 말하는데, 홈페이지라고도 한다.<br />
 서브 페이지는 메인 페이지 외의 모든 페이지를 말한다.<br />
@@ -34,12 +34,12 @@ DocumentBase: 메인 페이지(홈페이지), 에러 페이지
 여기서 도큐먼트 베이스(DocumentBase)는 이전 절에서 설정대로라면 <em class="path">C:\www\JSPProject\WebContent</em>이다.<br />
 
 
-<h3 class="heading3">스타일 시트과 이미지</h3>
+<h3>스타일 시트과 이미지</h3>
 프로젝트에 필요한 스타일 시트와 이미지 파일은 CSS 포지셔닝에서의 것을 그대로 갖다 쓴다.<br />
 CSS 포지셔닝에서의 스타일 시트와 이미지 파일을 css와 images 폴더에 복사한다.<br />
 CSS 포지셔닝에서 작업했던 모든 JSP 파일 역시 복사하여 도큐먼트 베이스에 복사한다.<br />
 
-<h3 class="heading3">메인 페이지</h3>
+<h3>메인 페이지</h3>
 디자인은 메인 페이지부터 작성하는 것이 순서이다.<br />
 프로토타입에 로그인 기능을 넣기로 했으므로 디자인을 해야 하는 이 시점에 다음 자바빈즈가 필요하다.<br />
 
@@ -215,7 +215,7 @@ if (loginUser == null) {
 
 작성한 index.jsp가 홈페이지(메인 페이지)가 되도록 CSS 포지셔닝의 산출물인 index.html을 도큐먼트 베이스에서 삭제한다.<br />
  
-<h3 class="heading3">서브 페이지</h3>
+<h3>서브 페이지</h3>
 홈페이지 /index.jsp를 열고 Save As... 메뉴를 이용하여 index.jsp라는 이름으로 새 파일을 java 디렉터리에 만든 후 아래와 같이 수정한다.
 홈페이지와 비교하여 서브 디렉터리에 있으므로 상대 경로에 주의한다.<br />
     
@@ -356,7 +356,7 @@ Hello World!
 홈페이지와 서브 페이지의 디자인은 같다. 
 하지만 대부분의 웹사이트는 그렇지 않다.<br />
 
-<h3 class="heading3">공통으로 인클루드되는 JSP 페이지</h3>
+<h3>공통으로 인클루드되는 JSP 페이지</h3>
 서브 페이지들은 화면 배치가 같으므로 JSP 인클루드 지시어를 사용하여 코드를 분리할 수 있다.<br />
 페이지를 분리하면 유지 보수가 편해진다.<br />
 #header에 있는 로고와 로그인/로그아웃 버튼, #main-menu의 메인 메뉴, #extra의 외부 링크, #footer의 글로벌 메뉴는 모든 페이지에서 공통이다.<br />
@@ -436,7 +436,7 @@ if (loginUser == null) {
 </pre>
 
 
-<h3 class="heading3">공통 인클루드 파일을 이용하여 서브 페이지 수정</h3>
+<h3>공통 인클루드 파일을 이용하여 서브 페이지 수정</h3>
 
 <em class="filename">/java/index.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -501,7 +501,7 @@ if (loginUser == null) {
 <br />
 웹 브라우저로 홈페이지와 서브 페이지 /java/index.jsp를 방문하여 테스트한다.<br />
 
-<h2 class="heading2">로그인 폼, 로그인 처리, 로그아웃 처리 페이지 생성</h2>
+<h2>로그인 폼, 로그인 처리, 로그아웃 처리 페이지 생성</h2>
 로그인 테스트를 위해 로그인 폼, 로그인 처리, 로그아웃 처리 페이지를 생성한다.<br />
 먼저 로그인 폼 페이지가 인클루드하는 notLoginUsers-menu.jsp를 /users 디렉터리에 만든다.<br />
 이 페이지는 로그인 하지 않은 사용자가 사용할 수 있는 회원 메뉴(로그인, 회원 가입, ID 찾기, 비밀번호 찾기)를 보여준다.<br />
@@ -652,7 +652,7 @@ response.sendRedirect("../");
 다시 상단의 로고를 클릭하여 홈페이지로 이동, 
 홈페이지에서 Java 메인 메뉴를 클릭하여 서브 페이지로 이동한 후 로그아웃하면 홈페이지로 이동한다.<br />
 
-<h2 class="heading2">JSP 에러 핸들링</h2>
+<h2>JSP 에러 핸들링</h2>
 web.xml 파일을 열고 &lt;/web-app&gt; 직전에 다음을 추가한다.<br />
 
 <em class="filename">web.xml</em>
@@ -676,7 +676,7 @@ web.xml 파일을 열고 &lt;/web-app&gt; 직전에 다음을 추가한다.<br /
 
 주요 에러를 모두 /error.jsp가 담당하도록 하는 설정이다.<br />
 
-<h3 class="heading3">에러 페이지</h3>
+<h3>에러 페이지</h3>
 홈페이지를 연 상태에서 Save As... 메뉴를 이용하여 error.jsp라는 새 파일을 도큐먼트 베이스에 만든 후 아래와 같이 수정한다.<br />
     
 <em class="filename">/error.jsp</em>
@@ -802,11 +802,11 @@ error.jsp 소스에서 컨텍스트 패스를 구해 모든 경로를 재지정�
 에러 페이지가 작동하는지 확인한다.<br />
 <br />
 
-<h2 class="heading2">게시판</h2>
+<h2>게시판</h2>
 
 게시판 관련 페이지를 작성한다.<br />
 
-<h3 class="heading3">게시판 메뉴(bbs-menu.jsp) 페이지</h3>
+<h3>게시판 메뉴(bbs-menu.jsp) 페이지</h3>
 게시판 모듈에서 화면을 담당하는 모든 페이지가 인클루드해야 하는 페이지부터 작성한다.<br />
 도큐먼트 베이스에 bbs라는 서브 디렉터리를 만들고, /bbs에 bbs-menu.jsp 파일을 만든다.<br />
 bbs-menu.jsp 파일은 게시판에 대한 링크를 제공한다.<br />
@@ -826,7 +826,7 @@ bbs-menu.jsp 파일은 게시판에 대한 링크를 제공한다.<br />
 &lt;/ul&gt;
 </pre>
 
-<h3 class="heading3">로그인 체크(loginCheck.jsp) 페이지</h3>
+<h3>로그인 체크(loginCheck.jsp) 페이지</h3>
 이 페이지는 사용자가 로그인했는지를 검사하고, 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트시킨다.<br />
 이때 로그인 후 다시 사용자가 요청한 원래 페이지로 이동하기 위해 url 정보를 로그인 페이지에 전달한다.<br />
 공통 인클루드 파일 디렉터리인 /inc에 loginCheck.jsp 파일을 만든다.<br />
@@ -854,7 +854,7 @@ if (user == null) {
 %&gt;
 </pre>
 
-<h3 class="heading3">목록 페이지</h3>
+<h3>목록 페이지</h3>
 게시판 목록을 보여주는 페이지를 만든다.<br />
 CSS 포지셔닝에서의 만든 list.html 파일을 연 상태에서 Save As... 메뉴를 이용하여 list.jsp라는 이름의 새 파일을 /bbs 디렉터리에 만든 후 아래와 같이 수정한다.<br />
 
@@ -1009,7 +1009,7 @@ function goWrite() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">글쓰기 폼 페이지</h3>
+<h3>글쓰기 폼 페이지</h3>
 다음은 게시판 글쓰기 폼 페이지를 작성한다.<br />
 CSS 포지셔닝에서 만든 write_form.html 파일을 연 상태에서 Save As... 메뉴를 이용하여 write_form.jsp라는 이름의 새 파일을 /bbs 디렉터리에 만든 후 아래와 같이 수정한다.<br />
     
@@ -1134,7 +1134,7 @@ function goView() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">글쓰기 처리 페이지</h3>
+<h3>글쓰기 처리 페이지</h3>
 글쓰기 처리 페이지를 작성한다.<br />
 이 페이지는 글쓰기 폼에서 전달받는 파라미터로 실제로 데이터베이스에 인서트를 담당한다.<br />
 
@@ -1159,7 +1159,7 @@ response.sendRedirect("list.jsp?boardCd=free&amp;curPage=1");
 %&gt;
 </pre>
 
-<h3 class="heading3">상세보기 페이지</h3>
+<h3>상세보기 페이지</h3>
 목록에서 제목을 클릭하면 보이게 되는 게시글 상세보기 페이지를 만든다.<br />
 CSS 포지셔닝에서 만든 view.html 파일을 연 상태에서 Save As... 메뉴를 이용하여 view.jsp 이름의 새 파일을 /bbs 디렉터리에 만든 후 아래와 같이 수정한다.<br />
 
@@ -1478,7 +1478,7 @@ function deleteComment(commentNo) {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">댓글 쓰기 처리 페이지</h3>
+<h3>댓글 쓰기 처리 페이지</h3>
 댓글 쓰기 처리 페이지는 상세보기 페이지에서 새 댓글을 쓰고 확인을 클릭하면 실제 댓글을 데이터베이스에 인서트 하는 페이지이다.<br />
 
 <em class="filename">/bbs/addComment_proc.jsp</em>
@@ -1500,7 +1500,7 @@ response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;s
 %&gt;
 </pre>
 
-<h3 class="heading3">댓글 수정 처리 페이지</h3>
+<h3>댓글 수정 처리 페이지</h3>
 이 페이지는 상세 보기에서 댓글의 작성자가 자신의 댓글 내용을 수정한 후 확인을 클릭하면 데이터베이스에 있는 댓글의 내용을 수정하는 페이지이다.<br />
 
 <em class="filename">/bbs/updateComment_proc.jsp</em>
@@ -1523,7 +1523,7 @@ response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;s
 %&gt;
 </pre>
 
-<h3 class="heading3">댓글 삭제 처리 페이지</h3>
+<h3>댓글 삭제 처리 페이지</h3>
 이 페이지는 상세 보기에서 댓글 삭제를 클릭하면 데이터베이스에 있는 해당 댓글을 삭제하는 페이지이다.<br />
 
 <em class="filename">/bbs/deleteComment_proc.jsp</em>
@@ -1546,7 +1546,7 @@ response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;s
 %&gt;
 </pre>
 
-<h3 class="heading3">첨부 파일 삭제 처리 페이지</h3>
+<h3>첨부 파일 삭제 처리 페이지</h3>
 이 페이지는 상세 보기에서 첨부 파일 옆의 x 링크를 클릭하면 데이터베이스에 있는 첨부 파일을 삭제하는 페이지이다.<br />
 파일시스템의 파일은 삭제하지 않는다.<br />
 
@@ -1570,7 +1570,7 @@ response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;s
 %&gt;
 </pre>
 
-<h3 class="heading3">게시글 삭제 처리 페이지</h3>
+<h3>게시글 삭제 처리 페이지</h3>
 이 페이지는 상세보기 페이지에서 게시글을 삭제하는 삭제 버튼을 클릭하면 실제 게시글을 데이터베이스에서 삭제 처리한다.<br />
 
 <em class="filename">/bbs/del_proc.jsp</em>
@@ -1593,7 +1593,7 @@ response.sendRedirect("list.jsp?boardCd=free&amp;curPage=1&amp;searchWord=무궁
 %&gt;
 </pre>
 
-<h3 class="heading3">게시글 수정 폼 페이지</h3>
+<h3>게시글 수정 폼 페이지</h3>
 글 소유자가 자신의 글을 수정하기 위한 페이지를 만든다.<br />
 CSS 포지셔닝에서 만든 write_form.jsp 파일을 연 상태에서 Save As... 메뉴를 이용하여 modify_form.jsp라는 이름의 새 파일을 /bbs 폴더에 만든 후 아래와 같이 수정한다.<br /> 
 
@@ -1721,7 +1721,7 @@ function goView() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">게시글 수정 처리 페이지</h3>
+<h3>게시글 수정 처리 페이지</h3>
 게시글 수정 폼에서 전달받은 파라미터를 가지고 실제로 게시글 수정을 처리하는 페이지이다.<br />
 
 <em class="filename">/bbs/modify_proc.jsp</em>
@@ -1747,10 +1747,10 @@ response.sendRedirect("view.jsp?articleNo=5&amp;curPage=1&amp;boardCd=free&amp;s
 충분히 테스트해야 한다.<br />
 테스트 후 회원 관련 프로토타입을 작업한다.<br />
 
-<h2 class="heading2">회원</h2>
+<h2>회원</h2>
 회원 관련 페이지를 작성한다.<br />
 
-<h3 class="heading3">로그인 사용자를 위한 회원 메뉴 페이지</h3>
+<h3>로그인 사용자를 위한 회원 메뉴 페이지</h3>
 이미 로그인하지 않은 사용자가 사용할 수 있는 회원 메뉴 페이지인 notLoginUsers-menu.jsp는 작성했다.<br />
 로그인 사용자가 이용할 수 있는 회원 메뉴 페이지인 loginUsers-menu.jsp 파일을 아래와 같이 작성한다.<br />
 
@@ -1770,7 +1770,7 @@ response.sendRedirect("view.jsp?articleNo=5&amp;curPage=1&amp;boardCd=free&amp;s
 &lt;/ul&gt;
 </pre>
 
-<h3 class="heading3">회원 가입 폼 페이지</h3>
+<h3>회원 가입 폼 페이지</h3>
 회원 가입 폼 페이지를 만든다.<br />
 CSS 포지셔닝에서 만든 singUp.html 파일을 연 상태에서 Save As... 메뉴를 이용하여 signUp.jsp라는 이름의 새 파일을 /users 디렉터리에 만든 후 아래와 같이 수정한다.<br />
 
@@ -1870,7 +1870,7 @@ function check() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">회원 가입 처리 페이지</h3>
+<h3>회원 가입 처리 페이지</h3>
 실제로 회원 가입을 처리하는 페이지이다.<br />
 회원을 데이터베이스에 등록 후 환영 페이지(welcome.jsp)로 이동하게 구현했다.<br />
 
@@ -1888,7 +1888,7 @@ response.sendRedirect("welcome.jsp");
 %&gt;
 </pre>
 
-<h3 class="heading3">회원 가입 환영 페이지</h3>
+<h3>회원 가입 환영 페이지</h3>
 이 페이지의 목적은 사용자에게 회원 가입이 성공했음을 알려주는 것이다.<br />
 실제 회원 가입이 되지 않았는데 이 페이지를 보게 해서는 안 된다.<br />
 signUp.jsp 파일을 연 상태에서 Sava As.. 메뉴를 이용하여 welcome.jsp라는 새 파일을 /users 디렉터리에 만든 후 아래와 같이 수정한다.<br />
@@ -1949,7 +1949,7 @@ signUp.jsp 파일을 연 상태에서 Sava As.. 메뉴를 이용하여 welcome.j
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">내 정보 수정 폼 페이지</h3>
+<h3>내 정보 수정 폼 페이지</h3>
 로그인한 사용자가 자신의 정보를 수정할 수 있도록 양식을 보여주는 페이지이다.<br />
 signUp.jsp 파일을 연 상태에서 Save As... 메뉴를 이용하여 editAccount.jsp라는 이름의 새 파일을 /users 디렉터리에 만든 후 아래와 같이 수정한다.<br />
 
@@ -2042,7 +2042,7 @@ function check() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">내 정보 수정 처리 페이지</h3>
+<h3>내 정보 수정 처리 페이지</h3>
 내 정보 수정 폼 페이지에서 전달된 정보로 회원정보를 실제로 수정하는 페이지이다.<br />
 
 <em class="filename">/users/editAccount_proc.jsp</em>
@@ -2061,7 +2061,7 @@ response.sendRedirect("changePasswd.jsp");
 %&gt;
 </pre>
 
-<h3 class="heading3">비밀번호 변경 폼 페이지</h3>
+<h3>비밀번호 변경 폼 페이지</h3>
 비밀번호를 변경하는 페이지를 만든다.<br />
 editAccount.jsp 파일을 연 상태에서 Save As... 메뉴를 이용하여 changePasswd.jsp라는 이름의 새 파일을 /users 디렉터리에 만든 후 아래와 같이 수정한다.<br />
 
@@ -2156,7 +2156,7 @@ function check() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">비밀번호 변경 처리 페이지</h3>
+<h3>비밀번호 변경 처리 페이지</h3>
 비밀번호 변경 폼 페이지에서 전달된 비밀번호로 회원 테이블의 비밀번호를 수정하는 페이지이다.<br />
 
 <em class="filename">/users/changePasswd_proc.jsp</em>
@@ -2174,7 +2174,7 @@ response.sendRedirect("changePasswd_confirm.jsp");
 %&gt;
 </pre>
 
-<h3 class="heading3">비밀번호 변경 확인 페이지</h3>
+<h3>비밀번호 변경 확인 페이지</h3>
 비밀번호 변경이 완료되었음을 알려주는 역할만을 담당하는 페이지를 만든다.<br />
 비밀번호 변경이 실패했는데 이 페이지가 보여서는 안 된다.<br />
 welcome.jsp 파일을 연 상태에서 Save As... 메뉴를 이용하여 changePasswd_confirm.jsp라는 이름의 새 파일을 /users 디렉터리에 만든 후 아래와 같이 수정한다.<br />
@@ -2235,7 +2235,7 @@ welcome.jsp 파일을 연 상태에서 Save As... 메뉴를 이용하여 changeP
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">회원 탈퇴 폼 페이지</h3>
+<h3>회원 탈퇴 폼 페이지</h3>
 회원 탈퇴를 위한 이메일과 비밀번호 폼을 보여주는 페이지를 만든다.<br />
 editAccount.jsp 파일을 연 상태에서 Save As... 메뉴를 이용하여 bye.jsp라는 이름의 새 파일을 /users 디렉터리에 만든 후 아래와 같이 수정한다.<br />
 
@@ -2320,7 +2320,7 @@ function check() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">회원 탈퇴 처리 페이지</h3>
+<h3>회원 탈퇴 처리 페이지</h3>
 회원 탈퇴를 처리하는 페이지를 만든다.<br />
 
 <em class="filename">/users/bye_proc.jsp</em>
@@ -2340,7 +2340,7 @@ response.sendRedirect("bye_confirm.jsp");
 %&gt;
 </pre>
 
-<h3 class="heading3">회원 탈퇴 확인 페이지</h3>
+<h3>회원 탈퇴 확인 페이지</h3>
 회원 탈퇴가 완료되었음을 확인시켜주는 페이지를 만든다.<br />
 welcome.jsp 파일을 연 상태에서 Save As... 메뉴를 이용하여 bye_confirm.jsp라는 이름의 새 파일을 /users 디렉터리에 만든 후 아래와 같이 수정한다.<br />
 
@@ -2408,7 +2408,7 @@ modify_form.jsp 만 빠진 이유는 로그인뿐 아니라 글 소유자인지 
 <br />
 화면을 보여주지 않고 처리만을 담당하는 페이지는 파일명에 _proc를 붙여서 구별했다.<br />
 
-<h2 class="heading2">로그인 정책 정리</h2>
+<h2>로그인 정책 정리</h2>
 구현에 앞서 로그인 정책을 다시 확인한다.<br />
 
 <ol>

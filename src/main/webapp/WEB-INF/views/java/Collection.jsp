@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2014.4.10</div>
 
-<h1 class="heading1">컬렉션</h1>
+<h1>컬렉션</h1>
 
 Collection이란 같은 타입의 참조값을 여러개 저장하기 위한 자바 라이브러리이다.<br />
 "배열과 비슷한데 훨씬 더 편리하다." 라는 정도로 접근하자.<br />
@@ -55,9 +55,9 @@ Collection이란 같은 타입의 참조값을 여러개 저장하기 위한 자
 
 이들 컬렉션 클래스들을 아래에서 예제로 다룬다.<br />
 
-<h2 class="heading2">컬렉션 클래스 예제</h2>
+<h2>컬렉션 클래스 예제</h2>
 
-<h3 class="heading3">Set</h3>
+<h3>Set</h3>
 예제는 Set인터페이스의 사용법을 보여 주고 있다.<br/>
 HashSet을 생성하고 Set인터페이스의 add메소드를 사용하여 이름을 추가한다.<br/>
 양효선은 중복 추가를 시도하고 있는데 Set은 중복을 허용하지 않으므로 추가되지 않는다.<br/>
@@ -161,7 +161,7 @@ public class Account<strong>&lt;T&gt;</strong> {
 }
 </pre>
 
-<h3 class="heading3">List</h3>
+<h3>List</h3>
 List는 Collection인터페이스를 상속하며, 순서가 있고 중복을 허락한다.<br />
 List는 배열과 같이 방마다 차례대로 0부터 시작하는 인덱스 번지가 주어진다.<br />
 다음 예제는 가장 많이 사용되고 있는 ArrayList에 대한 예제이다.<br />
@@ -316,7 +316,7 @@ C:\java\Collection\bin&gt;java net.java_school.collection.ListExample
 [E, D, C]
 </pre>
 
-<h3 class="heading3">Map</h3>
+<h3>Map</h3>
 Map은 키(key)와 값(value)의 쌍으로 데이터를 저장한다.<br />
 다음 예제는 HashMap을 사용하고 있다.<br />
 끝부분에서 HashMap을 TreeMap으로 처리한다.<br /> 
@@ -424,7 +424,7 @@ C:\java\Collection\bin&gt;java net.java_school.collection.MapExample
 </pre>
 
 
-<h3 class="heading3">Vector</h3>
+<h3>Vector</h3>
 과거에 자주 쓰였던 Vector에 관한 예제다.<br /> 
 현재는 Vector 대신에 ArrayList가 더 많이 사용되고 있다.<a href="#comments"><sup>4</sup></a><br />
  
@@ -490,11 +490,11 @@ C:\java\Collection\bin&gt;java net.java_school.collection.VectorExample
 41.04715452201211
 </pre>
 
-<h3 class="heading3">Properties</h3>
+<h3>Properties</h3>
 자바에서 설정 파일로부터 값을 읽을 때 많이 사용하는 클래스이다.<br />
 키와 값의 쌍으로 데이터를 저장한다.<br />
 
-<h4 class="heading4">PropertiesStore.java</h4>
+<h4>PropertiesStore.java</h4>
 <pre class="prettyprint">
 package net.java_school.collection;
 
@@ -564,7 +564,7 @@ name=\uC7A5\uAE38\uC0B0
 한글은 프로퍼티 파일에서 자바에서 사용하는 <strong>유니 코드값</strong>으로 저장되어 있어야 한다.<br />
 이것이 우리로서는 자바 프로퍼티의 단점이다.<br />
 
-<h3 class="heading3">Enumeration 인터페이스</h3>
+<h3>Enumeration 인터페이스</h3>
 열거형 형태로 저장된 객체를 처음부터 끝까지 차례로 조회하는데 유용한 인터페이스이다.<br />
 메소드는 다음 2개가 전부이다.<br />
 
@@ -607,7 +607,7 @@ public class VectorExample {
 }
 </pre>
 
-<h3 class="heading3">Iterator 인터페이스</h3>
+<h3>Iterator 인터페이스</h3>
 
 Collection인터페이스의 iterator()메소드는 Iterator를 리턴한다.<a href="#comments"><sup>6</sup></a><br />
 Iterator는 Enumeration인터페이스와 비슷하나 Enumeration보다 나중에 만들어졌다.<br />  
@@ -619,7 +619,7 @@ next()
 remove()
 </pre>
 
-<h2 class="heading2">랩퍼(Wrapper) 클래스</h2>
+<h2>랩퍼(Wrapper) 클래스</h2>
 
 컬렉션은 참조값만을 담을 수 있다.<br />
 기본 자료형의 값은 컬렉션에 담을 수 없다.<br />

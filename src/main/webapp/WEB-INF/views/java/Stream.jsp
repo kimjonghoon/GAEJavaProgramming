@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.5.27</div>
 
-<h1 class="heading1">스트림</h1>
+<h1>스트림</h1>
 
 자바에서 입출력은 스트림을 통해서 이루어진다.<br />
 자바 프로그램을 기준으로 스트림의 방향이 자바 프로그램 안으로 향하면 입력 스트림,<br />
@@ -18,7 +18,7 @@
 	<li>실제 입출력을 하는가? 입출력의 성능에 도움을 주는가?</li>
 </ul>
 
-<h2 class="heading2">바이트 스트림</h2>
+<h2>바이트 스트림</h2>
 
 바이트 스트림은 1byte 단위로 입출력하는 스트림이다.<br />
 일반적으로 동영상이나 이미지 파일과 같은 바이너리 파일에 대한 처리할 때 사용한다.<br />
@@ -195,7 +195,7 @@ new FileOutputStream("C:/javaApp/test.txt", false);에서 false는 기존 내용
 예제에서 쓰이는 FileInputStream과 FileOutputStream의 메서드는 InputStream과 OutputStream 메서드 
 설명 부분을 참고한다.<br />
 
-<h2 class="heading2">문자 스트림</h2>
+<h2>문자 스트림</h2>
 <!-- 
 <img src="https://lh4.googleusercontent.com/-6xNIYh4BAfo/UrREJcHeK7I/AAAAAAAABhs/2U_pBrm-C-Q/w590-h555-no/CharacterStream.jpg" alt="문자 스트림 계층도" /><br />
 -->
@@ -273,7 +273,7 @@ public class Test2 {
 }
 </pre>
 
-<h3 class="heading3">BufferedReader/BufferedWriter</h3>
+<h3>BufferedReader/BufferedWriter</h3>
 
 BufferedReader/BufferedWriter 문자 입력 스트림으로부터 문자를 읽어 들어거나 문자 출력 스트림으로부터 문자를 내보낼 때
 버퍼링 기능을 제공하여 효율적으로 처리할 수 있도록 해준다.<br />
@@ -310,7 +310,7 @@ public class Test {
 
 
 
-<h3 class="heading3">InputStreamReader/OutputStreamWriter</h3>
+<h3>InputStreamReader/OutputStreamWriter</h3>
 InputStreamReader는 바이트 스트림에서 문자 스트림으로 변환할 때,
 OutputStreamWriter는 문자 스트림에서 바이트 스트림으로 변환할 때 사용하는 클래스이다.<br />
 InputStreamReader는 바이트 스트림으로부터 바이트를 읽어서 특정 문자 셋을 이용해서 문자로 바꾼다.<br />
@@ -543,7 +543,7 @@ public class URLTest {
 }
 </pre>
 
-<h2 class="heading2">객체 스트림</h2>
+<h2>객체 스트림</h2>
 다음 예제는 객체 스트림에 관한 예제이다.<br />
 객체를 파일이나 네트워크를 통해 전달하려면 직렬화 과정이 필요하다.<br />
 파일이나 네트워크를 통해 전달된 객체 스트림으로부터 다시 객체를 만들어 내려면 역직렬화 과정이 필요하다.<br />
@@ -673,7 +673,7 @@ public class Recovery {
 자바 프로그램으로 들어오는 객체 스트림을 위해서 ObjectInputStream 을 사용했다.<br />
 직렬화는 RMI 기본 개념을 이해하기 위해서도 필요하다.<br />
 
-<h2 class="heading2">자바은행 실습</h2>
+<h2>자바은행 실습</h2>
 자바은행 예제에 스트림을 적용하는 실습을 한다.<br /> 
 BankUi라는 새로운 클래스를 아래와 같이 만들고 테스트한다.<br />
 
@@ -699,7 +699,7 @@ public class BankUi{
 실행하면 br.readLine();에서 프로그램이 멈춘다.<br />
 사용자가 키보드로 입력 후 엔터키를 치면 엔터키를 포함하지 않는 문자열이 input에 할당된다.<br />
 
-<h3 class="heading3">과제</h3>
+<h3>과제</h3>
 
 BankUi를 아래처럼 변경한 후 //TODO 부분을 구현한다.<br />
 
@@ -780,7 +780,7 @@ public class BankUi {
 	<li>데이터베이스에 저장</li>
 </ol>
 
-<h3 class="heading3">1. 객체 스트림을 이용하여 은행 객체를 파일에 저장</h3>
+<h3>1. 객체 스트림을 이용하여 은행 객체를 파일에 저장</h3>
 객체를 파일 시스템에 저장하려면 객체가 직렬화 대상이어야 한다.<br />
 직렬화 대상이 되게 하려면 Serializable 인터페이스를 구현해야 한다.<br />
 Bank, Account, Transaction 클래스를 수정한다.<br />
@@ -846,7 +846,7 @@ public static void main(String[] args) <strong>throws Exception</strong> {
 }
 </pre>
 
-<h3 class="heading3">2. 계좌와 입출금 명세 정보를 읽을 수 있는 텍스트 파일에 저장</h3>
+<h3>2. 계좌와 입출금 명세 정보를 읽을 수 있는 텍스트 파일에 저장</h3>
 텍스트 파일에 저장하기 위한 코드 힌트를 보기 전에 우선 File 클래스에 대해 알아보자.<br />
 File 클래스는 짐작과 달리 파일에 대한 입출력 기능은 없다.<br />
 File 클래스로 할 수 있는 알은 다음과 같다.<br />

@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2014.5.19</div>
 
-<h1 class="heading1">오라클 JDBC 테스트</h1>
+<h1>오라클 JDBC 테스트</h1>
 
-<h3 class="heading3">오라클 JDBC 드라이버를 클래스패스에 추가하여 테스트하기</h3>
+<h3>오라클 JDBC 드라이버를 클래스패스에 추가하여 테스트하기</h3>
 자바 JDBC 프로그래밍을 하기 위해서는 데이터베이스에 맞는 JDBC드라이버를 설치해야 한다.<br />
 오라클 JDBC드라이버는<br /> 
 <em class="path">C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib</em>
@@ -135,7 +135,7 @@ C:\&gt;java GetEmp
 	</li>	
 </ol>
 
-<h3 class="heading3">javac 와 java 의 -classpath 옵션을 사용하여 테스트</h3>
+<h3>javac 와 java 의 -classpath 옵션을 사용하여 테스트</h3>
 컴파일과 실행시에 -classpath 옵션을 사용하여 테스트하는 방법을 소개한다.<br />
 
 <pre class="screen">
@@ -168,7 +168,7 @@ java -classpath .;C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.j
 pause
 </pre>
 
-<h3 class="heading3">이클립스에서 GetEmp.java 테스트하기</h3>
+<h3>이클립스에서 GetEmp.java 테스트하기</h3>
 이클립스를 클래스패스 환경변수를 참조하지 않는다.<br />
 이클립스에서 프로젝트 단위로 코드를 관리하므로 일단 프로젝트를 만들어야 한다.<br />
 아래 그림은 jdbc라는 프로젝트를 만들고, net.java_school.jdbc라는 팩키지에 속하도록 GetEmp.java 파일을 생성한 경우이다.<br />

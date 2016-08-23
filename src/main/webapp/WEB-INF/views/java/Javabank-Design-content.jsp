@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.12.7</div>
 
-<h1 class="heading1">자바은행  구현</h1>
+<h1>자바은행  구현</h1>
 
 분석 작업의 결과물인 클래스 다이어그램을 토대로 각각의 클래스를 작성한다.<br />
 먼저 입출금 명세 클래스를 작성한다.<br />
@@ -354,7 +354,7 @@ public class Test {
 }
 </pre>
 
-<h2 class="heading2">날짜와 시간</h2>
+<h2>날짜와 시간</h2>
 
 날짜와 시간을 위한 자바 API 클래스는 java.util.Date와 java.util.Calendar가 있다.<br />
 날짜와 시간을 위한 외부 라이브러리는 joda-Time과 apache 프로젝트인 FastDateFormat이 있다.<br />
@@ -418,7 +418,7 @@ public class DateExample {
 4-2: 2015-12-07T15:44:55+09:00</strong></pre>
 
 
-<h3 class="heading3">과제</h3>
+<h3>과제</h3>
 <ol>
 	<li>배열은 모두 ArrayList로 변경</li>
 	<li>중복된 계좌번호가 생성되지 않도록</li>

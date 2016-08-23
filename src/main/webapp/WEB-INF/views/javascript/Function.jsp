@@ -2,11 +2,11 @@
 
 <div id="last-modified">Last Modified : 2013.11.18</div>
 
-<h1 class="heading1">함수</h1>
+<h1>함수</h1>
 
 자바스크립트에서 함수는 선언적 함수와 익명 함수로 나뉜다.<br />
  
-<h3 class="heading3">선언적 함수</h3>
+<h3>선언적 함수</h3>
 선언적 함수는 페이지가 로드할 때 단 한번 해석된다.<br />
 해석된 후에는 함수는 호출될 때마다 실행된다.<br />
 선언적 함수는 function 키워드, 함수명, 인자 리스트, 함수 몸체를 아래와 
@@ -25,7 +25,7 @@ function add(a,b) {
 alert(add(3,4));
 </pre>
 
-<h3 class="heading3">익명 함수(anonymous function)</h3>
+<h3>익명 함수(anonymous function)</h3>
 익명 함수는 런타임 때 동적으로 생성되는 함수이다.<br />
 
 <pre class="prettyprint">
@@ -44,7 +44,7 @@ var minus = new Function('a','b', 'return a - b');
 alert(minus(3,4));
 </pre>
 
-<h3 class="heading3">자기 호출 익명 함수(Self-Executing Anonymous Functions)</h3>
+<h3>자기 호출 익명 함수(Self-Executing Anonymous Functions)</h3>
 자기 호출 익명 함수는 jQuery 와 같은 자바스크립트 라이브러리 코드에서 많이 볼 수 있는데, 
 함수를 ()를 이용해서 감싸고 마지막에 (); 있으면 () 안의 함수가 즉시 실행된다.<br />
 
@@ -67,7 +67,7 @@ alert(minus(3,4));
 
 </pre>
 
-<h3 class="heading3">스코핑(Scoping)과 호이스팅(Hoisting)</h3>
+<h3>스코핑(Scoping)과 호이스팅(Hoisting)</h3>
 
 스코핑(Scoping)은 변수가 유효성을 갖는 영역이 결정되는 규칙을 말한다.<br /> 
 스코핑을 충분히 이해하기 위해서는 호이스팅에 대한 이해가 중요하다.<br />
@@ -308,9 +308,9 @@ bumpInto();
 
 return 문 다음에 있는 "What's Up?"을 출력하는 greet() 함수는 실행될 기회가 없다.<br />
 
-<h3 class="heading3">클로저(Closures)</h3>
+<h3>클로저(Closures)</h3>
 
-<h4 class="heading4">내부 함수</h4>
+<h4>내부 함수</h4>
 자바스크립트는 내부 함수(inner function)를 지원하는 언어다.<br />
 내부 함수는 외부 함수(내부 함수는 감싸는)에서 선언된 변수를  사용할 수 있다.<br />
 
@@ -390,7 +390,7 @@ ac2(200); ac2(500);<br />
 또한 서로 다른 참조 변수(ac1과 ac2)를 사용하고 있는 deposit() 함수의 호출에서는 
 balance 변수가 서로 독립적으로 증가하고 있는 것도 알 수 있다.<br />
 
-<h4 class="heading4">클로저 간 변수 공유</h4>
+<h4>클로저 간 변수 공유</h4>
 
 <pre class="prettyprint">
 function account(accountNo) {
@@ -433,7 +433,7 @@ deposit() 함수가 balance를 1000 증가시키면 withdraw()가 다시 호출�
 account()을 또 호출하면(var ac2 = account('222');)<br />
 동일한 닫힌 환경을 가지는 클로저의 새 인스턴스가 생성된다.<br />
 
-<h3 class="heading3">객체 지향 자바스크립트</h3>
+<h3>객체 지향 자바스크립트</h3>
 
 자바에서의 클래스를 자바스크립트에서는 다음처럼 작성하면 된다.<br />
 간단히 설명하면,<br />

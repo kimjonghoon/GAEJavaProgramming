@@ -1,4 +1,4 @@
-<h1 class="heading1">게시판 - 게시글 삭제</h1>
+<h1>게시판 - 게시글 삭제</h1>
 
 <em class="filename">BbsController.java</em> 
 <pre class="prettyprint">

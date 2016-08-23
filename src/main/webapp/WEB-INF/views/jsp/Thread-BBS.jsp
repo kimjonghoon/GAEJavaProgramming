@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.7.15</div>
 			
-<h1 class="heading1">계층형 게시판</h1>
+<h1>계층형 게시판</h1>
 
 <strong>오라클은 다른 DBMS와 달리 계층형 쿼리를 지원한다.<br />
 계층형 쿼리를 이용하면 간단하게 계층형 게시판을 구현할 수 있을 것이다.<br />
@@ -77,7 +77,7 @@
 여기서 <strong>번호</strong>는 게시글의 고유번호로 board 테이블의 no 컬럼이다.<br />
 
 
-<h2 class="heading2">계층형 게시판을 위해 추가할 필드</h2>
+<h2>계층형 게시판을 위해 추가할 필드</h2>
 
 계층형 게시판을 구현하기 위해서 각 게시글은 아래와 같은 정보를 가지고 있어야 한다.<br />
 
@@ -231,9 +231,9 @@
 </tr>
 </table>
 
-<h2 class="heading2">계층형 게시판 알고리즘</h2>
+<h2>계층형 게시판 알고리즘</h2>
 
-<h3 class="heading3">새글쓰기</h3>
+<h3>새글쓰기</h3>
 원글을 입력할때는 해당 필드에 아래와 같이 추가되도록 한다.
 
 <table class="table-in-article">
@@ -259,7 +259,7 @@
 </tr>
 </table>
 
-<h3 class="heading3">답변글 쓰기</h3>
+<h3>답변글 쓰기</h3>
 아래와 같은 값으로 인서트한다.
 <table class="table-in-article">
 <tr>
@@ -284,7 +284,7 @@
 </tr>
 </table>
 
-<h3 class="heading3">계층형 게시판을 위한 board 테이블 변경</h3>
+<h3>계층형 게시판을 위한 board 테이블 변경</h3>
 
 <pre class="prettyprint">
 alter table board 
@@ -295,7 +295,7 @@ update board set family = no, parent = 0, depth = 0, indent = 0
 /
 </pre>
 
-<h3 class="heading3">기존 게시판을 계층형 게시판으로 수정하기</h3>
+<h3>기존 게시판을 계층형 게시판으로 수정하기</h3>
 목록부터 작업한다.
 list.jsp 를 열고 레코드를 가져오는 쿼리문을 아래와 같이 수정한다.
 
@@ -591,10 +591,10 @@ public class BoardReplier extends HttpServlet {
 web.xml파일이 변경되었으니 톰캣을 재실행한다.<br />
 목록을 방문한 후 상세보기를 방문하고 답변쓰기를 클릭하여 답변을 작성하는 테스트를 수행한다.<br />
 
-<h2 class="heading2">삭제</h2>
+<h2>삭제</h2>
 먼저 답변이 있는 글은 삭제가 되지 않도록 구현한다.<br />
 
-<h3 class="heading3">삭제 알고리즘 (답변이 있으면 삭제안됨 )</h3>
+<h3>삭제 알고리즘 (답변이 있으면 삭제안됨 )</h3>
 <ul>
 	<li>파라미터로 넘어온 글의 고유번호(no) 값을 parent 값을 가지는 글이 있는지 검사한다.</li>
 	<li>있다면 경고메시지를 보여주고 이전 화면으로 돌아간다.</li>
@@ -739,7 +739,7 @@ public class BoardDeleter extends HttpServlet {
 }
 </pre>
 
-<h3 class="heading3">삭제 알고리즘(답변글도 모두 삭제 )</h3>
+<h3>삭제 알고리즘(답변글도 모두 삭제 )</h3>
 아래와 같이 게시글이 있다고 가정한다.<br />
 
 <table class="table-in-article">
@@ -806,7 +806,7 @@ public class BoardDeleter extends HttpServlet {
 </tr>
 </table>
 
-<h3 class="heading3">답변글 삭제 알고리즘</h3>
+<h3>답변글 삭제 알고리즘</h3>
 <ol>
 	<li>삭제할 글의 고유번호를 삭제리스트에 추가한다</li>
  	<li>삭제리스트에서 차례로 값을 하나씩 꺼내어 그 값을 parent로 가지고 있는 글을 찾아서 삭제리스트에 추가한다</li>
@@ -1067,7 +1067,7 @@ public class BoardDeleter extends HttpServlet {
 }
 </pre>
 
-<h3 class="heading3">오라클 계층형 쿼리(Oracle Hierarchical Query)를 이용하여 계층형 게시판 만들기</h3>
+<h3>오라클 계층형 쿼리(Oracle Hierarchical Query)를 이용하여 계층형 게시판 만들기</h3>
 언급했듯이 오라클의 계층형 쿼리를 제공한다.<br />
 오라클 계층형 쿼리를 이용한다면 게시판 테이블에서 부모클의 고유번호를 저장할 parent 컬럼만 있으면 된다.<br />
 
@@ -1110,7 +1110,7 @@ if (keyword.equals("")) {
 }
 </pre>
 
-<h3 class="heading3">오라클 계층형 쿼리 이해하기</h3>
+<h3>오라클 계층형 쿼리 이해하기</h3>
 scott계정의 emp 테이블을 가지고 간단하게 오라클 계층형 쿼리를 실습해 볼 것이다.<br />
 emp 테이블은 사원테이블이다.<br />
 mgr 컬럼은 상사의 사번을 저장한다.<br />

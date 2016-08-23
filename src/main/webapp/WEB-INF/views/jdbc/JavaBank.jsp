@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2015.6.3</div>
 
-<h1 class="heading1">자바은행</h1>
+<h1>자바은행</h1>
 
-<h2 class="heading2">테이블과 트리거 생성</h2>
+<h2>테이블과 트리거 생성</h2>
 자바은행 예제에서 계좌와 입출금 명세 정보를 데이터베이스에 저장하도록 수정한다.<br />
 SQL*PLUS에서 soctt/tiger로 접속하여 다음 테이블을 생성한다.
 
@@ -99,7 +99,7 @@ end;
 /
 </pre>
 
-<h2 class="heading2">자바 빈 수정</h2>
+<h2>자바 빈 수정</h2>
 
 입출금 명세 클래스는 기존과 같다.<br />
 

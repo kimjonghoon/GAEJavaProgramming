@@ -62,7 +62,7 @@ $(document).ready(function() {
 			<div id="last-modified" class="floatstop">Last Modified : 2014.8.27</div>
 
 <!-- 본문 시작 -->
-<h1 class="heading1">내부 클래스</h1>
+<h1>내부 클래스</h1>
 
 자바는 클래스 안에 클래스를 정의하는 것을 허용한다.
 프로젝트가 커질수록 팩키지내에 많은 클래스 수를 줄이는 방법 중 하나가 내부 클래스를 이용하는 것이다.

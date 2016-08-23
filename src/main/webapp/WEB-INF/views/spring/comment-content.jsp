@@ -1,6 +1,6 @@
-<h1 class="heading1">게시판 댓글</h1>
+<h1>게시판 댓글</h1>
 
-<h2 class="heading2">댓글 쓰기</h2>
+<h2>댓글 쓰기</h2>
 <em class="filename">BbsController.java</em> 
 <pre class="prettyprint">
 @RequestMapping(value="/addCcomment", method=RequestMethod.POST)
@@ -27,7 +27,7 @@ public String addComment(Integer articleNo,
 }	
 </pre>
 
-<h2 class="heading2">댓글 수정</h2>
+<h2>댓글 수정</h2>
 
 <em class="filename">BbsController.java</em> 
 <pre class="prettyprint">
@@ -53,7 +53,7 @@ public String updateComment(Integer commentNo,
 }
 </pre>
 
-<h2 class="heading2">댓글 삭제</h2>
+<h2>댓글 삭제</h2>
 <em class="filename">BbsController.java</em> 
 <pre class="prettyprint">
 @RequestMapping(value="/deleteComment", method=RequestMethod.POST)

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.6.4</div>
 
 <h1>Spring JDBC</h1>
@@ -484,7 +485,7 @@ applicationContext.xml에 강조된 부분을 추가한다.
 </strong>
 </pre>
 
-<h3 class="heading3">테스트</h3>
+<h3>테스트</h3>
 101계좌는 존재하나 505계좌는 존재하는 않는다고 가정한다.<br />
 101계좌에서 505계좌로 이체 테스트를 한다.<br />
 이체 후 101계좌는 이체 금액만큼 잔액이 줄어든다.<br />

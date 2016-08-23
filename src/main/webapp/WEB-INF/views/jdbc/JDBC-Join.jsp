@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2011.1.10</div>
 
-<h1 class="heading1">테이블 조인(Join)</h1>
+<h1>테이블 조인(Join)</h1>
 
 명함관리는 테이블이 하나밖에 없으니 EMP와 DEPT를 조인하는 예제를 실습한다.<br />
 JoinTable.java 파일의 메인 메소드에 아래 JDBC 프로그래밍 순서를 참조하여 작성한다.<br />

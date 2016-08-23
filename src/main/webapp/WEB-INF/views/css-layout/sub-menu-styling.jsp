@@ -1,5 +1,5 @@
 <div id="last-modified">Last Modified : 2014.7.31</div>
-<h1 class="heading1">서브 메뉴</h1>
+<h1>서브 메뉴</h1>
 
 왼쪽 sidebar 에 부메뉴를 디자인한다.<br />
 먼저 지금까지 디자인한 HTML 문서를 열고 sidebar 에 다음을 복사하여 붙여넣는다.<br />
@@ -23,7 +23,7 @@
 
 <img src="https://lh3.googleusercontent.com/-ZXSg849T0Gs/VYJuJDZgplI/AAAAAAAACbg/xssrQYA8EA0/s332/sub-menu-01.png" alt="예제보기 1" /><br />
 
-<h3 class="heading3">#sidebar border와 font 스타일</h3>
+<h3>#sidebar border와 font 스타일</h3>
 
 #sidebar 상자의 테두리 색과 두께를 설정한다.<br />
 마진과 패딩이 없는 엘리먼트가 실제 차지하는 넓이는 width + 좌우 border 합으로 계산된다.<br />
@@ -40,7 +40,7 @@
 }
 </pre>
 
-<h3 class="heading3">#sidebar h1 스타일</h3>
+<h3>#sidebar h1 스타일</h3>
 
 <pre class="prettyprint">
 #sidebar h1 {
@@ -54,7 +54,7 @@
 
 <img src="https://lh3.googleusercontent.com/-VFFA-Zm6DSY/VYJuJCETf_I/AAAAAAAACbw/EFwxwl7XMBg/s300/sub-menu-02.png" alt="예제보기 2" /><br />
 
-<h3 class="heading3">#sidebar ul</h3>
+<h3>#sidebar ul</h3>
 서브 메뉴에 해당하는 #sidebar ul을 추가하고 스타일을 지정한다.<br />
 
 <pre class="prettyprint">
@@ -67,7 +67,7 @@
 
 <img src="https://lh3.googleusercontent.com/-Y70qUqs0gdw/VYJuJKJOS6I/AAAAAAAACbk/fRiI5jD0jcw/s284/submenu-03.png" alt="예제보기 3" /><br />
 
-<h3 class="heading3">#sidebar 링크 스타일</h3>
+<h3>#sidebar 링크 스타일</h3>
 #sidebar 링크에 스타일을 지정한다.<br />
 a는 인라인(inline) 엘리먼트지만 display: block으로 설정하면 상자(box)가 되어 상자 영역
 전체에 링크가 걸리게 된다.<br />
@@ -90,7 +90,7 @@ a는 인라인(inline) 엘리먼트지만 display: block으로 설정하면 상�
 
 <img src="https://lh3.googleusercontent.com/-E-OJDZeWjIM/VYJuJ1YbCuI/AAAAAAAACbo/fo9FOxeRMOI/s311/submenu-04.png" alt="예제보기 4" /><br />
 
-<h3 class="heading3">#sidebar li li a 링크 스타일 설정</h3>
+<h3>#sidebar li li a 링크 스타일 설정</h3>
 #sidebar li li a 링크에 대한 스타일을 지정한다.<br />
 
 <pre class="prettyprint">

@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.21</div>
 
-<h1 class="heading1">트랜잭션</h1>
+<h1>트랜잭션</h1>
 
 트랜잭션 관리의 예는 계좌이체가 가장 좋은 예제이다.<br />
 A 계좌에서 B 계좌로 1000 원을 이체한다면 <br />

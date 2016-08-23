@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.9.11</div>
 
-<h1 class="heading1">Connection Pool</h1>
+<h1>Connection Pool</h1>
 
 자바 프로그램에서 데이터베이스에 연결을 시도하는 것(Connection 객체를 얻는것)은 시간이 많이 걸리는 작업이다.<br />
 만약, 일정량의 Connection을 미리 생성시켜 저장소에 저장했다가
@@ -8,7 +8,7 @@
 이러한 프로그래밍 기법을 Connection Pooling이라 한다.<br />
 사용시 주의할 점은 작업이 완료되었으면 기존처럼 Connection 의 close()메소드를 사용하여 자원을 반납하지 않고, Connection 을 저장소에 복귀시켜야 한다는 것이다.<br />
 
-<h3 class="heading3">1. 전체 클래스 요약</h3>
+<h3>1. 전체 클래스 요약</h3>
 Log.java<br />
 로그 파일에 로그 메시지를 입력하기 위한 클래스<br />
 <br />
@@ -31,7 +31,7 @@ oracle.properties<br />
 oracle.properties 에서 "oracle" 이란 문자열은 오라클용 커넥션풀 객체를 구별하는 이름으로 사용된다.<br />
 설정 내용을 자바 코드에 구현하는 것보다는 파일로 관리하기는 것이 재사용과 유지보수에 유리하다.<br />
 
-<h3 class="heading3">2. Connection Pooling 관련 소스</h3>
+<h3>2. Connection Pooling 관련 소스</h3>
 <em class="filename">Log.java</em>
 <pre class="prettyprint">
 package net.java_school.util;
@@ -454,7 +454,7 @@ initConn = 5
 maxWait = 5
 </pre>
 
-<h3 class="heading3">3. 사용법</h3>
+<h3>3. 사용법</h3>
 Log.java 소스에서<br />
 <strong>public String logFile = "C:/jdbc/connection-pool.log";</strong> 에 맞게
 C:/jdbc 에 connection-pool.log 라는 내용이 빈 파일을 만든다.<br />
@@ -526,7 +526,7 @@ public class GetEmp {
 
 
 
-<h2 class="heading2">DBCP</h2>
+<h2>DBCP</h2>
 DBCP 는 아파치의 오픈 소스 컨넥션 풀이다.<br />
 http://commons.apache.org/proper/commons-dbcp/<br />
 

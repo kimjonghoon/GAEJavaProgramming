@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.1.24</div>
 
-<h1 class="heading1">스프링 웹 애플리케이션을 아파치 톰캣 연동 환경에서 테스트</h1>
+<h1>스프링 웹 애플리케이션을 아파치 톰캣 연동 환경에서 테스트</h1>
 
 2014년 1월 24일 현재 테스트 실패!! -- 수정할 것<br />
 
@@ -403,7 +403,7 @@ applicationContex.xml 과 security.xml 파일을 만든다.
 &lt;/html&gt;
 </pre>
 
-<h2 class="heading2">Ubuntu 12.04 LTS 시스템에서 아파치 톰캣 연동</h2>
+<h2>Ubuntu 12.04 LTS 시스템에서 아파치 톰캣 연동</h2>
 아파치와 톰캣은 이미 설치되어 있어야 한다.<br />
 
 <em class="filename">/etc/hosts 편집</em>
@@ -522,7 +522,7 @@ sudo cp /etc/tomcat7/Catalina/localhost/manager.xml /etc/tomcat7/Catalina/gildon
 
 이 파일을 /etc/tomcat7/Catalina/gildong.hong 에 복사한다.<br />
 
-<h3 class="heading3">테스트</h3>
+<h3>테스트</h3>
 
 <pre class="code">
 sudo service tomcat7 restart

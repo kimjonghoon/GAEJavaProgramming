@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.21</div>
 
-<h1 class="heading1">PreparedStatement</h1>
+<h1>PreparedStatement</h1>
 
 PreparedStatement는  지금까지 사용한 Statement인터페이스보다 편리하고 효과적이다.<br />
 PreparedStatement인터페이스는 Statement인터페이스를 상속한다.<br />

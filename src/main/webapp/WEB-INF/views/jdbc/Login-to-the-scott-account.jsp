@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.20</div>
 
-<h1 class="heading1">SQL 실습 - SCOTT계정</h1>
+<h1>SQL 실습 - SCOTT계정</h1>
 
 11g XE를 설치했다면 정식버전에 있는 SCOTT 테스트 계정이 없을 것이다.<sup>1</sup><br />
 <em class="path">C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\</em>

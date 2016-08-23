@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2016.6.26</div>
 
-<h1 class="heading1">국제화</h1>
+<h1>국제화</h1>
 
 src/java/resources에 messages.properties와 messages_ko.properties 파일을 생성한다.
 생성 후 프로퍼티 파일을 선택하고 컨텍스트 메뉴에서 Properties를 선택하여 Text file encoding을 UTF-8로 변경한다.<br />
@@ -57,7 +57,7 @@ list.jsp를 열고 스프링 태그 라이브러리 지시어를 추가한다.<b
 &lt;input type="submit" value="<strong>&lt;spring:message code="bbs.search" /&gt;</strong>" /&gt;
 </pre>
 
-<h3 class="heading3">국제화 예제 설명</h3>
+<h3>국제화 예제 설명</h3>
 spring-bbs-servlet.xml에 추가한 설정은 메시지 소스에 대한 설정이다.<br />
 메시지 소스(MessageSource)는 로케일을 보고 메시지를 결정하는 컴포넌트다.<br />
 구현체로 ResourceBundleMessageSource와 ReloadableResourceBundleMessageSource가 있다.<br />

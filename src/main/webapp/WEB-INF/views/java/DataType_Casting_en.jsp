@@ -1,9 +1,9 @@
 <div id="last-modified">Last Modified : 2016.4.7</div>
 
-<h1 class="heading1">Data Type and Type Casting</h1>
+<h1>Data Type and Type Casting</h1>
 
 
-<h2 class="heading2">Literal and Variable</h2>
+<h2>Literal and Variable</h2>
 
 <pre class="prettyprint no-border">
 int year = 2016;
@@ -16,7 +16,7 @@ The programming elements as the <b>year</b> called Variable.
 A variable is a storage location with a name in order to save the value.
 The size of storage capacity varies depending on the Data Type.
 
-<h2 class="heading2">Data Type</h2>
+<h2>Data Type</h2>
 
 Data type in Java is largely divided into two types.
 
@@ -28,7 +28,7 @@ Data type in Java is largely divided into two types.
 Primitive Data Types are a Data Type for normal data.
 Reference Data Types are a Data Type for reference data.
 
-<h3 class="heading3">Primitive Data Types</h3>
+<h3>Primitive Data Types</h3>
 
 <table class="table-in-article">
 <tr>
@@ -91,7 +91,7 @@ Reference Data Types are a Data Type for reference data.
 </tr>
 </table>
 
-<h3 class="heading3">Data Type of Values</h3>
+<h3>Data Type of Values</h3>
 
 <pre class="prettyprint no-border">
 int i1 = 3;//integral number without any additional character is a int literal.
@@ -118,7 +118,7 @@ float f2 = 3.14f;//3.14f is a float literal.
 float f3 = 3.14F;//3.14F is a float literal.
 </pre>
 
-<h3 class="heading3">int literals may not be int value</h3>
+<h3>int literals may not be int value</h3>
 There is no specific literal for the byte and short in Java.
 As below shown, a int literals may not be int value.
 
@@ -130,7 +130,7 @@ byte b = 1; //1 is int literal but value of 1 is created as byte type.
 short s = 2; //2 is int literal but value of 2 is created as short type.
 </pre>
 
-<h3 class="heading3">Reference Data Types</h3>
+<h3>Reference Data Types</h3>
 
 <pre class="prettyprint no-border">
 Student john = new Student();
@@ -153,14 +153,14 @@ if you want that john is not referring to any object, assign null to john as bel
 john = null;
 </pre>
 
-<h2 class="heading2">Type Casting</h2>
+<h2>Type Casting</h2>
 
 Type casting means that converting the data type of value to desired data type.
 Type Casting is divided into two types.
 One is called Up-Casting, it happens automatically by the JVM.
 The Other is called Down-Casting, if you want it happens, put (desired data type) before literals or variables. 
  
-<h3 class="heading3">Up-Casting</h3>
+<h3>Up-Casting</h3>
 
 <pre class="prettyprint no-border">
 long money = 300;//300 is int literal and value of 300 is created as int type.
@@ -178,7 +178,7 @@ Even so float occupies 4 bytes of memory size and long occupies 8 bytes of memor
 float x = 10L;//JVM convert 10 of long type to 10 of float type automatically.
 </pre>
 
-<h4 class="heading4">Automatic Type Casting in arithmetic</h4>
+<h4>Automatic Type Casting in arithmetic</h4>
 
 <pre class="prettyprint no-border">
 int x = 3 + <em>3.5</em> + 4; //compile error!
@@ -208,7 +208,7 @@ Try again.
 int x = 10; int y = 4; double z = x / y;
 </pre>
 
-<h3 class="heading3">Down-Casting</h3>
+<h3>Down-Casting</h3>
 
 <pre class="prettyprint no-border">
 float f = 1.1;// compile error!
@@ -236,7 +236,7 @@ if you want that z is 2.5, you need to do the down-casting as below;
 double z = (double) x / y; or double z = x / (double) y;
 </pre>
 
-<h3 class="heading3">Arithmetic which byte or short participates in</h3>
+<h3>Arithmetic which byte or short participates in</h3>
 
 In arithmetic that values of byte or short participate in, all values converted to int type before the arithmetic progress.
 
@@ -259,7 +259,7 @@ or
 <em>int</em> sum = s1 + s2;
 </pre>
 
-<h2 class="heading2">To use strings in Java programs</h2>
+<h2>To use strings in Java programs</h2>
 
 How to express the strings in Java is to create a String object from the String class. 
 The String class is a class that exists in the Java API. 

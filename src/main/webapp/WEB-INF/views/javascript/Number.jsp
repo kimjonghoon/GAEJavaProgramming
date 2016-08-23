@@ -4,7 +4,7 @@
 
 <div id="last-modified">Last Modified : 2013.11.11</div>
 
-<h1 class="heading1">Number</h1>
+<h1>Number</h1>
 
 이클립스에서 작업하면 그림처럼 코드 어시스트를 받을 수 있다.<br />
 <br />

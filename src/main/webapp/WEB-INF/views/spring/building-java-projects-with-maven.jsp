@@ -1,12 +1,12 @@
 <div id="last-modified">Last Modified : 2015.1.9</div>
 
-<h1 class="heading1">Maven을 이용한 Spring 실습</h1>
+<h1>Maven을 이용한 Spring 실습</h1>
 
 <p style="clear: both;font-style: italic;font-weight: bold;padding: 10px 30px;font-size: 14px;">
 이 글은 <a href="http://spring.io/guides/gs/maven/">http://spring.io/guides/gs/maven/</a>를 번역한 것입니다.<br />
 </p>
 
-<h2 class="heading2">Maven 설치</h2>
+<h2>Maven 설치</h2>
 
 <a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a>
 링크에서 바이너리 파일을 다운로드한다.<br />
@@ -19,11 +19,11 @@ Path 환경 변수에 %MAVEN_HOME%\bin 경로를 추가한다.<br />
 명령 프롬프트를 새로 열고 다음 명령으로 메이븐 버전을 확인한다.<br />
 <em class="path">mvn -v</em><br />
 
-<h2 class="heading2">메이븐 프로젝트 생성</h2>
+<h2>메이븐 프로젝트 생성</h2>
 
 아래 예제를 따라 하면서 기본적인 메이븐 사용법을 익힌다.<br />
 
-<h3 class="heading3">메이븐의 기본 구조로 디렉터리를 만든다.</h3>
+<h3>메이븐의 기본 구조로 디렉터리를 만든다.</h3>
 프로젝트 루트 디렉터리를 생성한다.<br />
 C:\maven\HelloWord를 프로젝트 루트 디렉터리라면, HelloWorld에는 아래처럼 서브 디렉터리를 만든다.<br />
 
@@ -86,31 +86,31 @@ public class Greeter {
 &lt;packaging&gt; - 프로젝트를 어떻게 패키지 할 것인가에 대한 설정. 디폴트는 jar, 웹 애플리케이션은 war<br />
 <br />
 
-<h3 class="heading3">빌드</h3>
+<h3>빌드</h3>
 
-<h4 class="heading4">mvn compile</h4>
+<h4>mvn compile</h4>
 pom.xml 파일이 있는 프로젝트 루트에서 mvn compile 을 실행한다.<br />
 이 명령은 메이븐을 실행하고 컴파일 goal 을 실행한다.<br />
 작업이 성공했다면 컴파일된 파일을 target/classes 폴더에서 찾을 수 있다.<br />
 이 폴더는 컴파일이 수행되면서 만들어진다.<br />
 
-<h4 class="heading4">mvn package</h4>
+<h4>mvn package</h4>
 package goal 은 자바 코드를 컴파일하고 테스트를 수행하고 패키지로 묶어서 target 디렉터리에 복사한다.<br />
 패키지 된 파일의 이름은 pom.xml에서 설정한 대로 gs-maven-initial-0.1.0.jar란 이름으로 만들어진다.<br />
 
-<h4 class="heading4">mvn install</h4>
+<h4>mvn install</h4>
 만약에 이 프로젝트의 jar 파일을 로컬 저장소에 설치하기를 원한다면<br /> 
 install goal을 수행해야 한다.<br />
 install goal은 컴파일하고 테스트한 후 패키지로 만든 파일을 로컬 저장소에 복사한다.<br />
 
-<h4 class="heading4">mvn clean</h4>
+<h4>mvn clean</h4>
 clean goal 은 빌드를 통해 생성된 모든 산출물을 삭제한다.<br />
 
-<h4 class="heading4">mvn clean compile</h4>
+<h4>mvn clean compile</h4>
 중복해서 goal를 수행할 수 있다.<br />
 
 
-<h3 class="heading3">의존 라이브러리 설정을 pom.xml에 추가</h3>
+<h3>의존 라이브러리 설정을 pom.xml에 추가</h3>
 대부분의 애플리케이션이 외부 라이브러리에 의존한다.<br />
 우리의 예제도 외부 라이브러리에 의존하도록 바꾸겠다.<br />
 <br />
@@ -182,11 +182,11 @@ test - 컴파일하고 테스트에는 필요하지만 빌드(컴파일과 배�
 </pre>
 
 
-<h3 class="heading3">실행</h3>
+<h3>실행</h3>
 빌드에 성공했다면 루트 디렉터리에서 다음과 같이 실행하여 테스트한다.<br />
 <em class="path">mvn exec:java -Dexec.mainClass=hello.HelloWorld</em><br />
 
-<h2 class="heading2">스프링 시작하기 강좌 중 <a href="http://projects.spring.io/spring-framework/#quick-start">Quick Start</a> 정리</h2>
+<h2>스프링 시작하기 강좌 중 <a href="http://projects.spring.io/spring-framework/#quick-start">Quick Start</a> 정리</h2>
 먼저 메이븐 프로젝트의 구조에 맞게 디렉토리를 만든다.<br />
 
 <pre class="code">

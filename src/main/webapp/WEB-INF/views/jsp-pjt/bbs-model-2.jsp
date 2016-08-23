@@ -1,11 +1,11 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.6.20</div>
 
-<h1 class="heading1">모델 2방식으로 변경</h1>
+<h1>모델 2방식으로 변경</h1>
 
 모델 2 방식으로 변경하기 전에 JSP에 적용할 EL과 JSTL에 대해서 먼저 알아본다.<br />
  
-<h3 class="heading3">EL</h3>
+<h3>EL</h3>
 EL(Expression Language)은 JSP 스펙에 포함되어 있다.<br />
 EL을 사용하면 자바빈즈의 속성값에 보다 쉽게 접근할 수 있다.<br />
 예를 들어, ${user.email }은 User 객체의 getEmail() 메서드 호출과 같다.<br />
@@ -38,7 +38,7 @@ pageScope - requestScope - sessionScope - applicationScope 순으로 검색된�
 JSP에서 비즈니스 로직을 수행하기 때문이다.<br />
 그래서 EL을 모델 2를 진행하는 시점에 소개하는 것이다.<br />
 
-<h3 class="heading3">JSTL</h3>
+<h3>JSTL</h3>
 태그 라이브러리(Tag Library)는 자바 코드로 바뀌는 태그를 만드는 기술이다.<br />
 태그는 디자이너에게 거부감이 덜하므로 이 기술은 디자이너와의 협업에 도움이 된다.<br />
 JSTL은 JSP Standard Tag Library의 약자로 꼭 필요한 태그 라이브러리를 정리한 것인데,
@@ -136,7 +136,7 @@ a.add(7);a.add(8);a.add(9);a.add(10);
   <li>확장자가 *.do인 요청은 일단 컨트롤러에게 전달되도록 한다.</li>
 </ul>
 
-<h3 class="heading3">JSP 화면 디자인 수정</h3>
+<h3>JSP 화면 디자인 수정</h3>
 EL과 JSTL를 사용하여 코드를 수정함과 동시에, 
 인클루드 지시어에 사용된 jsp를 제외한 모든 .jsp를 .do로 바꾼다.<br />
 
@@ -1573,7 +1573,7 @@ function check() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">에러 페이지 수정</h3>
+<h3>에러 페이지 수정</h3>
 다양한 에러 페이지를 만드는 것 대신 하나의 에러 페이지로 모든 에러를 처리하기로 했으므로 굳이 JSTL로 수정할 필요가 없다.<br />
 기존의 스크립틀릿 코드를 그대로 사용한다.<br />
 인클루드 지시어에 쓰인 jsp를 제외한 모든 .jsp를 .do로 수정한다.<br />
@@ -1697,7 +1697,7 @@ if (throwable != null) {
 
 홈페이지 역시 인클루드 지시어에 쓰인 jsp를 제외한 모든 .jsp를 .do로 바꾼다.<br />
 
-<h3 class="heading3">구현</h3>
+<h3>구현</h3>
 MVC 뼈대를 이루는 클래스부터 작성한다.<br />
 
 
@@ -3239,7 +3239,7 @@ public class DeleteAttachFileAction implements Action {
 }
 </pre>
 
-<h3 class="heading3">모델 2 개발 방식</h3>
+<h3>모델 2 개발 방식</h3>
 
 <ul>
 	<li>모델 뷰 컨트롤러로 구성된다.</li>

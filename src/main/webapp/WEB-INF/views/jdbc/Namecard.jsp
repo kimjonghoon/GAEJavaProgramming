@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.29</div>
 
-<h1 class="heading1">명함관리</h1>
+<h1>명함관리</h1>
 
 지금까지의 예제를 종합하여 명함관리 프로그램을 만들어 보자.<br /> 
 Namecard.java 와 NamecardDao.java 클래스를 아래와 같이 만든다.<br />

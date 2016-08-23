@@ -1,9 +1,9 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.8.2</div>
 
-<h1 class="heading1">스프링 시큐리티 4 적용</h1>
+<h1>스프링 시큐리티 4 적용</h1>
 
-<h3 class="heading3">pom.xml에서 스프링 시큐리티 버전 변경</h3>
+<h3>pom.xml에서 스프링 시큐리티 버전 변경</h3>
 
 <em class="filename">pom.xml</em>
 <pre class="prettyprint">
@@ -57,7 +57,7 @@ mvn clean compile war:inplace
 다시 로그인을 시도한다.<br />
 이번에는 /j_spring_security_check를 찾을 수 없다는 404 에러를 만나게 된다.<br />
 
-<h3 class="heading3">스프링 시큐리티 4에서는 http 자식요소 form-login의 속성 중 기본값이 변경된 속성</h3>
+<h3>스프링 시큐리티 4에서는 http 자식요소 form-login의 속성 중 기본값이 변경된 속성</h3>
 &lt;form-login&gt;에서 login-processing-url 속성의 기본값은 /j_spring_security_check에서 POST /login으로,<br />
 username-parameter 속성의 기본값은 j_username에서 username으로,<br />
 password-parameter 속성의 기본값은 J_password에서 password로,<br />
@@ -90,7 +90,7 @@ http의 use-expressions의 속성 기본값이 false에서 true로 변경되었�
     &lt;intercept-url pattern="/users/login" access="permitAll" /&gt;
 </pre>
 
-<h3 class="heading3">로그인 페이지 수정</h3>
+<h3>로그인 페이지 수정</h3>
 명시하지 않은 설정은 디폴트 값이 적용됨을 고려하면서 /users/login.jsp를 수정한다.<br />
 
 <em class="filename">/users/login.jsp</em>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2013.12.7</div>
 
-<h1 class="heading1">Arrays</h1>
+<h1>Arrays</h1>
 
 An array is a container object that holds values of a same type.
 
@@ -14,7 +14,7 @@ numbering begins with 0, and square brackets, e.g., arr[4].
 In Java, the array is an object. 
 So, you need to create an array object.
 
-<h3 class="heading3">Examples of Array</h3>
+<h3>Examples of Array</h3>
 
 <pre class="prettyprint">
 int[] arr = null;//declares an array of integers.
@@ -53,7 +53,7 @@ String[] arr4 = {"Java", "School"};
 </pre>
 
 
-<h3 class="heading3">How to use String[] parameter in main method</h3>
+<h3>How to use String[] parameter in main method</h3>
 
 <pre class="prettyprint">
 public class Test {

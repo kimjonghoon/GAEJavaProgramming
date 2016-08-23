@@ -1,7 +1,7 @@
 <%@ page isELIgnored="true" %>
-<h1 class="heading1">새글쓰기</h1>
+<h1>새글쓰기</h1>
 
-<h2 class="heading2">글쓰기 폼으로 이동</h2>
+<h2>글쓰기 폼으로 이동</h2>
 <em class="filename">BbsController.java</em> 
 <pre class="prettyprint">
 @RequestMapping(value="/write_form", method=RequestMethod.GET)
@@ -149,7 +149,7 @@ function goView() {
 빌드를 한 후 bbs/list?boardCd=data&amp;curPage=1를 방문한다.<br />
 새글쓰기 버튼을 클릭하여 글쓰기 폼으로 이동하는지 테스트한다.<br />
 
-<h2 class="heading2">글쓰기 처리</h2>
+<h2>글쓰기 처리</h2>
 첨부파일을 업로드하기 위해서는 commons-io와 commons-fileupload 라이브러리가 필요하다.<br />
 pom.xml에서 의존성 설정이 되어 있으니 확인한다.<br />
 <br />

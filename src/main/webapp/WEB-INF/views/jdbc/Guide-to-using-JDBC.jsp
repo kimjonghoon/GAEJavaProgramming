@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.19</div>
 
-<h1 class="heading1">JDBC 프로그래밍 방법</h1>
+<h1>JDBC 프로그래밍 방법</h1>
 
 아래 JDBC 프로그래밍 방법을 순서대로 외운다.
 <ol>
@@ -13,7 +13,7 @@
 아래는 각 순서의 설명이다.<br />
 전 강좌, 오라클 JDBC 테스트의 GetEmp.java 소스를 참고하면서 본다.<br />
 
-<h2 class="heading2">1. JDBC 드라이버 로딩</h2>
+<h2>1. JDBC 드라이버 로딩</h2>
 <pre class="prettyprint">
 Class.forName("oracle.jdbc.driver.OracleDriver");
 </pre>
@@ -30,7 +30,7 @@ ClassNotFoundException 을 만나게 된다.<br />
 이후로 DriverManager의 getConnection() 를 호출하면서 약속된 값을 인자값으로 넣어주면 오라클에서 만든 
 Connection 구현체가 리턴될 것이다.<br />   
 
-<h2 class="heading2">2. Connection 맺기</h2>
+<h2>2. Connection 맺기</h2>
 <pre class="prettyprint">
 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:XE", "scott", "tiger");
 </pre>
@@ -42,7 +42,7 @@ DriverManager.getConnection 메소드는 인자로 들어오는 값에 따라서
 Connection 타입의 객체를 반환한다.<br />
 Connection 객체를 얻었다는 것은 데이터베이스와 연결 상태가 되었음을 의미한다.<br />
 
-<h2 class="heading2">3. SQL 실행</h2>
+<h2>3. SQL 실행</h2>
 <pre class="prettyprint">
 // Statement를 가져온다.
 stmt = conn.createStatement();
@@ -56,7 +56,7 @@ Statement 구현체나 PreparedStatement 구현체는 Connection 구현체를 �
 SQL문이 select 문장일 경우 Statement 객체의 executeQuery 메소드를 이용한다.<br />
 만일 SQL문이 insert나 update 문일 경우는 executeUpdate 메소드를 이용한다.<br />
 
-<h2 class="heading2">4. [SQL문이 select문이었다면 ResultSet을 이용한 처리]</h2>
+<h2>4. [SQL문이 select문이었다면 ResultSet을 이용한 처리]</h2>
 <pre class="prettyprint">
 while (rs.next()) {
 	String empno = rs.getString(1);
@@ -72,7 +72,7 @@ SQL문이 select 문이면 반환한 레코드를 저장할 객체가 필요하�
 next() 메소드가 실행되면 커서를 한단계 아래로 이동시키고 이때 커서가 가리키는 곳에 레코드가 있다면 
 true 를 리턴한다.<br />
 
-<h2 class="heading2">5. 자원 반환</h2>
+<h2>5. 자원 반환</h2>
 JDBC 프로그래밍에서 자원 반환은 정말 중요하다.<br />
 객체가 더이상 쓰이지 않을 때 가베지 컬렉터가 동작한다고 했는데 이때 예외가 있다.<br />
 객체 자체가 열심히 동작하고 있다고 판단되면 가베지 컬렉터는 그 객체를 회수하지 않는다.<br />

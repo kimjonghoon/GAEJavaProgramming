@@ -1,7 +1,7 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2016.6.27</div>
 
-<h1 class="heading1">다운로드 컨트롤러</h1>
+<h1>다운로드 컨트롤러</h1>
 
 파일 다운로드를 담당하는 컨트롤러를 작성한다.
 (지금까지 파일 다운로드는 /WEB-INF/jsp/inc/download.jsp 파일을 사용했다.)
@@ -117,7 +117,7 @@ view.jsp에서 #form-group 부분의 파일 다운로드 폼 엘리먼트의 act
 &lt;intercept-url pattern="/file/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" /&gt;
 </pre>
 
-<h3 class="heading3">실패한 테스트</h3>
+<h3>실패한 테스트</h3>
 
 GET 방식의 /file/{fileName}와 같은 요청으로 파일을 내려받는 테스트를 했다. 
 

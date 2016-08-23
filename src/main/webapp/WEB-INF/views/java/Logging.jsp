@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.6.1</div>
 	
-<h1 class="heading1">로깅(Logging)</h1>
+<h1>로깅(Logging)</h1>
 
 로그(Log)란 프로그램 개발이나 운영 시 발생하는 문제점을 추적하거나 운영 상태를 모니터링하기 위한 텍스트이다.
 로그를 남기기 위한 가장 쉬운 방법은 System.out.println(); 문을 사용하는 것이다.
@@ -67,7 +67,7 @@ public class LogTest1 {
 }
 </pre>
 
-<h2 class="heading2">log4j</h2>
+<h2>log4j</h2>
 직접 로깅 클래스를 만드는 것보다 로깅 프레임워크를 이용하는 것이 좋다.<br />
 프레임워크란 공통적인 작업을 자동화하고, 개발자로 하여금 빨리 애플리케이션을 개발하도록 하기 위한 노력의 산물을 말한다.<br /> 
 로깅에 관한 대표적인 프레임워크는 log4j이다.<br />
@@ -159,7 +159,7 @@ public class LogTest3 {
 테스트 후 콘솔과 C:/debug.log 파일에 로그 메시지를 확인한다.<br />
 LogTest1.java 와 같이 파일에 로그를 남기지만 로그를 남긴 후 출력 스트림을 닫는 코드는 없다.
 
-<h3 class="heading3">log4j.properties 파일의 내용 설명</h3>
+<h3>log4j.properties 파일의 내용 설명</h3>
 log4j는 logger, appender, layout이라는 3 개의 컴포넌트로 이루어져 있고 이들이 협력하여 로그를 기록한다.<br />
 
 <ol>
@@ -221,7 +221,7 @@ net.java_school 로거의 로그 레벨은 DEBUG, 어펜더는 file이다.<br />
 </dd>
 </dl>
 
-<h3 class="heading3">Log 처리 메시지 및 로그 레벨</h3>
+<h3>Log 처리 메시지 및 로그 레벨</h3>
 <ol>
 	<li>FATAL : 가장 심각한 오류, 콘솔에 출력</li>
 	<li>ERROR : 일반적인 오류, 콘솔에 출력</li>
@@ -231,7 +231,7 @@ net.java_school 로거의 로그 레벨은 DEBUG, 어펜더는 file이다.<br />
 	<li>TRACE : 가장 상세한 형태의 정보, 로그 파일로만 출력</li>
 </ol>
 
-<h3 class="heading3">log4j Appender 주요 클래스</h3>
+<h3>log4j Appender 주요 클래스</h3>
 <ul>
 	<li>ConsoleAppender : 콘솔에 로그 메시지 출력</li>
 	<li>FileAppender : 파일에 로그 메시지 기록</li>
@@ -241,7 +241,7 @@ net.java_school 로거의 로그 레벨은 DEBUG, 어펜더는 file이다.<br />
 	<li>NTEventAppender : 윈도 시스템 이벤트 로그로 메시지 전송</li>
 </ul>
 
-<h3 class="heading3">log4j Layout 클래스</h3>
+<h3>log4j Layout 클래스</h3>
 <ul>
 	<li>DateLayout : 로그 메시지를 날짜 중심으로 간단하게 기록</li>
 	<li>HTMLLayout : 로그 메시지를 HTML 형식으로 기록</li>
@@ -250,7 +250,7 @@ net.java_school 로거의 로그 레벨은 DEBUG, 어펜더는 file이다.<br />
 	<li>XMLLayout : 로그 메시지를 XML 형식으로 기록</li>
 </ul>
 
-<h3 class="heading3">log4j PatternLayout 형식</h3>
+<h3>log4j PatternLayout 형식</h3>
 <ul>
 	<li>%c : 카테고리를 출력</li>
 	<li>%p : 로깅 레벨을 출력</li>
@@ -268,7 +268,7 @@ net.java_school 로거의 로그 레벨은 DEBUG, 어펜더는 file이다.<br />
 	<li>%X : 로깅이 발생한 스레드와 관련된 MDC(Mapped Diagnostic Context)</li>
 </ul>
 
-<h3 class="heading3">log4.xml</h3>
+<h3>log4.xml</h3>
 log4j.properties 대신 log4j.xml을 설정 파일로 사용하는 방법을 알아본다.<br />
 log4j.properties 파일을 지우고 log4j.xml 파일을 클래스 패스가 걸려있는 경로에 생성한다.<br />
 
@@ -305,12 +305,12 @@ log4j.properties 파일을 지우고 log4j.xml 파일을 클래스 패스가 걸
 
 LogTest2.java, LogTest3.java를 다시 실행하여 테스트한다.
 
-<h2 class="heading2">자카르타 Commons 로깅</h2>
+<h2>자카르타 Commons 로깅</h2>
 아파치 그룹의 자카르타 commons-logging 패키지는 개발자들에게 공통 로깅 API를 제공하기 위해 만들어진 프레임워크로 
 애플리케이션이 특정 로깅 프레임워크에 종속되는 것을 막아준다.<br />
 현재 많은 서드 파티 로깅 프레임워크들이 commons-logging 기반으로 구현되어 있다.<br />
 
-<h3 class="heading3">commons-logging 사용법</h3>
+<h3>commons-logging 사용법</h3>
 <a href="http://commons.apache.org/downloads/download_logging.cgi">http://commons.apache.org/downloads/download_logging.cgi</a>에서 
 Binary 파일을 다운로드한다.<br />
 위 링크가 깨진다면 <a href="http://www.apache.org">http://www.apache.org</a>에서 
@@ -366,7 +366,7 @@ public class LogTest4 {
 
 
 
-<h2 class="heading2">slf4j</h2>
+<h2>slf4j</h2>
 간단한 사용법을 소개한다.<br />
 <a href="http://www.slf4j.org/download.html">http://www.slf4j.org/download.html</a>에서 최신 릴리스 버전을 다운로드한다.<br />
 압축을 풀고 slf4j-api-1.7.12.jar 와 slf4j-simple-1.7.12.jar 파일을 클래스 패스에 추가한다.<br />
@@ -398,7 +398,7 @@ slf4j의 디폴트 레벨은 info이다.<br />
 org.slf4j.simpleLogger.defaultLogLevel=DEBUG
 </pre>
 
-<h3 class="heading3">로깅 적용</h3>
+<h3>로깅 적용</h3>
 slf4j-api-1.7.12.jar 와 slf4j-simple-1.7.12.jar 파일을 자바은행 클래스 패스에 추가한다.<br />
 Account, NormalAccount, MinusAccount 클래스의 입금과 출금 메서드에 로깅을 적용한다.<br />
 
@@ -487,7 +487,7 @@ org.slf4j.simpleLogger.defaultLogLevel=DEBUG
 
 simpleLogger는 로그 파일에 로그 메시지를 축적하지 못한다.<br />
 
-<h3 class="heading3">logback</h3>
+<h3>logback</h3>
 <a href="http://logback.qos.ch/download.html">http://logback.qos.ch/download.html</a>에서 최신 버전을 내려받는다.<br />
 압축을 풀고 logbac-core-1.1.3.jar, logbac-classic-1.1.3.jar, logbac-access-1.1.3.jar 파일을 클래스 패스에 추가한다.<br />
 아래 그림을 보고 순서를 조절한다. logback이 slf4j보다 위에 있어야 한다.<br />

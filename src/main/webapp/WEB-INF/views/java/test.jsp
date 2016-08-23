@@ -55,9 +55,9 @@ $(document).ready(function() {
 			<div id="last-modified" class="floatstop">Last Modified : 2013.10.4</div>
 
 <!-- 본문 시작 -->
-<h1 class="heading1">테스트</h1>
+<h1>테스트</h1>
 
-<h2 class="heading2">문제 1</h2>
+<h2>문제 1</h2>
 로또 번호를 생성하는 코드를 아래 제시한 코드를 보고 작성한다.<br />
 메인 메소드는 변경하지 않는다.<br />
 generateLotto() 메소드의 //TODO 부분만을 완성한다.<br />
@@ -86,7 +86,7 @@ Math의 random() 메소드는 0을 포함하고 1은 포함되지 않는 임의�
 int su = (int)(Math.random() * 45) + 1;
 <br />
 
-<h3 class="heading3">문제 1 풀이</h3>
+<h3>문제 1 풀이</h3>
 아래와 같이 알고리즘을 작성해 본다.<br />
 <ol>
 	<li>반복문을  시작한다.</li>
@@ -197,7 +197,7 @@ public static int[] generateLotto() {
 	return lotto;
 }
 </pre>
-<h2 class="heading2">문제 2</h2>
+<h2>문제 2</h2>
 다음 예제를 보고 StringTokenizer 와 String 의 split() 메소드의 차이를 구별한다.<br />
 
 <pre class="prettyprint">

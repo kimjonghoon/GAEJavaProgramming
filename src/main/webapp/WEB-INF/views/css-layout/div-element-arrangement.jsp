@@ -1,5 +1,5 @@
 <div id="last-modified">Last Modified : 2014.7.31</div>
-<h1 class="heading1">주요 엘리먼트 배치</h1>
+<h1>주요 엘리먼트 배치</h1>
 
 <p style="margin: 17px; font-weight: bold; font-size: 15px;">
 이번에 소개할 글은 CSS 포지셔닝에 관한 내용이다. 
@@ -14,9 +14,9 @@ CSS로 화면구성을 할 때 중요하게 쓰이는 CSS 속성은 float 과 ma
 인터넷 익스플로러 등 대표적인 웹브라우저에서 테스트를 하면서 진행하도록 한다.<br />
 먼저 다음 기본 사항을 이해한다.<br />
  
-<h2 class="heading2">float 과 음수 마진 기법 정리</h2>
+<h2>float 과 음수 마진 기법 정리</h2>
 
-<h3 class="heading3">float 이 적용된 엘리먼트 다음에 나오는 엘리먼트의 행동</h3>
+<h3>float 이 적용된 엘리먼트 다음에 나오는 엘리먼트의 행동</h3>
 float 이 적용된 엘리먼트 다음에 나오는 정상적인 엘리먼트는 float 이 적용된 엘리먼트의 존재를 인식하지 못하고
 자신의 상자 영역을 확보한다.<br />
 하지만 float 이 적용된 엘리먼트의 영역은 침범하지 않는다.<br />
@@ -351,7 +351,7 @@ A의 margin-right: -100%; 를 지우고 B에 margin-left: -100%;를 준다.<br /
 위를 이해했다면 CSS를 사용하여 웹사이트의 화면을 완성해 보자.<br />
 </p>
 
-<h3 class="heading3">고정크기를 가지는 3열(Column) 레이아웃</h3>
+<h3>고정크기를 가지는 3열(Column) 레이아웃</h3>
 실습할 레이아웃은 고정넓이를 가진 3열로 된 것을 선택했다.<br />
 실습 화면은 header, man-menu, sidebar, content, extra, footer 로 구성된다.<br />
 <ul>
@@ -363,38 +363,38 @@ A의 margin-right: -100%; 를 지우고 B에 margin-left: -100%;를 준다.<br /
 	<li><strong>footer</strong><br />가장 아래쪽에 있으며 Copyright, 연락처, 찾아오시는 길 등의 글로벌 메뉴를 보이는 부분이다.</li>
 </ul>
 주요 부분에 대한 크기를 지정한다.<br />
-<h4 class="heading4">header</h4>
+<h4>header</h4>
 <p style="padding-left: 20px;">
 넓이: 1000px<br />
 높이: 48px<br />
 </p>
-<h4 class="heading4">main-menu</h4>
+<h4>main-menu</h4>
 <p style="padding-left: 20px;">
 넓이: 1000px<br />
 높이: 35px<br />
 </p>
-<h4 class="heading4">sidebar</h4>
+<h4>sidebar</h4>
 <p style="padding-left: 20px;">
 넓이: 175px<br />
 높이: 내용에 따라 변함<br />
 </p>
-<h4 class="heading4">Content</h4>
+<h4>Content</h4>
 <p style="padding-left: 20px;">
 넓이: 720px<br />
 높이: 내용에 따라 변함<br />
 </p>
-<h4 class="heading4">extra</h4>
+<h4>extra</h4>
 <p style="padding-left: 20px;">
 넓이: 205px<br />
 높이: 내용에 따라 변함<br />
 </p>
-<h4 class="heading4">footer</h4>
+<h4>footer</h4>
 <p style="padding-left: 20px;">
 넓이: 1000px<br />
 높이: 56px<br />
 </p>
 
-<h3 class="heading3">디폴트 HTML 문서 템플릿 작성</h3>
+<h3>디폴트 HTML 문서 템플릿 작성</h3>
 아래를 복사하여 사용하고 있는 에디터에 붙여넣는다.<br />
 
 <pre class="prettyprint">
@@ -591,12 +591,12 @@ Class는 id와 달리 HTML 문서에서 반복되어 나타날 수 있다.<br />
 
 <img src="https://lh3.googleusercontent.com/-J1syyOdw8e4/VYJLYt-srsI/AAAAAAAACYw/VZKOnWiMXis/s589/layout1-1.png" alt="예제보기 1" /><br />
 
-<h3 class="heading3">screen.css 설명</h3>
+<h3>screen.css 설명</h3>
 아직까지 완성 전 코드이지만 지금까지의 CSS 파일의 내용을 살펴보자.<br />
 screen.css 파일이 완성되면 화면 구성도 완성된다.<br />
 HTML 문서의 내용은 바뀌지 않는다.<br />
 
-<h4 class="heading4">html, body</h4>
+<h4>html, body</h4>
 <pre class="prettyprint">
 html, body {
 	margin: 0;
@@ -609,7 +609,7 @@ div 와는 달리 html 과 body 엘리먼트는 거의 모든 웹브라우저에
 정밀하게 설정된 화면은 이 값 때문에 화면이 깨질 수 있다.<br />
 그래서 대부분의 웹디자이너는 html 과 body 의 마진과 패딩을 0으로 설정한 후 디자인을 시작한다.<br />
 
-<h4 class="heading4">#wrap</h4>
+<h4>#wrap</h4>
 
 <pre class="prettyprint">
 #wrap {
@@ -634,7 +634,7 @@ wrap은 HTML 문서내의 모든 엘리먼트를 담아야 하니 1000px 안에 
 CSS 파일에서 /*** Essential Code ***/ 부분이 중요하다.<br />
 /*** Just for Looks ***/ 부분은 예제를 브라우저로 확인할 때 보기 좋으라고 설정한 것으로, 프로젝트가 진행되면서 없어질 부분이다.<br />
 
-<h4 class="heading4">#container</h4>
+<h4>#container</h4>
 <pre class="prettyprint">
 #container {
 	width: 100%;
@@ -646,7 +646,7 @@ container의 width가 100%로 설정되어 있다.<br />
 container의 마진과 패딩이 0이고 border 역시 설정되어 있지 않기 때문에
 100%는 여기서 wrap과 같은 1000px이다.<br />
 
-<h3 class="heading3">#content을 중앙에 배치</h3>
+<h3>#content을 중앙에 배치</h3>
 content의 margin을 다음과 같이 조정한다.<br />
 
 <pre class="prettyprint">
@@ -658,7 +658,7 @@ content의 margin을 다음과 같이 조정한다.<br />
 
 <img src="https://lh3.googleusercontent.com/-mGtrEX57RsY/VYJLYh9gRtI/AAAAAAAACY8/CPd84NhVDf8/s589/layout1-2.png" alt="예제보기 2" /><br />
 
-<h3 class="heading3">#container, #sidebar, #extra에 float: left;</h3>
+<h3>#container, #sidebar, #extra에 float: left;</h3>
 #content 왼쪽에 #sidebar를, #content 오른쪽에 #extra가 있도록 할 것이다.<br />
 CSS 파일을 아래와 같이 고친다.<br />
 
@@ -698,7 +698,7 @@ CSS 파일을 아래와 같이 고친다.<br />
 <img src="https://lh3.googleusercontent.com/-syLJrBmGbgc/VYJLYo3K1WI/AAAAAAAACY4/bAtsd53F5tI/s589/layout1-3.png" alt="예제보기 3" /><br />
 
 
-<h3 class="heading3">#content 왼쪽에 #sidebar 배치</h3>
+<h3>#content 왼쪽에 #sidebar 배치</h3>
 
 <pre class="prettyprint">
 #sidebar {
@@ -711,7 +711,7 @@ CSS 파일을 아래와 같이 고친다.<br />
 <img src="https://lh3.googleusercontent.com/-TpKsK3zej5s/VYJLZBRs4aI/AAAAAAAACZE/hEIMU9tlzHk/s589/layout1-4.png" alt="예제보기 4" /><br />
 
 
-<h3 class="heading3">#content 오른쪽에 #extra 배치</h3>
+<h3>#content 오른쪽에 #extra 배치</h3>
 #extra가 #content의 오른쪽으로 위치하도록 음수 마진을 설정한다.
 
 <pre class="prettyprint">

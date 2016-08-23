@@ -1,10 +1,10 @@
 <div id="last-modified">Last Modified : 2015.9.10</div>
 
-<h1 class="heading1">스프링 시큐리티에서 패스워드를 암호화하기</h1>
+<h1>스프링 시큐리티에서 패스워드를 암호화하기</h1>
 
 비밀번호는 단순 텍스트로 저장해서는 안 된다.<br />
 
-<h3 class="heading3">패스워드 인코더 설정</h3>
+<h3>패스워드 인코더 설정</h3>
 <em class="path">&lt;authentication-provider&gt;</em>
 엘리먼트에 
 <em class="path">&lt;password-encoder&gt;</em>
@@ -118,7 +118,7 @@ alter table member modify passwd varchar(200) not null;
 이메일은 im@gmail.org, 비밀번호는 1111로 회원가입한다.<br />
 이제 로그인이 될 것이다.<br />
 
-<h3 class="heading3">회원 수정, 비밀번호 변경, 탈퇴</h3>
+<h3>회원 수정, 비밀번호 변경, 탈퇴</h3>
 회원 수정, 비밀번호 변경, 탈퇴를 수정해야 한다.<br />
 
 <em class="filename">UsersController.java</em>

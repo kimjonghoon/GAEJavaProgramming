@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2015.9.18</div>
 
-<h1 class="heading1">스프링 시큐리티에서 접근 거부 상황 다루기</h1>
+<h1>스프링 시큐리티에서 접근 거부 상황 다루기</h1>
 
 ROLE_USER 권한만 가진 사용자가 http://localhost:8080/admin으로 접근할 때  
 에러 페이지로 이동할 것을 기대했으나 다음과 같이 아무 내용이 없는 페이지를 보여주고 있음을 확인했다.<br />
@@ -71,7 +71,7 @@ mvn clean compile war:inplace로 컴파일하고,
 톰캣을 재실행한 후 http://localhost:8080/admin을 요청한다.
 로그인한 사용자가 ROLE_USER 권한만 가진 사용자라면 /403.jsp가 보일 것이다.<br />
 
-<h3 class="heading3">AccessDeniedHandler 구현</h3>
+<h3>AccessDeniedHandler 구현</h3>
 접근 권한이 없어 에러 페이지로 이동하는 상황에서 수행해야 할 비즈니스 로직이 있다면  
 <em class="path">org.springframework.security.web.access.AccessDeniedHandler</em>를 구현해야 한다.<br />
 security.xml 파일을 다음과 같이 수정한다.<br />

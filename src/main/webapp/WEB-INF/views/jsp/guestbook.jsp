@@ -1,10 +1,10 @@
 <div id="last-modified">Last Modified : 2012.8.21</div>
 
-<h1 class="heading1">방명록</h1>
+<h1>방명록</h1>
 
-<h2 class="heading2">화면</h2>
+<h2>화면</h2>
 <img src="images/guestbook.png" alt="방명록 화면" />
-<h2 class="heading2">테이블과 시퀀스를 작성</h2>
+<h2>테이블과 시퀀스를 작성</h2>
 <pre class="prettyprint">
 create table guestbook (
     no  number,
@@ -20,7 +20,7 @@ increment by 1
 nocache
 nocycle;
 </pre>
-<h2 class="heading2">자바 빈즈 설계</h2>
+<h2>자바 빈즈 설계</h2>
 <em class="filename">Guestbook.java</em>
 <pre class="prettyprint">
 package net.java_school.guestbook;
@@ -205,7 +205,7 @@ public void insert(Guestbook guestbook) {
 	
 	}
 </pre>
-<h2 class="heading2">JSP 작성</h2>
+<h2>JSP 작성</h2>
 웹 애플리케이션의 최상위 디렉토리에서 guestbook 이라는 서브 디렉토리를 만든다.<br />
 <em class="filename">/guestbook/index.jsp</em>
 <pre class="prettyprint">
@@ -283,7 +283,7 @@ dao.insert(book);
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-<h2 class="heading2">Logging</h2>
+<h2>Logging</h2>
 디버깅을 위해 톰캣 로그파일을 뒤지는 것은 쉽지 않다.<br />
 <em class="filename">Log.java</em>
 <pre class="prettyprint">
@@ -394,7 +394,7 @@ public ArrayList&lt;Guestbook&gt; selectAll() {
 
 }
 </pre> 
-<h2 class="heading2">Exception 처리</h2>
+<h2>Exception 처리</h2>
 Exception 처리는 Logging 정책과 함께 애플리케이션 전 영역에 적용되므로 프로젝트 초반에 정책이 수립되어야 한다.<br />
 여기서는 GuestbookDao 의 모든 메소드에서 실행중 에러가 발생하면 unchecked 익셉션을 생성하여 던지도록 코드를 변경한다.<br />   
 전달된 익셉션을 JSP페이지에서 직접 핸들링 할 수도 있지만 핸들링 하지 않고 서블릿 컨테이너가 제공하는 에러 처리 기능을 활용하여 처리되도록

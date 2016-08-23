@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.5.26</div>
 	
-<h1 class="heading1">스레드</h1>
+<h1>스레드</h1>
 
 프로그램은 위에서 아래로 왼쪽에서 오른쪽으로 순차적으로 실행된다.<br />
 처리되는 코드를 연필로 따라 줄 그어 나간다면 실타래처럼 보일 것이다.<br />
@@ -8,15 +8,15 @@
 지금까지 우리는 실이 한 가닥인 단일 스레드 프로그램만을 보아 왔다.<br />
 이번 과정은 실타래가 2가닥 이상인(멀티 스레드) 프로그램을 만드는 방법을 소개한다.<br />
 
-<h3 class="heading3">멀티 스레드 프로그램을 만드는 방법</h3>
+<h3>멀티 스레드 프로그램을 만드는 방법</h3>
 <ol>
 	<li>Thread 클래스를 상속</li>
 	<li>Runnable 인터페이스를 구현</li>
 </ol>
 
-<h2 class="heading2">단일 스레드 프로그램과 멀티 스레드 프로그램의 비교</h2>
+<h2>단일 스레드 프로그램과 멀티 스레드 프로그램의 비교</h2>
 
-<h3 class="heading3">단일 스레드 예제</h3>
+<h3>단일 스레드 예제</h3>
 
 <em class="filename">SingleThread.java</em>
 <pre class="prettyprint">
@@ -50,10 +50,10 @@ public class SingleThread {
 doA() 와 doB()는 같은 스레드에서 실행된다.<br />
 따라서 호출된 순서인 doA()가 끝난 후 doB()가 실행된다.<br />
 
-<h3 class="heading3">멀티 스레드 예제</h3>
+<h3>멀티 스레드 예제</h3>
 방금 한 예제를 멀티 스레드 예제로 바꾸어 본다.<br />
 
-<h4 class="heading4">Thread 클래스를 상속하여 만드는 멀티 스레드 프로그램</h4>
+<h4>Thread 클래스를 상속하여 만드는 멀티 스레드 프로그램</h4>
 doA()와 doB()가 각각 다른 스레드에서 실행하게 구현할 것이다.<br />
 Thread를 상속하는 방법을 택했는데 객체 생성 후 start() 메서드를 호출하면 다른 스레드가 생성되고 
 doA()는 새로 생긴 스레드에서 실행되게 된다.<br />
@@ -104,7 +104,7 @@ public class MultiThread1 extends Thread {
 }
 </pre>
 
-<h4 class="heading4">Runnable 인터페이스를 구현하여 만드는 멀티 스레드 프로그램</h4>
+<h4>Runnable 인터페이스를 구현하여 만드는 멀티 스레드 프로그램</h4>
 
 강조된 부분은 메인 메서드에서 자신 자신의 객체를 생성하고 Runnable 인터페이스 타입의 
 레퍼런스를 인자 값으로 받는 Thread 생성자에 호출하여 자기 자신의 레퍼런스를 전달하고 있다.<br /> 
@@ -160,7 +160,7 @@ public class MultiThread2 implements Runnable {
 </pre>
 
 
-<h3 class="heading3">임계 영역(Critical Section) 테스트</h3>
+<h3>임계 영역(Critical Section) 테스트</h3>
 
 임계 영역이란 공유된 자원을 접근하는 코드 부분을 말한다.
 임계 영역을 제대로 다루지 않을 경우 발생하는 문제점을 예제를 통해 살펴보려 한다.<br />

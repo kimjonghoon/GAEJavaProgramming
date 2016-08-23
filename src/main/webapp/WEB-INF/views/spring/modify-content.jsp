@@ -1,5 +1,5 @@
 <%@ page isELIgnored="true" %>
-<h1 class="heading1">게시글 수정</h1>
+<h1>게시글 수정</h1>
 
 <em class="filename">/WEB-INF/jsp/bbs/modify_form.jsp</em> 
 <pre class="prettyprint">

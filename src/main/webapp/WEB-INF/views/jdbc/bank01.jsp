@@ -1,13 +1,13 @@
 <div id="last-modified">Last Modified : 2013.6.17</div>
 
-<h1 class="heading1">자바은행 데이터 모델링</h1>
+<h1>자바은행 데이터 모델링</h1>
 
 <p style="clear: both;font-weight: bold;padding: 10px 30px;font-size: 14px;">
 <a href="/java/javabank01.php">자바은행</a> 예제를 데이터베이스를 이용하는 예제로 바꾸는 과정을 설명한다.<br />
 추가되는 내용은 계좌 사용내역이 저장된다는 것이다.<br />
 </p>
 
-<h2 class="heading2">요구사항 분석</h2>
+<h2>요구사항 분석</h2>
 <em>보다 예제를 간단히 하기 위해, 지점이 없는 온라인 은행이라고 가정하고 은행 사원은 고려하지 않도록 한다.</em><br />
 <br />
 고객은 은행에 계좌를 만들기 위해서는 아이디, 패스워드, 이름을 제공한다.<br />
@@ -17,7 +17,7 @@
 거래내역은 거래일자,거래시간,계좌번호,입금/출금여부,거래금액,은행명으로 기록된다.<br />
 여기서 은행명은 타행이체인 경우 타행의 이름이 기록된다.<br />
 
-<h2 class="heading2">개체와 속성 추출</h2>
+<h2>개체와 속성 추출</h2>
 시나리오에서 명사를 도출한다.<br />
 명사는 개체이거나 속성이다.<br />
 <ul>
@@ -32,7 +32,7 @@
 </em>
 <br />
 
-<h2 class="heading2">개체간의 관계</h2>
+<h2>개체간의 관계</h2>
 시나리오에서 동사를 분석하여 개체간의 관계를 알아낸다.<br />
 <br />
 고객과 계좌는 관계가 있다.<br />
@@ -50,11 +50,11 @@
 계좌와 거래내역은 일대다 관계이다.<br />
 따라서 새로운 테이블이 필요없고 외래키를 자식 테이블에 추가한다.<br />
 
-<h2 class="heading2">개체관계도(ERD)</h2>
+<h2>개체관계도(ERD)</h2>
 <img src="https://lh6.googleusercontent.com/-C52Ned9mpa0/UAiZBgl3-sI/AAAAAAAAA8c/QfoPqfuvgbs/s580/erd.jpg" alt="자바은행 ERD" /><br />
 <!-- <img src="images/erd.jpg" alt="자바은행 ERD"  width="580px" /><br /> -->
 
-<h2 class="heading2">테이블</h2>
+<h2>테이블</h2>
 <pre class="prettyprint">
 create table member (
 	id varchar2(20),

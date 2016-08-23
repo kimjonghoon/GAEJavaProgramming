@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.21</div>
 
-<h1 class="heading1">INSERT</h1>
+<h1>INSERT</h1>
 
 이번 장에서는 NAMECARD 테이블에 JDBC를 이용해서 데이터를 INSERT 시키는 예제를 구현한다.<br />
 우리의 목표는 다음  인서트 문을  실행하는 것이다.<br />

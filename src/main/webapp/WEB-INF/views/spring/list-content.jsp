@@ -1,4 +1,4 @@
-<h1 class="heading1">게시판 목록</h1>
+<h1>게시판 목록</h1>
 
 JSP Project에서 구현한 웹사이트 최종본에 Spring MVC를 적용하는 것을 실습할 것이다.<br />
 <a href="src/spring-mvc.zip">spring-mvc.zip</a>을 다운로드하고 적당한 곳에 압축을 푼다.<br />

@@ -1,7 +1,7 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.1.14</div>
 
-<h1 class="heading1">Spring MVC 컨트롤러 설정</h1>
+<h1>Spring MVC 컨트롤러 설정</h1>
 
 Spring MVC 의 최신 권고대로 핸들러를 만들고 테스트해보자.<br />
 예제를 최대한 간단하게 만들도록 하겠다.<br />

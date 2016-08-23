@@ -1,12 +1,12 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.5.19</div>
 
-<h1 class="heading1">Maven으로 Spring MVC 실습하기</h1>
+<h1>Maven으로 Spring MVC 실습하기</h1>
 
 웹 프로젝트를 위한 워크스페이스가 <em class="path">C:\www</em>라고 가정한다.<br />
 명령 프롬프트로 <em class="path">C:\www</em>로 이동한다.<br />
 
-<h2 class="heading2">명령 프롬프트에서 메이븐 프로젝트 생성</h2>
+<h2>명령 프롬프트에서 메이븐 프로젝트 생성</h2>
 <pre class="screen">
 C:\www&gt;mvn archetype:generate
 
@@ -52,7 +52,7 @@ TOMCAT_HOME/conf/Catalina/localhost 폴더에 spring-bbs.xml 파일을 복사한
 톰캣을 재실행한 후, http://localhost:port/spring-bbs를 방문하여 웹 애플리케이션이 동작하는지 확인한다.<br />
 
 
-<h2 class="heading2">Spring MVC 테스트</h2> 
+<h2>Spring MVC 테스트</h2> 
 Spring MVC 테스트를 위해 다음 자바 소스를 작성한다.<br />
 src/main/java 폴더가 없으면 만들고 진행한다.<br />
  
@@ -439,7 +439,7 @@ C:\www\sprng-bbs&gt;mvn clean compile war:inplace
 톰캣을 재실행한 후,
 http://localhost:8080/spring-bbs/player/test?id=1를 방문한다.<br />
 
-<h3 class="heading3">SimpleUrlHandlerMapping</h3>
+<h3>SimpleUrlHandlerMapping</h3>
 핸들러매핑 설정을 SimpleUrlHandlerMapping를 이용하는 것으로 변경한다.<br />
 spring-bbs-servlet.xml 파일을 열고 아래 코드를 참조하여 수정한다.<br />
 이때 id가 playerController인 bean 엘리먼트의 name 속성과 값을 지워야 한다.<br /> 
@@ -470,7 +470,7 @@ spring-bbs-servlet.xml 파일을 열고 아래 코드를 참조하여 수정한�
 
 톰캣을 재실행하고 http://localhost:port/spring-bbs/player/test?id=1를 방문한다.<br />
 
-<h3 class="heading3">InternalResourceViewResolver</h3>
+<h3>InternalResourceViewResolver</h3>
 InternalResourceViewResolver는 직관적이라 이해하기 쉬운 뷰리졸버이다.<br />
 spring-bbs-servlet.xml 파일을 열고 &lt;!-- ViewResolver --&gt; 부분에 다음을 추가한다.<br />
 
@@ -508,7 +508,7 @@ InternalResourceViewResolver 설정대로 player/test는
 자바 소스가 변경되었으므로 빌드를 한다.<br />
 톰캣을 재실행하고 http://localhost:port/spring-bbs/player/test?id=1를 방문한다.<br />
 
-<h3 class="heading3">RequestMappingHandlerMapping</h3>
+<h3>RequestMappingHandlerMapping</h3>
 SimpleUrlHandlerMapping은 요청마다 컨트롤러가 하나씩 있어야 한다.<br />
 프로젝트가 규모가 커질수록 이런 모양은 좋아 보이지 않는다.<br />
 이상적인 것은 유즈 케이스별로 컨트롤러를 하나씩 두는 것이다.<br />
@@ -704,7 +704,7 @@ public class PlayerService {
 </pre>
 
 
-<h2 class="heading2">이클립스 작업환경 구축</h2>
+<h2>이클립스 작업환경 구축</h2>
 이클립스를 시작하고 워크스페이스를 <em class="path">C:\www</em>로 선택한다.<br />
 Project Explorer 뷰에서 마우스 오른쪽 버튼을 사용하여 컨텍스트 메뉴를 보이게 한다.<br />
 Import를 사용하여 spring-bbs 프로젝트를 이클립스로 불러온다.<br />

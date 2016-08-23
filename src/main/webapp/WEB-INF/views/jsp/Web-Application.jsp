@@ -1,12 +1,12 @@
 <div id="last-modified">Last Modified : 2014.7.9</div>
 			
-<h1 class="heading1">웹 애플리케이션</h1>
+<h1>웹 애플리케이션</h1>
 
 톰캣과 같은 서버를 서블릿 컨테이너라고 부른다.<br />
 서블릿 컨테이너가 담아서 관리하는 것이 바로 <strong>웹 애플리케이션</strong>이다.<br />
 서블릿 컨테이너는 웹 애플리케이션이 썬의 서블릿/JSP 스펙에 따라서 동작하는 것을 보장해야 한다.<br />
 
-<h2 class="heading2">웹 애플리케이션의 구성 요소</h2>
+<h2>웹 애플리케이션의 구성 요소</h2>
 
 자바 진영에서 말하는 웹 애플리케이션은 다음과 같은 파일들로 구성된다.<br />
 
@@ -24,20 +24,20 @@
 web.xml 파일은 WEB-INF 에 두어야 한다.<br />
 
 
-<h2 class="heading2">웹 애플리케이션 디렉토리</h2>
+<h2>웹 애플리케이션 디렉토리</h2>
 
 톰캣에서 웹 애플리케이션의 디폴트 위치는 {톰캣홈}/webapps 이다.<br />
 새로운 웹 애플케이션을 추가하고자 한다면 {톰캣홈}/webapps 바로 아래 서브 디렉토리<sup><a href="#comments">1</a></sup>를 만들고,<br /> 
 서브 디렉토리안에 다음과 같은 폴더를 만든다.<br />
 
-<h3 class="heading3">WEB-INF</h3>
+<h3>WEB-INF</h3>
 웹 애플리케이션 배치 정의자, web.xml 이 위치한다.<br />
 WEB-INF 디렉토리 안에 있는 파일은 웹브라우저를 통해 직접 접근할 수 없다.<br />
 
-<h3 class="heading3">WEB-INF/classes</h3>
+<h3>WEB-INF/classes</h3>
 서블릿을 포함한 자바 클래스 파일(바이트 코드)이 이곳에 위치한다.<br />
 
-<h3 class="heading3">WEB-INF/lib</h3>
+<h3>WEB-INF/lib</h3>
 자바 아카이브 파일(jar)이 이곳에 위치한다.<br /><br />
 
 똑같은 바이트 코드가 WEB-INF/classes 과 WEB-INF/lib 안의 자바 아카이브 파일 안에 동시에 있을 수 있다는 것에 유의해야 한다.<br />
@@ -60,13 +60,13 @@ WEB-INF 디렉토리 안에 있는 파일은 웹브라우저를 통해 직접 �
 </dl>
 
 
-<h2 class="heading2">배치 정의자 (Deployment Descriptor): web.xml</h2>
+<h2>배치 정의자 (Deployment Descriptor): web.xml</h2>
 
 웹 애플리케이션의 심장은 배치 정의자 (Deployment Descriptor)라고 불리는 web.xml 파일이다.<br />
 배치 정의자 web.xml 은 WEB-INF 디렉토리에 위치한다.<br />
 배치 정의자는 웹 애플리케이션의 모든 설정 정보를 담는다.<br />	
 
-<h3 class="heading3"><a href="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">배치 정의자로 할 수 있는 주요 설정 항목</a></h3>
+<h3><a href="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">배치 정의자로 할 수 있는 주요 설정 항목</a></h3>
 <ul>
 	<li>서블릿컨텍스트 초기화 파라미터</li>
 	<li>필터</li>
@@ -79,7 +79,7 @@ WEB-INF 디렉토리 안에 있는 파일은 웹브라우저를 통해 직접 �
 	<li>에러 페이지</li>
 </ul>
 
-<h3 class="heading3">web.xml 파일의 예와 설명</h3>
+<h3>web.xml 파일의 예와 설명</h3>
 web.xml 파일을 새로 만들때는 {톰캣홈}/webapps 에서 디폴트로 설치되어 있는 
 다른 웹 애플케이션의 web.xml 파일을 복사하여 자신의 웹 애플리케이션의 WEB-INF에 붙여넣는다.<br />
 그런 다음 web.xml 파일을 열고 web-app 루트 엘리먼트안의 모든 내용을 지운후 사용한다.<br />
@@ -143,7 +143,7 @@ session-timeout 엘리먼트는 HttpSession 객체의 라이프타임을 컨트�
 session-timeout 이 30으로 설정되었다면 서블릿 컨테이너는 HttpSession 객체가 30분 동안 아무런 움직임이 없다면 소멸시킨다.<br /> 
 
 
-<h2 class="heading2">팩킹 (Packing)</h2>
+<h2>팩킹 (Packing)</h2>
 웹 애플리케이션은 jar 툴(jar.exe)로 하나의 파일로 만들 수 있다.<br />
 이 파일은  다양한 서블릿 컨테이너에서 작동할 수 있다.<br />
 개발이 완료되었다면 웹 애플리케이션을 번들화하여 다른 서블릿 컨테이너에 배포를 할 수 있다.<br />

@@ -1,7 +1,7 @@
 <div id="last-modified">Last Modified : 2015.11.11</div>
-<h1 class="heading1">JDK Install</h1>
+<h1>JDK Install</h1>
 
-<h2 class="heading2">Downloading the JDK installer</h2>
+<h2>Downloading the JDK installer</h2>
 
 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a><br />
 
@@ -17,7 +17,7 @@ Installation can be completed simply by clicking the "Next" button.<br />
 JDK is locate at "C:\Program Files\Java\jdk1.8.0_&lt;version&gt;"<br />
 
 
-<h3 class="heading3">Updating the PATH Environment Variable</h3>
+<h3>Updating the PATH Environment Variable</h3>
 
 Click Start, then Control Panel, then System.<br />
 Click Advanced, then Environment Variables.<br />
@@ -58,7 +58,7 @@ Run <b>echo %PATH%</b> in command prompt to confirm the PATH variable.<br />
 </dd>
 </dl>
 
-<h2 class="heading2">Test</h2>
+<h2>Test</h2>
 
 <em class="filename">Test.java</em>
 <pre class="prettyprint">
@@ -94,7 +94,7 @@ it is necessary to use the -cp option of java.exe, such as:<br />
 </dd>
 </dl>
 
-<h2 class="heading2">Editor</h2>
+<h2>Editor</h2>
 
 Until "Package and Modifiers", 
 it is better to use a simple editor such as <a href="https://www.editplus.com/">editPlus</a>.<br />

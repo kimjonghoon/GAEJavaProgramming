@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2015.5.22</div>
 
-<h1 class="heading1">회원가입에서의 빈 유효성 검사</h1>
+<h1>회원가입에서의 빈 유효성 검사</h1>
 
-<h2 class="heading2">빈 유효성 검사를 위한 사전 작업</h2>
+<h2>빈 유효성 검사를 위한 사전 작업</h2>
 1. JSR-349 구현체인 Hibernate Validator 의존 라이브러리를 pom.xml에 추가한다.
 
 <em class="filename">pom.xml</em>
@@ -135,7 +135,7 @@ CSS 파일에 에러 메시지를 위한 스타일을 추가한다.<br />
 &lt;/sf:form&gt;
 </pre>
 
-<h2 class="heading2">테스트</h2>
+<h2>테스트</h2>
 빌드하고 톰캣을 재실행한다.<br />
 http://localhost:port/spring-bbs/login으로 이동한다.<br />
 상단 회원가입 버튼을 클릭하여 회원가입 양식 페이지로 이동한다.<br />

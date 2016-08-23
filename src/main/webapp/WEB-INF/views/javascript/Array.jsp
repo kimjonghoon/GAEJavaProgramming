@@ -2,9 +2,9 @@
 
 <div id="last-modified">Last Modified : 2015.1.16</div>
 			
-<h1 class="heading1">배열</h1>
+<h1>배열</h1>
 
-<h4 class="heading4">배열 선언 방법</h4>
+<h4>배열 선언 방법</h4>
 자바스크립트의 배열은 배열 선언 시 배열 요소의 수를 정할 수 있고 프로그램 실행 중에 추가할 수도 있다.
 <pre class="prettyprint">
 var cities = ["Seoul", "New York"];
@@ -21,7 +21,7 @@ for (var idx in years) {
 }
 </pre>
 
-<h4 class="heading4">배열의 메서드</h4>
+<h4>배열의 메서드</h4>
 <ul>
 	<li>splice() : 배열에서 요소를 추가/제거한다. 제거되는 요소를 반환한다.</li>
 	<li>slice() : 배열의 부분으로 새로운 배열을 만들어 리턴한다.</li>
@@ -44,7 +44,7 @@ alert(s2);
 alert(words);
 </pre>
  
-<h4 class="heading4">for .. in 문 사용 예</h4>
+<h4>for .. in 문 사용 예</h4>
 <pre class="prettyprint">
 var lang = ["C", "JAVA", "javascript"];
 for (var idx in lang) {
@@ -71,7 +71,7 @@ unshift: 배열의 시작 위치에 요소를 추가한다.
 [예제 4-10]
 -->
 
-<h4 class="heading4">연관 배열 (일종의 맵)</h4>
+<h4>연관 배열 (일종의 맵)</h4>
 연관 배열에는 인덱스를 사용해서 요소에 접근할 수 없다.<br />
 연관 배열을 생성할 할 때는 Object를 일반적으로 사용한다.<br />
 새 요소가 추가될 때마다 배열은 자동으로 확장된다.<br />

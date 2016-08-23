@@ -37,7 +37,7 @@ javax.servlet.Servlet 인터페이스는 서블릿 아키텍처의 핵심이다.
 	<li>destroy() : 서비스 중지, 자원반납</li>
 </ul>
 
-<h4 class="heading4">init() 메소드</h4>
+<h4>init() 메소드</h4>
 서블릿 컨테이너는 서블릿 객체가 생성된 후, 단 한번 init() 메소드를 호출한다.<br />
 서블릿은 init() 메소드가 완료되어야 서비스할 수 있다. init() 메소드 완료 전의 요청은 블록킹된다.<br />
 init() 메소드가 호출될 때 ServletConfig 인터페이스 타입의 객체를 매개변수로 전달받는데, 
@@ -48,7 +48,7 @@ init() 메소드가 호출될 때 ServletConfig 인터페이스 타입의 객체
 void init(ServletConfig config) throws ServletException;
 </pre>
 
-<h4 class="heading4">service() 메소드</h4>
+<h4>service() 메소드</h4>
 클라이언트가 서블릿에 요청을 보낼때마다, 서블릿 컨테이너는 서블릿의 service() 메소드를 호출한다.<br />
 전달받은 ServletRequest 타입의 객체를 통해서 요청정보와 클라이언트가 전달한 데이터를 읽을 수 있으며,
 전달받은 ServletResponse 타입의 객체를 사용하여 클라이언트에게 응답할 수 있다.<br />
@@ -65,7 +65,7 @@ void service(ServletRequest req, ServletResponse res)
 </pre>
 
 
-<h4 class="heading4">destroy() 메소드</h4>
+<h4>destroy() 메소드</h4>
 서블릿이 더이상 서비스를 하지 말아야 할 때 서블릿 컨테이너에 의해 호출된다.<br />
 <!-- Called by the servlet container to indicate to a servlet that the servlet is being taken out of service. -->
 이 메소드는 프로그래머가 호출하는게 아니다.<br />
@@ -689,7 +689,7 @@ SimpleServlet 서블릿이 응답을 보내기까지 과정을 살펴보자.<br 
 </tr>
 </table>
 
-<h4 class="heading4">getParameter(String name)</h4>
+<h4>getParameter(String name)</h4>
 ServletRequest 의 getParameter(String name) 메소드는 사용자가 보낸 데이터를 얻기 위해 사용하는 가장 보편적인 메소드이다.<br />
 전달되는 데이터는 파라미터 이름과 값의 쌍으로 서버 요소에 전달된다.<br />
 |name|value| 이때 파라미터의 이름은 form 의 서브 엘리먼트(input, textarea, select)의 name 속성값과 같고 value 는 사용자가 입력한 값이다.<br /> 
@@ -698,7 +698,7 @@ getParameter(String name) 인자값으로 파라미터명(input, textarea, selec
 input 엘리먼트의 type 속성값이 radio(라디오 버튼)인 의 경우, name 속성값이 같은 라디오 버튼들은 그룹을 형성한다.<br />
 그룹내의 라디오 버튼은 그 중 하나만 선택된다.<br />
 
-<h4 class="heading4">getParameterValues(String name)</h4>
+<h4>getParameterValues(String name)</h4>
 클라이언트 사이드에서 하나의 파라미터명에 여러 개의 값이 전송할 때 서블릿에서 
 이 데이터를 수신하려면 HttpServletRequest 의 getParamterValues(String name) 메소드를 사용한다.<br />
 이 메소드의 리턴 타입은 사용자가 선택한 값들만으로 구성된 String 배열이다.<br />
@@ -711,7 +711,7 @@ input 엘리먼트의 type 속성값이 radio(라디오 버튼)인 의 경우, n
 select 엘리먼트는 일반적으로 값을 하나만 선택할 수 있지만 
 multiple 속성값이 "multiple" 인 select 엘리먼트는 Ctrl 이나 Shift 버튼을 이용해서 값을 여러개 선택할 수 있다.<br />
 
-<h4 class="heading4">getParamterNames()</h4>
+<h4>getParamterNames()</h4>
 클라이언트 사이드에서 전송되는 데이터가 어떤 파라미터에 담겨 오는지 알 수 있는 메소드가 HttpServletRequest 의 getParamterNames() 메소드이다.<br /> 
 getParameterNames() 메소드는 파라미터 이름을 접근할 수 있는 Enumeration<sup><a href="#comments">4</a></sup> 타입을 반환한다.<br />
 
@@ -858,7 +858,7 @@ submit 버튼을 누르면 이제까지와는 다른 전송 규약에 의해 서
 &lt;/html&gt;
 </pre>
 
-<h4 class="heading4">RegisterServlet 서블릿 작성 : 회원 등록처리</h4>
+<h4>RegisterServlet 서블릿 작성 : 회원 등록처리</h4>
 데이터를 처리하는 서블릿을 아래와 같이 작성한다.
 
 <em class="filename">RegisterServlet.java</em>
@@ -1372,7 +1372,7 @@ ServletContext 객체의 레퍼런스는 서블릿에서 getServletContext() 메
 메소드를 이용하여 구한다.<br /> 
 따로 예제를 만들지 않고 위에서 작성한 SimpleSerlvet 에 다음과 같이 코드를 적당한 위치에 추가한 후 다시 컴파일한다.<br />
 
-<h5 class="heading5">SimpleServlet 서블릿 편집</h5>
+<h5>SimpleServlet 서블릿 편집</h5>
 <pre class="prettyprint">
 ServletContext sc = getServletContext();
 String url = sc.getInitParameter("url");
@@ -1866,7 +1866,7 @@ public MultipartRequest(
 	FileRenamePolicy policy) throws IOException
 </pre>
 
-<h4 class="heading4">MultipartRequest 메소드</h4>
+<h4>MultipartRequest 메소드</h4>
 MultipartRequest 객체가 성공적으로 생성되었다면 이미 업로드는 성공한 것이다.<br />
 아래 메소드는 서버의 파일 시스템에 파일을 업로드 된 후 이용하는 
 MultipartRequest 멤버 메소드를 소개하고 있다.<br /> 
@@ -1914,7 +1914,7 @@ MultipartRequest 멤버 메소드를 소개하고 있다.<br />
 </tr>
 </table>
 
-<h4 class="heading4">MultipartRequest 예제</h4>
+<h4>MultipartRequest 예제</h4>
 사용자로 부터 업로드 파일을 선택하도록 유도하는 페이지를 ROOT 애플리케이션의 
 최상위 디렉토리의 서브 디렉토리 example 에 작성한다.
 

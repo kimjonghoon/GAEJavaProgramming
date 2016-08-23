@@ -55,7 +55,7 @@ $(document).ready(function() {
 <div id="navigator">Java - Lab</div>
 <div id="last-modified" class="floatstop">Last Modified : 2012.11.28</div>
 
-<h1 class="heading1">명함관리</h1>
+<h1>명함관리</h1>
 
 자바은행의 예제를 참고하여 명함관리를 작성해 본다.
 <em class="filename">Namecard.java</em>

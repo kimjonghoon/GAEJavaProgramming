@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2014.8.4</div>
 
-<h1 class="heading1">개발 준비</h1>
+<h1>개발 준비</h1>
 
-<h2 class="heading2">이클립스에서 Dynamic Web Project 선택해서 새로운 프로젝트 생성</h2>
+<h2>이클립스에서 Dynamic Web Project 선택해서 새로운 프로젝트 생성</h2>
 개발 시스템에 톰캣과 이클립스가  설치되어 있어야 하고, 이클립스에는 WTP플러그인이 설치되어 있어야 한다.
 이클립스 버전에 따라 WTP 설치가 쉽지 않을 수 있다. 
 이런 경우, WTP가 포함되어 있는 Eclipse IDE for Java EE Developers를 새로 설치하자.
@@ -11,7 +11,7 @@
 서블릿, JSP 장에서는 퍼스펙티브가 Java인 상태에서 Java Project를 선택하여 프로젝트를 생성했다.
  
  
-<h3 class="heading3">Dynamic Web Project 프로젝트 생성</h3>
+<h3>Dynamic Web Project 프로젝트 생성</h3>
 <img src="https://lh5.googleusercontent.com/-42TkBNkWZyw/Tuv7qhWj1eI/AAAAAAAAA4Y/4N0ZYhVmrx4/s590/new_dynamic_webProject.png" alt="1. New - Dynamic Web Project 를 선택한다." /><br />
 <img src="https://lh3.googleusercontent.com/-hbGGtu9EfEI/TutjP9fITlI/AAAAAAAAA4E/fbwQJmVZPv0/s523/dynamic_webproject.png" alt="2. Dynamic Web Proejct 를 이용해서 새로운 프로젝트를 생성한다. " /><br />
 
@@ -49,7 +49,7 @@ Default output 폴더가 <strong>JSPProject/WebContent/WEB-INF/classes</strong> 
 
 <img src="https://lh3.googleusercontent.com/-QYsQsax98ok/VYT2B2wxsvI/AAAAAAAAChY/-vFh-YbAOgA/s258/JSPProject-directory.png" alt="4. 이클립스에서 워크스페이스를 C:/www 로, 프로젝트명을 JSPProject 로 해서 프로젝트를 생성했을 때 디렉토리 구조를 보이는 화면" /><br />
 
-<h2 class="heading2">JSPProject 웹 애플리케이션을 톰캣에 등록</h2>
+<h2>JSPProject 웹 애플리케이션을 톰캣에 등록</h2>
 톰캣이 우리가 만든 JSPProject 웹 애플리케이션을 등록하고 서비스하도록 해야 한다.<br />
 아래와 같은 내용으로 파일명을 JSPProject.xml 으로 파일을 만들고, 
 {톰캣홈}/conf/Catalina/localhost 에 저장한 다음 톰캣을 재실행한다.<br />
@@ -73,7 +73,7 @@ JSPProject.xml 파일은
 JSPProject.xml 내용중에 docBase 의 값이 C:/www/JSPProject 가 아니라는 점에 조심해야 한다.<br />
 WEB-INF 바로 위 디렉토리가 도큐먼트베이스이다.<br />
 
-<h3 class="heading3">WEB-INF/web.xml</h3>
+<h3>WEB-INF/web.xml</h3>
 web.xml 은 웹 애플리케이션에 대한 설정파일이다.<br />
 이클립스에서 Dynamic Web Project 로 프로젝트를 생성했다면 web.xml 이 자동으로 만들어질 수 있다.<br />
 만일 만들어지지 않았다면 {톰캣홈}/webapps 에 있는 ROOT 애플리케이션의 web.xml 파일을 복사해서 JSPProject 의 WEB-INF 디렉토리에 붙여넣는다.<br />
@@ -110,7 +110,7 @@ web.xml 은 웹 애플리케이션에 대한 설정파일이다.<br />
 &lt;/web-app&gt;
 </pre>
 
-<h3 class="heading3">테스트</h3>
+<h3>테스트</h3>
 톰캣이 JSPProject 를 서비스하고 있는지 확인하자.<br />
 도큐먼트 베이스에 test.html 파일을 만든다.<br />
 아래 그림처럼 WebContent 를 선택한 상태에서 마우스 오른쪽 버튼을 클릭한 후
@@ -129,7 +129,7 @@ http://localhost:port/JSPProject/test.html를 방문해서 톰캣이 웹 애플�
 	redirectPort="8443" /&gt;
 </pre>
 
-<h2 class="heading2">JSP 페이지</h2>
+<h2>JSP 페이지</h2>
 구현하려는 프로젝트는 모델1 게시판이다.<br />
 모델1은 클라이언트가 직접 JSP를 요청한다.<br />
 그러므로 모델1에서는 주인공이 JSP 라고 할 수 있다.<br />

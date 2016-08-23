@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2016.4.7</div>
 
-<h1 class="heading1">if, switch, loop 문</h1>
+<h1>if, switch, loop 문</h1>
 
-<h3 class="heading3">if</h3>
+<h3>if</h3>
 
 <table class="table-in-article">
 <tr>
@@ -46,7 +46,7 @@ if (조건1) {
 </tr>
 </table>
 
-<h3 class="heading3">switch문</h3>
+<h3>switch문</h3>
 <table class="table-in-article">
 <tr>
 	<td class="table-in-article-td" style="width: 40%">
@@ -77,7 +77,7 @@ swicth (정수형 변수) {
 </tr>
 </table>
 
-<h3 class="heading3">for문</h3>
+<h3>for문</h3>
 <table class="table-in-article">
 <tr>
 	<td class="table-in-article-td" style="width: 40%">
@@ -98,7 +98,7 @@ for (초기식; 조건식; 증감식) {
 </tr>
 </table>
 
-<h3 class="heading3">while문</h3>
+<h3>while문</h3>
 <table class="table-in-article">
 <tr>
 	<td class="table-in-article-td" style="width: 40%">
@@ -116,7 +116,7 @@ while (조건식) {
 </tr>
 </table>
 
-<h3 class="heading3">do ~ while문</h3>
+<h3>do ~ while문</h3>
 <table class="table-in-article">
 <tr>
 	<td class="table-in-article-td" style="width: 40%">

@@ -1,13 +1,13 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.3.22</div>
 
-<h1 class="heading1">최종 프로젝트를 아파치와 연동시키기</h1>
+<h1>최종 프로젝트를 아파치와 연동시키기</h1>
 
 테스트 환경은 Ubuntu 14.04 LTS이다.<br />
 아파치와 톰캣은 이미 설치했다고 가정한다.<br />
 이미지, CSS, 자바스크립트와 같은 정적인 컨텐츠는 앞단에서 아파치가 처리하도록 설정하는 것이 목표이다.<br />
 
-<h2 class="heading2">아파치 가상 호스트 설정</h2>
+<h2>아파치 가상 호스트 설정</h2>
 디폴트 가상 호스트 설정 파일을 복사하여 새로운 가상 호스트 파일을 만든다.<br />
 <pre class="commandLine">
 cd /etc/apache2/sites-available/
@@ -100,20 +100,20 @@ http://gildong.hong 을 방문하여 테스트한다.<br />
 gildong.hong Working! 을 보면 가상 호스트 설정이 성공한 것이다.<br />
 
 
-<h2 class="heading2">아파치 톰캣 연동을 위한 작업</h2>
+<h2>아파치 톰캣 연동을 위한 작업</h2>
 
-<h3 class="heading3">mod_jk 설치</h3>
+<h3>mod_jk 설치</h3>
 
 <pre class="commandLine">sudo apt-get install libapache2-mod-jk</pre>
 
-<h3 class="heading3">server.xml 파일을 열고 아래 강조된 부분의 주석을 제거한다.</h3>
+<h3>server.xml 파일을 열고 아래 강조된 부분의 주석을 제거한다.</h3>
 <pre class="commandLine">sudo gedit /etc/tomcat7/server.xml</pre>
 
 <pre class="prettyprint">
 <strong>&lt;Connector port="8009" protocol="AJP/1.3" redirectPort="8443" /&gt;</strong>
 </pre>
 
-<h3 class="heading3">/etc/apache2/workers.properties 파일을 생성한다.</h3>
+<h3>/etc/apache2/workers.properties 파일을 생성한다.</h3>
 <pre class="commandLine">sudo gedit /etc/apache2/workers.properties</pre>
 
 <pre class="prettyprint">
@@ -123,14 +123,14 @@ worker.worker1.host=gildong.hong
 worker.worker1.port=8009</strong>
 </pre>
 
-<h3 class="heading3">jk.conf 파일에서 JkWorkersFile의 경로를 아래처럼 수정한다.</h3>
+<h3>jk.conf 파일에서 JkWorkersFile의 경로를 아래처럼 수정한다.</h3>
 <pre class="commandLine">sudo gedit /etc/apache2/mods-available/jk.conf</pre>
 
 <pre class="prettyprint">
 JkWorkersFile <strong>/etc/apache2/workers.properties</strong>
 </pre>
 
-<h3 class="heading3">server.xml에 새로운 Host를 추가한다.</h3>
+<h3>server.xml에 새로운 Host를 추가한다.</h3>
 <pre class="commandLine">sudo gedit /etc/tomcat7/server.xml</pre>
 
 <pre class="prettyprint">
@@ -149,10 +149,10 @@ appBase는 게시판 프로젝트의 도큐먼트베이스와 상관없는 적�
 
 /etc/tomcat7/Catalina/gildong.hong 디렉토리가 생성되는 것을 확인한다.<br />
 
-<h3 class="heading3">톰캣매니저 복사</h3>
+<h3>톰캣매니저 복사</h3>
 <pre class="commandLine">sudo cp /etc/tomcat7/Catalina/localhost/manager.xml /etc/tomcat7/Catalina/gildong.hong/</pre>
 
-<h3 class="heading3">ROOT.xml 생성</h3>
+<h3>ROOT.xml 생성</h3>
 <pre class="commandLine">sudo gedit /etc/tomcat7/Catalina/gildong.hong/ROOT.xml</pre>
 <pre class="prettyprint">
 <strong>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -162,7 +162,7 @@ appBase는 게시판 프로젝트의 도큐먼트베이스와 상관없는 적�
 &lt;/Context&gt;</strong>
 </pre>
 
-<h3 class="heading3">가상 호스트 파일인 gildong.hong.conf 편집</h3>
+<h3>가상 호스트 파일인 gildong.hong.conf 편집</h3>
 
 <pre class="commandLine">gksudo gedit /etc/apache2/sites-available/gildong.hong.conf</pre>
 gildong.hong.conf 의 &lt;/VirtualHost&gt; 바로 위에 다음을 추가한다.<br />
@@ -180,7 +180,7 @@ JkUnMount /js/* *
 &lt;/VirtualHost&gt;
 </pre>
 
-<h3 class="heading3">/etc/tomcat7/server.xml를 열고 아래 강조된 부분을 추가한다.</h3>
+<h3>/etc/tomcat7/server.xml를 열고 아래 강조된 부분을 추가한다.</h3>
 <pre class="prettyprint">
 &lt;Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
@@ -190,7 +190,7 @@ JkUnMount /js/* *
 &lt;Connector port="8009" protocol="AJP/1.3" redirectPort="8443" <strong>URIEncoding="UTF-8"</strong> /&gt;
 </pre>
 
-<h3 class="heading3">테스트</h3>
+<h3>테스트</h3>
 <pre class="commandLine">
 sudo service tomcat7 restart
 sudo service apache2 restart

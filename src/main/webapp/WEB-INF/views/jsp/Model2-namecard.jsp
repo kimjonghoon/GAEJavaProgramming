@@ -1,8 +1,8 @@
 <div id="last-modified" class="floatstop">Last Modified : 2014.6.30</div>
 
-<h1 class="heading1">모델2 명함관리</h1>
+<h1>모델2 명함관리</h1>
 
-<h2 class="heading2">테이블,시퀀스</h2>
+<h2>테이블,시퀀스</h2>
 <pre class="code">
 CREATE TABLE namecard (
     no  NUMBER,                       -- 고유번호
@@ -28,7 +28,7 @@ insert into namecard values (
 commit;	
 </pre>
 
-<h2 class="heading2">JSP 파일</h2>
+<h2>JSP 파일</h2>
 웹애플리케이션의 최상위 디렉토리(Document Base) 에서 card 라는 서브 디렉토리를 만들고 그곳에 아래 JSP 파일을 만든다.
  
 <em class="filename">list.jsp</em>
@@ -212,7 +212,7 @@ function del(no) {
 &lt;/html&gt;
 </pre>
 
-<h2 class="heading2">자바 빈즈</h2>
+<h2>자바 빈즈</h2>
 <em class="filename">Namecard.java</em>
 <pre class="code">
 package com.google.namecard;
@@ -575,7 +575,7 @@ public class NamecardDao {
 }
 </pre>
 
-<h2 class="heading2">액션</h2>
+<h2>액션</h2>
 
 <em class="filename">Action.java</em>
 <pre class="code">
@@ -798,7 +798,7 @@ public class NamecardModifyAction implements Action {
 
 </pre>
 
-<h2 class="heading2">VO</h2>
+<h2>VO</h2>
 
 <em class="filename">CardListVO.java</em>
 <pre class="code">
@@ -866,7 +866,7 @@ public class CardListVO {
 
 </pre>
 
-<h2 class="heading2">컨트롤러</h2>
+<h2>컨트롤러</h2>
 <em class="filename">HelloServlet.java</em>
 <pre class="code">
 package com.google.namecard;
@@ -962,7 +962,7 @@ public class HelloServlet extends HttpServlet {
 
 </pre>
 
-<h2 class="heading2">web.xml</h2>
+<h2>web.xml</h2>
 <em class="filename">web.xml</em>
 <pre class="code">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;

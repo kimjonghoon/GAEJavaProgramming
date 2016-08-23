@@ -56,7 +56,7 @@ $(document).ready(function() {
 <div id="navigator">Java - Lab</div>
 <div id="last-modified" class="floatstop">Last Modified : 2012.11.29</div>
 
-<h1 class="heading1">주소록 관리</h1>
+<h1>주소록 관리</h1>
 
 명함관리 예제를 참고하여 주소록 관리를 작성한다.
 <em class="filename">AddressBook.java</em>
@@ -436,7 +436,7 @@ public class AddressBookUI {
 	
 }
 </pre>
-<h3 class="heading3">테스트</h3>
+<h3>테스트</h3>
 www.gmail.com 에서 주소록을 내보내기로 google.csv 파일을 다운로드한다.<br />
 이 파일은 반드시 백업한다.<br />
 이 파일을 ADDRESS_FILE 이 가리키는 곳에 위치시킨다.<br />

@@ -1,7 +1,7 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.5.22</div>
 
-<h1 class="heading1">글쓰기에서의 빈 유효성 검사</h1>
+<h1>글쓰기에서의 빈 유효성 검사</h1>
 
 <em class="filename">Article.java</em>
 <pre class="prettyprint">

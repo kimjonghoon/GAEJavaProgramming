@@ -1,4 +1,4 @@
-<h1 class="heading1">게시판 - 파일 다운로드</h1>
+<h1>게시판 - 파일 다운로드</h1>
 
 <em class="filename">/WEB-INF/jsp/inc/download.jsp</em>
 <pre class="prettyprint">

@@ -1,15 +1,15 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.7.29</div>
 
-<h1 class="heading1">MySql을 사용하는 SpringBbs</h1>
+<h1>MySql을 사용하는 SpringBbs</h1>
 
-<h3 class="heading3">MySql 설치</h3>
+<h3>MySql 설치</h3>
 
 <pre class="shell-prompt">
 sudo apt-get install mysql-server mysql-client 
 </pre>
 
-<h3 class="heading3">사용자 생성</h3>
+<h3>사용자 생성</h3>
 
 <pre class="shell-prompt">
 mysql --user=root --password mysql
@@ -20,7 +20,7 @@ create user 'java'@'%' identified by 'school';
 grant all privileges on *.* to 'java'@'%';
 </pre>
 
-<h3 class="heading3">한글을 위한 MySql 설정</h3>
+<h3>한글을 위한 MySql 설정</h3>
 root 계정으로 접속한 상태에서 status 명령어를 실행한다.
  
 <pre class="shell-prompt">
@@ -93,7 +93,7 @@ UNIX socket:		/var/run/mysqld/mysqld.sock
 Uptime:			12 sec
 </pre>
 
-<h3 class="heading3">데이터베이스 생성</h3>
+<h3>데이터베이스 생성</h3>
 
 MySql 한글 설정을 한 후 데이터베이스를 생성한다.
 root 계정으로 다음과 같이 접속한다.
@@ -191,7 +191,7 @@ mysql --user=java --password javaschool
 source /home/kim/mysql-database.sql
 </pre>
 
-<h3 class="heading3">MySql용 JDBC 드라이버 복사</h3>
+<h3>MySql용 JDBC 드라이버 복사</h3>
 MySql용 jdbc 드라이버를 다음 링크에서 내려받는다.<br />
 <a href="http://dev.mysql.com/downloads/connector/j/">http://dev.mysql.com/downloads/connector/j/</a><br />
 압축을 풀고 다음 파일을 톰캣 라이브러리 폴더에 복사한다.<br />
@@ -202,7 +202,7 @@ sudo cp mysql-connector-java-5.1.36-bin.jar /usr/share/tomcat7/lib/
 
 
 
-<h3 class="heading3">소스</h3>
+<h3>소스</h3>
 기존 SpringBbs 폴더를 복사하여 적당한 곳에 붙여넣는다.<br />
 붙여넣은 후, 파일의 메뉴 중 숨긴 파일 보이기를 선택하고 복사하여 붙인 폴더에서 .git 폴더를 제거한다.<br />
 먼저 설정 파일을 수정한다.<br />
@@ -549,7 +549,7 @@ public List&lt;Article&gt; selectListOfArticles(
 		@Param("rowCount") Integer rowCount);	
 </pre>
 
-<h3 class="heading3">톰캣 컨텍스트 파일</h3>
+<h3>톰캣 컨텍스트 파일</h3>
 
 <pre class="shell-prompt">
 cd /etc/tomcat7/Catalina/localhost
@@ -580,7 +580,7 @@ sudo service tomcat7 restart
 
 http://localhost:8080/springBbsMysql에 방문하여 MySql용 스프링 MVC 게시판 애플리케이션이 동작하는지 확인한다.
 
-<h3 class="heading3">git</h3>
+<h3>git</h3>
 오라클용 스프링 게시판 애플리케이션이 없다면 다음 명령어로 프로젝트를 복제한다.
 
 <pre class="shell-prompt">

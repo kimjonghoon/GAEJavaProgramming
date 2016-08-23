@@ -1,5 +1,5 @@
 <%@ page isELIgnored="true" %>
-<h1 class="heading1">게시글 보기</h1>
+<h1>게시글 보기</h1>
 
 <em class="filename">/WEB-INF/jsp/bbs/view.jsp</em>
 <pre class="prettyprint">

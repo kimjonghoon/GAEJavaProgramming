@@ -1,12 +1,12 @@
 <div id="last-modified">Last Modified : 2015.7.14</div>
 
-<h1 class="heading1">우분투 개발환경 세팅</h1>
+<h1>우분투 개발환경 세팅</h1>
 
-<h2 class="heading2">Ubuntu 설치</h2>
+<h2>Ubuntu 설치</h2>
 <a href="http://www.ubuntu.com/download/desktop">http://www.ubuntu.com/download/desktop</a>에서
 15.04 버전을 내려받는다.<br />
 
-<h3 class="heading3">USB에 ISO 파일 만들기</h3>
+<h3>USB에 ISO 파일 만들기</h3>
 주의! 다음 과정은 USB 기존 데이타를 모두 제거한다.<br />
 USB를 꼽고 USB 디바이스를 확인한다.<br />
 
@@ -26,7 +26,7 @@ sudo dd if=<strong>filename.iso</strong> of=<strong>/dev/sdb</strong> bs=4M; syn
 주의! 한국어 - 한국어(101/104키 호환)를 선택하지 않도록 한다.<br />
 
 <!-- 
-<h3 class="heading3">한영키 설정</h3>
+<h3>한영키 설정</h3>
 <figure style="margin: 0;">
   <figcaption>우분투 시스템 설정 - 키보드 선택</figcaption>
   <img src="https://lh3.googleusercontent.com/-ChW275MHIGA/VZYsdNrPm6I/AAAAAAAACls/8L3Vfm3C5cU/s848/ubuntu-system-setting.png" alt="우분투 시스템 설정 선택" />
@@ -50,7 +50,7 @@ sudo dd if=<strong>filename.iso</strong> of=<strong>/dev/sdb</strong> bs=4M; syn
 -->
 
  
-<h2 class="heading2">Oracle 11g XE 설치</h2>
+<h2>Oracle 11g XE 설치</h2>
 다음 링크에서 참조했음.<br />
 <a href="http://meandmyubuntulinux.blogspot.kr/2012/05/installing-oracle-11g-r2-express.html">http://meandmyubuntulinux.blogspot.kr/2012/05/installing-oracle-11g-r2-express.html</a>
 <br />
@@ -221,7 +221,7 @@ sudo service oracle-xe start
 </pre>
 
 
-<h3 class="heading3">SCOTT 계정 만들기</h3>
+<h3>SCOTT 계정 만들기</h3>
 
 <pre class="shell-prompt">
 sqlplus sys as sysdba
@@ -238,14 +238,14 @@ Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
 SQL> <strong>@/u01/app/oracle/product/11.2.0/xe/rdbms/admin/utlsampl.sql</strong>
 </pre>
 
-<h2 class="heading2">JDK 설치</h2>
+<h2>JDK 설치</h2>
 <pre class="shell-prompt">
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer
 </pre>
 
-<h3 class="heading3">JDBC 테스트</h3>
+<h3>JDBC 테스트</h3>
 
 <script src="https://gist.github.com/kimjonghoon/ea49c337a11dfa5dd08c.js"></script>
 
@@ -258,7 +258,7 @@ java -classpath \
 .:/u01/app/oracle/product/11.2.0/xe/jdbc/lib/ojdbc6.jar GetEmp
 </pre>
 
-<h2 class="heading2">이클립스 설치</h2>
+<h2>이클립스 설치</h2>
 <a href="https://eclipse.org/downloads/">https://eclipse.org/downloads/</a>에서 
 Eclipse IDE for Java EE Developers를 내려받는다.<br />
 파일을 opt 디렉터리로 옮긴 후 압축을 푼다.<br />
@@ -269,7 +269,7 @@ cd /opt
 sudo tar -xvf eclipse-jee-mars-R-linux-gtk-x86_64.tar.gz
 </pre>
 
-<h3 class="heading3">eclipse.desktop 파일 생성</h3>
+<h3>eclipse.desktop 파일 생성</h3>
 
 /usr/share/applications/ 폴더에 eclipse.desktop 파일을 생성한다.
 
@@ -297,7 +297,7 @@ Name[en]=eclipse.desktop
 eclipse를 검색하여 실행한 후 런처에 고정한다.
 
 
-<h2 class="heading2">톰캣 설치</h2>
+<h2>톰캣 설치</h2>
 
 <pre class="shell-prompt">
 sudo apt-get install tomcat7 tomcat7-admin
@@ -307,9 +307,9 @@ sudo apt-get install tomcat7 tomcat7-admin
 http://localhost:8080으로 방문하여 톰캣이 실행중인지 확인한다.<br />
 It works !
 
-<h2 class="heading2">SpringBbs 설치</h2>
+<h2>SpringBbs 설치</h2>
 
-<h3 class="heading3">메이븐 설치</h3>
+<h3>메이븐 설치</h3>
 <a href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a>에서
 바이너리 파일을 내려받는다.<br />
 적당한 디렉터리에 압축을 풀고, 
@@ -336,7 +336,7 @@ source ~/.bashrc
 </pre>
 
 
-<h3 class="heading3">Git 설치</h3>
+<h3>Git 설치</h3>
 <pre class="shell-prompt">
 sudo apt-get install git
 </pre>
@@ -358,12 +358,12 @@ pom.xml과 이클립스를 동기화한다.<br />
 Package Explorer 뷰에서 프로젝트를 선택하고 마우스 오른쪽 버튼으로 컨텍스트 메뉴를 연다.<br />
 Maven - Update Project Configuration을 차례로 선택한다.<br />
 
-<h3 class="heading3">테이블</h3>
+<h3>테이블</h3>
 system 계정으로 접속해 다음 SQL문을 실행한다.<br />
 
 <script src="https://gist.github.com/kimjonghoon/4ad45823c45c1d60b15c.js"></script>
 
-<h3 class="heading3">디렉터리 수정</h3>
+<h3>디렉터리 수정</h3>
 이클립스 프로젝트 뷰에서 Resource의 log4j.xml파일을 열고
 로그 파일의 위치를 자신의 시스템에 맞게 수정한다.
 로그 파일 위치가 /home/kim/upload/SpringBbs.log라면 
@@ -372,7 +372,7 @@ net.java_school.commons.WebContants.java 파일을 열고
 업로드 디렉터리를 자신의 시스템에 맞게 수정한다.
 업로드 디렉터리는 기타에 읽기 쓰기 실행 권한 모두를 준다.
 
-<h3 class="heading3">컴파일</h3>
+<h3>컴파일</h3>
 시스템에 설치한 자바 버전을 확인한다.<br />
 
 <pre class="shell-prompt">
@@ -390,7 +390,7 @@ java -version
 mvn clean compile war:inplace
 </pre>
 
-<h3 class="heading3">톰캣 컨테스트 파일 생성</h3>
+<h3>톰캣 컨테스트 파일 생성</h3>
 <pre class="shell-prompt">
 cd /etc/tomcat7/Catalina/localhost
 sudo nano ROOT.xml
@@ -406,7 +406,7 @@ sudo nano ROOT.xml
 &lt;/Context&gt;
 </pre>
 
-<h3 class="heading3">오라클 JDBC 드라이버를 /usr/share/tomcat7/lib에 복사</h3>
+<h3>오라클 JDBC 드라이버를 /usr/share/tomcat7/lib에 복사</h3>
 <pre class="shell-prompt">
 cd /u01/app/oracle/product/11.2.0/xe/jdbc/lib
 sudo cp ojdbc6.jar /usr/share/tomcat7/lib/

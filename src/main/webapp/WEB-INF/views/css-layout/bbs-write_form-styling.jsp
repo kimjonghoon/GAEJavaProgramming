@@ -1,7 +1,7 @@
 <div id="last-modified">Last Modified : 2014.7.31</div>
-<h1 class="heading1">글쓰기, 회원가입</h1>
+<h1>글쓰기, 회원가입</h1>
 
-<h3 class="heading3">새 글쓰기 폼 디자인</h3>
+<h3>새 글쓰기 폼 디자인</h3>
 view.html 파일을 에디터에서 다른 이름으로 저장하기 메뉴를 사용하여 write_form.html 파일을 만든다.<br />
 write_form.html 파일에서 #content 엘리먼트의 내용을 아래 내용으로 바꾼다.
 
@@ -104,7 +104,7 @@ CSS 파일에 다음을 추가한다.
 [결과 화면]<br />
 <img alt="게시판 글쓰기 최종본 디자인 결과" src="https://lh3.googleusercontent.com/-LYICsBjoLZE/VYTPjz8pfYI/AAAAAAAAChI/rLeeDwyFIqY/s640/bbs-write-form-result2.png" />
 
-<h3 class="heading3">회원가입 폼 디자인</h3>
+<h3>회원가입 폼 디자인</h3>
 
 write_form.html 파일을 에디터에서 다른 이름으로 저장하기 메뉴를 이용하여 signUp.html 파일을 만든다.<br />
 signUp.html에서 #content안 코드를 아래 코드로 바꾼다.

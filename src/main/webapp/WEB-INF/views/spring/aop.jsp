@@ -1,7 +1,7 @@
 <%@ page isELIgnored="true" %>
 <div id="last-modified">Last Modified : 2015.6.5</div>
 
-<h1 class="heading1">Spring AOP</h1>
+<h1>Spring AOP</h1>
 
 pom.xml에 의존성을 추가한다.
 

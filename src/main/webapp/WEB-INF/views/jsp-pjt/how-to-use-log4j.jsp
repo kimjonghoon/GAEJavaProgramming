@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.8.4</div>
 
-<h1 class="heading1">로깅</h1>
+<h1>로깅</h1>
 
 프로젝트에 자카르타의 commons-logging을 사용하고, 로깅 구현체로 log4j를 사용하기로 한다.<br />
 <a href="http://commons.apache.org/proper/commons-logging/download_logging.cgi">http://commons.apache.org/proper/commons-logging/download_logging.cgi</a>
@@ -59,7 +59,7 @@ commons-logging.properties라는 파일을 아래 내용으로 만들고 WEB-INF
 org.apache.commons.logging.Log = org.apache.commons.logging.impl.Log4JLogger
 </pre>
 
-<h3 class="heading3">로깅 테스트</h3>
+<h3>로깅 테스트</h3>
 아래 예제는 웹 애플리케이션이 아닌 일반 자바 파일이다.<br />
 따라서 콘솔에 출력하는 로그 메시지를 톰캣의 로그 파일에서 찾으려 해서는 안 된다.<br />
 이클립스에서 테스트하면 Console 뷰에 로그가 출력된다.<br />

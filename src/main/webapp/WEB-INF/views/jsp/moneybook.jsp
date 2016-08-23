@@ -1,9 +1,9 @@
 <div id="last-modified">Last Modified : 2012.8.23</div>
 
 
-<h1 class="heading1">가계부</h1>
+<h1>가계부</h1>
 
-<h2 class="heading2">1. 테이블과 시퀀스를 작성</h2>
+<h2>1. 테이블과 시퀀스를 작성</h2>
 <pre class="prettyprint">
 create table moneybook (
     no  number,
@@ -21,7 +21,7 @@ nocache
 nocycle
 /
 </pre>
-<h2 class="heading2">2. 자바 빈즈 설계</h2>
+<h2>2. 자바 빈즈 설계</h2>
 <em class="filename">Moneybook.java</em>
 <pre class="prettyprint">
 package net.java_school.moneybook;
@@ -349,7 +349,7 @@ public class MoneybookDao {
 
 }
 </pre>
-<h2 class="heading2">3.JSP 작성</h2>
+<h2>3.JSP 작성</h2>
 <em class="filename">index.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"

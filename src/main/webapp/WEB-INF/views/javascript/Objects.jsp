@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2013.4.24</div>
 
-<h1 class="heading1">자바스크립트 객체</h1>
+<h1>자바스크립트 객체</h1>
 
-<h2 class="heading2">객체의 종류</h2>
+<h2>객체의 종류</h2>
 <ol>
 	<li>내장 객체</li>
 	<li>브라우저 객체</li>
@@ -10,10 +10,10 @@
 	<li>사용자 정의 객체</li>
 </ol>
 
-<h3 class="heading3">1. 내장 객체</h3>
+<h3>1. 내장 객체</h3>
 자바스크립트 객체는 Object 라는 객체에 기초한다.<br />
 
-<h4 class="heading4">Number</h4>
+<h4>Number</h4>
 기본 데이터형 숫자와 매칭된다.<br />
 
 <pre class="brush: js">
@@ -34,7 +34,7 @@ if (isNaN("이상한수") == true) {
 </pre>
 <input type="button" value="예제" onclick="location.href='examples/Number.html'" />
 
-<h4 class="heading4">String</h4>
+<h4>String</h4>
 
 <pre class="brush: js;">
 var name = new String("김태희");
@@ -61,7 +61,7 @@ alert(engName.toLowerCase());//자바와 같음
 </pre>
 <input type="button" value="예제" onclick="location.href='examples/String.html'" />
 
-<h4 class="heading4">RegExp</h4>
+<h4>RegExp</h4>
 RegExp 는 정규표현식 객체이다.
 / 와 / 로 표현된다. 
 주의할 점은 "/ 와 /" 이나 '/ 와 /' 가 아니라는 점.
@@ -132,7 +132,7 @@ document.writeln(retArr[0]);
 \다음에 일반문자가 오면 약속된 특수문자로 취급<br />
 \다음에 특수문자가 오면 문자 그 자체로 취급<br />
 
-<h5 class="heading5">예제 1</h5>
+<h5>예제 1</h5>
 <pre class="brush: js;">
 var regExp = /Java-*/gi;
 var testStr = "www.java-school.net is the best Java site to learn";
@@ -153,7 +153,7 @@ document.writeln(retArr[0]);
 </script>
 <br />
 
-<h5 class="heading5">예제 2</h5>
+<h5>예제 2</h5>
 \s 는 공백문자를 의미한다.<br />
 <pre class="brush: js;">
 var regExp = /\s\*/g;
@@ -170,7 +170,7 @@ var retStr = testStr.replace(regExp,'-');
 document.writeln(retStr);
 </script>
 <br />
-<h4 class="heading4">문제</h4>
+<h4>문제</h4>
 다음은 회원가입을 위한 폼을 제공하는 페이지의 한부분이다.<br />
 이름에 해당하는 파라미터의 값이 공백문자로만 이루어졌는지 검사하는 자바스크립트 코드를 
 작성한다.<br />
@@ -262,7 +262,7 @@ function check() {
 </tr>
 </table>
 
-<h3 class="heading3">|</h3>
+<h3>|</h3>
 | 는 "또는" 의미한다.<br />
 
 <pre class="code">
@@ -301,7 +301,7 @@ if (check) {
 }
 </script>
 
-<h2 class="heading2">Date 객체</h2>
+<h2>Date 객체</h2>
 Date 객체를 통해 날짜를 생성하고 년,월,일,초 등의 값에 접근할 수 있다.
 인자를 지정하지 않고 생성하면 시스템의 현재 날짜와 시간으로 초기화 된다.
 <pre class="brush: js;">
@@ -397,7 +397,7 @@ toUTCString
 getYear 에 대해서 firefox 와 IE 모두 테스트한다.
 -->
 
-<h2 class="heading2">Math</h2>
+<h2>Math</h2>
 <pre class="brush: js;">
 var random = Math.random();
 document.writeln(random);
@@ -410,7 +410,7 @@ var random = Math.random();
 document.writeln(random + "<br />");
 </script>
 
-<h2 class="heading2">배열</h2>
+<h2>배열</h2>
 
 배열 선언 방법
 <pre class="code">
@@ -542,7 +542,7 @@ Math.ceil(165.7);
 배열을 말한다.<br />
 그 외의 경우에는 객체 또는 연관 배열이라고 지칭한다.<br />
 
-<h2 class="heading2">함수</h2>
+<h2>함수</h2>
 자바스크립트에서 함수는 객체다.<br />
 함수를 변수나 배열에 배정할 수 있으며, 심지어는 다른 함수를 호출할 때 인자로 
 넘겨줄 수 있다.<br />
@@ -555,7 +555,7 @@ Math.ceil(165.7);
 자바스크립트 함수를 정의하는 방법은 다양한다.<br />
 여기서는 자주 쓰이는 선언적 함수만을 배워보자.<br />
 
-<h4 class="heading4">선언적 함수</h4>
+<h4>선언적 함수</h4>
 가장 널리 사용하는 함수의 종류는 선언적/정적인 형태이다.<br />
 function 키워드, 함수명, 인자 리스트, 함수 몸체로 구성된다.<br />
 
@@ -736,7 +736,7 @@ onfocus="핸들러함수"<br />
 onblur="핸들러함수"<br />
 와 같이 사용할 수 있다.<br />
 
-<h2 class="heading2">쿠키</h2>
+<h2>쿠키</h2>
 쿠키란 키-값 쌍의 작은 데이터로 파기 날짜, 도메인, 경로 정보를 담고 있다.<br />
 쿠키에 담긴 정보는 웹페이지 요청의 일부로 전송되기 때문에 <br />
 서버 사이드 스크립트와 클라이언트 사이드 스크립트에서 
@@ -807,7 +807,7 @@ if (cookies != null) {
 %&gt;
 </pre>
 
-<h2 class="heading2">문서 객체 모델</h2>
+<h2>문서 객체 모델</h2>
 웹브라우저는 도큐먼트 객체 모델로 웹 페이지를 관리한다.<br />
 DOM 을 자바스크립트를 이용하면 동적으로 변경할 수 있다.<br />
 <br />
@@ -1041,7 +1041,7 @@ div.removeChild(hdr);<br />
 </pre>
 예제 10-10 : 정적 페이지를 변경<br />
 
-<h2 class="heading2">동적 웹페이지와 CSS</h2>
+<h2>동적 웹페이지와 CSS</h2>
 되도록이면 CSS를 사용하지만 그래도 필요하면...<br />
 element 의 style 프로퍼티<br />
 

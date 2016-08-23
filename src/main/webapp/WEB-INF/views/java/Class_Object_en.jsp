@@ -1,25 +1,25 @@
 <div id="last-modified">Last Modified : 2015.11.11</div>
 
-<h1 class="heading1">Class and Object</h1>
+<h1>Class and Object</h1>
 
-<h2 class="heading2">Object</h2>
+<h2>Object</h2>
 Objects are key to understanding OOP.<br />
 There are many examples of real world objects, such as: 
 your cup, your computer, you.<br />
 Real world objects have 3 characteristics.<br />
 
-<h3 class="heading3">1. property</h3>
+<h3>1. property</h3>
 Each object has properties.<br />
 You have properties, e.g., name, mobile, waist circumference.<br />
 
-<h3 class="heading3">2. behavior</h3>
+<h3>2. behavior</h3>
 You have behaviors, e.g., run, walk.<br /> 
 
-<h3 class="heading3">3. one</h3>
+<h3>3. one</h3>
 Every object are only one.<br />
 You are only one.<br />
 
-<h3 class="heading3">Software objects</h3>
+<h3>Software objects</h3>
 
 Software objects are similar to real world objects.<br /><br />
 
@@ -29,11 +29,11 @@ Software objects are similar to real world objects.<br /><br />
 A property of the real world object is mapped to the data,<br />
 A behavior of the real world object is mapped to the function.<br />
 
-<h2 class="heading2">Class</h2>
+<h2>Class</h2>
 A class is the Casting mold from which individual objects are created.<br />
 To create an object in a Java program, you must first create a class.<br />
 
-<h3 class="heading3">How to make a class</h3>
+<h3>How to make a class</h3>
 Let's think that we have to develop a program for student attendance management.<br />
 We are able to extract the properties and behaviors of a student, as follows.<br />
 <br />
@@ -204,7 +204,7 @@ This statement call the absent() method of the student which variable tom refer 
 </dd>
 </dl>
 
-<h2 class="heading2">System.out.println()</h2>
+<h2>System.out.println()</h2>
 
 In the basic example of Java, in order to display the results, so that the frequent use of this method.<br />
 Below shows all of the uses for this method.<br />

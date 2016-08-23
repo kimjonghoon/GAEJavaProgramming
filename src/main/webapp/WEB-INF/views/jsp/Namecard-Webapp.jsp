@@ -1,20 +1,20 @@
 <div id="last-modified">Last Modified : 2014.7.9</div>
 
 			
-<h1 class="heading1">명함관리 웹 애플리케이션</h1>
+<h1>명함관리 웹 애플리케이션</h1>
 
 본격적으로 서블릿/JSP를 공부하기 전에 JDBC에서 예제로 다루었던 명함관리를 웹 애플리케이션으로 바꾸는 실습을 한다.
 이 실습믜 목표는 순수 자바 애플리케이션과 웹 애플리케이션의 차이에 대한 이해와 웹 환경 체험이다.<br />
 실습에 대한 자세한 설명은 이어지는 과정에서 빠짐없이 다룰 것이니 여기서는 목표에 충실하자.<br /> 
 
-<h2 class="heading2">명함관리를 웹 애플리케이션으로 바꾸기 위한 준비작업</h2>
+<h2>명함관리를 웹 애플리케이션으로 바꾸기 위한 준비작업</h2>
 
-<h3 class="heading3">1. 오라클 JDBC 드라이버를 {톰캣홈}/lib 에 복사한다.</h3>
+<h3>1. 오라클 JDBC 드라이버를 {톰캣홈}/lib 에 복사한다.</h3>
 JDBC 드라이버는 특별한 이유<sup><a href="#comments">1</a></sup> 때문에 웹 애플리케이션의 WEB-INF/lib 가 아닌 {톰캣홈}/lib 에 있어야 한다.<br />
 다시 말해, WEB-INF/lib 에는 JDBC 드라이버가 없어야 한다.<br />
 오라클 JDBC 드라이버인 ojdbc6.jar 파일을 {톰캣홈}/lib 에 복사한다.<br />
 
-<h3 class="heading3">2. 웹 애플리케이션을 위한 디렉토리 구조를 마련한다.</h3>
+<h3>2. 웹 애플리케이션을 위한 디렉토리 구조를 마련한다.</h3>
 C:/www/namecard 를 명함관리 웹 애플리케이션의 최상위 디렉토리로 정했다면<br />
 C:/www/namecard 아래 다음과 같은 서브 디렉토리를 만들어야 한다.<br />
 
@@ -24,7 +24,7 @@ C:/www/namecard 아래 다음과 같은 서브 디렉토리를 만들어야 한�
 	<li>WEB-INF/lib</li>
 </ul>
 
-<h3 class="heading3">3. web.xml 파일을 WEB-INF 디렉토리에 만든다.</h3>
+<h3>3. web.xml 파일을 WEB-INF 디렉토리에 만든다.</h3>
 {톰캣홈}/webapps/ROOT/WEB-INF/web.xml 을 복사하여 C:/www/namecard/WEB-INF/에 붙여넣는다.<br />
 복사한 후 C:/www/namecard/WEB-INF/web.xml 파일을 편집기로 열고
 web-app 엘리먼트 안에 있는 모든 내용을 지운다.<br />
@@ -58,7 +58,7 @@ web-app 엘리먼트 안에 있는 모든 내용을 지운다.<br />
 &lt;/web-app&gt;
 </pre>
 
-<h3 class="heading3">4. namecard.xml 컨텍스트 파일 만든다.</h3>
+<h3>4. namecard.xml 컨텍스트 파일 만든다.</h3>
 아래 내용대로 namecard.xml 파일을 만든 다음 {톰캣홈}/conf/Catalina/localhost 로 옮긴다.<br />
 
 <pre class="prettyprint">
@@ -69,9 +69,9 @@ web-app 엘리먼트 안에 있는 모든 내용을 지운다.<br />
 &lt;/Context&gt;
 </pre>
 
-<h2 class="heading2">명함관리 웹 애플리케이션 테스트</h2>
+<h2>명함관리 웹 애플리케이션 테스트</h2>
 
-<h3 class="heading3">첫번째 테스트</h3>
+<h3>첫번째 테스트</h3>
 <a href="/jdbc/Namecard">명함관리</a>에서 실습했던 명함관리 Namecard와 NamecardDao 바이트코드를 WEB-INF/classes 에 복사한다.<br />
 <pre>
 C:/www/namecard/WEB-INF/classes
@@ -137,7 +137,7 @@ for(int i = 0;i &lt; size;i++) {
 톰캣을 재실행한다.<br />
 http://localhost:8989/namecard/list.jsp를 방문하여 테스트한다.<br />
 
-<h3 class="heading3">두번째 테스트</h3>
+<h3>두번째 테스트</h3>
 첫번째 테스트처럼 자바 클래스 소스를 웹 애플리케이션이 위치한 곳과 전혀 상관없는 곳에 두어도 된다.<br />
 현재 소스는 "JDBC"에서 실습한 디렉토리(이를테면 C:/java/namecard/src)에 있을 것이다.<br />
 하지만 이 경우, 시간이 지나면 소스의 위치를 잊을 수 있으며 소스를 지우는 실수를 할 수 있다.<br />

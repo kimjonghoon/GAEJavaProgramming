@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.5.6</div>
 
-<h1 class="heading1">static</h1>
+<h1>static</h1>
 
 static 키워드는 클래스 차원의 변수와 메소드를 만들 때 사용한다.<br />
 정적(static)이란 클래스가 로딩될 때 결정된 메모리 공간이 변하지 않음을 의미한다.<br />
@@ -51,7 +51,7 @@ public class Student {
 }    
 </pre>
 
-<h3 class="heading3">정적 변수 예제</h3>
+<h3>정적 변수 예제</h3>
 <pre class="prettyprint">
 package net.java_school.user;
 
@@ -78,7 +78,7 @@ public class User {
 
 <pre class="screen">접속된 회원수 : 3</pre>
 
-<h3 class="heading3">싱글톤 패턴(Singleton pattern)</h3>
+<h3>싱글톤 패턴(Singleton pattern)</h3>
 객체가 단 하나만 만들어져야 할 때 사용하는 디자인 패턴이 싱글턴 패턴이다.<br />
 static 변수가 초기화되는 시점은 클래스가 로딩될 때이다.<br />
 <br />
@@ -112,7 +112,7 @@ CookTable 객체가 힙에 생성되고 참조값은 instance 에 할당된다.<
 하나뿐인 생성자의 접근자를 private 로 지정하여 외부에서 생성자를 호출 못하게 한다.<br />
 이렇게 구현하면 프로그램 종료시까지 CookTable 인스턴스는 하나로 유지된다.<br />
 
-<h3 class="heading3">초기화 순서</h3>
+<h3>초기화 순서</h3>
 변수는 메모리 공간이 할당될 때 초기화된다.<br />
 이때 초기값이 없다면 불린형은 false, 숫자형은 0 에 준하는 값으로, 레퍼런스 형은 null로 초기화된다.<br />
 static 이 아닌 멤버 변수가 초기화되는 시점은 객체가 생성될 때이다.<br />

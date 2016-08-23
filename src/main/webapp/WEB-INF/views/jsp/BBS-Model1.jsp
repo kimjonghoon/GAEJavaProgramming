@@ -1,7 +1,7 @@
 <div id="last-modified">Last Modified : 2014.7.15</div>
 
 
-<h1 class="heading1">모델1 게시판</h1>
+<h1>모델1 게시판</h1>
 
 모델1이란 JSP안의 자바 코드를 자바빈즈로 뽑아낸 코드를 말한다.<br />
 이전 코드는 JSP안에 JDBC 코드가 포함되어 있었다.<br />

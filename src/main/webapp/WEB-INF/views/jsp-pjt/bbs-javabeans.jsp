@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2015.6.20</div>
 
-<h1 class="heading1">자바빈즈 설계</h1>
+<h1>자바빈즈 설계</h1>
 
-<h2 class="heading2">회원</h2>
+<h2>회원</h2>
 회원 모듈에 필요한 자바빈즈를 먼저 만든다.<br />
 회원 한 명의 정보를 저장하기 위한 User.java, 회원 모듈에서 JDBC 관련 작업을 도맡아 할 UserDao.java, 
 회원 모듈과 관련된 모든 기능을 제공할 UserService.java가 필요하다.<br />
@@ -353,7 +353,7 @@ public class UserService {
 }
 </pre>
 
-<h2 class="heading2">게시판</h2>
+<h2>게시판</h2>
 
 게시판에서 사용할 자바빈즈를 만든다.<br />
 게시판 종류를 저장할 객체를 위한 Board.java,<br />

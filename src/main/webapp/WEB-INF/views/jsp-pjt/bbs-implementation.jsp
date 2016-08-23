@@ -1,8 +1,8 @@
 <div id="last-modified">Last Modified : 2015.6.20</div>
  
-<h1 class="heading1">구현</h1>
+<h1>구현</h1>
 
-<h3 class="heading3">회원 가입</h3>
+<h3>회원 가입</h3>
 회원 가입을 처리하는 signUp_proc.jsp 파일을 아래와 같이 완성한다.<br />
 
 <em class="filename">/bbs/signUp_proc.jsp</em>
@@ -42,7 +42,7 @@ http://localhost:port/JSPProject/users/signUp.jsp를 방문하여 테스트한�
 테스트가 성공했다면 signUp.jsp 의 텍스트 필드에서 value 속성을 제거한다.<br />
 참고로, 프로젝트를 간단하게 하도록 회원을 관리하는 관리자 페이지는 만들지 않는다.<br />
 
-<h3 class="heading3">로그인 처리</h3>
+<h3>로그인 처리</h3>
 로그인 처리 페이지인 login_proc.jsp를 완성한다.<br />
 
 <em class="filename">/users/login_proc.jsp</em>
@@ -105,7 +105,7 @@ public class WebContants {
 "user"는 세션에 담을 User 객체의 킷값이다.<br />
 login_proc.jsp를 열고 <strong>"user"</strong>를 <strong>WebContants.USER_KEY</strong>로 수정한다.<br />
 
-<h3 class="heading3">내 정보 수정 처리</h3>
+<h3>내 정보 수정 처리</h3>
 먼저 로그인하지 않음을 나타내는 다음 문자열을 WebContants.java에 추가한다.<br />
 <pre>public final static String NOT_LOGIN = "Not Login";</pre>
 
@@ -159,7 +159,7 @@ response.sendRedirect("changePasswd.jsp");
 </pre>
 
 
-<h3 class="heading3">비밀번호 변경 처리</h3>
+<h3>비밀번호 변경 처리</h3>
 
 <em class="filename">/users/changePasswd_proc.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -199,7 +199,7 @@ response.sendRedirect("changePasswd_confirm.jsp");
 </pre>
 
 
-<h3 class="heading3">탈퇴 처리</h3>
+<h3>탈퇴 처리</h3>
 WebContants.java에 다음 문자열 클래스 상수를 추가한다.<br />
 <pre>public final static String AUTHENTICATION_FAILED = "Authentication Failed";</pre>
 
@@ -247,7 +247,7 @@ response.sendRedirect("bye_confirm.jsp");
 %&gt;
 </pre>
 
-<h3 class="heading3">목록</h3>
+<h3>목록</h3>
 목록 /bbs/list.jsp를 구현한다.<br />
 내용이 많으니 나누어 진행한다.<br />
 전달된 파라미터를 받아서 목록에서 보일 데이터를 만든다.<br />
@@ -398,7 +398,7 @@ if (service.getNextPage() != 0) {
 list.jsp에 방문하여 게시판을 테스트한다.<br />
 아직 게시물이 없으므로 제대로 동작하는지는 알 수 없으나 에러 없이 화면이 보여야 한다.<br />
 
-<h3 class="heading3">글쓰기 폼</h3>
+<h3>글쓰기 폼</h3>
 /bbs/write_form.jsp를 구현한다.<br />
 
 <em class="filename">/bbs/write_form.jsp</em>
@@ -540,7 +540,7 @@ if (articleNo != null) {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">글쓰기 처리</h3>
+<h3>글쓰기 처리</h3>
 글쓰기 처리 페이지 write_proc.jsp를 구현한다.<br />
 파일 업로드를 위한 라이브러리가 필요하다.<br />
 <a href="http://www.servlets.com/cos/cos-26Dec2008.zip">http://www.servlets.com/cos/cos-26Dec2008.zip</a>를 
@@ -620,7 +620,7 @@ response.sendRedirect("list.jsp?boardCd=" + boardCd + "&amp;curPage=1");</strong
 %&gt;
 </pre>
 
-<h3 class="heading3">상세보기</h3>
+<h3>상세보기</h3>
 /bbs/view.jsp 파일을 아래를 참조하여 수정한다.<br />
 
 <em class="filename">/bbs/view.jsp</em>
@@ -1112,7 +1112,7 @@ if (service.getNextPage() != 0) {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">댓글 쓰기 처리</h3>
+<h3>댓글 쓰기 처리</h3>
 
 <em class="filename">/bbs/addComment_proc.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -1158,7 +1158,7 @@ response.sendRedirect("view.jsp?articleNo=" + articleNo + "&amp;boardCd=" + boar
 %&gt;
 </pre>
 
-<h3 class="heading3">댓글 수정 처리</h3>
+<h3>댓글 수정 처리</h3>
 <em class="filename">/bbs/updateComment_proc.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
@@ -1211,7 +1211,7 @@ response.sendRedirect("view.jsp?articleNo=" + articleNo + "&amp;boardCd=" + boar
 %&gt;
 </pre>
 
-<h3 class="heading3">댓글 삭제 처리</h3>
+<h3>댓글 삭제 처리</h3>
 
 <em class="filename">/bbs/deleteComment_proc.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -1257,7 +1257,7 @@ response.sendRedirect("view.jsp?articleNo=" + articleNo + "&amp;boardCd=" + boar
 %&gt;
 </pre>
 
-<h3 class="heading3">첨부 파일 삭제 처리</h3>
+<h3>첨부 파일 삭제 처리</h3>
 
 <em class="filename">/bbs/deleteAttachFile_proc.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -1303,7 +1303,7 @@ response.sendRedirect("view.jsp?articleNo=" + articleNo + "&amp;boardCd=" + boar
 %&gt;
 </pre>
 
-<h3 class="heading3">글 수정 폼</h3>
+<h3>글 수정 폼</h3>
 
 <em class="filename">/bbs/modify_form.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -1446,7 +1446,7 @@ function goView() {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">글 수정 처리</h3>
+<h3>글 수정 처리</h3>
 
 <em class="filename">/bbs/modify_proc.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -1527,7 +1527,7 @@ response.sendRedirect("view.jsp?articleNo=" + articleNo + "&amp;boardCd=" + boar
 %&gt;
 </pre>
 
-<h3 class="heading3">게시글 삭제 처리</h3>
+<h3>게시글 삭제 처리</h3>
 
 <em class="filename">/bbs/del_proc.jsp</em>
 <pre class="prettyprint">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"

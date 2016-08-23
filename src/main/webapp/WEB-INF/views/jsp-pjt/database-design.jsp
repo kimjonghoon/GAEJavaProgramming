@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.8.4</div>
 
-<h1 class="heading1">데이터베이스 설계</h1>
+<h1>데이터베이스 설계</h1>
 
 SYS 계정으로 접속한다.<br />
 
@@ -96,7 +96,7 @@ insert into board values ('data','자료실');
 commit;                                       
 </pre>
 
-<h2 class="heading2">DataSource 설정</h2>
+<h2>DataSource 설정</h2>
 
 {톰캣홈}/conf/Catalina/localhost/JSPProject.xml 을 열고 아래와 같이 추가한다.<br />
 
@@ -122,10 +122,10 @@ commit;
 &lt;/Context&gt;
 </pre>
 
-<h3 class="heading3">JDBC 드라이버 파일을 {톰캣홈}/lib에 복사</h3>
+<h3>JDBC 드라이버 파일을 {톰캣홈}/lib에 복사</h3>
 오라클 JDBC 드라이버 파일인 ojdbc6.jar 파일을 {톰캣홈}/lib에 복사한다.<br />
 
-<h3 class="heading3">테스트</h3>
+<h3>테스트</h3>
 test.jsp 파일을 도큐멘트베이스(C:/www/JSPProject/WebContent)에 생성한다.<br />
 
 <em class="filename">test.jsp</em>

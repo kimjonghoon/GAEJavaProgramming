@@ -1,10 +1,10 @@
 <div id="last-modified">Last Modified : 2016.4.9</div>
 
-<h1 class="heading1">연산자</h1>
+<h1>연산자</h1>
 
 연산자란 변수에 값을 대입하거나 변수와 변수의 값을 비교하거나 변수의 값을 변경하기 위해 사용하는 기호를 말한다.<br />
 
-<h3 class="heading3">산술 연산자</h3>
+<h3>산술 연산자</h3>
 
 <table class="table-in-article">
 <tr>
@@ -65,7 +65,7 @@
 </table>
 
 
-<h3 class="heading3">관계 연산자</h3>
+<h3>관계 연산자</h3>
 수치 데이터의 크기를 비교하는 연산자로 연산 결과는 불린값이다.
 
 <table class="table-in-article">
@@ -108,7 +108,7 @@
 
 
 
-<h3 class="heading3">논리 연산자</h3>
+<h3>논리 연산자</h3>
 
 연산에 참여하는 항은 조건식으로 연산 결과는 불린값이다.
 예를 들어 연도가 20세기에 속하려면 1901년 이상 2000이하여야 한다.
@@ -153,7 +153,7 @@ year &gt;= 1901 &amp;&amp; year &lt;= 2000<br />
 
 
 
-<h3 class="heading3">대입 연산자</h3>
+<h3>대입 연산자</h3>
 <table class="table-in-article">
 <tr>
 	<th class="table-in-article-th" style="width: 10%;">연산자</th>
@@ -192,7 +192,7 @@ year &gt;= 1901 &amp;&amp; year &lt;= 2000<br />
 </tr>
 </table>
 
-<h3 class="heading3">삼항 연산자</h3>
+<h3>삼항 연산자</h3>
 연산자에 참여하는 항이 3개라 삼항 연산자라고 한다.<br />
 모양은 <em>조건식 ? 값1 : 값2;</em> 형태이다.(조건식, 값1, 값2는 항)<br />
 if ~ else 문이 간단한 내용이고 한줄로 쓰고 싶을 때 대신 사용한다.
@@ -208,7 +208,7 @@ if ~ else 문이 간단한 내용이고 한줄로 쓰고 싶을 때 대신 사�
 </tr>
 </table>
 
-<h3 class="heading3">연결 연산자</h3>
+<h3>연결 연산자</h3>
 문자열을 연결하여 새로운 문자열을 만드는 연산자로, 모양은 산술 연산자의 + 와 같다.<br />
 
 <table class="table-in-article">

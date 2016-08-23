@@ -2,7 +2,7 @@
 
 <div id="last-modified">Last Modified : 2013.11.12</div>
 			
-<h1 class="heading1">Date</h1>
+<h1>Date</h1>
 
 Date 객체를 통해 날짜를 생성하고 년, 월, 일, 초 등의 값에 접근할 수 있다.<br />
 인자를 지정하지 않고 생성하면 시스템의 현재 날짜와 시간으로 초기화된다.<br />

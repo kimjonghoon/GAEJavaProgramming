@@ -1,7 +1,7 @@
 <div id="last-modified">Last Modified : 2014.9.11</div>
 
 			
-<h1 class="heading1">DataSource</h1>
+<h1>DataSource</h1>
 
 <a href="/jdbc/Connection-Pool">Connection Pooling</a>에서 DataSource 를 소개했었다.<br />
 썬은 DataSource 인터페이스를 만들었고 서블릿 스펙도 이에 맞게 변경했다.<br />
@@ -9,7 +9,7 @@
 DataSource 구현체는 대부분 JNDI API를 기반으로 하는 Java  Naming 서비스를 통해 사용한다.<br />
 지금부터 톰캣에서 DataSource 를 위한 설정을 소개한 후, 구현된 게시판을 데이터소스를 이용하는 코드로 수정한다.<br />
 
-<h2 class="heading2">톰캣에서 데이터소스 설정</h2>
+<h2>톰캣에서 데이터소스 설정</h2>
 탐색기로 사용하여 {톰캣홈}/conf/Catalina/localhost 로 이동한다.<br /> 
 ROOT.xml 파일을 열고 아래와 같이 설정을 추가한다.<br /> 
 

@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2015.6.6</div>
 	
-<h1 class="heading1">오라클 설치</h1>
+<h1>오라클 설치</h1>
 
 JDBC를 배우려면 데이터베이스를 설치해야 한다.<br />
 현재 현장에서 가장 많이 사용되는 오라클을 설치하도록 한다.<br />

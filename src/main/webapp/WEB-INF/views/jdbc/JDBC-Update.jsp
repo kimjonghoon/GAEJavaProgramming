@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2014.5.21</div>
 
-<h1 class="heading1">UPDATE</h1>
+<h1>UPDATE</h1>
 
 이번 강좌에서는 JDBC를 이용해서 UPDATE 문을 실행하는 예제를 구현한다.<br />
 UpdateNamecard.java 의 메인 메소드에 아래 JDBC 프로그래밍 순서를 참조하여 작성한다.<br />

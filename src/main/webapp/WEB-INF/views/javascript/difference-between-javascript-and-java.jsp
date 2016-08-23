@@ -2,7 +2,7 @@
 
 <div id="last-modified">Last Modified : 2014.8.13</div>
 
-<h1 class="heading1">자바와 다른 점</h1>
+<h1>자바와 다른 점</h1>
 
 자바를 바탕으로 자바와 다른 자바스크립트의 특징을 살펴본다.<br />
 
@@ -18,7 +18,7 @@
 
 1,2는 이미 보았다.<br />
 
-<h3 class="heading3">3. switch("문자열")</h3>
+<h3>3. switch("문자열")</h3>
 <pre class="prettyprint">
 var str = "A";
 
@@ -40,9 +40,9 @@ default:
 }
 </pre>
 
-<h3 class="heading3">4. 배열 만들기</h3>
+<h3>4. 배열 만들기</h3>
 
-<h4 class="heading4">[] 사용</h4>
+<h4>[] 사용</h4>
 []을 사용하여 만든 배열은 인덱스를 사용하여 요소에 접근할 수 있다.
 
 <pre class="prettyprint">
@@ -54,7 +54,7 @@ for (var i = 0; i &lt; arr.length; i++) {
 alert('배열요소 합:' + sum);
 </pre>
 
-<h4 class="heading4">Array 객체 이용</h4>
+<h4>Array 객체 이용</h4>
 Array 객체를 이용하여 만든 배열 역시 인덱스를 사용하여 요소에 접근할 수 있다.
 
 <pre class="prettyprint">
@@ -66,7 +66,7 @@ for (var i = 0; i &lt; arr.length; i++) {
 alert('배열요소 합:' + sum);
 </pre>
 
-<h3 class="heading3">5. 연관 배열</h3>
+<h3>5. 연관 배열</h3>
 연관 배열은 key:value의 배열로 {}를 사용하여 만든다.<br />
 연관 배열은 인덱스를 사용할 수 없다.<br />
 
@@ -78,7 +78,7 @@ alert(person.job);
 alert(person["job"]);
 </pre>
 
-<h3 class="heading3">6. for in 반복문으로 연관 배열의 모든 요소에 접근할 수 있다.</h3>
+<h3>6. for in 반복문으로 연관 배열의 모든 요소에 접근할 수 있다.</h3>
 <pre class="prettyprint">
 var person = {"name":"임꺽정", "job":"의적"};
 var result = "";
@@ -88,7 +88,7 @@ for(var property in person) {
 alert(result);
 </pre>
 
-<h3 class="heading3">7. 자바스크립트는 함수를 함수의 인자로 전달할 수 있다.</h3>
+<h3>7. 자바스크립트는 함수를 함수의 인자로 전달할 수 있다.</h3>
 
 <pre class="prettyprint">
 function x(a, y) {

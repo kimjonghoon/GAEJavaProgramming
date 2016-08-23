@@ -1,7 +1,7 @@
 <div id="last-modified">Last Modified : 2014.7.22</div>
 
 			
-<h1 class="heading1">모델 2</h1>
+<h1>모델 2</h1>
 
 모델 1은 JSP 에서 자바빈즈를 사용하는 구조를 말한다.<br />
 모델 2는 모델 1에 컨트롤러가 추가된다.<br />
@@ -70,7 +70,7 @@ http://localhost:8989/board/view.do,<br />
 http://localhost:8989/write_form.do,<br />
 http://localhost:8989/modify_form.do를 차례로 방문하여 테스트한다.<br />
 
-<h3 class="heading3">모델 만들기</h3>
+<h3>모델 만들기</h3>
 모델에 해당하는 클래스는 Action 으로 이름이 끝나도록 한다.<br />
 (Struts2 프레임워크가 모델에 이런 이름을 사용한다.)<br />
 게시판을 모델 2 게시판으로 수정할 것인데 여기서는 목록만 구현할 것이다.<br />
@@ -618,7 +618,7 @@ public class ControllerServlet extends HttpServlet {
 
 //TODO 를 작성한다.
 
-<h3 class="heading3">//TODO 1</h3>
+<h3>//TODO 1</h3>
 이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
@@ -630,7 +630,7 @@ view = "/model2/write_form.jsp";
 write_form.jsp 파일을 열고 코드에 .jsp 를 모두 .do 로 수정한다.<br />
 목록을 방문한 후 글쓰기를 클릭하여 글쓰기 화면으로 이동하는지 확인한다.<br />
 
-<h3 class="heading3">//TODO 2</h3>
+<h3>//TODO 2</h3>
 이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
@@ -674,7 +674,7 @@ public class WriteAction implements Action{
 테스트 후에 모델1에서 글쓰기 처리를 담당했던 write.jsp 파일은 필요없으니 /model2 디렉토리에서 삭제한다.<br />
 
 
-<h3 class="heading3">//TODO 3</h3>
+<h3>//TODO 3</h3>
 이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
@@ -758,7 +758,7 @@ function goDelete(no,curPage,keyword) {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">//TODO 4</h3>
+<h3>//TODO 4</h3>
 이부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
@@ -843,7 +843,7 @@ String keyword = request.getParameter("keyword");
 &lt;/html&gt;
 </pre>
 
-<h5 class="heading5">//TODO 5</h5>
+<h5>//TODO 5</h5>
 이 부분은 다음가 같이 구현한다.<br />
 
 <pre class="prettyprint">
@@ -894,7 +894,7 @@ public class ModifyAction implements Action {
 수정을 테스트한다.<br />
 이젠 모델1의 modify.jsp 파일을 필요없으니 삭제한다.<br />
 
-<h3 class="heading3">//TODO 6</h3>
+<h3>//TODO 6</h3>
 이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
@@ -933,7 +933,7 @@ public class DeleteAction implements Action {
 삭제를 테스트한다.<br />
 모델1의 del.jsp 파일은 필요없으니 삭제한다.<br />
 
-<h3 class="heading3">//TODO 7</h3>
+<h3>//TODO 7</h3>
 이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
@@ -1013,7 +1013,7 @@ String keyword = request.getParameter("keyword");
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3">//TODO 8</h3>
+<h3>//TODO 8</h3>
 이 부분은 아래처럼 구현될 것이다.<br />
 
 <pre class="prettyprint">

@@ -1,6 +1,6 @@
 <div id="last-modified">Last Modified : 2012.6.20</div>
 			
-<h1 class="heading1">명함관리</h1>
+<h1>명함관리</h1>
 
 JDBC 에서 실습했던 <a href="../jdbc/namecard.php">명함관리</a>를 웹 애플리케이션으로 변경한다.<br />
 여러분의 웹 애플리케이션의 최상위 디렉토리에 namecard 란 서브 디렉토리를 생성한다.<br />
