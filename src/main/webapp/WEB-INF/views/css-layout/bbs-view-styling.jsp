@@ -117,7 +117,7 @@ view.html 문서를 열고 #bbs 바로 아래 다음 코드를 추가한다.
 
 댓글 수정을 위한 자바스크립트 함수부터 만들어보자.<br />
 
-<img alt="댓글 수정 링크" src="https://lh3.googleusercontent.com/-IXhhRvu_r64/VYPpuvOQByI/AAAAAAAACgk/KL1la-qwyac/s59/bbs-view-modify-link.png" /><br />
+<img alt="댓글 수정 링크" src="https://lh3.googleusercontent.com/-IXhhRvu_r64/VYPpuvOQByI/AAAAAAAACgk/KL1la-qwyac/s59/bbs-view-modify-link.png" style="width: 60px;"/><br />
 
 <strong>수정</strong>을 클릭하면 textarea를 포함하는 수정 폼이 나타나야 한다.
 (이 수정 폼은 디폴트로 숨겨져 있다)<br />

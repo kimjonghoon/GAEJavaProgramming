@@ -1,8 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
 <div id="last-modified">Last Modified : 2014.7.28</div>
 
-<h1 class="heading1">서블릿</h1>
+<h1>서블릿</h1>
 
-<h2 class="heading2">서블릿이란?</h2>
+<h2>서블릿이란?</h2>
 게시판과 같은 프로그램을 만들기 위한 자바측 기술 중 하나이다.<br />
 java.sql 팩키지를 JDBC 라고 부르는 것처럼, javax.servlet 과 javax.servlet.http 팩키지를 서블릿이라 부른다.<br />
 <br />
@@ -14,16 +17,16 @@ java.sql 팩키지를 JDBC 라고 부르는 것처럼, javax.servlet 과 javax.s
 
 서블릿을 학습할 때는 javax.servlet, javax.servlet.http 팩키지에서 서블릿의 기본골격을 먼저 공략하는 것이 현명한 학습방법이다.<br />
 
-<h2 class="heading2">서블릿의 기본 골격</h2>
+<h2>서블릿의 기본 골격</h2>
 서블릿 기본골격은, 모든 서블릿이 구현해야 하는 javax.servlet.Servlet 인터페이스,
 대부분의 모든 서블릿이 상속해야 하는 javax.servlet.GenericServlet 추상클래스,
 HTTP 프로토콜을 사용하는 서블릿이 상속해야 하는 javax.servlet.http.HttpServlet 클래스로 구성된다.<br />
 아래 그림<sup>1</sup>처럼 GenericServlet 은 프로그래머가 사용하기 편하도록 javax.servlet.ServletConfig 인터페이스를 구현하고 있다.<br />
 
-<img src="images/servlets_framework.gif" alt="Servlets Framework" /><br />
+<img src="https://lh3.googleusercontent.com/0kb0Odyc6_vK-yUuRo57EQY4lorUnVlMdqvOIMSAKfm5cz1e5rX1gwWQ06kkA8ef5tPgc37P7r9NC8eSFlWiFOUW7GrLUdisVwxJD2_qHd2tvtr25RXg-YIZTqOIQ51nXIbvH73XFaWmWDLOgcwNiSBcq1HBUlVmzI0qzJEfHEqAUSmczooaVspnF8AxDi0F7aiUc2poEBj7B3jDKKOX0pm6IMe2LRj06KjUaB7kKK7mxct9ca-dC65hYA93lm97tKBMxKgaO2oE-li5eZEu4CCs23Kdy5V3GDXCV72dRhIVEpDbuFp2R2mjxHS5OptF1r3Gt1R9LLAzg71cU771ZVGc6Wx3CGlfvGaJ1hpujAQ34hM07xY4GXR29KRcndoS8yHFQmVlqtdTX7KQ6ipUZveUW9JWk5pqe6SIfUFDKMqYguDAf1rRmPBeLCir3P6NAy5WXRNJlOlb3ydX8uJddtcAfAWZ4Xuf3jmmG0suogG6KU_IFj4vX3iBQQ94khdk3aKAPCpJWNmelPLIpiX5VNQvnkkOdSOVnGrEMwQNzc4-iUfhAEn_C_ff79yt8UY3tdsEOHEO-N44adcmH6DOfa1kZQkclo8=w495-h921-no" alt="Servlets Framework" /><br />
 
 
-<h3 class="heading3">Servlet 인터페이스</h3>
+<h3>Servlet 인터페이스</h3>
 javax.servlet.Servlet 인터페이스는 서블릿 아키텍처의 핵심이다.<br />
 모든 서블릿은 Servlet 인터페이스를 구현해야 한다.<br />
 이 인터페이스에는 서블릿의 라이프 사이클 메소드가 선언되어 있다.<br />
@@ -76,7 +79,7 @@ void destroy();
 </pre>
 
 
-<h3 class="heading3">GenericServlet 추상클래스</h3>
+<h3>GenericServlet 추상클래스</h3>
 GenericServlet 클래스는 부모 클래스로 쓰인다.<br />
 GenericServlet 클래스는 편의를 위해서 ServletConfig 인터페이스를 구현한다.<br />
 GenericServlet 는 Servlet 인터페이스를 불완전하게 구현한다.<br />
@@ -151,7 +154,7 @@ this.getServletContext(); 를 쓰는 것이 편리할 것이다.<br />
 String driver = this.getInitParameter("driver"); 쓰는 것이 편리할 것이다.<br />
 
 
-<h3 class="heading3">HttpServlet 클래스</h3>
+<h3>HttpServlet 클래스</h3>
 HTTP 요청을 서비스하는 서블릿을 작성하는 경우에는 HttpServlet을 상속한다.<br />
 GenericServlet 추상 클래스를 상속하는 HttpServlet 클래스는 HTTP 프로토콜에 특화된 서블릿이다.<br />
 HttpServlet 클래스는 HTTP 요청을 처리하는 메소드를 제공한다.<br />
@@ -247,7 +250,7 @@ HttpServletResponse 인터페이스는 ServletResponse 인터페이스를 상속
 HttpServletRequest, HttpServletResponse 인터페이스를 구현한 클래스는 서블릿 컨테이너를 제작하는 벤더의 몫이다.<br />
 
 
-<h2 class="heading2">서블릿 클래스, 인터페이스 요약</h2>
+<h2>서블릿 클래스, 인터페이스 요약</h2>
 <dl class="api-summary">
 	<dt class="api-summary-dt bottom-line">Servlet 인터페이스</dt>
 	<dd class="api-summary-dd">init (config:ServletConfig)</dd>
@@ -442,7 +445,7 @@ HttpServletRequest, HttpServletResponse 인터페이스를 구현한 클래스�
 </dl>
 
 
-<h2 class="heading2">서블릿 예제</h2>
+<h2>서블릿 예제</h2>
 <strong>아래 나오는 모든 예제는 ROOT 애플리케이션에 작성한다.<br />
 <a href="Web-Application-Directory-Structure">웹 애플리케이션 작성 실습</a>에서
 도큐먼트베이스가 C:/www/myapp 인 애플리케이션을 ROOT 애플리케이션으로 변경했었다.<br />
@@ -535,7 +538,7 @@ javac -d C:/www/myapp/WEB-INF/classes SimpleServlet.java
 
 톰캣을 재시작한 후 http://localhost:8989<span class="emphasis">/simple</span>를 방문하여 테스트한다.<br />
 
-<h3 class="heading3">SimpleServlet.java 소스설명</h3>
+<h3>SimpleServlet.java 소스설명</h3>
 
 <pre class="prettyprint">
 public class SimpleServlet extends HttpServlet {
@@ -607,14 +610,14 @@ SimpleServlet 서블릿이 응답을 보내기까지 과정을 살펴보자.<br 
 따라서 doGet() 메소드가 호출된다.<br />
 
 
-<h2 class="heading2">사용자가 문자열 데이터를 서버측 자원으로 전송하는 방법과 이 데이터를 서버측 자원에서 수신하는 방법</h2>
+<h2>사용자가 문자열 데이터를 서버측 자원으로 전송하는 방법과 이 데이터를 서버측 자원에서 수신하는 방법</h2>
 웹 환경에서 동적인 요소라 하면 클라이언트가 보낸 문자열 데이터에 따라 응답을 하는 요소를 말한다.<br />
 웹에서 동적인 요소를 만들어야 하는 웹 프로그래머는 클라이언트가 웹 브라우저를 통해서 문자열 데이터를 보내는 방법과 
 그 데이터를 획득하는 방법을 알아야 한다.<br />
 클라이언트 사이드에서 서버 사이드로 문자열 데이터를 전송하기 위해서는 주로 form 엘리먼트와 form의 서브 엘리먼트를 사용한다.<sup><a href="#comments">3</a></sup><br />
 클라이언트가 서버로 전달하는 데이터는 form 엘리먼트의 action 속성의 값으로 지정된 자원으로 전달된다.<br />
 
-<h3 class="heading3">파라미터 전송 방법과 전송된 파라미터의 값 얻기</h3>
+<h3>파라미터 전송 방법과 전송된 파라미터의 값 얻기</h3>
 아래 표에서 폼 작성은 사용자로부터 값을 받기 위한 form 양식을 출력하기 위한 HTML 태그를 보여주고 있다.<br />
 표에서 서블릿은 form 양식에서 입력받은 파라미터 값을 서블릿에서 가져오기 위한 코드 조각이다.<br />
 
@@ -727,7 +730,7 @@ submit 버튼을 누르면 이제까지와는 다른 전송 규약에 의해 서
 </dd>
 </dl>
 
-<h3 class="heading3">문자열 전송 예제</h3>
+<h3>문자열 전송 예제</h3>
 회원가입 예제를 통해 사용자가 보낸 데이터를 서블릿에서 수신하는 방법을 실습한다.<br />
 이 예제의 목적은 사용자가 보낸 데이터를 확인하는 것이다.<br />
 회원가입 양식(form)을 보여주는 HTML 파일을 작성한다.<br />
@@ -923,7 +926,7 @@ RegisterServlet.java<br />
 톰캣을 재시작 한 후 http://localhost:8989/<span class="emphasis">example/join.html</span>를 방문하여 테스트한다.<br />
 ID와 좋아하는 운동외에 사용자가 입력하거나 선택한 값을 확인하는 소스를 서블릿에 추가하고 테스트해 보자.<br />
 
-<h2 class="heading2">RequestDispatcher 인터페이스</h2>
+<h2>RequestDispatcher 인터페이스</h2>
 RequestDispathcer는 include()와 forward() 2개의 메소드가 있다.<br />
 include()메소드는 요청을 다른 자원으로 보냈다가 다른 자원에서 실행이 끝나면 다시 요청을 가져오는 메소드로 
 요청을 전달한 자원의 결과를 포함해서 클라이언트에게 보내게 된다.<br />
@@ -1009,7 +1012,7 @@ ControllerServlet.java
 /example/join.html이 응답하는지 확인한다.<br />
 ControllerServlet에서 isRedirect를 true로 변경한 다음 다시 테스트한다.<br />
 
-<h3 class="heading3">소스 설명</h3>
+<h3>소스 설명</h3>
 web.xml에서 모든 action 확장자의 요청을 ControllerServlet 담당하도록 설정했다.<br />
 확장자가 action 인 요청이 오면 톰캣은 web.xml 의 매핑정보를 해석해서 ControllerServlet 서블릿의 +service(req:ServletRequest, res:ServletResponse)
 메소드를 호출한다.<br />
@@ -1037,7 +1040,7 @@ doPost()의 구현부에서 사용된 HttpServletRequest 의 다음 메소드를
 결과적으로 /example/join.action 을 요청한 사용자는 /example/join.html 의 응답을 받게 된다.<br />
 
 
-<h2 class="heading2">데이터베이스 연동</h2>
+<h2>데이터베이스 연동</h2>
 JDBC 메뉴에서 실습했던 오라클 JDBC 연동 테스트 파일인 GetEmp.java 를 서블릿으로 변환해보자.<br />
 이번 예제는 순수 자바 애플리케이션을 서블릿으로 바꾸는 예제인 것이다.<br />
 ROOT 애플리케이션의 /WEB-INF/src/example 디렉토리에 GetEmpServlet.java 파일을 생성한다.<br />
@@ -1202,7 +1205,7 @@ JDBC 드라이버 파일은 특별한 이유로 반드시 {톰캣홈}/lib 두어
 	<li>웹 애플리케이션이 성공적으로 로드되었는지 확인한다.</li>
 </ul>
 
-<h2 class="heading2">ServletConfig 초기화 파라미터를 이용하는 예제</h2>
+<h2>ServletConfig 초기화 파라미터를 이용하는 예제</h2>
 
 위 예제에서 서블릿의 메소드 구현부에서 JDBC 코드가 있었다.<br />
 이번 예제는 JDBC 설정을 ServletConfig 초기화 파라미터를 이용하도록 만든다.<br />
@@ -1348,7 +1351,7 @@ getInitParameter(String name) 메소드를 이용하면 얻어진다.
 톰캣을 재시작한 후에<br />
 http://localhost:8989<span class="emphasis">/initParam</span>을 방문하여 테스트한다.
 
-<h2 class="heading2">ServletContext 초기화 파라미터를 이용하는 예제</h2>
+<h2>ServletContext 초기화 파라미터를 이용하는 예제</h2>
 위에서 ServletConfig 의 초기화 파라미터는 해당 서블릿에서만 참조 할 수 있다.<br />
 ServletContext 초기화 파라미터는 웹 애플리케이션 내 모든 서블릿과 JSP에서 참조할 수 있다.<br />
 ServletContext 초기화 파라미터는 context-param 엘리먼트를 이용한다.<br />
@@ -1380,7 +1383,7 @@ out.println(url);
 http://localhost:8989/simple을 방문하여 테스트한다.<br />
 InitParamServlet 에서 url 을 이 ServletContext 초기화 파라미터를 이용해서 설정하도록 코드를 수정하고 테스트해 보자.<br /> 
 
-<h2 class="heading2">리슨너</h2>
+<h2>리슨너</h2>
 리슨너는 웹 애플리케이션의 이벤트에 실행된다.<br />
 웹 애플리케이션 이벤트는 서블릿 스펙 2.3 이후 등장했다.<br />
 웹 애플리케이션 이벤트는 다음과 같이 나뉜다.<br />
@@ -1614,7 +1617,7 @@ http://localhost:8989/simple를 방문한다.<br />
 다른 웹브라우저로 http://localhost:8989/simple를 방문한다.<br />
 톰캣 로그 파일에서 로그 메시지를 확인한다.<br />
  
-<h2 class="heading2">Filter</h2>
+<h2>Filter</h2>
 필터란 사용자의 요청이 서버 자원에 전달되기 전에 언제나 수행되어야 하는 코드 조각이 있을 때 사용한다.<br />
 필터는 web.xml 에서 선언과 매핑을 해야 한다.<br />
 web.xml 에 필터1 다음에 필터2 가 순서대로 선언되고 매핑되었다면<br />
@@ -1626,7 +1629,7 @@ web.xml 에 필터1 다음에 필터2 가 순서대로 선언되고 매핑되었
 포함하며, web.xml 에서 필터 관련 매핑 설정에서 URL 패턴에 부합하는 자원을 말한다.<br />
 필터 클래스를 작성하기 위해서는 javax.servlet.Filter 인터페이스를 구현해야 한다.<br />
 
-<h3 class="heading3">Filter 인터페이스</h3>
+<h3>Filter 인터페이스</h3>
 <ul>
 	<li>init (FilterConfig filterConfig) throws ServletException<br />
 	서블릿 컨테이너에 의해 호출되면 필터는 서비스 상태가 됨</li>
@@ -1645,7 +1648,7 @@ ServletRequest 와 ServletResponse 그리고 javax.servlet.FilterChain 객체를
 FilterChain의 doFilter 메소드 호출다음은 응답전에 호출되는 필터링 코드이다.<br />
 이와 같이 작동하는 이유가 궁금하면 아래 필터를 흉내낸 자바 순수 애플리케이션을 실행해 본다.<br />
 
-<h3 class="heading3">필터 매커니즘을 흉내낸 예제</h3>
+<h3>필터 매커니즘을 흉내낸 예제</h3>
 
 <em class="filename">ChainFilter.java</em>
 <pre class="prettyprint">
@@ -1752,7 +1755,7 @@ public class Tomcat {
 </strong>
 </pre>
 
-<h3 class="heading3">Filter 예제</h3>
+<h3>Filter 예제</h3>
 다음은 모든 요청에 대해 ServletRequest 의 setCharacterEncoding("UTF-8"); 가 먼저 수행되도록 하려 한다.<br /> 
 아래와 같이 CharsetFilter.java 파일을 작성한다.<br />
 
@@ -1825,23 +1828,23 @@ context-param 엘리먼트와 listener 엘리먼트 사이에 아래 코드가 �
 &lt;/filter-mapping&gt;
 </pre>
 
-<h3 class="heading3">테스트</h3>
+<h3>테스트</h3>
 위에서 실행했던 회원가입 예제의 RegisterServlet.java 소스에서<br />
 req.setCharacterEncoding( "UTF-8" );을 주석처리 한 후 RegisterServlet 서블릿을 재컴파일한다.<br />
 http://localhost:8989/example/join.jsp를 방문하여 아이디에 한글을 입력하고 좋아하는 운동을 
 선택한 후 전송을 클릭한다.<br /> 
 이때 RegisterServlet 이 사용자가 입력한 한글 아이디 값을 제대로 출력하는지 테스트한다.
 
-<h3 class="heading3">소스 설명</h3>
+<h3>소스 설명</h3>
 필터의 초기화 파라미터를 읽기 위해서는 FilterConfig의 getInitParameter()메소드나 getInitParameters()메소드를 이용한다.<br />
 filter-mapping엘리먼트를 이용해서 URL패턴이나 서블릿 이름으로 이들 자원에 앞서 필터링 작업을 수행할 필터를 정의한다.<br />
 필터는 배치 정의자에 나와 있는 순으로 FilterChain에 추가된다.<br />이때 서블릿 이름과 매핑된 필터는 URL 패턴에 매칭되는 필터 다음에 추가된다.<br /> 
 필터 클래스 코드내에서 FilterChain.doFilter() 메소드를 이용하면 FilterChain의 다음 아이템을 호출하게 된다.<br />
 
 
-<h2 class="heading2">파일 업로드</h2>
+<h2>파일 업로드</h2>
 
-<h3 class="heading3">MultipartRequest</h3>
+<h3>MultipartRequest</h3>
 
 MultipartRequest 팩키지는 파일 업로드에 널리 이용되고 있는 팩키지이다.<br />
 <a href="http://www.servlets.com/cos/index.html">http://www.servlets.com/cos/index.html</a>
@@ -2054,7 +2057,7 @@ public class UploadTest extends HttpServlet {
 	<li>웹 애플리케이션이 로드되었는지 확인한다.</li>
 </ol>
 
-<h3 class="heading3">commons-fileupload</h3>
+<h3>commons-fileupload</h3>
 <a href="http://commons.apache.org/proper/commons-fileupload/download_fileupload.cgi">http://commons.apache.org/proper/commons-fileupload/download_fileupload.cgi</a><br />
 <a href="http://commons.apache.org/proper/commons-io/download_io.cgi">http://commons.apache.org/proper/commons-io/download_io.cgi</a><br />
 에서 최신 바이너리 파일을 다운로드 한 후<br />
@@ -2174,14 +2177,14 @@ web.xml 파일을 열고 작성한 서블릿을 등록하고 매핑한다.
 중복된 파일을 업로드하면 cos.jar와는 달리 기존 파일을 덮어쓴다는 것을 확인한다.<br />
 업로드된 파일을 확인하는 예제는 JSP에서 다룬다.<br />
 
-<h2 class="heading2">쿠키</h2>
+<h2>쿠키</h2>
 HTTP 프로토콜은 상태를 유지할 수 없는 프로토콜이다.<br />
 쿠키는 HTTP 프로토콜의 특징상 각각의 웹 브라우저가 서버와의 통신에서 세션을 유지하지 
 못하는 것을 보완하기 위한 기술이다.<br />
 서버가 쿠키를 전송하면 웹 브라우저는 그 다음 요청마다 쿠키 값을 서버로 전달하여 
 사용자 정보를 유지할 수 있게 한다.<br />
 
-<h3 class="heading3">서버 -&gt; 웹 브라우저</h3>
+<h3>서버 -&gt; 웹 브라우저</h3>
 쿠키가 작동하려면 서버에서 쿠키값을 클라이언트로 전송해야 한다.<br />
 이것을 쿠키를 굽는다고 표현하는데 아래와 같은 정보가 서버로부터 웹 브라우저에 전달되고 
 웹 브라우저가 관리하는 폴더에 파일로 저장된다.
@@ -2190,7 +2193,7 @@ HTTP 프로토콜은 상태를 유지할 수 없는 프로토콜이다.<br />
 Set-Cookie : name = value ; expires = date ; path = path ; domain = domain ; secure
 </pre>
 
-<h3 class="heading3">웹 브라우저 -&gt; 서버</h3>
+<h3>웹 브라우저 -&gt; 서버</h3>
 쿠키가 웹브라우저에 셋팅되면, 웹브라우저는 쿠기를 전달해준 서버로 요청시마다 아래와 같은 문자열을 서버로 보낸다.
  
 <pre class="prettyprint">
@@ -2200,7 +2203,7 @@ Cookie ; name = value1 ; name2 = value2 ;
 쿠키 이름과 값에는 []()="/?@:; 와 같은 문자는 올 수 없다.<br />
 다음은 쿠키를 설정하는 절차이다.
 
-<h3 class="heading3">쿠키 설정 절차</h3>
+<h3>쿠키 설정 절차</h3>
 1) Cookie 객체를 만든다. Cookie(String name, String value)<br />
 2) 다음 메소드를 이용해 쿠키에 속성을 부여한다.<br />
 
@@ -2237,7 +2240,7 @@ Cookie ; name = value1 ; name2 = value2 ;
 
 3) 웹브라우저에 생성된 쿠키를 전송 : resp.addCookie(cookie);
 
-<h3 class="heading3">구워진 쿠키 이용</h3>
+<h3>구워진 쿠키 이용</h3>
 위에서 쿠키를 설정했다면 이제 서블릿에서 쿠키 이용하는 방법에 대해 알아본다.<br />
 
 <pre>
@@ -2300,7 +2303,7 @@ resp.addCookie(cookie);
 
 쿠키에 대한 실습은 <a href="JSP">JSP</a>에서 다룬다.<br />
 
-<h2 class="heading2">세션</h2>
+<h2>세션</h2>
 세션은 쿠키 기반 기술로 쿠키의 보안상 약점을 극복하기 위한 기술이다.<br />
 쿠키와 다른 점(즉, 보안상 개선된 점)은 웹브라우저는 서버가 정해준 세션ID 만을 쿠키값으로 
 저장한다는 것이다.<br />

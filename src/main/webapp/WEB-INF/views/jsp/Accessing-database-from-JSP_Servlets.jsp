@@ -1,6 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2014.7.15</div>
 
-<h1 class="heading1">데이터베이스 연동</h1>
+<h1>데이터베이스 연동</h1>
 <strong>아래 나오는 모든 예제를 이클립스를 사용하여 ROOT 애플리케이션에 작성한다.<br />
 이클립스 설정은 <a href="Namecard-Webapp.php#3rd-Test">명함관리 웹 애플리케이션의 3번째 테스트</a>를 참고한다.</strong>
 <br />
@@ -17,7 +19,7 @@
 JDBC 코드를 포함하는 JSP나 서블릿은 직관적인 이해에는 도움이 되지만 이해한 후 버려야 한다.<br />
 결론적으로 말하면, JDBC 관련 코드는 JSP 빈즈에 있어야 한다.<br />
 
-<h2 class="heading2">GetEmpServlet.java 서블릿</h2>
+<h2>GetEmpServlet.java 서블릿</h2>
 이전에 실습했던 GetEmpServlet 서블릿을 이클립스에서 연다.<br />
 아마도 컴파일 에러를 잔뜩 만나게 될 것이다.<br />
 서블릿 API를 ROOT 애플리케이션의 빌드 패스에 추가해야 한다.<br />
@@ -26,9 +28,9 @@ JDBC 코드를 포함하는 JSP나 서블릿은 직관적인 이해에는 도움
 왼쪽의 Add External JARs..버튼을 클릭하여 <br />
 서블릿 API를 {톰캣홈}/lib 에서 찾아 추가한다.<br />
 <br /> 
-<img src="images/Java_Build_Path-servlet-api.png" alt="서블릿API를 ROOT애플리케이션의 빌드패스에 추가한다." /><br />
+<img src="https://lh3.googleusercontent.com/LfjzoAb113QCQk9AqqcxY8hJWesV6w1iGr1ADWG1CYTC_1MezPKFpBqp5KPiQ4HEVznRM2RYBt9TAfUs43L4zRhIKRHmjXlgPryvjUF0ZlIhnewRkg8dsQ2oDMMqfO85Q15nbkRCJlmty5E0WTshV2WcMx9pb9fxFtqapyEgQfN48tJjZ0LTDVAdh9tiZHNO1tbNXkd16OBcu6-NCLkqOADzclE1AuPaXqiBG6gycOyfOriFRCjQ6i7YF2jRr30xqG-HYcdfzFotGPx5H_zUXNa-sY1e48dQHL8_i3CbUpy1UGVp5Atf8poCMQO8WQBaksdKaKJp2p4zOGdxLUBztpVn2lobVnofEIvBxLhBIhhI8z91AzOalH9Wk_aOFbuWDwzdTNhL1geqpK_Vb65FGyodA2E9Z38Zz_MKNxdrn0ZM50VAxIliYUtsvDZWMYZ_FGbTW9cBET6MtFvLyvlURodLfpfxKl4LNSwWKbCpyFtkstuaFdWPtvohW05dqP7Iiego9MZMQ9cRTWTD8msOerRtZw5tTHC0DTw_vVQCuWmd834gglb1IAnAMw8EozUP6lHsX-YXsRLpzzvRnQTh68p1KGOoNmg=w801-h470-no" alt="서블릿API를 ROOT애플리케이션의 빌드패스에 추가한다." /><br />
 
-<h3 class="heading3">JSP에서 데이터베이스 연동</h3>
+<h3>JSP에서 데이터베이스 연동</h3>
 이번에는 위의 서블릿을 JSP 로 바꾸는 예제이다.<br />
 getEmp1.jsp 파일을 ROOT 애플리케이션의 최상위 디렉토리에 만든다.<br />
 
@@ -126,13 +128,13 @@ JSP 에서도 서블릿의 init() 에 해당하는 메소드가 있다.<br />
 아래 링크에서 서블릿의 init()에 해당하는 JSP 메소드를 찾을 수 있다.<br />
 <a href="http://docs.oracle.com/javaee/7/api/javax/servlet/jsp/JspPage.html#jspInit()">http://docs.oracle.com/javaee/7/api/javax/servlet/jsp/JspPage.html#jspInit()</a>
 
-<h2 class="heading2">성능향상을 위한 커넥션풀링 기법 적용</h2>
+<h2>성능향상을 위한 커넥션풀링 기법 적용</h2>
 JDBC에서 Connection 객체를 획득하는 데에 시간이 많이 걸린다.<br />
 이에 대한 해결책으로 Connection Pooling 기법이 있는데, 이것은 
 Connection 을 미리 여러 개 만들어 저장해 두고 필요할 때마다 꺼내 쓰겠다는 아이디어를 
 구현한 것이다.<br />
 
-<h3 class="heading3">커넥션 풀링을 ROOT 애플리케이션에 적용하는 방법</h3>
+<h3>커넥션 풀링을 ROOT 애플리케이션에 적용하는 방법</h3>
 우리는 서블릿 예제에서 이미 커넥션풀링을 사용해 보았다.<br />
 다시 복습상 되돌아 보면 아래와 같은 작업을 했다.<br />
 
@@ -158,7 +160,7 @@ configFile = "C:/www/myapp/WEB-INF/"+poolName+".properties";
 이것이 우리가 사용할 사용자 정의 커넥션풀 관련 소스의 사용법이다.<br />
 서블릿 예제를 모두 실습했다면 위 과정을 다시 할 필요는 없겠다.<br />
 
-<h3 class="heading3">커넥션 풀링을 사용하는 JSP테스트</h3>
+<h3>커넥션 풀링을 사용하는 JSP테스트</h3>
 아래 코드에서 jsp:useBean 표준 액션을 사용하여 커넥션 풀링을 위한 
 OracleConnectionManager 객체의 레퍼런스를 획득한다.<br />
 이제 커넥션이 필요할 때마다 OracleConnectionManager 의 getConnection() 메소드를 호출하면 
@@ -245,7 +247,7 @@ try {
 &lt;/html&gt;
 </pre>
 
-<h2 class="heading2">사용자 정의 로그 파일 적용</h2>
+<h2>사용자 정의 로그 파일 적용</h2>
 이제까지 예제에서는 로그 메시지를 출력하기 위해서 System.out.println()이라는 
 자바의 표준 출력 메소드를 이용했다.<br />
 만일 여러분이 윈도우 시스템에서 톰캣을 인스톨러를 포함한 버전을 설치했고, 

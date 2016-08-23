@@ -1,7 +1,8 @@
-<%@ page isELIgnored="true" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2015.6.4</div>
 
-<h1 class="heading1">Spring JDBC</h1>
+<h1>Spring JDBC</h1>
 
 의존성을 추가한다.<br />
  
@@ -43,7 +44,7 @@ public class ShinhanBankDao <strong>extends NamedParameterJdbcDaoSupport</strong
 수정 전 메서드를 보여주고 이어서 메서드를 수정하도록 하겠다.
 
 <em class="filename">insertAccount</em>
-<pre class="code">
+<pre class="prettyprint">
 @Override
 public void insertAccount(String accountNo, String name, String kind) {
 	
@@ -87,7 +88,7 @@ public void insertAccount(String accountNo, String name, String kind) {
 </pre>
 
 <em class="filename">selectOneAccount</em>
-<pre class="code">
+<pre class="prettyprint">
 @Override
 public Account selectOneAccount(String accountNo) {
 	Connection con = null;
@@ -156,7 +157,7 @@ public Account selectOneAccount(String accountNo) {
 </pre>
 
 <em class="filename">selectAccountsByName</em>
-<pre class="code">
+<pre class="prettyprint">
 @Override
 public List&lt;Account&gt; selectAccountsByName(String name) {
 	Connection con = null;
@@ -232,7 +233,7 @@ protected class AccountRowMapper implements RowMapper&lt;Account&gt; {
 </pre>
 
 <em class="filename">selectAllAccounts</em>
-<pre class="code">
+<pre class="prettyprint">
 @Override
 public List&lt;Account&gt; selectAllAccounts() {
 	Connection con = null;
@@ -285,7 +286,7 @@ public List&lt;Account&gt; selectAllAccounts() {
 </pre>
 
 <em class="filename">deposit</em>
-<pre class="code">
+<pre class="prettyprint">
 @Override
 public void deposit(String accountNo, long amount) {
 	Connection con = null;
@@ -328,7 +329,7 @@ public void deposit(String accountNo, long amount) {
 </pre>
 
 <em class="filename">withdraw</em>
-<pre class="code">
+<pre class="prettyprint">
 @Override
 public void withdraw(String accountNo, long amount) {
 	Connection con = null;
@@ -370,7 +371,7 @@ public void withdraw(String accountNo, long amount) {
 </pre>
 
 <em class="filename">selectAllTransactions</em>
-<pre class="code">
+<pre class="prettyprint">
 @Override
 public List&lt;Transaction&gt; selectAllTransactions(String accountNo) {
 	Connection con = null;

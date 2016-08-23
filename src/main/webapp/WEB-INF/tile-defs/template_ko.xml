@@ -120,12 +120,11 @@
 		<put-attribute name="prev-title" value="자바의 특징" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
-	<definition name="java/Keyword_Indentifiers_Comment"
-		extends="defaultTemplate">
-		<put-attribute name="title" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="keywords" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="description" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Keyword_Indentifiers_Comment-content.jsp" />
+	<definition name="java/Keyword_Indentifiers_Comment" extends="defaultTemplate">
+		<put-attribute name="title" value="키워드, 식별자, 주석" />
+		<put-attribute name="keywords" value="Keyword,키워드,Indentifiers,식별자,Comment,주석" />
+		<put-attribute name="description" value="자바 언어의 키워드와 주석을 설명하고 식별자를 만드는 방법에 대해서도 설명한다." />
+		<put-attribute name="article" value="/WEB-INF/views/java/Keyword_Indentifiers_Comment.jsp" />
 		<put-attribute name="next-link" value="DataType_Casting" />
 		<put-attribute name="next-title" value="자료형과 형변환" />
 		<put-attribute name="prev-link" value="Class-Object" />
@@ -231,22 +230,21 @@
 		<put-attribute name="next-title" value="자바은행 분석/설계" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
-	<definition name="java/Javabank-Requirements-analysis"
-		extends="defaultTemplate">
+	<definition name="java/Javabank-Requirements-analysis" extends="defaultTemplate">
 		<put-attribute name="title" value="Java bank Requirements analysis" />
 		<put-attribute name="keywords" value="Java Bank Requirements analysis" />
 		<put-attribute name="description" value="This chapter discusses Requirements analysis of Java Bank Project" />
 		<put-attribute name="article" value="/WEB-INF/views/java/Javabank-Requirements-analysis.jsp" />
 		<put-attribute name="prev-link" value="Exception" />
-		<put-attribute name="prev-title" value="Exception" />
+		<put-attribute name="prev-title" value="예외" />
 		<put-attribute name="next-link" value="Javabank-Design" />
 		<put-attribute name="next-title" value="자바은행 구현" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Javabank-Design" extends="defaultTemplate">
-		<put-attribute name="title" value="Javabank Design" />
-		<put-attribute name="keywords" value="Javabank example,Java bank,Account.java,Bank.java,Transaction.java,BankUI.java" />
-		<put-attribute name="description" value="This chapter discusses Design of Java Bank Project" />
+		<put-attribute name="title" value="자바은행 구현" />
+		<put-attribute name="keywords" value="자바은행 예제,Account.java,Bank.java,Transaction.java,BankUI.java" />
+		<put-attribute name="description" value="자바은행 예제에 필요한 자바빈즈를 구현한다." />
 		<put-attribute name="article" value="/WEB-INF/views/java/Javabank-Design-content.jsp" />
 		<put-attribute name="prev-link" value="Javabank-Requirements-analysis" />
 		<put-attribute name="prev-title" value="자바은행 분석/설계" />
@@ -255,18 +253,17 @@
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Javabank-Apply-inheritance" extends="defaultTemplate">
-		<put-attribute name="title" value="Put inheritance concepts to pratical use in the javabank example" />
-		<put-attribute name="keywords" value="Javabank example,Transaction,Account,Bank,Inheritance" />
-		<put-attribute name="description" value="This chapter discusses How to put inheritance concepts to pratical use in the javabank example" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Javabank-Apply-Inheritance.jsp" />
+		<put-attribute name="title" value="자바은행 예제에 상속 적용" />
+		<put-attribute name="keywords" value="Javabank 예제,Transaction,Account,Bank,Inheritance" />
+		<put-attribute name="description" value="자바은행 예제에 상속 개념을 어떻게 적용하는지 실습을 통해 보여준다." />
+		<put-attribute name="article" value="/WEB-INF/views/java/Javabank-Apply-inheritance.jsp" />
 		<put-attribute name="prev-link" value="Javabank-Design" />
 		<put-attribute name="prev-title" value="자바은행 구현" />
 		<put-attribute name="next-link" value="Javabank-Apply-abstract-class" />
 		<put-attribute name="next-title" value="자바은행 - 추상클래스 적용" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
-	<definition name="java/Javabank-Apply-abstract-class"
-		extends="defaultTemplate">
+	<definition name="java/Javabank-Apply-abstract-class" extends="defaultTemplate">
 		<put-attribute name="title" value="Put abstract class to pratical use in the javabank example" />
 		<put-attribute name="keywords" value="Javabank example,Transaction,Account,Bank,abstract" />
 		<put-attribute name="description" value="This chapter discusses How to put abstract class to pratical use in the javabank example" />

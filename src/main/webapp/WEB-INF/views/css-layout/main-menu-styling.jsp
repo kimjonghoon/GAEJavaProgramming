@@ -6,11 +6,11 @@
 아니면 아래 이미지를 저장한다.<br />
 
 <div style="background: #ebebeb;">
-<img src="https://lh3.googleusercontent.com/-sQJqA2Xy4lA/VYJgApAGzmI/AAAAAAAACak/QoRi8LP0HEA/s4/bull_circle.gif" alt="bull_circle.gif" width="90px" />
-<img src="https://lh3.googleusercontent.com/-m7AxsWEEYkI/VYJgAlTWMsI/AAAAAAAACag/ZwSK80SF3yI/s11/attach.png" alt="attach.png" width="90px" />
-<img src="https://lh3.googleusercontent.com/-CLWzjmg1nE0/VYJgBW3wZ2I/AAAAAAAACao/3fAtEYhiSps/s117/ci.gif" alt="ci.gif" />
-<img src="https://lh3.googleusercontent.com/-HRhH9HImJr0/VYJgB_tbr-I/AAAAAAAACa4/r0w7FPaHy6w/s3/circle.gif" alt="circle.gif" width="90px" />
-<img src="https://lh3.googleusercontent.com/-oNgNdic_nwk/VYJgApt8m8I/AAAAAAAACa0/BbLVtFw5Ayk/s9/arrow.gif" alt="arrow.gif" width="90px" />
+<img src="https://lh3.googleusercontent.com/-sQJqA2Xy4lA/VYJgApAGzmI/AAAAAAAACak/QoRi8LP0HEA/s4/bull_circle.gif" alt="bull_circle.gif" style="width:120px;" />
+<img src="https://lh3.googleusercontent.com/-m7AxsWEEYkI/VYJgAlTWMsI/AAAAAAAACag/ZwSK80SF3yI/s11/attach.png" alt="attach.png" style="width:120px;" />
+<img src="https://lh3.googleusercontent.com/-CLWzjmg1nE0/VYJgBW3wZ2I/AAAAAAAACao/3fAtEYhiSps/s117/ci.gif" alt="ci.gif" style="width:120px;" />
+<img src="https://lh3.googleusercontent.com/-HRhH9HImJr0/VYJgB_tbr-I/AAAAAAAACa4/r0w7FPaHy6w/s3/circle.gif" alt="circle.gif" style="width:120px;" />
+<img src="https://lh3.googleusercontent.com/-oNgNdic_nwk/VYJgApt8m8I/AAAAAAAACa0/BbLVtFw5Ayk/s9/arrow.gif" alt="arrow.gif" style="width:120px;" />
 </div>
 
 최상위 디렉토리 바로 아래 images 폴더를 만들고 이미지를 넣는다.<br />

@@ -339,7 +339,7 @@ public Manager(String name, String position, String telephone, String manageJob)
 부모 클래스 타입의 레퍼런스에 자식 클래스 타입의 객체의 참조값을 할당할 수 있다는 점을 이용하면 이러한 다형성을 볼 수 있다.<br /> 
 
 <div style="float: left;width: 300px;">
-	<img src="images/polymorphism.gif" alt="다형성 그림" />
+	<img src="https://lh3.googleusercontent.com/oKmJj0Atf64TWGpKUAukcvyh_IYb1461FvUmL5OvgTkPJoNwS0BkUT17W3UNr5MpnBrGcgqJtAI7WA=w1680-h1050-no" alt="다형성 그림" />
 </div>
 <p style="line-height: 2em;padding-top: 10px;">
 니체 extends 철학자<br />

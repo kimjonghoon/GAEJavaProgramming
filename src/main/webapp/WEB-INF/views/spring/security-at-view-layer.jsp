@@ -1,11 +1,12 @@
-<%@ page isELIgnored="true" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2015.5.21</div>
 
-<h1 class="heading1">뷰 레벨 보안</h1>
+<h1>뷰 레벨 보안</h1>
 
 게시글 보기 화면에서 글 소유자가 아닌 사용자가 아래 그림에서 박스로 강조된 메뉴를 봐서는 안된다.<br />
 
-<img alt="Before applying spring security at viewlayer" src="images/before-applying-security-at-view-layer.png"><br />
+<img alt="Before applying spring security at viewlayer" src="https://lh3.googleusercontent.com/7mUut6ifJQxxowLptysUi0z7rSY9nrsPwQr5J_HkZosjh-lU1te9649PhrqwYkIkeu67pVv0iZB2PND5iz7w1ihp2XyboTnFykXFs2p4F1eztyI6dH_lhovjeHqhfZ4DDhqQ_XpvDSebDg7f0HzALTTYWR7z1VrTvFwKzMzAV5CTvcf4v5m9LMfgKyeDWdeDyAo4g_ijmp0NGRN8bKJ-KLVbrJzYM7bpf08us-RzZHrUHK6kBvC1Xv4EEGyDR3nEEgb1yZwDsz-o7kHgM2tV56VBpfkaY6AzNdBZQaKar5SruS4QxGd4NPF3go_D8z6SJjoOkmL_jSneQELDqVQnQ05JuypuoPlWpirJr4ahJWcqVsTY9sD7DdJOhcUupYIHoammu7VZUgiAejhVd0-AqwD0IDo5UoTj1Gd9QtDX5yTd2hd5YKUKp4zvTX6yaLANNUbLoFp9hpHg2e36qdqE5LDxsFpkSCqBlYRlqWfBVFbAIaJLXN809Sh8gonAGY0fG8ChUeU6y_5MyjXu28c3gHo0zIeXptsXwOp8Dwga2-n_KQJ5hvQhWLm9ioNAHWLRMADOC903y2zoljR6MqXQPOjPxqNzNOg=w590-h488-no"><br />
 <br />
 <em class="filename">/WEB-INF/jsp/bbs/view.jsp</em>
 <pre class="prettyprint">

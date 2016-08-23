@@ -1,7 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2014.7.9</div>
 
-
-<h1 class="heading1">Tomcat 설치</h1>
+<h1>Tomcat 설치</h1>
 
 <a href="http://tomcat.apache.org/download-70.cgi">http://tomcat.apache.org/download-70.cgi</a> 에서 Tomcat7를 다운로드한다.<br />
  윈도우 시스템이라면 아래 그림에서 강조된 부분을 선택하는 것이 좋다.<br />
@@ -42,7 +43,7 @@ ROOT 애플리케이션의 위치는 {톰캣홈}/webapps/ROOT 이다.<br />
 톰캣이 서비스를 시작하면 시스템 트레이 메뉴에 Tomcat Monitor 아이콘이 나타난다.<br />
 만약 고양이 화면을 보지 못했다면 이 Tomcat Monitor 을 이용해서 톰캣을 실행을 시도해 본다.<sup>3</sup><br />
 
-<img src="https://lh4.googleusercontent.com/-_0v2b0-c3zg/TjJI0vtTM2I/AAAAAAAAAVs/yf6fyEzDRkM/10.gif" alt="Tomcat Monitor Icon" />
+<img src="https://lh4.googleusercontent.com/-_0v2b0-c3zg/TjJI0vtTM2I/AAAAAAAAAVs/yf6fyEzDRkM/10.gif" alt="Tomcat Monitor Icon" style="width: 20px;" />
 
 <span id="comments">주석</span>
 <ol>

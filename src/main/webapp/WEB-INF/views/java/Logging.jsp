@@ -394,7 +394,7 @@ slf4j의 디폴트 레벨은 info이다.<br />
 로깅 레벨을 debug로 변경하려면 클래스 패스에 simplelogger.properties 파일을 아래 내용으로 만든다.<br />
 
 <em class="filename">simplelogger.properties</em>
-<pre class="code">
+<pre class="prettyprint">
 org.slf4j.simpleLogger.defaultLogLevel=DEBUG
 </pre>
 
@@ -480,7 +480,7 @@ public synchronized void withdraw(long amount) {
 로그 메시지를 콘솔이 아닌 파일에 출력하기를 원한다면 simplelogger.properties에 아래 설정을 추가한다.<br />
 
 <em class="filename">simplelogger.properties</em>
-<pre class="code">
+<pre class="prettyprint">
 <strong>org.slf4j.simpleLogger.logFile=C:/java/Bank/javaBank.log</strong>
 org.slf4j.simpleLogger.defaultLogLevel=DEBUG
 </pre>

@@ -943,17 +943,15 @@ public String toString() {
 먼저 BankUi.java를 열고 아래를 참고하여 코드를 수정한다.<br />
 
 <pre class="prettyprint">
-<strong>
-static final String ACCOUNT_FILE = "accounts.txt";
-static final String DATA_DIR = "./data/";
-</strong>
+<strong>static final String ACCOUNT_FILE = "accounts.txt";
+static final String DATA_DIR = "./data/";</strong>
+
 private Bank bank = <strong>new ShinhanBank();
 /*	
 public BankUi() throws Exception {
     loadBank();
 }
 */</strong>	
-
 
 public static void main(String[] args) throws Exception {
     BankUi ui = new BankUi();

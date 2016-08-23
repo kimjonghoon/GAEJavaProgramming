@@ -124,7 +124,7 @@
 		<put-attribute name="title" value="Keyword, Indentifiers, Comment" />
 		<put-attribute name="keywords" value="Keyword, Indentifiers, Comment" />
 		<put-attribute name="description" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Keyword_Indentifiers_Comment-content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Keyword_Indentifiers_Comment_en.jsp" />
 		<put-attribute name="next-link" value="DataType_Casting" />
 		<put-attribute name="next-title" value="Data Type and Type Casting" />
 		<put-attribute name="prev-link" value="Class-Object" />
@@ -156,10 +156,8 @@
 	<definition name="java/Operators" extends="defaultTemplate">
 		<put-attribute name="title" value="Operators" />
 		<put-attribute name="keywords" value="Operators" />
-		<put-attribute name="description"
-			value="This chapter describes that Java Operators" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Operators-content.jsp" />
+		<put-attribute name="description" value="This chapter describes that Java Operators" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Operators-content.jsp" />
 		<put-attribute name="prev-link" value="Arrays" />
 		<put-attribute name="prev-title" value="Java Arrays" />
 		<put-attribute name="next-link" value="if_switch_loops" />
@@ -168,12 +166,9 @@
 	</definition>
 	<definition name="java/if_switch_loops" extends="defaultTemplate">
 		<put-attribute name="title" value="if, switch, loops" />
-		<put-attribute name="keywords"
-			value="Operators,if,while,do ~ while,for,switch,case,break,default,continue,return" />
-		<put-attribute name="description"
-			value="This chapter describes that if, switch, loop statements" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/if_switch_loops-content.jsp" />
+		<put-attribute name="keywords" value="Operators,if,while,do ~ while,for,switch,case,break,default,continue,return" />
+		<put-attribute name="description" value="This chapter describes that if, switch, loop statements" />
+		<put-attribute name="article" value="/WEB-INF/views/java/if_switch_loops-content.jsp" />
 		<put-attribute name="prev-link" value="Operators" />
 		<put-attribute name="prev-title" value="Operators" />
 		<put-attribute name="next-link" value="Package_Modifiers" />
@@ -183,10 +178,8 @@
 	<definition name="java/Package_Modifiers" extends="defaultTemplate">
 		<put-attribute name="title" value="Package and Modifiers" />
 		<put-attribute name="keywords" value="package and modifiers" />
-		<put-attribute name="description"
-			value="This chapter describes that package and access modifiers" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Package_Modifiers.jsp" />
+		<put-attribute name="description" value="This chapter describes that package and access modifiers" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Package_Modifiers.jsp" />
 		<put-attribute name="prev-link" value="if_switch_loops" />
 		<put-attribute name="prev-title" value="if, switch, loops" />
 		<put-attribute name="next-link" value="Inheritance" />
@@ -195,10 +188,8 @@
 	</definition>
 	<definition name="java/Inheritance" extends="defaultTemplate">
 		<put-attribute name="title" value="Inheritance" />
-		<put-attribute name="keywords"
-			value="OOP,Inheritance,super class,sub class,method overriding,constructor,this,super,Polymorphism,method overloading,final,abstract class,interface,implements" />
-		<put-attribute name="description"
-			value="This chapter describes that Java Inheritance and interface" />
+		<put-attribute name="keywords" value="OOP,Inheritance,super class,sub class,method overriding,constructor,this,super,Polymorphism,method overloading,final,abstract class,interface,implements" />
+		<put-attribute name="description" value="This chapter describes that Java Inheritance and interface" />
 		<put-attribute name="article" value="/WEB-INF/views/java/Inheritance.jsp" />
 		<put-attribute name="prev-link" value="Package_Modifiers" />
 		<put-attribute name="prev-title" value="Package and Modifiers" />
@@ -208,10 +199,8 @@
 	</definition>
 	<definition name="java/Static" extends="defaultTemplate">
 		<put-attribute name="title" value="static" />
-		<put-attribute name="keywords"
-			value="static,Class Loader,Singleton Pattern,Java order of Initialization" />
-		<put-attribute name="description"
-			value="This chapter describes that Java static keyword and order of initialization" />
+		<put-attribute name="keywords" value="static,Class Loader,Singleton Pattern,Java order of Initialization" />
+		<put-attribute name="description" value="This chapter describes that Java static keyword and order of initialization" />
 		<put-attribute name="article" value="/WEB-INF/views/java/Static.jsp" />
 		<put-attribute name="prev-link" value="Inheritance" />
 		<put-attribute name="prev-title" value="Inheritance" />
@@ -221,10 +210,8 @@
 	</definition>
 	<definition name="java/Collection" extends="defaultTemplate">
 		<put-attribute name="title" value="Collection" />
-		<put-attribute name="keywords"
-			value="Java Collection,List,Set,SortedSet,Map,SortedMap,HashSet,TreeSet,Generic,ArrayList,LinkedList,Vector,Java Properties,Enumeration,hasMoreElements(),nextElement(),Iterator,hasNext(),next(),remove(),Wrapper Class,Boolean,Byte,Character,Short,Integer,Long,Float,Double" />
-		<put-attribute name="description"
-			value="This chapter describes that Java Collection and Wrapper Classes" />
+		<put-attribute name="keywords" value="Java Collection,List,Set,SortedSet,Map,SortedMap,HashSet,TreeSet,Generic,ArrayList,LinkedList,Vector,Java Properties,Enumeration,hasMoreElements(),nextElement(),Iterator,hasNext(),next(),remove(),Wrapper Class,Boolean,Byte,Character,Short,Integer,Long,Float,Double" />
+		<put-attribute name="description" value="This chapter describes that Java Collection and Wrapper Classes" />
 		<put-attribute name="article" value="/WEB-INF/views/java/Collection.jsp" />
 		<put-attribute name="prev-link" value="Static" />
 		<put-attribute name="prev-title" value="static" />
@@ -234,10 +221,8 @@
 	</definition>
 	<definition name="java/Exception" extends="defaultTemplate">
 		<put-attribute name="title" value="Exception" />
-		<put-attribute name="keywords"
-			value="Exception,try catch finally,Exception Handling Mechanisms in Java	,The exception hierarchy in Java,RuntimeException,IOException,ArithmeticException,NullPointerException,IndexOutOfBoundException,EOFException,FileNotFoundException,NegativeArraySizeException,ArrayIndexOutOfBoundException,throws,throw,Java Custom Exception" />
-		<put-attribute name="description"
-			value="This chapter describes that Java Exception" />
+		<put-attribute name="keywords" value="Exception,try catch finally,Exception Handling Mechanisms in Java	,The exception hierarchy in Java,RuntimeException,IOException,ArithmeticException,NullPointerException,IndexOutOfBoundException,EOFException,FileNotFoundException,NegativeArraySizeException,ArrayIndexOutOfBoundException,throws,throw,Java Custom Exception" />
+		<put-attribute name="description" value="This chapter describes that Java Exception" />
 		<put-attribute name="article" value="/WEB-INF/views/java/Exception.jsp" />
 		<put-attribute name="prev-link" value="Collection" />
 		<put-attribute name="prev-title" value="Collection" />
@@ -245,14 +230,11 @@
 		<put-attribute name="next-title" value="Java bank Requirements analysis" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
 	</definition>
-	<definition name="java/Javabank-Requirements-analysis"
-		extends="defaultTemplate">
+	<definition name="java/Javabank-Requirements-analysis" extends="defaultTemplate">
 		<put-attribute name="title" value="Java bank Requirements analysis" />
 		<put-attribute name="keywords" value="Java Bank Requirements analysis" />
-		<put-attribute name="description"
-			value="This chapter discusses Requirements analysis of Java Bank Project" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Javabank-Requirements-analysis.jsp" />
+		<put-attribute name="description" value="This chapter discusses Requirements analysis of Java Bank Project" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Javabank-Requirements-analysis.jsp" />
 		<put-attribute name="prev-link" value="Exception" />
 		<put-attribute name="prev-title" value="Exception" />
 		<put-attribute name="next-link" value="Javabank-Design" />
@@ -261,28 +243,20 @@
 	</definition>
 	<definition name="java/Javabank-Design" extends="defaultTemplate">
 		<put-attribute name="title" value="Javabank Design" />
-		<put-attribute name="keywords"
-			value="Javabank example,Java bank,Account.java,Bank.java,Transaction.java,BankUI.java" />
-		<put-attribute name="description"
-			value="This chapter discusses Design of Java Bank Project" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Javabank-Design-content.jsp" />
+		<put-attribute name="keywords" value="Javabank example,Java bank,Account.java,Bank.java,Transaction.java,BankUI.java" />
+		<put-attribute name="description" value="This chapter discusses Design of Java Bank Project" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Javabank-Design-content.jsp" />
 		<put-attribute name="prev-link" value="Javabank-Requirements-analysis" />
 		<put-attribute name="prev-title" value="Java bank Requirements analysis" />
 		<put-attribute name="next-link" value="Javabank-Apply-inheritance" />
-		<put-attribute name="next-title"
-			value="Put inheritance concepts to pratical use in the javabank example" />
+		<put-attribute name="next-title" value="Put inheritance concepts to pratical use in the javabank example" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
 	</definition>
 	<definition name="java/Javabank-Apply-inheritance" extends="defaultTemplate">
-		<put-attribute name="title"
-			value="Put inheritance concepts to pratical use in the javabank example" />
-		<put-attribute name="keywords"
-			value="Javabank example,Transaction,Account,Bank,Inheritance" />
-		<put-attribute name="description"
-			value="This chapter discusses How to put inheritance concepts to pratical use in the javabank example" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/java/Javabank-Apply-Inheritance.jsp" />
+		<put-attribute name="title" value="Put inheritance concepts to pratical use in the javabank example" />
+		<put-attribute name="keywords" value="Javabank example,Transaction,Account,Bank,Inheritance" />
+		<put-attribute name="description" value="This chapter discusses How to put inheritance concepts to pratical use in the javabank example" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Javabank-Apply-inheritance.jsp" />
 		<put-attribute name="prev-link" value="Javabank-Design" />
 		<put-attribute name="prev-title" value="Javabank Design" />
 		<put-attribute name="next-link" value="Javabank-Apply-abstract-class" />
@@ -1443,19 +1417,16 @@
 		<put-attribute name="sidebar"
 			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
-	<definition name="javascript/javascript-form-validation"
-		extends="defaultTemplate">
+	<definition name="javascript/javascript-form-validation" extends="defaultTemplate">
 		<put-attribute name="title" value="Form Validation with JavaScript" />
 		<put-attribute name="keywords" value="javascript,form validation" />
 		<put-attribute name="description" value="form validation with javascript" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/javascript/javascript-form-validation.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/javascript/javascript-form-validation.jsp" />
 		<put-attribute name="next-link" value="Cookie" />
 		<put-attribute name="next-title" value="Handling Cookie with JavaScript" />
 		<put-attribute name="prev-link" value="Function" />
 		<put-attribute name="prev-title" value="Function" />
-		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<definition name="javascript/Cookie" extends="defaultTemplate">
 		<put-attribute name="title" value="Handling Cookie with JavaScript" />
@@ -1463,23 +1434,19 @@
 		<put-attribute name="description" value="Handling Cookie with JavaScript" />
 		<put-attribute name="article" value="/WEB-INF/views/javascript/Cookie.jsp" />
 		<put-attribute name="next-link" value="decoupling-html-and-javascript" />
-		<put-attribute name="next-title" value="n" />
-		<put-attribute name="prev-link" value="p" />
-		<put-attribute name="prev-title" value="p" />
-		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
+		<put-attribute name="next-title" value="Decoupling HTML and JavaScript" />
+		<put-attribute name="prev-link" value="javascript-form-validation" />
+		<put-attribute name="prev-title" value="Form Validation with JavaScript" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
-	<definition name="javascript/decoupling-html-and-javascript"
-		extends="defaultTemplate">
+	<definition name="javascript/decoupling-html-and-javascript" extends="defaultTemplate">
 		<put-attribute name="title" value="Decoupling HTML and JavaScript" />
 		<put-attribute name="keywords" value="javascript,DOM" />
 		<put-attribute name="description" value="Decoupling HTML and JavaScript" />
-		<put-attribute name="article"
-			value="/WEB-INF/views/javascript/decoupling-html-and-javascript.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/javascript/decoupling-html-and-javascript.jsp" />
 		<put-attribute name="prev-link" value="Cookie" />
-		<put-attribute name="prev-title" value="Cookie" />
-		<put-attribute name="sidebar"
-			value="/WEB-INF/views/javascript/javascript-sub.jsp" />
+		<put-attribute name="prev-title" value="Handling Cookie with JavaScript" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
 	<!-- 3장 데이터스토어 이용 블로그 -->
 	<definition name="datastore/*/*" extends="defaultTemplate2">

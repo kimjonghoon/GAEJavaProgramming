@@ -1,9 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2016.3.13</div>
-
 			
-<h1 class="heading1">JSP</h1>
+<h1>JSP</h1>
 
-<h3 class="heading3">목차</h3>
+<h3>목차</h3>
 <ol>
 	<li><a href="#JSP">JSP란?</a></li>
 	<li><a href="#Directives">지시어(Directives)</a>
@@ -67,7 +68,7 @@
 	</li>
 </ol>
 
-<h2 class="heading2" id="JSP">1. JSP란?</h2>
+<h2 id="JSP">1. JSP란?</h2>
 <strong>아래 나오는 모든 예제는 ROOT 애플리케이션에 작성한다.<br />
 <a href="Web-Application-Directory-Structure">웹 애플리케이션 작성 실습</a>에서
 DocuementBase 가 C:/www/myapp 인 애플리케이션을 ROOT 애플리케이션으로 변경했었다.<br />
@@ -105,11 +106,11 @@ hello.jsp가 변경되지 않았다면 객체가 이미 로딩되어 있는지 �
 만일 객체가 메모리에 있다면 객체의 서비스 메소드를 호출하고 로딩되지 않았다면 먼저 객체를 생성한다.<br />
 hello.jsp가 변경되었다면 서블릿 컨테이너는 hello.jsp로부터 서블릿을 만든다.<br />
 
-<h2 class="heading2" id="Directives">2. 지시어</h2>
+<h2 id="Directives">2. 지시어</h2>
 지시어(Directives)는 JSP 페이지의 전반적인 정보를 서블릿/JSP 엔진에게 제공한다.<br />
 지시어는 page, include, taglib 3개가 있다.<br />
 
-<h3 class="heading3" id="page_Directives">page 지시어</h3>
+<h3 id="page_Directives">page 지시어</h3>
 용법 : &lt;%@ page {attribute="value"} %&gt;<br />
 <table class="table-in-article">
 <tr>
@@ -199,7 +200,7 @@ JSP안의 자바 코드에서는 java.util.HashMap과 java.util.ArrayList가 사
 
 보기 편하다는 이유 하나로 이렇게 코딩하는 것을 권장한다.<br />
 
-<h3 class="heading3" id="include_Directives">include 지시어</h3>
+<h3 id="include_Directives">include 지시어</h3>
 inlcude 지시어는 JSP 가 서블릿으로 변환시에 텍스트나 소스를 삽입하기 위해 사용한다.<br />
 삽입되는 문서는 웹 애플리케이션내에 존재해야 한다.<br />
 예) &lt;%@ include file="header.jsp" %&gt;<br />
@@ -207,7 +208,7 @@ include 지시어는 서블릿으로 변환할 때 한번만 사용된다.<br />
 모든 JSP페이지가 결합된 후 하나의 서블릿은 변환된다.<br />
 
 
-<h3 class="heading3" id="taglib_Directives">taglib 지시어</h3>
+<h3 id="taglib_Directives">taglib 지시어</h3>
 taglib 지시어는 JSP 페이지가 커스텀 태그 라이브러리를 이용함을 기술한다.<br />
 태그 라이브러리란 서블릿으로 변환할 때 자바 코드로 바뀌는 태그를 만드는 기술이다.<br />
 대부분 HTML로 구성된 JSP에서 자바코드를 피해, 디자이너에게도 친근할 수 있는 태그를 사용하는 것은
@@ -232,11 +233,11 @@ prefix : 커스텀 태그 라이브러리를 구별하는데 쓰이는 Prefix �
 <a href="/jsp-pjt">JSP Project</a> 에서 다룬다.<br />  
 
 
-<h2 class="heading2" id="Scripting">스크립팅(Scripting)</h2>
+<h2 id="Scripting">스크립팅(Scripting)</h2>
 스크립팅은 HTML페이지에 자바코드 조각을 삽입하기 위해 사용한다.<br />
 스크립팅에는 선언(Declarations), 표현식(Expressions), 스크립트렛(Scriptlets) 3가지가 있다.
 
-<h3 class="heading3" id="Declarations">선언(Declarations)</h3>
+<h3 id="Declarations">선언(Declarations)</h3>
 선언은 자바 변수와 메소드를 JSP 페이지내에서 선언하기 위해선 사용된다.<br />
 선언은 JSP 페이지가 첫번째로 로딩될 때 초기화되고 그 후에 같은 페이지내의 다른 선언, 식, 스크립트렛에게 이용된다.<br />
 선언은 서블릿으로 변환될때 변수 선언일 경우 서블릿 클래스의 인스턴스 변수로, 메소드 선언일 경우 
@@ -244,20 +245,20 @@ prefix : 커스텀 태그 라이브러리를 구별하는데 쓰이는 Prefix �
 <em class="path">&lt;%! String name = new String("gildong"); %&gt;</em><br />
 <em class="path">&lt;%! public String getName() {return name;} %&gt;</em><br />
 
-<h3 class="heading3" id="Expressions">표현식(Expressions)</h3>
+<h3 id="Expressions">표현식(Expressions)</h3>
 표현식은 컨테이너에 의해 문자열로 바뀐다.<br />
 만약 표현식이 문자열로 변환되지 않는다면 ClassCastException 발생한다.<br />
 Hello &lt;%=getName()%&gt;
 
-<h3 class="heading3" id="Scriptlets">스크립트렛(Scriptlets)</h3>
+<h3 id="Scriptlets">스크립트렛(Scriptlets)</h3>
 스크립트렛에서는 자바 문장을 자유럽게 기술할 수 있다.<br />
 &lt;%...%&gt; 안의 자바 코드는 서블릿으로 변환될때 _jspSevice() 메소드에 포함된다.<br />
 
 
-<h2 class="heading2" id="Actions">액션(Actions)</h2>
+<h2 id="Actions">액션(Actions)</h2>
 액션은 객체를 변경하거나 생성하기 위해 사용된다.<br />
 
-<h3 class="heading3" id="useBean">&lt;jsp:useBean&gt;</h3>
+<h3 id="useBean">&lt;jsp:useBean&gt;</h3>
 이 액션은 JSP 빈즈를 생성하거나 생성된 JSP 빈즈를 찾는다.<br />
 JSP 문서내에서 &lt;jsp:useBean&gt;부분에 이르면 우선 같은 scope 와 id 를 사용하는 객체를 
 찾는다.<br />
@@ -309,7 +310,7 @@ JSP 문서내에서 &lt;jsp:useBean&gt;부분에 이르면 우선 같은 scope �
 %&gt;
 </pre>
 
-<h3 class="heading3" id="setProperty">&lt;jsp:setProperty&gt;</h3>
+<h3 id="setProperty">&lt;jsp:setProperty&gt;</h3>
 이 액션은 자바빈의 속성값을 셋팅하는 데 쓰인다.
 
 JSP 페이지내에 아래와 같은 코드가 있다면,
@@ -437,7 +438,7 @@ JSP 페이지내에 아래와 같은 코드가 있다면,
 
 위의 예제와 같이 setProperty 액션은 빈의 속성 값을 설정하는데 사용한다.
 
-<h3 class="heading3" id="getProperty">&lt;jsp:getProperty&gt;</h3>
+<h3 id="getProperty">&lt;jsp:getProperty&gt;</h3>
 getProperty 액션은 빈의 속성값을 가져와서 이것을 출력 스트림에 넣는다.<br />
 
 <pre>
@@ -460,14 +461,14 @@ getProperty 액션은 빈의 속성값을 가져와서 이것을 출력 스트�
 </tr>
 </table>
 
-<h3 class="heading3" id="param">&lt;jsp:param&gt;</h3>
+<h3 id="param">&lt;jsp:param&gt;</h3>
 이 액션은 &lt;jsp:include&gt;, &lt;jsp:forward&gt;<!-- , &lt;jsp:plugin&gt;-->에 넘겨줄 파라미터를 정의할 때 사용한다.<br />
 
 <pre>
 &lt;jsp:param name="name" value="value" /&gt;
 </pre>
 
-<h3 class="heading3" id="include">&lt;jsp:include&gt;</h3>
+<h3 id="include">&lt;jsp:include&gt;</h3>
 이 액션은 JSP페이지에 정적(HTML) 또는 다이나믹 웹 컴포넌트(JSP,Servlets)를 추가할때 사용한다.<br />
 
 <pre>
@@ -493,7 +494,7 @@ getProperty 액션은 빈의 속성값을 가져와서 이것을 출력 스트�
 </tr>
 </table>
 
-<h3 class="heading3" id="forward">&lt;jsp:forward&gt;</h3>
+<h3 id="forward">&lt;jsp:forward&gt;</h3>
 이 액션은 클라이언트가 요청한 자원에서 다른 자원으로 프로그램의 제어를 이동할 때 사용된다.<br />
 이를 포워딩이라 한다.<br /> 
 &lt;jsp:forward&gt; 은 &lt;jsp:param&gt; 를 자식 엘리먼트로 가질 수 있는데, 포워딩할 대상 자원으로 파라미터를 전달하기 위해서이다.<br />
@@ -507,7 +508,7 @@ page 속성은 포워딩할 대상 자원의 상대주소이다.<br />
 <!--  
 자바 애플릿은 과거의 기술이 되었다.
 그래서 이 액션 태그 역시 많이 쓰이지 않은 기능이므로 생략한다. 2016.03.13
-<h3 class="heading3" id="plugin">&lt;jsp:plugin&gt;</h3>
+<h3 id="plugin">&lt;jsp:plugin&gt;</h3>
 &lt;jsp:plugin&gt; 은 다운로드나 애플릿,자바빈의 실행을 일으키는 HTML 코드를 생성하는데 사용된다.<br />
 이 액션은 한번 해석되어 &lt;object&gt; 나 &lt;embed&gt;로 바뀐다.<br />
 속성은 바뀌는 코드에 표현을 위한 설정데이터로 제공된다.<br />
@@ -541,11 +542,11 @@ page 속성은 포워딩할 대상 자원의 상대주소이다.<br />
 </table>
 -->
 
-<h2 class="heading2" id="Implicit_Objects">내재 객체(Implicit Objects)</h2>
+<h2 id="Implicit_Objects">내재 객체(Implicit Objects)</h2>
 내재 객체는 JSP 문서내에서 이용되는 객체로 레퍼런스를 얻기 위한 작업없이 바로 
 사용할 수 있는 객체를 말한다.
 
-<h3 class="heading3" id="out">out</h3>
+<h3 id="out">out</h3>
 javax.servlet.jsp.JspWriter 추상 클래스 타입 인스턴스의 레퍼런스이다.<br />
 데이터를 응답 스트림으로 작성하는데 사용한다.<br />
 아래와 같이 작성한 후 http://localhost:8989/helloWorld.jsp를 방문한다.
@@ -561,7 +562,7 @@ out.println("&lt;strong&gt;Hello World!&lt;/strong&gt;");
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3" id="request">request</h3>
+<h3 id="request">request</h3>
 javax.servlet.http.HttpServletRequest 인터페이스 타입 인스턴스의 레퍼런스이다.<br />
 요청 파라미터와 헤더에 있는 사용자가 보낸 정보, 그리고 사용자에 관한 정보에 접근할 수 있다.<br />
 아래와 같이 작성하고 http://localhost:8989/request.jsp?user=gildong를 방문한다.
@@ -580,15 +581,15 @@ out.println("Hello, " + request.getParameter("user"));
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3" id="response">response</h3>
+<h3 id="response">response</h3>
 javax.servlet.http.HttpServletResponse 인터페이스 타입 인스턴스의 레퍼런스이다.<br />
 
-<h3 class="heading3" id="pageContext">pageContext</h3>
+<h3 id="pageContext">pageContext</h3>
 javax.servlet.jsp.PageContext 타입 인스턴스의 레퍼런스이다.<br />
 JSP 내에서 이용 가능한 모든 자원에 대한 접근 방법을 제공해 준다.<br />
 이를 이용하면 ServletRequest, ServletResponse, ServletContext, HttpSession, ServletConfig 와 같은 자원에 접근할 수 있다.<br />
 
-<h3 class="heading3" id="session">session</h3>
+<h3 id="session">session</h3>
 session 내재 객체는 서블릿의 javax.servlet.http.HttpSession 타입 인스턴스의 레퍼런스이다.<br />
 세션 데이타를 읽고 저장하는 데 사용된다.<br />
 아래를 작성한 후 http://localhost:8989/session.jsp를 여러번 방문한다.<br />
@@ -618,45 +619,45 @@ out.println("COUNT: " + count);
 </pre>
 
 
-<h3 class="heading3" id="application">application</h3>
+<h3 id="application">application</h3>
 javax.servlet.ServletContext 인터페이스 타입 인스턴스의 레퍼런스이다.<br />
 
-<h3 class="heading3" id="config">config</h3>
+<h3 id="config">config</h3>
 config 내재 객체는 ServletConfig 이다.<br />
 ServletConfig 는 서블릿 각각의 초기화 파라미터 정보를 담고 있다.<br />
 
-<h3 class="heading3" id="page">page</h3>
+<h3 id="page">page</h3>
 page 내재 객체는 페이지 구현 클래스 인스턴스를 참조하는 Object 타입의 레퍼런스이다.<br />
 page변수는 단순히 JSP와 구현 서블릿 사이의 연결 역할을 한다고 하는데, 쓰임새가 많지 않다.<br />
 JSP 코드에서 page 라는 변수를 사용하지 못하는 이유이다.<br />
 
-<h3 class="heading3" id="exception">exception</h3>
+<h3 id="exception">exception</h3>
 exception 내재 객체는 JSP 페이지에서 발생한 잡히지 않은 익셉션에 대한 접근을 제공한다.<br />
 JSP 페이지 내에서 exception 변수는 page 지시어의 isErrorPage 속성이 true 로 설정한 
 페이지내에서만 사용할 수 있다.<br />
 
 
-<h2 class="heading2" id="JSP_Confirm">JSP에서 꼭 확인해야 할 사항들</h2>
-<h3 class="heading3" id="include_vs_include">include 지시어와 include 표준 액션의 차이점</h3>
+<h2 id="JSP_Confirm">JSP에서 꼭 확인해야 할 사항들</h2>
+<h3 id="include_vs_include">include 지시어와 include 표준 액션의 차이점</h3>
 지시어는 서블릿으로 변환될 때 단 한번 해석되지만 표준액션의 경우는 요청시마다 매번 해석된다.<br />
 그러므로 포함되는 페이지의 내용이 요청시마다 변하지 않고 일정할 때는 include 지시어를, 
 포함되는 페이지의 내용이 요청시마다 변한다면 include 표준 액션을 사용하는 것이 좋을 것이다.
 include 지시어는 포함하는 JSP를 중심으로 하나의 서블릿으로 변환되고,
 include 표준 액션은 각각의 서블릿이 동작하여 하나의 응답을 만들어낸다.<br />
 
-<h3 class="heading3" id="ServletContext_Web-App">서블릿 컨텍스트와 웹 애플리케이션의 관계</h3>
+<h3 id="ServletContext_Web-App">서블릿 컨텍스트와 웹 애플리케이션의 관계</h3>
 서블릿 컨텍스트에는 웹 애플리케이션의 서버측 컴포넌트와 서블릿 컨테이너와의 통신을 담당하는 메소드가 있다.<br />
 서블릿 스펙에 의해 모든 웹 애플리케이션마다 단 하나의 서블릿컨텍스트가 있다.<br />
 그래서 서블릿 컨텍스트는 JSP 와 서블릿과 같은 서버측 컴포넌트의 공동 저장소의 기능을 가진다.<br />
 서블릿 컨텍스트에 저장된 자원은 웹 애플리케이션의 일생동안 존재한다.<br />
 
-<h3 class="heading3" id="pageDirectives_session-attr">page 지시어의 session 속성</h3>
+<h3 id="pageDirectives_session-attr">page 지시어의 session 속성</h3>
 &lt;%@ page session="false"&gt; 와 같이 page 지시어의 session 속성이 false라면 
 해당 페이지가 session 객체를 생성하지도 못하고 
 또한 기존의 session 객체에 대한 레퍼런스도 얻을 수도 없다.<br />
 false 로 되어 있는 상태에서 session 객체에 접근하고자 하면 에러가 발생한다.<br />
 
-<h3 class="heading3" id="useBean_scope">jsp:useBean표준 액션의 scope속성의 의미</h3>
+<h3 id="useBean_scope">jsp:useBean표준 액션의 scope속성의 의미</h3>
 scope 속성은 jsp:useBean 속성 중에서 가장 중요한 부분이다.<br />
 이 속성은 자바 빈즈를 객체화시킨 후 어느 범위까지 사용을 할 것인지를 결정한다.<br />
 scope 속성을 어떻게 지정했는가에 따라서 빈 객체는 여러 페이지에서 소멸하지 않고 참조되기고
@@ -720,11 +721,11 @@ scope 속성에는 4개의 값을 지정해 줄 수 있는데 각각의 값에 �
 </table>
 
 
-<h2 class="heading2" id="examples">JSP 예제</h2>
+<h2 id="examples">JSP 예제</h2>
 <strong>이후 실습하는 모든 예제는 C:/www/myapp 아래에,
 이클립스가 아닌 에디트 플러스와 같은 일반 에디터를 사용하여 만들고 테스트한다.</strong>
 
-<h3 class="heading3" id="error-handling-1">JSP 에러 핸들링 예전 방식</h3>
+<h3 id="error-handling-1">JSP 에러 핸들링 예전 방식</h3>
 JSP는 오로지 에러만을 다룰 수 있는 JSP 페이지를 제공하므로써 에러를 다룰 수 있는 방법을 제공한다.<br />
 에러는 주로 런타임 에러가 대부분인데 이것은 JSP 내에서나 JSP 에서 호출한 객체에서 발생한다.<br />
 JSP 내에서 핸들링 할 수 없는 익셉션이 발생한다면 서블릿 컨테이너는 JSP 에러 페이지로 요청을 전달한다.
@@ -768,7 +769,7 @@ exception 내재 객체는 page 지시어에서 isErrorPage 속성이 true 인 J
 </pre>
 
 
-<h3 class="heading3" id="error-handling-2">JSP 에러 핸들링 현재 방식</h3>
+<h3 id="error-handling-2">JSP 에러 핸들링 현재 방식</h3>
 web.xml 파일에 HTTP 상태코드<sup>3</sup>와 발생한 익셉션 유형별로 각각의 에러 페이지를 지정해 줄 수 있다.<br />
 이 방식은 서블릿 2.3에서 추가되었다.<br /> 
 아래 설정은 익셉션 유형을 java.lang.Throwable 로 하여 모든 익셉션를 다루로록 예제를 단순하게 했다.<br />
@@ -871,7 +872,7 @@ honggildong.jsp 란 자원이 없으므로 404 에러가 발생하면서 error.j
 그 결과 404에러 메시지만을 보게 된다.<sup>3</sup>
 중요한 것은 아니다. 따라서  이 예제를 테스트할 때는 인터넷 익스플로러외의 브라우저로 테스트한다.<br />
 
-<h3 class="heading3" id="cookie-example">쿠키</h3>
+<h3 id="cookie-example">쿠키</h3>
 
 쿠키는 웹 브라우저에 저장되어 요청을 보낼때 함께 전송되는 간단한 데이터를 말한다.<br />
 쿠키는 자바스크립트나 JSP에서 설정될 수 있다.<br />
@@ -1097,8 +1098,9 @@ name 쿠키를 삭제했습니다.&lt;br /&gt;
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3" id="include-directive-example">include 지시어를 이용하는 페이지 분리</h3>
-첨부 파일, <a href="/resource/examples/jsp/example.zip">example.zip</a> 을 다운로드한 후 ROOT 애플리케이션의 최상위 디렉토리에 압축을 푼다.<br />
+<h3 id="include-directive-example">include 지시어를 이용하는 페이지 분리</h3>
+첨부 파일, <a href="https://drive.google.com/open?id=0B42KXwCfAfp3d2YzWEtyN1AzYm8">example.zip</a>을
+다운로드한 후 ROOT 애플리케이션의 최상위 디렉토리에 압축을 푼다.<br />
 
 http://localhost:8989/example/ex1/index.jsp를 방문한다.<br />
 
@@ -1116,7 +1118,7 @@ index.jsp 소스에서 subMenu.jsp 페이지를 인클루드하고 있다.<br />
 참고로 css 파일에서의 이미지 링크의 경우는 이와는 달리 css 파일의 위치가 기준이 된다.<br />
 다시 말해css 파일을 임포트하는 JSP파일이 기준이 아니다.<br />
 
-<h3 class="heading3" id="login-process">자바 빈즈를 이용한 로그인 처리(세션 이용)</h3>
+<h3 id="login-process">자바 빈즈를 이용한 로그인 처리(세션 이용)</h3>
 세션은 쿠키 기반 기술이다.<br />
 세션은 쿠키와 달리 쿠키값으로 세션ID 만 전송한다.<br />
 서블릿 컨테이너는 전송되어 온 세션ID로 판단하여 웹브라우저에 매핑되는 세션이 동작하는 것을 보장한다.<br />   
@@ -1201,7 +1203,7 @@ session.setAttribute("user", user);
 &lt;jsp:forward page="index.jsp" /&gt;
 </pre>
 
-<h3 class="heading3" id="login-process-2">login_proc.jsp 에 표준 액션 적용</h3>
+<h3 id="login-process-2">login_proc.jsp 에 표준 액션 적용</h3>
 이번 예제의 소스 위치는 /example/ex3/ 이다.<br />
 바로 전 예제와 기능은 같다.<br />
 다른 점이 있다면 코드를 표준 액션을 사용하도록 변경했다는 것이다.<br />
@@ -1258,7 +1260,7 @@ setter 메소드의 인자값은 메소드의 이름과 매칭되는 파라미�
 jsp:setProperty 표준액션을 사용할 때 JSP 빈즈가 자바 네이밍 룰을 따르지 않는다면 작동하지 않는다.<br />
 즉, 표준액션과 관련해서는 네이밍 룰이 권고사항이 아니라 문법이 된다.<br />
 
-<h3 class="heading3" id="fileList-example">업로드 파일 확인</h3>
+<h3 id="fileList-example">업로드 파일 확인</h3>
 서블릿에서 파일 업로드 예제를 다루었다.<br />
 다음 JSP는 upload 폴더에 업로드한 파일의 리스트를 보여준다.<br />
 
@@ -1305,7 +1307,7 @@ for (int i = 0; i &lt; len; i++) {
 &lt;/html&gt;
 </pre>
 
-<h3 class="heading3" id="download-example">파일 다운로드</h3>
+<h3 id="download-example">파일 다운로드</h3>
 다음은 위의 파일 목록 페이지에서 해당 파일을 클릭하면 다운로드를 하도록 하는 JSP페이지아다.<br />
 
 <em class="filename">/download.jsp</em>
@@ -1356,7 +1358,7 @@ try {
 %&gt;
 </pre>
 
-<h3 class="heading3" id="jsp-file-upload">JSP 파일 업로드</h3>
+<h3 id="jsp-file-upload">JSP 파일 업로드</h3>
 다음은 서블릿 예제에서 다루었던 파일을 업로드하는 서블릿을 JSP로 바꾼 코드이다.<br />
 
 <em class="filename">fileupload_proc.jsp</em>

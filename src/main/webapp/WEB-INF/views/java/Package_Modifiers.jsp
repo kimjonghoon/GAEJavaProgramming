@@ -1,6 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2014.3.26</div>
 
-<h1 class="heading1">팩키지와 접근자</h1>
+<h1>팩키지와 접근자</h1>
 
 팩키지는 말 그대로 꾸러미이다.<br />
 쓰레기 분류 수거할 때에 사용하는 꾸러미를 생각해 보라.<br />
@@ -230,7 +232,7 @@ javabank.Account와 net.java_school.commons.Log 클래스가 그것이다.<br />
 classpath옵션이 사용되면 JVM은 관련 클래스를 classpath로 설정된 곳에서만 찾는다.<br />
 그래서 현재 디렉토리를 의미하는 .(도트)가 클래스 패스에 포함된 것이다.<br />
 
-<h3 class="heading3">외부 자바 라이브러리를 자신의 프로그램에 추가하는 방법</h3>
+<h3>외부 자바 라이브러리를 자신의 프로그램에 추가하는 방법</h3>
 대부분 외부 자바 클래스는 jar형태의 압축파일로 제공된다.<br />
 Log클래스를 다른 자바 프로그래머가 사용하도록 배포하려면 jar.exe 를 이용한다.<br />
 Log바이트 코드가 있는 디렉토리로 이동하여 다음 멸령을 수행한다.<br />
@@ -247,12 +249,12 @@ javabank.Account클래스를 실행하는데 이번에는 C:\devLibs에 있는 j
 
 이전과는 달리 jar파일명까지의 경로를 classpath에 지정해줘야 한다.<br /> 
 
-<h2 class="heading2">접근자</h2>
+<h2>접근자</h2>
 접근자는 외부에서 접근할 수 있는지 여부를 결정한다.<br />  
 접근자는 2단계 접근 제어를 제공한다.<br />
 1단계 접근 제어는 접근자가 클래스 선언부에 쓰일 때이다.<br />
 
-<h3 class="heading3">public 접근자가 Account의 클래스 선언부에 쓰인 경우</h3>
+<h3>public 접근자가 Account의 클래스 선언부에 쓰인 경우</h3>
 
 <pre class="prettyprint">
 package javabank;
@@ -262,7 +264,7 @@ package javabank;
 } 
 </pre>
 
-<h3 class="heading3">디폴트 접근자가 Account의 클래스 선언부에 쓰인 경우</h3>
+<h3>디폴트 접근자가 Account의 클래스 선언부에 쓰인 경우</h3>
 
 <pre class="prettyprint">
 package javabank;
@@ -379,7 +381,7 @@ protected는 디폴트 접근자보다 접근 허용범위가 더 넓다.<br />
 
 <img src="images/access_test_protected.png" alt="Protected 접근자 예 그림" style="width: 590px;" /><br /> 
 
-<h2 class="heading2">캡슐화 : 객체의 자료에 접근하려면 메소드를 통해야만 접근하도록 한다.</h2>
+<h2>캡슐화 : 객체의 자료에 접근하려면 메소드를 통해야만 접근하도록 한다.</h2>
 클래스를 설계할 때는 아래 사항은 객체 지향 프로그래밍의 기본이므로 지키도록 한다.<br />
 이를 캡슐화라고 하는데 외부에서 볼 때 객체의 꼭 필요한 부분만 볼 수 있도록 해준다.<br />
 
@@ -430,7 +432,7 @@ public class User {
 }
 </pre>
 
-<h2 class="heading2">이클립스 설치</h2>
+<h2>이클립스 설치</h2>
 다음장부터는 메모장이나 에디트플러스와 같은 에디터는 더 이상 사용하지 않을 것이다.<br />
 이후 모든 장의 예제는 이클립스를 사용하기로 한다.<br />
 이클립스를 사용하면 위에서 실습했던 디렉토리 구조로 소스를 관리하게 되면서
@@ -441,7 +443,7 @@ public class User {
 압축을 풀면 생기는 eclipse 폴더를 원하는 곳에 복사하는 것으로 설치가 끝난다.<br />
 여기서는 eclipse 폴더를 C:/ 에 붙여넣기했다고 가정하고 설명한다.<br />
 
-<h3 class="heading3">실행</h3>
+<h3>실행</h3>
 
 C:/eclipse/eclipse.exe를 더블클릭하면 이클립스가 실행된다.<br />
 실행되면 먼저 이클립스는 워크스페이스(workspace)를 어디로 지정할 것인지를 묻는다.<br />
@@ -466,7 +468,7 @@ C:/eclipse/eclipse.exe를 더블클릭하면 이클립스가 실행된다.<br />
 
 <img src="https://lh5.googleusercontent.com/-lHZAcz_vsOU/TjJ6Byjr2BI/AAAAAAAAAXw/6Gk1YbZ1ytk/workbench.gif" alt="workbench" />
 
-<h3 class="heading3">이클립스 용어</h3>
+<h3>이클립스 용어</h3>
 
 <strong>워크벤치(workbench)</strong><br />
 <p style="padding-left: 14px;">
@@ -524,15 +526,14 @@ Javadoc 주석를 보여준다.<br />
 하지만 익숙해 질때까지는 그대로 두는 것이 좋다.<br />
 
 
-<h3 class="heading3">자바 예제</h3>
+<h3>자바 예제</h3>
 
 본 예제는 이클립스 환영 페이지의 샘플 메뉴의 내용을 편집한 것이다.<br />
 먼저 Java Perspective 인지 확인한다.<br />
 이클립스에서는 자바 소스는 반드시 프로젝트에 속해야만 한다.<br />
 자바 프로젝트를  생성하려면 메뉴바에서 File &gt; New &gt; Java Project 선택하거나<br /> 
-또는 아래 그림과 같은 툴바에서 가장 왼쪽을 클릭한다.<br />
-
-<img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" /><br />
+툴바 메뉴에서 가장 왼쪽을 클릭한다.<br />
+<img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" style="width: 73px;" /><br />
 
 프로젝트 이름을 HelloWorld 로 지정한다.<br />
 그 외 설정은 특별히 지정하지 않아도 된다.<br /> 
@@ -542,7 +543,7 @@ Javadoc 주석를 보여준다.<br />
 <img src="https://lh4.googleusercontent.com/-8Tx99HODIdg/TjJ6A_ribLI/AAAAAAAAAXc/5xSvGBauvwc/s576/project_wizard.gif" alt="project wizard" /><br />
 
 아래 툴바 메뉴에서 두번째를 클릭한다.<br /> 
-<img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" /><br />
+<img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" style="width: 73px;" /><br />
 
 팩키지 이름에 net.java_school.example 라고 입력하고 Finish 를 클릭한다.<br />
 이제 Package Explorer 뷰에서 팩키지가 보이게 된다.<br />
@@ -551,7 +552,7 @@ Javadoc 주석를 보여준다.<br />
 
 마우스로 Package Explorer 에서 net.java_school.example 팩키지를 선택한 상태에서 아래 툴바 메뉴 중 오른쪽 마지막 버튼을 클릭한다.<br />
 
-<img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" /><br />
+<img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" style="width: 73px;" /><br />
 
 클래스 이름으로 HelloWorld 라고 입력한다.<br />
 메인 메소드가 필요하므로 public static void main(String[] args)에 체크한다.<br />

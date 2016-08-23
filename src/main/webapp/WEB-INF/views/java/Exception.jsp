@@ -74,7 +74,7 @@ finally블록은 없거나 하나이다.<br />
 
 <h3 class="heading3">익셉션 클래스 계층 구조</h3>
 
-<img src="images/exception.gif" alt="Exception API" /><br />
+<img src="https://lh3.googleusercontent.com/-UKDWi65X4sRbRXolBLM9k1_vmUwPbTnOKUbl8z-z_jikNv49nsUz3C0ZG3qCTWSfxk5BsSu9jnYtEGH8HBobtqvBkWLRj2Msrsb9V6Rhiqld0InAAwKxc1Diqh7UT26dlZhncbimcfICGq9jV9OmZOsYq-7UZdoA33t79BUSi1rxOXLiWn3Yy9zRCmgpkejxBb6_9VtPe5AH_JaRMhBmFENZ6LgbZNNFEgv17MmRu1-CrjWG71TyIKWbPRkILuResDiCmTUHhyK6zG23_e6V5cf70_G3pOGPCpuS20CymlSQXtHEc0AEWAE6Prskk9omwPo7CSfM2zMAzLBv-CQmnkUjR6vxNwY3LKuQE4Sy0UzAKZ923rD9BzGiEoyL3WiIW_O3CTuqQvr2FqXQugM-Nqe1XgRywFtSsolCBy3xPfePCFwXAJa7Ya1MBWiah-HaRFXACypZ3s3ZdIrVuKj1SL15GT4DoGSboZ68hsHswcdKo9_EGkeCq6-gaMEMPeupsg5nyExUAQcpU6m2uu6-2lZ8E_EmQXfyJMF2-b6HKHgkNMWpLHaD26Solx9lcj6flomXeGuzx_I6AVbrAf8k8L8pEsOquM=w390-h141-no" alt="Exception API" /><br />
 
 <h3 class="heading3">자주 발생하는 익셉션</h3>
 <table class="table-in-article">

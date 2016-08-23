@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2016.4.17</div>
 
 <h1 class="heading1">자바스크립트 소개</h1>

@@ -1025,7 +1025,7 @@ WHERE R BETWEEN 1 and 10;
 하단에 보이는 [1] [2] [3] [4] [5] 링크는 그룹 1에 속한다.
 [6] [7] [8] [9] [10]는 그룹 2에 속한다.<br />
 
-<img src="images/bbs-paging-1.png" alt="페이지 링크 그룹화" /><br />
+<img src="https://lh3.googleusercontent.com/ulUUomivFb4v8w2v9yqoA7VcR48i-adOy48WnNc0dRCoR8FpQ0EuYU9BwRM7sx2C_EeRs_8kM1oh9Rqcf41Bhtw4as9K_9vARuetxuElsNDmdieN2V0jc69S5bskwyyIuRPUF3A6hiIL8g6TPDmLRbEGPw_PL46pJdbawRst6-5hd3JQy7CKcu4gXNrhgGeZ5U5wLEvPaw45x5bmEhHRTvLDf7yYgHa222jjuS9bNmUv_JZRyrLgzXwBMBoq-BvAxw7lFnJrXEGW_ZcVzefsMu1Dkw9WZtywKX_RkhRd-7kXMoHrekLrHLy7QyibSGKzKz-Yy6c9gucJNozBKSpFTuNtERLYXVruYudBe9RhaqTNcjo_cZU1HTdq1ZiLn-sLBzW-jVP34HP07tPjjp8I6XSuHOchTpbdEQ3SDX2n6mPMDHVTFPaBQBlvr5xTqenY9y2x4iqootZhsRYcKhvt_HgSGlo7O76zKPmMDV1QMA4wubW6Bo4H4rvCbW7hAD1iydPgY-s1U0qde4UEFFxSmCju70T9BdrmxzqchK_Mx1g0Kuu8xGADNFoZ8Lanns5lVf1WaKH_Cx_-JYs3EBZWt1JHq1yZpus=w366-h405-no" alt="페이지 링크 그룹화" /><br />
 
 curPage가 어느 그룹에 속하는지는 다음 코드로 구할 수 있다.
 페이지를 그룹화할 때 그룹 번호를 저장할 변수를 block라고 하겠다.
@@ -1072,7 +1072,7 @@ for (int i = firstPage; i &lt;= lastPage; i++) {
 
 위의 코드를 참고하여 기존의 list.jsp를 수정하고 테스트한다.<br />
 
-<img src="images/bbs-paging-2.png" alt="페이지 링크 그룹화" /><br />
+<img src="https://lh3.googleusercontent.com/XfSjkWt4U17J_pdYXK99COdUsVaPC42hwkmcxsY-qYzphiA9NFUYSwIMUZ6zmQXPOd0kkB5KLqOk24WZOPCIrrRDV4F85p5pprWALpOkndDP9OCjK2VJYEP887ZfKwBh9oVHEjLwJZ3Gw60cIq4JkYaGLDhQtC2kycUzwoBXCYYc6S5eMiurpc7HkWRpiR_Lg2BMQpzfWTu3seffhU41-2iiXa4j_gxpC5YCiuFKFAndmzEWoWxT_vDqoJa_EN5IX94iaV340e67FRwt51cwUfHmbzfYyNYRBt35s6-IUlOy518UXc9fs6QpekveUlwK-yWqkLL4e53e4DRSSnDgrWxHZTJ0tmUkKyVy_xLIX9Sqcr5WrJR-IKS9Z6clKIoxLskojLEG1zCGwcg7jYNwb2qD4qHEB67GGLXm2vA-ts1j8P3b3tJMTFxsuBh_Zxqw9oYp9ItSM7zcJZ6b6r5O4jtkO7Lba_kfPyBwdwBzp9ux85KBMdXPVAM5jFCNf0CusVm9J1-HaqORJABpqx1dmVhdwBA995NjR4cOoSjvxwjyy3i1DfRVdmTz7I5LCzcADVPZfMePnUJ3higcc2KBmbh-B_YlIZk=w363-h393-no" alt="페이지 링크 그룹화" /><br />
 
 현재 페이지가 속한 block을 구해서 그 block에 속한 페이지만 보여주는 것은 성공했다.
 하지만 문제가 있는데 블록에서 블록으로 이동할 수 없다는 것이다.
@@ -1123,11 +1123,11 @@ if(block &lt; totalBlock) {
 
 위 코드를 참고하여 list.jsp를 수정한 후 목록을 테스트한다.<br />
 
-<img src="images/bbs-paging-3.png" alt="페이지 그룹화" /><br />
+<img src="https://lh3.googleusercontent.com/Jn0RxOB1g52tbd0npx3H7x6Vo_2D_DKXvzUexC_QOiztm4STkGvobiOa3tYlWi4jwXpiL4ybvJ1iP-0j35HYei4fKdHy7fJ9gAGBbNeAIktlRzcndHpDSzlojkXNDLvWiVaFaFtgA6Sa68AggeIlwG4cihlWHHfX9G1viLPhpEXe_eDJW7YcH7Bjn4fOsNvCIVm23Zao3vjY6nG8TZHhYeVP2cUG-NOOFdH1ynRLcj2d3J6xTGKxwWsOIXI-duT4SRzxIVpy7LjqHHsdl0DkR2tbrhZ0gr2zGXo4NoI5dochxlJeRI3b7LAzzAgRs5RnxzFAYAxkPmMmVznS3vB1slnxlZFVYFf2fcFiM4k168l68ND_olweCZuF_K3-UBjpny_nVSS2IApf6G2VCyDJgsLrt4wGe9PAG1bk7OoSdgnGxh1ANVH4ac4p07TLmy7oA8zbXRE5II9hMkypSMg_jo5TgRLA7i6r2OKXsrRuBqy4JM7ReJYnLrzZ5a5xczviMUom0lgdj_fxFh7_n3wxd8kXRXEPLVKLYJP-Cf3hDwHmYU_CLYt9-ewK-Nt4z_q-sZiFoItvPZDV9_sy3DQQNq_HU4KLUuA=w364-h400-no" alt="페이지 그룹화" /><br />
 
 [다음] 버튼을 클릭하여 테스트한다.<br />
 
-<img src="images/bbs-paging-4.png" alt="페이지 그룹화" /><br />
+<img src="https://lh3.googleusercontent.com/p-G8yrws_oJbQ5NTge3FVMreJCaQs6Eg3-hgHm57zhDwGjR-FdAIbjT3L8rNMbkRVzctCshIhNlGwVfH3fxInRG398-9fgazbcZwCBM085lHDgaxS5HctcIAumH9_b-XJoN8SVdovGDK4sKobUXvEBZW9c-mfVXeSTfuc-HfYzntmz5DrnTc0Ff9HNW_IkuZ35Xi5b-S3zSW6HLTtOV-49G6MztqaKv_d7klI6YeYryzCClFm1EwNzm6zT_lLPEXcM2Y5KciPIeeqYDjnNM63knBp5Y3JXJ52my9-PIqUs6KaetyhTUId1L1uVJsQ67PCZR23rk2rPB37-R8RPedaJC4Dxkvo36KKC7fgzHETCjO2or-Wp7nw4BlDWEoYT7LuIMf_9mjlb-96dicbXJFAf0C-jLUsNpNZ4RzWb8rwA141NC7SJOrgZ1zdQUMigMAjHPxhT1WfwCk_VpV08cYmnk7avhIfPgOijoe2qkwhu8TSWTzuZ7lgWWzpoa0Df7LRab6K7I2NWa40qf60bT2tuElxnaSz-SmAQTgXIwDOwBKKsFNfI5kajtl1IMA76EXYdxqj8aDxiu7Mqnaj2wXqf0Z5bL_PbE=w452-h398-no" alt="페이지 그룹화" /><br />
 
 [이전] 버튼을 클릭하여 테스트한다.<br />
 <br />
@@ -1138,7 +1138,7 @@ if(block &lt; totalBlock) {
 [다음] 링크를 클릭하여 마지막 블록으로 이동한다.
 문제가 없는가?<br />
 
-<img src="images/bbs-paging-5.png" alt="페이지 그룹화" /><br />
+<img src="https://lh3.googleusercontent.com/Zl7usmdCXfNXldDNKC06qpO2HO5jNL2ZiK62v2G89qG3Mx-zio23mi5_6VxVSpSuPfpAgPmD6F9JpDmKDGy-JnPANd7bhuGOInV9-xU2pidupwJYkjx4_WQPKuhnjjt-rVGnLXham9sI5Yizlu_zGwBh26xer5n9Mky2iP6VeKmyF-fvsmIqoUjfdXeXpR-1cWoPGPAgA6nprsSedC_1HRtkbIq5Vko0yPq3bFmJK8pBShFzU09ZrL1ipDecPgxK-C00efQwWT4N-pC04YSVDMCccGinCC4T9KQr728L-BVi8AjLAAb4LWinYHS--HCx9mWA-wjNnX_d4_LGybxBakaGx1h-q-sc7t_pulEUZE-ApRvy0c0epjrKNzHK6ESnBOlOMdT9JGYceue-65laQWa5efW_mDvIq_KyseHDNOC6nagrj8TUBh8oKs5zEV0NB4syzhINIhBffoj6UUkVPyQagtCpi57vF-hmTAy9J-SU1ga6vjcfBn72S3OAUuc_MFC4GPHYPpFo8eGNirOu8bYrFmR3loKDckxOczh0KhFaQyz1FlPVFfNm4AlKzdkMgA2nbuhnSrXs9XBk3xC5QLXVut_7KUw=w452-h174-no" alt="페이지 그룹화" /><br />
 
 마지막 블록에 불필요한 페이지가 생성되어 있는 것을 확인할 수 있다.
 레코드가 101 개일때 numPerPage가 10이면 totalPage는 11이 된다.

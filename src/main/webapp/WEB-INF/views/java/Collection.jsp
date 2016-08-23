@@ -9,7 +9,7 @@ Collection이란 같은 타입의 참조값을 여러개 저장하기 위한 자
 다음 그림은 Collection관련 주요 인터페이스의 계층관계를 보여 준다.<br />
 <br />
 
-<img src="images/Collection_Framework.gif" alt="Collection Framework" /><br />
+<img src="https://lh3.googleusercontent.com/fQwp-98LN8SEeEa4_ujfMnO-MTGXUmO8jKZ458DnzCj6qKEwuntIt0Zw6dc9iT3xJEM3O8zGvk4e7W5RtcNB-cpCbX1e6McD5HXvmhmfWQYc6e8pZ0-XphhDShod7ygxfFcBDLwxdA-mkVNtE8X566C1N0n2tjx5LZZURt5tMb4p0HDZXbnYWFky6IAw-HpF7UG6WBh9f3ZUc6mxlD9AvT1GNIvldHDjWIBkV_YDVW2MDDBND8We8oqAjwPUM4JSQIHNDUb0s9ln90z89fyiJVrQVP3b-YXyVuVBd8T_t_mMCwz1Swj0454c5uynIASNCg-jMsMrG-x1aJAlCOv4qrvEaoqIhAE5Qd6U-AEhIEEit6MtNptXM8VrdqKYRJNy9-BAYnGOa4PdOpMrS1hoMiQPWRB0_Xbc-ofojNrF_V4FxZmB3hJfXm9iuF1lrC2R7rvX5Q_yP0xCdz6BveEZxXgctx2pH6apFj0JboQDtN0rXtjCf88pHx5VYpjVuIKHyZZyj8-4WlTGabMtRFfWeQ8RRll_yU6xX2BACOHFC8mtNev984bw8KRpEQg1-eNq4dALnNO7_pqNinq2wfn04r-0vwvCw14=w380-h242-no" alt="Collection Framework" /><br />
 
 컬렉션 클래스를 선택할 때 다음을 고려하자.<a href="#comments"><sup>1</sup></a>
 
