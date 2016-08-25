@@ -21,6 +21,7 @@ public class Article {
 	public String keywords;
 	public String description;
 	public String content;
+	public String content_ko;
 	@Index public Date date;
 	@Index public String path;
 	@Index public int articleOrder;
@@ -28,7 +29,7 @@ public class Article {
 	public Article() {
 		date = new Date();
 	}
-	public Article(String category, String title, String keywords, String description, String content, String path, int articleOrder) {
+	public Article(String category, String title, String keywords, String description, String content, String content_ko, String path, int articleOrder) {
 		this();
 		theCategory = Key.create(Category.class, category);
 		this.title = title;
@@ -38,8 +39,8 @@ public class Article {
 		this.path = path;
 		this.articleOrder = articleOrder;
 	}
-	public Article(String category, String title, String keywords, String description, String content, String path, int articleOrder, String id, String email) {
-		this(category, title, keywords, description, content, path, articleOrder);
+	public Article(String category, String title, String keywords, String description, String content, String content_ko, String path, int articleOrder, String id, String email) {
+		this(category, title, keywords, description, content, content_ko, path, articleOrder);
 		author_email = email;
 		author_id = id;
 	}
@@ -90,6 +91,12 @@ public class Article {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getContent_ko() {
+		return content_ko;
+	}
+	public void setContent_ko(String content_ko) {
+		this.content_ko = content_ko;
 	}
 	public Date getDate() {
 		return date;

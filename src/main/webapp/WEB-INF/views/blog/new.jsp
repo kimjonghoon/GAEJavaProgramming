@@ -29,6 +29,10 @@
       <input type="text" name="description" style="width: 99%;" />
    </div>
    <div>
+      content(Korean):
+      <textarea name="content_ko" style="width: 99%; height: 200px;"></textarea>
+   </div>
+   <div>
       content:
       <textarea name="content" style="width: 99%; height: 200px;"></textarea>
    </div>

@@ -20,6 +20,7 @@
 		<li class="sub-menu-item"><a href="/jdbc/JDBC-Join">테이블 조인(Join)</a></li>
 		<li class="sub-menu-item"><a href="/jdbc/JDBC-Transaction">트랜잭션</a></li>
 		<li class="sub-menu-item"><a href="/jdbc/Connection-Pool">Connection Pool</a></li>
+		
 		<li class="sub-section-title">Lab</li>
 		<li class="sub-menu-item"><a href="/jdbc/Namecard">명함관리</a></li>
 		<li class="sub-menu-item"><a href="/jdbc/JavaBank">자바은행</a></li>
@@ -28,6 +29,7 @@
 		<li class="sub-menu-item"><a href="/jdbc/namecard_mybatis-spring.php">명함관리(MyBatis-Spring)</a></li>
 		<li class="sub-menu-item"><a href="/jdbc/bank01.php">자바은행 데이터 모델링</a></li>
 		 -->
+		 <li class="sub-section-title">데이터스토어에 저장한 블로그</li>
 <c:forEach var="i" items="${articles }" varStatus="status">
 		<li class="sub-menu-item"><a href="/datastore/${i.category }/${i.id }">${i.title }</a></li>
 </c:forEach>		 

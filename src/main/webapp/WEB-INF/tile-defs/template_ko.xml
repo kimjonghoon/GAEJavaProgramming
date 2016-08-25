@@ -1203,7 +1203,7 @@
 	</definition>
 	<!-- 3장 데이터스토어 이용 블로그 -->
 	<definition name="datastore/*/*" extends="defaultTemplate2">
-		<put-attribute name="article" value="/WEB-INF/views/blog/content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/blog/content_ko.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/{1}/{1}-sub.jsp" />
 	</definition>
 </tiles-definitions>

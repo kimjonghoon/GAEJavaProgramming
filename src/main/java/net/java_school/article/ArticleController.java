@@ -68,9 +68,10 @@ public class ArticleController {
 		String keywords = req.getParameter("keywords");
 		String description = req.getParameter("description");
 		String content = req.getParameter("content");
+		String content_ko = req.getParameter("content_ko");
 		String path = req.getParameter("path");
 		int articleOrder = Integer.parseInt(req.getParameter("articleOrder"));
-		article = new Article(category, title, keywords, description, content, 
+		article = new Article(category, title, keywords, description, content, content_ko, 
 				path, articleOrder, user.getUserId(), user.getEmail());
 		ofy().save().entity(article).now();
 		return "redirect:/article/list?category=" + category;
@@ -99,7 +100,7 @@ public class ArticleController {
 	}
 	@RequestMapping(value="article/modify", method=RequestMethod.POST)
 	public String modify(String title, String keywords, 
-			String description, String content, String path, 
+			String description, String content, String content_ko, String path, 
 			String category, String webSafeString, int articleOrder, Model model) {
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
@@ -108,7 +109,7 @@ public class ArticleController {
 		}
 		Key<Article> key = Key.create(webSafeString);
 		Article article = new Article(category, title, keywords, 
-				description, content, path, articleOrder);
+				description, content, content_ko, path, articleOrder);
 		article.id = key.getId();
 		ofy().save().entity(article).now();
 		return "redirect:/" + category + "/" + path;

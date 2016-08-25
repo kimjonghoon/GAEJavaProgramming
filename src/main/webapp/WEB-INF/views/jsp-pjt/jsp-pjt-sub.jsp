@@ -13,6 +13,8 @@
 		<li class="sub-menu-item"><a href="/jsp-pjt/bbs-implementation">구현</a></li>
 		<li class="sub-section-title">Model 2</li>	
 		<li class="sub-menu-item"><a href="/jsp-pjt/bbs-model-2">모델 2</a></li>
+		
+		<li class="sub-section-title">데이터스토어에 저장한 블로그</li>
 <c:forEach var="i" items="${articles }" varStatus="status">
 		<li class="sub-menu-item"><a href="/datastore/${i.category }/${i.id }">${i.title }</a></li>
 </c:forEach>		
