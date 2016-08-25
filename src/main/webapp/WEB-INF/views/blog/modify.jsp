@@ -9,5 +9,6 @@
   <div>keywords:<input type="text" name="keywords" value="${article.keywords }"/></div>
   <div>description:<input type="text" name="description" value="${article.description }"/></div>
   <div><textarea name="content" style="width: 99%;height: 300px;">${article.content }</textarea></div>
+  <div><textarea name="content_en" style="width: 99%;height: 300px;">${article.content_en }</textarea></div>
   <div><input type="submit" value="Modify Article"/></div>
 </form>

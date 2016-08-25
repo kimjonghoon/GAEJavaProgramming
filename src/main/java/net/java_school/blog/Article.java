@@ -21,7 +21,7 @@ public class Article {
 	public String keywords;
 	public String description;
 	public String content;
-	public String content_ko;
+	public String content_en;
 	@Index public Date date;
 	@Index public int order;
 	public Date lastModified;
@@ -80,11 +80,11 @@ public class Article {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getContent_ko() {
-		return content_ko;
+	public String getContent_en() {
+		return content_en;
 	}
-	public void setContent_ko(String content_ko) {
-		this.content_ko = content_ko;
+	public void setContent_en(String content_en) {
+		this.content_en = content_en;
 	}
 	public Date getDate() {
 		return date;

@@ -1448,9 +1448,9 @@
 		<put-attribute name="prev-title" value="Handling Cookie with JavaScript" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/javascript/javascript-sub.jsp" />
 	</definition>
-	<!-- 3장 데이터스토어 이용 블로그 -->
+	<!-- Chapter 3: Blogs using Datastore -->
 	<definition name="datastore/*/*" extends="defaultTemplate2">
-		<put-attribute name="article" value="/WEB-INF/views/blog/content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/blog/content_en.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/{1}/{1}-sub.jsp" />
 	</definition>
 </tiles-definitions>
