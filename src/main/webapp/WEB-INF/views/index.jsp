@@ -1,64 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <div id="last-modified">Last Modified : 2015.11.11</div>
+<h1>JDK Install</h1>
 
-<h1>JDK 설치</h1>
+<h2>Downloading the JDK installer</h2>
 
-<h2>JDK Installer 다운로드</h2>
-
-<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a><br /> 
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a><br />
 
 <img src="https://lh3.googleusercontent.com/-CttJ26edXQ8/Vjq0aKA0REI/AAAAAAAACqc/s8PKICr8Lyc/s533-Ic42/JavaSEDevelopmentKit.png" alt="64bit windows Java SE" /><br />
 
-<strong>64-bit</strong> 윈도 시스템은 위 그림처럼 <strong>Windows x64</strong>를 선택한다.<br />
-<strong>32-bit</strong> 윈도 시스템은 <strong>Windows x86</strong>을 선택한다.<br />
+If your system is 64-bit Windows, download the Windows x64.<br />
+If your system is 32-bit Windows, download the Windows x86.<br />
 
-<a href="http://bezzera.tistory.com/148">윈도 시스템이 32-bit인지 64-bit인지 알아내는 방법</a><br />
+<a href="http://windows.microsoft.com/en-us/windows/32-bit-and-64-bit-windows#1TC=windows-7">How can I tell if my computer is running a 32-bit or a 64-bit version of Windows?</a><br />
 <br />
 
-설치는 설치 화면에서 "Next" 버튼을 계속 클릭하는 것으로 쉽게 완료할 수 있다.<br />
-JDK는 <em class="path">C:\Program Files\Java\jdk1.8.0_&lt;version&gt;</em> 디렉터리에서 위치한다.<br />
+Installation can be completed simply by clicking the "Next" button.<br />
+JDK is locate at "C:\Program Files\Java\jdk1.8.0_&lt;version&gt;"<br />
 
 
-<h3>환경변수 PATH에 JDK의 bin 디렉터리 추가</h3>
+<h3>Updating the PATH Environment Variable</h3>
 
-시작을 클릭하고, 제어판, 시스템,
-고급, 환경 변수를 차례로 선택한다.<br /> 
-시스템 변수(S)에서 Path에 JDK의 bin 폴더를 추가한다.<br />
+Click Start, then Control Panel, then System.<br />
+Click Advanced, then Environment Variables.<br />
+Add the location of the bin folder of the JDK installation for the PATH variable in System Variables.<br />
 <br />
-윈도 XP를 사용한다면 다음을 따른다.<br />
-<img src="https://lh3.googleusercontent.com/-98m_YiFDhwU/V2SxgUU4K7I/AAAAAAAAC64/7KQ8b3Cpdbcuv7OWi746lg9RRkzvxJamACCo/s488/start-My_Computer-Properties.png" alt="시스템 속성 창" /><br />
+If your computer is running Windows XP, do the following:<br />
 
-<img src="https://lh3.googleusercontent.com/-zcZel2n21yk/VYDNqu5CxGI/AAAAAAAACMs/zIwc6Mz6__8optVwJUZnakdVUcAb6ostQCCo/s483/System-Properties_Advanced.png" alt="시스템 속성 창" /><br />
+<img src="https://lh3.googleusercontent.com/-ULLVFDs9LxI/VYDNrKfmzxI/AAAAAAAACMw/8Qb6hgcy1FgaEIbYPnSmyK7YMQY57UivQCCo/s664-Ic42/start-My_Computer-Properties.png" alt="System Properties" /><br /><br />
 
-JAVA_HOME이란 이름의 새로운 환경 변수를 만든다.<br />
-JAVA_HOME의 값은 JDK 설치 디렉터리이다.<br /> 
-정확한 값을 얻기 위해 윈도 탐색기를 이용한다.<br />
-<img src="https://lh3.googleusercontent.com/-_Xljvd7jGXM/VYDNqvGT5iI/AAAAAAAACMo/vDRhGTv4oZcPRBUVRFZV0gurvWhWo45TwCCo/s496/add-JAVA_HOME-System-Variable.png" alt="시스템 속청 창" /><br />
+<img src="https://lh3.googleusercontent.com/-zcZel2n21yk/VYDNqu5CxGI/AAAAAAAACMs/zIwc6Mz6__8optVwJUZnakdVUcAb6ostQCCo/s483-Ic42/System-Properties_Advanced.png" alt="System Properties" /><br /><br />
 
+Creates a new environment variable JAVA_HOME in the "Environment Variables".<br /> 
+The value of JAVA_HOME is the installation directory of the JDK.<br />
+To obtain the correct value, use the Windows Explorer.<br />
 
-환경 변수 Path를 선택하고 편집 버튼을 클릭한다.<br />
-Path의 기존 설정 값 맨 뒤에 ;(세미콜론)를 추가한 다음 
-<em class="path">%JAVA_HOME%\bin</em>을 추가한다.<br />
-<img src="https://lh3.googleusercontent.com/-iOuENrZbFAc/VYDNqqHl9zI/AAAAAAAACMg/BhZ60DJrp1EjfSclW23kNc6-y7fCzcAEgCCo/s493/add-jdk-bin-path.png" alt="%JAVA_HOME%\bin added in Path" /><br />
+<img src="https://lh3.googleusercontent.com/-_Xljvd7jGXM/VYDNqvGT5iI/AAAAAAAACMo/vDRhGTv4oZcPRBUVRFZV0gurvWhWo45TwCCo/s496-Ic42/add-JAVA_HOME-System-Variable.png" alt="JAVA_HOME create" /><br />
+
+Choose the "Path" from the "System variables" list.<br />
+Click on the "Edit" button.<br />
+Add the ";%JAVA_HOME%\bin" behind currnet PATH variable.<br />
+
+<img src="https://lh3.googleusercontent.com/-iOuENrZbFAc/VYDNqqHl9zI/AAAAAAAACMg/BhZ60DJrp1EjfSclW23kNc6-y7fCzcAEgCCo/s493-Ic42/add-jdk-bin-path.png" alt="%JAVA_HOME%\bin added in Path" /><br />
  
 <dl class="note">
 <dt>
-세미콜론 (;)은 윈도 시스템에서 PATH 환경 변수의 값을 구분할 때 사용된다.
+Semicolons (;) are used to separate the PATH environment variable in Windows OS.  
 </dt>
 <dt>PATH</dt>
 <dd>
-운영체제는 실행 프로그램을 PATH 디렉터리에서 찾는다.<br />
-PATH에 JDK의 bin 폴더를 추가하면 
-어느 디렉터리에서나 편리하게 JDK의 bin 폴더에 존재하는 
-윈도 실행 프로그램인 javac.exe, java.exe, jar.exe 등을 실행할 수 있게 된다.<br />
-만약 PATH에 JDK의 bin 폴더를 추가하지 않는다면 실행 프로그램의 전체 경로를 매번 다음과 같이 입력해야 할 것이다.<br />
+OS looks for programs in the PATH directories.<br />
+if you add the location of the bin folder of the JDK installation for the PATH variable,
+you are able to conveniently run the executables (javac.exe, java.exe, jar.exe, and so on) from any directory 
+without having to type the full path of the command, such as:<br />
+<b>C:\Users\kim&gt;javac Test.java</b><br />
+If you do not set the PATH variable, you need to specify the full path to the executable every time you run it, such as:<br />
 <b>C:\Program Files\Java\jdk1.8.0_20\bin&gt;javac C:\Users\kim\Test.java</b><br />
-명령 프롬프트에서 <strong>echo %PATH%</strong>를 실행하면 PATH 설정을 확인할 수 있다.<br />
+Run <b>echo %PATH%</b> in command prompt to confirm the PATH variable.<br />
 </dd>
 </dl>
 
-<h2>테스트</h2>
+<h2>Test</h2>
 
 <em class="filename">Test.java</em>
 <pre class="prettyprint">
@@ -77,28 +77,25 @@ Hello World!
 </pre>
 
 <dl class="note">
-<dt>테스트 예제 실패시 체크 리스트</dt>
+<dt>Test failure checklist</dt>
 <dd>
 javac Test.java<br />
-<span class="emphasis">'javac'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는 배치 파일이 아닙니다.</span><br />
-PATH 환경변수에 JDK의 bin 폴더를 추가하지 않았거나 잘못 추가한 경우이다.<br />
+<span class="emphasis">'javac' is not recognized as an internal or external command, operable program or batch file.</span><br />
+Update the PATH Environment Variable<br />
 <br />
 java Test<br />
 <span class="emphasis">Exception in thread "main" java.lang.NoClassDefFoundError: Test</span><br />
-Test.class 파일을 찾지 못했다는 메시지이다.<br />
-Test.class 파일이 없는 디렉터리에서 java Test를 실행할 때 이런 에러를 만난다.<br />
-클래스 파일이 없는 디렉터리에서 실행하려면 java.exe의 -cp 옵션을 사용한다.<br />
+This is a message that was not found Test.class file.<br />
+When you run "java Test" in the directory where Test.class file does not exist, 
+you encounter such an error.<br />
+To the class file is executed in the directory that does not exist, 
+it is necessary to use the -cp option of java.exe, such as:<br />
 <em class="path">C:\javawork&gt;java -cp C:\Users\kim Test</em>
 </dd>
 </dl>
 
-<h2>에디터</h2>
-<a href="/java/Package_Modifiers">팩키지와 접근자</a>까지 
-<a href="http://www.editplus.com/kr/">에디트플러스</a>같은 단순한 에디터를 사용하는 것이 낫다.<br />
-팩키지와 접근자를 공부한 다음에 이클립스를 설치한다.<br />
+<h2>Editor</h2>
 
-<span id="refer">참고</span>
-<ul id="references">
-	<li><a href="http://windows.microsoft.com/en-us/windows/32-bit-and-64-bit-windows#1TC=windows-7">32-bit and 64-bit Windows: frequently asked questions</a></li>
-	<li><a href="http://www.editplus.com">editplus</a></li>
-</ul>
+Until "Package and Modifiers", 
+it is better to use a simple editor such as <a href="https://www.editplus.com/">editPlus</a>.<br />
+After you finish the Package and Modifiers, We recommend that you install the eclipse.<br />

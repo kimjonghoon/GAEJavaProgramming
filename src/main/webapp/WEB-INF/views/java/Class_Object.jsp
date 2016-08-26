@@ -1,46 +1,46 @@
-<div id="last-modified">Last Modified : 2015.12.4</div>
+<div id="last-modified">Last Modified : 2015.11.11</div>
 
-<h1>객체와 클래스</h1>
-<? require('../inc/share.php'); ?>
+<h1>Class and Object</h1>
 
-<h2>객체 (Object)</h2>
-OOP는 객체를 이해하는 것이 중요하다.<br />
-현실 세계에서 객체의 예를 들어보자.<br /> 
-당신 앞에 있는 컵, 당신이 지금 사용하고 있는 컴퓨터, 당신 자신이 현실 세계의 객체이다.<br />
-현실 객체는 다음과 같은 3가지 특징을 가진다.<br />
+<h2>Object</h2>
+Objects are key to understanding OOP.<br />
+There are many examples of real world objects, such as: 
+your cup, your computer, you.<br />
+Real world objects have 3 characteristics.<br />
 
-<h3>1. 속성</h3>
-모든 객체는 속성을 가진다.<br />
-당신의 속성은 이름, 핸드폰 번호, 허리 둘레 등이 될 수 있다.<br />
+<h3>1. property</h3>
+Each object has properties.<br />
+You have properties, e.g., name, mobile, waist circumference.<br />
 
-<h3>2. 행위</h3>
-당신은 달린다, 걷는다와 같은 행위를 한다.<br />
+<h3>2. behavior</h3>
+You have behaviors, e.g., run, walk.<br /> 
 
-<h3>3. 유일성</h3>
-객체는 유일하다.<br />
-당신은 유일무이하다.<br />
+<h3>3. one</h3>
+Every object are only one.<br />
+You are only one.<br />
 
-<h3>소프트웨어 객체</h3>
-소프트웨어 객체 개념은 현실 세계의 객체와 비슷하다.<br />
+<h3>Software objects</h3>
 
-<em>객체는 데이터와 그 데이터를 조작하는 함수로 구성된 '독립된 단위'다.</em>
+Software objects are similar to real world objects.<br /><br />
+
+<em>Software objects are a combination of data and functions.</em>
 
 <br /><br />
-현실 세계 객체의 속성은 데이터로, 행위는 함수로 매핑된다.<br />
+A property of the real world object is mapped to the data,<br />
+A behavior of the real world object is mapped to the function.<br />
 
-<h2>클래스 (Class)</h2>
-클래스는 객체의 주조 금형에 해당한다.<br />
-(금형에 쉿물을 부으면 제품이 만들어 지는데, 제품 하나 하나가 객체라고 생각하면 된다.)<br />
-자바에서 객체를 생성하려면 먼저 클래스를 만들어야 한다.<br />
+<h2>Class</h2>
+A class is the Casting mold from which individual objects are created.<br />
+To create an object in a Java program, you must first create a class.<br />
 
-<h3>클래스 만드는 법</h3>
-출석 관리를 위한 소프트웨어를 개발한다고 가정하자.<br />
-학생 객체의 속성과 행위를 다음과 같이 추릴 수 있다.<br />
+<h3>How to make a class</h3>
+Let's think that we have to develop a program for student attendance management.<br />
+We are able to extract the properties and behaviors of a student, as follows.<br />
 <br />
-<em>속성 : 이름, 총 결석일 수<br />
-행위 : 결석하다</em><br />
+<em>property: name, total number of absence days.<br />
+behavior: absent</em><br />
 <br />
-이제 학생 클래스를 작성할 수 있다.<br />
+Now we can create a student class.<br />
 
 <em class="filename">Student.java</em>
 <pre class="prettyprint">
@@ -58,13 +58,13 @@ OOP는 객체를 이해하는 것이 중요하다.<br />
 <dl class="note">
 <dt>class Student {..}</dt>
 <dd>
-class 키워드 다음에 클래스 이름이 온다.<br />
-소스 파일 이름은 클래스 이름과 같게 할 것을 권장한다.<br />
+The class name comes after the class keyword.<br />
+File name is recommended to be the same as the class name.<br />
 </dd>
 <dt>String name;</dt>
 <dd>
-자바 객체는 자신의 상태를 필드에 저장한다.<br />
-상태는 OOP의 속성이라는 개념보다 넓은 개념이다.<br />
+An object stores its state in fields.<br />
+The state is a wider concept than OOP's property.<br />
 
 <table class="table-in-article">
 <tr>
@@ -72,13 +72,13 @@ class 키워드 다음에 클래스 이름이 온다.<br />
 	<th class="table-in-article-th">name</th>
 </tr>
 <tr>
-	<td class="table-in-article-td">필드의 데이터 형</td>
-	<td class="table-in-article-td">필드 이름</td>
+	<td class="table-in-article-td">field data type</td>
+	<td class="table-in-article-td">field name	</td>
 </tr>
 </table>
 
-String 클래스는 자바 API에 속한다.<br />
-String 클래스는 문자열을 표현할 때 사용된다.<br />
+A String class belongs to Java APIs.<br />
+A String class is used to express a series of characters.<br />
 </dd>
 
 <dt>int totalAbsenceDays;</dt>
@@ -90,24 +90,24 @@ String 클래스는 문자열을 표현할 때 사용된다.<br />
 	<th class="table-in-article-th">totalAbsenceDays</th>
 </tr>
 <tr>
-	<td class="table-in-article-td">필드의 데이터 형</td>
-	<td class="table-in-article-td">필드 이름</td>
+	<td class="table-in-article-td">field data type</td>
+	<td class="table-in-article-td">field name</td>
 </tr>
 </table>
 
-int는 정수를 위한 데이터 형이다.<br />
+A int is a data type for integer.
 </dd>
 
 <dt>void absent() {..}</dt>
 <dd>
-absent()가 반환하는 값이 없다면 absent() 앞에 void를 붙여야 한다.<br />
-absent()가 반환하는 값이 있다면 absent() 앞에 반환하는 값의 데이터 형을 붙여야 한다.<br />
-자바에선, absent()를 함수가 아닌 메서드라고 부른다.<br />
+if absent() does not return a value, you should type void before absent().<br />
+if absent() return a value, you should type the data type returned befere absent().<br />
+In Java, absent() is called a method not a function.<br />
 </dd>
 </dl>
 
-위 Student 클래스를 단독으로 실행할 수 있도록 만들자.<br />
-Student.java 파일을 열고, 아래와 같이 메인 메서드를 추가한다.<br />
+Let's make Student executable alone.<br />
+Open Student.java and add main method, as below:<br />
 
 <em class="filename">Student.java</em>
 <pre class="prettyprint">
@@ -141,34 +141,35 @@ class Student {
 </pre>
 
 <pre class="screen">
-C:\&gt;javac Student.java
+C:\Users\kim&gt;javac Student.java
 
-C:\&gt;java Studnet
+C:\Users\kim&gt;java Studnet
 2
 1
 
 C:\&gt;
 </pre>
 
-java Student를 명령 프롬프트에서 실행하면 새로운 JVM이 실행되고 Student 클래스의 메인 메서드가 실행된다.<br />
-JVM이 실행될 때마다 클래스 로더는 프로그램을 구성하는 자바 클래스 파일(예를 들면, Student, String, System 등)을 메모리에 적재하는 것을 책임진다.<br />
-클래스 로더는 자바 API와 관련된 클래스(예를 들면, String, System 등)의 위치는 이미 알고 있다.<br />
-Student 클래스는 우리가 그 위치를 클래스로더에게 알려주어야 할 때가 있다.<br />
-Student 클래스가 없는 디렉터리에서 Student 클래스를 실행하려면 java의 cp 옵션을 사용하여 Student 클래스의 위치를 알려주어야 한다.<br />
+Typing "java Student" drive a new JVM start and the main method of Student class start.<br />
+Whenever a JVM is started, the classloader is responsible for loading Java classes that make up the program, such as:<br />
+Student, String, System, etc.<br />
+A classloader already know the location of classes corresponding to Java APIs, e.g., String, System, etc.<br />
+Maybe you should notify the classloader the location of the Student class.<br />
+If you want to run in a directory where is no Student class, you should notify the location of Student class to the classloader using java -cp option.<br />
 
 <dl class="note">
 <dt>public static void main (String[] args) {..}</dt>
-<dd>
-메인 메서드는 자바 프로그램의 시작점이다.<br />
-시작하는 클래스에 메인 메서드를 만들어야 한다.<br />
+<dd> 
+The main method is the starting point of a Java pure application.<br />
+You should make the main method in the starting class.<br />
 </dd>
 <dt>Student tom = null;</dt>
 <dd>
-이 문장은 학생 객체를 참조하게 될 참조형 변수를 선언하고 null로 초기화한다.<br />
-참조형 변수는 객체를 접근할 때 사용하는 참조값을 저장한다.<br />
-참조형 변수는 객체 그 자체를 저장하지 않는다.<br />
-만약 참조형 변수가 어떤 객체도 가리키지 않도록 하려면 null를 할당하면 된다.<br />
-null도 값이기에, Student tom;과 Student tom = null;은 완전히 다르다.<br />
+This statement declare the reference variable to refer to the Student object and initializes variable to null.<br />
+A reference variable saves a reference value which is used to access a object.<br />
+A reference variable dose not save a object itself.<br /> 
+If you make reference variable does not point any object, you assigned variable to null.<br />
+Since null is also value, Student tom; and Stundent tom = null; is a completely different.<br />
 
 <table class="table-in-article">
 <tr>
@@ -176,53 +177,53 @@ null도 값이기에, Student tom;과 Student tom = null;은 완전히 다르다
 	<th class="table-in-article-th">Student tom = null;</th>
 </tr>
 <tr>
-	<td class="table-in-article-td" >
-	tom의 값이 정해지지 않았다.<br />
-	(이를 초기화되지 않았다라고 한다.)
+	<td class="table-in-article-td">
+	value of the tom has not been determined.<br />
+	(It will be expressed as "not initialized.")
 	</td>
 	<td class="table-in-article-td">
-	null은 참조형 변수의 초기화에 사용된다.<br />
-	null은 변수가 어떤 객체도 참조하지 않음을 나타내는 값이다.
+	null is used to initialize the reference variable.<br />
+	null is a value that indicates that don't refer to any object.
 	</td>
 </tr>	
 </table>
 </dd>
 <dt>tom = new Student();</dt>
 <dd>
-이 문장은 Student형 참조형 변수 tom에 생성한 학생 객체의 참조값을 할당한다.<br />
-new Student();는 학생 객체를 힙 메모리 공간에 생성하고, 생성된 학생 객체를 조작하기 위해 필요한 참조값을 반환한다.<br />
+This statement assigns the reference value of a Student object generated to the Student type reference variable (tom).<br />
+if new Student(); runs, the Student object is created in the heap memory space and the reference value required to operate the generated object is returned.<br />
 </dd>
 <dt>tom.name = "Thomas Edison";</dt>
 <dd>
-이 문장은 변수 tom을 이용해서 학생 객체의 이름을 셋팅한다.<br />
-참조형 변수를 사용해서 객체에 접근하려면 변수명 다음에 .(도트)를 쓰고 객체의 필드나 메서드를 표기한다.<br />
+This statement set the name of student objects by using the reference variable (tom).<br />
+Usage: Reference variable and the following dott and following the fields or methods of the object.
 </dd>
 <dt>tom.absent();</dt>
 <dd>
-이 문장은 tom이 참조하는 학생 객체의 absent()를 호출한다.<br />
+This statement call the absent() method of the student which variable tom refer to.<br />
 </dd>
 </dl>
 
 <h2>System.out.println()</h2>
 
-자바 기초 예제에서는 결과를 보기 위해서 이 메서드를 자주 사용하게 된다.<br />
-다음은 이 메서드의 모든 쓰임새를 보여주고 있다.<br />
+In the basic example of Java, in order to display the results, so that the frequent use of this method.<br />
+Below shows all of the uses for this method.<br />
 
 <em class="filename">StandardOutput.java</em>
 <pre class="prettyprint">
 class StandardOutput {
     public static void main(String[] args) {
-        System.out.println(true);// 불린값을 출력하고 개행
-        System.out.println('A');// char 'A'를 출력하고 개행
+        System.out.println(true);// boolean ouput and line break
+        System.out.println('A');// 'A' output and line break
         char[] x = {'A','B','C'};
-        System.out.println(x);//char 형 배열을 출력하고 개행
-        System.out.println(99.9);//double 형 자료를 출력하고 개행
-        System.out.println();//단순히 줄을 바꾼다(개행한다.)
-        System.out.println(99.9F);//float 형 자료를 출력하고 개행
-        System.out.println(100);//int 형 자료를 출력하고 개행
-        System.out.println(40000000L);//long 형 자료를 출력하고 개행
-        System.out.println(System.out);//객체의 데이터형@해시코드를 출력하고 개행
-        System.out.println("표준출력메서드");//문자열을 출력하고 개행
+        System.out.println(x);//char[] value output and line break
+        System.out.println(99.9);//double value output line break
+        System.out.println();// simply line break
+        System.out.println(99.9F);//float value output and line break
+        System.out.println(100);//int value output and line break
+        System.out.println(40000000L);//long value output and line break
+        System.out.println(System.out);//Object's data type@hashcode ouput and line break
+        System.out.println("standard output method");//String value output and line break
     }
 }
 </pre>
@@ -240,7 +241,7 @@ ABC
 100
 40000000
 java.io.PrintStream@de6ced
-표준출력메서드
+standard output method
 </pre>
 
-System.out.print()와 System.out.println()의 유일한 차이점은 System.out.print()는 출력 후 라인을 바꾸지 않는다는 것이다.
+The only difference between System.out.print() and System.out.println() is that System.out.print() does not change the line after the output.<br />

@@ -97,72 +97,72 @@
 		<put-attribute name="title" value="Homepage" />
 		<put-attribute name="keywords" value="Homepage" />
 		<put-attribute name="description" value="Welcome to My Homepage" />
-		<put-attribute name="article" value="/WEB-INF/views/index_en.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/index.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
 	</definition>
 	<definition name="java/Features" extends="defaultTemplate">
 		<put-attribute name="title" value="Features" />
 		<put-attribute name="keywords" value="Java Features,JVM,OOP" />
 		<put-attribute name="description" value="This Chapter dicusses Java Features" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Features_en.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Features.jsp" />
 		<put-attribute name="next-link" value="Class-Object" />
 		<put-attribute name="next-title" value="Class and Object" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Class-Object" extends="defaultTemplate">
 		<put-attribute name="title" value="Class and Object" />
 		<put-attribute name="keywords" value="Class, Object" />
 		<put-attribute name="description" value="Class and Object" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Class_Object_en.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Class_Object.jsp" />
 		<put-attribute name="next-link" value="Keyword_Indentifiers_Comment" />
 		<put-attribute name="next-title" value="Keyword, Indentifiers, Comment" />
 		<put-attribute name="prev-link" value="Features" />
 		<put-attribute name="prev-title" value="Java Features" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Keyword_Indentifiers_Comment" extends="defaultTemplate">
 		<put-attribute name="title" value="Keyword, Indentifiers, Comment" />
 		<put-attribute name="keywords" value="Keyword, Indentifiers, Comment" />
 		<put-attribute name="description" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Keyword_Indentifiers_Comment_en.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Keyword_Indentifiers_Comment.jsp" />
 		<put-attribute name="next-link" value="DataType_Casting" />
 		<put-attribute name="next-title" value="Data Type and Type Casting" />
 		<put-attribute name="prev-link" value="Class-Object" />
 		<put-attribute name="prev-title" value="Class and Object" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/DataType_Casting" extends="defaultTemplate">
 		<put-attribute name="title" value="Data Type and Type Casting" />
 		<put-attribute name="keywords" value="Data Type,Literal,Variable,Primitive Type,Reference Type,boolean,char,byte,short,int,long,float,double,null,Casting,Up-Casting,Down-Casting" />
 		<put-attribute name="description" value="This chapter describes about Java Data Type and Type Casting" />
-		<put-attribute name="article" value="/WEB-INF/views/java/DataType_Casting_en.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/DataType_Casting.jsp" />
 		<put-attribute name="next-link" value="Arrays" />
 		<put-attribute name="next-title" value="Arrays" />
 		<put-attribute name="prev-link" value="Keyword_Indentifiers_Comment" />
 		<put-attribute name="prev-title" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Arrays" extends="defaultTemplate">
 		<put-attribute name="title" value="Java Arrays" />
 		<put-attribute name="keywords" value="Java Arrays,Array of primitive type,Array of reference type,length,String[] parameter in main method" />
 		<put-attribute name="description" value="This chapter describes about Java Arrays" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Arrays_en.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Arrays.jsp" />
 		<put-attribute name="prev-link" value="DataType_Casting" />
 		<put-attribute name="prev-title" value="Data Type and Type Casting" />
 		<put-attribute name="next-link" value="Operators" />
 		<put-attribute name="next-title" value="Operators" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Operators" extends="defaultTemplate">
 		<put-attribute name="title" value="Operators" />
 		<put-attribute name="keywords" value="Operators" />
 		<put-attribute name="description" value="This chapter describes that Java Operators" />
-		<put-attribute name="article" value="/WEB-INF/views/java/Operators-content.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/java/Operators.jsp" />
 		<put-attribute name="prev-link" value="Arrays" />
 		<put-attribute name="prev-title" value="Java Arrays" />
 		<put-attribute name="next-link" value="if_switch_loops" />
 		<put-attribute name="next-title" value="if, switch, loops" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/if_switch_loops" extends="defaultTemplate">
 		<put-attribute name="title" value="if, switch, loops" />
@@ -173,7 +173,7 @@
 		<put-attribute name="prev-title" value="Operators" />
 		<put-attribute name="next-link" value="Package_Modifiers" />
 		<put-attribute name="next-title" value="Package and Modifiers" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Package_Modifiers" extends="defaultTemplate">
 		<put-attribute name="title" value="Package and Modifiers" />
@@ -184,7 +184,7 @@
 		<put-attribute name="prev-title" value="if, switch, loops" />
 		<put-attribute name="next-link" value="Inheritance" />
 		<put-attribute name="next-title" value="Inheritance" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Inheritance" extends="defaultTemplate">
 		<put-attribute name="title" value="Inheritance" />
@@ -195,7 +195,7 @@
 		<put-attribute name="prev-title" value="Package and Modifiers" />
 		<put-attribute name="next-link" value="Static" />
 		<put-attribute name="next-title" value="static" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Static" extends="defaultTemplate">
 		<put-attribute name="title" value="static" />
@@ -206,7 +206,7 @@
 		<put-attribute name="prev-title" value="Inheritance" />
 		<put-attribute name="next-link" value="Collection" />
 		<put-attribute name="next-title" value="Collection" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Collection" extends="defaultTemplate">
 		<put-attribute name="title" value="Collection" />
@@ -217,7 +217,7 @@
 		<put-attribute name="prev-title" value="static" />
 		<put-attribute name="next-link" value="Exception" />
 		<put-attribute name="next-title" value="Exception" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Exception" extends="defaultTemplate">
 		<put-attribute name="title" value="Exception" />
@@ -228,7 +228,7 @@
 		<put-attribute name="prev-title" value="Collection" />
 		<put-attribute name="next-link" value="Javabank-Requirements-analysis" />
 		<put-attribute name="next-title" value="Java bank Requirements analysis" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Javabank-Requirements-analysis" extends="defaultTemplate">
 		<put-attribute name="title" value="Java bank Requirements analysis" />
@@ -239,7 +239,7 @@
 		<put-attribute name="prev-title" value="Exception" />
 		<put-attribute name="next-link" value="Javabank-Design" />
 		<put-attribute name="next-title" value="Javabank Design" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Javabank-Design" extends="defaultTemplate">
 		<put-attribute name="title" value="Javabank Design" />
@@ -250,7 +250,7 @@
 		<put-attribute name="prev-title" value="Java bank Requirements analysis" />
 		<put-attribute name="next-link" value="Javabank-Apply-inheritance" />
 		<put-attribute name="next-title" value="Put inheritance concepts to pratical use in the javabank example" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Javabank-Apply-inheritance" extends="defaultTemplate">
 		<put-attribute name="title" value="Put inheritance concepts to pratical use in the javabank example" />
@@ -262,7 +262,7 @@
 		<put-attribute name="next-link" value="Javabank-Apply-abstract-class" />
 		<put-attribute name="next-title"
 			value="Put abstract class to pratical use in the javabank example" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Javabank-Apply-abstract-class"
 		extends="defaultTemplate">
@@ -280,7 +280,7 @@
 		<put-attribute name="next-link" value="Javabank-Apply-interface" />
 		<put-attribute name="next-title"
 			value="Put interface to pratical use in the javabank example" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Javabank-Apply-interface" extends="defaultTemplate">
 		<put-attribute name="title"
@@ -296,7 +296,7 @@
 			value="Put abstract class concepts to pratical use in the javabank example" />
 		<put-attribute name="next-link" value="Thread" />
 		<put-attribute name="next-title" value="Thread" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Thread" extends="defaultTemplate">
 		<put-attribute name="title" value="Thread" />
@@ -310,7 +310,7 @@
 			value="Put abstract interface to pratical use in the javabank example" />
 		<put-attribute name="next-link" value="Stream" />
 		<put-attribute name="next-title" value="Stream" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Stream" extends="defaultTemplate">
 		<put-attribute name="title" value="Stream" />
@@ -323,7 +323,7 @@
 		<put-attribute name="prev-title" value="Thread" />
 		<put-attribute name="next-link" value="Logging" />
 		<put-attribute name="next-title" value="Logging" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Logging" extends="defaultTemplate">
 		<put-attribute name="title" value="Logging" />
@@ -335,7 +335,7 @@
 		<put-attribute name="prev-title" value="Stream" />
 		<put-attribute name="next-link" value="Socket" />
 		<put-attribute name="next-title" value="Socket" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Socket" extends="defaultTemplate">
 		<put-attribute name="title" value="Socket" />
@@ -347,7 +347,7 @@
 		<put-attribute name="prev-title" value="Logging" />
 		<put-attribute name="next-link" value="RMI" />
 		<put-attribute name="next-title" value="RMI" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/RMI" extends="defaultTemplate">
 		<put-attribute name="title" value="RMI" />
@@ -357,7 +357,7 @@
 		<put-attribute name="article" value="/WEB-INF/views/java/RMI.jsp" />
 		<put-attribute name="prev-link" value="Socket" />
 		<put-attribute name="prev-title" value="Socket" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_en.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<!-- JDBC -->
 	<definition name="jdbc/JDBC-Intro" extends="defaultTemplate">
@@ -1450,7 +1450,7 @@
 	</definition>
 	<!-- Chapter 3: Blogs using Datastore -->
 	<definition name="datastore/*/*" extends="defaultTemplate2">
-		<put-attribute name="article" value="/WEB-INF/views/blog/content_en.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/blog/content.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/{1}/{1}-sub.jsp" />
 	</definition>
 </tiles-definitions>

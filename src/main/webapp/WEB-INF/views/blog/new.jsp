@@ -33,8 +33,8 @@
       <textarea name="content" style="width: 99%; height: 200px;"></textarea>
    </div>
    <div>
-      content(English):
-      <textarea name="content_en" style="width: 99%; height: 200px;"></textarea>
+      content(Korean):
+      <textarea name="content_ko" style="width: 99%; height: 200px;"></textarea>
    </div>
    <div>
       <input type="submit" value="Post Article" />

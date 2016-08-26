@@ -1,274 +1,281 @@
 <div id="last-modified">Last Modified : 2016.4.7</div>
 
-<h1>자료형(Data Type)과 형변환(Type Casting)</h1>
+<h1>Data Type and Type Casting</h1>
 
-<h2>리터럴과 변수</h2>
+
+<h2>Literal and Variable</h2>
 
 <pre class="prettyprint no-border">
 int year = 2016;
 </pre>
 
-위에서 2016처럼 쓰이는 프로그램 요소를 리터럴(Literal)이라 한다.
-리터럴은 소스 코드에서 고정된 값을 표현한다.
-year처럼 쓰이는 프로그램 요소를 변수라 한다.
-변수란 값을 저장하기 위해 이름 붙인 메모리 기억공간으로 기억공간의 크기는 자료형으로 결정된다.<br />
+The programming elements as the <b>2016</b> called Literal.
+A literal is the source code representation of a fixed value.
+<br />
+The programming elements as the <b>year</b> called Variable.
+A variable is a storage location with a name in order to save the value.
+The size of storage capacity varies depending on the Data Type.
 
-<h2>자바의 자료형(Data Type)</h2>
-자바의 자료형은 크게 두 종류로 나뉜다.<br />
+<h2>Data Type</h2>
+
+Data type in Java is largely divided into two types.
 
 <ul>
-	<li>기본형 (<em>Primitive Data Types</em>)</li>
-	<li>참조형 (<em>Reference Data Types</em>)</li>
+	<li>Primitive Data Types</li>
+	<li>Reference Data Types</li>
 </ul>
 
-기본형은 일반적인 데이터를 위한 자료형이다.
-참조형은 객체지향 프로그래밍 언어에서 추가된 자료형으로 참조형 테이터를 위한 자료형이다.
+Primitive Data Types are a Data Type for normal data.
+Reference Data Types are a Data Type for reference data.
 
-<h3>기본형</h3>
+<h3>Primitive Data Types</h3>
+
 <table class="table-in-article">
 <tr>
-	<th class="table-in-article-th">자료형</th>
-	<th class="table-in-article-th">설명</th>
-	<th class="table-in-article-th">예</th>
+	<th class="table-in-article-th">Type</th>
+	<th class="table-in-article-th">Description</th>
+	<th class="table-in-article-th">Example</th>
 </tr>
 <tr>
 	<th class="table-in-article-th">boolean</th>
-	<td class="table-in-article-td">true 또는 false</td>
+	<td class="table-in-article-td">true or false</td>
 	<td class="table-in-article-td">boolean present = true;</td>
 </tr>
 <tr>
 	<th class="table-in-article-th">char</th>
 	<td class="table-in-article-td">
-		2 바이트 유니코드 문자.<br />
-		언제나 ' '(홑따옴표)를 사용하여 표현.
+		16-bit Unicode character.<br />
+		Always use 'single quotes' for char literals.
 	</td>
 	<td class="table-in-article-td">
 		char grade = 'A';<br />
 		char ch = '\uFFFF';<br />
-		(UTF-16 문자셋에서 16진수 FFFF에 해당하는 문자)<br />
-		char ech = '\n'; //new line<br />
-		char ech = '\b'; //백스페이스<br />
-		char ech = '\t'; //탭<br />
-		char ech = '\\'; //역슬래시<br />
-		char ech = '\"'; //큰 따옴표<br />
-		char ech = '\''; //작은 따옴표
+		('\uFFFF' is the character correspond to FFFF (Hex) in UTF-16)<br />
+		char ech = '\n';//line feed<br />
+		char ech = '\b';//backspace<br />
+		char ech = '\t';//tab<br />
+		char ech = '\\';//backspace<br />
+		char ech = '\"';//double quote<br />
+		char ech = '\'';//single quote
 	</td>
 </tr>
 <tr>
 	<th class="table-in-article-th">byte</th>
-	<td class="table-in-article-td">1 바이트 정수형 데이터</td>
+	<td class="table-in-article-td">8-bit integer</td>
 	<td class="table-in-article-td">byte weight = 71;</td>
 </tr>
 <tr>
 	<th class="table-in-article-th">short</th>
-	<td class="table-in-article-td">2 바이트 정수형 데이터</td>
+	<td class="table-in-article-td">16-bit integer</td>
 	<td class="table-in-article-td">short bill = 30000;</td>
 </tr>
 <tr>
 	<th class="table-in-article-th">int</th>
-	<td class="table-in-article-td">4 바이트 정수형 데이터</td>
+	<td class="table-in-article-td">32-bit integer</td>
 	<td class="table-in-article-td">int balance = 56219618;</td>
 </tr>
 <tr>
 	<th class="table-in-article-th">long</th>
-	<td class="table-in-article-td">8 바이트 정수형 데이터</td>
+	<td class="table-in-article-td">64-bit integer</td>
 	<td class="table-in-article-td">long balance = 56219000L;</td>
 </tr>
 <tr>
 	<th class="table-in-article-th">float</th>
-	<td class="table-in-article-td">4 바이트 실수형 데이터</td>
+	<td class="table-in-article-td">32-bit floating point
 	<td class="table-in-article-td">float rate = 6.195f;</td>
 </tr>
 <tr>
 	<th class="table-in-article-th">double</th>
-	<td class="table-in-article-td">8 바이트 실수형 데이터</td>
+	<td class="table-in-article-td">64-bit floating point</td>
 	<td class="table-in-article-td">double rate = 6.195;</td>
 </tr>
 </table>
 
-<h3>값의 자료형</h3>
+<h3>Data Type of Values</h3>
 
 <pre class="prettyprint no-border">
-int i1 = 3;//정수형 숫자 뒤에 아무것도 붙지 않으면 int 리터럴
-int i2 = 300000000;//컴파일 에러!
+int i1 = 3;//integral number without any additional character is a int literal.
+int i2 = 3000000000;//compile error!
 </pre>
 
-3000000000은 int 리터럴이다.
-하지만 3000000000(30억)은 int 값이 가질 수 있는 범위를 벗어난다.
-따라서 int형으로 3000000000이란 값은 만들어지지 않고 컴파일 에러가 발생한다.
+3000000000 is a int literal and value of the int type should be created. 
+But 3000000000 is out of the int range so that value of 3000000000 cannot be created.
+<br />
+
 
 <pre class="prettyprint no-border">
-long money = 1000L;//1000L은 long 리터럴 
-</pre>
-
-<pre class="prettyprint no-border">
-double d1 = 3.14;//실수형 숫자 뒤에 아무것도 붙지 않으면 double 리터럴
-double d2 = 3.14D;//3.14D는 double 리터럴
-double d3 = 3.14d;//3.14d는 double 리터럴
+long money = 1000L;//1000L is a long literal. 
 </pre>
 
 <pre class="prettyprint no-border">
-float f2 = 3.14f;//3.14f는 float 리터럴
-float f3 = 3.14F;//3.14F는 float 리터럴
+double d1 = 3.14;//A floating point number without any additional character is a double literal. 
+double d2 = 3.14D;//3.14D is a double literal.
+double d3 = 3.14d;//3.14d is a double literal.
 </pre>
-
-<h3>int 리터럴이 int형 값이 아닐 수 있다.</h3>
-자바에는 byte와 short를 위한 리터럴이 없다.<br />
-아래와 같은 경우에 int 리터럴이 int 값이 아니다.<br />
 
 <pre class="prettyprint no-border">
-byte b = 1; //1은 int 리터럴이지만 byte형 값이 된다.
-short s = 2; //2는 int 리터럴이지만 short형 값이 된다.
+float f2 = 3.14f;//3.14f is a float literal.
+float f3 = 3.14F;//3.14F is a float literal.
 </pre>
 
-<h3>참조형</h3>
+<h3>int literals may not be int value</h3>
+There is no specific literal for the byte and short in Java.
+As below shown, a int literals may not be int value.
 
 <pre class="prettyprint no-border">
-Student kim = new Student();
+byte b = 1; //1 is int literal but value of 1 is created as byte type.
 </pre>
-
-자바에서 변수를 선언할 때, 변수 앞에 자료형이 먼저 나와야 한다.
-따라서 위의 변수 kim의 자료형은 Student이다.
-기본형에 Student란 자료형이 없으니 Student는 참조형이다.
-new Student()가 실행되면, 생성된 객체의 참조가 kim에 할당된다.
-객체의 참조는 메모리상에서 객체 주소를 의미한다.
-변수 kim과 .(도트)를 사용한다면 kim이 참조하는 객체에 접근할 수 있다.
 
 <pre class="prettyprint no-border">
-kim.name = "김선달";
+short s = 2; //2 is int literal but value of 2 is created as short type.
 </pre>
 
-만약 kim이 어떤 학생 객체도 가리키지 않도록 하려면  <em>null</em> 값을 할당한다.
+<h3>Reference Data Types</h3>
 
 <pre class="prettyprint no-border">
-kim = <em>null</em>;
+Student john = new Student();
 </pre>
 
-<h2>형변환(Type Casting)</h2>
+To declare a variable in Java, you should put the data type of the variable before the variable name. 
+Student is the data type of the variable john and Student is not primitive data type.
+therefore, Student is a reference data type.
+When new Student() is executed, the reference to created student object is assigned to the varible john.
+A reference to an object is the address of the object in memory.
+Now, if you use the varibale john and .(dot), you can access to the student object which john is referring to as below;
 
-형변환이란 값의 자료형을 원하는 자료형으로 변환하는 작업을 말한다.<br />
-형변환에는 JVM이 판단해서 행하는 자동 형변환과 프로그래머가 의도적으로 일으키는 명시적 형변환이 있다.<br />
+<pre class="prettyprint no-border">
+john.name = "John Adams";
+</pre>
+
+if you want that john is not referring to any object, assign null to john as below;
+
+<pre class="prettyprint no-border">
+john = null;
+</pre>
+
+<h2>Type Casting</h2>
+
+Type casting means that converting the data type of value to desired data type.
+Type Casting is divided into two types.
+One is called Up-Casting, it happens automatically by the JVM.
+The Other is called Down-Casting, if you want it happens, put (desired data type) before literals or variables. 
  
-<h3>자동 형변환(Up-Casting)</h3>
+<h3>Up-Casting</h3>
 
 <pre class="prettyprint no-border">
-long money = 300;//300은 int 리터럴
+long money = 300;//300 is int literal and value of 300 is created as int type.
 </pre>
 
-위 코드는 long형 변수 money에 int형 값 300을 할당하려 한다.
-자바는 자료형의 적용에 엄격하다.
-long형 변수 money에 저장되는 값은 long형이여야 한다.
-이 경우 JVM은 할당하기 전에 300을 long형으로 변환한다.
-자동 형변환은, 작은 자료형에서 큰 자료형 방향으로 변환이 일어나므로, Up-Casting이라 한다.<br />
-
-<em>byte --&gt; short --&gt; int --&gt; long --&gt; float --&gt; double</em><br />
-
-long --&gt; float 방향에 주목하자.
-비록 float이 4바이트 영역의 메모리를 차지하지만 실수이므로 
-long에서 float으로 자동 형변환된다.
-다음 예를 보자.
+The above code has been declared a long type variable money and assign 300 to money.
+Java is strict on the data type applies. So, variable money shall be assigned a value of long type. 
+In this case, JVM converted 300 of int type to 300 of long type before the assignment.
+Automatic type casting happens to a large datatypes direction from a small data type.<br />
+(byte --&gt; short --&gt; int --&gt; long --&gt; float --&gt; double)<br />
+So, it is called Up-Casting.
+Even so float occupies 4 bytes of memory size and long occupies 8 bytes of memory size, but long are automatically cast to float.
 
 <pre class="prettyprint no-border">
-float x = 10L;//JVM은 long형 값 10을 float형의 값 10으로 형변환한다.
+float x = 10L;//JVM convert 10 of long type to 10 of float type automatically.
 </pre>
 
-<h4>사칙연산에서 일어나는 자동 형변환</h4>
+<h4>Automatic Type Casting in arithmetic</h4>
+
 <pre class="prettyprint no-border">
-int x = 3 + <em>3.5</em> + 4; //컴파일 에러!
+int x = 3 + <em>3.5</em> + 4; //compile error!
 </pre>
 
-3.5는 double형 값이고, 3과 4는 int형 값이다.<br />
-int를 포함하여 자료형이 int 이상의 값들이 참여하는 산술 연산에서는 
-값들 중 가장 큰 자료형으로 나머지 값들의 자료형이 변환된다.
-따라서 위 코드에서 3과 4는 연산이 실행되기 전에 double형으로 변환된다.<br />
+Value of 3.5 is created as a double type and value of 3 and 4 are created as int type.
+In the arithmetic which int type and larger type than int participates in, 
+every value will converted to the largest data type of values as below;
 
 <pre class="prettyprint no-border">
 int x = 3.0 + 3.5 + 4.0;
 </pre>
 
-3.0 + 3.5 + 4.0의 결과는 dobule형 값이 되고 이 값은 int형 변수에 할당할 수 없으니 컴파일 에러가 일어나는 것이다.
-이해했다면 다음 예에서 z에 할당되는 값을 예상해 보자.
+Compile error happens because you cannot assign long to int.<br />
+<br />
+Let's try to predict the value of z in the next example.<br />
 
 <pre class="prettyprint no-border">
 int x = 10; int y = 4; int z = x / y;
 </pre>
 
-z에는 2가 할당된다.(2.5가 아니다)
-이유는 x와 y가 모두 int형 값이므로 연산 결과 역시 int형이여야 하기 때문이다.<br />
+z assigned 2 (not 2.5).
+The reason is because both x and y are int that result also be a int.<br />
 
-<h3>명시적 형변환(Down-Casting)</h3>
-
+Try again.
 <pre class="prettyprint no-border">
-float f = 1.1; //컴파일 에러!
+int x = 10; int y = 4; double z = x / y;
 </pre>
 
-변수에 값을 대입할 때 값의 자료형이 변수의 자료형보다 크면 컴파일 에러가 발생한다.<br />
-위 코드는 float형 변수에 double형 값을 대입하려고 했기 때문에 컴파일 에러가 발생한 것이다.<br />
-다음 코드는 double형 값의 자료형을 float형으로 의도적으로 바꾸는 코드이다.<br />
+<h3>Down-Casting</h3>
+
+<pre class="prettyprint no-border">
+float f = 1.1;// compile error!
+</pre>
+
+The above code occurs a compile error because you cannot assign double to float.
+The following code converts value of double type to value of float type.
 
 <pre class="prettyprint no-border">
 float f = (float) 1.1;
 </pre>
 
-다음 예를 보자.<br />
+Consider the following example.
 
 <pre class="prettyprint no-border">
-byte b = (byte) 258; //b엔 2가 할당된다.
+byte b = (byte) 258; //b assigned 2
 </pre>
 
-int형 값의 자료형을 byte형으로 바꿀 때 int의 앞 3byte는 떨어져 나간다.<br />
+When int converts to byte, front 3 bytes of 4 bytes is lost.<br />
 <br />
-z는 뭐가 될까?
-<pre class="prettyprint no-border">
-int x = 10; int y = 4; double z = x / y;
-</pre>
-
-z가 2.5가 되려면 연산에 참여하는 x 나 y를 double로 명시적 형변환한다.
-<pre class="prettyprint no-border">
-double z = <b>(double)</b> x / y; 
-</pre>
-
-또는 
+Let's consider the previous example.<br />
+if you want that z is 2.5, you need to do the down-casting as below;
 
 <pre class="prettyprint no-border">
-double z = x / <b>(double)</b> y; 
+double z = (double) x / y; or double z = x / (double) y;
 </pre>
 
-<h3>byte 또는 short형 값이 참여하는 산술연산에서의 자동 형변환</h3>
-byte형이나 short형 값이 참여하는 산술연산은, 연산이 실행되기 전에 모든 값이 int형으로 변환된다.
+<h3>Arithmetic which byte or short participates in</h3>
+
+In arithmetic that values of byte or short participate in, all values converted to int type before the arithmetic progress.
+
 
 <pre class="prettyprint no-border">
 short s1 = 1;
 short s2 = 2;
-short sum = s1 + s2; //컴파일 에러!
+short sum = s1 + s2; //compile error!
 </pre>
 
-만약 컴파일 에러를 피하려면 다음과 같은 명시적 형변환이 필요하다.
+If you want to avoid compilation errors. cast as shown below; 
 
 <pre class="prettyprint no-border">
 short sum = <em>(short)</em> (s1 + s2);
 </pre>
 
-<h2>String 클래스 : 자바 프로그램에서 문자열을 사용하려면</h2>
-
-자바에서 문자열을 표현하는 방법은 String 클래스로부터 String 객체를 생성하여 사용하는 것이다.
-String 클래스는 자바 API에 존재한다.
-"안녕하세요"라는 문자열이 필요하다고 하면 아래처럼 코딩해야 한다.
+or
 
 <pre class="prettyprint no-border">
-char arrayOfHello = {'H','e','l','l'.'o'};
+<em>int</em> sum = s1 + s2;
+</pre>
+
+<h2>To use strings in Java programs</h2>
+
+How to express the strings in Java is to create a String object from the String class. 
+The String class is a class that exists in the Java API. 
+
+<pre class="prettyprint no-border">
+char[] arrayOfHello = {'H','e','l','l','o'};
 String greetings = new String(arrayOfHello);
 </pre>
 
-그런데 자바에서는 다음과 같이 문자열 리터럴을 제공한다.
+However, since strings are often used, Java allows the following.
 
 <pre class="prettyprint no-border">
-String greetings = "안녕하세요";//여기서 "안녕하세요"는 리터럴이다.
+String greetings = "Hello"; //Here, "Hello" is a Java Literal.
 </pre>
 
-문자열은 자주 사용되므로, 문자열을 마치 기본 자료형처럼 사용할 수 있도록 배려한 것이다.<br />
-
-<span id="refer">참고</span>
+<span id="refer">References</span>
 <ul id="references">
 	<li><a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html</a></li>
 	<li><a href="http://stackoverflow.com/questions/4331200/what-do-f-and-d-mean-at-the-end-of-numeric-literals">http://stackoverflow.com/questions/4331200/what-do-f-and-d-mean-at-the-end-of-numeric-literals</a></li>
