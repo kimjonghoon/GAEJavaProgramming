@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <nav id="secondaryNav">
-	<strong id="main-menu-title">CSS-Layout</strong>
+	<strong>CSS-Layout</strong>
 	<ul id="sub-menu">
 		<li class="sub-section-title">3 column fixed width layout</li>
 		<li class="sub-menu-item"><a href="/css-layout/div-element-arrangement">주요 엘리먼트 배치</a></li>

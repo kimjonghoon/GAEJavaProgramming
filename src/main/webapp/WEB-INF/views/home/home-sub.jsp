@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav id="secondaryNav">    
-	<strong id="main-menu-title">Home</strong>
+	<strong>Home</strong>
 	<ul id="sub-menu">
 		<li class="sub-section-title">Github</li>
 		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/JSPProject">JSP Project</a></li>

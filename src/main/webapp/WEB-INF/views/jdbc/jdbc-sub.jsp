@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav id="secondaryNav">
-	<strong id="main-menu-title">JDBC</strong>
+	<strong>JDBC</strong>
 	<ul id="sub-menu">
 		<li class="sub-section-title">JDBC Tutorial</li>
 		<li class="sub-menu-item"><a href="/jdbc/JDBC-Intro">JDBC 소개</a></li>

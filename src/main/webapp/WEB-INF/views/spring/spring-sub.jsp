@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav id="secondaryNav">
-	<strong id="main-menu-title">Spring</strong>
+	<strong>Spring</strong>
 	<ul id="sub-menu">
 		<li class="sub-section-title">Spring Basic</li>
 		<li class="sub-menu-item"><a href="/spring/building-java-projects-with-maven">Spring 실습방법</a></li>

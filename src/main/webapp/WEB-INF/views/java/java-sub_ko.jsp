@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <nav id="secondaryNav">
-	<strong id="main-menu-title">Java</strong>
+	<strong>Java</strong>
 	<ul id="sub-menu">
 		<li class="sub-section-title">자바 소개</li>
 		<li class="sub-menu-item"><a href="/java/Features">자바의 특징</a></li>

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <nav id="secondaryNav">
-   <strong id="main-menu-title">BBS</strong>
+   <strong>BBS</strong>
    <ul id="sub-menu">
    <c:forEach var="i" items="${boards }" varStatus="status">
       <li class="sub-menu-item"><a href="/bbs/list?boardCd=${i.boardCd }&curPage=1"><spring:message code="${i.boardCd }" /></a></li>

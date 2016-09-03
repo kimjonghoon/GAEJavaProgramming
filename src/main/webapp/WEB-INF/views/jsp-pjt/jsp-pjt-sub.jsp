@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav id="secondaryNav">
-	<strong id="main-menu-title">JSP Project</strong>
+	<strong>JSP Project</strong>
 	<ul id="sub-menu">
 		<li class="sub-section-title">Model 1</li>
 		<li class="sub-menu-item"><a href="/jsp-pjt/Dynamic-Web-Project-Set-Up">개발 준비</a></li>

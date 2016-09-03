@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav id="secondaryNav">
-	<strong id="main-menu-title">JavaScript</strong>
+	<strong>JavaScript</strong>
 	<ul id="sub-menu">
 		<li class="sub-section-title">JavaScript Basic</li>
 		<li class="sub-menu-item"><a href="/javascript/introduction">자바스크립트 소개</a></li>
