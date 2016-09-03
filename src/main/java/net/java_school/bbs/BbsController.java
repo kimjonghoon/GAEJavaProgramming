@@ -180,8 +180,7 @@ public class BbsController {
 			}
 		}
 		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + 
-				"&curPage=" + curPage + 
-				"&searchWord=" + searchWord;
+				"&curPage=1&searchWord=";
 	}
 	@RequestMapping(value="deleteAttachFile", method=RequestMethod.POST)
 	public String deleteAttachFile(String filekey, 

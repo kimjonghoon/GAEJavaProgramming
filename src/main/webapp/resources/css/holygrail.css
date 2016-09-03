@@ -79,9 +79,6 @@ a:hover {
 	border-bottom: 1px solid #DAEAAA;
 	margin-bottom: 7px;
 }
-#content-wrap {
-	width: 100%;
-}
 article {
 	margin: 0;
 	padding: 0;
@@ -119,12 +116,14 @@ article img {
 	font-weight: bold;
 	font-size: 12px;
 }
+
 .sub-menu-item {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	font-size: 14px;
 }
+
 .sub-menu-item > a {
 	display: block;
 	padding: 15px 3px 14px 17px;
@@ -134,7 +133,7 @@ article img {
 	font-weight: normal;
 	text-decoration: none;
 	border-bottom: 1px solid #fff;
-	background: #fff url('../images/circle.gif') no-repeat 5% 50%; <!--추가 -->
+	background: #fff url('../images/circle.gif') no-repeat 5% 50%;
 }
 
 .sub-menu-item > a:hover {
@@ -457,6 +456,7 @@ footer > ul {
 footer > ul > li {
 	margin: 0;
 	padding: 0;
+	display: inline;
 }
 .table-in-article {
 	margin-top: 10px;
@@ -698,13 +698,17 @@ article > h5 {
 	margin-bottom: 0;
 	font-size: 1em;
 }
-#footer-ad {
-	display: none;
-}
+
 @media ( min-width : 768px) {
-	#wrap {
-		margin: 0 auto;
-		width: 1004px;
+	body {
+		margin: 0;
+		padding-left: 179px;
+		padding-right: 201px;
+		min-width: 219px;
+	}
+	header,footer,#mainNav,#login {
+		margin-left: -179px;
+		margin-right: -201px;
 	}
 	header {
 		height: 48px;
@@ -738,26 +742,28 @@ article > h5 {
 	#login {
 		clear: both;
 	}
-	#content-wrap {
-		float: left;
-	}
 	article {
-		margin-left: 185px;
-		margin-right: 166px;
+		position: relative;
+		float: left;
+		padding: 0 20px;
+		width: 100%;
 	}
 	#sidebar {
+		position: relative;
 		float: left;
 		width: 179px;
-		margin-left: -1004px;
+		right: 219px;
+		margin-left: -100%;
 	}
  	.sub-menu-item > a {
 		padding: 5px 3px 4px 17px;
 	}
 	aside {
+		position: relative;
 		float: left;
 		display: block;
 		width: 161px;
-		margin-left: -161px;
+		margin-right: -100%;
 	}
 	ins {
 		display: block;
@@ -782,8 +788,5 @@ article > h5 {
 	.cse .gsc-control-cse, .gsc-control-cse {
 		margin: 0 !important;
 		padding: 0 !important;
-	}
-	#footer-ad {
-		display: block;
 	}
 }

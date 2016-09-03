@@ -6,83 +6,221 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="Keywords" content="keywords" />
 <meta name="Description" content="description" />
-<link rel="stylesheet" href="css/screen.css" type="text/css" />
-<script>
-function modifyCommentToggle(articleNo) {
-    var p_id = "comment" + articleNo;
-    var p = document.getElementById(p_id);
-    var form_id = "modifyCommentForm" + articleNo;
-    var form = document.getElementById(form_id);
-    var p_display;
-    var form_display;
-    if (p.style.display) {
-            p_display = '';
-            form_display = 'none';
-    } else {
-            p_display = 'none';
-            form_display = '';
-    }
-    p.style.display = p_display;
-    form.style.display = form_display;
+<style type="text/css">
+header, footer {
+	font-size: large;
+	text-align: center;
+	background: #999;
 }
-</script>
+article {
+	font-size: large;
+	text-align: center;
+	background: #DDD;
+	height: 100px;
+}
+aside {
+	font-size: large;
+	text-align: center;
+	background: #F66;
+	height: 100px;
+}
+/*** The Essential Code ***/
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #FFF;
+	font-family: "Liberation Sans", Helvetica, "돋움", dotum, sans-serif;
+	font-size: 1em;
+}
+#mainNav {
+   font-family: Verdana, sans-serif;
+   font-weight: bold;
+}
+#main-menu {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+.main-menu-item {
+   margin: 0;
+   padding: 0;
+   text-align: center;
+   font-size: 14px;
+   border: 2px solid #DAEAAA;
+}
+.main-menu-item > a {
+   margin: 0;
+   padding-top: 7px;
+   height: 30px;
+   display: block;
+   text-decoration: none;
+   color: #FFF;
+   background: #92B91C;
+}
+.main-menu-item > a:hover {
+   color: #333;
+}
+#login {
+   text-align: right;
+   height: 20px;
+   padding: 5px 3px;
+   font-size: 14px;
+   font-family: tahoma, arial, sans-serif;
+   border-bottom: 1px solid #DAEAAA;
+   margin-bottom: 7px;
+}
+#content-wrap {
+	width: 100%;
+}
+article {
+	margin: 0;
+	padding: 0;
+}
+#sidebar {
+   font-family: Verdana, sans-serif;
+   background: #FFF;
+}
+#secondaryNav {
+   border: 1px solid #DAEAAA;
+}
+#secondaryNav > ul {
+   margin: 0;
+   padding: 0;
+}
+#secondaryNav > strong {
+   display: block;
+   padding: 12px;
+   color: #FFF;
+   background: #92B91C;
+   text-transform: capitalize;
+}
+.sub-section-title {
+   list-style-type: none;
+   padding: 6px 10px;
+   color: #64615d;
+   background-color: #DAEAAA;
+   border-bottom: 1px solid #fff;
+   font-weight: bold;
+   font-size: 12px;
+}
+.sub-menu-item {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   font-size: 14px;
+}
+.sub-menu-item > a {
+   display: block;
+   padding: 15px 3px 14px 17px;
+   margin: 0;
+   color: #64615d;
+   font-size: 12px;
+   font-weight: normal;
+   text-decoration: none;
+   border-bottom: 1px solid #fff;
+   background: #fff
+}
+.sub-menu-item > a:hover {
+   background-color: #EDFEBA;
+   color: #64615d;
+}
+aside {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	#wrap {
+		margin: 0 auto;
+		width: 1004px;
+	}
+	header {
+		height: 48px;
+	}
+	#mainNav {
+		height: 35px;
+	}
+#mainNav {
+   height: 37px;
+   background: #92B91C;
+   border: 2px solid #DAEAAA;
+}
+#main-menu {
+   height: 20px;
+   margin: 10px 0 0 17px;
+}
+.main-menu-item {
+   float: left;
+   padding-left: 8px;
+   padding-right: 24px;
+   font-size: 12px;
+   border: none;
+}
+.main-menu-item > a {
+   display: inline;
+   margin: 0;
+   padding: 0;
+}
+.main-menu-item > a:hover {
+   color: #FFF;
+   text-decoration: underline;
+}
+#login {
+   clear: both;
+}	
+	#content-wrap {
+		float: left;
+	}
+	article {
+		margin-left: 185px;
+		margin-right: 166px;
+	}
+	#sidebar {
+		float: left;
+		width: 179px;
+		margin-left: -1004px;
+	}
+.sub-menu-item > a {
+   padding: 5px 3px 4px 12px;
+}	
+	aside {
+		float: left;
+		display: block;
+		width: 161px;
+		margin-left: -161px;
+	}
+	footer {
+		clear: both;
+		height: 70px;
+		position: relative;
+   top: 10px;
+	}
+}
+</style>
 </head>
 <body>
 	<div id="wrap">
 		<header>header</header>
 		<nav id="mainNav">
 			<ul id="main-menu">
-				<li class="main-menu-item"><a href="/java/Features">Java</a></li>
-				<li class="main-menu-item"><a href="/java/Features">Java</a></li>
-				<li class="main-menu-item"><a href="/java/Features">Java</a></li>
-				<li class="main-menu-item"><a href="/java/Features">Java</a></li>
-				<li class="main-menu-item"><a href="/java/Features">Java</a></li>
-				<li class="main-menu-item"><a href="/java/Features">Java</a></li>
+				<li class="main-menu-item"><a href="/">Home</a></li>
 				<li class="main-menu-item"><a href="/java/Features">Java</a></li>
 				<li class="main-menu-item"><a href="/bbs/list">BBS</a>
 			</ul>
 		</nav>
 		<div id="login">#login</div>
 		<div id="content-wrap">
-			<article>
-<!--본문 시작 -->
-<h1>자유 게시판</h1>
-<h2>글쓰기</h2>
-<form id="writeForm" method="post" enctype="multipart/form-data">
-<p style="margin: 0;padding: 0;">
-<input type="hidden" name="boardCd" value="free" />
-</p>
-<table style="width: 100%">
-<tr>
-    <td>제목</td>
-    <td><input type="text" name="title" style="width: 90%;" /></td>
-</tr>
-<tr>
-    <td colspan="2">
-        <textarea name="content" style="width: 99%;height: 200px;"></textarea>
-    </td>
-</tr>
-<tr>
-    <td>첨부 파일</td>
-    <td><input type="file" name="attachFile" /></td>
-</tr>
-</table>
-<div style="text-align: center;padding-top: 10px;">
-    <input type="submit" value="전송" />
-    <input type="button" value="취소" />
-    <input type="button" value="목록" />
-</div>
-</form>
-<!--본문 끝   -->
-			</article>
+			<article>article</article>
 		</div>
 		<div id="sidebar">
-			<nav id="secondaryNav">
-				<strong id="main-menu-title">java</strong>
+			<nav id="secondaryNav">    
+				<strong id="main-menu-title">Home</strong>
 				<ul id="sub-menu">
-					<li class="sub-section-title">Java Introduction</li>
-					<li class="sub-menu-item"><a href="/java/Features">자바의 특징</a></li>
-					<li class="sub-menu-item"><a href="/java/Object-and-Class">객체와 클래스</a></li>
+					<li class="sub-section-title">Github</li>
+					<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/JSPProject">JSP Project</a></li>
+					<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/model2">model2</a></li>
+					<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/SpringBbs">SpringBbs</a></li>
+					<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/SpringBbsMySql">SpringBbsMySql</a></li>
+					<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/GAEJavaProgramming">GAEJavaProgramming</a></li>
 				</ul>
 			</nav>
 		</div>
