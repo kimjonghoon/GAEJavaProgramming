@@ -10,7 +10,6 @@ import net.java_school.mybatis.BoardMapper;
 @Service
 public class BoardServiceImpl implements BoardService {
 	private BoardMapper boardMapper;
-	private PagingHelper pagingHelper; //페이징 처리 유틸리티 클래스
 	
 	public void setBoardMapper(BoardMapper boardMapper) {
 		this.boardMapper = boardMapper;
@@ -37,10 +36,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	//목록
 	@Override
-	public List<Article> getArticleList(String boardCd, String searchWord) {
-		Integer offset = pagingHelper.getStartRecord() - 1; //for mysql limit first number
-		Integer rowCount = pagingHelper.getNumPerPage();
-		
+	public List<Article> getArticleList(String boardCd, String searchWord, Integer offset, Integer rowCount) {
 		return boardMapper.selectListOfArticles(boardCd, searchWord, offset, rowCount);
 	}
 	//총 레코드수
@@ -51,10 +47,6 @@ public class BoardServiceImpl implements BoardService {
 		hashmap.put("searchWord", searchWord);
 		
 		return boardMapper.selectCountOfArticles(hashmap);
-	}
-	@Override
-	public void setPagingHelper(PagingHelper pagingHelper) {
-		this.pagingHelper = pagingHelper;
 	}
 	//조회수 증가
 	@Override

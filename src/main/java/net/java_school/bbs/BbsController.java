@@ -2,6 +2,7 @@ package net.java_school.bbs;
 
 import java.net.URLEncoder;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,23 +33,80 @@ public class BbsController {
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
+
+	private Map<String,Integer> getNumbersForPaging(int totalRecord, int curPage, int numPerPage, int pagePerBlock) {
+		//총 페이지 수
+		int totalPage = totalRecord / numPerPage;
+		if (totalRecord % numPerPage != 0) totalPage++;
+
+		//총 블록 수
+		int totalBlock = totalPage / pagePerBlock;
+		if (totalPage % pagePerBlock != 0) totalBlock++;
+
+		//현재 블록
+		int block = curPage / pagePerBlock;
+		if (curPage % pagePerBlock != 0) block++;
+
+		//현재 블록에 속한 첫 번째 페이지 번호와 마지막 페이지 번호
+		int firstPage = (block - 1) * pagePerBlock + 1;
+		int lastPage = block * pagePerBlock;
+
+		//현재 블록이 1보다 크다면 [이전] 링크를 위한 페이지 번호 계산
+		int prevPage = 0;
+		if (block > 1) {
+			prevPage = firstPage - 1;
+		}
+
+		//현재 블록이 총 블록 수(마지막 블록 번호)보다 작다면 [다음] 링크를 위한 페이지 번호 계산
+		int nextPage = 0;
+		if (block < totalBlock) {
+			nextPage = lastPage + 1;
+		}
+
+		//현재 블록이 마지막 블록이라면 현재 블록의 마지막 페이지 번호를 총 페이지 수로 변경
+		if (block >= totalBlock) {
+			lastPage = totalPage;
+		}
+
+		//현재 페이지의 목록 아이템 앞에 붙일 번호 계산
+		int listItemNo = totalRecord - (curPage - 1) * numPerPage;
+
+		//현재 페이지의 목록을 위한 첫 번째 레코드 번호
+		int offset = (curPage - 1) * numPerPage;
+		
+		HashMap<String,Integer> map = new HashMap<String,Integer>();
+		map.put("totalPage", totalPage);
+		map.put("firstPage", firstPage);
+		map.put("lastPage", lastPage);
+		map.put("prevPage", prevPage);
+		map.put("nextPage", nextPage);
+		map.put("listItemNo", listItemNo);
+		map.put("offset", offset);
+		
+		return map;
+	}
+
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public String list(String boardCd, Integer curPage, String searchWord, Model model) {
 		List<Board> boards = boardService.getAllBoard();
 		model.addAttribute("boards", boards);
 
+		String boardNm = boardService.getBoardNm(boardCd);
+
 		int numPerPage = 10;
 		int pagePerBlock = 10;
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-		PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
-		boardService.setPagingHelper(pagingHelper);
-		List<Article> list = boardService.getArticleList(boardCd, searchWord);
-		String boardNm = boardService.getBoardNm(boardCd);
-		Integer listItemNo = pagingHelper.getListItemNo();
-		Integer prevPage = pagingHelper.getPrevPage();
-		Integer nextPage = pagingHelper.getNextPage();
-		Integer firstPage = pagingHelper.getFirstPage();
-		Integer lastPage = pagingHelper.getLastPage();
+		Map<String,Integer> map = this.getNumbersForPaging(totalRecord, curPage, numPerPage, pagePerBlock);
+		Integer offset = map.get("offset");
+		List<Article> list = boardService.getArticleList(boardCd, searchWord, offset, numPerPage);
+		
+		Integer listItemNo = map.get("listItemNo");
+		Integer prevPage = map.get("prevPage");
+		Integer nextPage = map.get("nextPage");
+		Integer firstPage = map.get("firstPage");
+		Integer lastPage = map.get("lastPage");
+
+		
 
 		model.addAttribute("list", list);
 		model.addAttribute("boardNm", boardNm);
@@ -103,18 +161,16 @@ public class BbsController {
 		//목록관련
 		int numPerPage = 10;//페이지당 레코드 수
 		int pagePerBlock = 10;//블록당 페이지 링크수
-
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-		PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
-		boardService.setPagingHelper(pagingHelper);
+		Map<String,Integer> map = this.getNumbersForPaging(totalRecord, curPage, numPerPage, pagePerBlock);
+		Integer offset = map.get("offset");
+		List<Article> list = boardService.getArticleList(boardCd, searchWord, offset, numPerPage);
 
-		List<Article> list = boardService.getArticleList(boardCd, searchWord);
-
-		int listItemNo = pagingHelper.getListItemNo();
-		int prevPage = pagingHelper.getPrevPage();
-		int nextPage = pagingHelper.getNextPage();
-		int firstPage = pagingHelper.getFirstPage();
-		int lastPage = pagingHelper.getLastPage();
+		Integer listItemNo = map.get("listItemNo");
+		Integer prevPage = map.get("prevPage");
+		Integer nextPage = map.get("nextPage");
+		Integer firstPage = map.get("firstPage");
+		Integer lastPage = map.get("lastPage");
 
 		model.addAttribute("list", list);
 		model.addAttribute("listItemNo", listItemNo);
@@ -132,7 +188,7 @@ public class BbsController {
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 		if (user == null) return "redirect:/";
-		
+
 		List<Board> boards = boardService.getAllBoard();
 		String boardNm = boardService.getBoardNm(boardCd);
 		model.addAttribute("boards", boards);
@@ -145,7 +201,7 @@ public class BbsController {
 			String searchWord, 
 			Model model, 
 			HttpServletRequest req) {
-		
+
 		//로그인되지 않은 사용자는 홈페이지로 리다이렉트
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
@@ -272,7 +328,7 @@ public class BbsController {
 		if (!user.getEmail().equals(currentComments.getEmail())) {
 			if (!userService.isUserAdmin()) return "redirect:/";
 		}
-		
+
 		boardService.modifyComments(comments);
 
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
@@ -292,7 +348,7 @@ public class BbsController {
 		if (!user.getEmail().equals(currentArticle.getEmail())) {
 			if (!userService.isUserAdmin()) return "redirect:/";
 		}
-		
+
 		List<Board> boards = boardService.getAllBoard();
 		model.addAttribute("boards", boards);
 
@@ -369,7 +425,7 @@ public class BbsController {
 		if (!user.getEmail().equals(currentArticle.getEmail())) {
 			if (!userService.isUserAdmin()) return "redirect:/";
 		}
-		
+
 		boardService.removeArticle(articleNo);
 
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
@@ -378,7 +434,7 @@ public class BbsController {
 				"&curPage=" + curPage + 
 				"&searchWord=" + searchWord;
 	}
-	
+
 	/* 아래 메서드는 Blobstore 예제로 게시판이 완성되면 삭제하는 것이 좋다. */
 	@RequestMapping(value="upload", method=RequestMethod.GET)
 	public String uploadForm() {

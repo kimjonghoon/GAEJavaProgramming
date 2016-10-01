@@ -11,20 +11,17 @@ public interface BoardService {
    public void addAttachFile(AttachFile attachFile);
    public void removeAttachFile(String filekey);
 	//목록
-	public List<Article> getArticleList(String boardCd, String searchWord);
+	public List<Article> getArticleList(String boardCd, String searchWord, Integer offset, Integer rowCount);
 	//총 레코드 수
 	public int getTotalRecord(String boardCd, String searchWord);
-	public void setPagingHelper(PagingHelper pagingHelper);
 	//조회수 증가
 	public void increaseHit(int articleNo);
 	//상세보기
 	public Article getArticle(int articleNo);
 	//다음글
-	public Article getNextArticle(int articleNo, 
-			String boardCd, String searchWord);
+	public Article getNextArticle(int articleNo, String boardCd, String searchWord);
 	//이전글
-	public Article getPrevArticle(int articleNo, 
-			String boardCd, String searchWord);
+	public Article getPrevArticle(int articleNo, String boardCd, String searchWord);
 	//첨부파일 리스트
 	public List<AttachFile> getAttachFileList(int articleNo);
 	//댓글 리스트
