@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,9 +87,21 @@ public class BbsController {
 		return map;
 	}
 
+	private List<Board> getAllBoards(String lang) {
+		switch (lang) {
+		case "en":
+			return boardService.getAllBoardCdBoardNm();
+		case "ko":
+			return boardService.getAllBoardCdBoardNm_ko();
+		default:
+			return boardService.getAllBoardCdBoardNm();
+		}
+	}
+	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String list(String boardCd, Integer curPage, String searchWord, Model model) {
-		List<Board> boards = boardService.getAllBoard();
+	public String list(String boardCd, Integer curPage, String searchWord, Locale locale, Model model) {
+		String lang = locale.getLanguage();
+		List<Board> boards = this.getAllBoards(lang);
 		model.addAttribute("boards", boards);
 
 		String boardNm = boardService.getBoardNm(boardCd);
@@ -124,9 +137,11 @@ public class BbsController {
 			String boardCd, 
 			Integer curPage,
 			String searchWord,
+			Locale locale,
 			Model model) {
-
-		List<Board> boards = boardService.getAllBoard();
+		
+		String lang = locale.getLanguage();
+		List<Board> boards = this.getAllBoards(lang);
 		model.addAttribute("boards", boards);
 
 		boardService.increaseHit(articleNo);
@@ -183,13 +198,13 @@ public class BbsController {
 		return "bbs/view";
 	}
 	@RequestMapping(value="write", method=RequestMethod.GET)
-	public String write(String boardCd, Model model) {
+	public String write(String boardCd, Locale locale, Model model) {
 		//로그인되지 않은 사용자는 홈페이지로 리다이렉트
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 		if (user == null) return "redirect:/";
-
-		List<Board> boards = boardService.getAllBoard();
+		String lang = locale.getLanguage();
+		List<Board> boards = this.getAllBoards(lang);
 		String boardNm = boardService.getBoardNm(boardCd);
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardNm", boardNm);
@@ -339,7 +354,7 @@ public class BbsController {
 				"&searchWord=" + searchWord;
 	}
 	@RequestMapping(value="modify", method=RequestMethod.GET)
-	public String modify(Integer articleNo, String boardCd, Model model) {
+	public String modify(Integer articleNo, String boardCd, Locale locale, Model model) {
 		//작성자나 관리자가 아니면 홈페이지로 리다이렉트
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
@@ -348,8 +363,7 @@ public class BbsController {
 		if (!user.getEmail().equals(currentArticle.getEmail())) {
 			if (!userService.isUserAdmin()) return "redirect:/";
 		}
-
-		List<Board> boards = boardService.getAllBoard();
+		List<Board> boards = this.getAllBoards(locale.getLanguage());
 		model.addAttribute("boards", boards);
 
 		String boardNm = boardService.getBoardNm(boardCd);

@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface BoardService {
    //모든 게시판
-   public List<Board> getAllBoard();
+   public List<Board> getAllBoardCdBoardNm();
+   public List<Board> getAllBoardCdBoardNm_ko();
    //게시판 이름
    public String getBoardNm(String boardCd);
    public int addArticle(Article article);

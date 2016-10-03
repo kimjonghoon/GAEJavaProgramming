@@ -3,8 +3,11 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.java_school.mybatis.BoardMapper">
-	<select id="selectAllBoard" resultType="Board">
+	<select id="selectAllBoardCdBoardNm" resultType="Board">
 		SELECT boardcd,boardnm FROM board
+	</select>
+	<select id="selectAllBoardCdBoardNm_ko" resultType="Board">
+		SELECT boardcd,boardnm_ko boardnm FROM board
 	</select>
 	<select id="selectOneBoardName" parameterType="string" resultType="string">
 		SELECT boardnm FROM board WHERE boardcd = #{boardCd}

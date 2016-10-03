@@ -12,7 +12,9 @@ import net.java_school.bbs.Comments;
 
 public interface BoardMapper {
 	//모든 게시판
-	public List<Board> selectAllBoard();
+	public List<Board> selectAllBoardCdBoardNm();
+	public List<Board> selectAllBoardCdBoardNm_ko();
+	
 	//게시판 이름
 	public String selectOneBoardName(String boardCd);
 	public int insert(Article article); 

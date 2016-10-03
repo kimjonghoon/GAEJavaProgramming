@@ -15,8 +15,12 @@ public class BoardServiceImpl implements BoardService {
 		this.boardMapper = boardMapper;
 	}
 	@Override
-	public List<Board> getAllBoard() {
-		return boardMapper.selectAllBoard();
+	public List<Board> getAllBoardCdBoardNm() {
+		return boardMapper.selectAllBoardCdBoardNm();
+	}
+	@Override
+	public List<Board> getAllBoardCdBoardNm_ko() {
+		return boardMapper.selectAllBoardCdBoardNm_ko();
 	}
 	@Override
 	public String getBoardNm(String boardCd) {
