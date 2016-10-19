@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<tiles:importAttribute name="javascripts" />
+
 <!DOCTYPE html> 
 <html>
 <head>
@@ -32,24 +35,34 @@ $(document).ready(function() {
 <header>
 	<tiles:insertAttribute name="header" />
 </header>
+
 <nav id="mainNav">
 	<tiles:insertAttribute name="mainNav" />
 </nav>
+
 <div id="login">
 	<tiles:insertAttribute name="login"/>
 </div>
+
 <article>
 		<tiles:insertAttribute name="article" />
 </article>
+
 <div id="sidebar">
 	<tiles:insertAttribute name="sidebar" />
 </div>
+
 <aside>
 	<tiles:insertAttribute name="aside" />
 </aside>
+
 <footer>
 	<tiles:insertAttribute name="footer" />
 </footer>
+
+<c:forEach var="script" items="${javascripts }">
+	<script src="<c:url value="${script }" />"></script>
+</c:forEach>
 
 </body>
 </html>

@@ -2,7 +2,6 @@ package net.java_school.bbs;
 
 import java.net.URLEncoder;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -10,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.java_school.bbs.BoardService;
+import net.java_school.commons.NumbersForPaging;
+import net.java_school.commons.NumberGeneratorForPaging;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,65 +27,13 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 @Controller
-@RequestMapping("bbs")
-public class BbsController {
+@RequestMapping("/bbs")
+public class BbsController extends NumberGeneratorForPaging {
 	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 	private BoardService boardService;
 
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
-	}
-
-	private Map<String,Integer> getNumbersForPaging(int totalRecord, int curPage, int numPerPage, int pagePerBlock) {
-		//총 페이지 수
-		int totalPage = totalRecord / numPerPage;
-		if (totalRecord % numPerPage != 0) totalPage++;
-
-		//총 블록 수
-		int totalBlock = totalPage / pagePerBlock;
-		if (totalPage % pagePerBlock != 0) totalBlock++;
-
-		//현재 블록
-		int block = curPage / pagePerBlock;
-		if (curPage % pagePerBlock != 0) block++;
-
-		//현재 블록에 속한 첫 번째 페이지 번호와 마지막 페이지 번호
-		int firstPage = (block - 1) * pagePerBlock + 1;
-		int lastPage = block * pagePerBlock;
-
-		//현재 블록이 1보다 크다면 [이전] 링크를 위한 페이지 번호 계산
-		int prevPage = 0;
-		if (block > 1) {
-			prevPage = firstPage - 1;
-		}
-
-		//현재 블록이 총 블록 수(마지막 블록 번호)보다 작다면 [다음] 링크를 위한 페이지 번호 계산
-		int nextPage = 0;
-		if (block < totalBlock) {
-			nextPage = lastPage + 1;
-		}
-
-		//현재 블록이 마지막 블록이라면 현재 블록의 마지막 페이지 번호를 총 페이지 수로 변경
-		if (block >= totalBlock) {
-			lastPage = totalPage;
-		}
-
-		//현재 페이지의 목록 아이템 앞에 붙일 번호 계산
-		int listItemNo = totalRecord - (curPage - 1) * numPerPage;
-
-		//현재 페이지의 목록을 위한 첫 번째 레코드 번호
-		int offset = (curPage - 1) * numPerPage;
-		
-		HashMap<String,Integer> map = new HashMap<String,Integer>();
-		map.put("totalPage", totalPage);
-		map.put("firstPage", firstPage);
-		map.put("lastPage", lastPage);
-		map.put("prevPage", prevPage);
-		map.put("nextPage", nextPage);
-		map.put("listItemNo", listItemNo);
-		map.put("offset", offset);
-		
-		return map;
 	}
 
 	private List<Board> getAllBoards(String lang) {
@@ -98,7 +47,7 @@ public class BbsController {
 		}
 	}
 	
-	@RequestMapping(value="list", method=RequestMethod.GET)
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String boardCd, Integer curPage, String searchWord, Locale locale, Model model) {
 		String lang = locale.getLanguage();
 		List<Board> boards = this.getAllBoards(lang);
@@ -109,17 +58,15 @@ public class BbsController {
 		int numPerPage = 10;
 		int pagePerBlock = 10;
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-		Map<String,Integer> map = this.getNumbersForPaging(totalRecord, curPage, numPerPage, pagePerBlock);
-		Integer offset = map.get("offset");
+		NumbersForPaging ints = this.getNumbersForPaging(totalRecord, curPage, numPerPage, pagePerBlock);
+		Integer offset = ints.getOffset();
 		List<Article> list = boardService.getArticleList(boardCd, searchWord, offset, numPerPage);
 		
-		Integer listItemNo = map.get("listItemNo");
-		Integer prevPage = map.get("prevPage");
-		Integer nextPage = map.get("nextPage");
-		Integer firstPage = map.get("firstPage");
-		Integer lastPage = map.get("lastPage");
-
-		
+		Integer listItemNo = ints.getListItemNo();
+		Integer prevPage = ints.getPrevPage();
+		Integer nextPage = ints.getNextPage();
+		Integer firstPage = ints.getFirstPage();
+		Integer lastPage = ints.getLastPage();
 
 		model.addAttribute("list", list);
 		model.addAttribute("boardNm", boardNm);
@@ -132,7 +79,7 @@ public class BbsController {
 		return "bbs/list";
 	}
 
-	@RequestMapping(value="view", method=RequestMethod.GET)
+	@RequestMapping(value="/view", method=RequestMethod.GET)
 	public String view(Integer articleNo, 
 			String boardCd, 
 			Integer curPage,
@@ -177,15 +124,15 @@ public class BbsController {
 		int numPerPage = 10;//페이지당 레코드 수
 		int pagePerBlock = 10;//블록당 페이지 링크수
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-		Map<String,Integer> map = this.getNumbersForPaging(totalRecord, curPage, numPerPage, pagePerBlock);
-		Integer offset = map.get("offset");
+		NumbersForPaging ints = this.getNumbersForPaging(totalRecord, curPage, numPerPage, pagePerBlock);
+		Integer offset = ints.getOffset();
 		List<Article> list = boardService.getArticleList(boardCd, searchWord, offset, numPerPage);
 
-		Integer listItemNo = map.get("listItemNo");
-		Integer prevPage = map.get("prevPage");
-		Integer nextPage = map.get("nextPage");
-		Integer firstPage = map.get("firstPage");
-		Integer lastPage = map.get("lastPage");
+		Integer listItemNo = ints.getListItemNo();
+		Integer prevPage = ints.getPrevPage();
+		Integer nextPage = ints.getNextPage();
+		Integer firstPage = ints.getFirstPage();
+		Integer lastPage = ints.getLastPage();
 
 		model.addAttribute("list", list);
 		model.addAttribute("listItemNo", listItemNo);
@@ -197,7 +144,8 @@ public class BbsController {
 
 		return "bbs/view";
 	}
-	@RequestMapping(value="write", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write(String boardCd, Locale locale, Model model) {
 		//로그인되지 않은 사용자는 홈페이지로 리다이렉트
 		UserService userService = UserServiceFactory.getUserService();
@@ -210,7 +158,8 @@ public class BbsController {
 		model.addAttribute("boardNm", boardNm);
 		return "bbs/write";
 	}
-	@RequestMapping(value="write", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(Article article, 
 			String curPage, 
 			String searchWord, 
@@ -253,7 +202,8 @@ public class BbsController {
 		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + 
 				"&curPage=1&searchWord=";
 	}
-	@RequestMapping(value="deleteAttachFile", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/deleteAttachFile", method=RequestMethod.POST)
 	public String deleteAttachFile(String filekey, 
 			Integer articleNo, 
 			String boardCd, 
@@ -281,7 +231,8 @@ public class BbsController {
 				"&searchWord=" + searchWord;
 
 	}
-	@RequestMapping(value="deleteComments", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/deleteComments", method=RequestMethod.POST)
 	public String deleteComments(Integer commentNo, 
 			Integer articleNo, 
 			String boardCd, 
@@ -307,7 +258,8 @@ public class BbsController {
 				"&searchWord=" + searchWord;
 
 	}
-	@RequestMapping(value="addComments", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/addComments", method=RequestMethod.POST)
 	public String addComment(Comments comments,
 			String boardCd, 
 			Integer curPage, 
@@ -329,7 +281,8 @@ public class BbsController {
 				"&curPage=" + curPage + 
 				"&searchWord=" + searchWord;
 	}
-	@RequestMapping(value="modifyComments", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/modifyComments", method=RequestMethod.POST)
 	public String updateComment(Comments comments, 
 			String boardCd, 
 			Integer curPage, 
@@ -353,7 +306,8 @@ public class BbsController {
 				"&curPage=" + curPage + 
 				"&searchWord=" + searchWord;
 	}
-	@RequestMapping(value="modify", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modify(Integer articleNo, String boardCd, Locale locale, Model model) {
 		//작성자나 관리자가 아니면 홈페이지로 리다이렉트
 		UserService userService = UserServiceFactory.getUserService();
@@ -374,7 +328,8 @@ public class BbsController {
 
 		return "bbs/modify";
 	}
-	@RequestMapping(value="modify", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(Article article,
 			Integer curPage, String searchWord, Model model, 
 			HttpServletRequest req) throws Exception {
@@ -426,7 +381,8 @@ public class BbsController {
 				+ "&searchWord=" + searchWord;
 
 	}
-	@RequestMapping(value="deleteArticle", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/deleteArticle", method=RequestMethod.POST)
 	public String del(Integer articleNo, 
 			String boardCd, 
 			Integer curPage, 
@@ -450,11 +406,12 @@ public class BbsController {
 	}
 
 	/* 아래 메서드는 Blobstore 예제로 게시판이 완성되면 삭제하는 것이 좋다. */
-	@RequestMapping(value="upload", method=RequestMethod.GET)
+	@RequestMapping(value="/upload", method=RequestMethod.GET)
 	public String uploadForm() {
 		return "bbs/upload";
 	}
-	@RequestMapping(value="upload", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/upload", method=RequestMethod.POST)
 	public String upload(HttpServletRequest req) {
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
 		List<BlobKey> blobKeys = blobs.get("attachFile");
@@ -464,11 +421,13 @@ public class BbsController {
 			return "redirect:/bbs/blob?blob-key=" + blobKeys.get(0).getKeyString();
 		}
 	}
-	@RequestMapping(value="blob", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/blob", method=RequestMethod.GET)
 	public String blob() {
 		return "bbs/blob";
 	}
-	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/deleteFile", method=RequestMethod.POST)
 	public String deleteAttachFile(String filekey) throws Exception {
 		BlobKey blobKey = new BlobKey(filekey);
 		blobstoreService.delete(blobKey);

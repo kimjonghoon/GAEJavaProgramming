@@ -9,22 +9,37 @@
 String url = "";
 String english = "";
 String korean = "";
-if (request.getQueryString() != null) {
-	String decodedQueryString = java.net.URLDecoder.decode(request.getQueryString(), "UTF-8");
-	url = "?" + decodedQueryString;
-	if (url.indexOf("&lang=") != -1) {
-		url = url.substring(0, url.indexOf("&lang="));
-	} 
-	english = url + "&lang=en";
-	korean = url + "&lang=ko";
+String qs = request.getQueryString();
+if (qs != null) {
+    if (qs.indexOf("&lang=") != -1) {
+        qs = qs.substring(0, qs.indexOf("&lang="));
+    }
+    if (qs.indexOf("lang=") != -1) {
+        qs = qs.substring(0, qs.indexOf("lang="));
+    }
+    if (!qs.equals("")) {
+        String decodedQueryString = java.net.URLDecoder.decode(request.getQueryString(), "UTF-8");
+        url = "?" + decodedQueryString;
+        if (url.indexOf("&lang=") != -1) {
+            url = url.substring(0, url.indexOf("&lang="));
+        } 
+        english = url + "&lang=en";
+        korean = url + "&lang=ko";
+    } else {
+        english = url + "?lang=en";
+        korean = url = "?lang=ko";
+    }
 } else {
-	english = url + "?lang=en";
-	korean = url = "?lang=ko";
+    english = url + "?lang=en";
+    korean = url = "?lang=ko";
 }
+
 pageContext.setAttribute("english", english);
 pageContext.setAttribute("korean", korean);
 %>
+
 <a href="${english }">English</a> <a href="${korean }">Korean</a>
+
 <%
 	UserService userService = UserServiceFactory.getUserService();
 	User user = userService.getCurrentUser();
