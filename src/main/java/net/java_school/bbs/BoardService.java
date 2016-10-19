@@ -41,5 +41,9 @@ public interface BoardService {
 	public void removeArticle(int articleNo);
 	//댓글 찾기
 	public Comments getComments(int commentNo);
+	//게시판 목록 
+	public List<Board> getBoards();
+	//게시판 등록
+	//public void addBoard(String boardCd, String boardNm, String boardNm_ko);
 	
 }

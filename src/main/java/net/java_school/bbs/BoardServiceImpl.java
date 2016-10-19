@@ -133,5 +133,13 @@ public class BoardServiceImpl implements BoardService {
 	public Comments getComments(int commentNo) {
 		return boardMapper.selectOneComments(commentNo);
 	}
+	//게시판 목록 
+	public List<Board> getBoards() {
+		return boardMapper.selectAllBoard();
+	}
+/*	//게시판 등록
+	public void addBoard(String boardCd, String boardNm, String boardNm_ko) {
+		boardMapper.insertBoard(boardCd, boardNm, boardNm_ko);
+	}*/
 	
 }

@@ -54,5 +54,9 @@ public interface BoardMapper {
 	public void deleteArticle(int articleNo);
 	//댓글 찾기
 	public Comments selectOneComments(int commentNo);
+	//게시판 목록 
+	public List<Board> selectAllBoard();
+	//게시판 등록
+	//public void insertBoard(@Param("boardCd") String boardCd, @Param("boardNm") String boardNm, @Param("boardNm_ko") String boardNm_ko);
 	
 }

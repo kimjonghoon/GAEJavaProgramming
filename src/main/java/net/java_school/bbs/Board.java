@@ -16,4 +16,5 @@ public class Board {
 	public void setBoardNm(String boardNm) {
 		this.boardNm = boardNm;
 	}
+	
 }

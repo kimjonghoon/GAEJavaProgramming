@@ -11,6 +11,9 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
 	<context:annotation-config />
+	<bean id="adminController" class="net.java_school.controller.AdminController">
+		<property name="boardService" ref="boardService" />
+	</bean>
 	<bean id="guestbookController" class="com.google.guestbook.GuestbookController" />
 	<bean id="blogController" class="net.java_school.blog.BlogController" />
 	<bean id="blobDownloadController" class="net.java_school.controller.BlobDownloadController" />

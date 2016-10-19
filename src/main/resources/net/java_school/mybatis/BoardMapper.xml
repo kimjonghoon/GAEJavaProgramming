@@ -3,29 +3,44 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.java_school.mybatis.BoardMapper">
+
+	<select id="selectAllBoard" resultType="Board">
+		SELECT * FROM board
+	</select>
+	
+<!-- 	<insert id="insertBoard">
+		INSERT INTO board VALUES (#{boardCd}, #{boardNm), #{boardNm_ko})
+	</insert> -->
+	
 	<select id="selectAllBoardCdBoardNm" resultType="Board">
 		SELECT boardcd,boardnm FROM board
 	</select>
+
 	<select id="selectAllBoardCdBoardNm_ko" resultType="Board">
 		SELECT boardcd,boardnm_ko boardnm FROM board
 	</select>
+
 	<select id="selectOneBoardName" parameterType="string" resultType="string">
 		SELECT boardnm FROM board WHERE boardcd = #{boardCd}
 	</select>
+
 	<insert id="insert" parameterType="Article" useGeneratedKeys="true" keyProperty="articleNo">
 		INSERT INTO article (boardcd, title, content, email, nickname, hit, regdate)
 		VALUES
 		(#{boardCd}, #{title}, #{content}, #{email}, #{nickname}, 0, now())
 	</insert>
+
 	<insert id="insertAttachFile" parameterType="AttachFile">
 		INSERT INTO attachfile 
 		(filekey, filename, filetype, filesize, creation, articleno, email)
 		VALUES
 		(#{filekey}, #{filename}, #{filetype}, #{filesize}, #{creation}, #{articleNo}, #{email})
 	</insert>
+
 	<delete id="deleteFile" parameterType="string">
 		DELETE FROM attachfile WHERE filekey = #{filekey}
 	</delete>
+
 	<select id="selectListOfArticles" resultType="Article">
 		SELECT
 		a.articleno, a.title, a.regdate, a.hit, a.nickname,
@@ -46,6 +61,7 @@
 		DESC
 		LIMIT #{offset}, #{rowCount}
 	</select>
+
 	<select id="selectCountOfArticles" parameterType="hashmap"
 		resultType="int">
 		SELECT count(*) FROM article
@@ -56,9 +72,11 @@
 			'%${searchWord}%')
 		</if>
 	</select>
+
 	<update id="updateHitPlusOne" parameterType="int">
 		UPDATE article SET hit = hit + 1 WHERE articleno = #{articleNo}
 	</update>
+
 	<select id="selectOne" parameterType="int" resultType="Article">
 		SELECT 
 			articleno,
@@ -72,6 +90,7 @@
 		WHERE 
 			articleno = #{articleNo}
 	</select>
+
 	<select id="selectNextOne" parameterType="hashmap" resultType="Article">
 		SELECT articleno, title 
 		FROM article 
@@ -84,6 +103,7 @@
 		ORDER BY articleno
 		LIMIT 1
 	</select>
+
 	<select id="selectPrevOne" parameterType="hashmap" resultType="Article">
 		SELECT articleno, title 
 		FROM article 
@@ -96,6 +116,7 @@
 		ORDER BY articleno DESC
 		LIMIT 1
 	</select>
+
 	<select id="selectListOfAttachFiles" parameterType="int" resultType="AttachFile">
 		SELECT 
 			attachfileno,
@@ -110,6 +131,7 @@
 		WHERE articleno = #{articleNo} 
 		ORDER BY attachfileno
 	</select>
+
 	<select id="selectListOfComments" parameterType="int" resultType="Comments">
 		SELECT 
 			commentno, 
@@ -123,6 +145,7 @@
 			articleno = #{articleNo}
 		ORDER BY commentno DESC
 	</select>
+
 	<select id="selectOneAttachFile" parameterType="string" resultType="AttachFile">
 		SELECT
 			attachfileno,
@@ -138,24 +161,30 @@
 		WHERE
 			filekey = #{filekey}
 	</select>
+
 	<delete id="deleteComments" parameterType="int">
 		DELETE FROM comments WHERE commentno = #{commentNo}
 	</delete>
+
 	<insert id="insertComments" parameterType="Comments">
 		INSERT INTO comments (articleno, email, nickname, memo, regdate)
 		VALUES (#{articleNo}, #{email}, #{nickname}, #{memo}, now())
 	</insert>
+
 	<update id="updateComments" parameterType="Comments">
 		UPDATE comments SET memo = #{memo} WHERE commentno = #{commentNo}
 	</update>
+
 	<update id="updateArticle" parameterType="Article">
 		UPDATE article
 		SET title = #{title}, content = #{content} 
 		WHERE articleno = #{articleNo}
 	</update>
+
 	<delete id="deleteArticle" parameterType="int">
 		DELETE FROM article WHERE articleno = #{articleNo}
 	</delete>
+
 	<select id="selectOneComments" parameterType="int" resultType="Comments">
 		SELECT 
 			commentno,
@@ -168,4 +197,5 @@
 		WHERE
 			commentno = #{commentNo}
 	</select>
+
 </mapper>
