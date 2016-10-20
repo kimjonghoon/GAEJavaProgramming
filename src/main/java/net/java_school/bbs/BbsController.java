@@ -36,17 +36,6 @@ public class BbsController extends NumberGeneratorForPaging {
 		this.boardService = boardService;
 	}
 
-	private List<Board> getAllBoards(String lang) {
-		switch (lang) {
-		case "en":
-			return boardService.getAllBoardCdBoardNm();
-		case "ko":
-			return boardService.getAllBoardCdBoardNm_ko();
-		default:
-			return boardService.getAllBoardCdBoardNm();
-		}
-	}
-	
 	private String getBoardName(String boardCd, String lang) {
 		Board board = boardService.getBoard(boardCd);
 		
@@ -63,7 +52,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String boardCd, Integer curPage, String searchWord, Locale locale, Model model) {
 		String lang = locale.getLanguage();
-		List<Board> boards = this.getAllBoards(lang);
+		List<Board> boards = boardService.getBoards();
 		model.addAttribute("boards", boards);
 
 		String boardName = this.getBoardName(boardCd, lang);
@@ -101,7 +90,7 @@ public class BbsController extends NumberGeneratorForPaging {
 			Model model) {
 		
 		String lang = locale.getLanguage();
-		List<Board> boards = this.getAllBoards(lang);
+		List<Board> boards = boardService.getBoards();
 		model.addAttribute("boards", boards);
 
 		boardService.increaseHit(articleNo);
@@ -165,7 +154,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		User user = userService.getCurrentUser();
 		if (user == null) return "redirect:/";
 		String lang = locale.getLanguage();
-		List<Board> boards = this.getAllBoards(lang);
+		List<Board> boards = boardService.getBoards();
 		String boardName = this.getBoardName(boardCd, lang);
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardName", boardName);
@@ -330,7 +319,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		if (!user.getEmail().equals(currentArticle.getEmail())) {
 			if (!userService.isUserAdmin()) return "redirect:/";
 		}
-		List<Board> boards = this.getAllBoards(locale.getLanguage());
+		List<Board> boards = boardService.getBoards();
 		model.addAttribute("boards", boards);
 
 		String boardName = this.getBoardName(boardCd, locale.getLanguage());

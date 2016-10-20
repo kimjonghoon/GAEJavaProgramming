@@ -56,28 +56,28 @@
 		<put-attribute name="keywords" value="게시판 목록" />
 		<put-attribute name="description" value="게시판 목록" />
 		<put-attribute name="article" value="/WEB-INF/views/bbs/list.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub_ko.jsp" />
 	</definition>
 	<definition name="bbs/view" extends="defaultTemplate3">
 		<put-attribute name="title" value="게시글 상세보기" />
 		<put-attribute name="keywords" value="게시글 상세보기" />
 		<put-attribute name="description" value="게시글 상세보기" />
 		<put-attribute name="article" value="/WEB-INF/views/bbs/view.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub_ko.jsp" />
 	</definition>
 	<definition name="bbs/write" extends="defaultTemplate3">
 		<put-attribute name="title" value="게시판 글쓰기" />
 		<put-attribute name="keywords" value="게시판 글쓰기" />
 		<put-attribute name="description" value="게시판 글쓰기" />
 		<put-attribute name="article" value="/WEB-INF/views/bbs/write.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub_ko.jsp" />
 	</definition>
 	<definition name="bbs/modify" extends="defaultTemplate3">
 		<put-attribute name="title" value="게시글 수정" />
 		<put-attribute name="keywords" value="게시글 수정" />
 		<put-attribute name="description" value="게시글 수정" />
 		<put-attribute name="article" value="/WEB-INF/views/bbs/modify.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/bbs/sub_ko.jsp" />
 	</definition>
 	<definition name="bbs/upload" extends="defaultTemplate3">
 		<put-attribute name="title" value="blobstore 테스트" />
