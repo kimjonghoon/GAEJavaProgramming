@@ -6,8 +6,8 @@ public interface BoardService {
    //모든 게시판
    public List<Board> getAllBoardCdBoardNm();
    public List<Board> getAllBoardCdBoardNm_ko();
-   //게시판 이름
-   public String getBoardNm(String boardCd);
+   //게시판
+   public Board getBoard(String boardCd);
    public int addArticle(Article article);
    public void addAttachFile(AttachFile attachFile);
    public void removeAttachFile(String filekey);
@@ -44,6 +44,7 @@ public interface BoardService {
 	//게시판 목록 
 	public List<Board> getBoards();
 	//게시판 등록
-	//public void addBoard(String boardCd, String boardNm, String boardNm_ko);
-	
+	public void addBoard(Board board);
+	//게시판 수정
+	public void editBoard(Board board);
 }

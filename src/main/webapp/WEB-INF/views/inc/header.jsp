@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <a href="/"><img src="/resources/images/ci.gif" alt="java-school logo" id="ci" /></a>
 <div id="searchcontainer">
 <script>

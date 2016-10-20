@@ -15,8 +15,8 @@ public interface BoardMapper {
 	public List<Board> selectAllBoardCdBoardNm();
 	public List<Board> selectAllBoardCdBoardNm_ko();
 	
-	//게시판 이름
-	public String selectOneBoardName(String boardCd);
+	//게시판
+	public Board selectOneBoard(String boardCd);
 	public int insert(Article article); 
 	public void insertAttachFile(AttachFile attachFile);
 	public void deleteFile(String filekey);
@@ -57,6 +57,8 @@ public interface BoardMapper {
 	//게시판 목록 
 	public List<Board> selectAllBoard();
 	//게시판 등록
-	//public void insertBoard(@Param("boardCd") String boardCd, @Param("boardNm") String boardNm, @Param("boardNm_ko") String boardNm_ko);
+	public void insertBoard(Board board);
+	//게시판 수정
+	public void updateBoard(Board board);
 	
 }

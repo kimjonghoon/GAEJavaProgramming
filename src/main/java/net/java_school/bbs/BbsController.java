@@ -47,13 +47,26 @@ public class BbsController extends NumberGeneratorForPaging {
 		}
 	}
 	
+	private String getBoardName(String boardCd, String lang) {
+		Board board = boardService.getBoard(boardCd);
+		
+		switch (lang) {
+		case "en":
+			return board.getBoardNm();
+		case "ko":
+			return board.getBoardNm_ko();
+		default:
+			return board.getBoardNm();
+		}
+	}
+	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(String boardCd, Integer curPage, String searchWord, Locale locale, Model model) {
 		String lang = locale.getLanguage();
 		List<Board> boards = this.getAllBoards(lang);
 		model.addAttribute("boards", boards);
 
-		String boardNm = boardService.getBoardNm(boardCd);
+		String boardName = this.getBoardName(boardCd, lang);
 
 		int numPerPage = 10;
 		int pagePerBlock = 10;
@@ -69,7 +82,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		Integer lastPage = ints.getLastPage();
 
 		model.addAttribute("list", list);
-		model.addAttribute("boardNm", boardNm);
+		model.addAttribute("boardName", boardName);
 		model.addAttribute("listItemNo", listItemNo);
 		model.addAttribute("prevPage", prevPage);
 		model.addAttribute("nextPage", nextPage);
@@ -98,7 +111,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		Article nextArticle = boardService.getNextArticle(articleNo, boardCd, searchWord);
 		Article prevArticle = boardService.getPrevArticle(articleNo, boardCd, searchWord);
 		List<Comments> commentsList = boardService.getCommentsList(articleNo);
-		String boardNm = boardService.getBoardNm(boardCd);
+		String boardName = this.getBoardName(boardCd, lang);
 
 		//상세보기에서 볼 게시글 관련 정보
 		String title = article.getTitle();//제목
@@ -140,7 +153,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		model.addAttribute("firstPage", firstPage);
 		model.addAttribute("lastPage", lastPage);
 		model.addAttribute("nextPage", nextPage);
-		model.addAttribute("boardNm", boardNm);
+		model.addAttribute("boardName", boardName);
 
 		return "bbs/view";
 	}
@@ -153,9 +166,9 @@ public class BbsController extends NumberGeneratorForPaging {
 		if (user == null) return "redirect:/";
 		String lang = locale.getLanguage();
 		List<Board> boards = this.getAllBoards(lang);
-		String boardNm = boardService.getBoardNm(boardCd);
+		String boardName = this.getBoardName(boardCd, lang);
 		model.addAttribute("boards", boards);
-		model.addAttribute("boardNm", boardNm);
+		model.addAttribute("boardName", boardName);
 		return "bbs/write";
 	}
 	
@@ -320,11 +333,11 @@ public class BbsController extends NumberGeneratorForPaging {
 		List<Board> boards = this.getAllBoards(locale.getLanguage());
 		model.addAttribute("boards", boards);
 
-		String boardNm = boardService.getBoardNm(boardCd);
+		String boardName = this.getBoardName(boardCd, locale.getLanguage());
 
 		//수정페이지에서의 보일 게시글 정보
 		model.addAttribute("article", currentArticle);
-		model.addAttribute("boardNm", boardNm);
+		model.addAttribute("boardName", boardName);
 
 		return "bbs/modify";
 	}

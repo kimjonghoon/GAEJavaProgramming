@@ -23,8 +23,8 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectAllBoardCdBoardNm_ko();
 	}
 	@Override
-	public String getBoardNm(String boardCd) {
-		return boardMapper.selectOneBoardName(boardCd);
+	public Board getBoard(String boardCd) {
+		return boardMapper.selectOneBoard(boardCd);
 	}
 	@Override
 	public int addArticle(Article article) {
@@ -137,9 +137,13 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> getBoards() {
 		return boardMapper.selectAllBoard();
 	}
-/*	//게시판 등록
-	public void addBoard(String boardCd, String boardNm, String boardNm_ko) {
-		boardMapper.insertBoard(boardCd, boardNm, boardNm_ko);
-	}*/
+	//게시판 생성
+	public void addBoard(Board board) {
+		boardMapper.insertBoard(board);
+	}
+	//게시판 수정
+	public void editBoard(Board board) {
+		boardMapper.updateBoard(board);
+	}
 	
 }

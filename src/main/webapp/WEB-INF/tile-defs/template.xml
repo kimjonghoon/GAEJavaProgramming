@@ -40,8 +40,16 @@
 		<put-list-attribute name="javascripts">
 			<add-attribute value="/resources/js/test.js" />
 		</put-list-attribute>
-   
-	</definition>	
+	</definition>
+	<!-- admin -->
+	<definition name="admin/index" extends="defaultTemplate3">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="keywords" value="Admin" />
+		<put-attribute name="description" value="Admin" />
+		<put-attribute name="article" value="/WEB-INF/views/admin/index.jsp" />
+		<put-attribute name="sidebar" value="" />
+	</definition>
+		
 	<definition name="blog/new" extends="holygrail">
 		<put-attribute name="title" value="Add Now Blog" />
 		<put-attribute name="keywords" value="Add New Blog" />

@@ -4,7 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	
+    
 	<typeAliases>
 		<typeAlias type="net.java_school.bbs.Board" alias="Board" />
 		<typeAlias type="net.java_school.bbs.Article" alias="Article" />

@@ -17,7 +17,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-<h1><spring:message code="${param.boardCd }" /></h1>
+<h1>${boardName }</h1>
 <h2 style="text-transform: capitalize;"><spring:message code="bbs.modify" /></h2>
 <form id="writeForm"	action="<%=blobstoreService.createUploadUrl("/bbs/modify")%>" method="post" enctype="multipart/form-data">
 <p style="margin: 0; padding: 0;">

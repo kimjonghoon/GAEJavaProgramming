@@ -29,8 +29,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/createBoard", method=RequestMethod.POST)
-	public String createBoard(String boardCd, String boardNm, String boardNm_ko) {
-		//boardService.addBoard(boardCd,boardNm,boardNm_ko);
+	public String createBoard(Board board) {
+		boardService.addBoard(board);
+		
+		return "redirect:/admin/";
+	}
+
+	@RequestMapping(value="/editBoard", method=RequestMethod.POST)
+	public String editBoard(Board board) {
+		boardService.editBoard(board);
 		
 		return "redirect:/admin/";
 	}

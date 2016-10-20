@@ -29,7 +29,7 @@
 		<put-attribute name="login" value="/WEB-INF/views/inc/login.jsp" />
 		<put-attribute name="aside" value="/WEB-INF/views/inc/aside.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
-	</definition>	
+	</definition>
 	<definition name="blog/new" extends="defaultTemplate3">
 		<put-attribute name="title" value="글추가" />
 		<put-attribute name="keywords" value="글추가" />

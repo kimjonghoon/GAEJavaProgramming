@@ -8,9 +8,14 @@
 		SELECT * FROM board
 	</select>
 	
-<!-- 	<insert id="insertBoard">
-		INSERT INTO board VALUES (#{boardCd}, #{boardNm), #{boardNm_ko})
-	</insert> -->
+	<insert id="insertBoard" parameterType="Board">
+		INSERT INTO board (boardcd, boardnm, boardnm_ko) 
+		VALUES (#{boardCd}, #{boardNm}, #{boardNm_ko})
+	</insert>
+
+	<update id="updateBoard" parameterType="Board">
+		UPDATE board SET boardnm = #{boardNm}, boardnm_ko = #{boardNm_ko} WHERE boardcd = #{boardCd}
+	</update>
 	
 	<select id="selectAllBoardCdBoardNm" resultType="Board">
 		SELECT boardcd,boardnm FROM board
@@ -20,8 +25,8 @@
 		SELECT boardcd,boardnm_ko boardnm FROM board
 	</select>
 
-	<select id="selectOneBoardName" parameterType="string" resultType="string">
-		SELECT boardnm FROM board WHERE boardcd = #{boardCd}
+	<select id="selectOneBoard" parameterType="string" resultType="Board">
+		SELECT * FROM board WHERE boardcd = #{boardCd}
 	</select>
 
 	<insert id="insert" parameterType="Article" useGeneratedKeys="true" keyProperty="articleNo">

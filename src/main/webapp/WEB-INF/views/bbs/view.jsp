@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <script>
 $(document).ready(function() {
 	$('#file-list a.download').click(function() {
@@ -121,7 +122,9 @@ function goList(curPage) {
 	$('#listForm').submit();
 }
 </script>
-<h1><spring:message code="${param.boardCd }" /></h1>
+
+<h1>${boardName }</h1>
+
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
     <div style="float: left;">
         <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
