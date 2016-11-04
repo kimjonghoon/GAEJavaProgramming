@@ -247,7 +247,7 @@ function goList(curPage) {
 	<td>
 		<a href="#" title="${article.articleNo }">${article.title }</a>
 		<c:if test="${article.attachFileNum > 0 }">
-			<strong class="attach">${article.attachFileNum }</strong>
+			<img alt="attach file" src="/resources/images/attach.png"/>
 		</c:if>
 		<c:if test="${article.commentNum > 0 }">
 		<span class="reply">[${article.commentNum }]</span>

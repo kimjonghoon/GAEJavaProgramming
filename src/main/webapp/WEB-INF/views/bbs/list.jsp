@@ -20,7 +20,7 @@
 		<td>
 			<a href="view?articleNo=${article.articleNo }&boardCd=${param.boardCd }&curPage=${param.curPage }&searchWord=${param.searchWord }">${article.title }</a>
 			<c:if test="${article.attachFileNum > 0 }">
-				<strong class="attach">[${article.attachFileNum }]</strong>
+				<img alt="attach file" src="/resources/images/attach.png"/>
 			</c:if> 
 			<c:if test="${article.commentNum > 0 }">
 				<strong class="reply">[${article.commentNum }]</strong>
