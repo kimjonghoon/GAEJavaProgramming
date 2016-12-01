@@ -19,7 +19,7 @@ $(document).ready(function() {
 </script>
 <h1>${boardName }</h1>
 <h2 style="text-transform: capitalize;"><spring:message code="bbs.modify" /></h2>
-<form id="writeForm"	action="<%=blobstoreService.createUploadUrl("/bbs/modify")%>" method="post" enctype="multipart/form-data">
+<form id="writeForm" action="<%=blobstoreService.createUploadUrl("/bbs/modify")%>?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 <p style="margin: 0; padding: 0;">
 <input type="hidden" name="articleNo" value="${param.articleNo }" />
 <input type="hidden" name="boardCd" value="${param.boardCd }" />

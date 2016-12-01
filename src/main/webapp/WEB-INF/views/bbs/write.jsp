@@ -26,7 +26,7 @@ $(document).ready(function() {
 </script>
 <h1>${boardName }</h1>
 <h2 style="text-transform: capitalize;"><spring:message code="bbs.write" /></h2>
-<form id="writeForm"	action="<%=blobstoreService.createUploadUrl("/bbs/write")%>" method="post" enctype="multipart/form-data">
+<form id="writeForm" action="<%=blobstoreService.createUploadUrl("/bbs/write")%>?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 <p style="margin: 0; padding: 0;">
 <c:if test="${not empty param.articleNo }">
 	<input type="hidden" name="articleNo" value="${param.articleNo }" />
@@ -34,6 +34,7 @@ $(document).ready(function() {
 <input type="hidden" name="boardCd" value="${param.boardCd }" />
 <input type="hidden" name="curPage" value="${param.curPage }" />
 <input type="hidden" name="searchWord" value="${param.searchWord }" />
+
 </p>
 
 <table style="width: 98%">

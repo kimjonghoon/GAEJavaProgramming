@@ -45,7 +45,6 @@ pageContext.setAttribute("korean", korean);
 	User user = userService.getCurrentUser();
 	if (user != null && userService.isUserAdmin()) {
 %>
-
     
 <a href="/blog/list"><spring:message code="blog.manage" /></a>
 <%
@@ -54,11 +53,11 @@ pageContext.setAttribute("korean", korean);
         pageContext.setAttribute("user", user);
 %>
 
-${fn:escapeXml(user.nickname)} <a href="<%= userService.createLogoutURL("/")%>"><spring:message code="sign.out" /></a>
+${fn:escapeXml(user.nickname)} <a href="/logout"><spring:message code="sign.out" /></a>
 <%
     } else {
 %>
-<a href="<%= userService.createLoginURL("/") %>"><spring:message code="sign.in" /></a>
+<a href="<%=userService.createLoginURL("/") %>"><spring:message code="sign.in" /></a>
 <%
     }
 %>

@@ -1,56 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<security:global-method-security pre-post-annotations="enabled" />
+        
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
 	<mvc:annotation-driven />
+	
 	<context:annotation-config />
-	<bean id="adminController" class="net.java_school.controller.AdminController">
-		<property name="boardService" ref="boardService" />
-	</bean>
-	<bean id="guestbookController" class="com.google.guestbook.GuestbookController" />
-	<bean id="blogController" class="net.java_school.blog.BlogController" />
-	<bean id="blobDownloadController" class="net.java_school.controller.BlobDownloadController" />
-	<bean id="bbsController" class="net.java_school.bbs.BbsController">
-		<property name="boardService" ref="boardService" />
-	</bean>
-	<bean id="boardService" class="net.java_school.bbs.BoardServiceImpl">
-		<property name="boardMapper" ref="boardMapper" />
-	</bean>
-	<bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="net.java_school.mybatis.BoardMapper" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:net/java_school/mybatis/Configuration.xml" />
-	</bean>
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/javaschool?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false" />
-<!-- 
-		<property name="driverClassName" value="com.mysql.jdbc.GoogleDriver"/>
-		<property name="url" value="jdbc:google:mysql://{인스턴스 연결 이름}:sky/javaschool"/>
- -->
-		<property name="username" value="java" />
-		<property name="password" value="school" />
-		<property name="maxActive" value="100" />
-		<property name="maxWait" value="1000" />
-		<property name="poolPreparedStatements" value="true" />
-		<property name="defaultAutoCommit" value="true" />
-		<property name="validationQuery" value="SELECT 1" />
-	</bean>
+	
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="0" />
 	</bean>
+	
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
@@ -58,16 +32,38 @@
 			</list>
 		</property>
 	</bean>
+	
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="WEB-INF/classes/messages" />
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
+	
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
 		<property name="defaultLocale" value="en" />
 	</bean>
+	
 	<mvc:interceptors>
 		<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 			<property name="paramName" value="lang" />
 		</bean>
 	</mvc:interceptors>
+
+	<bean id="adminController" class="net.java_school.controller.AdminController">
+		<property name="boardService" ref="boardService" />
+	</bean>
+	
+	<bean id="guestbookController" class="com.google.guestbook.GuestbookController" />
+	
+	<bean id="blogController" class="net.java_school.blog.BlogController" />
+	
+	<bean id="blobDownloadController" class="net.java_school.controller.BlobDownloadController" />
+	
+	<bean id="bbsController" class="net.java_school.bbs.BbsController">
+		<property name="boardService" ref="boardService" />
+	</bean>
+	
+	<bean id="boardService" class="net.java_school.bbs.BoardServiceImpl">
+		<property name="boardMapper" ref="boardMapper" />
+	</bean>
+	
 </beans>

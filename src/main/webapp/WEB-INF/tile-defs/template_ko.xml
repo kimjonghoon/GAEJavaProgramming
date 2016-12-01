@@ -100,6 +100,13 @@
 		<put-attribute name="article" value="/WEB-INF/views/index_ko.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
 	</definition>
+	<definition name="403" extends="defaultTemplate3">
+		<put-attribute name="title" value="에러 403" />
+		<put-attribute name="keywords" value="에러 403" />
+		<put-attribute name="description" value="에러 403" />
+		<put-attribute name="article" value="/WEB-INF/views/403.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
+	</definition>
 	<definition name="java/Features" extends="defaultTemplate">
 		<put-attribute name="title" value="Features" />
 		<put-attribute name="keywords" value="자바의 특징,JVM,OOP" />

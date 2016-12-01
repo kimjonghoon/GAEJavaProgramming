@@ -2,12 +2,20 @@ package net.java_school.bbs;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+
 public interface BoardService {
    //게시판
    public Board getBoard(String boardCd);
+   
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
    public int addArticle(Article article);
+   
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
    public void addAttachFile(AttachFile attachFile);
-   public void removeAttachFile(String filekey);
+   //첨부 파일 삭제
+   @PreAuthorize("#attachFile.email == principal.email or hasRole('ROLE_ADMIN')")
+   public void removeAttachFile(AttachFile attachFile);
 	//목록
 	public List<Article> getArticleList(String boardCd, String searchWord, Integer offset, Integer rowCount);
 	//총 레코드 수
@@ -27,15 +35,20 @@ public interface BoardService {
 	//첨부파일 찾기
 	public AttachFile getAttachFile(String filekey);
 	//댓글 삭제
-	public void removeComments(int commentNo);
+	@PreAuthorize("#comments.email == principal.email or hasRole('ROLE_ADMIN')")
+	public void removeComments(Comments comments);
 	//댓글 쓰기
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
 	public void addComments(Comments comments);
 	//댓글 수정
+	@PreAuthorize("#comments.email == principal.email or hasRole('ROLE_ADMIN')")
 	public void modifyComments(Comments comments);
 	//게시글 수정
+	@PreAuthorize("#article.email == principal.email or hasRole('ROLE_ADMIN')")
 	public void modifyArticle(Article article);
 	//게시글 삭제
-	public void removeArticle(int articleNo);
+	@PreAuthorize("#article.email == principal.email or hasRole('ROLE_ADMIN')")
+	public void removeArticle(Article article);
 	//댓글 찾기
 	public Comments getComments(int commentNo);
 	//게시판 목록 

@@ -164,6 +164,7 @@ function goList(curPage) {
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
 		<input type="hidden" name="curPage" value="${param.curPage }" />
 		<input type="hidden" name="searchWord" value="${param.searchWord }" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</p>
     <div id="add-comments">
         <textarea name="memo" rows="7" cols="50"></textarea>
@@ -189,6 +190,7 @@ function goList(curPage) {
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="curPage" value="${param.curPage }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </p>
     <div style="text-align: right;">
 		<a href="#" class="comments-modify-submit"><spring:message code="bbs.modify.comments" /></a>
@@ -327,6 +329,7 @@ function goList(curPage) {
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="curPage" value="${param.curPage }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </p>
     </form>
     <form id="deleteCommentsForm" action="deleteComments" method="post">
@@ -336,6 +339,7 @@ function goList(curPage) {
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="curPage" value="${param.curPage }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </p>
     </form>
     <form id="deleteAttachFileForm" action="deleteAttachFile" method="post">
@@ -345,6 +349,7 @@ function goList(curPage) {
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
         <input type="hidden" name="curPage" value="${param.curPage }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </p>
     </form>
     <form id="downForm" action="../serve" method="get">

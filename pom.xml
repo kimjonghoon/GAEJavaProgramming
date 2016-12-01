@@ -12,11 +12,11 @@
 	<properties>
 		<app.id>your-app-id</app.id>
 		<app.version>1</app.version>
-		<appengine.version>1.9.38</appengine.version>
+		<appengine.version>1.9.46</appengine.version>
 		<gcloud.plugin.version>2.0.9.111.v20160527</gcloud.plugin.version>
 
 		<objectify.version>5.1.13</objectify.version>
-		<guava.version>19.0</guava.version>
+		<guava.version>20.0</guava.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -24,7 +24,8 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 		<archiveClasses>true</archiveClasses>
-		<spring.version>4.3.3.RELEASE</spring.version>
+		<spring.version>4.3.4.RELEASE</spring.version>
+		<spring.security.version>4.2.0.RELEASE</spring.security.version>
 	</properties>
 
 	<prerequisites>
@@ -78,6 +79,23 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- [END Spring_Dependencies] -->
+		<!-- [START Spring Security] -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<!-- [END Spring Security] -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -100,7 +118,7 @@
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-extras</artifactId>
-			<version>3.0.5</version>
+			<version>3.0.7</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>

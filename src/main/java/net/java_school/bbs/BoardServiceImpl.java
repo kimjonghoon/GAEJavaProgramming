@@ -27,8 +27,8 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.insertAttachFile(attachFile);
 	}
 	@Override
-	public void removeAttachFile(String filekey) {
-	  boardMapper.deleteFile(filekey);
+	public void removeAttachFile(AttachFile attachFile) {
+	  boardMapper.deleteFile(attachFile.getFilekey());
 	}
 	//목록
 	@Override
@@ -97,8 +97,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	//댓글 삭제
 	@Override
-	public void removeComments(int commentNo) {
-		boardMapper.deleteComments(commentNo);
+	public void removeComments(Comments comments) {
+		boardMapper.deleteComments(comments.getCommentNo());
 	}
 	//댓글 쓰기
 	@Override
@@ -117,8 +117,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	//글삭제
 	@Override
-	public void removeArticle(int articleNo) {
-		boardMapper.deleteArticle(articleNo);
+	public void removeArticle(Article article) {
+		boardMapper.deleteArticle(article.getArticleNo());
 	}
 	//댓글 찾기
 	@Override

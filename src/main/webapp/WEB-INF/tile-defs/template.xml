@@ -49,7 +49,6 @@
 		<put-attribute name="article" value="/WEB-INF/views/admin/index.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
-		
 	<definition name="blog/new" extends="holygrail">
 		<put-attribute name="title" value="Add Now Blog" />
 		<put-attribute name="keywords" value="Add New Blog" />
@@ -120,6 +119,13 @@
 		<put-attribute name="article" value="/WEB-INF/views/index.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
 	</definition>
+	<definition name="403" extends="defaultTemplate3">
+		<put-attribute name="title" value="Error 403" />
+		<put-attribute name="keywords" value="Error 403" />
+		<put-attribute name="description" value="Error 403" />
+		<put-attribute name="article" value="/WEB-INF/views/403.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
+	</definition>	
 	<definition name="java/Features" extends="defaultTemplate">
 		<put-attribute name="title" value="Features" />
 		<put-attribute name="keywords" value="Java Features,JVM,OOP" />

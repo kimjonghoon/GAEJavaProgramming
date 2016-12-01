@@ -1,7 +1,11 @@
 package net.java_school.blog;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +36,19 @@ public class BlogController {
 				.list();
 		model.addAttribute("articles", articles);
 		return category + "/" + path;
-	}	
+	}
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().invalidate();
+
+		String url = UserServiceFactory.getUserService().createLogoutURL("/");
+
+		response.sendRedirect(url);
+	}
+	@RequestMapping(value="/403")
+	public String error403() {
+	    return "403";
+	}
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String home(Model model) {
 		//3장 데이터스토어를 이용하는 블로그와 통합
