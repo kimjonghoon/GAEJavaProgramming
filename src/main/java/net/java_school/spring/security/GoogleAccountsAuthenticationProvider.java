@@ -2,7 +2,7 @@ package net.java_school.spring.security;
 
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
@@ -14,12 +14,12 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 public class GoogleAccountsAuthenticationProvider implements AuthenticationProvider {
-	private static final Logger log = Logger.getLogger(GoogleAccountsAuthenticationProvider.class.getName());
+	//private static final Logger log = Logger.getLogger(GoogleAccountsAuthenticationProvider.class.getName());
 
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		User googleUser = (User) authentication.getPrincipal();
 		
-		net.java_school.user.User user = new net.java_school.user.User(googleUser.getEmail());
+		net.java_school.user.User user = new net.java_school.user.User(googleUser.getUserId(), googleUser.getEmail(), googleUser.getNickname());
 		
 		UserService userService = UserServiceFactory.getUserService();
 		

@@ -8,15 +8,42 @@ import net.java_school.spring.security.AppRole;
 
 @SuppressWarnings("serial")
 public class User implements Serializable {
+	private String userId;
 	private String email;
+	private String nickname;
 	private Set<AppRole> authorities;
 	
 	public User() {}
 	
-	public User(String email) {
+	public User(String userId, String email, String nickname) {
+		this.userId = userId;
 		this.email = email;
+		this.nickname = nickname;
 		Set<AppRole> roles = EnumSet.of(AppRole.ROLE_USER);
 		this.authorities = roles;
+	}
+	
+	public User(String userId, String email, String nickname, Set<AppRole> authorities) {
+		this.userId = userId;
+		this.email = email;
+		this.nickname = nickname;
+		this.authorities = authorities;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getEmail() {

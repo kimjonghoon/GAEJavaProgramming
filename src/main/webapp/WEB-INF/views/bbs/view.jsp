@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <script>
 $(document).ready(function() {
@@ -126,10 +127,12 @@ function goList(curPage) {
 <h1>${boardName }</h1>
 
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
+	<security:authorize access="#email == principal.email or hasRole('ROLE_ADMIN')">
     <div style="float: left;">
         <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
         <input type="button" value="<spring:message code="bbs.delete" />" class="goDelete" />
     </div>
+    </security:authorize>
     <div style="float: right;">
 		<c:if test="${nextArticle != null }">
         <input type="button" value="<spring:message code="bbs.next" />" title="${nextArticle.articleNo }" class="next-article" />
@@ -155,7 +158,9 @@ function goList(curPage) {
 <p id="file-list" style="text-align: right">
 <c:forEach var="file" items="${attachFileList }" varStatus="status">
 	<a href="#" title="${file.filekey }" class="download">${file.filename }</a>
+	<security:authorize access="#email == principal.email or hasRole('ROLE_ADMIN')">
 	<a href="#" title="${file.filekey }">x</a><br />
+	</security:authorize>
 </c:forEach>
 </p>
 <form id="addCommentForm" action="addComments" method="post" style="margin-bottom: 5px;">
@@ -178,10 +183,12 @@ function goList(curPage) {
 <div class="comments">
     <span class="comments-writer">${comments.nickname }</span>
     <span class="comments-date">${comments.regdate }</span>
+    <security:authorize access="#comments.email == principal.email or hasRole('ROLE_ADMIN')">
     <span class="comments-modify-del">
         <a href="#" class="comments-toggle"><spring:message code="bbs.modify" /></a>
 		| <a href="#" class="comments-delete" title="${comments.commentNo }"><spring:message code="bbs.delete" /></a>
     </span>
+    </security:authorize>
     <p class="comments-content">${comments.memo }</p>
     <form class="comments-modify-form" action="modifyComments" method="post" style="display: none;">
     <p>
@@ -212,10 +219,12 @@ function goList(curPage) {
     </c:if>
 </div>
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
+	<security:authorize access="#email == principal.email or hasRole('ROLE_ADMIN')">
     <div style="float: left;">
         <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
         <input type="button" value="<spring:message code="bbs.delete" />" class="goDelete" />
     </div>
+    </security:authorize>
     <div style="float: right;">
 		<c:if test="${nextArticle != null }">    
         <input type="button" value="<spring:message code="bbs.next" />" title="${nextArticle.articleNo }" class="next-article" />
