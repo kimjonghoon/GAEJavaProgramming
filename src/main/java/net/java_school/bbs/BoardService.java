@@ -54,7 +54,9 @@ public interface BoardService {
 	//게시판 목록 
 	public List<Board> getBoards();
 	//게시판 등록
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void addBoard(Board board);
 	//게시판 수정
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void editBoard(Board board);
 }

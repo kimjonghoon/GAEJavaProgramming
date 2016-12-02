@@ -31,6 +31,7 @@ function goEdit(boardCd, boardNm, boardNm_ko) {
 <h2>New Board</h2>
 
 <form id="createBoard" action="/admin/createBoard" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <table class="bbs-table">
 <tr>
 	<td>Board Code</td>
@@ -53,6 +54,7 @@ function goEdit(boardCd, boardNm, boardNm_ko) {
 <h2>Edit Board</h2>
 
 <form id="editBoard" action="/admin/editBoard" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <table class="bbs-table">
 <tr>
 	<td>Board Code</td>

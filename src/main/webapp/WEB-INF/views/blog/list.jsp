@@ -33,5 +33,6 @@
 </ul>
 <form id="form">
 	<input type="hidden" name="webSafeString" />
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 <a href="/blog/new" style="text-transform: capitalize;"><spring:message code="blog.new" /></a>

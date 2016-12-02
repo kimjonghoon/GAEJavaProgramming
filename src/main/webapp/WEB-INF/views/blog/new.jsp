@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <h1><spring:message code="blog.new" /></h1>
 <form action="new" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
    <div>
       category:
       <input type="text" name="category" style="width: 99%;" />

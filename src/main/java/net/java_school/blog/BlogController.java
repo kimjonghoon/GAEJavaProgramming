@@ -1,6 +1,7 @@
 package net.java_school.blog;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.Key;
 
@@ -66,57 +65,43 @@ public class BlogController {
 	}
 	@RequestMapping(value="blog/new", method=RequestMethod.GET)
 	public String postBlog() {
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-		if (user == null || !userService.isUserAdmin()) return "redirect:/"; 
 		return "blog/new";
 	}
 	@RequestMapping(value="blog/new", method=RequestMethod.POST)
-	public String postBlog(Article article) {
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-		if (user == null || !userService.isUserAdmin()) return "redirect:/"; 
-		if (user != null) {
-			article.setAuthor_id(user.getUserId());
-			article.setAuthor_email(user.getEmail());
-		}
+	public String postBlog(Article article, Principal principal) {
+		article.setAuthor_email(principal.getName());
+
 		Date today = new Date();
 		article.setDate(today);
 		article.setLastModified(today);
 		ofy().save().entity(article).now();
+		
 		return "redirect:/blog/list";
 	}
 	@RequestMapping(value="blog/list", method=RequestMethod.GET)
 	public String blogs(Model model) {
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-		if (user == null || !userService.isUserAdmin()) return "redirect:/"; 
 		List<Article> articles = ofy()
 				.load()
 				.type(Article.class)
 				.order("date")
 				.list();
 		model.addAttribute("articles", articles);
+		
 		return "blog/list";
 	}
 	@RequestMapping(value="blog/modify", method=RequestMethod.GET)
 	public String modifyBlog(String webSafeString, Model model) {
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-		if (user == null || !userService.isUserAdmin()) return "redirect:/"; 
 		Key<Article> key = Key.create(webSafeString);
 		Article article = ofy()
 				.load()
 				.key(key)
 				.now();
 		model.addAttribute("article", article);
+		
 		return "blog/modify";
 	}
 	@RequestMapping(value="blog/modify", method=RequestMethod.POST)
 	public String modifyBlog(Article article, String webSafeString) {
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-		if (user == null || !userService.isUserAdmin()) return "redirect:/"; 
 		Key<Article> key = Key.create(webSafeString);
 		Article storedArticle = ofy()
 				.load()
@@ -125,16 +110,14 @@ public class BlogController {
 		article.setDate(storedArticle.getDate());
 		article.setLastModified(new Date());
 	    ofy().save().entity(article).now();
+	    
 	    return "redirect:/datastore/" + article.getCategory() + "/" + article.getId();
 	}
 	@RequestMapping(value="blog/delete", method=RequestMethod.POST)
 	public String delBlog(String webSafeString) {
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-		if (user == null || !userService.isUserAdmin()) return "redirect:/"; 
-
 		Key<Article> key = Key.create(webSafeString);
 	    ofy().delete().key(key).now();
+	    
 	    return "redirect:/blog/list";
 	}
 	//3장 데이터스토어 이용한 블로그
@@ -157,6 +140,7 @@ public class BlogController {
 				.order("order")
 				.list();
 		model.addAttribute("articles", articles);
+		
 		return "datastore/" + category + "/" + id;
 	}
 }
