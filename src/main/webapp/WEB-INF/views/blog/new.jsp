@@ -14,10 +14,6 @@
       <input type="text" name="id" style="width: 99%;" />
    </div>
    <div>
-      order:
-      <input type="text" name="order" style="width: 99%;" />
-   </div>
-   <div>
       title:
       <input type="text" name="title" style="width: 99%;" />
    </div>
@@ -32,10 +28,6 @@
    <div>
       content:
       <textarea name="content" style="width: 99%; height: 200px;"></textarea>
-   </div>
-   <div>
-      content(Korean):
-      <textarea name="content_ko" style="width: 99%; height: 200px;"></textarea>
    </div>
    <div>
       <input type="submit" value="Post Article" />

@@ -15,46 +15,43 @@ public class Article {
 	@Parent Key<Category> theCategory;
 	@Id public String id;
 
-	public String author_email;
-	public String author_id;
+	public String owner;
 	@Index public String title;
 	public String keywords;
 	public String description;
 	public String content;
-	public String content_ko;
 	@Index public Date date;
-	@Index public int order;
 	public Date lastModified;
-	
+
 	public Key<Article> getKey() {
 		return Key.create(theCategory, Article.class, id);
 	}
 	public String getKeyString() {
 		return getKey().toWebSafeString();
 	}
+	public Key<Category> getTheCategory() {
+		return theCategory;
+	}
+	public void setTheCategory(Key<Category> theCategory) {
+		this.theCategory = theCategory;
+	}
 	public String getCategory() {
 		return theCategory.getName();
 	}
-	public void setCategory(String category) {
+/*	public void setCategory(String category) {
 		this.theCategory = Key.create(Category.class, category);
 	}
-	public String getId() {
+*/	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getAuthor_email() {
-		return author_email;
+	public String getOwner() {
+		return owner;
 	}
-	public void setAuthor_email(String author_email) {
-		this.author_email = author_email;
-	}
-	public String getAuthor_id() {
-		return author_id;
-	}
-	public void setAuthor_id(String author_id) {
-		this.author_id = author_id;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 	public String getTitle() {
 		return title;
@@ -80,23 +77,11 @@ public class Article {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getContent_ko() {
-		return content_ko;
-	}
-	public void setContent_ko(String content_ko) {
-		this.content_ko = content_ko;
-	}
 	public Date getDate() {
 		return date;
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	public int getOrder() {
-		return order;
-	}
-	public void setOrder(int order) {
-		this.order = order;
 	}
 	public Date getLastModified() {
 		return lastModified;
@@ -104,5 +89,5 @@ public class Article {
 	public void setLastModified(Date lastModified) {
 		this.lastModified = lastModified;
 	}
-	
+
 }

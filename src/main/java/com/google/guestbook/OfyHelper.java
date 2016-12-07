@@ -23,6 +23,7 @@ import javax.servlet.ServletContextEvent;
 
 import net.java_school.blog.Article;
 import net.java_school.blog.Category;
+import net.java_school.blog.Lang;
 
 /**
  * OfyHelper, a ServletContextListener, is setup in web.xml to run before a JSP is run.  This is
@@ -32,6 +33,7 @@ public class OfyHelper implements ServletContextListener {
   public static void register() {
     ObjectifyService.register(Guestbook.class);
     ObjectifyService.register(Greeting.class);
+    ObjectifyService.register(Lang.class);
     ObjectifyService.register(Category.class);
     ObjectifyService.register(Article.class);
     

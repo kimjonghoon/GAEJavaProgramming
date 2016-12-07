@@ -18,7 +18,6 @@ import com.googlecode.objectify.ObjectifyService;
 public class GuestbookController {
 	@RequestMapping(value="guestbook", method=RequestMethod.GET)
 	public String guestbook(String guestbookName, Model model) {
-		if (model == null) System.out.println("fuck you!!! spring!");
 		model.addAttribute("guestbookName", guestbookName);
 		return "guestbook/guestbook";
 	}

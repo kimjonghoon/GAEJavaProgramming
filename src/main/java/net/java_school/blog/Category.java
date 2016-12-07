@@ -1,9 +1,12 @@
 package net.java_school.blog;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Parent;
 
 @Entity
 public class Category {
-    @Id public String catetory;
+	@Parent Key<Lang> theLang;
+	@Id public String category;
 }
