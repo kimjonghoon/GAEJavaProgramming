@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @Controller
 public class BlogController {
+	private static final Logger log = Logger.getLogger(BlogController.class.getName());
+
 	@RequestMapping(value="{category}/{path}", method=RequestMethod.GET)
 	public String java(@PathVariable("category") String category, @PathVariable("path") String path, Locale locale, Model model) {
 		String lang = locale.getLanguage();
@@ -138,8 +141,9 @@ public class BlogController {
 	}
 	//3장 데이터스토어 이용한 블로그
 	@RequestMapping(value="datastore/{category}/{id}", method=RequestMethod.GET)
-	public String blog(@PathVariable("category") String category, @PathVariable("id") String id, Model model, Locale locale) {
+	public String blog(@PathVariable("category") String category, @PathVariable("id") String id, Locale locale, Model model) {
 		String lang = locale.getLanguage();
+		log.info("lang: " + lang);
 		Key<Lang> theLang = Key.create(Lang.class, lang);
 		Key<Category> categoryKey = Key.create(theLang, Category.class, category);    
 		Key<Article> articleKey = Key.create(categoryKey, Article.class, id);
