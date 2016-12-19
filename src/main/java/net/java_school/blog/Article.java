@@ -40,8 +40,8 @@ public class Article {
 	}
 /*	public void setCategory(String category) {
 		this.theCategory = Key.create(Category.class, category);
-	}
-*/	public String getId() {
+	}*/
+	public String getId() {
 		return id;
 	}
 	public void setId(String id) {

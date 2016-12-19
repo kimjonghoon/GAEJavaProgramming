@@ -619,7 +619,7 @@ article > h5 {
 #footer-ad {
 	display: none;
 }
-@media ( min-width : 768px) {
+@media (min-width : 768px) {
 	#wrap {
 		margin: 0 auto;
 		width: 1004px;
