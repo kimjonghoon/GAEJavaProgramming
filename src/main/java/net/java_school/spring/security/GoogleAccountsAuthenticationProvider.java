@@ -1,8 +1,7 @@
 package net.java_school.spring.security;
 
-import java.util.EnumSet;
 import java.util.Set;
-//import java.util.logging.Logger;
+import java.util.logging.Logger;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
@@ -14,8 +13,9 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 public class GoogleAccountsAuthenticationProvider implements AuthenticationProvider {
-	//private static final Logger log = Logger.getLogger(GoogleAccountsAuthenticationProvider.class.getName());
-
+	
+	private static final Logger log = Logger.getLogger(GoogleAccountsAuthenticationProvider.class.getName());
+	
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		User googleUser = (User) authentication.getPrincipal();
 		
@@ -24,8 +24,10 @@ public class GoogleAccountsAuthenticationProvider implements AuthenticationProvi
 		UserService userService = UserServiceFactory.getUserService();
 		
 		if (userService.isUserAdmin()) {
-			Set<AppRole> authorities = EnumSet.of(AppRole.ROLE_ADMIN);
-			user.setAuthorities(authorities);
+			//Set<AppRole> authorities = EnumSet.of(AppRole.ROLE_ADMIN);
+			//user.setAuthorities(authorities);
+			Set<AppRole> authorities = user.getAuthorities();
+			authorities.add(AppRole.ROLE_ADMIN);
 		}
 
 		return new GaeUserAuthentication(user, authentication.getDetails());

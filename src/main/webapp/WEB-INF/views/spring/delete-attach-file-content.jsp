@@ -8,7 +8,7 @@ BbsController.java 에 첨부파일 삭제를 위한 메소드를 아래와 같�
 public String deleteAttachFile(Integer attachFileNo, 
 		Integer articleNo, 
 		String boardCd, 
-		Integer curPage, 
+		Integer page, 
 		String searchWord) throws Exception {
 	
 	AttachFile attachFile = boardService.getAttachFile(attachFileNo);
@@ -18,7 +18,7 @@ public String deleteAttachFile(Integer attachFileNo,
 	
 	return "redirect:/bbs/view?articleNo=" + articleNo + 
 		"&amp;boardCd=" + boardCd + 
-		"&amp;curPage=" + curPage + 
+		"&amp;page=" + page + 
 		"&amp;searchWord=" + searchWord;
 
 }

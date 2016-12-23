@@ -2,7 +2,7 @@ package net.java_school.commons;
 
 public class NumberGeneratorForPaging {
 	
-	public NumbersForPaging getNumbersForPaging(int totalRecord, int curPage, int numPerPage, int pagePerBlock) {
+	public NumbersForPaging getNumbersForPaging(int totalRecord, int page, int numPerPage, int pagePerBlock) {
 		//총 페이지 수
 		int totalPage = totalRecord / numPerPage;
 		if (totalRecord % numPerPage != 0) totalPage++;
@@ -12,8 +12,8 @@ public class NumberGeneratorForPaging {
 		if (totalPage % pagePerBlock != 0) totalBlock++;
 
 		//현재 블록
-		int block = curPage / pagePerBlock;
-		if (curPage % pagePerBlock != 0) block++;
+		int block = page / pagePerBlock;
+		if (page % pagePerBlock != 0) block++;
 
 		//현재 블록에 속한 첫 번째 페이지 번호와 마지막 페이지 번호
 		int firstPage = (block - 1) * pagePerBlock + 1;
@@ -37,10 +37,10 @@ public class NumberGeneratorForPaging {
 		}
 
 		//현재 페이지의 목록 아이템 앞에 붙일 번호 계산
-		int listItemNo = totalRecord - (curPage - 1) * numPerPage;
+		int listItemNo = totalRecord - (page - 1) * numPerPage;
 
 		//현재 페이지의 목록을 위한 첫 번째 레코드 번호
-		int offset = (curPage - 1) * numPerPage;
+		int offset = (page - 1) * numPerPage;
 		
 		NumbersForPaging ints = new NumbersForPaging();
 		ints.setTotalPage(totalPage);

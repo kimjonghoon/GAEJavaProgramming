@@ -156,7 +156,7 @@ view.jsp에서 댓글 관련 디자인을 아래 강조된 부분을 참고하�
       &lt;input type="hidden" name="commentNo" value="${comment.commentNo }" /&gt;
       &lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
       &lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
-      &lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+      &lt;input type="hidden" name="page" value="${param.page }" /&gt;
       &lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
     &lt;/p&gt;
     &lt;div style="text-align: right;"&gt;
@@ -361,7 +361,7 @@ form-group에 다음 폼을 추가한다.<br />
 &lt;form id="listForm" action="list.jsp" method="get"&gt;
 &lt;p&gt;
   &lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-  &lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+  &lt;input type="hidden" name="page" value="${param.page }" /&gt;
   &lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 &lt;/p&gt;
 &lt;/form&gt;
@@ -371,7 +371,7 @@ bbs-view.js 파일에 다음 함수를 추가한다.<br />
 <pre class="prettyprint">
 function goList() {
 	var form = document.getElementById("listForm");
-	form.curPage.value = this.title;
+	form.page.value = this.title;
 	form.submit();
 	return false;
 }
@@ -485,7 +485,7 @@ view.jsp 파일에서 목록과 페이징 처리, 새글쓰기 버튼 관련 디
 	
 	&lt;c:forEach var="i" begin="${firstPage }" end="${lastPage }"&gt;
 		&lt;c:choose&gt;
-			&lt;c:when test="${i == param.curPage }"&gt;
+			&lt;c:when test="${i == param.page }"&gt;
 				&lt;span class="bbs-strong"&gt;${i }&lt;/span&gt;
 			&lt;/c:when&gt;
 			&lt;c:otherwise&gt;	
@@ -533,7 +533,7 @@ writeBtn.onclick = function() {
 
 <h3>테스트</h3>
 제목을 클릭하여 주소창에 변경되는지 확인한다.<br />
-페이징 직접 이동 링크를 클릭하고 주소창에서 curPage가 변경되는지 확인한다.<br />
+페이징 직접 이동 링크를 클릭하고 주소창에서 page가 변경되는지 확인한다.<br />
 새글쓰기 버튼을 클릭하여 새글쓰기 페이지로 이동하는지를 확인한다.<br />
 
 
@@ -642,7 +642,7 @@ view.jsp 파일에서 댓글 관련 디자인을 아래와 같다.<br />
       &lt;input type="hidden" name="commentNo" value="${comment.commentNo }" /&gt;
       &lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
       &lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
-      &lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+      &lt;input type="hidden" name="page" value="${param.page }" /&gt;
       &lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
     &lt;/p&gt;
     &lt;div style="text-align: right;"&gt;
@@ -802,8 +802,8 @@ view.jsp에서 다음 부분으로 디자인은 전과 같다.<br />
 bbs-view.js 파일에 다음 함수를 추가한다.<br />
 
 <pre class="prettyprint">
-function goList(curPage) {
-	$('#listForm input[name*=curPage]').val(curPage);
+function goList(page) {
+	$('#listForm input[name*=page]').val(page);
 	$('#listForm').submit();
 }
 </pre>
@@ -901,7 +901,7 @@ view.jsp에서 다음 부분이며, 디자인은 전과 같다.<br />
 	
 	&lt;c:forEach var="i" begin="${firstPage }" end="${lastPage }"&gt;
 		&lt;c:choose&gt;
-			&lt;c:when test="${i == param.curPage }"&gt;
+			&lt;c:when test="${i == param.page }"&gt;
 				&lt;span class="bbs-strong"&gt;${i }&lt;/span&gt;
 			&lt;/c:when&gt;
 			&lt;c:otherwise&gt;	
@@ -934,8 +934,8 @@ $('#list-table a').click(function() {
 });
 //페이징 처리
 $('#paging a').click(function() {
-	var $curPage = this.title;
-	goList($curPage);
+	var $page = this.title;
+	goList($page);
 	return false;
 });
 //검색 버튼 위의 새글쓰기 버튼

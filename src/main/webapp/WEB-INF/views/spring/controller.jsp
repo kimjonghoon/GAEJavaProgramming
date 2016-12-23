@@ -38,12 +38,12 @@ public class BbsController {
 	
 	@RequestMapping(value="/list", method={RequestMethod.GET, RequestMethod.POST})
 	public String list(String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord, 
 			Model model) throws Exception {
 			
 		if (boardCd == null) boardCd = "free";
-		if (curPage == null) curPage = 1;
+		if (page == null) page = 1;
 		if (searchWord == null) searchWord = "";
 
 		int numPerPage = 10;
@@ -51,7 +51,7 @@ public class BbsController {
 		
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
 		
-		PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+		PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 		
 		boardService.setPagingHelper(pagingHelper);
 		int start = pagingHelper.getStartRecord();
@@ -74,7 +74,7 @@ public class BbsController {
 		model.addAttribute("firstPage", firstPage);
 		model.addAttribute("lastPage", lastPage);
 		model.addAttribute("pageLinks", pageLinks);
-		model.addAttribute("curPage", curPage);//curPage는 null 값이면 1로 만들어야 하므로
+		model.addAttribute("page", page);//page는 null 값이면 1로 만들어야 하므로
 		model.addAttribute("boardCd", boardCd);//boardCd는 null 값이면 free로 만들어야 하므로
 		
 		return "bbs/list";
@@ -100,7 +100,7 @@ public class BbsController {
 	@RequestMapping(value="/view", method=RequestMethod.GET)
 	public String view(Integer articleNo, 
 			String boardCd, 
-			Integer curPage,
+			Integer page,
 			String searchWord, 
 			Model model) throws Exception {
 
@@ -130,7 +130,7 @@ public class BbsController {
 		
 		//목록보기
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-		PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+		PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 
 		boardService.setPagingHelper(pagingHelper);
 		int start = pagingHelper.getStartRecord();
@@ -167,7 +167,7 @@ public class BbsController {
 	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
 	public String commentAdd(Integer articleNo, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord, 
 			String memo) throws Exception {
 			
@@ -181,7 +181,7 @@ public class BbsController {
 		
 		return "redirect:/bbs/view?articleNo=" + articleNo + 
 			"&amp;boardCd=" + boardCd + 
-			"&amp;curPage=" + curPage + 
+			"&amp;page=" + page + 
 			"&amp;searchWord=" + searchWord;
 
 	}
@@ -190,7 +190,7 @@ public class BbsController {
 	public String commentUpdate(Integer commentNo, 
 			Integer articleNo, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord, 
 			String memo) throws Exception {
 			
@@ -201,7 +201,7 @@ public class BbsController {
 		
 		return "redirect:/bbs/view?articleNo=" + articleNo + 
 			"&amp;boardCd=" + boardCd + 
-			"&amp;curPage=" + curPage + 
+			"&amp;page=" + page + 
 			"&amp;searchWord=" + searchWord;
 
 	}
@@ -210,7 +210,7 @@ public class BbsController {
 	public String commentDel(Integer commentNo, 
 			Integer articleNo, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord) throws Exception {
 			
 		boardService.deleteComment(commentNo);
@@ -219,7 +219,7 @@ public class BbsController {
 		
 		return "redirect:/bbs/view?articleNo=" + articleNo + 
 			"&amp;boardCd=" + boardCd + 
-			"&amp;curPage=" + curPage + 
+			"&amp;page=" + page + 
 			"&amp;searchWord=" + searchWord;
 
 	}
@@ -245,7 +245,7 @@ public class BbsController {
 		Article article = boardService.getArticle(articleNo);
 		
 		String boardCd = mpRequest.getParameter("boardCd");
-		int curPage = Integer.parseInt(mpRequest.getParameter("curPage"));
+		int page = Integer.parseInt(mpRequest.getParameter("page"));
 		String searchWord = mpRequest.getParameter("searchWord");
 		
 		String title = mpRequest.getParameter("title");
@@ -284,7 +284,7 @@ public class BbsController {
 		searchWord = URLEncoder.encode(searchWord,"UTF-8");
 		return "redirect:/bbs/view?articleNo=" + articleNo 
 			+ "&amp;boardCd=" + boardCd 
-			+ "&amp;curPage=" + curPage 
+			+ "&amp;page=" + page 
 			+ "&amp;searchWord=" + searchWord;
 
 	}
@@ -299,7 +299,7 @@ public class BbsController {
 	public String attachFileDel(Integer attachFileNo, 
 			Integer articleNo, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord) throws Exception {
 		
 		boardService.deleteFile(attachFileNo);
@@ -308,7 +308,7 @@ public class BbsController {
 		
 		return "redirect:/bbs/view?articleNo=" + articleNo + 
 			"&amp;boardCd=" + boardCd + 
-			"&amp;curPage=" + curPage + 
+			"&amp;page=" + page + 
 			"&amp;searchWord=" + searchWord;
 
 	}
@@ -316,7 +316,7 @@ public class BbsController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(Integer articleNo, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord) throws Exception {
 		
 		boardService.delete(articleNo);
@@ -324,7 +324,7 @@ public class BbsController {
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 		
 		return "redirect:/bbs/list?boardCd=" + boardCd + 
-			"&amp;curPage=" + curPage + 
+			"&amp;page=" + page + 
 			"&amp;searchWord=" + searchWord;
 
 	}

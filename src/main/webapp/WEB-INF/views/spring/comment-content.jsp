@@ -6,7 +6,7 @@
 @RequestMapping(value="/addCcomment", method=RequestMethod.POST)
 public String addComment(Integer articleNo, 
 		String boardCd, 
-		Integer curPage, 
+		Integer page, 
 		String searchWord, 
 		String memo) throws Exception {
 		
@@ -21,7 +21,7 @@ public String addComment(Integer articleNo,
 	
 	return "redirect:/bbs/view?articleNo=" + articleNo + 
 		"&amp;boardCd=" + boardCd + 
-		"&amp;curPage=" + curPage + 
+		"&amp;page=" + page + 
 		"&amp;searchWord=" + searchWord;
 
 }	
@@ -35,7 +35,7 @@ public String addComment(Integer articleNo,
 public String updateComment(Integer commentNo, 
 		Integer articleNo, 
 		String boardCd, 
-		Integer curPage, 
+		Integer page, 
 		String searchWord, 
 		String memo) throws Exception {
 		
@@ -47,7 +47,7 @@ public String updateComment(Integer commentNo,
 	
 	return "redirect:/bbs/view?articleNo=" + articleNo + 
 		"&amp;boardCd=" + boardCd + 
-		"&amp;curPage=" + curPage + 
+		"&amp;page=" + page + 
 		"&amp;searchWord=" + searchWord;
 
 }
@@ -60,7 +60,7 @@ public String updateComment(Integer commentNo,
 public String deleteComment(Integer commentNo, 
 		Integer articleNo, 
 		String boardCd, 
-		Integer curPage, 
+		Integer page, 
 		String searchWord) throws Exception {
 		
 	Comment comment = boardService.getComment(commentNo);
@@ -70,7 +70,7 @@ public String deleteComment(Integer commentNo,
 	
 	return "redirect:/bbs/view?articleNo=" + articleNo + 
 		"&amp;boardCd=" + boardCd + 
-		"&amp;curPage=" + curPage + 
+		"&amp;page=" + page + 
 		"&amp;searchWord=" + searchWord;
 
 }

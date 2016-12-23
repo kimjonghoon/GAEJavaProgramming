@@ -5,7 +5,7 @@
 @RequestMapping(value="/del", method=RequestMethod.POST)
 public String del(Integer articleNo, 
 		String boardCd, 
-		Integer curPage, 
+		Integer page, 
 		String searchWord) throws Exception {
 	
 	Article article = boardService.getArticle(articleNo);
@@ -14,7 +14,7 @@ public String del(Integer articleNo,
 	searchWord = URLEncoder.encode(searchWord, "UTF-8");
 	
 	return "redirect:/bbs/list?boardCd=" + boardCd + 
-		"&amp;curPage=" + curPage + 
+		"&amp;page=" + page + 
 		"&amp;searchWord=" + searchWord;
 
 }

@@ -18,7 +18,7 @@
 	<tr>
 		<td style="text-align: center;">${listItemNo - status.index }</td>
 		<td>
-			<a href="view?articleNo=${article.articleNo }&boardCd=${param.boardCd }&curPage=${param.curPage }&searchWord=${param.searchWord }">${article.title }</a>
+			<a href="view?articleNo=${article.articleNo }&boardCd=${param.boardCd }&page=${param.page }&searchWord=${param.searchWord }">${article.title }</a>
 			<c:if test="${article.attachFileNum > 0 }">
 				<img alt="attach file" src="/resources/images/attach.png"/>
 			</c:if> 
@@ -33,35 +33,35 @@
 </table>
 
 <c:if test="${prevPage > 0 }">
-	<a href="list?boardCd=${param.boardCd }&curPage=${prevPage }&searchWord=${param.searchWord }">[<spring:message code="prev" />]</a>
+	<a href="list?boardCd=${param.boardCd }&page=${prevPage }&searchWord=${param.searchWord }">[<spring:message code="prev" />]</a>
 </c:if>
 
 <div id="paging">
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
-			<c:when test="${param.curPage == i }">
+			<c:when test="${param.page == i }">
 				<strong class="current-page">${i }</strong>
 			</c:when>
 			<c:otherwise>
-				<a href="list?boardCd=${param.boardCd }&curPage=${i }&searchWord=${param.searchWord }">[${i }]</a>
+				<a href="list?boardCd=${param.boardCd }&page=${i }&searchWord=${param.searchWord }">[${i }]</a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 </div>
 
 <c:if test="${nextPage > 0 }">
-	<a href="list?boardCd=${param.boardCd }&curPage=${nextPage }&searchWord=${param.searchWord }">[<spring:message code="next" />]</a>
+	<a href="list?boardCd=${param.boardCd }&page=${nextPage }&searchWord=${param.searchWord }">[<spring:message code="next" />]</a>
 </c:if>
 
 <div id="list-menu">
-	<input type="button" value="<spring:message code="bbs.write" />" onclick="location.href='write?boardCd=${param.boardCd}&curPage=${param.curPage }&searchWord=${param.searchWord }'" />
+	<input type="button" value="<spring:message code="bbs.write" />" onclick="location.href='write?boardCd=${param.boardCd}&page=${param.page }&searchWord=${param.searchWord }'" />
 </div>
 
 <div id="search">
 	<form method="get">
 	<div>
 		<input type="hidden" name="boardCd" value="${param.boardCd }" /> 
-		<input type="hidden" name="curPage" value="1" /> 
+		<input type="hidden" name="page" value="1" /> 
 		<input type="text" name="searchWord" size="15" maxlength="30" /> 
 		<input type="submit" value="<spring:message code="search" />" />
 	</div>

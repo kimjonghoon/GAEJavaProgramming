@@ -33,7 +33,7 @@ view.html 문서를 열고 #bbs 바로 아래 다음 코드를 추가한다.
         &lt;input type="hidden" name="commentNo" value="5" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
         &lt;input type="hidden" name="articleNo" value="12" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;div class="fr"&gt;
@@ -59,7 +59,7 @@ view.html 문서를 열고 #bbs 바로 아래 다음 코드를 추가한다.
         &lt;input type="hidden" name="commentNo" value="4" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
         &lt;input type="hidden" name="articleNo" value="12" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;div class="fr"&gt;
@@ -77,7 +77,7 @@ view.html 문서를 열고 #bbs 바로 아래 다음 코드를 추가한다.
     &lt;p style="margin: 0; padding: 0;"&gt;
         &lt;input type="hidden" name="articleNo" value="5"/&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;div id="addComment"&gt;
@@ -222,7 +222,7 @@ function modifyCommentToggle(articleNo) {
             &lt;input type="hidden" name="commentNo" value="5" /&gt;
             &lt;input type="hidden" name="boardCd" value="free" /&gt;
             &lt;input type="hidden" name="articleNo" value="12" /&gt;
-            &lt;input type="hidden" name="curPage" value="1" /&gt;
+            &lt;input type="hidden" name="page" value="1" /&gt;
             &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
         &lt;/p&gt;
         &lt;div class="fr"&gt;
@@ -320,7 +320,7 @@ function modifyCommentToggle(articleNo) {
             &lt;input type="hidden" name="commentNo" value="5" /&gt;
             &lt;input type="hidden" name="boardCd" value="free" /&gt;
             &lt;input type="hidden" name="articleNo" value="12" /&gt;
-            &lt;input type="hidden" name="curPage" value="1" /&gt;
+            &lt;input type="hidden" name="page" value="1" /&gt;
             &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
         &lt;/p&gt;
         &lt;div class="fr"&gt;
@@ -365,7 +365,7 @@ function modifyCommentToggle(articleNo) {
     &lt;p style="margin: 0; padding: 0;"&gt;
         &lt;input type="hidden" name="articleNo" value="5"/&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;div id="addComment"&gt;

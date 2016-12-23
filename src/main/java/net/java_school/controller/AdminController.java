@@ -22,7 +22,7 @@ public class AdminController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model) {
-		List<Board> list = boardService.getBoards();
+		List<Board> list = boardService.getAllBoards();
 		model.addAttribute("list", list);
 		
 		return "admin/index";

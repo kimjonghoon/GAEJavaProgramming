@@ -161,7 +161,7 @@ if (loginUser == null) {
             &lt;li&gt;&lt;a href="jsp-project/"&gt;JSP Project&lt;/a&gt;&lt;/li&gt;
             &lt;li&gt;&lt;a href="spring/"&gt;Spring&lt;/a&gt;&lt;/li&gt;
             &lt;li&gt;&lt;a href="javascript/"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="bbs/list.jsp?boardCd=free&amp;curPage=1"&gt;BBS&lt;/a&gt;&lt;/li&gt;</strong>&lt;!-- 자유 게시판 첫 페이지 --&gt;
+            &lt;li&gt;&lt;a href="bbs/list.jsp?boardCd=free&amp;page=1"&gt;BBS&lt;/a&gt;&lt;/li&gt;</strong>&lt;!-- 자유 게시판 첫 페이지 --&gt;
         &lt;/ul&gt;
     &lt;/div&gt;
 
@@ -265,7 +265,7 @@ if (loginUser == null) {
             &lt;li&gt;&lt;a href="<strong>../</strong>jsp-project/"&gt;JSP Project&lt;/a&gt;&lt;/li&gt;
             &lt;li&gt;&lt;a href="<strong>../</strong>spring/"&gt;Spring&lt;/a&gt;&lt;/li&gt;
             &lt;li&gt;&lt;a href="<strong>../</strong>javascript/"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="<strong>../</strong>bbs/list.jsp?boardCd=free&amp;curPage=1"&gt;BBS&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="<strong>../</strong>bbs/list.jsp?boardCd=free&amp;page=1"&gt;BBS&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
     &lt;/div&gt;
 
@@ -397,7 +397,7 @@ if (loginUser == null) {
     &lt;li&gt;&lt;a href="../jsp-project/"&gt;JSP Project&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href="../spring/"&gt;Spring&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href="../javascript/"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="../bbs/list.jsp?boardCd=free&amp;curPage=1"&gt;BBS&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="../bbs/list.jsp?boardCd=free&amp;page=1"&gt;BBS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </pre>
 
@@ -629,7 +629,7 @@ session.setAttribute("user", new User(email, passwd, "홍길동", "010-1234-5678
 if (url != null &amp;&amp; !url.equals("")) {
     response.sendRedirect(url);
 } else {
-    response.sendRedirect("../bbs/list.jsp?boarCd=free&amp;curPage=1");
+    response.sendRedirect("../bbs/list.jsp?boarCd=free&amp;page=1");
 }
 %&gt;
 </pre>
@@ -743,7 +743,7 @@ if (loginUser == null) {
             &lt;li&gt;&lt;a href="<strong>&lt;%=contextPath %&gt;</strong>/jsp-project/"&gt;JSP Project&lt;/a&gt;&lt;/li&gt;
             &lt;li&gt;&lt;a href="<strong>&lt;%=contextPath %&gt;</strong>/spring/"&gt;Spring&lt;/a&gt;&lt;/li&gt;
             &lt;li&gt;&lt;a href="<strong>&lt;%=contextPath %&gt;</strong>/javascript/"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="<strong>&lt;%=contextPath %&gt;</strong>/bbs/list.jsp?boardCd=free&amp;curPage=1"&gt;BBS&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="<strong>&lt;%=contextPath %&gt;</strong>/bbs/list.jsp?boardCd=free&amp;page=1"&gt;BBS&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
     &lt;/div&gt;
 
@@ -818,9 +818,9 @@ bbs-menu.jsp 파일은 게시판에 대한 링크를 제공한다.<br />
 &lt;ul&gt;
     &lt;li&gt;
         &lt;ul&gt;
-            &lt;li&gt;&lt;a href="list.jsp?boardCd=free&amp;curPage=1"&gt;자유 게시판&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="list.jsp?boardCd=qna&amp;curPage=1"&gt;QnA게시판&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="list.jsp?boardCd=data&amp;curPage=1"&gt;자료실&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="list.jsp?boardCd=free&amp;page=1"&gt;자유 게시판&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="list.jsp?boardCd=qna&amp;page=1"&gt;QnA게시판&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="list.jsp?boardCd=data&amp;page=1"&gt;자료실&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
     &lt;/li&gt;
 &lt;/ul&gt;
@@ -873,9 +873,9 @@ CSS 포지셔닝에서의 만든 list.html 파일을 연 상태에서 Save As...
 &lt;script type="text/javascript"&gt;
 //&lt;![CDATA[
            
-function goList(curPage) {
+function goList(page) {
     var form = document.getElementById("listForm");
-    form.curPage.value = curPage;
+    form.page.value = page;
     form.submit();
 }
 
@@ -953,7 +953,7 @@ function goWrite() {
         &lt;form action="list.jsp" method="get"&gt;
             &lt;p style="margin: 0;padding: 0;"&gt;
                 &lt;input type="hidden" name="boardCd" value="free" /&gt;
-                &lt;input type="hidden" name="curPage" value="1" /&gt;
+                &lt;input type="hidden" name="page" value="1" /&gt;
                 &lt;input type="text" name="searchWord" size="15" maxlength="30" /&gt;
                 &lt;input type="submit" value="검색" /&gt;
             &lt;/p&gt;
@@ -984,7 +984,7 @@ function goWrite() {
     &lt;form id="listForm" action="list.jsp" method="get"&gt;
     &lt;p&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" /&gt;
+        &lt;input type="hidden" name="page" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
@@ -992,14 +992,14 @@ function goWrite() {
     &lt;p&gt;
         &lt;input type="hidden" name="articleNo" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
     &lt;form id="writeForm" action="write_form.jsp" method="get"&gt;
     &lt;p&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
@@ -1117,14 +1117,14 @@ function goView() {
     &lt;p&gt;
         &lt;input type="hidden" name="articleNo" value="5" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
     &lt;form id="listForm" action="list.jsp" method="get"&gt;
     &lt;p&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;   
@@ -1155,7 +1155,7 @@ form의 enctype 속성이 "multipart/form-data"인 경우 request.getParameter()
 
 새 글을 등록한 후 목록의 첫 번째 페이지로 되돌아가야 한다.
 */
-response.sendRedirect("list.jsp?boardCd=free&amp;curPage=1");
+response.sendRedirect("list.jsp?boardCd=free&amp;page=1");
 %&gt;
 </pre>
 
@@ -1198,9 +1198,9 @@ function modifyCommentToggle(articleNo) {
     form.style.display = form_display;
 }
 <strong>
-function goList(curPage) {
+function goList(page) {
     var form = document.getElementById("listForm");
-    form.curPage.value = curPage;
+    form.page.value = page;
     form.submit();
 }
 
@@ -1301,7 +1301,7 @@ function deleteComment(commentNo) {
         &lt;input type="hidden" name="commentNo" value="5" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
         &lt;input type="hidden" name="articleNo" value="12" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;div class="fr"&gt;
@@ -1319,7 +1319,7 @@ function deleteComment(commentNo) {
     &lt;p style="margin: 0; padding: 0;"&gt;
         &lt;input type="hidden" name="articleNo" value="5"/&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;div id="addComment"&gt;
@@ -1387,7 +1387,7 @@ function deleteComment(commentNo) {
     &lt;form action="list.jsp" method="get"&gt;
         &lt;p style="margin: 0;padding: 0;"&gt;
             &lt;input type="hidden" name="boardCd" value="free" /&gt;
-            &lt;input type="hidden" name="curPage" value="1" /&gt;
+            &lt;input type="hidden" name="page" value="1" /&gt;
             &lt;input type="text" name="searchWord" size="15" maxlength="30" /&gt;
             &lt;input type="submit" value="검색" /&gt;
         &lt;/p&gt;
@@ -1418,7 +1418,7 @@ function deleteComment(commentNo) {
     &lt;form id="listForm" action="list.jsp" method="get"&gt;
     &lt;p&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" /&gt;
+        &lt;input type="hidden" name="page" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
@@ -1426,7 +1426,7 @@ function deleteComment(commentNo) {
     &lt;p&gt;
         &lt;input type="hidden" name="articleNo" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
@@ -1434,7 +1434,7 @@ function deleteComment(commentNo) {
     &lt;p&gt;
         &lt;input type="hidden" name="articleNo" value="5" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="12" /&gt;
+        &lt;input type="hidden" name="page" value="12" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
@@ -1442,7 +1442,7 @@ function deleteComment(commentNo) {
     &lt;p&gt;
         &lt;input type="hidden" name="articleNo" value="5" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
@@ -1450,7 +1450,7 @@ function deleteComment(commentNo) {
     &lt;p&gt;
         &lt;input type="hidden" name="articleNo" value="5" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
@@ -1459,7 +1459,7 @@ function deleteComment(commentNo) {
         &lt;input type="hidden" name="commentNo" /&gt;
         &lt;input type="hidden" name="articleNo" value="12" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;   
@@ -1468,7 +1468,7 @@ function deleteComment(commentNo) {
         &lt;input type="hidden" name="attachFileNo" /&gt;
         &lt;input type="hidden" name="articleNo" value="23" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;       
@@ -1492,11 +1492,11 @@ function deleteComment(commentNo) {
 response.sendError(HttpServletResponse.SC_FORBIDDEN, "Not Login"); return;
 로그인 체크를 통과하면 
 먼저 요청의 캐릭터 셋을 UTF-8로 설정한다.
-boardCd, articleNo, curPage, searchWord, memo 파라미터를 받아서 댓글을 인서트한다.
+boardCd, articleNo, page, searchWord, memo 파라미터를 받아서 댓글을 인서트한다.
 댓글을 인서트한 후 상세보기를 돌아가기 위해선
 검색어 searchWord를 URLEncoder의 encode 메서드로 UTF-8로 인코딩해야 한다.
 */
-response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;searchWord=무궁화꽃");
+response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;page=1&amp;searchWord=무궁화꽃");
 %&gt;
 </pre>
 
@@ -1514,12 +1514,12 @@ response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;s
 response.sendError(HttpServletResponse.SC_FORBIDDEN, "Authentication Failed"); return;
 작성자 체크를 통과하면
 요청의 캐릭터 셋을 UTF-8로 설정한다.
-commentNo, boardCd, articleNo, curPage, searchWord, memo 파라미터를 받아서
+commentNo, boardCd, articleNo, page, searchWord, memo 파라미터를 받아서
 댓글을 업데이트한다.
 댓글을 업데이트 처리한 후 상세보기를 돌아가기 위해선
 검색어 searchWord를 URLEncoder의 encode 메서드로 UTF-8로 인코딩해야 한다.
 */
-response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;searchWord=무궁화꽃");
+response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;page=1&amp;searchWord=무궁화꽃");
 %&gt;
 </pre>
 
@@ -1538,11 +1538,11 @@ response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;s
 response.sendError(HttpServletResponse.SC_FORBIDDEN, "작성자가 아닙니다"); return;
 요청의 캐릭터 셋을 UTF-8로 설정해야 한다.
 요청에서 참조해야 하는 파라미터는
-commentNo, boardCd, articleNo, curPage, searchWord 이다.
+commentNo, boardCd, articleNo, page, searchWord 이다.
 댓글을 삭제 후 상세보기를 돌아가기 위해선
 searchWord를 URLEncoder의 encode 메서드로 UTF-8로 인코딩한다.
 */
-response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;searchWord=무궁화꽃");
+response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;page=1&amp;searchWord=무궁화꽃");
 %&gt;
 </pre>
 
@@ -1562,11 +1562,11 @@ response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;s
 response.sendError(HttpServletResponse.SC_FORBIDDEN, "작성자가 아닙니다"); return;
 요청의 캐릭터 셋을 UTF-8로 설정해야 한다.
 요청에서 참조해야 하는 파라미터는
-attachFileNo,articleNo,boardCd,curPage,searchWord 이다.
+attachFileNo,articleNo,boardCd,page,searchWord 이다.
 첨부 파일를 삭제 후 상세보기를 돌아가기 위해선
 searchWord를 URLEncoder의 encode 메서드로 UTF-8로 인코딩한다.
 */
-response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;searchWord=무궁화꽃");
+response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;page=1&amp;searchWord=무궁화꽃");
 %&gt;
 </pre>
 
@@ -1584,12 +1584,12 @@ response.sendRedirect("view.jsp?articleNo=5&amp;boardCd=free&amp;curPage=1&amp;s
 response.sendError(HttpServletResponse.SC_FORBIDDEN, "Authentication Failed"); return;
 작성자 체크를 통과하면
 요청의 캐릭터 셋을 UTF-8로 설정한다.
-articleNo, boardCd, curPage, searchWord 파라미터를 받고
+articleNo, boardCd, page, searchWord 파라미터를 받고
 articleNo로 게시글을 삭제한다.
 게시글 삭제 후 목록를 돌아가기 위해선
 검색어 searchWord를 URLEncoder의 encode 메서드로 UTF-8로 인코딩해야 한다.
 */
-response.sendRedirect("list.jsp?boardCd=free&amp;curPage=1&amp;searchWord=무궁화꽃");
+response.sendRedirect("list.jsp?boardCd=free&amp;page=1&amp;searchWord=무궁화꽃");
 %&gt;
 </pre>
 
@@ -1609,7 +1609,7 @@ if (user == null) {
 request.setCharacterEncoding("UTF-8");
 int articleNo = Integer.parseInt(request.getParameter("articleNo"));
 String boardCd = request.getParameter("boardCd");
-String curPage = request.getParameter("curPage");
+String page = request.getParameter("page");
 String searchWord = request.getParameter("searchWord");
 //TODO articleNo로 게시글 객체를 얻어서 현재 로그인된 사용자가 글 소유자인지를 검사한다.</strong>
 %&gt;
@@ -1663,7 +1663,7 @@ function goView() {
 &lt;p style="margin: 0;padding: 0;"&gt;
 <strong>&lt;input type="hidden" name="articleNo" value="5" /&gt;</strong>
 &lt;input type="hidden" name="boardCd" value="free" /&gt;
-<strong>&lt;input type="hidden" name="curPage" value="1" /&gt;
+<strong>&lt;input type="hidden" name="page" value="1" /&gt;
 &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;</strong>
 &lt;/p&gt;
 &lt;table id="write-form"&gt;
@@ -1711,7 +1711,7 @@ function goView() {
     &lt;p&gt;
         &lt;input type="hidden" name="articleNo" value="5" /&gt;
         &lt;input type="hidden" name="boardCd" value="free" /&gt;
-        &lt;input type="hidden" name="curPage" value="1" /&gt;
+        &lt;input type="hidden" name="page" value="1" /&gt;
         &lt;input type="hidden" name="searchWord" value="무궁화꽃" /&gt;
     &lt;/p&gt;
     &lt;/form&gt;
@@ -1733,13 +1733,13 @@ function goView() {
 -구현-
 작성자가 아니면
 response.sendError(HttpServletResponse.SC_FORBIDDEN, "Authentication Failed"); return;
-articleNo, boardCd, curPage, searchWord, title, content, attachFile 파라미터를 받고
+articleNo, boardCd, page, searchWord, title, content, attachFile 파라미터를 받고
 게시글을 수정한다.
 form의 enctype 속성이 "multipart/form-data"인 경우 request.getParameter()로 파라미터의 값을 얻을 수 없다.
 쉽게 프로그래밍하기 위해 아파치 commons-fileupload 또는 cos와 같은 외부 라이브러리를 이용한다.
 게시글을 수정한 후 상세보기를 돌아가기 위해 searchWord를 URLEncoder의 encode 메서드를 이용해 UTF-8로 인코딩한다.
 */
-response.sendRedirect("view.jsp?articleNo=5&amp;curPage=1&amp;boardCd=free&amp;searchWord=무궁화꽃");
+response.sendRedirect("view.jsp?articleNo=5&amp;page=1&amp;boardCd=free&amp;searchWord=무궁화꽃");
 %&gt;
 </pre>
 
@@ -2414,7 +2414,7 @@ modify_form.jsp 만 빠진 이유는 로그인뿐 아니라 글 소유자인지 
 <ol>
 	<li>게시판과 관련된 모든 페이지는 로그인이 필요하다.</li>
 	<li>회원 모듈에서 내 정보 수정, 비밀번호 변경, 탈퇴는 로그인이 필요하다.</li>
-	<li>로그인이 성공하면 /bbs/list.jsp?boardCd=free&amp;curPage=1로 이동한다.</li>
+	<li>로그인이 성공하면 /bbs/list.jsp?boardCd=free&amp;page=1로 이동한다.</li>
 	<li>로그인하지 않고 로그인이 필요한 페이지를 방문하면 로그인 페이지로 이동하고, 로그인이 성공하면 원래 방문하려 했던 페이지로 이동한다.</li>
 	<li>로그아웃하면 홈페이지로 이동한다.</li>
 </ol>

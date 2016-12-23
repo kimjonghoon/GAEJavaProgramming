@@ -105,8 +105,8 @@ $(document).ready(function() {
 	});
 	//paging
 	$('#paging a').click(function() {
-		var $curPage = this.title;
-		goList($curPage);
+		var $page = this.title;
+		goList($page);
 		return false;
 	});
 	//write button 
@@ -118,8 +118,8 @@ function goView(articleNo) {
 	$('#viewForm input[name*=articleNo]').val(articleNo);
 	$('#viewForm').submit();
 }
-function goList(curPage) {
-	$('#listForm input[name*=curPage]').val(curPage);
+function goList(page) {
+	$('#listForm input[name*=page]').val(page);
 	$('#listForm').submit();
 }
 </script>
@@ -167,7 +167,7 @@ function goList(curPage) {
 	<p style="margin: 0;padding: 0">
 		<input type="hidden" name="articleNo" value="${param.articleNo }" />
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
-		<input type="hidden" name="curPage" value="${param.curPage }" />
+		<input type="hidden" name="page" value="${param.page }" />
 		<input type="hidden" name="searchWord" value="${param.searchWord }" />
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</p>
@@ -195,7 +195,7 @@ function goList(curPage) {
         <input type="hidden" name="commentNo" value="${comments.commentNo }" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </p>
@@ -275,7 +275,7 @@ function goList(curPage) {
 	</c:if>
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
-			<c:when test="${param.curPage == i }">
+			<c:when test="${param.page == i }">
 				<span class="current-page">${i }</span>
 			</c:when>
 			<c:otherwise>	
@@ -294,7 +294,7 @@ function goList(curPage) {
 	<form action="list" method="get">
 	<p style="margin: 0;padding: 0;">
 		<input type="hidden" name="boardCd" value="${param.boardCd }" />
-		<input type="hidden" name="curPage" value="${param.curPage }" />
+		<input type="hidden" name="page" value="${param.page }" />
 		<input type="text" name="searchWord" size="15" maxlength="${param.searchWord }" />
 		<input type="submit" value="<spring:message code="search" />" />
 	</p>
@@ -304,7 +304,7 @@ function goList(curPage) {
     <form id="listForm" action="list" method="get">
     <p>
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -312,7 +312,7 @@ function goList(curPage) {
     <p>
         <input type="hidden" name="articleNo" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -320,7 +320,7 @@ function goList(curPage) {
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -328,7 +328,7 @@ function goList(curPage) {
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </p>
     </form>
@@ -336,7 +336,7 @@ function goList(curPage) {
     <p>
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </p>
@@ -346,7 +346,7 @@ function goList(curPage) {
         <input type="hidden" name="commentNo" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </p>
@@ -356,7 +356,7 @@ function goList(curPage) {
         <input type="hidden" name="filekey" />
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
         <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="curPage" value="${param.curPage }" />
+        <input type="hidden" name="page" value="${param.page }" />
         <input type="hidden" name="searchWord" value="${param.searchWord }" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </p>

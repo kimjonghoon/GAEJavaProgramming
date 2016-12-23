@@ -13,7 +13,7 @@
 	<li class="main-menu-item"><a href="/jsp-pjt/Dynamic-Web-Project-Set-Up">JSP Project</a></li>
 	<li class="main-menu-item"><a href="/spring/building-java-projects-with-maven">Spring</a></li>
 	<li class="main-menu-item"><a href="/javascript/introduction">JavaScript</a></li>
-	<li class="main-menu-item"><a href="/bbs/list?boardCd=data&curPage=1">BBS</a>
+	<li class="main-menu-item"><a href="/bbs/list?boardCd=data&page=1">BBS</a>
 <security:authorize access="hasRole('ROLE_ADMIN')">	
 	<li class="main-menu-item"><a href="/admin">Admin</a></li>
 </security:authorize>	

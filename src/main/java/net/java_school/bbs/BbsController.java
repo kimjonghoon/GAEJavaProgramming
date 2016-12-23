@@ -48,9 +48,9 @@ public class BbsController extends NumberGeneratorForPaging {
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(String boardCd, Integer curPage, String searchWord, Locale locale, Model model) {
+	public String list(String boardCd, Integer page, String searchWord, Locale locale, Model model) {
 		String lang = locale.getLanguage();
-		List<Board> boards = boardService.getBoards();
+		List<Board> boards = boardService.getAllBoards();
 		model.addAttribute("boards", boards);
 
 		String boardName = this.getBoardName(boardCd, lang);
@@ -58,7 +58,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		int numPerPage = 10;
 		int pagePerBlock = 10;
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-		NumbersForPaging ints = this.getNumbersForPaging(totalRecord, curPage, numPerPage, pagePerBlock);
+		NumbersForPaging ints = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
 		Integer offset = ints.getOffset();
 		List<Article> list = boardService.getArticleList(boardCd, searchWord, offset, numPerPage);
 		
@@ -82,13 +82,13 @@ public class BbsController extends NumberGeneratorForPaging {
 	@RequestMapping(value="/view", method=RequestMethod.GET)
 	public String view(Integer articleNo, 
 			String boardCd, 
-			Integer curPage,
+			Integer page,
 			String searchWord,
 			Locale locale,
 			Model model) {
 		
 		String lang = locale.getLanguage();
-		List<Board> boards = boardService.getBoards();
+		List<Board> boards = boardService.getAllBoards();
 		model.addAttribute("boards", boards);
 
 		boardService.increaseHit(articleNo);
@@ -124,7 +124,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		int numPerPage = 10;//페이지당 레코드 수
 		int pagePerBlock = 10;//블록당 페이지 링크수
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-		NumbersForPaging ints = this.getNumbersForPaging(totalRecord, curPage, numPerPage, pagePerBlock);
+		NumbersForPaging ints = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
 		Integer offset = ints.getOffset();
 		List<Article> list = boardService.getArticleList(boardCd, searchWord, offset, numPerPage);
 
@@ -148,7 +148,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write(String boardCd, Locale locale, Model model) {
 		String lang = locale.getLanguage();
-		List<Board> boards = boardService.getBoards();
+		List<Board> boards = boardService.getAllBoards();
 		String boardName = this.getBoardName(boardCd, lang);
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardName", boardName);
@@ -158,7 +158,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(Article article, 
-			String curPage, 
+			String page, 
 			String searchWord, 
 			Model model,
 			Principal principal,
@@ -204,14 +204,14 @@ public class BbsController extends NumberGeneratorForPaging {
 		}
 		
 		return "redirect:/bbs/list?boardCd=" + article.getBoardCd() + 
-				"&curPage=1&searchWord=";
+				"&page=1&searchWord=";
 	}
 	
 	@RequestMapping(value="/deleteAttachFile", method=RequestMethod.POST)
 	public String deleteAttachFile(String filekey, 
 			Integer articleNo, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord,
 			Principal principal) throws Exception {
 
@@ -225,7 +225,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
 		return "redirect:/bbs/view?articleNo=" + articleNo + 
 				"&boardCd=" + boardCd + 
-				"&curPage=" + curPage + 
+				"&page=" + page + 
 				"&searchWord=" + searchWord;
 
 	}
@@ -234,7 +234,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	public String deleteComments(Integer commentNo, 
 			Integer articleNo, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord) throws Exception {
 
 		Comments currentComments = boardService.getComments(commentNo);
@@ -245,7 +245,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
 		return "redirect:/bbs/view?articleNo=" + articleNo + 
 				"&boardCd=" + boardCd + 
-				"&curPage=" + curPage + 
+				"&page=" + page + 
 				"&searchWord=" + searchWord;
 
 	}
@@ -253,7 +253,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	@RequestMapping(value="/addComments", method=RequestMethod.POST)
 	public String addComment(Comments comments,
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord,
 			Principal principal) throws Exception {
 
@@ -270,14 +270,14 @@ public class BbsController extends NumberGeneratorForPaging {
 
 		return "redirect:/bbs/view?articleNo=" + comments.getArticleNo() + 
 				"&boardCd=" + boardCd + 
-				"&curPage=" + curPage + 
+				"&page=" + page + 
 				"&searchWord=" + searchWord;
 	}
 	
 	@RequestMapping(value="/modifyComments", method=RequestMethod.POST)
 	public String updateComment(Comments comments, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord,
 			Principal principal) throws Exception {
 
@@ -289,7 +289,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
 		return "redirect:/bbs/view?articleNo=" + comments.getArticleNo() + 
 				"&boardCd=" + boardCd + 
-				"&curPage=" + curPage + 
+				"&page=" + page + 
 				"&searchWord=" + searchWord;
 	}
 	
@@ -298,7 +298,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	public String modify(Integer articleNo, String boardCd, Locale locale, Model model) {
 		Article article = boardService.getArticle(articleNo);
 
-		List<Board> boards = boardService.getBoards();
+		List<Board> boards = boardService.getAllBoards();
 		model.addAttribute("boards", boards);
 
 		String boardName = this.getBoardName(boardCd, locale.getLanguage());
@@ -311,7 +311,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modify(Article article, Integer curPage, String searchWord, Model model, HttpServletRequest req) throws Exception {
+	public String modify(Article article, Integer page, String searchWord, Model model, HttpServletRequest req) throws Exception {
 		Article currentArticle = boardService.getArticle(article.getArticleNo());
 		
 		currentArticle.setTitle(article.getTitle());
@@ -352,7 +352,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
 		return "redirect:/bbs/view?articleNo=" + article.getArticleNo() 
 				+ "&boardCd=" + article.getBoardCd() 
-				+ "&curPage=" + curPage 
+				+ "&page=" + page 
 				+ "&searchWord=" + searchWord;
 
 	}
@@ -360,7 +360,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	@RequestMapping(value="/deleteArticle", method=RequestMethod.POST)
 	public String del(Integer articleNo, 
 			String boardCd, 
-			Integer curPage, 
+			Integer page, 
 			String searchWord) throws Exception {
 		
 		Article currentArticle = boardService.getArticle(articleNo);
@@ -370,7 +370,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		searchWord = URLEncoder.encode(searchWord, "UTF-8");
 
 		return "redirect:/bbs/list?boardCd=" + boardCd + 
-				"&curPage=" + curPage + 
+				"&page=" + page + 
 				"&searchWord=" + searchWord;
 	}
 

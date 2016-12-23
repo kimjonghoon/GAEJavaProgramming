@@ -1711,7 +1711,7 @@ public class BbsController {
     
     @RequestMapping(value="/list", method={RequestMethod.GET, RequestMethod.POST})
     public String list(String boardCd, 
-            Integer curPage, 
+            Integer page, 
             String searchWord,
             HttpServletRequest req,
             HttpSession session,
@@ -1734,7 +1734,7 @@ public class BbsController {
         
         int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
         
-        PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+        PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
         boardService.setPagingHelper(pagingHelper);
 
         List&lt;Article&gt; list = boardService.getArticleList(boardCd, searchWord);
@@ -1830,13 +1830,13 @@ public class BbsController {
             boardService.addAttachFile(attachFile);
         }
         
-        return "redirect:/bbs/list?curPage=1&amp;boardCd=" + article.getBoardCd();
+        return "redirect:/bbs/list?page=1&amp;boardCd=" + article.getBoardCd();
     }
 
     @RequestMapping(value="/view", method=RequestMethod.GET)
     public String view(Integer articleNo, 
             String boardCd, 
-            Integer curPage,
+            Integer page,
             String searchWord,
             HttpServletRequest req,
             HttpSession session,
@@ -1894,7 +1894,7 @@ public class BbsController {
         int pagePerBlock = 10;//블록당 페이지 링크 수
         
         int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-        PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+        PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
         boardService.setPagingHelper(pagingHelper);
 
         List&lt;Article&gt; list = boardService.getArticleList(boardCd, searchWord);
@@ -1919,7 +1919,7 @@ public class BbsController {
     @RequestMapping(value="/addComment", method=RequestMethod.POST)
     public String addComment(Integer articleNo, 
             String boardCd, 
-            Integer curPage, 
+            Integer page, 
             String searchWord,
             String memo,
             HttpSession session) throws Exception {
@@ -1941,7 +1941,7 @@ public class BbsController {
         
         return "redirect:/bbs/view?articleNo=" + articleNo + 
             "&amp;boardCd=" + boardCd + 
-            "&amp;curPage=" + curPage + 
+            "&amp;page=" + page + 
             "&amp;searchWord=" + searchWord;
 
     }
@@ -1950,7 +1950,7 @@ public class BbsController {
     public String updateComment(Integer commentNo, 
             Integer articleNo, 
             String boardCd, 
-            Integer curPage, 
+            Integer page, 
             String searchWord, 
             String memo,
             HttpSession session) throws Exception {
@@ -1972,7 +1972,7 @@ public class BbsController {
         
         return "redirect:/bbs/view?articleNo=" + articleNo + 
             "&amp;boardCd=" + boardCd + 
-            "&amp;curPage=" + curPage + 
+            "&amp;page=" + page + 
             "&amp;searchWord=" + searchWord;
 
     }
@@ -1981,7 +1981,7 @@ public class BbsController {
     public String deleteComment(Integer commentNo, 
             Integer articleNo, 
             String boardCd, 
-            Integer curPage, 
+            Integer page, 
             String searchWord,
             HttpSession session) throws Exception {
         
@@ -2000,7 +2000,7 @@ public class BbsController {
         
         return "redirect:/bbs/view?articleNo=" + articleNo + 
             "&amp;boardCd=" + boardCd + 
-            "&amp;curPage=" + curPage + 
+            "&amp;page=" + page + 
             "&amp;searchWord=" + searchWord;
 
     }
@@ -2047,7 +2047,7 @@ public class BbsController {
         }
         
         String boardCd = mpRequest.getParameter("boardCd");
-        int curPage = Integer.parseInt(mpRequest.getParameter("curPage"));
+        int page = Integer.parseInt(mpRequest.getParameter("page"));
         String searchWord = mpRequest.getParameter("searchWord");
         
         String title = mpRequest.getParameter("title");
@@ -2088,7 +2088,7 @@ public class BbsController {
         searchWord = URLEncoder.encode(searchWord,"UTF-8");
         return "redirect:/bbs/view?articleNo=" + articleNo 
             + "&amp;boardCd=" + boardCd 
-            + "&amp;curPage=" + curPage 
+            + "&amp;page=" + page 
             + "&amp;searchWord=" + searchWord;
 
     }
@@ -2110,7 +2110,7 @@ public class BbsController {
     public String deleteAttachFile(Integer attachFileNo, 
             Integer articleNo, 
             String boardCd, 
-            Integer curPage, 
+            Integer page, 
             String searchWord,
             HttpSession session) throws Exception {
         
@@ -2128,7 +2128,7 @@ public class BbsController {
         
         return "redirect:/bbs/view?articleNo=" + articleNo + 
             "&amp;boardCd=" + boardCd + 
-            "&amp;curPage=" + curPage + 
+            "&amp;page=" + page + 
             "&amp;searchWord=" + searchWord;
 
     }
@@ -2136,7 +2136,7 @@ public class BbsController {
     @RequestMapping(value="/del", method=RequestMethod.POST)
     public String del(Integer articleNo, 
             String boardCd, 
-            Integer curPage, 
+            Integer page, 
             String searchWord,
             HttpSession session) throws Exception {
         
@@ -2153,7 +2153,7 @@ public class BbsController {
         searchWord = URLEncoder.encode(searchWord, "UTF-8");
         
         return "redirect:/bbs/list?boardCd=" + boardCd + 
-            "&amp;curPage=" + curPage + 
+            "&amp;page=" + page + 
             "&amp;searchWord=" + searchWord;
 
     }
@@ -2184,12 +2184,12 @@ public class BbsController {
 <pre>@RequestMapping(value="/list", method=RequestMethod.GET)
 public String list(String boardCd, Integer curpage, String searchWord,...</pre>
 
-메서드 아규먼트 리스트 boardCd, curPage, searchWord에는 요청에 실려 오는 파라미터의 값이 할당된다.<br />
-만약 파라미터 이름이 curPage이고 이 파라미터의 값을 할당받아야 하는 아규먼트 이름이 page라면 다음과 같이 해결한다.<br />
-<pre>@RequestParam("curPage") String page</pre>
+메서드 아규먼트 리스트 boardCd, page, searchWord에는 요청에 실려 오는 파라미터의 값이 할당된다.<br />
+만약 파라미터 이름이 page이고 이 파라미터의 값을 할당받아야 하는 아규먼트 이름이 page라면 다음과 같이 해결한다.<br />
+<pre>@RequestParam("page") String page</pre>
 
 컨트롤러 메서드의 아규먼트를 파라미터의 이름과 같게 하면 쉽게 파라미터값을 받을 수 있다.<br />
-파라미터 중에서 boardCd와 curPage는 필수적으로 전달되도록 구현해야 한다.<br />
+파라미터 중에서 boardCd와 page는 필수적으로 전달되도록 구현해야 한다.<br />
 searchWord는 사용자가 검색해야만 전달된다.<br />
 전달되는 파라미터값을 전부 받았음에도 아규먼트 리스트에서 HttpServletRequest가 있는 이유는 
 요청 URL을 구하기 위해서다.<br />
@@ -2215,7 +2215,7 @@ if (user == null) {
 <pre>int numPerPage = 10;
 int pagePerBlock = 10;
 int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 boardService.setPagingHelper(pagingHelper);
 </pre>
 
@@ -2239,7 +2239,7 @@ public String writeForm(String boardCd,HttpServletRequest req,HttpSession sessio
 
 메서드 아규먼트로는 파라미터값을 받는 boardCd와 목록 메서드와 같은 이유로 req와 session이 있다.<br />
 boardCd는 게시판 이름을 만드는 데 필요하다.<br />
-curPage와 searchWord는 포워딩 되므로 아규먼트로 받을 특별한 이유가 없다.<br />
+page와 searchWord는 포워딩 되므로 아규먼트로 받을 특별한 이유가 없다.<br />
 게시판은 로그인 사용자만 이용할 수 있으므로 메서드는 먼저 로그인 체크로 시작하고,
 로그인 체크가 통과하면 게시판 이름을 생성하고 write_form.jsp로 포워딩한다.<br />
 
@@ -2346,9 +2346,9 @@ maxInMemorySize는 메모리에 저장되는 파일의 크기로 10M로 설정�
 마지막으로 포워딩이 아닌 리다이렉트로 이동해야 한다.<br />
 포워딩하게 되면 문제가 발생할 수 있는데, 사용자가 F5키로 웹 브라우저를 리로딩하면 
 똑같은 정보로 글쓰기 처리가 다시 수행될 수 있기 때문이다.<br />
-리다이렉트로 이동할 때 게시판 코드와 함께 curPage=1도 전달해야 한다.<br />
+리다이렉트로 이동할 때 게시판 코드와 함께 page=1도 전달해야 한다.<br />
 
-<pre>return "redirect:/bbs/list?<strong>curPage=1</strong>&amp;boardCd=" + article.getBoardCd();</pre>
+<pre>return "redirect:/bbs/list?<strong>page=1</strong>&amp;boardCd=" + article.getBoardCd();</pre>
 
 글쓰기에서 마이바티스가 게시글의 고유번호를 반환하도록 BoardMapper.xml를 작성했음을 기억하자.<br />
 모델 2에서는 서비스의 addArticle(article, attachFile); 메서드 하나로 글쓰기를 구현했지만
@@ -2358,7 +2358,7 @@ maxInMemorySize는 메모리에 저장되는 파일의 크기로 10M로 설정�
 <h3>상세보기 요청</h3>
 
 상세보기 요청(/bbs/view)에 매핑되는 메서드는 view()이다.<br />
-메서드에 전달되는 파라미터는 articleNo, boardCd, curPage, searchWord이다.<br />
+메서드에 전달되는 파라미터는 articleNo, boardCd, page, searchWord이다.<br />
 메서드의 아규먼트로 이들 파라미터의 값을 전달받을 변수를 선언했다.<br />
 포워드로 이동하지만 view.jsp에 필요한 데이터를 생산하기 위해 전달되는 파라미터 모두 필요하기 때문이다.<br /> 
 그럼에도 HttpServletRequest 타입의 아규먼트 변수가 있는 것은 로그인 체크를 통과 못 했을 때 
@@ -2368,7 +2368,7 @@ HttpSession 타입의 아규먼트는 로그인 체크를 하려면 세션의 �
 <pre>@RequestMapping(value="/view", method=RequestMethod.GET)
 public String view(Integer articleNo, 
         String boardCd, 
-        Integer curPage,
+        Integer page,
         String searchWord,
         HttpServletRequest req,
         HttpSession session,
@@ -2424,7 +2424,7 @@ int numPerPage = 10;//페이지당 레코드 수
 int pagePerBlock = 10;//블록당 페이지 링크 수
 
 int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 boardService.setPagingHelper(pagingHelper);
 
 List&lt;Article&gt; list = boardService.getArticleList(boardCd, searchWord);
@@ -2452,7 +2452,7 @@ addComment() 메서드는 POST방식의 /bbs/addComment 요청에 매핑되는 �
 <pre>@RequestMapping(value="/addComment", method=RequestMethod.POST)
 public String addComment(Integer articleNo, 
         String boardCd, 
-        Integer curPage, 
+        Integer page, 
         String searchWord,
         String memo,
         HttpSession session) throws Exception {
@@ -2487,7 +2487,7 @@ boardService.addComment(comment);
 
 <pre>return "redirect:/bbs/view?articleNo=" + articleNo + 
     "&amp;boardCd=" + boardCd + 
-    "&amp;curPage=" + curPage + 
+    "&amp;page=" + page + 
     "&amp;searchWord=" + searchWord;
 </pre>
 
@@ -2499,7 +2499,7 @@ public String updateComment(
         Integer commentNo, 
         Integer articleNo, 
         String boardCd, 
-        Integer curPage, 
+        Integer page, 
         String searchWord, 
         String memo,
         HttpSession session) throws Exception {
@@ -2533,7 +2533,7 @@ boardService.modifyComment(comment);
 
 return "redirect:/bbs/view?articleNo=" + articleNo + 
     "&amp;boardCd=" + boardCd + 
-    "&amp;curPage=" + curPage + 
+    "&amp;page=" + page + 
     "&amp;searchWord=" + searchWord;
 </pre>
 
@@ -2545,7 +2545,7 @@ public String deleteComment(
         Integer commentNo, 
         Integer articleNo, 
         String boardCd, 
-        Integer curPage, 
+        Integer page, 
         String searchWord,
         HttpSession session) throws Exception {
 </pre>
@@ -2572,7 +2572,7 @@ if (user == null || !user.getEmail().equals(comment.getEmail())) {
 
 return "redirect:/bbs/view?articleNo=" + articleNo + 
     "&amp;boardCd=" + boardCd + 
-    "&amp;curPage=" + curPage + 
+    "&amp;page=" + page + 
     "&amp;searchWord=" + searchWord;
 </pre>
 
@@ -2641,7 +2641,7 @@ if (!article.getEmail().equals(user.getEmail())) {
 전달된 파라미터 정보로 글을 수정한다.<br />
 
 <pre>String boardCd = mpRequest.getParameter("boardCd");
-int curPage = Integer.parseInt(mpRequest.getParameter("curPage"));
+int page = Integer.parseInt(mpRequest.getParameter("page"));
 String searchWord = mpRequest.getParameter("searchWord");
 
 String title = mpRequest.getParameter("title");
@@ -2693,7 +2693,7 @@ for (int i = 0; i &lt; size; i++) {
 
 return "redirect:/bbs/view?articleNo=" + articleNo 
     + "&amp;boardCd=" + boardCd 
-    + "&amp;curPage=" + curPage 
+    + "&amp;page=" + page 
     + "&amp;searchWord=" + searchWord;
 </pre>
 
@@ -2731,7 +2731,7 @@ public String deleteAttachFile(
         Integer attachFileNo, 
         Integer articleNo, 
         String boardCd, 
-        Integer curPage, 
+        Integer page, 
         String searchWord,
         HttpSession session) throws Exception {
 </pre>
@@ -2755,7 +2755,7 @@ searchWord = URLEncoder.encode(searchWord,"UTF-8");
 
 return "redirect:/bbs/view?articleNo=" + articleNo + 
     "&amp;boardCd=" + boardCd + 
-    "&amp;curPage=" + curPage + 
+    "&amp;page=" + page + 
     "&amp;searchWord=" + searchWord;
 </pre>
 
@@ -2766,7 +2766,7 @@ del() 메서드는 POST 방식의 게시글 삭제 처리 요청 /bbs/del에 매
 public String del(
         Integer articleNo, 
         String boardCd, 
-        Integer curPage, 
+        Integer page, 
         String searchWord,
         HttpSession session) throws Exception {
 </pre>
@@ -2789,7 +2789,7 @@ if (user == null || !user.getEmail().equals(article.getEmail())) {
 searchWord = URLEncoder.encode(searchWord, "UTF-8");
 
 return "redirect:/bbs/list?boardCd=" + boardCd + 
-    "&amp;curPage=" + curPage + 
+    "&amp;page=" + page + 
     "&amp;searchWord=" + searchWord;
 </pre>
 
@@ -2850,7 +2850,7 @@ WEB-INF의 바로 위인 src/main/webapp가 DocumentBase이다.<br />
 spring-bbs.xml 파일을<br />
 C:/Program Files/Apache Software Foundation/Tomcat 7.0/conf/Catalina/localhost에 복사한다.<br />
 톰캣을 재실행한 다음<br />
-http://localhost:port/spring-bbs/bbs/list?boarCd=free&amp;curPage=1을 방문하여 테스트한다.<br />
+http://localhost:port/spring-bbs/bbs/list?boarCd=free&amp;page=1을 방문하여 테스트한다.<br />
 JSP 프로젝트나 모델 2에서 테스트했던 데이터가 있다면 보일 것이다.<br />
 데이터가 있다면 한글 검색을 테스트한다.<br />
 한글 검색이 되지 않는다면 TOMCAT_HOME/conf/server.xml 파일을 열고 다음 강조된 부분이 있는지 확인한다.<br />

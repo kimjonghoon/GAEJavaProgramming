@@ -38,7 +38,7 @@
         <input type="hidden" name="commentNo" value="5" />
         <input type="hidden" name="boardCd" value="free" />
         <input type="hidden" name="articleNo" value="12" />
-        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="page" value="1" />
         <input type="hidden" name="searchWord" value="무궁화꽃" />
     </p>
     <div>
@@ -55,7 +55,7 @@
     <p style="margin: 0; padding: 0;">
         <input type="hidden" name="articleNo" value="5"/>
         <input type="hidden" name="boardCd" value="free" />
-        <input type="hidden" name="curPage" value="1" />
+        <input type="hidden" name="page" value="1" />
         <input type="hidden" name="searchWord" value="무궁화꽃" />
     </p>
     <div id="add-comments">
@@ -116,7 +116,7 @@
    <form action="list.jsp" method="get">
    <p style="margin: 0;padding: 0;">
       <input type="hidden" name="boardCd" value="free" />
-      <input type="hidden" name="curPage" value="1" />
+      <input type="hidden" name="page" value="1" />
       <input type="text" name="searchWord" size="15" maxlength="30" />
       <input type="submit" value="검색" />
    </p>

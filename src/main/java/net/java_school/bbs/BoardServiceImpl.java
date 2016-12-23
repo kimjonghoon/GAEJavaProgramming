@@ -126,8 +126,8 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectOneComments(commentNo);
 	}
 	//게시판 목록 
-	public List<Board> getBoards() {
-		return boardMapper.selectAllBoard();
+	public List<Board> getAllBoards() {
+		return boardMapper.selectAllBoards();
 	}
 	//게시판 생성
 	public void addBoard(Board board) {

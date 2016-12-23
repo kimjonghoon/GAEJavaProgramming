@@ -51,7 +51,7 @@ public interface BoardMapper {
 	//댓글 찾기
 	public Comments selectOneComments(int commentNo);
 	//게시판 목록 
-	public List<Board> selectAllBoard();
+	public List<Board> selectAllBoards();
 	//게시판 등록
 	public void insertBoard(Board board);
 	//게시판 수정

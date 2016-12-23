@@ -61,9 +61,9 @@ function updateComment(no) {
 	formele.style.display = formdisplay;
 }
 
-function goList(curPage) {
+function goList(page) {
 	var form = document.getElementById("listForm");
-	form.curPage.value = curPage;
+	form.page.value = page;
 	form.submit();
 }
 
@@ -147,7 +147,7 @@ function goDelete() {
 		&lt;input type="hidden" name="commentNo" value="${comment.commentNo }" /&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
 		&lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWod }" /&gt;
 	&lt;/p&gt;
 	&lt;div style="text-align: right;"&gt;
@@ -165,7 +165,7 @@ function goDelete() {
 	&lt;p style="margin: 0;padding: 0;"&gt;
 		&lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 	&lt;/p&gt;
 	&lt;div id="addComment"&gt;
@@ -197,7 +197,7 @@ function goDelete() {
 	&lt;c:if test="${prevArticle != null }"&gt;			
 		&lt;input type="button" value="이전글" onclick="goView('${prevArticle.articleNo }')" /&gt;
 	&lt;/c:if&gt;
-		&lt;input type="button" value="목록" onclick="goList('${param.curPage }')" /&gt;
+		&lt;input type="button" value="목록" onclick="goList('${param.page }')" /&gt;
 		&lt;input type="button" value="새글쓰기" onclick="goWrite()" /&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
@@ -247,7 +247,7 @@ function goDelete() {
 	
 	&lt;c:forEach var="i" begin="${firstPage }" end="${lastPage }"&gt;
 		&lt;c:choose&gt;
-		&lt;c:when test="${param.curPage == i}"&gt;
+		&lt;c:when test="${param.page == i}"&gt;
 			&lt;span class="bbs-strong"&gt;${i }&lt;/span&gt;
 		&lt;/c:when&gt;
 		&lt;c:otherwise&gt;
@@ -300,7 +300,7 @@ function goDelete() {
 	&lt;form id="listForm" action="list" method="get"&gt;
 	&lt;p&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 	&lt;/p&gt;
 	&lt;/form&gt;
@@ -308,7 +308,7 @@ function goDelete() {
 	&lt;p&gt;
 		&lt;input type="hidden" name="articleNo" /&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 	&lt;/p&gt;
 	&lt;/form&gt;
@@ -316,7 +316,7 @@ function goDelete() {
 	&lt;p&gt;
 		&lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 	&lt;/p&gt;
 	&lt;/form&gt;
@@ -324,7 +324,7 @@ function goDelete() {
 	&lt;p&gt;
 		&lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 	&lt;/p&gt;
 	&lt;/form&gt;
@@ -332,7 +332,7 @@ function goDelete() {
 	&lt;p&gt;
 		&lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 	&lt;/p&gt;
 	&lt;/form&gt;
@@ -341,7 +341,7 @@ function goDelete() {
 		&lt;input type="hidden" name="commentNo" /&gt;
 		&lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 	&lt;/p&gt;
 	&lt;/form&gt;	
@@ -350,7 +350,7 @@ function goDelete() {
 		&lt;input type="hidden" name="attachFileNo" /&gt;
 		&lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
 		&lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
-		&lt;input type="hidden" name="curPage" value="${param.curPage }" /&gt;
+		&lt;input type="hidden" name="page" value="${param.page }" /&gt;
 		&lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
 	&lt;/p&gt;
 	&lt;/form&gt;
@@ -382,7 +382,7 @@ public class WebContants {
 @RequestMapping(value="/view", method=RequestMethod.GET)
 public String view(Integer articleNo, 
 		String boardCd, 
-		Integer curPage,
+		Integer page,
 		String searchWord, 
 		Model model) {
 
@@ -421,7 +421,7 @@ public String view(Integer articleNo,
 	int pagePerBlock = 10;//블록당 페이지 링크수
 	
 	int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
-	PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);
+	PagingHelper pagingHelper = new PagingHelper(totalRecord, page, numPerPage, pagePerBlock);
 	boardService.setPagingHelper(pagingHelper);
 
 	List&lt;Article&gt; list = boardService.getArticleList(boardCd, searchWord);

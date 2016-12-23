@@ -52,7 +52,7 @@ public interface BoardService {
 	//댓글 찾기
 	public Comments getComments(int commentNo);
 	//게시판 목록 
-	public List<Board> getBoards();
+	public List<Board> getAllBoards();
 	//게시판 등록
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void addBoard(Board board);
