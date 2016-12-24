@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import net.java_school.bbs.BoardService;
 import net.java_school.commons.NumbersForPaging;
 import net.java_school.commons.NumberGeneratorForPaging;
+import net.java_school.spring.security.GaeUserAuthentication;
+import net.java_school.user.GaeUser;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -161,14 +163,14 @@ public class BbsController extends NumberGeneratorForPaging {
 			String page, 
 			String searchWord, 
 			Model model,
-			Principal principal,
+			GaeUserAuthentication gaeUserAuthentication,
 			HttpServletRequest req) {
+
+		GaeUser gaeUser = (GaeUser) gaeUserAuthentication.getPrincipal();
 		
-		String email = principal.getName();
+		String email = gaeUser.getEmail();
 		article.setOwner(email);
-		int endIndex = email.indexOf("@");
-		String nickname = email.substring(0, endIndex);
-		article.setNickname(nickname);
+		article.setNickname(gaeUser.getNickname());
 		
 		boardService.addArticle(article);
 		
@@ -197,7 +199,7 @@ public class BbsController extends NumberGeneratorForPaging {
 				attachFile.setFilesize(filesize);
 				attachFile.setCreation(blobInfo.getCreation());
 				attachFile.setArticleNo(article.getArticleNo());
-				attachFile.setOwner(principal.getName());
+				attachFile.setOwner(gaeUser.getEmail());
 				boardService.addAttachFile(attachFile);
 			}
 			
@@ -255,14 +257,12 @@ public class BbsController extends NumberGeneratorForPaging {
 			String boardCd, 
 			Integer page, 
 			String searchWord,
-			Principal principal) throws Exception {
+			GaeUserAuthentication gaeUserAuthentication) throws Exception {
 
-		String email = principal.getName();
-		comments.setOwner(email);
-		
-		int endIndex = email.indexOf("@");
-		String nickname = email.substring(0, endIndex);
-		comments.setNickname(nickname);
+		GaeUser gaeUser = (GaeUser) gaeUserAuthentication.getPrincipal();
+
+		comments.setOwner(gaeUser.getEmail());
+		comments.setNickname(gaeUser.getNickname());
 		
 		boardService.addComments(comments);
 
