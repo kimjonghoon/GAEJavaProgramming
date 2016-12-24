@@ -1,7 +1,6 @@
 package net.java_school.bbs;
 
 import java.net.URLEncoder;
-import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -214,8 +213,7 @@ public class BbsController extends NumberGeneratorForPaging {
 			Integer articleNo, 
 			String boardCd, 
 			Integer page, 
-			String searchWord,
-			Principal principal) throws Exception {
+			String searchWord) throws Exception {
 
 		AttachFile currentAttachFile = boardService.getAttachFile(filekey);
 		boardService.removeAttachFile(currentAttachFile);
@@ -278,8 +276,7 @@ public class BbsController extends NumberGeneratorForPaging {
 	public String updateComment(Comments comments, 
 			String boardCd, 
 			Integer page, 
-			String searchWord,
-			Principal principal) throws Exception {
+			String searchWord) throws Exception {
 
 		Comments currentComments = boardService.getComments(comments.getCommentNo());
 		currentComments.setMemo(comments.getMemo());
