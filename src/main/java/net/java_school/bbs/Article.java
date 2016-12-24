@@ -7,7 +7,7 @@ public class Article {
 	private String boardCd;
 	private String title;
 	private String content;
-	private String email;
+	private String owner;
 	private String nickname;
 	private int hit;
 	private Date regdate;
@@ -44,11 +44,11 @@ public class Article {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getEmail() {
-		return email;
+	public String getOwner() {
+		return owner;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 	public String getNickname() {
 		return nickname;

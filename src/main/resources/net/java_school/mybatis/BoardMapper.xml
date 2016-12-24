@@ -22,16 +22,16 @@
 	</select>
 
 	<insert id="insert" parameterType="Article" useGeneratedKeys="true" keyProperty="articleNo">
-		INSERT INTO article (boardcd, title, content, email, nickname, hit, regdate)
+		INSERT INTO article (boardcd, title, content, owner, nickname, hit, regdate)
 		VALUES
-		(#{boardCd}, #{title}, #{content}, #{email}, #{nickname}, 0, now())
+		(#{boardCd}, #{title}, #{content}, #{owner}, #{nickname}, 0, now())
 	</insert>
 
 	<insert id="insertAttachFile" parameterType="AttachFile">
 		INSERT INTO attachfile 
-		(filekey, filename, filetype, filesize, creation, articleno, email)
+		(filekey, filename, filetype, filesize, creation, articleno, owner)
 		VALUES
-		(#{filekey}, #{filename}, #{filetype}, #{filesize}, #{creation}, #{articleNo}, #{email})
+		(#{filekey}, #{filename}, #{filetype}, #{filesize}, #{creation}, #{articleNo}, #{owner})
 	</insert>
 
 	<delete id="deleteFile" parameterType="string">
@@ -79,7 +79,7 @@
 			articleno,
 			title,
 			content,
-			email,
+			owner,
 			ifNull(nickname, 'Anonymous') nickname,
 			hit,
 			regdate
@@ -121,7 +121,7 @@
 			filetype,
 			filesize,
 			articleno,
-			email,
+			owner,
 			filekey,
 			creation 
 		FROM attachfile 
@@ -133,7 +133,7 @@
 		SELECT 
 			commentno, 
 			articleno, 
-			email, 
+			owner, 
 			ifNull(nickname, 'Anonymous') nickname,
 			memo, 
 			regdate
@@ -150,7 +150,7 @@
 			filetype,
 			filesize,
 			articleno,
-			email,
+			owner,
 			filekey,
 			creation
 		FROM
@@ -164,8 +164,8 @@
 	</delete>
 
 	<insert id="insertComments" parameterType="Comments">
-		INSERT INTO comments (articleno, email, nickname, memo, regdate)
-		VALUES (#{articleNo}, #{email}, #{nickname}, #{memo}, now())
+		INSERT INTO comments (articleno, owner, nickname, memo, regdate)
+		VALUES (#{articleNo}, #{owner}, #{nickname}, #{memo}, now())
 	</insert>
 
 	<update id="updateComments" parameterType="Comments">
@@ -186,7 +186,7 @@
 		SELECT 
 			commentno,
 			articleno,
-			email,
+			owner,
 			nickname,
 			memo,
 			regdate 

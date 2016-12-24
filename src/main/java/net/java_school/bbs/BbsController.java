@@ -106,14 +106,14 @@ public class BbsController extends NumberGeneratorForPaging {
 		content = content.replaceAll(System.getProperty("line.separator"), "<br />");
 		int hit = article.getHit();//조회수
 		String nickname = article.getNickname();//작성자 이름
-		String email = article.getEmail();//작성자 ID
+		String owner = article.getOwner();//작성자
 		Date regdate = article.getRegdate();//작성일
 
 		model.addAttribute("title", title);
 		model.addAttribute("content", content);
 		model.addAttribute("hit", hit);
 		model.addAttribute("nickname", nickname);
-		model.addAttribute("email", email);
+		model.addAttribute("owner", owner);
 		model.addAttribute("regdate", regdate);
 		model.addAttribute("attachFileList", attachFileList);
 		model.addAttribute("nextArticle", nextArticle);
@@ -165,7 +165,7 @@ public class BbsController extends NumberGeneratorForPaging {
 			HttpServletRequest req) {
 		
 		String email = principal.getName();
-		article.setEmail(email);
+		article.setOwner(email);
 		int endIndex = email.indexOf("@");
 		String nickname = email.substring(0, endIndex);
 		article.setNickname(nickname);
@@ -197,7 +197,7 @@ public class BbsController extends NumberGeneratorForPaging {
 				attachFile.setFilesize(filesize);
 				attachFile.setCreation(blobInfo.getCreation());
 				attachFile.setArticleNo(article.getArticleNo());
-				attachFile.setEmail(principal.getName());
+				attachFile.setOwner(principal.getName());
 				boardService.addAttachFile(attachFile);
 			}
 			
@@ -258,7 +258,7 @@ public class BbsController extends NumberGeneratorForPaging {
 			Principal principal) throws Exception {
 
 		String email = principal.getName();
-		comments.setEmail(email);
+		comments.setOwner(email);
 		
 		int endIndex = email.indexOf("@");
 		String nickname = email.substring(0, endIndex);
@@ -342,7 +342,7 @@ public class BbsController extends NumberGeneratorForPaging {
 				attachFile.setFilesize(filesize);
 				attachFile.setCreation(blobInfo.getCreation());
 				attachFile.setArticleNo(article.getArticleNo());
-				attachFile.setEmail(currentArticle.getEmail());
+				attachFile.setOwner(currentArticle.getOwner());
 				boardService.addAttachFile(attachFile);
 			}
 

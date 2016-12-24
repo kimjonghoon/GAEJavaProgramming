@@ -5,7 +5,7 @@ import java.util.Date;
 public class Comments {
 	private int commentNo;
 	private int articleNo;
-	private String email;
+	private String owner;
 	private String nickname;
 	private String memo;
 	private Date regdate;
@@ -22,11 +22,11 @@ public class Comments {
 	public void setArticleNo(int articleNo) {
 		this.articleNo = articleNo;
 	}
-	public String getEmail() {
-		return email;
+	public String getOwner() {
+		return owner;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 	public String getNickname() {
 		return nickname;

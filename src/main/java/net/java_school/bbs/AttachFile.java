@@ -10,7 +10,7 @@ public class AttachFile {
 	private long filesize;
 	private Date creation;
 	private int articleNo;
-	private String email;
+	private String owner;
 
 	public int getAttachFileNo() {
 		return attachFileNo;
@@ -54,10 +54,10 @@ public class AttachFile {
 	public void setArticleNo(int articleNo) {
 		this.articleNo = articleNo;
 	}
-	public String getEmail() {
-		return email;
+	public String getOwner() {
+		return owner;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 }

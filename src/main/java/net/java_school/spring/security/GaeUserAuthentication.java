@@ -3,18 +3,18 @@ package net.java_school.spring.security;
 import java.util.Collection;
 import java.util.HashSet;
 
-import net.java_school.user.User;
+import net.java_school.user.GaeUser;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 @SuppressWarnings("serial")
 public class GaeUserAuthentication implements Authentication {
-	private final User principal;
+	private final GaeUser principal;
 	private final Object details;
 	private boolean authenticated;
 	
-	public GaeUserAuthentication (User principal, Object details) {
+	public GaeUserAuthentication (GaeUser principal, Object details) {
 		this.principal = principal;
 		this.details = details;
 		this.authenticated = true;

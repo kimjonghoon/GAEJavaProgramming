@@ -127,7 +127,7 @@ function goList(page) {
 <h1>${boardName }</h1>
 
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
-	<security:authorize access="#email == principal.email or hasRole('ROLE_ADMIN')">
+	<security:authorize access="#owner == principal.email or hasRole('ROLE_ADMIN')">
     <div style="float: left;">
         <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
         <input type="button" value="<spring:message code="bbs.delete" />" class="goDelete" />
@@ -158,7 +158,7 @@ function goList(page) {
 <p id="file-list" style="text-align: right">
 <c:forEach var="file" items="${attachFileList }" varStatus="status">
 	<a href="#" title="${file.filekey }" class="download">${file.filename }</a>
-	<security:authorize access="#email == principal.email or hasRole('ROLE_ADMIN')">
+	<security:authorize access="#owner == principal.email or hasRole('ROLE_ADMIN')">
 	<a href="#" title="${file.filekey }">x</a><br />
 	</security:authorize>
 </c:forEach>
@@ -183,7 +183,7 @@ function goList(page) {
 <div class="comments">
     <span class="comments-writer">${comments.nickname }</span>
     <span class="comments-date">${comments.regdate }</span>
-    <security:authorize access="#comments.email == principal.email or hasRole('ROLE_ADMIN')">
+    <security:authorize access="#comments.owner == principal.email or hasRole('ROLE_ADMIN')">
     <span class="comments-modify-del">
         <a href="#" class="comments-toggle"><spring:message code="bbs.modify" /></a>
 		| <a href="#" class="comments-delete" title="${comments.commentNo }"><spring:message code="bbs.delete" /></a>
@@ -219,7 +219,7 @@ function goList(page) {
     </c:if>
 </div>
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
-	<security:authorize access="#email == principal.email or hasRole('ROLE_ADMIN')">
+	<security:authorize access="#owner == principal.email or hasRole('ROLE_ADMIN')">
     <div style="float: left;">
         <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
         <input type="button" value="<spring:message code="bbs.delete" />" class="goDelete" />
