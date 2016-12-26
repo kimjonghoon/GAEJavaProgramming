@@ -58,6 +58,6 @@ UserService userService = UserServiceFactory.getUserService();
 		<a href="<%=userService.createLoginURL("/") %>"><spring:message code="sign.in" /></a>
     </c:when>
     <c:otherwise>
-        ${nicknameCheck } <a href="/logout"><spring:message code="sign.out" /></a>
+        ${userIdCheck } ${nicknameCheck } <a href="/logout"><spring:message code="sign.out" /></a>
     </c:otherwise>
 </c:choose>
