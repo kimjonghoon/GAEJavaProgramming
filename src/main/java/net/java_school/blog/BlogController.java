@@ -67,7 +67,7 @@ public class BlogController {
 				.order("order")
 				.list();
 		model.addAttribute("articles", articles);
-
+		log.info("HomePage");
 		return "/";
 	}
 	@RequestMapping(value="blog/new", method=RequestMethod.GET)
@@ -154,7 +154,6 @@ public class BlogController {
 		model.addAttribute("keywords", article.keywords);
 		model.addAttribute("description", article.description);
 		model.addAttribute("content", article.content);
-		//model.addAttribute("content_ko", article.content_ko);
 		
 		List<Article> articles = ofy()
 				.load()

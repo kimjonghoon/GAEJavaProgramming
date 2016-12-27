@@ -47,7 +47,7 @@ UserService userService = UserServiceFactory.getUserService();
 	<a href="/blog/list"><spring:message code="blog.manage" /></a>
 </security:authorize>
 
-<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+<security:authorize access="isAuthenticated()">
     <security:authentication property="principal.userId" var="userIdCheck" />
     <security:authentication property="principal.email" var="emailCheck" />
     <security:authentication property="principal.nickname" var="nicknameCheck" />
@@ -58,6 +58,6 @@ UserService userService = UserServiceFactory.getUserService();
 		<a href="<%=userService.createLoginURL("/") %>"><spring:message code="sign.in" /></a>
     </c:when>
     <c:otherwise>
-        ${userIdCheck } ${nicknameCheck } <a href="/logout"><spring:message code="sign.out" /></a>
+       ${nicknameCheck } <a href="/logout"><spring:message code="sign.out" /></a>
     </c:otherwise>
 </c:choose>
