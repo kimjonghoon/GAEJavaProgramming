@@ -13,6 +13,7 @@
 		<put-attribute name="prev-title" value="" />
 		<put-attribute name="aside" value="/WEB-INF/views/inc/aside.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+		<put-attribute name="footer-ad" value="/WEB-INF/views/inc/footer-ad.jsp" />
 	</definition>
 	<definition name="datastoreBlog" template="/WEB-INF/views/template/datastoreBlog.jsp">
 		<put-attribute name="title-keywords-description"

@@ -183,19 +183,12 @@ public class BbsController extends NumberGeneratorForPaging {
 			
 			for (int i = 0;i < size;i++) {
 				blobInfo = blobInfoFactory.loadBlobInfo(blobKeys.get(i));
-				long filesize = blobInfo.getSize();
-			
-				if (filesize <= 0) {
-					blobstoreService.delete(blobKeys.get(i));
-					continue;
-				}
-				
 				AttachFile attachFile = new AttachFile();
 				String filekey = blobKeys.get(i).getKeyString();
 				attachFile.setFilekey(filekey);
 				attachFile.setFilename(blobInfo.getFilename());
 				attachFile.setFiletype(blobInfo.getContentType());
-				attachFile.setFilesize(filesize);
+				attachFile.setFilesize(blobInfo.getSize());
 				attachFile.setCreation(blobInfo.getCreation());
 				attachFile.setArticleNo(article.getArticleNo());
 				attachFile.setOwner(gaeUser.getEmail());
@@ -326,17 +319,12 @@ public class BbsController extends NumberGeneratorForPaging {
 
 			for (int i = 0;i < size;i++) {
 				blobInfo = blobInfoFactory.loadBlobInfo(blobKeys.get(i));
-				long filesize = blobInfo.getSize();
-				if (filesize <= 0) {
-					blobstoreService.delete(blobKeys.get(i));
-					continue;
-				}
 				AttachFile attachFile = new AttachFile();
 				String filekey = blobKeys.get(i).getKeyString();
 				attachFile.setFilekey(filekey);
 				attachFile.setFilename(blobInfo.getFilename());
 				attachFile.setFiletype(blobInfo.getContentType());
-				attachFile.setFilesize(filesize);
+				attachFile.setFilesize(blobInfo.getSize());
 				attachFile.setCreation(blobInfo.getCreation());
 				attachFile.setArticleNo(article.getArticleNo());
 				attachFile.setOwner(currentArticle.getOwner());

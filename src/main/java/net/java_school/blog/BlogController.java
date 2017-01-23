@@ -143,12 +143,13 @@ public class BlogController {
 	@RequestMapping(value="datastore/{category}/{id}", method=RequestMethod.GET)
 	public String blog(@PathVariable("category") String category, @PathVariable("id") String id, Locale locale, Model model) {
 		String lang = locale.getLanguage();
-		log.info("lang: " + lang);
 		Key<Lang> theLang = Key.create(Lang.class, lang);
 		Key<Category> categoryKey = Key.create(theLang, Category.class, category);    
 		Key<Article> articleKey = Key.create(categoryKey, Article.class, id);
 		
 		Article article = ofy().load().key(articleKey).now();
+		
+		if (article == null) return "redirect:/";
 		
 		model.addAttribute("title", article.title);
 		model.addAttribute("keywords", article.keywords);

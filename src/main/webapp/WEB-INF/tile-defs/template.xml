@@ -13,6 +13,7 @@
 		<put-attribute name="prev-title" value="" />
 		<put-attribute name="aside" value="/WEB-INF/views/inc/aside.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+		<put-attribute name="footer-ad" value="/WEB-INF/views/inc/footer-ad.jsp" />
 	</definition>
 	<definition name="datastoreBlog" template="/WEB-INF/views/template/datastoreBlog.jsp">
 		<put-attribute name="title-keywords-description"
@@ -49,12 +50,12 @@
 		<put-attribute name="article" value="/WEB-INF/views/admin/index.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
-	<definition name="blog/new" extends="holygrail">
+	<definition name="blog/new" extends="defaultTemplate">
 		<put-attribute name="title" value="Add Now Blog" />
 		<put-attribute name="keywords" value="Add New Blog" />
 		<put-attribute name="description" value="Add New Blog" />
 		<put-attribute name="article" value="/WEB-INF/views/blog/new.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
+		<put-attribute name="sidebar" value="" />
 	</definition>
 	<definition name="blog/list" extends="defaultTemplate">
 		<put-attribute name="title" value="Blogs List" />

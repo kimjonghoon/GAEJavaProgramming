@@ -128,7 +128,7 @@ article {
 	font-weight: normal;
 	text-decoration: none;
 	border-bottom: 1px solid #fff;
-	background: #fff url('../images/circle.gif') no-repeat 5% 50%; <!--추가 -->
+	background: #fff url('../images/circle.gif') no-repeat 5% 50%;
 }
 .sub-menu-item > a:hover {
 	background-color: #EDFEBA;
