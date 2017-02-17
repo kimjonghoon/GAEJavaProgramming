@@ -44,9 +44,9 @@ $(document).ready(function() {
 	<tiles:insertAttribute name="login"/>
 </div>
 
-<article>
+<div id="content">
 		<tiles:insertAttribute name="article" />
-</article>
+</div>
 
 <div id="sidebar">
 	<tiles:insertAttribute name="sidebar" />

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.4.4</div>
+<article>
+<div class="last-modified">Last Modified 2014.4.4</div>
 	
 <h1>상속</h1>
 
@@ -726,3 +727,4 @@ b.drive();
 	인터페이스는 컴포넌트간 통신을 위해 컴포넌트의 기능을 정의하는 것을 담당하게 된다.</li>
 	<li>static이 붙으면 객체에 속한 것이 아니라는 의미로 이해하면 된다. 다음장에 static에 관해 공부할 것이다. 여기서는 static이 붙은 변수는 인스턴스 변수가 아니라는 점에 주목하면 된다.</li>
 </ol>
+</article>

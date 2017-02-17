@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.5.21</div>
+<article>
+<div class="last-modified">Last Modified 2015.5.21</div>
 
 <h1>메소드 보안</h1>
 
@@ -134,3 +135,4 @@ im@gmail.org/1111로 로그인한다.<br />
 수정 버튼을 클릭하여 글수정 화면으로 이동한다.<br />
 글수정 화면에서 수정 후 전송을 클릭한다.<br />
 메소드 보안이 작동하고 있다면 noAuthority.jsp로 이동하게 된다.<br />
+</article>

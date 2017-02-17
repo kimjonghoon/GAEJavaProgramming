@@ -1,4 +1,6 @@
 <%@ page isELIgnored="true" %>
+
+<article>
 <h1>게시글 보기</h1>
 
 <em class="filename">/WEB-INF/jsp/bbs/view.jsp</em>
@@ -450,3 +452,4 @@ public String view(Integer articleNo,
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
 </ul>
 
+</article>

@@ -1,6 +1,7 @@
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 
-<div id="last-modified">Last Modified : 2013.11.11</div>
+<div class="last-modified">Last Modified 2013.11.11</div>
 
 <h1>String</h1>
 
@@ -27,3 +28,4 @@ alert("17) "+name<strong>.substring(1,2)</strong>);//자바와 같음
 alert("18) "+engName<strong>.toUpperCase()</strong>);//자바와 같음
 alert("19) "+engName<strong>.toLowerCase()</strong>);//자바와 같음
 </pre>
+</article>

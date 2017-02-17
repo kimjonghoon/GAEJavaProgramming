@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2013.11.19</div>
+<article>
+<div class="last-modified">Last Modified 2013.11.19</div>
 
 <h1>유효성 검사</h1>
 
@@ -275,3 +276,4 @@ function check() {
 위 예제 역시 자바스크립트 코드를 분리하는 것이 더 좋은 코드다.<br />
 
 <a href="/resources/examples/javascript/send2-2.html">예제 실행</a><br />
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.31</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.31</div>
 <h1>상세보기</h1>
 
 list.html 파일을 에디터에서 다른 이름으로 저장하기 메뉴를 이용하여 view.html 이름의 새 파일을 만든다.<br />
@@ -477,4 +478,4 @@ function modifyCommentToggle(articleNo) {
 <ul id="references">
 	<li><a href="http://www.alistapart.com/articles/holygrail/">http://www.alistapart.com/articles/holygrail/</a></li>
 </ul>
-
+</article>

@@ -1,3 +1,5 @@
+<article>
+
 <h1>게시판 - 게시글 삭제</h1>
 
 <em class="filename">BbsController.java</em> 
@@ -26,3 +28,4 @@ public String del(Integer articleNo,
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
 </ul>
 
+</article>

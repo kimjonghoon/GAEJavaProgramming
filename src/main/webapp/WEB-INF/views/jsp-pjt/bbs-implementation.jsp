@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.6.20</div>
+<article>
+<div class="last-modified">Last Modified 2015.6.20</div>
  
 <h1>구현</h1>
 
@@ -1571,3 +1572,4 @@ searchWord = java.net.URLEncoder.encode(searchWord, "UTF-8");
 response.sendRedirect("list.jsp?boardCd=" + boardCd + "&amp;page=" + page + "&amp;searchWord=" + searchWord);</strong>
 %&gt;
 </pre>
+</article>

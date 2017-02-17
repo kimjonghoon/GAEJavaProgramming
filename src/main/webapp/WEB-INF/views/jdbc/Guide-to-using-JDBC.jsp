@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.19</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.19</div>
 
 <h1>JDBC 프로그래밍 방법</h1>
 
@@ -91,3 +92,4 @@ stmt.close();
 conn.close();
 </pre>
 자원 반환 순서는 생성한 순서의 반대로 반환한다.
+</article>

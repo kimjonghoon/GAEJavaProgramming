@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 
-<div id="last-modified">Last Modified : 2013.11.11</div>
+<div class="last-modified">Last Modified 2013.11.11</div>
 
 <h1>Number</h1>
 
@@ -31,3 +32,4 @@ if (<strong>isNaN</strong>("이천십사년") == true) {
 
 이외에 prototype 프로퍼티가 있다.<br />
 prototype 프로퍼티는 객체에 새로운 속성이나 메서드를 추가하는 것을 가능하게 한다.
+</article>

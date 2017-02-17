@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2016.6.4</div>
+<article>
+<div class="last-modified">Last Modified 2016.6.4</div>
 
 <h1>Spring 트랜잭션</h1>
 
@@ -103,4 +104,4 @@ public <strong>int</strong> withdraw(String accountNo, long amount) {
 테스트에 성공했다면, 
 ShinhanBank 클래스에서 transfer() 메서드 위에 있는 @Transactional(propagation=Propagation.REQUIRED)을 제거하고 
 테스트한다.
-
+</article>

@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.5.22</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.5.22</div>
 
 <h1>내 정보 수정에서의 빈 유효성 검사</h1>
 
@@ -80,3 +82,4 @@ public String editAccount(<strong>@Valid</strong> User user,
 	<li><a href="http://mybatis.github.io/mybatis-3/getting-started.html">MyBatis Getting started</a></li>
 </ul>
 
+</article>

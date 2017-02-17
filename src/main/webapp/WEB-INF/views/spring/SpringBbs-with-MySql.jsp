@@ -1,5 +1,6 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.7.29</div>
+<article>
+<div class="last-modified">Last Modified 2015.7.29</div>
 
 <h1>MySql을 사용하는 SpringBbs</h1>
 
@@ -590,3 +591,4 @@ git clone https://github.com/kimjonghoon/SpringBbsMySql
 <ul id="references">
 	<li><a href="https://fosskb.wordpress.com/2015/04/18/installing-openstack-kilo-on-ubuntu-15-04-single-machine-setup/">https://fosskb.wordpress.com/2015/04/18/installing-openstack-kilo-on-ubuntu-15-04-single-machine-setup/</a></li>
 </ul>
+</article>

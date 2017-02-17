@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.3.22</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.3.22</div>
 
 <h1>최종 프로젝트를 아파치와 연동시키기</h1>
 
@@ -126,7 +128,7 @@ worker.worker1.port=8009</strong>
 <h3>jk.conf 파일에서 JkWorkersFile의 경로를 아래처럼 수정한다.</h3>
 <pre class="commandLine">sudo gedit /etc/apache2/mods-available/jk.conf</pre>
 
-<pre class="prettyprint">
+<pre class="prettyprint"><article>
 JkWorkersFile <strong>/etc/apache2/workers.properties</strong>
 </pre>
 
@@ -210,3 +212,4 @@ http://gildong.hong/index.html<br />
 	<li><a href="http://tomcat.apache.org/tomcat-7.0-doc/virtual-hosting-howto.html">Virtual Hosting and Tomcat</a></li>
 	<li><a href="http://tomcat.apache.org/connectors-doc/reference/apache.html">The Apache Tomcat Connector - Reference Guide</a></li>
 </ul>
+</article>

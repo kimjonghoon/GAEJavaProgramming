@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.6.5</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.6.5</div>
 
 <h1>Spring AOP</h1>
 
@@ -153,3 +155,4 @@ public class ShinhanBankDao implements BankDao {
 <ul id="references">
 	<li><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html">http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html</a></li>
 </ul>
+</article>

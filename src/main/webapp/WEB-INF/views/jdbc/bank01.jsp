@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2013.6.17</div>
+<article>
+<div class="last-modified">Last Modified 2013.6.17</div>
 
 <h1>자바은행 데이터 모델링</h1>
 
@@ -85,3 +86,4 @@ create table transaction (
 	constraint ck_transaction check(kind = 'D' or kind = 'W')
 );
 </pre>
+</article>

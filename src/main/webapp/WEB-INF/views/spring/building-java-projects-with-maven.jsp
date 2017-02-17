@@ -1,4 +1,6 @@
-<div id="last-modified">Last Modified : 2015.1.9</div>
+<article>
+
+<div class="last-modified">Last Modified 2015.1.9</div>
 
 <h1>Maven을 이용한 Spring 실습</h1>
 
@@ -391,4 +393,4 @@ context 가 의존하는 라이브러리도 저장소에 설치된다.<br />
 	<li><a href="http://www.springframework.org/schema/beans/">http://www.springframework.org/schema/beans/</a></li> 
 -->
 </ul>
-
+</article>

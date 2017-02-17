@@ -1,4 +1,5 @@
 <%@ page isELIgnored="true" %>
+<article>
 <h1>새글쓰기</h1>
 
 <h2>글쓰기 폼으로 이동</h2>
@@ -232,4 +233,4 @@ public String write(MultipartHttpServletRequest mpRequest) throws Exception {
 	<li><a href="http://www.jpub.kr/">Spring in Action(Jpub) - 크레이그 월즈</a></li>
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
 </ul>
-
+</article>

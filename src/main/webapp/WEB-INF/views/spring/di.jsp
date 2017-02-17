@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.6.4</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.6.4</div>
 
 <h1>Spring DI(종속객체 주입)</h1>
 
@@ -225,3 +227,4 @@ Import를 사용하여 spring-bbs 프로젝트를 이클립스로 불러온다.<
 Package Explorer에서 프로젝트를 선택한 상태에서 마우스 오른쪽 버튼으로 컨텍스트 메뉴를 연다.<br />
 Maven - Update Project Configuration을 차례로 선택한다.<br />
 이후 진행하면서 pom.xml이 바뀌면 같은 방법으로 이클립스와 동기화를 해주어야 한다.<br />
+</article>

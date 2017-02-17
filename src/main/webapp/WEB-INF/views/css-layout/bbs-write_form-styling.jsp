@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.31</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.31</div>
 <h1>글쓰기, 회원가입</h1>
 
 <h3>새 글쓰기 폼 디자인</h3>
@@ -150,3 +151,4 @@ signUp.html에서 #content안 코드를 아래 코드로 바꾼다.
 <img alt="회원 가입 페이지 디자인" src="https://lh3.googleusercontent.com/-RcvH5ExyJWo/VYTPjtXwWSI/AAAAAAAAChE/L_DSJPgOYR4/s640/signUpForm.png" /><br />
 지금까지 게시판 디자인을 작업했다.<br />
 다음 장 'JSP 프로젝트'는 여기서 만든 최종 디자인을 가지고 진행한다.
+</article>

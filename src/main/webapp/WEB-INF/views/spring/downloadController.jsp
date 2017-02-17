@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2016.6.27</div>
+
+<article>
+<div class="last-modified">Last Modified 2016.6.27</div>
 
 <h1>다운로드 컨트롤러</h1>
 
@@ -163,5 +165,4 @@ $(document).ready(function() {
 	<li><a href="http://stackoverflow.com/questions/12395115/spring-missing-the-extension-file">http://stackoverflow.com/questions/12395115/spring-missing-the-extension-file</a></li>
 	<li><a href="https://github.com/resthub/resthub-spring-stack/issues/217">https://github.com/resthub/resthub-spring-stack/issues/217</a></li>
 </ul>
-
-
+</article>

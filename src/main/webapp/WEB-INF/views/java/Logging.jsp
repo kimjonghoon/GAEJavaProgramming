@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.6.1</div>
+<article>
+<div class="last-modified">Last Modified 2015.6.1</div>
 	
 <h1>로깅(Logging)</h1>
 
@@ -525,3 +526,4 @@ simpleLogger는 로그 파일에 로그 메시지를 축적하지 못한다.<br 
 	<li><a href="http://www.slf4j.org/api/org/slf4j/impl/SimpleLogger.html">http://www.slf4j.org/api/org/slf4j/impl/SimpleLogger.html</a></li>
 	<li><a href="http://logback.qos.ch/manual/configuration.html">http://logback.qos.ch/manual/configuration.html</a></li> 
 </ul>
+</article>

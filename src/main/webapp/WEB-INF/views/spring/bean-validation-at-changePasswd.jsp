@@ -1,4 +1,6 @@
-<div id="last-modified">Last Modified : 2015.5.22</div>
+<article>
+
+<div class="last-modified">Last Modified 2015.5.22</div>
 
 <h1>비밀번호 변경에서의 빈 유효성 검사</h1>
 
@@ -113,3 +115,4 @@ public String changePasswd(@Valid Password password,
 	<li><a href="http://mybatis.github.io/mybatis-3/getting-started.html">MyBatis Getting started</a></li>
 </ul>
 
+</article>

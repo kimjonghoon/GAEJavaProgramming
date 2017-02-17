@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.10</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.10</div>
 
 <h1>웹 애플리케이션 작성 실습</h1>
 
@@ -32,7 +33,7 @@ Context 파일을 작성한 다음 {톰캣 홈}/conf/Catalina/localhost 에 위�
 JSP 에러 역시 마찬가지다.<br />
 되는 코드를 그대로 복사해서 테스트하는 것은 프로그래밍을 학습하는 것이 아니다.<br />
 프로그래밍 학습의 90%는 다양한 에러를 접하고 에러를 수정하는 과정이다.<br />
-  div id="content"
+
 <h3>톰캣 Context 파일 작성</h3>
 myapp 자바 웹 애플리케이션을 위한 Context 파일을 만든다.<br />
 
@@ -90,3 +91,4 @@ http://localhost:포트번호/로 접근할 수 있는 웹 애플리케이션이
 <ul id="references">
 	<li><a href="http://tomcat.apache.org/tomcat-7.0-doc/config/context.html">http://tomcat.apache.org/tomcat-7.0-doc/config/context.html</a></li>
 </ul>
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.15</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.15</div>
 
 
 <h1>모델1 게시판</h1>
@@ -1135,3 +1136,4 @@ response.sendRedirect("list.jsp?page=" + page + "&amp;keyword=" + keyword);
 </pre>
 
 답변글을 테스트한다.
+</article>

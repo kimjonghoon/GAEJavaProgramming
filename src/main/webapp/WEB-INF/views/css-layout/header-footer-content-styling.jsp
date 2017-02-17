@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.31</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.31</div>
 <h1>#header, #footer, #content 스타일</h1>
 
 index.html 문서를 열고 #header 사이에 아래 코드를 삽입한다.<br /> 
@@ -201,4 +202,4 @@ min-height 프로퍼티 값은 페이지마다 달라질 수 있기 때문에 �
 <ul id="references">
 	<li><a href="http://www.alistapart.com/articles/holygrail/">http://www.alistapart.com/articles/holygrail/</a></li>
 </ul>
-
+</article>

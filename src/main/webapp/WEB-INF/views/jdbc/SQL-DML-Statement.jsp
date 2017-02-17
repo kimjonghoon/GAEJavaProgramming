@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.19</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.19</div>
 	
 <h1>SQL 연습 - DML</h1>
 
@@ -84,3 +85,4 @@ DELETE 문에서 WHERE 조건을 주지 않으면 테이블에 있는 모든 레
 DELETE FROM EMP 
 WHERE ENAME IN ('홍길동','임꺽정','장길산');
 </pre>
+</article>

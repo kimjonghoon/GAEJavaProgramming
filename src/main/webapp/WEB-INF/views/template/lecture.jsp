@@ -47,7 +47,7 @@ $(document).ready(function() {
 		<tiles:insertAttribute name="login"/>
 	</div>
 	<div id="content-wrap">
-		<article>
+		<div id="content">
 			<tiles:insertAttribute name="article" />
 			<div id="prev-next">
 			<ul>
@@ -55,7 +55,7 @@ $(document).ready(function() {
 				<li><spring:message code="prev" /> : <a href="<tiles:insertAttribute name="prev-link" />"><tiles:insertAttribute name="prev-title" /></a></li>
 			</ul>
 			</div>
-		</article>
+		</div>
 	</div>
 	<div id="sidebar">
 		<tiles:insertAttribute name="sidebar" />

@@ -1,6 +1,7 @@
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 
-<div id="last-modified">Last Modified : 2013.11.11</div>
+<div class="last-modified">Last Modified 2013.11.11</div>
 
 <h1>기본 데이터 타입</h1>
 
@@ -60,3 +61,4 @@ if (i) {
 	alert('i: ' + "false");
 }
 </pre>
+</article>

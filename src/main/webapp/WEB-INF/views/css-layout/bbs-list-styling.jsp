@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.31</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.31</div>
 
 <h1>목록</h1>
 
@@ -362,3 +363,4 @@ bbs-string 스타일을 댓글 개수와 현재 페이지 번호에 적용한다
 	<li><a href="http://www.homejjang.com/09/border_collapse.php">http://www.homejjang.com/09/border_collapse.php</a></li>
 	<li><a href="http://www.w3schools.com/cssref/pr_tab_border-collapse.asp">http://www.w3schools.com/cssref/pr_tab_border-collapse.asp</a></li>
 </ul>
+</article>

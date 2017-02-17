@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.21</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.21</div>
 
 <h1>INSERT</h1>
 
@@ -91,3 +92,4 @@ public class NamecardInsert {
 </pre>
 
 한번 실행하고 난 다음 데이터가 삽입되었는지 SQL*PLUS에서 확인한다.<br />
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.29</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.29</div>
 
 <h1>명함관리</h1>
 
@@ -399,3 +400,4 @@ public class NamecardUi {
 
 }
 </pre>
+</article>

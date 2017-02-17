@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2016.4.7</div>
+<article>
+<div class="last-modified">Last Modified 2016.4.7</div>
 
 <h1>if, switch, loop 문</h1>
 
@@ -266,3 +267,4 @@ if (!check) {
 <ul id="references">
 	<li><a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">Using Strings in switch Statements - http://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html</a></li>
 </ul>
+</article>

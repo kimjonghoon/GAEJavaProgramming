@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2012.8.23</div>
+<article>
+<div class="last-modified">Last Modified 2012.8.23</div>
 
 
 <h1>가계부</h1>
@@ -604,3 +605,4 @@ for(int i=0;i &lt; size;i++) {
 	response.sendRedirect("./");
 %&gt;
 </pre>
+</article>

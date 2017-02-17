@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.6.20</div>
+<article>
+<div class="last-modified">Last Modified 2015.6.20</div>
 
 <h1>프로토타입(prototype)</h1>
 
@@ -2421,4 +2422,4 @@ modify_form.jsp 만 빠진 이유는 로그인뿐 아니라 글 소유자인지 
 
 이로써 프로토타입을 완성했다.<br />
 이 프로토타입은 과정 마지막까지 쓰인다.<br />    
-			
+</article>			

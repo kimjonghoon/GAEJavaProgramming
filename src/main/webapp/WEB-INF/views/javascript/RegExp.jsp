@@ -1,5 +1,6 @@
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
-<div id="last-modified">Last Modified : 2014.1.16</div>
+<div class="last-modified">Last Modified 2014.1.16</div>
 
 <h1>정규 표현식</h1>
 
@@ -224,3 +225,4 @@ if (check) {
 	<li><a href="http://www.w3schools.com/jsref/jsref_obj_regexp.asp">http://www.w3schools.com/jsref/jsref_obj_regexp.asp</a></li>
 	<li><a href="http://regexlib.com">http://regexlib.com</a></li>
 </ul>
+</article>

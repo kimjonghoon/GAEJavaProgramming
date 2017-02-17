@@ -1,6 +1,7 @@
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 
-<div id="last-modified">Last Modified : 2013.11.12</div>
+<div class="last-modified">Last Modified 2013.11.12</div>
 			
 <h1>Date</h1>
 
@@ -87,3 +88,4 @@ getYear 에 대해서 firefox 와 IE 모두 테스트한다.
 <ul id="references">
 	<li><a href="http://www.w3schools.com/jsref/jsref_obj_date.asp">http://www.w3schools.com/jsref/jsref_obj_date.asp</a></li>
 </ul>
+</article>

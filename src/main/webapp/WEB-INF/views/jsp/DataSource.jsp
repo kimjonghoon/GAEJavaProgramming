@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.9.11</div>
+<article>
+<div class="last-modified">Last Modified 2014.9.11</div>
 
 			
 <h1>DataSource</h1>
@@ -165,3 +166,4 @@ public class BoardDao {
 <ul id="references">
 	<li><a href="http://tomcat.apache.org/tomcat-6.0-doc/jndi-resources-howto.html">http://tomcat.apache.org/tomcat-6.0-doc/jndi-resources-howto.html</a></li>
 </ul>
+</article>

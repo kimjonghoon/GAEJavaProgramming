@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.4.11</div>
+<article>
+<div class="last-modified">Last Modified 2014.4.11</div>
 
 <h1>예외</h1>
 
@@ -1050,3 +1051,4 @@ public class Test {
 <ul id="references">
 	<li><a href="http://java.sun.com/docs/books/tutorial/essential/exceptions/definition.html">http://java.sun.com/docs/books/tutorial/essential/exceptions/definition.html</a></li>
 </ul>
+</article>

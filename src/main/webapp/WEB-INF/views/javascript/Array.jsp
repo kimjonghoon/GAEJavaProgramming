@@ -1,6 +1,7 @@
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 
-<div id="last-modified">Last Modified : 2015.1.16</div>
+<div class="last-modified">Last Modified 2015.1.16</div>
 			
 <h1>배열</h1>
 
@@ -111,3 +112,4 @@ for (var property in document) {
 <ul id="references">
 	<li><a href="http://www.w3schools.com/jsref/jsref_obj_array.asp">http://www.w3schools.com/jsref/jsref_obj_array.asp</a></li>
 </ul>
+</article>

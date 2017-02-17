@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.31</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.31</div>
 <h1>메인 메뉴</h1>
 
 다음 링크에서 이미지를 내려받는다. 
@@ -191,3 +192,4 @@ CSS 3에서는 상자의 모서리를 둥글게 설정할 수 있다.<br />
 	<li><a href="http://www.the-art-of-web.com/css/border-radius/">http://www.the-art-of-web.com/css/border-radius/</a></li>
 	<li><a href="http://www.alistapart.com/articles/holygrail/">http://www.alistapart.com/articles/holygrail/</a></li>
 </ul>
+</article>

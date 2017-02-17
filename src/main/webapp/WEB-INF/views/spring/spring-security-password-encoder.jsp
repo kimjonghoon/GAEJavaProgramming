@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.9.10</div>
+<article>
+<div class="last-modified">Last Modified 2015.9.10</div>
 
 <h1>스프링 시큐리티에서 패스워드를 암호화하기</h1>
 
@@ -183,3 +184,4 @@ public void bye(User user) {
 
 UserService.java의 login(String email, String passwd) 메서드는 필요없으니 삭제한다.<br />
 UserServiceImpl.java와 UserMapper.java와 UserMapper.xml에서도 이 메서드와 관련된 부분을 함께 삭제한다.<br />
+</article>

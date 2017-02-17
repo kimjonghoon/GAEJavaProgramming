@@ -17,6 +17,8 @@ $(document).ready(function() {
 	});
 });
 </script>
+
+<article>
 <h1>${boardName }</h1>
 <h2 style="text-transform: capitalize;"><spring:message code="bbs.modify" /></h2>
 <form id="writeForm" action="<%=blobstoreService.createUploadUrl("/bbs/modify")%>?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
@@ -46,3 +48,4 @@ $(document).ready(function() {
 	<input type="button" value="<spring:message code="bbs.view" />" class="goView" />
 </div>
 </form>
+</article>

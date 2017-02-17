@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.19</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.19</div>
 
 <h1>오라클 JDBC 테스트</h1>
 
@@ -193,3 +194,4 @@ Libraries탭을 선택한 후 Add External JARs..버튼을 클릭하여 오라�
 Package Explorer 뷰에서 GetEmp.java 를 마우스로 선택한 후 오른쪽 버튼을 클릭하여 아래처럼 실행한다.<br />
 
 <img src="https://lh3.googleusercontent.com/-Rfh4TDU6QJg/VYFQ4GMN9hI/AAAAAAAACQ8/be58ONtH7aM8ynlDO1kom5k7ZndWtvOrQCCo/s657-Ic42/GetEmp-Run.png" alt="GetEmp.java를 이클립스에서 실행하는 화면" /><br />
+</article>

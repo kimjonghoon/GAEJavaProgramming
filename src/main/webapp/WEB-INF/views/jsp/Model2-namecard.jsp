@@ -1,4 +1,5 @@
-<div id="last-modified" class="floatstop">Last Modified : 2014.6.30</div>
+<article>
+<div id="last-modified" class="floatstop">Last Modified 2014.6.30</div>
 
 <h1>모델2 명함관리</h1>
 
@@ -984,3 +985,4 @@ public class HelloServlet extends HttpServlet {
 	
 &lt;/web-app&gt;
 </pre>
+</article>

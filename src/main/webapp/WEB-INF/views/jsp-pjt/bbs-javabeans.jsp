@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.6.20</div>
+<article>
+<div class="last-modified">Last Modified 2015.6.20</div>
 
 <h1>자바빈즈 설계</h1>
 
@@ -1687,3 +1688,4 @@ public class BoardService {
             
 }
 </pre>
+</article>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2015.9.18</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.9.18</div>
 
 <h1>스프링 시큐리티에서 접근 거부 상황 다루기</h1>
 
@@ -181,3 +183,4 @@ Access is Denied.
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+</article>

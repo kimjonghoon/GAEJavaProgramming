@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2013.11.19</div>
+<article>
+<div class="last-modified">Last Modified 2013.11.19</div>
 
 <h1>자바스크립트로 쿠키 다루기</h1>
 
@@ -180,3 +181,4 @@ function removeCookie() {
 	<li><a href="http://ezbuilder.tistory.com/34">http://ezbuilder.tistory.com/34</a></li>
 	<li><a href="http://stackoverflow.com/questions/2144386/javascript-delete-cookie">http://stackoverflow.com/questions/2144386/javascript-delete-cookie</a></li>
 </ul>
+</article>

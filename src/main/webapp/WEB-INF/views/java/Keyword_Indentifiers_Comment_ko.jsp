@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2013.11.20</div>
+<article>    
+<div class="last-modified">Last Modified 2013.11.20</div>
 			
 <h1>키워드, 식별자, 주석</h1>
 
@@ -72,3 +73,4 @@ public class Account {
 <h3>문서화 주석 /**  */</h3>
 줄 수와 상관없이 /** 부터 */ 표시 전까지의 모든 문자를 주석으로 처리<br />
 javadoc.exe 프로그램을 이용하면 이 주석으로부터 HTML 형태의 도움말 문서를 생성할 수 있다.
+</article>

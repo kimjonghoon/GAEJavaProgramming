@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2011.1.7</div>
+<article>
+<div class="last-modified">Last Modified 2011.1.7</div>
 
 <h1>SQL 연습 - SELECT 문</h1>
 
@@ -535,3 +536,4 @@ WHERE SAL = (SELECT MAX(SAL)
 	     FROM EMP 
 	     WHERE DEPTNO = 10);
 </pre>
+</article>

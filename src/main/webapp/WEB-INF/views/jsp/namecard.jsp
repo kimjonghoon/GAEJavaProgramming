@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2012.6.20</div>
+<article>
+<div class="last-modified">Last Modified 2012.6.20</div>
 			
 <h1>명함관리</h1>
 
@@ -340,3 +341,4 @@ if (search.equals("")) {
 	list = mgr.findCard(search);
 }
 </pre>
+</article>

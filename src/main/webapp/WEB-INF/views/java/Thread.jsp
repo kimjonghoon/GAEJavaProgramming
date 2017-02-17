@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.5.26</div>
+<article>
+<div class="last-modified">Last Modified 2015.5.26</div>
 	
 <h1>스레드</h1>
 
@@ -309,3 +310,4 @@ public <strong>synchronized</strong> void deposit(long amount) {
 
 컬렉션에서 Vector는 '스레드 안전' 한데 ArrayList는 그렇지 않다고 했다.<br />
 Vector의 모든 메서드는 synchronize가 적용되어 있다.<br />
+</article>

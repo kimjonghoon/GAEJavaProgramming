@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.5.25</div>
+<article>
+<div class="last-modified">Last Modified 2015.5.25</div>
 	
 <h1>자바은행 수정(인터페이스 적용)</h1>
 
@@ -115,3 +116,4 @@ public class ShinhanBank <strong>implements Bank</strong> {
 <pre class="prettyprint">
 Bank bank = <strong>new ShinhanBank();</strong>
 </pre>
+</article>

@@ -1,3 +1,5 @@
+<article>
+
 <h1>게시판 - 첨부파일 삭제</h1>
 
 BbsController.java 에 첨부파일 삭제를 위한 메소드를 아래와 같이 추가한다.<br />
@@ -31,3 +33,4 @@ public String deleteAttachFile(Integer attachFileNo,
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
 </ul>
 
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.15</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.15</div>
 			
 <h1>계층형 게시판</h1>
 
@@ -1251,3 +1252,4 @@ PRESIDENT		   7839 KING
     SALESMAN		   7499 ALLEN		 7698
   MANAGER		   7566 JONES		 7839
 </pre>
+</article>

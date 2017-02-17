@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.9.11</div>
+<article>
+<div class="last-modified">Last Modified 2014.9.11</div>
 
 <h1>Connection Pool</h1>
 
@@ -996,3 +997,4 @@ public class GetEmp {
 	<li><a href="http://commons.apache.org/proper/commons-dbcp/">http://commons.apache.org/proper/commons-dbcp/</a></li>
 	<li><a href="http://commons.apache.org/proper/commons-dbcp/apidocs/org/apache/commons/dbcp2/BasicDataSource.html">http://commons.apache.org/proper/commons-dbcp/apidocs/org/apache/commons/dbcp2/BasicDataSource.html</a></li>
 </ul>
+</article>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="true" %>	
-<div id="last-modified">Last Modified : 2016.3.13</div>
+<article>
+<div class="last-modified">Last Modified 2016.3.13</div>
 			
 <h1>JSP</h1>
 
@@ -1424,3 +1425,4 @@ response.sendRedirect("upload.html");
 	<li>앞으로 배울 JSTL에서는 다음과 같이 접근할 수 있다.<br />
 	&lt;c:out value="${requestScope['javax.servlet.error.message']}" /&gt;</li>
 </ol>
+</article>

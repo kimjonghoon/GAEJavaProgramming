@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.12.7</div>
+<article>
+<div class="last-modified">Last Modified 2015.12.7</div>
 
 <h1>자바은행  구현</h1>
 
@@ -177,7 +178,7 @@ public class Account {
 		return accountNo;
 	}
 
-	public void setAccountNo(String accountNo) {
+	public void setAccountNo(String accountNo) {<article>
 		this.accountNo = accountNo;
 	}
 
@@ -433,3 +434,4 @@ public class DateExample {
 	<li><a href="https://commons.apache.org/proper/commons-lang/">Apache Commons Lang</a></li>
 	<li><a href="http://examples.javacodegeeks.com/core-java/apache/commons/lang3/date-andtime-format/">Date and Time format examples using Apache Commons Lang</a></li>
 </ul>
+</article>

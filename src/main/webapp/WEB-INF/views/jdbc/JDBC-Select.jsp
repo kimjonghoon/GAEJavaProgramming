@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.21</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.21</div>
 
 <h1>SELECT</h1>
 
@@ -112,3 +113,4 @@ getInt(1)와 같이 인자값으로 컬럼의 인덱스를 주면  해당 컬럼
 물론 성능상으론 인덱스를 주는 것이 빠르겠으나 컬럼명을 주는 것이 유지보수에 좋다.<br />
 </dd>
 </dl>
+</article>

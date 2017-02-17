@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<article>
 <h1>${boardName }</h1>
 
 <table class="bbs-table">
@@ -67,3 +68,4 @@
 	</div>
 	</form>
 </div>
+</article>

@@ -1,6 +1,7 @@
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 
-<div id="last-modified">Last Modified : 2013.11.18</div>
+<div class="last-modified">Last Modified 2013.11.18</div>
 
 <h1>함수</h1>
 
@@ -476,3 +477,4 @@ alert(ac2.getAccountNo() + ': ' + ac2.getBalance());
 	<li><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf</a></li>
 	<li><a href="https://developer.mozilla.org/ko/docs/JavaScript/Introduction_to_Object-Oriented_JavaScript">객체지향 자바스크립트 소개</a></li>
 </ul>
+</article>

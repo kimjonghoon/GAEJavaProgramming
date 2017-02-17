@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.4.30</div>
+<article>
+<div class="last-modified">Last Modified 2014.4.30</div>
 
 <h1>자바은행 분석/설계</h1>
 
@@ -59,3 +60,4 @@
 <ul id="references">
 	<li><a href="http://www.infopub.co.kr/bookinfo/bookinfo.asp?sku=05000195">New 알기쉬운 Java 2 J2SE 1.4</a></li>
 </ul>
+</article>

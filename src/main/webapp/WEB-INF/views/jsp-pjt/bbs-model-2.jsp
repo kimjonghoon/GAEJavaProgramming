@@ -1,5 +1,6 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.6.20</div>
+<article>
+<div class="last-modified">Last Modified 2015.6.20</div>
 
 <h1>모델 2방식으로 변경</h1>
 
@@ -3254,3 +3255,4 @@ public class DeleteAttachFileAction implements Action {
 비즈니스 로직을 뷰에서 보일 데이터를 생산하는 로직이라 생각해도 된다.<br />
 비즈니스 로직은 뷰에서 떼어 내어 모델에 구현해야 한다.<br />
 뷰에 비즈니스 로직이 있다면 좋은 코드가 아니다.<br />
+</article>

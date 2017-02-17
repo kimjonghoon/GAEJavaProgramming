@@ -1,4 +1,6 @@
-<div id="last-modified">Last Modified : 2014.1.24</div>
+<article>
+
+<div class="last-modified">Last Modified 2014.1.24</div>
 
 <h1>스프링 웹 애플리케이션을 아파치 톰캣 연동 환경에서 테스트</h1>
 
@@ -540,3 +542,4 @@ http://gildong.hong 방문한다.<br />
 	<li><a href="http://tomcat.apache.org/tomcat-7.0-doc/virtual-hosting-howto.html">Virtual Hosting and Tomcat</a></li>
 	<li><a href="http://tomcat.apache.org/connectors-doc/reference/apache.html">The Apache Tomcat Connector - Reference Guide</a></li>
 </ul>
+</article>

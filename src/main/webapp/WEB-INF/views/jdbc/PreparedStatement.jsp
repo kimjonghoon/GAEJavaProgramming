@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.21</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.21</div>
 
 <h1>PreparedStatement</h1>
 
@@ -99,3 +100,4 @@ setXXX 메소드의 두번째 파라미터는 ? 를 대체할 값이다.<br />
 필자가 생각하기에 PreparedStatement대신에 Statement을 꼭 써야 하는 경우는 거의 없다고 생각한다.<br />
 때문에 이제부터는 PreparedStatement만을 사용하는 것이 좋겠다.<br />
 지금까지 Statement사용한 예제를 모두 PreparedStatement로 수정해 보자.<br />
+</article>

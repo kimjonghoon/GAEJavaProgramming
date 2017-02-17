@@ -1,5 +1,6 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.4.15</div>
+<article>
+<div class="last-modified">Last Modified 2015.4.15</div>
 
 <h1>HTML과 자바스크립트의 분리</h1>
 
@@ -949,3 +950,4 @@ $('#list-menu input').click(function() {
 	<li><a href="http://www.wikibook.co.kr/PublisherApp/homepage/detailView?isbn=9788992939331">jQuery 1.3 작고 강력한 자바스크립트 라이브러리 | 조나단 채퍼 외 | 위키북스</a></li>
 	<li><a href="http://www.hanb.co.kr/book/look.html?isbn=978-89-7914-693-6"> Head First Ajax - 레베카 리오단 지음 | 홍승표, 김은희 역 | 한빛미디어</a></li>
 </ul>
+</article>

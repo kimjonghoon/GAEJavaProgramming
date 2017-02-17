@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2013.4.24</div>
+<article>
+<div class="last-modified">Last Modified 2013.4.24</div>
 
 <h1>자바스크립트 객체</h1>
 
@@ -1156,3 +1157,4 @@ http://http://prototypejs.org/<br />
 	<li><a href="http://en.wikipedia.org/wiki/HTTP_cookie">http://en.wikipedia.org/wiki/HTTP_cookie</a></li>
 	<li><a href="http://ezbuilder.tistory.com/34">http://ezbuilder.tistory.com/34</a></li>
 </ul>
+</article>

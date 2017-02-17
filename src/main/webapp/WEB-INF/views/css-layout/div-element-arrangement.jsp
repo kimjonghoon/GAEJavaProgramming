@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.31</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.31</div>
 <h1>주요 엘리먼트 배치</h1>
 
 <p style="margin: 17px; font-weight: bold; font-size: 15px;">
@@ -108,7 +109,7 @@ clear 프로퍼티의 값은 left, right, both 가 있다.<br />
 <img src="https://lh3.googleusercontent.com/-3dIp3C9coOM/VYIykEsPWWI/AAAAAAAACYM/ObzhAYQ7yns/s789/a-float-left-b-float-right-c-clear-right.png" alt="A float:left,B float:right,C clear:right" /><br />
 
 
-<em class="filename" style="clear: both;">clear: both;</em>
+<em class="filename" style="clear: both;">clear: both;</em><article>
 <pre class="prettyprint">
 &lt;style type="text/css"&gt;
 	#A {
@@ -734,4 +735,4 @@ CSS 파일을 아래와 같이 고친다.<br />
 	<li><a href="http://www.ibm.com/developerworks/kr/library/wa-css/">http://www.ibm.com/developerworks/kr/library/wa-css/</a></li>
 	<li><a href="http://www.maxdesign.com.au/articles/css-layouts/">http://www.maxdesign.com.au/articles/css-layouts/</a></li>
 </ul>
-
+</article>

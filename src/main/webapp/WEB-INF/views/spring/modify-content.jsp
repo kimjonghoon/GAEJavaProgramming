@@ -1,4 +1,6 @@
 <%@ page isELIgnored="true" %>
+
+<article>
 <h1>게시글 수정</h1>
 
 <em class="filename">/WEB-INF/jsp/bbs/modify_form.jsp</em> 
@@ -194,4 +196,4 @@ public String modify(MultipartHttpServletRequest mpRequest) throws Exception {
 	<li><a href="http://www.jpub.kr/">Spring in Action(Jpub) - 크레이그 월즈</a></li>
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
 </ul>
-
+</article>

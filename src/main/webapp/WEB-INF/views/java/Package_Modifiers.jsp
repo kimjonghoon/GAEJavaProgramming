@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2014.3.26</div>
+<article>    
+<div class="last-modified">Last Modified 2014.3.26</div>
 
 <h1>팩키지와 접근자</h1>
 
@@ -598,3 +599,4 @@ console 뷰가 생기면서 Hello World !가 출력된다.<br />
 	<li>Log 클래스에 대한 설명은 따로 하지 않는다. Log 클래스의 out 메소드는 static 메소드로 static 키워드에 대한 설명은 
 	<a href="Static">static</a>에서 다룬다.</li>
 </ol>
+</article>

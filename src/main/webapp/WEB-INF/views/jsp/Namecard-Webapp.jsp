@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.9</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.9</div>
 
 			
 <h1>명함관리 웹 애플리케이션</h1>
@@ -510,3 +511,4 @@ http://localhost:8989/namecard/list.jsp를 방문하여 테스트한다.<br />
 <ul id="references">
 	<li><a href="http://stackoverflow.com/questions/6981564/why-jdbc-driver-must-been-put-in-tomcat-home-lib-folder">http://stackoverflow.com/questions/6981564/why-jdbc-driver-must-been-put-in-tomcat-home-lib-folder</a></li>
 </ul>
+</article>

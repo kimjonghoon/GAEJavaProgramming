@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.6.6</div>
+<article>
+<div class="last-modified">Last Modified 2015.6.6</div>
 	
 <h1>오라클 설치</h1>
 
@@ -37,3 +38,4 @@ JDBC를 배우려면 데이터베이스를 설치해야 한다.<br />
 	<li><a href="http://docs.oracle.com/cd/E17781_01/install.112/e18802/toc.htm">http://docs.oracle.com/cd/E17781_01/install.112/e18802/toc.htm</a></li>
 	<li><a href="http://docs.oracle.com/cd/E17781_01/install.112/e18803/toc.htm">http://docs.oracle.com/cd/E17781_01/install.112/e18803/toc.htm</a></li>
 </ul>
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2016.4.7</div>
+<article>
+<div class="last-modified">Last Modified 2016.4.7</div>
 
 <h1>자료형(Data Type)과 형변환(Type Casting)</h1>
 
@@ -274,3 +275,4 @@ String greetings = "안녕하세요";//여기서 "안녕하세요"는 리터럴�
 	<li><a href="http://stackoverflow.com/questions/4331200/what-do-f-and-d-mean-at-the-end-of-numeric-literals">http://stackoverflow.com/questions/4331200/what-do-f-and-d-mean-at-the-end-of-numeric-literals</a></li>
 	<li><a href="http://en.wikipedia.org/wiki/Literal_%28computer_programming%29">http://en.wikipedia.org/wiki/Literal_%28computer_programming%29</a></li>
 </ul>
+</article>

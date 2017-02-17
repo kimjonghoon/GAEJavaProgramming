@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.5.26</div>
+<article>
+<div class="last-modified">Last Modified 2015.5.26</div>
 	
 <h1>자바은행 수정(상속 적용)</h1>
 
@@ -113,7 +114,7 @@ public class Account {
 	public void setTransactions(List&lt;Transaction&gt; transactions) {
 		this.transactions = transactions;
 	}
-	<strong>
+	<strong><article>
 	public String getKind() {
 		return kind;
 	}
@@ -354,3 +355,4 @@ public class Test {
 <ul id="references">
 	<li>New 알기쉬운 자바2(개정판) 저자: 김철회 출판사: 정보문화사</li> 
 </ul>
+</article>

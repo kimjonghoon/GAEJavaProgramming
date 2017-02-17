@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.7.14</div>
+<article>
+<div class="last-modified">Last Modified 2015.7.14</div>
 
 <h1>우분투 개발환경 세팅</h1>
 
@@ -424,3 +425,4 @@ http://localhost:8080에 방문하여 스프링 MVC 게시판 애플리케이션
 	<li><a href="http://crunchbang.org/forums/viewtopic.php?id=23267">http://crunchbang.org/forums/viewtopic.php?id=23267</a></li>
 	<li><a href="http://meandmyubuntulinux.blogspot.kr/2012/05/installing-oracle-11g-r2-express.html">http://meandmyubuntulinux.blogspot.kr/2012/05/installing-oracle-11g-r2-express.html</a></li>
 </ul>
+</article>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2014.7.15</div>
+
+<article>
+<div class="last-modified">Last Modified 2014.7.15</div>
 
 <h1>데이터베이스 연동</h1>
 <strong>아래 나오는 모든 예제를 이클립스를 사용하여 ROOT 애플리케이션에 작성한다.<br />
@@ -353,3 +355,4 @@ Thu Jun 12 14:30:52 KST 2014 : Error Source:getEmp3.jsp : SQLException
 Thu Jun 12 14:30:52 KST 2014 : SQLState : 42000
 Thu Jun 12 14:30:52 KST 2014 : Message : ORA-00923: FROM keyword not found where expected
 </pre>
+</article>

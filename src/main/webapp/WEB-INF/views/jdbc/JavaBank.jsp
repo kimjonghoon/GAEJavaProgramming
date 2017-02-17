@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.6.3</div>
+<article>
+<div class="last-modified">Last Modified 2015.6.3</div>
 
 <h1>자바은행</h1>
 
@@ -828,3 +829,4 @@ public class BankUi {
 	
 }
 </pre>
+</article>

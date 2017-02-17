@@ -1,4 +1,6 @@
-<div id="last-modified">Last Modified : 2014.8.8</div>
+<article>
+
+<div class="last-modified">Last Modified 2014.8.8</div>
 
 <h1>게시판 컨트롤러 최종본</h1>
 
@@ -140,7 +142,7 @@ public class BbsController {
 		String boardNm = boardService.getBoardNm(boardCd);
 		Integer no = boardService.getListNo();
 		Integer prevLink = boardService.getPrevLink();
-		Integer nextLink = boardService.getNextLink();
+		Integer nextLink = boardService.getNextLink();<article>
 		Integer firstPage = boardService.getFirstPage();
 		Integer lastPage = boardService.getLastPage();
 		int[] pageLinks = boardService.getPageLinks();
@@ -203,7 +205,7 @@ public class BbsController {
 			"&amp;boardCd=" + boardCd + 
 			"&amp;page=" + page + 
 			"&amp;searchWord=" + searchWord;
-
+<article>
 	}
 
 	@RequestMapping(value="/commentDel", method=RequestMethod.POST)
@@ -237,7 +239,7 @@ public class BbsController {
 		model.addAttribute("boardNm", boardNm);
 		
 		return "bbs/modifyform";
-	}
+	}<article>
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modify(MultipartHttpServletRequest mpRequest) throws Exception {
@@ -263,7 +265,7 @@ public class BbsController {
 		while (it.hasNext()) {
 			MultipartFile multiFile = mpRequest.getFile((String) it.next());
 			if (multiFile.getSize() &gt; 0) {
-				String filename = multiFile.getOriginalFilename();
+				String filename = multiFile.getOriginalFilename();<article>
 				multiFile.transferTo(new File(WebContants.BASE_PATH + filename));
 				fileList.add(multiFile);
 			}
@@ -329,7 +331,7 @@ public class BbsController {
 
 	}
 	
-}
+}<article>
 </pre>
 
 <h3>게시판 최종본</h3>
@@ -343,3 +345,4 @@ public class BbsController {
 	<li><a href="http://www.jpub.kr/">Spring in Action(Jpub) - 크레이그 월즈</a></li>
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
 </ul>
+</article>

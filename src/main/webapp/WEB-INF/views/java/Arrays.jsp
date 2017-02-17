@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2013.12.7</div>
+<article>
+<div class="last-modified">Last Modified 2013.12.7</div>
 
 <h1>Arrays</h1>
 
@@ -71,3 +72,4 @@ C:\javaApp>javac Test.java
 C:\javaApp>java Test 2016 12 31
 2016/12/31
 </pre>
+</article>

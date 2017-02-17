@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.15</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.15</div>
 
 
 <h1>페이징 로직 재사용</h1>
@@ -190,3 +191,4 @@ public class ListAction implements Action {
 /model2/list.jsp 파일은 바꿀 필요가 없다.<br />
 재사용에 어는 것이 더 좋은지 판단의 각자의 몫이다.<br />
 좀더 재사용에 좋은 페이징 소스를 만드는 시도는 좋은 공부가 될 것이다.<br />
+</article>

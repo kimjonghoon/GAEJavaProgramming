@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2015.11.11</div>
+<article>
+<div class="last-modified">Last Modified 2015.11.11</div>
 
 <h1>JDK 설치</h1>
 
@@ -102,3 +103,4 @@ Test.class 파일이 없는 디렉터리에서 java Test를 실행할 때 이런
 	<li><a href="http://windows.microsoft.com/en-us/windows/32-bit-and-64-bit-windows#1TC=windows-7">32-bit and 64-bit Windows: frequently asked questions</a></li>
 	<li><a href="http://www.editplus.com">editplus</a></li>
 </ul>
+</article>

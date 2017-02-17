@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.1.14</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.1.14</div>
 
 <h1>Spring MVC 컨트롤러 설정</h1>
 
@@ -194,3 +196,4 @@ port 와 ContextPath는 각자 환경에 따라 다르다.<br />
 <ul id="references">
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">spring-framework-reference.pdf</a></li>
 </ul>
+</article>

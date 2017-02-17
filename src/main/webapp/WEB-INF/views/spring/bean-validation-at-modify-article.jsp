@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.5.22</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.5.22</div>
 
 <h1>글 수정에서의 빈 유효성 검사</h1>
 
@@ -82,7 +84,7 @@ public String modify(@Valid Article article,
 </pre>
 
 
-<span id="refer">참고</span>
+<span id="refer">참고</span><article>
 <ul id="references">
 	<li><a href="http://hibernate.org/validator/documentation/getting-started/">Getting started with Hibernate Validator</a></li>
 	<li><a href="http://forum.spring.io/forum/spring-projects/web/80192-validation-empty-int-field">Validation - Empty int field</a></li>
@@ -95,3 +97,4 @@ public String modify(@Valid Article article,
 	<li><a href="http://mybatis.github.io/mybatis-3/getting-started.html">MyBatis Getting started</a></li>
 </ul>
 
+</article>

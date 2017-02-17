@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.9</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.9</div>
 			
 <h1>웹 애플리케이션</h1>
 
@@ -180,3 +181,4 @@ C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\test&gt;<strong>j
 <ul id="references">
 	<li><a href="http://stackoverflow.com/questions/809775/what-does-the-servlet-load-on-startup-value-of-0-zero-signify">http://stackoverflow.com/questions/809775/what-does-the-servlet-load-on-startup-value-of-0-zero-signify</a></li>
 </ul>
+</article>

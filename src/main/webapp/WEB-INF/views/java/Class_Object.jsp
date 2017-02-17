@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.11.11</div>
+<article>
+<div class="last-modified">Last Modified 2015.11.11</div>
 
 <h1>Class and Object</h1>
 
@@ -245,3 +246,4 @@ standard output method
 </pre>
 
 The only difference between System.out.print() and System.out.println() is that System.out.print() does not change the line after the output.<br />
+</article>

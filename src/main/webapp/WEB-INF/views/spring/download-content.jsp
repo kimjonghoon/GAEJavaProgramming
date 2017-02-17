@@ -1,3 +1,5 @@
+
+<article>
 <h1>게시판 - 파일 다운로드</h1>
 
 <em class="filename">/WEB-INF/jsp/inc/download.jsp</em>
@@ -71,3 +73,4 @@ public String download(String filename, Model model) {
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
 </ul>
 
+</article>

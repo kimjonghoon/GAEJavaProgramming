@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2009.9.19</div>
+<article>
+<div class="last-modified">Last Modified 2009.9.19</div>
 
 <h1>Tomcat 설치</h1>
 
@@ -348,3 +349,4 @@ Apache 웹서버의 설정파일에 <strong>JkMount /*.gif tomcat1</strong>와 �
 <p>
 <a href="http://raibledesigns.com/tomcat/">http://raibledesigns.com/tomcat/</a>
 </p>
+</article>

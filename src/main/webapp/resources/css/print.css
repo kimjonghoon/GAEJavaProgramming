@@ -127,10 +127,8 @@ header {
 #content-wrap {
 	color: #404040;
 }
-
 article {
-	margin: 0;
-	padding: 0;
+	clear: both;
 }
 
 .heading1 {
@@ -256,7 +254,7 @@ footer {
 	border-bottom: 1px solid black;
 }
 
-#last-modified {
+.last-modified {
 	padding-top: 3px;
 	text-align: right;
 	font-family: tahoma, arial, sans-serif;

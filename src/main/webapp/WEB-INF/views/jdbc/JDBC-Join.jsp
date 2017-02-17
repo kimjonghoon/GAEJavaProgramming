@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2011.1.10</div>
+<article>
+<div class="last-modified">Last Modified 2011.1.10</div>
 
 <h1>테이블 조인(Join)</h1>
 
@@ -91,3 +92,4 @@ public class JoinTable {
 
 }
 </pre>
+</article>

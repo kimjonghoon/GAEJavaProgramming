@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.22</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.22</div>
 
 <h1>테이블 생성</h1>
 
@@ -208,3 +209,4 @@ Statement의 executeUpdate()메소드는 create table.. 과 같은 DDL문이나
 DML문(INSERT, UPDATE, DELETE)을 실행할 때 사용한다.
 </dd>
 </dl>
+</article>

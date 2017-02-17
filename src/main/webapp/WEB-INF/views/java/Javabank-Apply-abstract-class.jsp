@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.5.25</div>
+<article>
+<div class="last-modified">Last Modified 2015.5.25</div>
 	
 <h1>자바은행 수정 (추상클래스 적용)</h1>
 
@@ -34,7 +35,7 @@ public class InsufficientBalanceException extends RuntimeException {
 	public InsufficientBalanceException(String message) {
 		super(message);
 	}
-
+<article>
 	public InsufficientBalanceException(Throwable cause) {
 		super(cause);
 	}
@@ -168,3 +169,4 @@ public class Bank {
 <ul id="references">
 	<li>New 알기쉬운 자바2(개정판) 저자: 김철회 출판사: 정보문화사</li> 
 </ul>
+</article>

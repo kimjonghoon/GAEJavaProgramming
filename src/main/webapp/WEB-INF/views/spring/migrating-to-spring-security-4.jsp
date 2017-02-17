@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.8.2</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.8.2</div>
 
 <h1>스프링 시큐리티 4 적용</h1>
 
@@ -98,7 +100,7 @@ http의 use-expressions의 속성 기본값이 false에서 true로 변경되었�
 &lt;c:if test="${param.error != null }"&gt;
         &lt;h2&gt;Username/Password not corrrect&lt;/h2&gt;
 &lt;/c:if&gt;
-&lt;c:url var="loginUrl" value="<strong>/login</strong>" /&gt;
+&lt;c:url var="loginUrl" value="<strong>/login</strong>" /&gt;<article>
 &lt;form action="<strong>${loginUrl }</strong>" method="post"&gt;
 &lt;p style="margin:0; padding: 0;"&gt;
 <strong>&lt;input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /&gt;</strong>
@@ -178,3 +180,4 @@ write_form.jsp와 modify_form.jsp 파일을 열고 <em class="path">&lt;input ty
 	<li><a href="http://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#nsa-logout-attributes">http://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#nsa-logout-attributes</a></li>
 	<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec15.html#sec15.1.3">http://www.w3.org/Protocols/rfc2616/rfc2616-sec15.html#sec15.1.3</a></li>	
 </ul>
+</article>

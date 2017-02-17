@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2013.07.03</div>
+<article>
+<div class="last-modified">Last Modified 2013.07.03</div>
 
 <h1>자바스크립트 DOM</h1>
 
@@ -101,3 +102,4 @@ function domTest() {
 //]]&gt;
 &lt;/script&gt;
 </pre>
+</article>

@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.5.19</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.5.19</div>
 
 <h1>Spring MVC 게시판</h1>
 
@@ -3020,4 +3022,4 @@ TOMCAT_HOME/logs에 있는 로그 파일을 뒤져서 해결해야 한다.<br />
 Ajax를 이용하여 동영상을 중지시키지 않으면서 댓글을 등록, 수정, 삭제할 수 있게 한다.</li>
 <li>조회 수 증가를 유명 포탈 사이트에서와 같이 구현한다.</li>
 </ol>
-
+</article>

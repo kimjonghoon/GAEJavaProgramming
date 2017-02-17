@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.5.20</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.5.20</div>
 
 <h1>웹 요청 보안</h1>
 
@@ -604,4 +606,4 @@ public String addComment(Integer articleNo,
 	<li><a href="http://www.hanb.co.kr/book/look.html?isbn=978-89-7914-887-9#binfo5">예제로 쉽게 배우는 스프링 프레임워크 3.0(한빛미디어) - 사카타 코이치</a></li>
 	<li><a href="http://www.jpub.kr/">Spring in Action(Jpub) - 크레이그 월즈</a></li>
 </ul>
-
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.5.6</div>
+<article>
+<div class="last-modified">Last Modified 2015.5.6</div>
 
 <h1>static</h1>
 
@@ -186,3 +187,4 @@ B(int) 생성자 실행
 	<li><a href="http://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html">http://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html</a></li>
 	<li><a href="http://www.guru99.com/java-stack-heap.html">http://www.guru99.com/java-stack-heap.html</a></li>
 </ul>
+</article>

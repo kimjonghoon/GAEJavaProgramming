@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2016.6.26</div>
+
+<article>
+<div class="last-modified">Last Modified 2016.6.26</div>
 
 <h1>국제화</h1>
 
@@ -73,3 +75,4 @@ AcceptHeaderLocaleResolver는 요청 헤더의 "accept-language"에 설정된 �
 LocaleChangeInterceptor가 필요하다.<br />
 다음 링크에서 사용자가 로케일을 변경하는 예제를 볼 수 있다.<br /> 
 <a href="http://www.mkyong.com/spring-mvc/spring-mvc-internationalization-example/">http://www.mkyong.com/spring-mvc/spring-mvc-internationalization-example/</a>
+</article>

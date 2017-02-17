@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.21</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.21</div>
 
 <h1>UPDATE</h1>
 
@@ -70,3 +71,4 @@ public class NamecardUpdate {
 
 }
 </pre>
+</article>

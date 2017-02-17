@@ -1,4 +1,6 @@
-<div id="last-modified">Last Modified : 2015.5.22</div>
+<article>
+
+<div class="last-modified">Last Modified 2015.5.22</div>
 
 <h1>회원가입에서의 빈 유효성 검사</h1>
 
@@ -64,7 +66,7 @@ public String signUp(<strong>Model model</strong>) {
 
 @RequestMapping(value="/signUp", method=RequestMethod.POST)
 public String signUp(<strong>@Valid</strong> User user, <strong>BindingResult bindingResult</strong>) {
-    <strong>//유효성 검사
+    <strong>//유효성 검사<article>
     if (bindingResult.hasErrors()) {
         return "users/signUp";
     }</strong>
@@ -154,3 +156,4 @@ http://localhost:port/spring-bbs/login으로 이동한다.<br />
 	<li><a href="http://mybatis.github.io/mybatis-3/getting-started.html">MyBatis Getting started</a></li>
 </ul>
 
+</article>

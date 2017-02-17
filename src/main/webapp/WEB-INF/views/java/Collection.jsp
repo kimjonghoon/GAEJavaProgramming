@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2014.4.10</div>
+<article>
+<div class="last-modified">Last Modified 2014.4.10</div>
 
 <h1>컬렉션</h1>
 
@@ -850,3 +851,4 @@ a.equals(c) true
 <ul id="references">
 	<li><a href="http://java.sun.com/developer/onlineTraining/collections/Collection.html">http://java.sun.com/developer/onlineTraining/collections/Collection.html</a></li>
 </ul>
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2016.3.16</div>
+<article>
+<div class="last-modified">Last Modified 2016.3.16</div>
 
 <h1>게시판</h1>
 
@@ -1737,3 +1738,4 @@ list.jsp에서 검색폼의 method 속성을 method="post" 에서 method="get"�
 <ul id="references">
 	<li><a href="http://wiki.apache.org/tomcat/FAQ/CharacterEncoding">http://wiki.apache.org/tomcat/FAQ/CharacterEncoding</a></li>
 </ul>
+</article>

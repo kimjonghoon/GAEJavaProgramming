@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.8.4</div>
+<article>
+<div class="last-modified">Last Modified 2014.8.4</div>
 
 <h1>데이터베이스 설계</h1>
 
@@ -195,3 +196,4 @@ test.jsp 파일을 도큐멘트베이스(C:/www/JSPProject/WebContent)에 생성
 
 톰캣을 재실행하고 http://localhost:port/JSPProject/test.jsp를 방문한다.
 3을 본다면 성공이다.<br />
+</article>

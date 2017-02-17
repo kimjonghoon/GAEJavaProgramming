@@ -1,3 +1,5 @@
+<article>
+
 <h1>게시판 댓글</h1>
 
 <h2>댓글 쓰기</h2>
@@ -81,4 +83,4 @@ public String deleteComment(Integer commentNo,
 	<li><a href="http://www.jpub.kr/">Spring in Action(Jpub) - 크레이그 월즈</a></li>
 	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
 </ul>
-
+</article>

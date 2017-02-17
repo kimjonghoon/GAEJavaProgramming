@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2016.4.7</div>
+<article>
+<div class="last-modified">Last Modified 2016.4.7</div>
 
 <h1>Data Type and Type Casting</h1>
 
@@ -281,3 +282,4 @@ String greetings = "Hello"; //Here, "Hello" is a Java Literal.
 	<li><a href="http://stackoverflow.com/questions/4331200/what-do-f-and-d-mean-at-the-end-of-numeric-literals">http://stackoverflow.com/questions/4331200/what-do-f-and-d-mean-at-the-end-of-numeric-literals</a></li>
 	<li><a href="http://en.wikipedia.org/wiki/Literal_%28computer_programming%29">http://en.wikipedia.org/wiki/Literal_%28computer_programming%29</a></li>
 </ul>
+</article>

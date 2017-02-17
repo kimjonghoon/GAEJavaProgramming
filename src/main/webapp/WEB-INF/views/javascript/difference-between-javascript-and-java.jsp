@@ -1,6 +1,7 @@
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 
-<div id="last-modified">Last Modified : 2014.8.13</div>
+<div class="last-modified">Last Modified 2014.8.13</div>
 
 <h1>자바와 다른 점</h1>
 
@@ -102,3 +103,4 @@ function z(a) {
 
 x(2, z);
 </pre>
+</article>

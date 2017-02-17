@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.8.27</div>
+<article>
+<div class="last-modified">Last Modified 2014.8.27</div>
 	
 <h1>RMI</h1>
 
@@ -180,7 +181,7 @@ java -classpath /home/kim/java/rmi/bin example.hello.Client 192.168.0.8
 </pre>
 
 위의 예는 윈도 시스템이 서버이고 리눅스 시스템이 클라이언트가 되는 경우이다.<br />
-클라이언트 측에서는 Hello와 Client의 바이트 코드가 있어야 한다.<br />
+클라이언트 측에서는 Hello와 Client의 바이트 코드가 있어야 한다.<br /><article>
 서버 측에서는 Hello와 Server의 바이트 코드가 있어야 한다.<br />
 
 <dl class="note">
@@ -198,3 +199,4 @@ java -classpath /home/kim/java/rmi/bin example.hello.Client 192.168.0.8
 <ul id="references">
 	<li><a href="http://docs.oracle.com/javase/7/docs/technotes/guides/rmi/hello/hello-world.html">http://docs.oracle.com/javase/7/docs/technotes/guides/rmi/hello/hello-world.html</a></li>
 </ul>
+</article>

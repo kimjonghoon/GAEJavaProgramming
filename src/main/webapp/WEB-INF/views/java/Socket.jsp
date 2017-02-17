@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.12</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.12</div>
 	
 <h1>소켓</h1>
 
@@ -892,3 +893,4 @@ public void run() {
 	<li><a href="http://www.hanb.co.kr/book/look.html?isbn=89-7914-377-X">IT CookBook, 자바 5.0 프로그래밍: 차근차근 배우는 자바 AtoZ -한빛미디어</a></li>
 	<li><a href="http://mastmanban.tistory.com/350">윈도우 7 방화벽에서 포트 열기</a></li>
 </ul>
+</article>

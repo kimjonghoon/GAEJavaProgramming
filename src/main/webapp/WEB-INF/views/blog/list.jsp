@@ -22,6 +22,8 @@
 		}
 	}
 </script>
+
+<article>
 <h1><spring:message code="blog.list" /></h1>
 <ul>
 	<c:forEach var="article" items="${articles }" varStatus="status">
@@ -36,3 +38,4 @@
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 <a href="/blog/new" style="text-transform: capitalize;"><spring:message code="blog.new" /></a>
+</article>

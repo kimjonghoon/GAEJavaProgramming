@@ -1,5 +1,7 @@
 <%@ page isELIgnored="true" %>
-<div id="last-modified">Last Modified : 2015.5.19</div>
+
+<article>
+<div class="last-modified">Last Modified 2015.5.19</div>
 
 <h1>Maven으로 Spring MVC 실습하기</h1>
 
@@ -724,3 +726,4 @@ Import를 사용하여 spring-bbs 프로젝트를 이클립스로 불러온다.<
 	<li><a href="http://stackoverflow.com/questions/793983/jsp-el-expression-is-not-evaluated">메이븐의 만들어준 web.xml 파일을 쓰면 EL이 해석되지 않는 경우</a></li>
 </ul>
 
+</article>

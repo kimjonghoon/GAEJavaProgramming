@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2013.11.11</div>
+<article>
+<div class="last-modified">Last Modified 2013.11.11</div>
 
 <h1>select 엘리먼트 다루기</h1>
 
@@ -68,3 +69,4 @@ function chooseLang() {
 </pre>
 
 <a href="/resources/examples/javascript/sel.html">sel.html 예제 실행</a>
+</article>

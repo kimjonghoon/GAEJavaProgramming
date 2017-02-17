@@ -39,9 +39,9 @@ $(document).ready(function() {
 		<tiles:insertAttribute name="login"/>
 	</div>
 	<div id="content-wrap">
-		<article>
+		<div id="content">
 			<tiles:insertAttribute name="article" />
-		</article>
+		</div>
 	</div>
 	<div id="sidebar">
 		<tiles:insertAttribute name="sidebar" />

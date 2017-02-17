@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.8.4</div>
+<article>
+<div class="last-modified">Last Modified 2014.8.4</div>
 
 <h1>개발 준비</h1>
 
@@ -242,4 +243,4 @@ http://localhost:port/JSPProject/test.html를 방문해서 톰캣이 웹 애플�
     </ol>
   </li>
 </ul>
-
+</article>

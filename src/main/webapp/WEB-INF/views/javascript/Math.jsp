@@ -1,6 +1,7 @@
+<article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 
-<div id="last-modified">Last Modified : 2013.11.12</div>
+<div class="last-modified">Last Modified 2013.11.12</div>
 			
 <h1>Math</h1>
 
@@ -48,3 +49,4 @@ alert("예상로또번호: " + lotto.toString());
 <ul id="references">
 	<li><a href="http://www.w3schools.com/jsref/jsref_obj_math.asp">http://www.w3schools.com/jsref/jsref_obj_math.asp</a></li>
 </ul>
+</article>

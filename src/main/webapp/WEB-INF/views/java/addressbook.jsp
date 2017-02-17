@@ -54,7 +54,7 @@ $(document).ready(function() {
 <!--  본문 시작 -->	
 <article>
 <div id="navigator">Java - Lab</div>
-<div id="last-modified" class="floatstop">Last Modified : 2012.11.29</div>
+<div id="last-modified" class="floatstop">Last Modified 2012.11.29</div>
 
 <h1>주소록 관리</h1>
 

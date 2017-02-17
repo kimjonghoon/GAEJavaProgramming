@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.11.11</div>
+<article>
+<div class="last-modified">Last Modified 2015.11.11</div>
 <h1>Java Features</h1>
 
 <h2>Platform Independent</h2>
@@ -31,3 +32,4 @@ Java supports basic concepts of object-oriented programming, such as:<br>
 	<li>Inheritance</li>
 	<li>Polymorphism</li>
 </ul>
+</article>

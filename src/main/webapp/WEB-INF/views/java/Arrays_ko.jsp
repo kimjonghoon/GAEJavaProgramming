@@ -1,7 +1,8 @@
-<div id="last-modified">Last Modified : 2013.12.7</div>
+<article>
+<div class="last-modified">Last Modified 2013.12.7</div>
 
 <h1>배열</h1>
-<? require('../inc/share.php'); ?>
+
 배열은 동일한 자료형의 값을 여러개 담을 수 있다.<br />
 
 <img src="https://lh3.googleusercontent.com/-iLIT7b27vBo/Vvy0K3Fs5eI/AAAAAAAACto/WJw-WrH8EtENW0RZRVweV-vjoMqqXb4DACCo/s913-Ic42/variable-array.png" alt="variable and array" /><br />
@@ -136,3 +137,4 @@ C:\javaApp&gt;javac Test.java
 C:\javaApp&gt;java Test 2016 12 31
 2016년 12월 31일
 </pre>
+</article>

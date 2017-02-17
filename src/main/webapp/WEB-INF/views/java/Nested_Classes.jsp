@@ -59,7 +59,7 @@ $(document).ready(function() {
 	<div id="content-wrap">
 		<div id="content">
 			<div id="navigator">Java - Java 기초</div>
-			<div id="last-modified" class="floatstop">Last Modified : 2014.8.27</div>
+			<div id="last-modified" class="floatstop">Last Modified 2014.8.27</div>
 
 <!-- 본문 시작 -->
 <h1>내부 클래스</h1>

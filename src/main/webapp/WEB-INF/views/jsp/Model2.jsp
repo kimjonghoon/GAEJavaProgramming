@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.7.22</div>
+<article>
+<div class="last-modified">Last Modified 2014.7.22</div>
 
 			
 <h1>모델 2</h1>
@@ -1066,3 +1067,4 @@ public class ReplyAction implements Action {
 
 답변글을 작성해 본다.<br />
 reply.jsp 는 필요없으니 삭제한다.<br />
+</article>

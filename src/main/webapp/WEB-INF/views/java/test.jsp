@@ -52,7 +52,7 @@ $(document).ready(function() {
 	<div id="content-wrap">
 		<article>
 			<div id="navigator">Java - Java 기초</div>
-			<div id="last-modified" class="floatstop">Last Modified : 2013.10.4</div>
+			<div id="last-modified" class="floatstop">Last Modified 2013.10.4</div>
 
 <!-- 본문 시작 -->
 <h1>테스트</h1>

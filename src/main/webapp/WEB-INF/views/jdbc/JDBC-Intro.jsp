@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.3.3</div>
+<article>
+<div class="last-modified">Last Modified 2014.3.3</div>
 	
 <h1>JDBC 소개</h1>
 
@@ -32,3 +33,4 @@ SQL를 이용하여 테이블을 생성하고 테이블에 레코드를 조회, 
 데이터베이스 사용자의 권한을 컨트롤 할 수 있다.<br />
 </dd>
 </dl>
+</article>

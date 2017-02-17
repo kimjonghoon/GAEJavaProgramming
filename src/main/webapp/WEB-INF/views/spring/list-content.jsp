@@ -1,3 +1,4 @@
+<article>
 <h1>게시판 목록</h1>
 
 JSP Project에서 구현한 웹사이트 최종본에 Spring MVC를 적용하는 것을 실습할 것이다.<br />
@@ -303,3 +304,4 @@ public class BoardServiceImpl implements BoardService {
 	<li><a href="https://github.com/spring-projects/spring-mvc-showcase/blob/master/pom.xml">스프링 웹 애플리케이션을 위한 pom.xml 참조</a></li>
 	<li><a href="http://stackoverflow.com/questions/793983/jsp-el-expression-is-not-evaluated">메이븐의 만들어준 web.xml 파일을 쓰면 EL이 해석되지 않는 경우</a></li>
 </ul>
+</article>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<div id="last-modified">Last Modified : 2014.7.28</div>
+<article>	
+<div class="last-modified">Last Modified 2014.7.28</div>
 
 <h1>서블릿</h1>
 
@@ -2346,3 +2346,4 @@ session.setAttribue("user", user); //user 이름으로 user 객체 저장
 	<li><a href="http://www.albumbang.com/board/board_view.jsp?board_name=free&no=292">http://www.albumbang.com/board/board_view.jsp?board_name=free&amp;no=292</a></li>
 	<li><a href="http://www.docjar.com/docs/api/javax/servlet/GenericServlet.html">http://www.docjar.com/docs/api/javax/servlet/GenericServlet.html</a></li>
 </ul>
+</article>

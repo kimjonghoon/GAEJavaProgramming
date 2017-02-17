@@ -40,6 +40,8 @@ $(document).ready(function() {
 	  });
 });
 </script>
+
+<article>
 <h1>Blob Test</h1>
 <div id="file-list">
 <%
@@ -63,3 +65,4 @@ if (blobInfo != null) {
 </p>
 </form>
 </div>
+</article>

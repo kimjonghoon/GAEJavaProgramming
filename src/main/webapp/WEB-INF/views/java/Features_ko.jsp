@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.11.11</div>
+<article>
+<div class="last-modified">Last Modified 2015.11.11</div>
 
 <h1>Java의 특징</h1>
 
@@ -32,3 +33,4 @@ JDK는 JRE와 자바 프로그램 개발에 필요한 도구 프로그램으로 
 	<li>상속</li>
 	<li>다형성</li>
 </ul>
+</article>

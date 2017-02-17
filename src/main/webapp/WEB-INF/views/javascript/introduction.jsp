@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div id="last-modified">Last Modified : 2016.4.17</div>
+<article>
+<div class="last-modified">Last Modified 2016.4.17</div>
 
 <h1>자바스크립트 소개</h1>
 
@@ -261,3 +262,4 @@ body 엘리먼트에 onload 이벤트를 추가하면 웹 페이지가 로딩이
 <ul id="references">
 	<li><a href="http://stackoverflow.com/questions/46155/validate-email-address-in-javascript">http://stackoverflow.com/questions/46155/validate-email-address-in-javascript</a></li>
 </ul>
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2012.8.21</div>
+<article>
+<div class="last-modified">Last Modified 2012.8.21</div>
 
 <h1>방명록</h1>
 
@@ -549,3 +550,4 @@ public class DataAccessException extends RuntimeException {
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+</article>

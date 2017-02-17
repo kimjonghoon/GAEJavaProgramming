@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.8.4</div>
+<article>
+<div class="last-modified">Last Modified 2014.8.4</div>
 
 <h1>로깅</h1>
 
@@ -95,4 +96,4 @@ public class LogTest {
 	<li><a href="http://seosh81.info/?tag=common-logging">http://seosh81.info/?tag=common-logging</a></li>
 	<li><a href="http://www.hanb.co.kr/network/view.html?bi_id=668">http://www.hanb.co.kr/network/view.html?bi_id=668</a></li>
 </ul>
-
+</article>

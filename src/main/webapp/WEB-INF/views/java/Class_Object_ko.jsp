@@ -1,7 +1,8 @@
-<div id="last-modified">Last Modified : 2015.12.4</div>
+<article>
+<div class="last-modified">Last Modified 2015.12.4</div>
 
 <h1>객체와 클래스</h1>
-<? require('../inc/share.php'); ?>
+
 
 <h2>객체 (Object)</h2>
 OOP는 객체를 이해하는 것이 중요하다.<br />
@@ -244,3 +245,4 @@ java.io.PrintStream@de6ced
 </pre>
 
 System.out.print()와 System.out.println()의 유일한 차이점은 System.out.print()는 출력 후 라인을 바꾸지 않는다는 것이다.
+</article>

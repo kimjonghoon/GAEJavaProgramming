@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2013.11.20</div>
+<article>
+<div class="last-modified">Last Modified 2013.11.20</div>
 			
 <h1>Keyword, Identifiers, Comment</h1>
 
@@ -65,3 +66,4 @@ The compiler ignores everything from /* to */.
 This indicates a documentation comment (doc comment, for short).
 The compiler ignores this kind of comment, just like it ignores comments that use /* and */. 
 The JDK javadoc tool uses doc comments when preparing automatically generated documentation.
+</article>

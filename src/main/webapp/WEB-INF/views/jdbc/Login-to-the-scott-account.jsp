@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.20</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.20</div>
 
 <h1>SQL 실습 - SCOTT계정</h1>
 
@@ -252,3 +253,4 @@ Enter password: tiger
 	이어지는 글의 일관성을 위해서 alter user scott identified by tiger; 로 소문자로 비밀번호를 바꾸어 준다.</li>
 	
 </ol>
+</article>

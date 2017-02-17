@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2014.5.21</div>
+<article>
+<div class="last-modified">Last Modified 2014.5.21</div>
 
 <h1>트랜잭션</h1>
 
@@ -123,3 +124,4 @@ public class TransactionPairs {
 라는 익셉션 메시지를 보게 될 것이다.<br />
 ACCOUNT 테이블의 BALANCE 컬럼은 0에서 3000까지의 수만 저장될 수 있기 때문이다.<br />
 그 결과 catch블록에서 롤백이 실행된다.<br />
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2016.4.9</div>
+<article>
+<div class="last-modified">Last Modified 2016.4.9</div>
 
 <h1>연산자</h1>
 
@@ -227,3 +228,4 @@ if ~ else 문이 간단한 내용이고 한줄로 쓰고 싶을 때 대신 사�
 	</td>
 </tr>
 </table>
+</article>

@@ -1,4 +1,5 @@
-<div id="last-modified">Last Modified : 2015.11.11</div>
+<article>
+<div class="last-modified">Last Modified 2015.11.11</div>
 <h1>JDK Install</h1>
 
 <h2>Downloading the JDK installer</h2>
@@ -99,3 +100,4 @@ it is necessary to use the -cp option of java.exe, such as:<br />
 Until "Package and Modifiers", 
 it is better to use a simple editor such as <a href="https://www.editplus.com/">editPlus</a>.<br />
 After you finish the Package and Modifiers, We recommend that you install the eclipse.<br />
+</article>
