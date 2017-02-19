@@ -22,7 +22,7 @@ JDBC를 배우려면 데이터베이스를 설치해야 한다.<br />
 설치 실패를 거듭하면 오라클이 공식 지원하는 리눅스 배포판<sup>2</sup>를 찾게 될 것이다.<br />
 </p>
 
-<h2>Oracle 11g XE 설치</h2>
+<h2>우분투 시스템에 Oracle 11g XE 설치</h2>
 <p>
 <a href="http://meandmyubuntulinux.blogspot.kr/2012/05/installing-oracle-11g-r2-express.html">http://meandmyubuntulinux.blogspot.kr/2012/05/installing-oracle-11g-r2-express.html</a><br />
 아래는 위 사이트에서 우분투 시스템에 오라클 설치 방법을 해석한 글이다.<br />
