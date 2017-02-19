@@ -1,13 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <article>
-<div class="last-modified">Last Modified 2015.5.25</div>
+<div class="last-modified">Last Modified 2017.2.3</div>
 	
-<h1>자바은행 수정(인터페이스 적용)</h1>
+<h1>Interface in Javbank</h1>
 
-인터페이스는 컴포넌트의 기능을 정의한다.<br />
-기존의 Bank 클래스를 일반적인 클래스에서 은행 컴포넌트의 기능을 정의하는 인터페이스로 수정한다.<br />
-Bank 인터페이스를 구현한 구현체로 ShinhanBank라는 클래스를 만들 것이다.<br />
-먼저 기존의 Bank.java를 열고 File - Save As... 메뉴를 선택하여 ShinhanBank.java로 저장하고 컴파일 에러를 수정한다.
-Bank.java를 다시 열고 아래 내용으로 수정한다.<br /> 
+<p>
+The interface defines the functionality of the component.
+Modify the existing Bank class into an interface that defines the functionality of the bank component.
+I will create a class called MyBank as an implementation that implements the Bank interface.
+Open Bank.java and select File - Save As ... menu to save it as MyBank.java and fix the compilation error.
+Reopen Bank.java and modify it as shown below.
+</p>
 
 <em class="filename">Bank.java</em>
 <pre class="prettyprint">
@@ -17,42 +22,43 @@ import java.util.List;
 
 public interface Bank {
 	
-    //계좌를 생성한다.
+    //Create an account.
     public void addAccount(String accountNo, String name, String kind);
 
-    //계좌를 생성한다.
-    public void addAccount(String accountNo, String name, long balance, 
-            String kind);
+    //Create an account.
+    public void addAccount(String accountNo, String name, long balance, String kind);
 
-    //계좌번호로 계좌를 찾는다.
+    //Find the account by account number.
     public Account getAccount(String accountNo);
 
-    //소유자명으로 계좌를 찾는다.
+    //Find the account by owner name.
     public List&lt;Account&gt; findAccountByName(String name);
 
-    //모든 계좌를 반환한다.
+    //Return all accounts.
     public List&lt;Account&gt; getAccounts();
   
 }
 </pre>
 
-강조된 부분을 참고하여 ShinhanBank.java 파일을 수정한다.<br />
+<p>
+Modify the MyBank.java file by referring to the highlighted section.
+</p>
 
-<em class="filename">ShinhanBank.java</em>
+<em class="filename">MyBank.java</em>
 <pre class="prettyprint">
 package net.java_school.bank;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShinhanBank <strong>implements Bank</strong> {
+public class MyBank <strong>implements Bank</strong> {
 	private List&lt;Account&gt; accounts = new ArrayList&lt;Account&gt;();
 
 	<strong>@Override</strong>	
 	public void addAccount(String accountNo, String name, String kind) {
 		Account account = getAccount(accountNo);
 		
-		if (account != null) throw new DuplicateAccountException("중복된 계좌입니다.");
+		if (account != null) throw new DuplicateAccountException("Duplicated account.");
 		
 		if (Account.NORMAL.equals(kind)) {
 			accounts.add(new NormalAccount(accountNo, name, kind));
@@ -65,7 +71,7 @@ public class ShinhanBank <strong>implements Bank</strong> {
 	public void addAccount(String accountNo, String name, long balance, String kind) {
 		Account account = getAccount(accountNo);
 		
-		if (account != null) throw new DuplicateAccountException("중복된 계좌입니다.");
+		if (account != null) throw new DuplicateAccountException("Duplicated account.");
 		
 		if (Account.NORMAL.equals(kind)) {
 			accounts.add(new NormalAccount(accountNo, name, balance, kind));
@@ -110,10 +116,13 @@ public class ShinhanBank <strong>implements Bank</strong> {
 }
 </pre>
 
-테스트의 메인 메서드는 아랫부분만 수정하면 테스트할 수 있다.<br />
+<p>
+Modify the following in the main method of the test class:
+</p>
 
 <em class="filename">Test.java</em>
 <pre class="prettyprint">
-Bank bank = <strong>new ShinhanBank();</strong>
+Bank bank = <strong>new MyBank();</strong>
 </pre>
+
 </article>

@@ -1,10 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2014.5.29</div>
+<div class="last-modified">Last Modified 2017.2.14</div>
 
-<h1>명함관리</h1>
+<h1>Namecard</h1>
 
-지금까지의 예제를 종합하여 명함관리 프로그램을 만들어 보자.<br /> 
-Namecard.java 와 NamecardDao.java 클래스를 아래와 같이 만든다.<br />
+<p>
+In this chapter, we will practice a namecard management program. 
+Create Namecard.java and NamecardDao.java classes as shown below.
+</p>
 
 <em class="filename">Namecard.java</em>
 <pre class="prettyprint">
@@ -69,15 +74,15 @@ public class Namecard {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("[번호: ");
+		sb.append("[NO: ");
 		sb.append(no);
 		sb.append("] ");
 		sb.append(name);
-		sb.append(" ,손전화: ");
+		sb.append(" ,Mobile: ");
 		sb.append(mobile);
-		sb.append(" ,이메일: ");
+		sb.append(" ,Email: ");
 		sb.append(email);
-		sb.append(" ,회사: ");
+		sb.append(" ,Company: ");
 		sb.append(company);
 		
 		return sb.toString();
@@ -103,7 +108,6 @@ public class NamecardDao {
 	static final String USER = "scott";
 	static final String PASSWORD = "tiger";
 	
-	//생성자에서 JDBC 드라이버 로딩
 	public NamecardDao() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -112,12 +116,10 @@ public class NamecardDao {
 		}
 	}
 	
-	//커넥션 얻기
 	private Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(URL, USER, PASSWORD);
 	}
 	
-	//자원 반환
 	private void close(ResultSet rs, PreparedStatement pstmt, Connection con) {
 		if (rs != null) {
 			try {
@@ -126,7 +128,6 @@ public class NamecardDao {
 				e.printStackTrace();
 			}
 		}
-		
 		if (pstmt != null) {
 			try {
 				pstmt.close();
@@ -134,7 +135,6 @@ public class NamecardDao {
 				e.printStackTrace();
 			}
 		}
-		
 		if (con != null) {
 			try {
 				con.close();
@@ -144,13 +144,11 @@ public class NamecardDao {
 		}
 	}
 	
-	//명함 추가하기	
 	public void insert(Namecard card) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		//순서 name,mobile,email,company
-		String sql = "INSERT INTO namecard VALUES " +
-			"(seq_namecard_no.nextval, ?, ?, ?, ?)";
+		
+		String sql = "INSERT INTO namecard VALUES (seq_namecard_no.nextval, ?, ?, ?, ?)";
 
 		try {
 			con = getConnection();
@@ -168,31 +166,31 @@ public class NamecardDao {
 		}
 	}
 	
-	//명함 삭제하기	
+	//Remove the Namecard	
 	public void delete(int no) {
 		//TODO
 	}
 	
-	//명함찾기(번호)
+	//Find the Namecard by no
 	public Namecard selectOne(int no) {
 		return null;
 	}
 	
-	//명함찾기(키워드)
+	//Find the Namecard by keyword
 	public ArrayList&lt;Namecard&gt; selectByKeyword(String keyword) {
 		ArrayList&lt;Namecard&gt; matched = new ArrayList&lt;Namecard&gt;();
 		//TODO		
 		return matched;
 	}
 	
-	//모든 명함 출력하기
+	//Get All Namecards
 	public ArrayList&lt;Namecard&gt; selectAll() {
 		ArrayList&lt;Namecard&gt; all = new ArrayList&lt;Namecard&gt;();
 		//TODO		
 		return all;
 	}		
 	
-	//명함 수정하기
+	//Modify the Namecard
 	public void update(Namecard card) {
 		//TODO
 	}
@@ -200,9 +198,11 @@ public class NamecardDao {
 }
 </pre>
 
-NamecardDao.java 는 아직 완성되지 않은 상태이다.<br />
-NamecardDao.java 의 //TODO 부분을 완성한다.<br />
-NamecardDao 클래스의 모든 메소드를 구현했다면 테스트를 위한 클래스를 만든다.<br />
+<p>
+NamecardDao.java is not yet complete.
+Complete the //TODO part of NamecardDao.java.
+If you have implemented all the methods in NamecardDao.java, create the following class for testing.
+</p>
 
 <em class="filename">Test.java</em>
 <pre class="prettyprint">
@@ -214,15 +214,15 @@ public class Test {
 
 	public static void main(String[] args) {
 		NamecardDao dao = new NamecardDao();
-		//1.insert(Namecard)테스트: 명함 추가하기
-		Namecard hong = new Namecard("임꺽정","011-1111-1111", "imkkukjung@gmail.org", "산적");
-		dao.insert(hong); //실행 후 SQLPLUS에서 확인한다.
+		//1.insert(Namecard) test: Adding a namecard
+		Namecard alison = new Namecard("Alison","011-1111-1111", "alison@ggmail.org", "Salesman");
+		dao.insert(alison); //After execution, check in SQL*PLUS.
 		
 /* 
-		//2.selectAll()테스트: 모든 명함정보를 출력하기 
+		//2.selectAll() test: Get all namecards 
 		ArrayList&lt;Namecard&gt; list = dao.selectAll();
 		int size = list.size();
-		for ( int i = 0; i &lt; size; i++ ) {
+		for (int i = 0; i &lt; size; i++) {
 			Namecard namecard = list.get(i);
 			System.out.println(namecard);
 		}
@@ -230,10 +230,10 @@ public class Test {
 
 
 /* 
-		//3.selectByKeyword(String)테스트: 검색어로 명함찾기
-		ArrayList&lt;Namecard&gt; matched = dao.selectByKeyword("임꺽정");
+		//3.selectByKeyword(String) test: Find a namecard by keyword
+		ArrayList&lt;Namecard&gt; matched = dao.selectByKeyword("Alison");
 		int length = matched.size();
-		for ( int i = 0; i &lt; length; i++ ) {
+		for (int i = 0; i &lt; length; i++) {
 			Namecard namecard = matched.get(i);
 			System.out.println(namecard);
 		}
@@ -241,14 +241,14 @@ public class Test {
 
 
 /* 
-		//4.selectOne(int) 테스트 : 명함번호로 명함 찾기
+		//4.selectOne(int) test : Find a namecard by no
 		Namecard card = dao.selectOne(1);
 		System.out.println(card);
 */
 
 
 /* 
-		5.delete(int) 테스트 : 명함삭제하기 
+		5.delete(int) test : Remove a namecard
 		dao.delete(1);
 		ArrayList&lt;Namecard&gt; all = dao.selectAll();
 		int cardNum = all.size();
@@ -258,29 +258,29 @@ public class Test {
 		}
 */	
 
-/*		//6. update(Namecard) 테스트 : 명함 수정하기
+/*		//6. update(Namecard) test : Modify a namecard
 		Namecard card = dao.selectOne(3);
 		System.out.println(card);
-		card.setEmail("kimchi@ggmail.org");
-		card.setMobile("010-8888-7777");
+		card.setEmail("alison@ggmail.org");
+		card.setMobile("222-2222-2222");
 		dao.update(card);
 */
-	
-	} //메인 메소드 끝
+	}
 
 }
 </pre>
 
-NamecardDao의 insert()메소드부터 테스트한다.<br />
-Test를 실행하여 임꺽정 정보가 삽입되는지는 SQL*PLUS에 접속하여 확인한다.<br />
-JDBC 프로그램을 실행할 때는 SQL*PLUS는 종료되어 있어야 한다.<br />
-왜냐하면 JDBC와 SQL*PLUS의 커밋모드가 달라 병목현상 발생할 수 있기 때문이다.<br />
-Test의 메인메소드에서 테스트항목에 붙인 번호대로 테스트한다.<br />
-테스트할때는 주석번호외에 다른 번호의 테스트는 주석처리하여 테스트한다.<br />
-예를 들어 2번을 테스트할 때는 1,3,4,5,6 은 주석처리된 상태여야 한다.<br />
-테스트를 마쳤다면 사용자 Ui를 담당할 클래스를 만들어 프로그램을 마무리하자.<br />
-Ui클래스를 만들때 생각의 전환이 필요하다.<br />
-데이터베이스를 이용한다면 명함 객체를 배열이나 ArrayList에 저장하여 유지할 필요가 없다.<br />
+<p>
+Test the insert () method of NamecardDao.
+Run SQL * PLUS to see if Alison's information is inserted.
+When you run the JDBC program, SQL * PLUS must be terminated.
+This is because different commit modes of JDBC programs and SQL * PLUS can cause bottlenecks.
+When testing the main method of Test, test it one by one.
+For example, when testing # 2, comments 1, 3, 4, 5, and 6 are commented out.
+When you have finished testing, create a class that will act as the user interface and finish the program.
+You need to change your mind when creating user interface classes.
+If you use a database, you do not need to store card objects in an array or ArrayList.
+</p>
 
 <em class="filename">NamecardUi.java</em>
 <pre class="prettyprint">
@@ -308,27 +308,27 @@ public class NamecardUi {
 		String menu = null;
 		
 		do {
-			System.out.println("메뉴를 선택하세요");
-			System.out.println("1.명함등록");
-			System.out.println("2.명함목록");
-			System.out.println("3.명함삭제");
-			System.out.println("4.명함수정");
-			System.out.println("5.명함검색");
-			System.out.println("q.종료");
+			System.out.println("Please select menu");
+			System.out.println("1.Namecard registration");
+			System.out.println("2.List of Namecards");
+			System.out.println("3.Delete Namecard");
+			System.out.println("4.Edit Namecards");
+			System.out.println("5.Search Namecard");
+			System.out.println("q.Quit");
 			
 			try {
 				menu = readCommandLine();	
 			
 				if (menu.equals("1")) {
-					System.out.print("이름을 입력하세요&gt;&gt;");
+					System.out.print("Please enter a name&gt;&gt;");
 					String name = readCommandLine();
-					System.out.print("손전화를 입력하세요&gt;&gt;");
+					System.out.print("Please enter a mobile&gt;&gt;");
 					String mobile = readCommandLine();
-					System.out.print("이메일을 입력하세요&gt;&gt;");
+					System.out.print("Please enter a email&gt;&gt;");
 					String email = readCommandLine();
-					System.out.print("소속을 입력하세요&gt;&gt;");
+					System.out.print("Please enter a company&gt;&gt;");
 					String company = readCommandLine();
-					Namecard card = new Namecard(name,mobile,email,company);
+					Namecard card = new Namecard(name, mobile, email, company);
 					dao.insert(card);
 				} else if (menu.equals("2")) {
 					ArrayList&lt;Namecard&gt; all = dao.selectAll();
@@ -336,44 +336,44 @@ public class NamecardUi {
 						System.out.println(all.get(i));
 					}
 				} else if (menu.equals("3")) {
-					System.out.print("삭제할 이름을 입력하세요&gt;&gt;");
+					System.out.print("Please enter the name to delete&gt;&gt;");
 					String name = readCommandLine();
 					ArrayList&lt;Namecard&gt; matched = dao.selectByKeyword(name);
 					if (matched.size() &gt; 0) {
 						for (int i = 0; i &lt; matched.size(); i++) {
 							System.out.println(matched.get(i));
 						}
-						System.out.print("삭제할 번호를 선택하세요&gt;&gt;");
+						System.out.print("Please enter the NO to delete&gt;&gt;");
 						int id = Integer.parseInt(readCommandLine());
 						dao.delete(id);
 					}
 				} else if (menu.equals("4")) {
-					System.out.print("수정할 명함의 이름을 입력하세요&gt;&gt;");
+					System.out.print("Enter the name of the namecard to edit&gt;&gt;");
 					String name = readCommandLine();
 					ArrayList&lt;Namecard&gt; matched = dao.selectByKeyword(name);
 					if (matched.size() &gt; 0) {
 						for (int i = 0; i &lt; matched.size(); i++) {
 							System.out.println(matched.get(i));
 						}
-						System.out.print("수정할 명함번호를 입력하세요&gt;&gt;");
+						System.out.print("Please enter the number of namecard to edit&gt;&gt;");
 						int id = Integer.parseInt(readCommandLine());
 						Namecard card = dao.selectOne(id);
-						System.out.print("이름을 수정하려면 입력하세요&gt;&gt;");
+						System.out.print("To edit a name, enter the name to change&gt;&gt;");
 						name = readCommandLine();
 						if (!name.equals("")) {
 							card.setName(name);
 						}
-						System.out.print("손전화를 수정하려면 입력하세요&gt;&gt;");
+						System.out.print("To edit a mobile, enter the mobile to change&gt;&gt;");
 						String mobile = readCommandLine();
 						if (!mobile.equals("")) {
 							card.setMobile(mobile);
 						}	
-						System.out.print("이메일을 수정하려면 입력하세요&gt;&gt;");
+						System.out.print("To edit an email, enter the email to change&gt;&gt;");
 						String email = readCommandLine();
 						if (!email.equals("")) {
 							card.setEmail(email);
 						}
-						System.out.print("소속을 수정하려면 입력하세요&gt;&gt;");
+						System.out.print("To edit a company, enter the company to change&gt;&gt;");
 						String company = readCommandLine();
 						if (!company.equals("")) {
 							card.setCompany(company);
@@ -381,7 +381,7 @@ public class NamecardUi {
 						dao.update(card);
 					}
 				} else if (menu.equals("5")) {
-					System.out.print("검색할 이름을 입력하세요&gt;&gt;");
+					System.out.print("Please enter a name to search&gt;&gt;");
 					String name = readCommandLine();
 					ArrayList&lt;Namecard&gt; matched = dao.selectByKeyword(name);
 					for(int i = 0; i &lt; matched.size(); i++) {

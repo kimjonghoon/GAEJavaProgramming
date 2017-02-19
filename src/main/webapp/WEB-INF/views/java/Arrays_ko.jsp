@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <article>
 <div class="last-modified">Last Modified 2013.12.7</div>
 
@@ -5,7 +8,7 @@
 
 배열은 동일한 자료형의 값을 여러개 담을 수 있다.<br />
 
-<img src="https://lh3.googleusercontent.com/-iLIT7b27vBo/Vvy0K3Fs5eI/AAAAAAAACto/WJw-WrH8EtENW0RZRVweV-vjoMqqXb4DACCo/s913-Ic42/variable-array.png" alt="variable and array" /><br />
+<img src="https://lh3.googleusercontent.com/-iLIT7b27vBo/Vvy0K3Fs5eI/AAAAAAAACto/WJw-WrH8EtENW0RZRVweV-vjoMqqXb4DACCo/s913-Ic42/variable-array.png" alt="variable and array" style="width: 100%;"/><br />
 
 값들은 배열요소에 하나씩 저장되어 있다.<br />  
 배열요소에 접근하기 위해서는 인덱스(배열요소에 0부터 순서대로 붙여진 숫자)와 [](꺽쇠)를 사용한다.<br />

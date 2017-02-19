@@ -1,38 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2014.9.11</div>
+<div class="last-modified">Last Modified 2017.2.14</div>
 
 <h1>Connection Pool</h1>
 
-자바 프로그램에서 데이터베이스에 연결을 시도하는 것(Connection 객체를 얻는것)은 시간이 많이 걸리는 작업이다.<br />
-만약, 일정량의 Connection을 미리 생성시켜 저장소에 저장했다가
-프로그램에서 요청이 있으면 저장소에서 Connection 꺼내 제공한다면 시간을 절약할 수 있을 것이다.<br /> 
-이러한 프로그래밍 기법을 Connection Pooling이라 한다.<br />
-사용시 주의할 점은 작업이 완료되었으면 기존처럼 Connection 의 close()메소드를 사용하여 자원을 반납하지 않고, Connection 을 저장소에 복귀시켜야 한다는 것이다.<br />
+<p>
+Attempting to connect to a database in a Java program (getting a Connection object) is a time-consuming task.
+If you create a certain amount of connection in advance and store it in the repository, you can save time if the program provides a connection from the repository if there is a request.
+This programming technique is called connection pooling.
+When using JDBC, you should return the connection to the repository instead of returning the resource using the Connection's close () method.
+</p>
 
-<h3>1. 전체 클래스 요약</h3>
-Log.java<br />
-로그 파일에 로그 메시지를 입력하기 위한 클래스<br />
-<br />
-DBConnectionPool.java<br />
-특정 데이터베이스에 대한 커넥션 객체를 풀로 관리하는 클래스<br />
-<br />
-DBConnectionPoolManager.java<br />
-DBConnectionPool 객체들을 관리하는 클래스<br />
-<br />
-ConnectionManager.java<br /> 
-DBConnectionPoolManager 클래스에게 커넥션을 요청하는 추상클래스<br />
-추상 클래스로 만든 이유는 여러 데이터베이스를 고려했기 때문이다.<br />
-사용하는 데이터베이스에 따라 이 클래스를 상속하는 클래스를 만들어 사용한다.<br />
-<br />
-OracleConnectionManager.java<br /> 
-오라클용 커넥션을 얻기위해 ConnectionManager 클래스를 상속한 클래스<br />
-<br />
-oracle.properties<br /> 
-오라클용 커넥션풀 설정 파일<br />
-oracle.properties 에서 "oracle" 이란 문자열은 오라클용 커넥션풀 객체를 구별하는 이름으로 사용된다.<br />
-설정 내용을 자바 코드에 구현하는 것보다는 파일로 관리하기는 것이 재사용과 유지보수에 유리하다.<br />
+<h3>Summary of Connection Pooling Classes</h3>
 
-<h3>2. Connection Pooling 관련 소스</h3>
+<p>
+Log is a class for outputting log messages to a file.
+</p>
+
+<p>
+DBConnectionPool is a class that puts database connections into a pool and manages it.
+</p>
+
+<p>
+DBConnectionPoolManager is a class that manages DBConnectionPool objects.
+</p>
+
+<p>
+The ConnectionManager is an abstract class that asks the DBConnectionPoolManager class for a connection.
+The reason for the abstract class is that it considers multiple databases.
+Depending on the database you are using, create a class that inherits this class.
+</p>
+
+<p>
+OracleConnectionManager is a class that inherits the ConnectionManager class to manage connections for Oracle.
+</p>
+
+<p>
+Oracle.properties is the connection pool configuration file for Oracle.
+In oracle.properties, the string "oracle" is used as the distinguished name of the connection pool object for Oracle.
+It is advantageous for reuse and maintenance to manage the configuration as a file rather than to implement it in Java code.
+</p>
+
+<h3>Connection Pooling Sources</h3>
 <em class="filename">Log.java</em>
 <pre class="prettyprint">
 package net.java_school.util;
@@ -98,36 +109,35 @@ import java.util.Date;
 
 import net.java_school.util.Log;
 
-// Connection Pool을 관리하는 클래스 
 class DBConnectionPool {
-	// 현재 사용 중인 Connection 개수
+	//Number of connections currently in use
 	private int checkedOut;
 	
 	// Free Connection List
 	private Vector&lt;Connection&gt; freeConnections = new Vector&lt;Connection&gt;();
 	
-	// Connection 최대 개수
+	//Maximum number of connections
 	private int maxConn;
 	
-	// Connection 초기 개수
+	//Initial number of connections 
 	private int initConn;
 	
-	// Waiting time (pool에 connection이 없을때 기다리는 최대시간)
+	//Waiting time (maximum time to wait when there is no connection in the pool)
 	private int maxWait;
 	
-	// Connection Pool Name
+	//Connection Pool Name
 	private String name;
 	
-	// DB Password
+	//DB Password
 	private String password;
 	
-	// DB URL
+	//DB URL
 	private String URL;
 	
-	// DB UserID
+	//DB UserID
 	private String user;
 	
-	// Constructor
+	//Constructor
 	public DBConnectionPool(String name, 
 			String URL, 
 			String user, 
@@ -148,35 +158,35 @@ class DBConnectionPool {
 		}
 	}
 	
-	// Connection 반납
-	// @param con : 반납할 Connection
+	//Returning Connection
+	//@param con : Connection to return
 	public synchronized void freeConnection(Connection con) {
 		freeConnections.addElement(con);
 		checkedOut--;
-		// Connection을 얻기 위해 대기하고 있는 thread에 알림
+		//Notify thread waiting to get Connection
 		notifyAll();
 	}
 	
-	// Connection 을 얻음
+	//Get Connection
 	public synchronized Connection getConnection() {
 		Connection con = null;
-		// Connection이 Free List에 있으면 List의 처음 것을 얻음
+		//If Connection is in Free List, get the first of List
 		if (freeConnections.size() &gt; 0) {
 			con = (Connection) freeConnections.firstElement();
 			freeConnections.removeElementAt(0);
 			
 			try {
-				// DBMS에 의해 Connection이 close 되었으면 다시 요구
+				//If the connection is closed by the DBMS, request again
 				if (con.isClosed()) {
 					Log.err("Removed bad connection from " + name);
 					con = getConnection();
 				}
-			} // 요상한 Connection 발생하면 다시 요구
+			} //If strange connection occurs, request again
 			catch (SQLException e) {
 				Log.err(e, "Removed bad connection from " + name);
 				con = getConnection();
 			}
-		} // Connection이 Free List에 없으면 새로 생성
+		} //If Connection is not in Free List, create new
 		else if (maxConn == 0 || checkedOut &lt; maxConn) {
 			con = newConnection();
 		}
@@ -188,8 +198,8 @@ class DBConnectionPool {
 		return con;
 	}
 	
-	// Connection을 얻음
-	// @param timeout : Connection을 얻기 위한 최대 기다림 시간
+	//Get Connection
+	//@param timeout : Maximum Wait Time to Obtain a Connection
 	public synchronized Connection getConnection(long timeout) {
 		long startTime = new Date().getTime();
 		Connection con;
@@ -198,7 +208,7 @@ class DBConnectionPool {
 				wait(timeout * maxWait);
 			} catch (InterruptedException e) {}
 			if ((new Date().getTime() - startTime) &gt;= timeout) {
-				// 기다림 시간 초과
+				//Wait timeout
 				return null;
 			}
 		}
@@ -206,7 +216,7 @@ class DBConnectionPool {
 		return con;
 	}
 	
-	// Connection 생성
+	//Get Connection
 	private Connection newConnection() {
 		Connection con = null;
 		try {
@@ -244,12 +254,12 @@ import java.util.*;
 import net.java_school.util.Log;
 
 public class DBConnectionPoolManager {
-	// DBConnectionPoolManager 에 싱글턴 패턴을 적용하기 위해(인스턴스를 하나만 유지) static 으로 선언
+	//To apply the singleton pattern to the DBConnectionPoolManager (keep only one instance), declare it as static
 	static private DBConnectionPoolManager instance;
 	private Vector&lt;String&gt; drivers = new Vector&lt;String&gt;();
 	private Hashtable&lt;String, DBConnectionPool&gt; pools = new Hashtable&lt;String, DBConnectionPool&gt;();
 	
-	// DBConnectionPoolManager의 instance를 얻음
+	//Obtaining instance of DBConnectionPoolManager
 	// @return DBConnectionManger
 	static synchronized public DBConnectionPoolManager getInstance() {
 		if (instance == null) {
@@ -262,9 +272,9 @@ public class DBConnectionPoolManager {
 	// Default Constructor
 	private DBConnectionPoolManager() {}
 	
-	// 현재 Connection을 Free Connection List로 보냄
-	// @param name : Pool Name
-	// @param con : Connection
+	//Send current Connection to Free Connection List
+	//@param name : Pool Name
+	//@param con : Connection
 	public void freeConnection(String name, Connection con) {
 		DBConnectionPool pool = (DBConnectionPool) pools.get(name);
 		if (pool != null) {
@@ -274,11 +284,10 @@ public class DBConnectionPoolManager {
 		Log.out("One Connection of " + name + " was freed");
 	}
 	
-	// Open Connection을 얻음. 현재 열린 커넥션이 없고 최대 커넥션 개수가
-	// 사용 중이 아닐 때는 새로운 커넥션을 생성. 현재 열린 커넥션이 없고
-	// 최대 커넥션 개수가 사용 중일 때 기본 대기 시간을 기다림
-	// @param name : Pool Name
-	// @return Connection : The connection or null
+	//Obtain Open Connection. Creates a new connection if there are no open connections and the maximum number of connections has not been reached.
+	//Waits for the default wait time when there are no open connections currently and the maximum number of connections is in use.
+	//@param name : Pool Name
+	//@return Connection : The connection or null
 	public Connection getConnection(String name) {
 		DBConnectionPool pool = (DBConnectionPool) pools.get(name);
 		if (pool != null) {
@@ -287,8 +296,8 @@ public class DBConnectionPoolManager {
 		return null;
 	}
 	
-	// Connection Pool을 생성
-	// @param poolName : 생성할 Pool Name
+	// Create a Connection Pool
+	// @param poolName : Name of Pool to create
 	// @param url : DB URL
 	// @param user : DB UserID
 	// @param password : DB Password
@@ -305,7 +314,7 @@ public class DBConnectionPoolManager {
 		Log.out("Initialized pool " + poolName);
 	}
 	
-	// 초기화 작업
+	//Initialization
 	public void init(String poolName, 
 			String driver, 
 			String url,
@@ -319,8 +328,8 @@ public class DBConnectionPoolManager {
 		createPools(poolName, url, user, passwd, maxConn, initConn, maxWait);
 	}
 	
-	// JDBC Driver Loading
-	// @param driverClassName : 사용하고자 하는 DB의 JDBC 드라이버
+	//JDBC Driver Loading
+	//@param driverClassName : The JDBC driver for the DB you want to use.
 	private void loadDrivers(String driverClassName) {
 		try {
 			Class.forName(driverClassName);
@@ -361,7 +370,7 @@ public abstract class ConnectionManager {
 	
 	public ConnectionManager(String pool) {
 		poolName = pool;
-		// Property파일 디렉토리 지정
+		//Specifying the directory for the Property file
 		configFile = "C:/jdbc/"+poolName+".properties";
 		
 		try {
@@ -414,7 +423,7 @@ public class OracleConnectionManager extends ConnectionManager {
 	public OracleConnectionManager() {
 		super("oracle");
 		String JDBCDriver = "oracle.jdbc.driver.OracleDriver";
-		// 오라클용 JDBC thin driver
+		//Oracle JDBC thin driver
 		String JDBCDriverType = "jdbc:oracle:thin";
 		String url = JDBCDriverType + ":@" + dbServer + ":" + port + ":" + dbName;
 		connMgr = DBConnectionPoolManager.getInstance();
@@ -455,15 +464,15 @@ initConn = 5
 maxWait = 5
 </pre>
 
-<h3>3. 사용법</h3>
-Log.java 소스에서<br />
-<strong>public String logFile = "C:/jdbc/connection-pool.log";</strong> 에 맞게
-C:/jdbc 에 connection-pool.log 라는 내용이 빈 파일을 만든다.<br />
-ConnectionManager.java 소스에서<br />
-<strong>configFile = "C:/jdbc/"+poolName+".properties";</strong> 에 맞게 C:/jdbc 에 oracle.properties
-파일을 위에 oracle.properties 내용을 참고해서 만든다.<br />
-<br />
-컴파일이 완료되었다면 GetEmp.java 에 적용해 보자.<br />
+<h3>How to use</h3>
+
+<p>
+Create an empty file named connection-pool.log in C:/jdbc according to the following code in Log.java:<br /> 
+public String logFile = "C:/jdbc/connection-pool.log"<br />
+Create a file named oracle.properties in C:/jdbc according to the following code in ConnectionManager.java:<br />
+configFile = "C:/jdbc/" + poolName + ".properties";<br />
+If compilation is complete, apply it to GetEmp.java.
+</p>
 
 <em class="filename">GetEmp.java</em>
 <pre class="prettyprint">
@@ -475,9 +484,9 @@ import net.java_school.util.Log;
 import net.java_school.db.dbpool.*;
 
 public class GetEmp {
+
 	public static void main(String[] args) {
-		<strong>
-		ConnectionManager conMgr = new OracleConnectionManager();</strong>
+		<strong>ConnectionManager conMgr = new OracleConnectionManager();</strong>
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -485,12 +494,8 @@ public class GetEmp {
 		String query = "SELECT * FROM emp";
 
 		try {
-			// 데이터베이스의 연결을 설정한다.
 			conn = <strong>conMgr.getConnection();</strong>
-			// Statement를 가져온다.
 			stmt = conn.createStatement();
-
-			// SQL문을 실행한다.
 			rs = stmt.executeQuery(query);
 
 			while (rs.next()) { 
@@ -502,54 +507,49 @@ public class GetEmp {
 				String sal = rs.getString(6);
 				String comm = rs.getString(7);
 				String depno = rs.getString(8);
-				// 결과를 출력한다.
-				System.out.println( 
-					empno + " : " + ename + " : " + job + " : " + mgr
-					+ " : " + hiredate + " : " + sal + " : " + comm + " : "
-				+ depno); 
+
+				System.out.println(empno + " : " + ename + " : " + job + " : " + mgr
+					+ " : " + hiredate + " : " + sal + " : " + comm + " : "	+ depno); 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				// ResultSet를 닫는다.
 				rs.close();
-				// Statement를 닫는다.
-				stmt.close();<strong>
-				// Connection 를 풀로 복귀시킨다.
-				conMgr.freeConnection(conn);</strong>
+				stmt.close();
+				<strong>conMgr.freeConnection(conn);</strong>
 			} catch (SQLException e) {}
 		}
-	} // main()의 끝
-} // 클래스의 끝
+	}
+}
 </pre>
 
-
-
-
 <h2>DBCP</h2>
-DBCP 는 아파치의 오픈 소스 컨넥션 풀이다.<br />
-http://commons.apache.org/proper/commons-dbcp/<br />
 
-우리가 참고할 예제는 
-http://svn.apache.org/viewvc/commons/proper/dbcp/trunk/doc/ 
-에서 BasicDataSourceExample.java 이다.<br />
+<p>
+DBCP is Apache's open source connection pool library.
+More information is available at:<br />
+<a href="http://commons.apache.org/proper/commons-dbcp/">http://commons.apache.org/proper/commons-dbcp/</a>
+</p>
 
-BasicDataSourceExample.java 예제를 조금 수정하여 테스트해 볼 것이다.<br />
+<p>
+An example we will practice is BasicDataSourceExample.java at the following address:
+<a href="http://svn.apache.org/viewvc/commons/proper/dbcp/trunk/doc/">http://svn.apache.org/viewvc/commons/proper/dbcp/trunk/doc/</a>
+I will test BasicDataSourceExample.java with a little modification.
+To practice the example, add the commons-dbcp, commons-pool, and commons-logging libraries to the Build Path.
+</p>
 
-
-commons-dbcp, commons-pool, commons-logging 라이브러리를 빌드 패스에 추가해야 한다.<br />
-
-예제에 사용한  버전은 다음과 같다.<br />
-DBCP 2는 JDK 7 환경에서만 실행된다.<br />
-JDK 6 에서는 DBCP 1.4를, 6 이하의 JDK 에서는 DBCP 1.3를 사용해야 한다.<br />
+<p>
+Note that DBCP 2 runs only in the JDK 7 environment.
+You should use DBCP 1.4 in JDK 6 and DBCP 1.3 in JDKs 6 and below.
+</p>
 
 <ul>
-	<li>commons-dbcp2-2.0.1-bin.zip<br />
+	<li>commons-dbcp2-2.0.1-bin.zip
 	<a href="http://commons.apache.org/proper/commons-dbcp/download_dbcp.cgi">http://commons.apache.org/proper/commons-dbcp/download_dbcp.cgi</a></li>
-	<li>commons-pool2-2.2-bin.zip<br />
+	<li>commons-pool2-2.2-bin.zip
 	<a href="http://commons.apache.org/proper/commons-pool/download_pool.cgi">http://commons.apache.org/proper/commons-pool/download_pool.cgi</a></li>
-	<li>commons-logging-1.2-bin.zip<br />
+	<li>commons-logging-1.2-bin.zip
 	<a href="http://commons.apache.org/proper/commons-logging/download_logging.cgi">http://commons.apache.org/proper/commons-logging/download_logging.cgi</a></li>
 </ul>
 
@@ -690,7 +690,9 @@ public class BasicDataSourceExample {
 }
 </pre>
 
-위 예제를 참고하여 최대한 간단하게 컨텍션 풀에서 커넥션을 얻는 클래스를 예제로 만들어 본다.
+<p>
+Let's create a class that gets a connection from the connection pool by referring to the example above.
+</p>
 
 <em class="filename">Test.java</em>
 <pre class="prettyprint">
@@ -728,7 +730,9 @@ public class Test {
 }
 </pre>
 
-예제를 지금까지 실습한 예제인 GetEmp.java 에 적용해 보자.
+<p>
+Apply the above class to GetEmp.java.
+</p>
 
 <em class="filename">GetEmp.java</em>
 <pre class="prettyprint">
@@ -740,8 +744,8 @@ import net.java_school.dbcp.*;
 
 public class GetEmp {
 	public static void main(String[] args) {
-		<strong>
-		Test test = new Test();</strong>
+		
+		<strong>Test test = new Test();</strong>
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -749,12 +753,8 @@ public class GetEmp {
 		String query = "SELECT * FROM emp";
 
 		try {
-			// 데이터베이스의 연결을 설정한다.
 			conn = <strong>test.getConnection();</strong>
-			// Statement를 가져온다.
 			stmt = conn.createStatement();
-
-			// SQL문을 실행한다.
 			rs = stmt.executeQuery(query);
 
 			while (rs.next()) { 
@@ -766,47 +766,49 @@ public class GetEmp {
 				String sal = rs.getString(6);
 				String comm = rs.getString(7);
 				String depno = rs.getString(8);
-				// 결과를 출력한다.
-				System.out.println( 
-					empno + " : " + ename + " : " + job + " : " + mgr
-					+ " : " + hiredate + " : " + sal + " : " + comm + " : "
-				+ depno); 
+
+				System.out.println(empno + " : " + ename + " : " + job + " : " + mgr
+					+ " : " + hiredate + " : " + sal + " : " + comm + " : "	+ depno); 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				// ResultSet를 닫는다.
 				rs.close();
-				// Statement를 닫는다.
-				stmt.close();<strong>
-				// Connection를 닫는다.
-				conn.close();</strong>
+				stmt.close();
+				<strong>conn.close();</strong>
 			} catch (SQLException e) {}
 		}
-	} // main()의 끝
-} // 클래스의 끝
+	}
+}
 </pre>
 
-커넥션을 conn.close(); 로 자원을 반납하고 있는 것에 주목하자.<br />
-이와 같이 자원을 반납하면 풀을 사용하는 의미가 반감되지 않나?<br />
-이 의문을 해결하기 위해서는 JDK 1.4부터 생긴 DataSource 인터페이스에 대해 알아보아야 한다.<br />
-데이터소스는 커넥션 공장이다.<br />
-데이터소스는 3 종류의 구현체가 있다.<br />
+<p>
+Note that the connection is returned by the <em>conn.close();</em>.
+Would not it be a problem to return resources like this when using a connection pool?
+To solve this question, you should look at the DataSource interface.
+The DataSource is the connection factory.
+There are three kinds of implementations of DataSource.
+</p>
 
 <ul>
-	<li>기본 구현체 -- 표준 커넥션 객체를 생산한다.</li>
-	<li>커넥션 풀링 구현체 -- 자동으로 커넥션 풀에 참여하는 커넥션 객체를 생산한다. 이 구현체는 미들 티어 커넥션 풀링 매니저와 함께 작업한다.</li>
-	<li>분산 트랜잭션 구현체 -- 분산 트랜잭션을 위한, 커넥션 풀에 참여하는 커넥션 객체를 생산한다. 이 구현체는 미들 티어 트랜잭션 매니저와 커넥션 풀링 매니저와 함께 작업한다.</li>
+	<li>Base implementation: Produces standard connection objects.</li>
+	<li>Connection pooling implementation: Automatically creates a connection object that participates in the connection pool. This implementation works with the middle tier connection pooling manager.</li>
+	<li>Distributed Transaction Implementation: Produces a connection object that participates in a connection pool for distributed transactions. This implementation works with the middle-tier transaction manager and the connection pooling manager.</li>
 </ul>
 
-DBCP는 javax.sql.DataSource 인터페이스를 구현한다.<br />
-우리가 지금껏 사용했던 커넥션와 커넥션 풀링용 커넥션은 다르다.<br />
-풀링용 커넥션 객체의 close()는 커넥션을 풀로 복귀시킨다.<br />
-<br />
-이미 사용했던 커넥션 풀과 비슷하게 예제를 만들어 볼 것이다.<br />
-먼저 ConnectionManager 추상 클래스를 작성한다.<br />
-이 추상 클래스는 설정 파일을 읽어서 속성을 설정하는 역할과 커넥션을 얻는 메소드로 구성된다.<br />
+<p>
+DBCP implements the javax.sql.DataSource interface.
+The connections we have used so far are different from those for connection pooling.
+The close () method of the connection object for connection pooling returns itself to the pool.
+</p>
+
+<p>
+We will create an example similar to the connection pool we already used.
+First, create a ConnectionManager abstract class.
+The constructor of this abstract class reads the configuration file and sets the object's members.
+This abstract class has a method that is called to get a connection.
+</p>
 
 <em class="filename">ConnectionManager.java</em>
 <pre class="prettyprint">
@@ -860,7 +862,9 @@ public abstract class ConnectionManager {
 }
 </pre>
 
-다음으로 ConnectionManager 를 상속하는 OracleConnectionManager 클래스를 만든다.
+<p>
+Next, create an OracleConnectionManager class that inherits ConnectionManager.
+</p>
 
 <em class="filename">OracleConnectionManager.java</em>
 <pre class="prettyprint">
@@ -888,17 +892,21 @@ public class OracleConnectionManager extends ConnectionManager {
 }
 </pre>
 
-maxConn, initConn, maxWait 설정하지 않으면 디폴트 값이 적용된다.<br />
-프로퍼티 파일대로 설정하려면 다음 코드를 추가하면 된다.<br />
+<p>
+MaxConn, initConn, maxWait If not set, the default value is applied.
+To set it as a property file, add the following code:
+</p>
 
 <pre class="code">
 ds.setInitialSize(initConn);
 ds.setMaxTotal(maxConn);
 ds.setMaxWaitMillis(maxWait);
 </pre>
-		
-BasicDataSource 에 설정하는 방법은 이 부분은 공식 사이트의 문서를 참조하라.<br />
-oracle.properties 파일을 이클립스 프로젝트의 루트 디렉토리에 복사한다.<br />
+
+<p>
+For instructions on how to set it in BasicDataSource, see the official site documentation.
+Copy the oracle.properties file to the root directory of your Eclipse project.
+</p>
 
 <em class="filename">oracle.properties</em>
 <pre class="prettyprint">
@@ -931,7 +939,9 @@ initConn = 5
 maxWait = 5
 </pre>
 
-다시 GetEmp 에 적용해 보자.
+<p>
+Let's apply them to GetEmp.java again.
+</p>
 
 <em class="filename">GetEmp.java</em>
 <pre class="prettyprint">
@@ -942,8 +952,9 @@ import java.sql.*;
 import net.java_school.dbcp.*;
 
 public class GetEmp {
-	public static void main(String[] args) {<strong>
-		ConnectionManager conMgr = new OracleConnectionManager();</strong>
+	
+	public static void main(String[] args) {
+		<strong>ConnectionManager conMgr = new OracleConnectionManager();</strong>
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -951,12 +962,8 @@ public class GetEmp {
 		String query = "SELECT * FROM emp";
 
 		try {
-			// 데이터베이스의 연결을 설정한다.
 			conn = <strong>conMgr.getConnection();</strong>
-			// Statement를 가져온다.
 			stmt = conn.createStatement();
-
-			// SQL문을 실행한다.
 			rs = stmt.executeQuery(query);
 
 			while (rs.next()) { 
@@ -968,30 +975,24 @@ public class GetEmp {
 				String sal = rs.getString(6);
 				String comm = rs.getString(7);
 				String depno = rs.getString(8);
-				// 결과를 출력한다.
-				System.out.println( 
-					empno + " : " + ename + " : " + job + " : " + mgr
-					+ " : " + hiredate + " : " + sal + " : " + comm + " : "
-				+ depno); 
+
+				System.out.println(empno + " : " + ename + " : " + job + " : " + mgr
+					+ " : " + hiredate + " : " + sal + " : " + comm + " : "	+ depno); 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				// ResultSet를 닫는다.
 				rs.close();
-				// Statement를 닫는다.
 				stmt.close();
-				// Connection를 닫는다.<strong>
-				conn.close();</strong>
+				<strong>conn.close();</strong>
 			} catch (SQLException e) {}
 		}
 	}
-	
 }
 </pre>
 
-<span id="refer">참고</span>
+<span id="refer">References</span>
 <ul id="references">
 	<li><a href="http://docs.oracle.com/javase/6/docs/api/javax/sql/DataSource.html">http://docs.oracle.com/javase/6/docs/api/javax/sql/DataSource.html</a></li>
 	<li><a href="http://commons.apache.org/proper/commons-dbcp/">http://commons.apache.org/proper/commons-dbcp/</a></li>

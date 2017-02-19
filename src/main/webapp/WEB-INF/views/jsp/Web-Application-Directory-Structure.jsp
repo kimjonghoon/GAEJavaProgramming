@@ -1,13 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2014.7.10</div>
+<div class="last-modified">Last Modified 2017.2.16</div>
 
-<h1>웹 애플리케이션 작성 실습</h1>
+<h1>Web application directory structure</h1>
 
-{톰캣홈}/webapps에 새로운 웹 애플리케이션을 추가하는 방법은 이미 알고 있다.<br />
-이번 과정에서는 톰캣 디폴트 웹 애플리케이션 디렉토리에 있지 않는 웹 애플리케이션을 톰캣이 서비스하도록 하는 방법을 알아볼 것이다.<br />
-
-C:/www/myapp 란 디렉토리를 만든다.<br />
-myapp 아래 아래와 같이 서브 디렉토리를 만든다.<br />
+<p>
+You already know how to add a new web application to {TOMCAT_HOME}/webapps.
+In this chapter, you will learn how to make Tomcat serve web applications that are not in {TOMCAT_HOME}/webapps.
+Create C:/www/myapp directory.
+Create subdirectories under myapp/ as shown below.
+</p>
 
 <ul>
 	<li>WEB-INF</li>
@@ -15,27 +19,25 @@ myapp 아래 아래와 같이 서브 디렉토리를 만든다.<br />
 	<li>WEB-INF/lib</li>
 </ul>
 
-C:/www/myapp 는 톰캣의 웹 애플리케이션이 있어야 하는 디폴트 디렉토리가 아니므로 톰캣은 myapp 애플리케이션의 존재를 알지 못한다.<br />
-따라서 톰캣이 myapp 웹 애플리케이션을 서비스하도록 우리가 뭔가 해야 할 일이 남아 있다.<br />
-이 작업은 XML 파일을 하나 만든는 것이다.<br />
-작성할 XML 파일은 톰캣에서 웹 애플리케이션을 관리하기 위한 용도의 파일이다.<br />
-이 XML파일을 루트 엘리먼트가 Context 이기에 컨텍스트 파일이라 한다.<br />
-(톰캣에서 Context는 웹 애플리케이션을 의미한다.)<br />
-컨텍스트 파일을 작성할 때 가장 중요한 정보는 웹 애플리케이션의 소스가 위치하는 
-최상위 디렉토리(DocumentBase 또는 Context Root 라 한다.)와 URL 로 접근하는 경로 정보(Context Path)이다.<br />
-이 정보는 Context 엘리먼트의 docBase 와 path 속성으로 설정한다.<br />
-Context 파일을 작성한 다음 {톰캣 홈}/conf/Catalina/localhost 에 위치시키면 톰캣이 해당 웹 애플리케이션을 자동으로 인식하여 로드한다.<br />
-만약 컨텍스트 파일이 잘못 작성되었다면 톰캣은 해당 자바 웹 애플리케이션을 로드하지 못하며, 
-실패 원인을 {톰캣 홈}/logs 에 있는 로그파일에 쓸 것 이다.<br />
-에러 메시지는 따로 공부하는 것이 아니다.<br />
-사람마다 다양한 에러 메시지를 만날 수 있다.<br />
-일단 보고 추측해보고 수정하고, 그래도 안돼면 구글링도 해야 한다<br />
-JSP 에러 역시 마찬가지다.<br />
-되는 코드를 그대로 복사해서 테스트하는 것은 프로그래밍을 학습하는 것이 아니다.<br />
-프로그래밍 학습의 90%는 다양한 에러를 접하고 에러를 수정하는 과정이다.<br />
+<p>
+C:/www/myapp is not Tomcat's default web application directory, 
+so Tomcat does not know the existence of myapp application.
+So there is something you need to do to make Tomcat serve myapp web application.
+The task is to create one XML file.
+This XML file is the file that Tomcat needs to manage the web application.
+This XML file is called a context file because the root element of this XML file is Context. (In Tomcat, Context is a Web application.)
+The most important information in the context file is the top-level directory (called DocumentBase or Context Root) of the Web application 
+and the Context Path that is URL path information for accessing web application with web browser.
+These information are set in the docBase and path attributes of the Context element in the context file.
+If you create a Context file and place it in {TOMCAT_HOME}/conf/Catalina/localhost, Tomcat will automatically recognize and load your web application.
+If the context file is written incorrectly, Tomcat will not load your web application and will write the cause of the failure to a log file in {TOMCAT_HOME}/logs.
+</p>
 
-<h3>톰캣 Context 파일 작성</h3>
-myapp 자바 웹 애플리케이션을 위한 Context 파일을 만든다.<br />
+<h3>How to create a Tomcat Context file</h3>
+
+<p>
+Let's create a context file for myapp web application.
+</p>
 
 <em class="filename">myapp.xml</em>
 <pre class="prettyprint">
@@ -46,49 +48,79 @@ myapp 자바 웹 애플리케이션을 위한 Context 파일을 만든다.<br />
 &lt;/Context&gt;
 </pre>
 
-Context 파일명이 위와 같이 myapp.xml 이고  path 속성은 생략하면 context path 는 /myapp 로 결정된다.<br />
-myapp.xml 파일을 만든 후 {톰캣 홈}/conf/Catalina/localhost 에 복사한다.<br />
-테스트를 위해서C:/www/myapp 디렉토리에 test.html 파일을 만든다.<br />
-톰캣을 재가동 한 후 http://localhost:8989/myapp/test.html를 방문하여 실행이 되는지 확인한다.<br />
+<p>
+Copy myapp.xml file to {TOMCAT_HOME}/conf/Catalina/ localhost.
+If you name your Context file as myapp.xml as above, if you omit the path attribute, the context path is determined as myapp.
+</p>
+<p>
+For testing, create a test.html file in the C:/www/myapp directory.
+</p>
+
+<strong class="filename">test.html</strong>
+<pre class="prettyprint">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;title&gt;myapp TEST&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;myapp TEST&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>
+Restart Tomcat and visit http://localhost:port/myapp/test.html.
+If not 404, Tomcat is servicing myapp.
+</p>
 
 <table class="table-in-article">
-<caption class="table-in-article-caption">Context 주요 속성</caption>
+<caption class="table-in-article-caption">Main Properties of Context</caption>
 <tr>
-	<th class="table-in-article-th" style="width: 120px;">속성</th>
-	<th class="table-in-article-th" style="width: 40px;">기본값</th>
-	<th class="table-in-article-th">설명</th>
+	<th class="table-in-article-th" style="width: 100px;">attribute</th>
+	<th class="table-in-article-th" style="width: 60px;">Default</th>
+	<th class="table-in-article-th">Description</th>
 </tr>
 <tr>
 	<td class="table-in-article-td"><strong>docBase</strong></td>
 	<td class="table-in-article-td">&nbsp;</td>
-	<td class="table-in-article-td">웹 애플리케이션의 소스가 위치할 루트 디렉토리(이를 Document Base 또는 Context Root 라 한다.)를 지정한다.</td>
+	<td class="table-in-article-td">It specifies the root directory (called the Document Base or Context Root) where the web application's source will be located.</td>
 </tr>
 <tr>
 	<td class="table-in-article-td"><strong>path</strong></td>
 	<td class="table-in-article-td">&nbsp;</td>
-	<td class="table-in-article-td">웹 애플리케이션에 접속할 URL 를 지정한다.<br />
-	이를 다른 말로 context path 라 한다.<br />
-	만일 path 속성값이 확장자를 뺀 Context 파일명과 같다면 path 를 생략할 수 있다. 
+	<td class="table-in-article-td">It specifies the URL path to connect to the web application.
+This path is called the context path.
+If the path value is the same as the Context file name, you can omit the path attribute in the Context file. 
 	</td>
 </tr>
 <tr>
 	<td class="table-in-article-td"><strong>reloadable</strong></td>
 	<td class="table-in-article-td">false</td>
 	<td class="table-in-article-td">
-	WEB-INF/classes 와  WEB-INF/lib 안에 있는 클래스가 변경되면 자동으로 웹 애플리케이션을 다시 로딩한다.<br />
-	새로운 웹 애플리케이션을 개발하는 단계에서는 true 로 설정해야 작업이 편리하지만 실제 서비스에서는 성능문제로 false 로 설정한다.
+Set to true if you want Tomcat to monitor classes in/WEB-INF/classes/ and /WEB-INF/lib for changes, 
+and automatically reload the web application if a change is detected. 
+This feature is very useful during application development,
+but it requires significant runtime overhead and is not recommended for use on deployed production applications. 
 	</td>
 </tr>
 </table>
+<p>
+For more information, please visit: <a href="https://tomcat.apache.org/tomcat-8.0-doc/config/context.html">https://tomcat.apache.org/tomcat-8.0-doc/config/context.html</a>
 
-<h3>ROOT 애플리케이션 변경</h3>
-http://localhost:포트번호/로 접근할 수 있는 웹 애플리케이션이 ROOT 애플리케이션이다.<br />
-톰캣을 멈추고 myapp.xml 파일를 ROOT.xml 로 파일명을 바꾼다.<br />
-톰캣을 재실행하고 http://localhost:8989/test.html를 방문하여 테스트한다.<br />
-만일 ROOT.xml 파일에 문제가 있다면 고양이가 보이는 ROOT 웹 애플리케이션이 작동할 것이다.<br />
+</p>
+<h3>Changing the ROOT application</h3>
 
-<span id="refer">참고</span>
+<p>
+The web application that responds when accessing http://localhost:port/ is the ROOT application.
+Stop Tomcat and rename myapp.xml to ROOT.xml.
+Restart Tomcat and visit http://localhost:port/test.html.
+If there is a problem with the ROOT.xml file, then the previous ROOT web application could work.
+</p>
+
+<span id="refer">References</span>
 <ul id="references">
-	<li><a href="http://tomcat.apache.org/tomcat-7.0-doc/config/context.html">http://tomcat.apache.org/tomcat-7.0-doc/config/context.html</a></li>
+	<li><a href="http://tomcat.apache.org/tomcat-8.0-doc/config/context.html">http://tomcat.apache.org/tomcat-8.0-doc/config/context.html</a></li>
 </ul>
 </article>

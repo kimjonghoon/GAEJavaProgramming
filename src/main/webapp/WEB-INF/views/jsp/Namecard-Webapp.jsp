@@ -1,23 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2014.7.9</div>
+<div class="last-modified">Last Modified 2017.2.15</div>
 
-			
-<h1>명함관리 웹 애플리케이션</h1>
+<h1>Namecard Web Application</h1>
 
-본격적으로 서블릿/JSP를 공부하기 전에 JDBC에서 예제로 다루었던 명함관리를 웹 애플리케이션으로 바꾸는 실습을 한다.
-이 실습믜 목표는 순수 자바 애플리케이션과 웹 애플리케이션의 차이에 대한 이해와 웹 환경 체험이다.<br />
-실습에 대한 자세한 설명은 이어지는 과정에서 빠짐없이 다룰 것이니 여기서는 목표에 충실하자.<br /> 
+<p>
+Before studying a Web application, let's make the JDBC Namecard example as a Web application.
+In this Chapter, You will be able to understand the difference between pure Java applications and web applications.
+</p>
 
-<h2>명함관리를 웹 애플리케이션으로 바꾸기 위한 준비작업</h2>
+<h2>Preparations for changing the JDBC Namecard example to a web application</h2>
 
-<h3>1. 오라클 JDBC 드라이버를 {톰캣홈}/lib 에 복사한다.</h3>
-JDBC 드라이버는 특별한 이유<sup><a href="#comments">1</a></sup> 때문에 웹 애플리케이션의 WEB-INF/lib 가 아닌 {톰캣홈}/lib 에 있어야 한다.<br />
-다시 말해, WEB-INF/lib 에는 JDBC 드라이버가 없어야 한다.<br />
-오라클 JDBC 드라이버인 ojdbc6.jar 파일을 {톰캣홈}/lib 에 복사한다.<br />
+<h3>1. Copy the Oracle JDBC driver to {TOMCAT_HOME}/lib.</h3>
 
-<h3>2. 웹 애플리케이션을 위한 디렉토리 구조를 마련한다.</h3>
-C:/www/namecard 를 명함관리 웹 애플리케이션의 최상위 디렉토리로 정했다면<br />
-C:/www/namecard 아래 다음과 같은 서브 디렉토리를 만들어야 한다.<br />
+<p>
+The JDBC driver must be in {TOMCAT_HOME}/lib instead of WEB-INF/lib for your web application for special reasons.<sup><a href="#comments">1</a></sup>
+There should be no JDBC driver in WEB-INF/lib for your web application.
+Copy the ojdbc6.jar file to {TOMCAT_HOME}/lib.
+</p>
+
+<h3>2. Create a directory structure for Namecard web applications.</h3>
+
+<p>
+If you set C:/www/namecard to be the top level directory of your namecard management web application, 
+you should create the following subdirectory under C:/www/ namecard.
+</p>
 
 <ul>
 	<li>WEB-INF</li>
@@ -25,10 +34,12 @@ C:/www/namecard 아래 다음과 같은 서브 디렉토리를 만들어야 한�
 	<li>WEB-INF/lib</li>
 </ul>
 
-<h3>3. web.xml 파일을 WEB-INF 디렉토리에 만든다.</h3>
-{톰캣홈}/webapps/ROOT/WEB-INF/web.xml 을 복사하여 C:/www/namecard/WEB-INF/에 붙여넣는다.<br />
-복사한 후 C:/www/namecard/WEB-INF/web.xml 파일을 편집기로 열고
-web-app 엘리먼트 안에 있는 모든 내용을 지운다.<br />
+<h3>3. Create the web.xml file in the WEB-INF directory.</h3>
+
+<p>
+Copy {TOMCAT_HOME}/webapps/ROOT/WEB-INF/web.xml and paste it into C:/www/namecard/WEB-INF/.
+After copying, open the file C:/www/namecard/WEB-INF/web.xml and delete everything inside the web-app element.
+</p>
 
 <pre class="prettyprint">
 &lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
@@ -59,8 +70,11 @@ web-app 엘리먼트 안에 있는 모든 내용을 지운다.<br />
 &lt;/web-app&gt;
 </pre>
 
-<h3>4. namecard.xml 컨텍스트 파일 만든다.</h3>
-아래 내용대로 namecard.xml 파일을 만든 다음 {톰캣홈}/conf/Catalina/localhost 로 옮긴다.<br />
+<h3>4. Create a context file named namecard.xml.</h3>
+
+<p>
+Create a namecard.xml file as shown below and move it to {TOMCAT_HOME}/conf/Catalina/localhost.
+</p>
 
 <pre class="prettyprint">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -70,10 +84,12 @@ web-app 엘리먼트 안에 있는 모든 내용을 지운다.<br />
 &lt;/Context&gt;
 </pre>
 
-<h2>명함관리 웹 애플리케이션 테스트</h2>
+<h3>Test 1</h3>
 
-<h3>첫번째 테스트</h3>
-<a href="/jdbc/Namecard">명함관리</a>에서 실습했던 명함관리 Namecard와 NamecardDao 바이트코드를 WEB-INF/classes 에 복사한다.<br />
+<p>
+Copy the namecard and NamecardDao bytecode that you have practiced in <a href="/jdbc/Namecard">Namecard</a> into WEB-INF/classes.
+</p>
+
 <pre>
 C:/www/namecard/WEB-INF/classes
                            └── net
@@ -83,9 +99,10 @@ C:/www/namecard/WEB-INF/classes
 						
 </pre>
 
-C:/www/namecard(DocumentBase)에 모든 JSP파일을 만들 것이다.<br />
-list.jsp을 아래 내용으로 만든다.<br />
-이클립스가 아닌 일반 에디터로 작업한다.<br />
+<p>
+Create all the JSP files in the DocumentBase C: / www / namecard.
+Make list.jsp as follows. (This practice is best done with a regular editor, not with Eclipse.)
+</p>
 
 <em class="filename">/list.jsp</em>
 <pre class="prettyprint">
@@ -101,16 +118,16 @@ ArrayList&lt;Namecard&gt; list = dao.selectAll();
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;명함목록&lt;/title&gt;
+&lt;title&gt;List All Namecard&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;table border="1"&gt;
 &lt;tr&gt;
-	&lt;td&gt;번호&lt;/td&gt;
-	&lt;td&gt;이름&lt;/td&gt;
-	&lt;td&gt;손전화&lt;/td&gt;
-	&lt;td&gt;이메일&lt;/td&gt;
-	&lt;td&gt;회사&lt;/td&gt;
+	&lt;td&gt;NO&lt;/td&gt;
+	&lt;td&gt;NAME&lt;/td&gt;
+	&lt;td&gt;MOBILE&lt;/td&gt;
+	&lt;td&gt;EMAIL&lt;/td&gt;
+	&lt;td&gt;COMPANY&lt;/td&gt;
 &lt;/tr&gt;
 &lt;%
 int size = list.size();
@@ -135,52 +152,62 @@ for(int i = 0;i &lt; size;i++) {
 &lt;/html&gt;
 </pre>
 
-톰캣을 재실행한다.<br />
-http://localhost:8989/namecard/list.jsp를 방문하여 테스트한다.<br />
+<p>
+After restarting Tomcat, Visit http://localhost:port/namecard/list.jsp.
+</p>
 
-<h3>두번째 테스트</h3>
-첫번째 테스트처럼 자바 클래스 소스를 웹 애플리케이션이 위치한 곳과 전혀 상관없는 곳에 두어도 된다.<br />
-현재 소스는 "JDBC"에서 실습한 디렉토리(이를테면 C:/java/namecard/src)에 있을 것이다.<br />
-하지만 이 경우, 시간이 지나면 소스의 위치를 잊을 수 있으며 소스를 지우는 실수를 할 수 있다.<br />
-두번째 테스트는 소스를 웹 애플리케이션의 영역안에 옮기고 그 소스를 컴파일하는 테스트이다.<br />
-먼저 자바 소스를 어디에 두어야 할지를 정해야 하는데,
-WEB-INF 아래에 두면 웹브라우저로 직접 접근할 수 없으니 소스디렉토리를 WEB-INF/src 로 정하겠다.<br />
-이제 JDBC에서 실습했던 명함관리 src 디렉토리를 복사하여 WEB-INF 에 붙여 넣는다.<br />
-다음으로 명령프롬프트에서 <em class="path">C:\www\namecad\WEB-INF\src\net\java_school\namecard</em>
-로 이동하여 다음과 같이 컴파일을 수행한다.<sup><a href="#comments">2</a></sup><br />
+<h3>Test 2</h3>
+
+<p>
+In Test 1, you can place the Java source in a location that is completely independent of where the web application is located.
+However, if you manage the source in this way, you can forget the location of the source, or you can erase the source by mistake.
+Test 2 is a test that moves the source into the area of the web application and compiles the source.
+First, you need to decide where to put the Java source,
+If you place the source under WEB-INF, you will not be able to access the source directly from your web browser, so we will set the source directory to WEB-INF/src.
+Copy the business card management src directory from JDBC and paste it into /WEB-INF.
+At the command prompt, go to C:/www/namecad/WEB-INF/src/net/java_school/namecard and compile by doing the following:<sup><a href="#comments">2</a></sup>
+</p>
+
 <pre>
 javac -d C:/www/namecard/WEB-INF/classes *.java
 </pre>
-http://localhost:8989/namecard/list.jsp를 방문하여 테스트한다.<br />
 
-<h3 id="3rd-Test">세번째 테스트</h3>
-이클립스를 이용해서 작업하는 방법을 설명한다.<br />
-이클립스를 실행한다.<br />
-워크스페이스를 C:/www로 선택한다.<br />
+<p>
+Go to http://localhost:port/namecard/list.jsp and test.
+</p>
 
-<img src="https://lh3.googleusercontent.com/IKyinX03RhUGCgM2UXV1rcy6PgiQZMLtUK7SBoyyIcLG9IAUddCxyqosX8_tznIkvmO96XMp90QaOzlhMSGLTR8AArjj4OcRGgmVE0dj0tDIyLvGjjdLM1IlyNaA--wcuImwen9tP6C50cDponp7favwxI6kU9iShzPRqyvqgMcvrN260PkS8WyAaTDssP6S0hX3ChjitBXmfSxbMBjmAQJ2vKIEPRCQyAthEB1mRYF6zlgQX8776kG9Fv-XuUgEzUyCOePC5oBvOnkVBoYqC1MbSLn1-ZzuBnTY2-deytdkTdMhbp54NUdYwJA20bEM16jnXJsJlRQrWLMA_9SmwrcDx1ilShm3BhS5NnhvVT7FFtnX8IrRspfmh45jkajqTCeNtil4a3lVMh6kiAKSxQ02O9O940KpQ8vpY8bveZQVXun9-OH8ZAQZYeQOCHKZx5gbM-mEn9EO0eDHHzaH6hGi3z44fGiTPmCYiZbbwWSD-4r9ArnxRO5D4wHFT_GRFbWxO3O4NERdpZDnHIBgIsD0DtxGlgG1qVer_gnSji4WC1P70f6pqtBt8TdbZNfueLiA6qT4BpJSPVGuFZW_R60xem49n7U=w590-h240-no" alt="워크스페이스를 C:/www로 선택한다." /><br />
+<h3 id="3rd-Test">Test 3</h3>
 
-퍼스펙티브가 java<sup><a href="#comments">3</a></sup> 인 상태에서 File - New - Java Project 메뉴를 차례로 선택하여 새로운 자바 프로젝트를 namecard란 이름으로 만든다.<br />
+<p>
+Test 3 shows you how to manage your sources in Eclipse.
+Run Eclipse.
+Select your workspace as C:/www.<br />
 
-<img src="https://lh3.googleusercontent.com/gz6IYM1VWQg-AryU3iLP67krrEaGk1koEVh5eomxiuZpWsTdENLVQclTMSvHzAhfZ_w22W3XwqMPCvhe8ozrYThbAWFxgfprKFarEwTcgKyQVVB2io-wk8hySf-i2jK8XAekuMkgxqkBeh034iAfFf6Pf_esheptOaNYzSW3Mu0UWcaTU24s41wzOb-IIlUzAuP25j5oBXhK7rAVYRo-NMSgdoHeZJe1wMlxUKNMMoJRAuG6snFjzcTvROsDXvn4bFcHuuIUrlQJODcCaPopiMFpvUCY2t-1BAsmnhja5TCRouLk3w28iM_JXikyJ6tp8P0ndLw-yF6sZ97dAmNPfQ0kEnaKu6t3ngXrbvR8v9fZ88ddjrUEhcsNUWcXVaJ0cfmbprZxL2A__5fmm7mFdhW54MgqLkLfzGFTDaWlr5fe6r3YDnW_ewgUZDChoG6TmVZbcNzKohm2blW-JT9-lF6U5go27XrU_qgr4eDB7Dxq3BRQnw71rg9zDfe62d7qRgAgGdes0-jdh6ot4FUhfkxMUZ2kiKszKBSeWGdqsJHkPI-XS6w0caLJm52rUUdyMgnjldzGlhn_k__GNw8x3KCsxHg47W8=w685-h240-no" alt="Java 퍼스펙티브가 선택된 상태에서 Java Project 를 만든다." /><br />
+<img src="images/workspace-c_www.png" alt="Select workspace as C:/www." /><br />
 
-우리는 순수 자바 애플리케이션 아닌 웹 애플리케이션을 작성하고 있으므로 이클립스가 디폴트로 셋팅해준 src와 bin를 그대로 사용해서는 안된다.<br />
-프로젝트에 마우스를 선택한 상태에서 마우스 오른쪽 버튼을 클릭한다.<br />
-Build Path - Configure Build Path..를 선택한다.<br />
-Source탭에서 Source folder 는 WEB-INF/src 를 선택한다.<br />
-Default output folder 는 WEB-INF/classes 를 선택해야 한다.<br />
+In the Java perspective, select File - New - Java Project.
+Create a Java project with the name namecard.<sup><a href="#comments">3</a></sup>
 
-<img src="https://lh3.googleusercontent.com/hdOeSeR3J580eLgxeKl8xBocFLITj7wlHehSMF0FXnGuHmFObh1ncA50xxnWOtacTnXHHLYtJiDA5nPoXAuQKNkcEU0Sht53dTU_P_l-ZRcrQlZfEhXLRnRMXKSKA3Nq1QmtuEgMZgSnmRUa5np3rIImB0hFIBokg14g4KLUrYlUs8iGIYoqamDqtGbuoXoL40L9AbiWoXv6BCOdwEyUezv6BywgzjRwxIFAx0Nw0qv9mHaLpQx1qGeMPPU_gsn2jA-aiH3ABXOeyVsUWUbJRpigX3wZLWTCc0-UcM4z6aPCG4-gOc2FV20ECFf_BSjyGFEQTDWTafDd9meU27-nlzATDFLRdv2UcOYtlUK0WQaOay_tM1a19FBpzexA7FmqQt6OhsCfkx4YNAyvZYYvf9GZh3Kg9NclPmtTyfDSdVUxTMnFkCmimXoxLUP1WM0gP05kgJsD9lQ9GTgpD9ua2ekXYgZygywH64w1wTMZ1RtHu69kL2QGdK-e8Dv2DVZ3-5ErXgpCE8zXGGQyzqZUAejQZZhpkd-QDWZ7L9fjEh6ePl0_nvmJBXZICbmMX9ARM9sJyCWqSYIM9y6rJqa-VQCpnvm0b1g=w675-h534-no" alt="명함관리 웹 APP 이클립스 소스 폴더와 Output 폴더 설정" /><br />
+<img src="images/Java-Perspective_File-New-Java-Project.png" alt="Create a Java Project with the Java perspective selected." /><br />
 
-이제 이클립스에서 소스를 수정하면 따로 컴파일하지 않아도 바이트 코드가 WEB-INF/classes에 생길 것이다.<br />
-http://localhost:8989/namecard/list.jsp를 방문하여 테스트한다.<br />
-테스트가 성공했다면 명함을 등록하는 JSP파일을 C:/www/namecard 에 만든다.<br />
-먼저 이클립스의 JSP 템플릿의 캐릭터셋을 EUC-KR 에서 UTF-8로 변경한다.<br />
-이클립스에서 Windows - Preferences - Web - JSP Files 선택하고 인코딩 박스에서 UTF-8를 선택하고 Apply 클릭한다.<br />
+We are writing a web application, not a pure Java application, so do not use the directories src and bin that Eclipse sets by default.
+With the mouse selected for the project, right-click.
+Select Build Path, Configure Build Path ..
+In the Source tab, select WEB-INF/src as the Source folder.
+Select WEB-INF/classes as the Output folder.<br />
 
-<img src="https://lh3.googleusercontent.com/dBM6wFehnOmep_aL4pISPNUBW5OgFZ_gGRkBRJtuDIs4qteLYLoPxuCt8n5F9J2zIqUgzvzhVZ2n9OcP48k1VI2ijYe9PpPIY_K8dWgDWXXLhTpYFZ7GKGzuRIfBrc7x8u6d-hRoVLN14Y4T85gRsdycFliLY7O-yR1i7bMECsdrLYhZRUZ1aNIKFxFsH5z4o9Pbx3vH_pgOgvZyDPxsud3x7b7DicRdYzxko-ZP8B6MG3oFGp0W9N4WaUwx6zv3iPz07HRFgcowhwnT5areu1AG4OSMrf5-6rQ12jGUr8eNLSHTvYTaGnAzj2PJREzHZMEbUolkuh4jR2x--IYRwQUquHEkbxgGVIFc9eNo7SPTHLBX4SUdzIBreXpZD6omt74-o2tJYA3SV-3PzTiFj8i6mLoSzcjyDOsJI-Uv2lZZwCGN2KFKXsqSoZcOj_us32bVgPuAfw6x-rfNd3hdxWvWVfk2Na_NXtMgCWIqLpJHC9hxTu-qecCMWZKENT6ovL4wf4zrmdhsg86jTRQDwjvLYJGfJu9ZWIl9Xt66axA8GBWLWJksrI1fqhyb1rJzttSbaCvF3qRc2WaFBlfP_Is6EYmIVds=w625-h535-no" alt="JSP 파일인코딩 UTF-8로 " /><br />
+<img src="images/Namecard-WebApp_src_bin.png" alt="the Source Folder and Output Folder for Namecard Web Application" /><br />
 
-아래 write.jsp 소스에서 강조된 부분이 여러분이 직접 입력해야 하는 부분이다.<br />
+Now if you modify the source in Eclipse, you will have bytecode in WEB-INF/classes without having to compile it separately.
+Go to http://localhost:port/namecard/list.jsp and test.
+If the test succeeds, create a JSP file in C:/www/namecard to register the namecard.
+First, change the Eclipse JSP template charset to UTF-8.
+In Eclipse, select Windows - Preferences - Web - JSP Files, select UTF-8 in the Encoding box, and click Apply.<br />
+
+<img src="images/eclipse-jsp_files_encoding.png" alt="JSP charset to  UTF-8 " /><br />
+
+The highlighted part of the write.jsp source below is what you need to type directly.
+</p>
  
 <em class="filename">/write.jsp</em>
 <pre class="prettyprint">
@@ -190,25 +217,27 @@ http://localhost:8989/namecard/list.jsp를 방문하여 테스트한다.<br />
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;<strong>명함 추가</strong>&lt;/title&gt;
+&lt;title&gt;<strong>Add Namecard</strong>&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-<strong>&lt;h1&gt;명함 추가하기&lt;/h1&gt;
+<strong>&lt;h1&gt;Add Namecard&lt;/h1&gt;
 &lt;form action="write_proc.jsp" method="post"&gt;
-이름 : &lt;input type="text" name="name" /&gt;&lt;br /&gt;
-손전화 : &lt;input type="text" name="mobile" /&gt;&lt;br /&gt;
-이메일 : &lt;input type="text" name="email" /&gt;&lt;br /&gt;
-회사 : &lt;input type="text" name="company" /&gt;&lt;br /&gt;
-&lt;input type="submit" value="확인" /&gt;
-&lt;input type="button" value="취소" onclick="location.href='list.jsp'" /&gt;
+NAME : &lt;input type="text" name="name" /&gt;&lt;br /&gt;
+MOBILE : &lt;input type="text" name="mobile" /&gt;&lt;br /&gt;
+EMAIL : &lt;input type="text" name="email" /&gt;&lt;br /&gt;
+COMPANY : &lt;input type="text" name="company" /&gt;&lt;br /&gt;
+&lt;input type="submit" value="Confirm" /&gt;
+&lt;input type="button" value="Cancel" onclick="location.href='list.jsp'" /&gt;
 &lt;/form&gt;</strong>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-다음은 write_proc.jsp 파일을 만든다.<br />
-이 페이지는 write.jsp 에서 전송받은 값으로 명함을 추가한다.<br />
-아래 소스에서 강조된 부분이 여러분이 직접 입력해야 하는 부분이다.<br />
+<p>
+Next, create a write_proc.jsp file.
+This page adds a business card using information received from write.jsp.
+You will have to type in the highlighted part of the source below.
+</p>
 
 <em class="filename">/write_proc.jsp</em>
 <pre class="prettyprint">
@@ -229,45 +258,48 @@ dao.insert(namecard);
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;<strong>명함 추가</strong>&lt;/title&gt;
+&lt;title&gt;<strong>Add Namecard</strong>&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-<strong>명함이 추가되었습니다.&lt;a href="list.jsp"&gt;목록&lt;/a&gt;</strong>
+<strong>New namecard added.&lt;a href="list.jsp"&gt;All Namecards&lt;/a&gt;</strong>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-http://localhost:8989/namecard/list.jsp를 방문한다.<br />
-명함목록에서 등록버튼을 클릭하여 새로운 명함 등록을 추가하는 테스트를 한다.<br />
-다음은 삭제기능을 구현한다.<br />
-먼저 list.jsp 에서 아래를 참조해서 테이블의 열를 추가한다.<br />
+<p>
+Visit http://localhost:port/namecard/list.jsp and test the business card registration.
+Let's implement the business card deletion function.
+First, edit the list.jsp as follows.
+</p>
 
 <em class="filename">/list.jsp</em>
 <pre class="prettyprint">
-.. 중간 생략 ..
+.. omit ..
 
-    &lt;td&gt;번호&lt;/td&gt;
-    &lt;td&gt;이름&lt;/td&gt;
-    &lt;td&gt;손전화&lt;/td&gt;
-    &lt;td&gt;이메일&lt;/td&gt;
-    &lt;td&gt;회사&lt;/td&gt;
-    <span class="emphasis">&lt;td&gt;관리&lt;/td&gt;</span>
+    &lt;td&gt;NO&lt;/td&gt;
+    &lt;td&gt;NAMe&lt;/td&gt;
+    &lt;td&gt;MOBILE&lt;/td&gt;
+    &lt;td&gt;EMAIL&lt;/td&gt;
+    &lt;td&gt;COMPANY&lt;/td&gt;
+    <span class="emphasis">&lt;td&gt;Manage&lt;/td&gt;</span>
 
-.. 중간 생략 ..
+.. omit ..
 
     &lt;td&gt;&lt;%=card.getNo() %&gt;&lt;/td&gt;
     &lt;td&gt;&lt;%=card.getName() %&gt;&lt;/td&gt;
     &lt;td&gt;&lt;%=card.getMobile() %&gt;&lt;/td&gt;
     &lt;td&gt;&lt;%=card.getEmail() %&gt;&lt;/td&gt;
     &lt;td&gt;&lt;%=card.getCompany() %&gt;&lt;/td&gt;
-    <span class="emphasis">&lt;td&gt;&lt;a href="delete.jsp?no=&lt;%=card.getNo() %&gt;"&gt;삭제&lt;/a&gt;&lt;/td&gt;</span>
+    <span class="emphasis">&lt;td&gt;&lt;a href="delete.jsp?no=&lt;%=card.getNo() %&gt;"&gt;Del&lt;/a&gt;&lt;/td&gt;</span>
 
-.. 중간 생략 ..	
+.. omit ..	
 </pre>
 
-다음은 delete.jsp 작성한다.<br />
-delete.jsp 는 list.jsp에서 명함의 Primary key 에 해당하는 값을 전달받아 삭제를 수행한다.<br />
-아래 소스에서 강조된 부분이 직접 입력해야 하는 부분이다.<br />
+<p>
+Next, create delete.jsp.
+delete.jsp receives the value corresponding to the primary key of the namecard in list.jsp and performs deletion.
+You will have to type in the highlighted part of the source below.
+</p>
 
 <em class="filename">/delete.jsp</em>
 <pre class="prettyprint">
@@ -283,18 +315,19 @@ dao.delete(no);
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;<strong>명함 삭제</strong>&lt;/title&gt;
+&lt;title&gt;<strong>Delete Namecard</strong>&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-<strong>명함이 삭제되었습니다.&lt;a href="list.jsp"&gt;목록&lt;/a&gt;</strong>
+<strong>The namecard has been deleted.&lt;a href="list.jsp"&gt;All Namecards&lt;/a&gt;</strong>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-http://localhost:8989/namecard/list.jsp를 방문한다.<br />
-명함을 삭제하는 테스트를 수행한다.<br />
-다음으로 수정기능 구현한다.<br />
-NamecardDao.java 에 수정을 담당하는 메소드는 아래와 같다.<br />
+<p>
+Visit http://localhost:port/namecard/list.jsp to test the deletion of namecards.
+Next, let's implement namecard modification.
+Below is a method to modify a namecard in NamecardDao.java.
+</p>
 
 <em class="filename">NamecardDao.java</em>
 <pre class="prettyprint">
@@ -319,23 +352,24 @@ public void update(Namecard card) {
 		pstmt.setInt(5, card.getNo());
 		pstmt.executeUpdate();
 		
-.. 중간 생략 ..
+//.. omit ..
 </pre>
 
-list.jsp 파일에서 수정양식을 보여주는 페이지로 이동하는 링크를 삭제링크 옆에 작성한다.<br />
-아래를 참고한다.<br />
+<p>
+Modify the list.jsp file as shown below.
+</p>
 
 <em class="filename">/list.jsp</em>
 <pre class="prettyprint">
 &lt;td&gt;
-	&lt;a href="delete.jsp?no=&lt;%=card.getNo() %&gt;"&gt;삭제&lt;/a&gt;
-	<strong>&lt;a href="modify.jsp?no=&lt;%=card.getNo() %&gt;"&gt;수정&lt;/a&gt;</strong>
+	&lt;a href="delete.jsp?no=&lt;%=card.getNo() %&gt;"&gt;Del&lt;/a&gt;
+	<strong>&lt;a href="modify.jsp?no=&lt;%=card.getNo() %&gt;"&gt;Modify&lt;/a&gt;</strong>
 &lt;/td&gt;
 </pre>
 
-다음은 modify.jsp 파일을 작성한다.<br />
-참고로 modify.jsp 는 사용자 UI 통일성을 주기 위해서 wirte.jsp 소스를 copy &amp; paste 한후
-약간의 추가 작업을 하여 만들었다.<br />
+<p>
+Next, create a modify.jsp file.
+</p>
 
 <em class="filename">/modify.jsp</em>
 <pre class="prettyprint">
@@ -351,27 +385,29 @@ Namecard card = dao.selectOne(no);
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;<strong>명함 수정</strong>&lt;/title&gt;
+&lt;title&gt;<strong>Modify a Namecard</strong>&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-<strong>&lt;h1&gt;명함 수정하기&lt;/h1&gt;
+<strong>&lt;h1&gt;Modify a Namecard&lt;/h1&gt;
 &lt;form action="modify_proc.jsp" method="post"&gt;
 <span class="emphasis">&lt;input type="hidden" name="no" value="&lt;%=no %&gt;" /&gt;</span>
-이름 : &lt;input type="text" name="name" value="&lt;%=card.getName() %&gt;" /&gt;&lt;br /&gt;
-손전화 : &lt;input type="text" name="mobile" value="&lt;%=card.getMobile() %&gt;" /&gt;&lt;br /&gt;
-이메일 : &lt;input type="text" name="email" value="&lt;%=card.getEmail() %&gt;" /&gt;&lt;br /&gt;
-이메일 : &lt;input type="text" name="company" value="&lt;%=card.getCompany() %&gt;" /&gt;&lt;br /&gt;
-&lt;input type="submit" value="확인" /&gt;
-&lt;input type="button" value="취소" onclick="location.href='list.jsp'" /&gt;
+NAME : &lt;input type="text" name="name" value="&lt;%=card.getName() %&gt;" /&gt;&lt;br /&gt;
+MOBILE : &lt;input type="text" name="mobile" value="&lt;%=card.getMobile() %&gt;" /&gt;&lt;br /&gt;
+EMAIL : &lt;input type="text" name="email" value="&lt;%=card.getEmail() %&gt;" /&gt;&lt;br /&gt;
+COMPANY : &lt;input type="text" name="company" value="&lt;%=card.getCompany() %&gt;" /&gt;&lt;br /&gt;
+&lt;input type="submit" value="Confirm" /&gt;
+&lt;input type="button" value="Cancel" onclick="location.href='list.jsp'" /&gt;
 &lt;/form&gt;</strong>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-<span class="emphasis">&lt;input type="hidden" name="no" value="&lt;%=no %&gt;" /&gt;</span>
-이 부분이 폼태그에 반드시 있어야 한다.<br />
-다음은 modify_proc.jsp 파일을 작성한다.<br />
-이 페이지는 modify.jsp에서 전송된 값으로 명함을 수정하는 페이지이다.<br />
+<p>
+&lt;input type="hidden" name="no" value="&lt;%=no %&gt;" /&gt;<br />
+The above code must be in the form tag.
+Create the modify_proc.jsp file.
+This JSP modifies the namecard using information sent from modify.jsp.
+</p>
 
 <em class="filename">modify_proc.jsp</em>
 <pre class="prettyprint">
@@ -398,27 +434,31 @@ dao.update(card);
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;<strong>명함 수정</strong>&lt;/title&gt;
+&lt;title&gt;<strong>Modify a Namecard</strong>&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-<strong>명함이 수정되었습니다. &lt;a href="list.jsp"&gt;목록&lt;/a&gt;</strong>
+<strong>The namecard has been modified. &lt;a href="list.jsp"&gt;All Namecards&lt;/a&gt;</strong>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-http://localhost:8989/namecard/list.jsp를 방문하여 수정을 테스트한다.<br /><br />
-다음으로 list.jsp 에 검색기능을 추가한다.<br />
-list.jsp 열고 &lt;/body&gt; 전에 다음 폼을 추가한다.<br />
+<p>
+Visit http://localhost:port/namecard/list.jsp, and edit the namecard.
+Let's add a search function to list.jsp.
+Open list.jsp and add the following before &lt;/body&gt;.
+</p>
 
 <em class="filename">/list.jsp</em>
 <pre class="prettyprint">
 &lt;form action="list.jsp" method="post"&gt;
 	&lt;input type="text" name="keyword" /&gt;
-	&lt;input type="submit" value="검색" /&gt;
+	&lt;input type="submit" value="Search" /&gt;
 &lt;/form&gt;
 </pre>
 
-검색을 위해서 NamecardDao.java 에 selectByKeyword(String keyword) 메소드를 추가한다.<br />
+<p>
+Add the selectByKeyword (String keyword) method to NamecardDao.java.
+</p>
 
 <em class="filename">NamecardDao.java</em>
 <pre class="prettyprint">
@@ -453,7 +493,7 @@ public ArrayList&lt;Namecard&gt; selectByKeyword(String keyword) {
 			String mobile = rs.getString("mobile");
 			String email = rs.getString("email");
 			String company = rs.getString("company");
-			Namecard namecard = new Namecard(no,name,mobile,email,company);
+			Namecard namecard = new Namecard(no, name, mobile, email, company);
 			matched.add(namecard);
 		}
 	} catch (SQLException e) {
@@ -467,15 +507,17 @@ public ArrayList&lt;Namecard&gt; selectByKeyword(String keyword) {
 }
 </pre>
 
-검색을 테스트하기 위해 list.jsp 을 방문하면 null로 검색이 되는 버그가 있다.<br />
-list.jsp 를 웹브라우저의 주소창에서 처음 방문할 때는 keyword 가 null 이 되기 때문이다.<br />
-그리고 list.jsp 파일에서 검색필드에 아무런 값도 넣지 않고 검색 버튼을 클릭했다면 keyword 는 ""(공백문자)이다.<br />
-list.jsp 을 열고 아래 코드를 참고하여 수정한다.<br />
+<p>
+If you visit list.jsp to test your search, there is a bug that searches for null.
+The first time you visit list.jsp from the web browser's address bar, the keyword is null.
+And if you did not put any value in the search field in list.jsp and clicked the search button, the keyword is "" (whitespace).
+Open list.jsp and modify it as shown below.
+</p>
 
 <em class="filename">/list.jsp</em>
 <pre class="prettyprint">
 &lt;%
-//기존 코드는 주석처리한다.
+//Commented out the following code.
 //NamecardDao dao = new NamecardDao();
 //ArrayList&lt;Namecard&gt; list = dao.selectAll();
 
@@ -496,18 +538,19 @@ if (keyword.equals("")) {
 %&gt;
 </pre>
 
-모두 작성했다면 
-http://localhost:8989/namecard/list.jsp를 방문하여 테스트한다.<br />
+<p>
+If you have done so, go to http://localhost:port/namecard/list.jsp and test.
+</p>
 
-<span id="comments">주석</span>
+<span id="comments">Comments</span>
 <ol>
-	<li>각각의 웹 애플리케이션의 WEB-INF/lib 에 JDBC 드라이버 파일을 두면 메모리 누수문제가 일어날 수 있다.</li>
-	<li>만약 NamecardDao 클래스가 커넥션 풀을 이용한다면 커넥션풀관련 클래스를 앞서 컴파일 해야한다.</li>
-	<li>이와는 달리 대부분이 책에서 퍼스펙티브가 Java EE 에서 Dynamic Web Project 로 프로젝트를 생성하는 방법을 설명한다.
-	본 사이트에서 제공하는 기초 과정을 모두 공부한 다음이 아니고, 이클립스보다 서블릿/JSP에 초점을 맞추려면 본 사이트에서 제시한 방법이 더 낫다.</li>
+	<li>Copying the JDBC driver files to WEB-INF/lib for each web application can cause memory leaks.</li>
+	<li>If the NamecardDao class uses a connection pool, you must first compile the connection pool-related classes.</li>
+	<li>In contrast, most books and sites illustrate how to create a Dynamic Web Project in the Java EE perspective.
+To focus on servlets/JSPs rather than Eclipse, the settings presented here are better.</li>
 </ol>
 
-<span id="refer">참고</span>
+<span id="refer">References</span>
 <ul id="references">
 	<li><a href="http://stackoverflow.com/questions/6981564/why-jdbc-driver-must-been-put-in-tomcat-home-lib-folder">http://stackoverflow.com/questions/6981564/why-jdbc-driver-must-been-put-in-tomcat-home-lib-folder</a></li>
 </ul>

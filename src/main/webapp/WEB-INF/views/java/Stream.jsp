@@ -1,85 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <article>
-<div class="last-modified">Last Modified 2015.5.27</div>
+<div class="last-modified">Last Modified 2017.2.3</div>
 
-<h1>스트림</h1>
+<h1>Stream</h1>
 
-자바에서 입출력은 스트림을 통해서 이루어진다.<br />
-자바 프로그램을 기준으로 스트림의 방향이 자바 프로그램 안으로 향하면 입력 스트림,<br />
-스트림의 방향이 자바 프로그램 밖으로 향하면 출력 스트림이다.<br />
-스트림 객체를 생성할 때 중요한 정보는 입력 스트림의 경우 근원지(Source)이고,
-출력 스트림의 경우 목적지(Destination)이다.<br />
-스트림 생성자의 인자 값으로 이들 정보를 필요하다.<br />
-근원지나 목적지의 형태는 다양하다.<br />
-예를 들면 대표적으로 파일이 있겠고, 콘솔 화면, 소켓도 될 수 있다.<br />
-스트림 클래스는 상당히 많은데 다음의 분류 기준을 이해하고 있으면 전체를 파악하는데 도움이 된다.<br />
+<p>
+In Java, input and output are done through streams.
+If the stream comes into the Java program, it is an input stream.
+If the stream goes out of the Java program, it is an output stream.
+
+The important information when creating a stream object is the source for the input stream and the destination for the output stream.
+You need this information as an argument to the stream constructor.
+
+The shape of the source or destination varies.
+For example, there may be a file, a console screen, or a socket.
+There are a lot of stream classes, and understanding the following classifications can help you understand the whole.
+</p>
 
 <ul>
-	<li>바이트 스트림인가? 문자 스트림인가?</li>
-	<li>입력 스트림인가? 출력 스트림인가?</li>
-	<li>실제 입출력을 하는가? 입출력의 성능에 도움을 주는가?</li>
+	<li>Is it a byte stream? Is it a character stream?</li>
+	<li>Is it an input stream? Is it an output stream?</li>
+	<li>Do it actually do I/O? Does it help with I/O performance?</li>
 </ul>
 
-<h2>바이트 스트림</h2>
+<h2>Byte Stream</h2>
 
-바이트 스트림은 1byte 단위로 입출력하는 스트림이다.<br />
-일반적으로 동영상이나 이미지 파일과 같은 바이너리 파일에 대한 처리할 때 사용한다.<br />
-InputStream과 OutputStream은 추상 클래스로 모든 바이트 스트림 클래스의 최상위 클래스이다.<br />
+<p>
+The byte stream is input and output in units of 1 byte.
+It is generally used for I/O to binary files such as videos or images.
+InputStream and OutputStream are abstract classes and are the top-level classes of all byte stream classes.
+</p>
 
-<table class="table-in-article">
-<tr>
-	<td class="table-in-article-td" colspan="2"><strong>InputStream 메서드</strong></td>
-</tr>
-<tr>
-	<td class="table-in-article-td" width="180px;">int read()</td>
-	<td class="table-in-article-td">추상 메서드, 입력 스트림으로부터 한 바이트씩 읽어서 0~255 사이의 값을 반환한다.
-	입력 스트림의 끝에 도달하여 더 이상 읽을 수 없을 때는 -1을 반환한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">int read(byte[] b)</td>
-	<td class="table-in-article-td">대부분의 경우 b 크기만큼 읽어서 b에 저장하고 읽은 바이트 수를 반환한다.
-	입력 스트림의 끝에 도달하여 더 이상 읽을 수 없을 때는 -1을 반환한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">int read(byte[] b, int off, int len)</td>
-	<td class="table-in-article-td">최대 len 만큼 읽어 b의 off 위치에 저장하고 읽은 바이트 수를 반환한다.
-	입력 스트림의 끝에 도달하여 더 이상 읽을 수 없을 때는 -1을 반환한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">int available()</td>
-	<td class="table-in-article-td">읽을 수 있는 바이트 수를 반환한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void close()</td>
-	<td class="table-in-article-td">입력 스트림을 닫아 스트림과 관련된 시스템 자원을 반환한다.</td>
-</tr>
-</table>
+<dl class="api-summary">
+	<dt class="api-summary-dt bottom-line">InputStream</dt>
+	<dd class="api-summary-dd">int read()</dd>
+	<dd class="api-summary-dd-method-desc">This method is an abstract method.It reads one byte from the input stream and returns a value between 0 and 255.
+	It returns -1 if the end of the input stream has been reached and can no longer be read.</dd>
+	<dd class="api-summary-dd">int read(byte[] b)</dd>
+	<dd class="api-summary-dd-method-desc">In most cases, it reads up to the size of b, stores it in b, and returns the number of bytes read.
+	It returns -1 if the end of the input stream has been reached and can no longer be read.</dd>
+	<dd class="api-summary-dd">int read(byte[] b, int off, int len)</dd>
+	<dd class="api-summary-dd-method-desc">It reads up to the size of len, stores it in the off position of b, and returns the number of bytes read.
+	It returns -1 if the end of the input stream has been reached and can no longer be read.</dd>
+	<dd class="api-summary-dd">int available()</dd>
+	<dd class="api-summary-dd-method-desc">It returns the number of bytes that can be read.</dd>
+	<dd class="api-summary-dd">void close()</dd>
+	<dd class="api-summary-dd-method-desc">It closes the input stream and returns the system resources associated with the stream.</dd>
+</dl>
 
-<table class="table-in-article">
-<tr>
-	<td class="table-in-article-td" colspan="2"><strong>OutputStream 메서드</strong></td>
-</tr>
-<tr>
-	<td class="table-in-article-td" width="180px">void write(int b)</td>
-	<td class="table-in-article-td">b의 하위 8비트를 출력한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void write(byte[] b)</td>
-	<td class="table-in-article-td">b의 내용을 출력한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void write(byte[] b, int off, int len)</td>
-	<td class="table-in-article-td">b의 off 위치부터 len 만큼의 바이트를 출력한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void flush()</td>
-	<td class="table-in-article-td">버퍼에 남은 바이트를 출력한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void close()</td>
-	<td class="table-in-article-td">출력 스트림을 닫아 출력 스트림과 관련된 시스템 자원을 반환한다.</td>
-</tr>
-</table> 
-
+<dl class="api-summary">
+	<dt class="api-summary-dt bottom-line">OutputStream</dt>
+	<dd class="api-summary-dd">void write(int b)</dd>
+	<dd class="api-summary-dd-method-desc">It outputs the low 8 bits of b.</dd>
+	<dd class="api-summary-dd">void write(byte[] b)</dd>
+	<dd class="api-summary-dd-method-desc">It outputs the contents of b.</dd>
+	<dd class="api-summary-dd">void write(byte[] b, int off, int len)</dd>
+	<dd class="api-summary-dd-method-desc">It outputs len bytes from the off position of b.</dd>
+	<dd class="api-summary-dd">void flush()</dd>
+	<dd class="api-summary-dd-method-desc">It outputs the remaining bytes in the buffer.</dd>
+	<dd class="api-summary-dd">void close()</dd>
+	<dd class="api-summary-dd-method-desc">It closes the output stream and returns the system resources associated with the stream.</dd>
+</dl>
 
 <em class="filename">Test.java</em>
 <pre class="prettyprint">
@@ -107,7 +90,9 @@ public class Test {
 }
 </pre>
 
-다음 두 개의 파일로 테스트한다.<br />
+<p>
+Test with the following file:
+</p>
 
 <em class="filename">test.txt</em>
 <pre class="prettyprint">
@@ -115,13 +100,9 @@ a b c d e
 1 2 3 4 5
 </pre>
 
-<em class="filename">테스트.txt</em>
-<pre class="prettyprint">
-가 나 다 라 마
-1 2 3 4 5
-</pre>
-
-이번 예제는 콘솔에 파일 내용을 출력하는 것이 아니라 복사본 파일을 만드는 예제이다.<br />
+<p>
+The following is an example of creating a copy file.
+</p>
 
 <em class="filename">Test.java</em>
 <pre class="prettyprint">
@@ -154,103 +135,67 @@ public class Test {
 }
 </pre>
 
-FileInputStream/FileOutputStream 은 바이트 단위로 파일에 입출력을 하기 위한 클래스이다.
+<p>
+FileInputStream/FileOutputStream is a class for file I/O in bytes.
+</p>
 
-<table class="table-in-article">
-<tr>
-	<th class="table-in-article-th" colspan="2">FileInputStream 생성자</th>
-</tr>
-<tr>
-	<td class="table-in-article-td">FileInputStream(File file)</td>
-	<td class="table-in-article-td">file로 지정한 파일에 대한 입력 스트림을 생성한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">FileInputStream(String name)</td>
-	<td class="table-in-article-td">name으로 지정한 파일에 대한 입력 스트림을 생성한다.</td>
-</tr>
-</table>
+<dl class="api-summary">
+	<dt class="api-summary-dt bottom-line">FileInputStream's Constructors</dt>
+	<dd class="api-summary-dd">FileInputStream(File <em>file</em>)</dd>
+	<dd class="api-summary-dd-method-desc">Creates an input stream for the file specified by <em>file</em>.</dd>
+	<dd class="api-summary-dd">FileInputStream(String <em>name</em>)</dd>
+	<dd class="api-summary-dd-method-desc">Creates an input stream for the file specified by <em>name</em>.</dd>
+</dl>
 
-<table class="table-in-article">
-<tr>
-	<th class="table-in-article-th" colspan="2">FileOutputStream 생성자</th>
-</tr>
-<tr>
-	<td class="table-in-article-td" width="270px;">FileOutputStream(File file)</td>
-	<td class="table-in-article-td">file로 지정한 파일에 대한 출력 스트림을 생성한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">FileOutputStream(File file, boolean append)</td>
-	<td class="table-in-article-td">file로 지정한 파일에 대한 출력 스트림을 생성한다. append가 true 이면 파일 끝에 출력한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">FileOutputStream(String name)</td>
-	<td class="table-in-article-td">name으로 지정한 파일에 대한 출력 스트림을 생성한다.</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">FileOutputStream(String name, boolean append)</td>
-	<td class="table-in-article-td">name으로 지정한 파일에 대한 출력 스트림을 생성한다. append가 true 이면 파일 끝에 출력한다.</td>
-</tr>
-</table>
+<dl class="api-summary">
+	<dt class="api-summary-dt bottom-line">FileOutputStream's Constructors</dt>
+	<dd class="api-summary-dd">FileOutputStream(File <em>file</em>)</dd>
+	<dd class="api-summary-dd-method-desc">Creates an output stream for the file specified by <em>file</em>.</dd>
+	<dd class="api-summary-dd">FileOutputStream(File <em>file</em>, boolean <em>append</em>)</dd>
+	<dd class="api-summary-dd-method-desc">Creates an output stream for the file specified by <em>file</em>. If <em>append</em> is true, the output stream append the contents to the end of the file's contents.</dd>
+	<dd class="api-summary-dd">FileOutputStream(String <em>name</em>)</dd>
+	<dd class="api-summary-dd-method-desc">Creates an output stream for the file specified by <em>name</em>.</dd>
+	<dd class="api-summary-dd">FileOutputStream(String <em>name</em>, boolean <em>append</em>)</dd>
+	<dd class="api-summary-dd-method-desc">Creates an output stream for the file specified by <em>name</em>. If <em>append</em> is true, the output stream append the contents to the end of the file's contents.</dd>
+</dl>
 
-new FileOutputStream("C:/javaApp/test.txt", false);에서 false는 기존 내용의 끝에 추가하지 않는 설정이다.
-예제에서 쓰이는 FileInputStream과 FileOutputStream의 메서드는 InputStream과 OutputStream 메서드 
-설명 부분을 참고한다.<br />
+<p>
+In the new FileOutputStream ("C:/javaApp/test.txt", <em>false</em>); <em>false</em> overwrites the existing contents.
+The methods of the FileInputStream and FileOutputStream used in the examples are described in the InputStream and OutputStream method descriptions.
+</p>
 
-<h2>문자 스트림</h2>
+<h2>Character Stream</h2>
+
+<p>
 <!-- 
-<img src="https://lh4.googleusercontent.com/-6xNIYh4BAfo/UrREJcHeK7I/AAAAAAAABhs/2U_pBrm-C-Q/w590-h555-no/CharacterStream.jpg" alt="문자 스트림 계층도" /><br />
+<img src="https://lh4.googleusercontent.com/-6xNIYh4BAfo/UrREJcHeK7I/AAAAAAAABhs/2U_pBrm-C-Q/w590-h555-no/CharacterStream.jpg" alt="Character Stream" />
 -->
+Reader and Writer are the top-level classes of the character input and output classes.
+All are abstract classes, and the unit of input and output data in the method is a character.
+</p>
 
-Reader 와 Writer는 문자 입출력 클래스의 최상위 클래스이다.<br />
-모두 추상 클래스인데 메서드에서 입출력 데이터의 단위가 문자이다.<br />
+<dl class="api-summary">
+	<dt class="api-summary-dt bottom-line">Reader</dt>
+	<dd class="api-summary-dd">int read()</dd>
+	<dd class="api-summary-dd-method-desc">It reads one single character and returns the Unicode value of the character.</dd>
+	<dd class="api-summary-dd">int read(char[] <em>b</em>)</dd>
+	<dd class="api-summary-dd-method-desc">It reads a character as many as the size of array <em>b</em>, stores it in b, and returns the number of characters read.</dd>
+	<dd class="api-summary-dd">abstract int read(char[] b, int off, int len)</dd>
+	<dd class="api-summary-dd-method-desc">It reads a character as many as the size of len and returns the number of characters read.</dd>
+</dl>
 
-<table class="table-in-article">
-<tr>
-	<td class="table-in-article-td"><strong>Reader</strong></td>
-</tr>
-<tr>
-	<td class="table-in-article-td">int read()<br />
-	단일 문자 하나를 읽고 문자의 유니코드값을 반환한다. 
-	</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">int read(char[] b)<br />
-	문자를 b 크기만큼을 읽어 b에 저장하고 읽은 문자 수를 반환
-	</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">abstract int read(char[] b, int off, int len)<br />
-	len 만큼 읽어 b의 off 위치에 저장하고 실제 읽은 문자 수를 반환		
-	</td>
-</tr>
-</table>
+<dl class="api-summary">
+	<dt class="api-summary-dt bottom-line">Writer</dt>
+	<dd class="api-summary-dd">void write(String <em>s</em>)</dd>
+	<dd class="api-summary-dd-method-desc">It outputs <em>s</em>.</dd>
+	<dd class="api-summary-dd">void write(char[] <em>b</em>)</dd>
+	<dd class="api-summary-dd-method-desc">It outputs <em>b</em>.</dd>
+	<dd class="api-summary-dd">void write(char[] <em>b</em>, int <em>off</em>, int <em>len</em>)</dd>
+	<dd class="api-summary-dd-method-desc">It outputs characters as many as size of <em>len</em> from the <em>off</em> index of array <em>b</em>.</dd>
+	<dd class="api-summary-dd">void write(String <em>s</em>, int <em>off</em>, int <em>len</em>)</dd>
+	<dd class="api-summary-dd-method-desc">It outputs characters as many as size of <em>len</em> from the <em>off</em> index of String <em>s</em>.</dd>
+</dl>
 
-<table class="table-in-article">
-<tr>
-	<td class="table-in-article-td"><strong>Writer</strong></td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void write(String s)<br />
-	s를 출력
-	</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void write(char[] b)<br />
-	b를 출력
-	</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void write(char[] b, int off, int len)<br />
-	b의 off 위치에서 len 만큼의 문자 출력		
-	</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">void write(String s, int off, int len)<br />
-	s의 off 위치에서 len 만큼의 문자 출력		
-	</td>
-</tr>
-</table>
- 
 <em class="filename">Test2.java</em>
 <pre class="prettyprint">
 package net.java_school.stream;
@@ -262,8 +207,8 @@ public class Test2 {
 
 	public static void main(String[] args) throws Exception {
 		int n = 0;
-		FileReader fr = new FileReader("C:/javaApp/테스트.txt");
-		FileWriter fw = new FileWriter("C:/javaApp/테스트카피.txt", false);
+		FileReader fr = new FileReader("C:/javaApp/test.txt");
+		FileWriter fw = new FileWriter("C:/javaApp/testCopy.txt", false);
 		while ((n = fr.read()) != -1) {
 			fw.write(n);
 		}
@@ -276,8 +221,9 @@ public class Test2 {
 
 <h3>BufferedReader/BufferedWriter</h3>
 
-BufferedReader/BufferedWriter 문자 입력 스트림으로부터 문자를 읽어 들어거나 문자 출력 스트림으로부터 문자를 내보낼 때
-버퍼링 기능을 제공하여 효율적으로 처리할 수 있도록 해준다.<br />
+<p>
+BufferedReader/BufferedWriter provides a buffering function for character I/O.
+</p>
 
 <em class="filename">Test2.java</em>
 <pre class="prettyprint">
@@ -291,10 +237,10 @@ import java.io.FileWriter;
 public class Test {
 
 	public static void main(String[] args) throws Exception {
-		FileReader fr = new FileReader("C:/javaApp/테스트.txt");
+		FileReader fr = new FileReader("C:/javaApp/test.txt");
 		BufferedReader br = new BufferedReader(fr);
 		String s = null;
-		FileWriter fw = new FileWriter("C:/javaApp/테스트카피2.txt", false);
+		FileWriter fw = new FileWriter("C:/javaApp/testCopy2.txt", false);
 		BufferedWriter bw = new BufferedWriter(fw);
 		while ((s = br.readLine()) != null) {
 			bw.write(s);
@@ -309,39 +255,30 @@ public class Test {
 }
 </pre>
 
-
-
 <h3>InputStreamReader/OutputStreamWriter</h3>
-InputStreamReader는 바이트 스트림에서 문자 스트림으로 변환할 때,
-OutputStreamWriter는 문자 스트림에서 바이트 스트림으로 변환할 때 사용하는 클래스이다.<br />
-InputStreamReader는 바이트 스트림으로부터 바이트를 읽어서 특정 문자 셋을 이용해서 문자로 바꾼다.<br />
-OutputStreamWriter는 이 출력 스트림에 쓰인 문자를 특정 문자 셋을 이용해서 바이트로 바꾼다.<br />
 
-<table class="table-in-article">
-<tr>
-	<td class="table-in-article-td"><strong>InputStreamReader 생성자</strong></td>
-</tr>
-<tr>
-	<td class="table-in-article-td">InputStreamReader(InputStream in)</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">InputStreamReader(InputStream in, String enc)</td>
-</tr>
-</table>
+<p>
+An InputStreamReader is a bridge from byte streams to character streams: It reads bytes and decodes them into characters using a specified charset.<br />
+For more information, please visit <a href="https://docs.oracle.com/javase/8/docs/api/java/io/InputStreamReader.html">this</a>.<br /> 
+An OutputStreamWriter is a bridge from character streams to byte streams: Characters written to it are encoded into bytes using a specified charset.<br />
+For more information, please visit <a href="https://docs.oracle.com/javase/8/docs/api/java/io/OutputStreamWriter.html">this</a>.
+</p>
 
-<table class="table-in-article">
-<tr>
-	<td class="table-in-article-td"><strong>OutputStreamWriter 생성자</strong></td>
-</tr>
-<tr>
-	<td class="table-in-article-td">OutputStreamWriter(OutputStream out)</td>
-</tr>
-<tr>
-	<td class="table-in-article-td">OutputStreamWriter(OutputStream out, String enc)</td>
-</tr>
-</table>
+<dl class="api-summary">
+	<dt class="api-summary-dt bottom-line">InputStreamReader's Constructor</dt>
+	<dd class="api-summary-dd">InputStreamReader(InputStream in)</dd>
+	<dd class="api-summary-dd">InputStreamReader(InputStream in, String enc)</dd>
+</dl>
 
-아래 예제는 InputStreamReader를 이용해서 표준 입력 기구인 키보드(System.in)로부터의 바이트 스트림을 문자 스트림으로 변환하는 예제이다.<br />
+<dl class="api-summary">
+	<dt class="api-summary-dt bottom-line">OutputStreamWriter's Constructor</dt>
+	<dd class="api-summary-dd">OutputStreamWriter(OutputStream out)</dd>
+	<dd class="api-summary-dd">OutputStreamWriter(OutputStream out, String enc)</dd>
+</dl>
+
+<p>
+The following example uses InputStreamReader to convert bytes input from the keyboard to characters.
+</p>
 
 <em class="filename">InputTest.java</em>
 <pre class="prettyprint">
@@ -354,23 +291,36 @@ public class InputTest {
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
 		String input = br.readLine();
-		System.out.println("입력 : " + input); 
+		System.out.println("Input: " + input); 
 	}
 }
 </pre>
 
-키보드(표준 입력 기구)를 근원지(source)로 하는 InputStreamReader 을 생성하고 있다.<br />
-그다음 입출력의 성능을 위해 버퍼 기능을 가진 BufferedReader 객체의 생성자에 InputStreamReader 의 참조 값을 
-생성자 매개변수의 인자 값으로 전달하고 있다.<br />
-String input = br.readLine();에서 사용자의 입력을 기다린다.<br />
-BufferedReader의 readLine() 메서드는 사용자가 엔터키를 칠 때까지의 문자열을 반환한다.
-이때 엔터키는 문자열에 포함되지 않는다.<br />
-문자열이 반환되어 input 변수에 할당되고<br />
-마지막 줄에서 표준 출력 메서드에 의해 입력값을 확인된다.<br />
-BufferedReader를 자바 문서에서 찾아 확인한다.<br />
-<br />
-다음 예제는 문자 데이터를 파일에 출력하는 것이다.<br />
+<p>
+The example creates an InputStreamReader with the keyboard as the source.
+In Java, the keyboard is represented by System.in.
 
+Then create a BufferedReader object for the buffer function.
+At this time, the reference value of InputStreamReader is passed as the argument to the BufferedReader's constructor.
+
+String input = br.readLine(); waits for user input.
+
+The BufferedReader's readLine () method returns a string until the user hits the Enter.
+The Enter is not included in the string.
+
+The string is returned and assigned to the input variable.
+and the input value is checked by the standard output method on the last line.
+Find and confirm the BufferedReader in the Java documentation.
+
+The last line of code prints the value assigned to input.
+
+For more information about the BufferedReader, please visit <a href="https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html">this</a>.
+
+</p>
+
+<p>
+The following example prints character data to a file.
+</p>
 <em class="filename">OutputTest.java</em>
 <pre class="prettyprint">
 package net.java_school.stream;
@@ -382,7 +332,7 @@ public class OutputTest {
 		FileWriter fw = null;
 		try {
 			fw = new FileWriter("C:/output.txt", true);
-			fw.write("테스트");
+			fw.write("TEST");
 			fw.flush();
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -397,14 +347,15 @@ public class OutputTest {
 }
 </pre>
 
-FileWriter 클래스는 문자 데이터를 파일에 출력할 때 사용한다.<br />
-FileWriter 클래스의 생성자의 첫 번째 인자는 목적지이고, 두 번째 인자는 파일에 있는 기존 내용을 그대로 둘지 여부를 
-결정하는 플래그이다. 여기에서처럼 true 이면 기존 내용을 그대로 둔다.<br />
-입력 스트림에서와 달리 출력 스트림일 경우 제대로 출력 스트림을 닫아주는 것이 중요하다.<br />
-소스에서 강조된 fw.close() 가 출력 스트림을 닫아주는 코드이다.<br />
-이 예제는 <a href="Logging.php">'로깅(Logging)'</a>의 첫 번째 예제에서 쓰인다.<br /> 
+<p>
+The FileWriter class is used to output character data to a file.
+In the FileWriter class constructor, the first argument is the destination, and the second argument is a flag that determines whether to keep the existing contents in the file. 
+If true, leave the existing contents intact.
+It is important to close the output stream.
+fw.close(); closes the output stream.
+</p>
 
-<em class="filename">SubtitleToText.java - 자막 파일(확장자 srt)을 일반 문서로 변환</em>
+<em class="filename">SubtitleToText.java</em>
 <pre class="prettyprint">
 package net.java_school.stream;
 
@@ -470,16 +421,13 @@ public class SubtitleToText {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}//finally
-			
-		}//if
-		
-	}//main 
-
+			}
+		}
+	} 
 }
 </pre>
 
-<em class="filename">URLTest.java - URL 클래스:인터넷상의 URL을 참조하는데 이용</em>
+<em class="filename">URLTest.java</em>
 <pre class="prettyprint">
 package net.java_school.stream;
 
@@ -544,12 +492,14 @@ public class URLTest {
 }
 </pre>
 
-<h2>객체 스트림</h2>
-다음 예제는 객체 스트림에 관한 예제이다.<br />
-객체를 파일이나 네트워크를 통해 전달하려면 직렬화 과정이 필요하다.<br />
-파일이나 네트워크를 통해 전달된 객체 스트림으로부터 다시 객체를 만들어 내려면 역직렬화 과정이 필요하다.<br />
-<br />
-예제는 객체 정보를 파일에 저장하고, 객체 정보가 저장된 파일로부터 객체를 생성한다.<br /> 
+<h2>Object Stream</h2>
+
+<p>
+The following is an example of an object stream.
+A serialization process is required to pass an object through a file or network.
+A deserialization process is required to reconstruct an object from a file or an object stream passed over the network.
+The example stores object information in a file, and creates an object from the file where object information is stored. 
+</p>
 
 <em class="filename">Address.java</em>
 <pre class="prettyprint">
@@ -579,19 +529,17 @@ public class Address <strong>implements Serializable</strong> {
 }
 </pre>
 
-Address 객체가 직렬화되어 스트림을 타고 파일에 저장될 것이라면<br />
-Address 클래스는 반드시 Serializable 인터페이스를 구현한다고 선언해야 한다.<br />
-<br />
-<em>public class Address implements Serializable</em><br />
-<br />
-그런데 이 Serializable 인터페이스는 구현할 메서드가 없다.<br />
-Serializable 인터페이스는 클래스로부터 생성된 객체는 직렬화 대상이라는 것을 버추얼 머신에게 알리는 역할만을 한다.<br />
-이와 같은 인터페이스는 선언적 인터페이스라고 한다.<br />
-<br />
-자바의 기본 자료형 데이터는 직렬화가 필요 없으며,<br />
-또 많이 사용하는 String 과 Collection 관련 클래스는 직렬화가 가능하다.<br />
-다시 말해, 이와 같은 클래스는 클래스 선언 부에 implements Serializable 문장이 있는 채로 컴파일 되어 있다.<br />
-우리가 만드는 클래스가 직렬화가 필요하다면 Serializable 인터페이스를 구현한다고 선언을 해야 한다.<br />
+<p>
+If the Address object is to be serialized and stored in a file in a stream, the Address class must declare that it implements the Serializable interface.
+<em>public class Address implements Serializable</em>
+The Serializable interface does not have a method to implement.
+The Serializable interface only tells the virtual machine that objects created from the class are serialized.
+Such an interface is called a declarative interface.
+
+Java's primitive data types do not require serialization, and many popular classes such as String and Collection are serializable.
+These classes have implements Serializable in the class declaration.
+If the class we want to create needs serialization, we need implements Serializable in the class declaration.
+</p>
 
 <em class="filename">Backup.java</em>
 <pre class="prettyprint">
@@ -608,8 +556,8 @@ public class Backup {
 		try {
 			out = new ObjectOutputStream(new FileOutputStream("address.txt"));
 			Address addr = new Address();
-			addr.setMobile("010-1234-5678");
-			addr.setAddress("서울 서초구");
+			addr.setMobile("212-963-4475");
+			addr.setAddress("760 United Nations Plaza, Manhattan, New York City");
 			out.writeObject(addr);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -626,9 +574,14 @@ public class Backup {
 }
 </pre>
 
-백업(Backup)은 말 그대로 Address 객체를 하나 생성하고 이것을 파일에 저장하는 클래스이다.<br />
-객체 스트림을 만들기 위해 ObjectOutputStream 을 사용했고 파일에 저장하기 위해 FileOutputStream 을 사용했다.<br />
-다음은 파일에 저장된 객체 정보로부터 객체를 복구하는 예제이다.<br />
+<p>
+The Backup class creates an Address object and stores it in a file.
+We used ObjectOutputStream to create the object stream and FileOutputStream to store the Address object in the file.
+</p>
+
+<p>
+The following example creates an object from the object information stored in a file.
+</p>
 
 <em class="filename">Recovery.java</em>
 <pre class="prettyprint">
@@ -669,14 +622,18 @@ public class Recovery {
 }
 </pre>
 
-이 예제는 address.txt 파일에 저장된 객체 정보로부터 똑같은 내용의 객체를 만들어 메모리에 올리는 프로그램이다.<br />
-파일로부터의 바이트를 읽어야 하는 입력 스트림이기에 FileInputStream 을 사용했고, 
-자바 프로그램으로 들어오는 객체 스트림을 위해서 ObjectInputStream 을 사용했다.<br />
-직렬화는 RMI 기본 개념을 이해하기 위해서도 필요하다.<br />
+<p>
+This example creates an object of the same content from the object information stored in the address.txt file and puts it in the heap memory.
+This example uses a FileInputStream to read bytes from a file.
+This example uses an ObjectInputStream for an object stream coming into a Java program.
+Serialization is necessary to understand RMI basic concepts.
+</p>
 
-<h2>자바은행 실습</h2>
-자바은행 예제에 스트림을 적용하는 실습을 한다.<br /> 
-BankUi라는 새로운 클래스를 아래와 같이 만들고 테스트한다.<br />
+<h2>Apply to Stream to Javabank Example</h2>
+
+<p>
+Create and test a new class called BankUi as shown below.
+</p>
 
 <pre class="prettyprint">
 package net.java_school.bank;
@@ -691,18 +648,17 @@ public class BankUi{
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
 		String input = <strong>br.readLine();</strong>
-		System.out.println("입력: " + input);
+		System.out.println("Input: " + input);
 	}
 
 }
 </pre>
 
-실행하면 br.readLine();에서 프로그램이 멈춘다.<br />
-사용자가 키보드로 입력 후 엔터키를 치면 엔터키를 포함하지 않는 문자열이 input에 할당된다.<br />
+<h3>TODO</h3>
 
-<h3>과제</h3>
-
-BankUi를 아래처럼 변경한 후 //TODO 부분을 구현한다.<br />
+<p>
+Change the BankUi as shown below and implement the TODO part.
+</p>
 
 <pre class="prettyprint">
 package net.java_school.bank;
@@ -726,14 +682,14 @@ public class BankUi {
         String menu = null;
 
         do {
-            System.out.println(" ** 메뉴를 선택하세요 ** ");
-            System.out.println(" 1 ** 계좌 등록    ");
-            System.out.println(" 2 ** 계좌 목록    ");
-            System.out.println(" 3 ** 입금    ");
-            System.out.println(" 4 ** 출금    ");
-            System.out.println(" 5 ** 이체    ");
-            System.out.println(" 6 ** 입출금 명세    ");
-            System.out.println(" q ** 종료    ");
+            System.out.println(" ** Menu ** ");
+            System.out.println(" 1 ** Bank account registration    ");
+            System.out.println(" 2 ** List of bank accounts    ");
+            System.out.println(" 3 ** Deposit    ");
+            System.out.println(" 4 ** Withdrawal    ");
+            System.out.println(" 5 ** Transfer    ");
+            System.out.println(" 6 ** Transaction history    ");
+            System.out.println(" q ** Exit    ");
             System.out.println(" ********************** ");
             System.out.print("&gt;&gt;");
             
@@ -742,17 +698,17 @@ public class BankUi {
                 menu = readCommandLine();
 
                 if (menu.equals("1")) {
-                    //TODO 계좌등록
+                    //TODO Bank account registration
                 } else if (menu.equals("2")) {
-                    //TODO 계좌목록
+                    //TODO List of bank accounts
                 } else if (menu.equals("3")) {
-                    //TODO 입금
+                    //TODO Deposit
                 } else if (menu.equals("4")) {
-                    //TODO 출금
+                    //TODO Withdrawal
                 } else if (menu.equals("5")) {
-                    //TODO 이체
+                    //TODO Transfer
                 } else if (menu.equals("6")) {
-                    //TODO 입출금 명세
+                    //TODO Transaction history
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -770,22 +726,28 @@ public class BankUi {
 }
 </pre>
 
+<p>
 
-//TODO 부분을 모두 구현했다면 충분히 테스트한다.<br />
-대화형 프로그램으로 진화되었지만 프로그램이 종료되면 계좌와 쌓인 입출금 명세 정보는 사라지는 것은 이전과 같다.<br />
-다음 방법으로 계좌와 입출금 명세를 저장할 수 있다.<br /> 
+Implement all //TODO parts and test them thoroughly.
+The Java bank program has evolved into an interactive program, but once the program ends, 
+accounts and transaction history disappear as before.
+You can save your account and transaction history in the following ways:
+</p>
 
 <ol>
-	<li>객체 스트림을 이용하여 은행 객체를 파일에 저장</li>
-	<li>계좌와 입출금 명세 정보를 읽을 수 있는 텍스트 파일에 저장</li>
-	<li>데이터베이스에 저장</li>
+	<li>Save the bank object to a file.</li>
+	<li>Save the account and transaction history to a text file.</li>
+	<li>Save the account and transaction history to Database.</li>
 </ol>
 
-<h3>1. 객체 스트림을 이용하여 은행 객체를 파일에 저장</h3>
-객체를 파일 시스템에 저장하려면 객체가 직렬화 대상이어야 한다.<br />
-직렬화 대상이 되게 하려면 Serializable 인터페이스를 구현해야 한다.<br />
-Bank, Account, Transaction 클래스를 수정한다.<br />
-<em class="path">import java.io.Serializable;</em>문이 필요하다.<br />
+<h3>1. How to save a bank object to a file using an object stream.</h3>
+
+<p>
+To save an object to the file system, the object must be a serializable object.
+Modify the Bank, Account, and Transaction classes as shown below.
+</p>
+
+We need <em>import java.io.Serializable;</em> statement.
  
 <pre class="prettyprint">
 public interface Bank <strong>extends Serializable</strong> {
@@ -800,14 +762,18 @@ public abstract class Account <strong>implements Serializable</strong> {
 public class Transaction <strong>implements Serializable</strong> {
 </pre>
 
-시나리오는 이렇다.<br />
-프로그램이 시작할 때 bank.ser 파일에 저장된 은행 객체 정보를 역직렬화해서 은행 객체를 힙 메모리에 불러온다.<br />
-프로그램을 처음 실행하는 상황이고 그래서 bank.ser 파일이 없다면 FileNotFoundException이 발생할 것이다.
-FileNotFoundException이 발생하는 경우에는 은행 클래스의 생성자를 호출하여 은행 객체를 생성하고 
-bank 변수에 참조 값을 할당한다.<br />
-프로그램을 종료할 때 은행 객체 정보를 bank.ser 파일에 저장한다.<br />
-<br /> 
-다음 메소드를 BankUi 클래스에 추가한다.<br />
+<p>
+The scenario is as follows.
+When the program starts, 
+it de-serializes the bank object information stored in the bank.ser file and loads the bank object into the heap memory.
+If this is the first time you are running the program after the modification and the bank.ser file is not created, a FileNotFoundException will be generated.
+When a FileNotFoundException occurs, call the bank class's constructor to create the bank object and assign the bank reference to the bank variable.
+At the end of the program, the bank object information is stored in the bank.ser file.
+</p>
+
+<p>
+Add the following method to the BankUi class.
+</p>
 
 <pre class="prettyprint">
 public void loadBank() throws Exception {
@@ -847,55 +813,74 @@ public static void main(String[] args) <strong>throws Exception</strong> {
 }
 </pre>
 
-<h3>2. 계좌와 입출금 명세 정보를 읽을 수 있는 텍스트 파일에 저장</h3>
-텍스트 파일에 저장하기 위한 코드 힌트를 보기 전에 우선 File 클래스에 대해 알아보자.<br />
-File 클래스는 짐작과 달리 파일에 대한 입출력 기능은 없다.<br />
-File 클래스로 할 수 있는 알은 다음과 같다.<br />
+<h3>2. How to save your account and transaction history to a text file.</h3>
+
+<p>
+Before looking at the code hints for saving to a text file, let's first look at the File class.
+What you can do with the File class is as follows.
+</p>
 
 <ul>
-	<li>디렉터리 내용을 알아본다.</li>
-	<li>파일의 속성을 알아낸다.</li>
-	<li>파일을 이름을 변경하거나 파일을 삭제한다.</li>
+	<li>See the contents of the directory.</li>
+	<li>Get the attributes of the file.</li>
+	<li>Rename or delete the file.</li>
 </ul>
 
-File 객체를 생성하는 코드는 아래와 같다.<br />
-File dir = new File(path);<br />
-여기서 path에 해당하는 파일이나 디렉터리는 시스템의 전체 경로가 되어야 한다.<br />
-다음은 File 클래스의 중요 메서드이다.<br />
+<p>
+Note that the File class does not have I/O capabilities for files.
+</p>
 
+<p>
+File dir = new File(path);<br />
+The above code snippet creates a file object.
+The file or directory corresponding to path must be the full path of the system.
+</p>
+
+<p>
+The following are the important methods of the File class.
+</p>
 <dl class="api-summary">
 	<dt class="api-summary-dt bottom-line">File</dt>
 	<dd class="api-summary-dd">isDirectory() : boolean</dd>
-	<dd class="api-summary-dd-method-desc">dir.isDirectory(); //dir이 디렉터리이면 true 반환</dd>
+	<dd class="api-summary-dd-method-desc">dir.isDirectory(); //Returns true if dir is a directory.</dd>
 	<dd class="api-summary-dd">isFile() : boolean</dd>
-	<dd class="api-summary-dd-method-desc">dir.isFile(); //dir이 파일이면 true 반환</dd>
+	<dd class="api-summary-dd-method-desc">dir.isFile(); //Returns true if dir is a file.</dd>
 	<dd class="api-summary-dd">list() : String[]</dd>
-	<dd class="api-summary-dd-method-desc">dir.list(); //dir이 디렉터리일 때 디렉터리에 있는 파일명을 String[] 타입 값으로 반환</dd>
+	<dd class="api-summary-dd-method-desc">dir.list(); //If dir is a directory, return the file names in the directory as String[].</dd>
 	<dd class="api-summary-dd">listFiles() : File[]</dd>
-	<dd class="api-summary-dd-method-desc">dir.listFiles(); //디렉터리에 있는 파일의 파일 객체 배열 반환</dd>
+	<dd class="api-summary-dd-method-desc">dir.listFiles(); //Returns an array of file objects for files in the directory.</dd>
 	<dd class="api-summary-dd">mkdir() : boolean</dd>
-	<dd class="api-summary-dd-method-desc">dir.mkdir(); //File 객체의 이름을 가진 디렉터리 생성</dd>
+	<dd class="api-summary-dd-method-desc">dir.mkdir(); //Create a directory with the name of the File object.</dd>
 	<dd class="api-summary-dd">getName() : String</dd>
-	<dd class="api-summary-dd-method-desc">파일명 반환</dd>
+	<dd class="api-summary-dd-method-desc">Return file name.</dd>
 	<dd class="api-summary-dd">getPath() : String</dd>
-	<dd class="api-summary-dd-method-desc">경로 반환</dd>
+	<dd class="api-summary-dd-method-desc">Return path.</dd>
 	<dd class="api-summary-dd">delete() : boolean</dd>
-	<dd class="api-summary-dd-method-desc">파일 삭제</dd>
+	<dd class="api-summary-dd-method-desc">Delete file.</dd>
 	<dd class="api-summary-dd">exists() : boolean</dd>
-	<dd class="api-summary-dd-method-desc">파일이나 경로가 있다면 true, 없다면 false 반환</dd>
+	<dd class="api-summary-dd-method-desc">Returns true if the file or directory exists, false if not.</dd>
 </dl>
 
-계좌 정보는 accounts.txt 이름의 파일에 저장할 것이다.<br /> 
-저장되는 계좌 정보의 형식은 다음과 같다.<br />
+<p>
+For more information, please visit:<br />
+<a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">https://docs.oracle.com/javase/8/docs/api/java/io/File.html</a>
+</p>
+
+<p>
+The account information will be stored in a file named accounts.txt.
+The format of the stored account information is as follows.
+</p>
 
 <pre class="prettyprint">
-101|홍길동|10000|일반
-202|임꺽정|5000|일반
-303|장길산|0|일반
-404|홍길동|0|마이너스
+101|Alison|10000|Normal
+202|Bill|5000|Normal
+303|Carol|0|Normal
+404|Alison|0|Minus
 </pre>
 
-Account.java 파일을 열고 toString() 메서드를 다음처럼 수정하다.<br />
+<p>
+Open the Account.java file and modify the toString () method as follows:
+</p>
 
 <pre class="prettyprint">
 @Override
@@ -913,15 +898,19 @@ public String toString() {
 }
 </pre>
 
-입출금 명세는 계좌번호와 같은 이름의 파일에 저장하도록 할 것이다.<br />
-저장되는 입출금 명세 정보의 형식은 다음과 같다.<br />
+<p>
+The transaction history will be stored in a file with the same name as the account number.
+The format of the transaction history information stored is as follows.
+</p>
 
 <pre class="prettyprint">
-2014/5/1|09:33:30|입금|10000|10000
-2014/5/3|09:33:30|출금|6000|4000
+2014/5/1|09:33:30|D|10000|10000
+2014/5/3|09:33:30|W|6000|4000
 </pre>
 
-Transaction.java 파일을 열고 toString() 메서드를 다음처럼 수정한다.<br />
+<p>
+Open the Transaction.java file and modify the toString() method as follows:
+</p>
 
 <pre class="prettyprint">
 @Override
@@ -941,12 +930,15 @@ public String toString() {
 }
 </pre>
 
-먼저 BankUi.java를 열고 아래를 참고하여 코드를 수정한다.<br />
+<p>
+Open BankUi.java and modify the code referring to the following.
+</p>
 
 <pre class="prettyprint">
-<strong>static final String ACCOUNT_FILE = "accounts.txt";
-static final String DATA_DIR = "./data/";</strong>
-
+<strong>
+static final String ACCOUNT_FILE = "accounts.txt";
+static final String DATA_DIR = "./data/";
+</strong>
 private Bank bank = <strong>new ShinhanBank();
 /*	
 public BankUi() throws Exception {
@@ -961,9 +953,10 @@ public static void main(String[] args) throws Exception {
 }
 </pre>
 
-다음 코드 조각을 참조하여 구현한다.<br /> 
-프로그램이 시작할 때 계좌 정보를 accounts.txt 파일로부터 읽어서 계좌 객체를 로딩한다.<br />
-이클립스에서 작업한다면 프로젝트 루트 디렉터리에 data 폴더를 만들고 폴더 안에 accounts.txt 이름의 빈 파일을 만들어야 한다.<br />
+<p>
+When the program starts, it reads the account information from the accounts.txt file and loads the account object.
+If you work in Eclipse, you need to create a data folder in the project root directory and create an empty file named accounts.txt in the folder.
+</p>
 
 <pre class="prettyprint">
 FileReader fr = null;
@@ -971,7 +964,7 @@ fr = new FileReader(DATA_DIR + BankUi.ACCOUNT_FILE);
 BufferedReader br = new BufferedReader(fr);
 String str = null;
 
-while ( (str = br.readLine()) != null) {
+while ((str = br.readLine()) != null) {
     StringTokenizer st = new StringTokenizer(str, "|");
     String accountNo = st.nextToken();
     String name = st.nextToken();
@@ -988,8 +981,9 @@ while ( (str = br.readLine()) != null) {
 br.close();
 </pre>
 
-프로그램을 시작할 때 입출금 명세를 각 입출금 명세 파일로부터 읽어서 입출금 명세 객체를 로딩하고 
-계좌 객체와 바인딩 한다.<br />
+<p>
+When you start the program, you load the transaction history object from each transaction history file and bind it with the account object.
+</p>
 
 <pre class="prettyprint">
 File dir = new File(BankUi.DATA_DIR);
@@ -1028,7 +1022,9 @@ for (File file : files) {
 } 		
 </pre>
 
-프로그램이 종료될 때 계좌와 입출금 명세를 저장한다.<br />
+<p>
+When the program ends, the account and transaction details are saved.
+</p>
 
 <pre class="prettyprint">
 StringBuilder sbForAccounts = new StringBuilder();
@@ -1059,7 +1055,9 @@ bw.write(sbForAccounts.toString());
 bw.close();		
 </pre>
 
-데이터 베이스에 저장하는 방법은 JDBC에서 구현한다.<br />
+<p>
+Saving to the database is described in the JDBC chapter.
+</p>
 
 <em class="filename">BankUi.java</em>
 <pre class="prettyprint">
@@ -1104,14 +1102,14 @@ public class BankUi {
 		String menu = null;
 		
 			do {
-				System.out.println(" ** 메뉴를 선택하세요 ** ");
-				System.out.println(" 1 ** 계좌 등록    ");
-				System.out.println(" 2 ** 계좌 목록    ");
-				System.out.println(" 3 ** 입금    ");
-				System.out.println(" 4 ** 출금    ");
-				System.out.println(" 5 ** 이체    ");
-				System.out.println(" 6 ** 입출금 명세    ");
-				System.out.println(" q ** 종료    ");
+				System.out.println(" ** Menu ** ");
+				System.out.println(" 1 ** Bank account registration    ");
+				System.out.println(" 2 ** List of bank accounts    ");
+				System.out.println(" 3 ** Deposit    ");
+				System.out.println(" 4 ** Withdrawal    ");
+				System.out.println(" 5 ** Transfer    ");
+				System.out.println(" 6 ** Transaction history    ");
+				System.out.println(" q ** Exit    ");
 				System.out.println(" ********************** ");
 				System.out.print("&gt;&gt;");
 				
@@ -1124,12 +1122,12 @@ public class BankUi {
 					long amount = 0;
 					
 					if (menu.equals("1")) {
-						//TODO 계좌등록
-						System.out.print("계좌 번호를 입력하세요: ");
+						//TODO Bank account registration
+						System.out.print("Please enter the number of the account to be created: ");
 						accountNo = this.readCommandLine();
-						System.out.print("소유자 이름을 입력하세요: ");
+						System.out.print("Please enter the owner name of the account to be created: ");
 						name = this.readCommandLine();
-						System.out.print("계좌 종류를 선택하세요. 일반(n), 마이너스(m):  일반(n): : ");
+						System.out.print("Please select the account type to be created. Normal(n), Minus(m):  Normal(n): : ");
 						kind = this.readCommandLine();
 						if (kind.equals("") || kind.equals("n") || kind.equals("m")) {
 							if (kind.equals("")) {
@@ -1143,42 +1141,42 @@ public class BankUi {
 						}
 						
 					} else if (menu.equals("2")) {
-						//TODO 계좌목록
+						//TODO List of bank accounts
 						List&lt;Account&gt; accounts = bank.getAccounts();
 						for (Account account : accounts) {
 							System.out.println(account);
 						}
 					} else if (menu.equals("3")) {
-						//TODO 입금
-						System.out.print("계좌 번호를 입력하세요: ");
+						//TODO Deposit
+						System.out.print("Please enter your account number: ");
 						accountNo = this.readCommandLine();
-						System.out.print("입금 액을 입력하세요: ");
+						System.out.print("Please enter deposit amount: ");
 						amount = Integer.parseInt(this.readCommandLine());
 						Account account = bank.getAccount(accountNo);
 						account.deposit(amount);
 					} else if (menu.equals("4")) {
-						//TODO 출금
-						System.out.print("계좌 번호를 입력하세요: ");
+						//TODO Withdrawal
+						System.out.print("Please enter your account number: ");
 						accountNo = this.readCommandLine();
-						System.out.print("출금 액을 입력하세요: ");
+						System.out.print("Please enter deposit amount: ");
 						amount = Integer.parseInt(this.readCommandLine());
 						Account account = bank.getAccount(accountNo);
 						account.withdraw(amount);
 					} else if (menu.equals("5")) {
-						//TODO 이체
-						System.out.print("송금 계좌(From) 번호를 입력하세요: ");
+						//TODO Transfer
+						System.out.print("Please enter your account number: ");
 						String from = this.readCommandLine();
-						System.out.print("입금 계좌(To) 번호를 입력하세요: ");
+						System.out.print("Please enter the account number you wish to transfer: ");
 						String to = this.readCommandLine();
-						System.out.print("이체 금액을 입력하세요: ");
+						System.out.print("Enter transfer amount: ");
 						amount = Integer.parseInt(this.readCommandLine());
 						Account fromAccount = bank.getAccount(from);
 						Account toAccount = bank.getAccount(to);
 						fromAccount.withdraw(amount);
 						toAccount.deposit(amount);	
 					} else if (menu.equals("6")) {
-						//TODO 입출금 명세
-						System.out.print("계좌 번호를 입력하세요: ");
+						//TODO Transaction history
+						System.out.print("Please enter your account number: ");
 						accountNo = this.readCommandLine();
 						Account account = bank.getAccount(accountNo);
 						List&lt;Transaction&gt; transactions = account.getTransactions();
@@ -1316,4 +1314,9 @@ public class BankUi {
 	
 }
 </pre>
+
+<p>
+How to store account information and transactions in the database will be described in the JDBC chapter.
+</p>
+
 </article>

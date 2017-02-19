@@ -1,11 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2015.6.3</div>
+<div class="last-modified">Last Modified 2017.2.14</div>
 
-<h1>자바은행</h1>
+<h1>JavaBank</h1>
 
-<h2>테이블과 트리거 생성</h2>
-자바은행 예제에서 계좌와 입출금 명세 정보를 데이터베이스에 저장하도록 수정한다.<br />
-SQL*PLUS에서 soctt/tiger로 접속하여 다음 테이블을 생성한다.
+<h2>Creating tables and triggers</h2>
+
+<p>
+In the Java bank example, modify the account and transaction history to store in the database.
+Connect to soctt account with SQL*PLUS and create the following table.
+</p>
 
 <pre class="prettyprint">
 create table bankaccount (
@@ -30,8 +36,10 @@ create table transaction (
 );
 </pre>
 
-거래 내용 테이블은 트리거를 사용하여 데이터를 인서트할 것이다.
-다음은 힌트가 되는 트리거 예제이다.
+<p>
+The transaction table will use the trigger to insert the data.
+Here is an example of a trigger that is a hint:
+</p>
 
 <pre class="prettyprint">
 create table a (name varchar2(10));
@@ -47,13 +55,15 @@ BEGIN
 END;
 /
 
-insert into a values ('홍길동');
-insert into a values ('임꺽정');
-insert into a values ('장길산');
+insert into a values ('Alison');
+insert into a values ('Bill');
+insert into a values ('Carol');
 
 select * from b;
 </pre>
-<!-- 트리거 검색 쿼리
+
+<!-- 
+트리거 검색 쿼리
  
 SELECT TRIG.TRIGGER_NAME "Trigger",
        TRIG.STATUS "Status",
@@ -66,8 +76,11 @@ SELECT TRIG.TRIGGER_NAME "Trigger",
        AND ALLO.OBJECT_NAME   = TRIG.TRIGGER_NAME
        AND ALLO.OWNER         = TRIG.OWNER
 order by TRIG.TRIGGER_NAME asc;
- -->
-계좌 잔액이 변할 때마다 입출금 명세 테이블에 데이터를 쌓는 트리거를 만든다.
+-->
+
+<p>
+Create a trigger that accumulates data in the transaction history table whenever your account balance changes.
+</p>
 
 <pre class="prettyprint">
 create or replace trigger bank_trigger
@@ -100,9 +113,11 @@ end;
 /
 </pre>
 
-<h2>자바 빈 수정</h2>
+<h2>Modifying JavaBeans</h2>
 
-입출금 명세 클래스는 기존과 같다.<br />
+<p>
+Transaction history class is the same as before.
+</p>
 
 <em class="filename">Transaction.java</em>
 <pre class="prettyprint">
@@ -186,8 +201,10 @@ public class Transaction implements Serializable {
 }
 </pre>
 
-원래 추상 클래스였던 Account에서 abstract를 제거한다.<br />
-NormalAccount와 MinusAccount는 제거한다.<br />
+<p>
+Change the abstract class Account to a normal class.
+Remove NormalAccount and MinusAccount.
+</p>
 
 <em class="filename">Account.java</em>
 <pre class="prettyprint">
@@ -212,8 +229,8 @@ public class Account implements Serializable {
 	
 	static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
 	static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
-	static final String DEPOSIT = "입금";
-	static final String WITHDRAW = "출금";
+	static final String DEPOSIT = "Deposit";
+	static final String WITHDRAW = "Withdraw";
 	static final String NORMAL = "NORMAL";
 	static final String MINUS = "MINUS";
 	static final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance();
@@ -283,7 +300,9 @@ public class Account implements Serializable {
 }
 </pre>
 
-자바은행 시스템이 할 수 있는 기능을 Bank.java에 모두 보여준다.<br />
+<p>
+Bank.java shows all the functions that the JavaBank system can do.
+</p>
 
 <em class="filename">Bank.java</em>
 <pre class="prettyprint">
@@ -294,37 +313,39 @@ import java.util.List;
 
 public interface Bank extends Serializable {
 	
-	//계좌를 생성한다.
+	//Creating an account.
 	public void addAccount(String accountNo, String name, String kind);
 	
-	/*//계좌를 생성한다.
+	/*//Creating an account
 	public void addAccount(String accountNo, String name, long balance, String kind);
 	*/
-	//계좌번호로 계좌를 찾는다.
+	//Finding an account by account number
 	public Account getAccount(String accountNo);
 	
-	//소유자 명으로 계좌를 찾는다.
+	//Finding an account by owner name
 	public List&lt;Account&gt; findAccountByName(String name);
 	
-	//모든 계좌를 반환한다.
+	//All accounts
 	public List&lt;Account&gt; getAccounts();
 	
-	//입금
+	//Deposit
 	public void deposit(String accountNo, long amount);
 	
-	//출금
+	//Withdraw
 	public void withdraw(String accountNo, long amount);
 	
-	//이체
+	//Transfer
 	public void transfer(String from, String to, long amount);
 	
-	//입출금 명세
+	//All transaction history
 	public List&lt;Transaction&gt; getTransactions(String accountNo); 
   
 }
 </pre>
 
-데이터베이스 관련된 기능을 BankDao.java에 모두 보여준다.<br />
+<p>
+BankDao.java show all database related functions.
+</p>
 
 <em class="filename">BankDao.java</em>
 <pre class="prettyprint">
@@ -334,31 +355,33 @@ import java.util.List;
 
 public interface BankDao {
 	
-	//계좌 생성
+	//Creating an account
 	public void insertAccount(String accountNo, String name, String kind);
 	
-	//계좌번호로 계좌 찾기
+	//Finding an account by account number
 	public Account selectOneAccount(String accountNo);
 	
-	//소유자로 계좌 찾기
+	//Finding an account by owner name
 	public List&lt;Account&gt; selectAccountsByName(String name);
 	
-	//계좌 목록
+	//All accounts
 	public List&lt;Account&gt; selectAllAccounts();
 	
-	//입금
+	//Deposit
 	public void deposit(String accountNo, long amount);
 	
-	//출금
+	//Withdraw
 	public void withdraw(String accountNo, long amount);
 	
-	//입출금 명세
+	//All transaction history
 	public List&lt;Transaction&gt; selectAllTransactions(String accountNo);
 
 }
 </pre>
 
-BankDao의 구현 클래스를 만든다.
+<p>
+Create an implementation class for BankDao.
+</p>
 
 <em class="filename">ShinhanBankDao.java</em>
 <pre class="prettyprint">
@@ -382,7 +405,6 @@ public class ShinhanBankDao implements BankDao {
 	static final String USER = "scott";
 	static final String PASSWORD = "tiger";
 
-	//생성자에서 JDBC 드라이버 로딩
 	public ShinhanBankDao() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -391,12 +413,10 @@ public class ShinhanBankDao implements BankDao {
 		}
 	}
     
-	//커넥션 얻기
 	private Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(URL, USER, PASSWORD);
 	}
     
-	//자원 반환
 	private void close(ResultSet rs, PreparedStatement pstmt, Connection con) {
 		if (rs != null) {
 			try {
@@ -652,7 +672,9 @@ public class ShinhanBankDao implements BankDao {
 }
 </pre>
 
-Bank의 구현 클래스를 만든다.
+<p>
+Create an implementation class for Bank.
+</p>
 
 <em class="filename">ShinhanBank.java</em>
 <pre class="prettyprint">
@@ -738,14 +760,14 @@ public class BankUi {
 		String menu = null;
 		
 			do {
-				System.out.println(" ** 메뉴를 선택하세요 ** ");
-				System.out.println(" 1 ** 계좌 등록    ");
-				System.out.println(" 2 ** 계좌 목록    ");
-				System.out.println(" 3 ** 입금    ");
-				System.out.println(" 4 ** 출금    ");
-				System.out.println(" 5 ** 이체    ");
-				System.out.println(" 6 ** 입출금 명세    ");
-				System.out.println(" q ** 종료    ");
+				System.out.println(" ** Please select menu ** ");
+				System.out.println(" 1 ** New Account registration    ");
+				System.out.println(" 2 ** All Accounts    ");
+				System.out.println(" 3 ** Deposit    ");
+				System.out.println(" 4 ** Withdraw    ");
+				System.out.println(" 5 ** Transfer    ");
+				System.out.println(" 6 ** Transaction history    ");
+				System.out.println(" q ** Quit    ");
 				System.out.println(" ********************** ");
 				System.out.print("&gt;&gt;");
 				
@@ -758,12 +780,12 @@ public class BankUi {
 					long amount = 0;
 					
 					if (menu.equals("1")) {
-						//TODO 계좌등록
-						System.out.print("계좌 번호를 입력하세요: ");
+						//TODO New Account registration
+						System.out.print("Enter the account number of the account you want to create: ");
 						accountNo = this.readCommandLine();
-						System.out.print("소유자 이름을 입력하세요: ");
+						System.out.print("Enter the owner name of the account you want to create: ");
 						name = this.readCommandLine();
-						System.out.print("계좌 종류를 선택하세요. 일반(n), 마이너스(m):  일반(n): : ");
+						System.out.print("Please select an account kind. noraml (n), minus (m): normal (n) : : ");
 						kind = this.readCommandLine();
 						if (kind.equals("") || kind.equals("n") || kind.equals("m")) {
 							if (kind.equals("")) {
@@ -777,37 +799,37 @@ public class BankUi {
 						}
 						
 					} else if (menu.equals("2")) {
-						//TODO 계좌목록
+						//TODO All accounts
 						List&lt;Account&gt; accounts = bank.getAccounts();
 						for (Account account : accounts) {
 							System.out.println(account);
 						}
 					} else if (menu.equals("3")) {
-						//TODO 입금
-						System.out.print("계좌 번호를 입력하세요: ");
+						//TODO Deposit
+						System.out.print("Please enter your account number: ");
 						accountNo = this.readCommandLine();
-						System.out.print("입금 액을 입력하세요: ");
+						System.out.print("Please enter deposit amount: ");
 						amount = Integer.parseInt(this.readCommandLine());
 						bank.deposit(accountNo, amount);
 					} else if (menu.equals("4")) {
-						//TODO 출금
-						System.out.print("계좌 번호를 입력하세요: ");
+						//TODO Withdraw
+						System.out.print("Please enter your account number: ");
 						accountNo = this.readCommandLine();
-						System.out.print("출금 액을 입력하세요: ");
+						System.out.print("Please enter withdraw amount: ");
 						amount = Integer.parseInt(this.readCommandLine());
 						bank.withdraw(accountNo, amount);
 					} else if (menu.equals("5")) {
-						//TODO 이체
-						System.out.print("송금 계좌(From) 번호를 입력하세요: ");
+						//TODO Transfer
+						System.out.print("Please enter your withdrawal account number: ");
 						String from = this.readCommandLine();
-						System.out.print("입금 계좌(To) 번호를 입력하세요: ");
+						System.out.print("Please enter your deposit account number: ");
 						String to = this.readCommandLine();
-						System.out.print("이체 금액을 입력하세요: ");
+						System.out.print("Enter transfer amount: ");
 						amount = Integer.parseInt(this.readCommandLine());
 						bank.transfer(from, to, amount);
 					} else if (menu.equals("6")) {
-						//TODO 입출금 명세
-						System.out.print("계좌 번호를 입력하세요: ");
+						//TODO Transaction history
+						System.out.print("Please enter your account number: ");
 						accountNo = this.readCommandLine();
 						List&lt;Transaction&gt; transactions = bank.getTransactions(accountNo);
 						for (Transaction transaction : transactions) {

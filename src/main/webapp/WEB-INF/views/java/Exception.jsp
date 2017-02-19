@@ -1,1054 +1,738 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2014.4.11</div>
+<div class="last-modified">Last Modified 2017.1.26</div>
 
-<h1>예외</h1>
+<h1>Collection</h1>
 
-예외(exception)란 일반적이지 않는 것을 의미한다.<br />
-예를 들어 "에스컬레이터가 갑자기 중간에서 멈춘다면 예외적인 상황이다."라고 할 때 그 예외이다.<br />
-자바는 자바 API를 사용하는 중에 발생할 수 있는 모든 예외 상황마다 예외 클래스를 만들어 놓았다.<br />
-그리하여 실행 도중에 예외가 발생하면 JVM은 그것에 해당하는 예외 클래스로부터 객체를 생성하여 
-예외를 발생시킨 코드에 던진다.<br />
-예외 객체를 생성하여 던지는 것까지 예외가 발생했을 때 JVM이 책임져야 할 부분이다.<br />
-발생한 예외 객체를 어떻게 핸들링할지는 프로그래머의 몫이다.<br />
-프로그래머는 생성된 예외 객체를 try, catch와 finally블럭<a href="#comments"><sup>1</sup></a>을 적절히 사용하여 컨트롤 할 수 있다.<br />
-자바 프로그래밍 세계에서 에스컬레이터 객체가 갑자기 중간에서 멈추면 catch블록에서 사람 객체를 걷도록
-프로그래밍하면 된다.<br />
+<p>
+A collection is a Java library for storing several references of the same type.<br /> 
+It is easy to understand if you think that similar to an array but much more convenient.<br /> 
+The following figure shows the hierarchical relationship of the collection's main interfaces.<br />
 
-<dl class="note">
-<dt>자바 프로그램에서 에러(error)란?</dt>
-<dd>
-예외도 엄밀하게 에러이지만 자바에서는 예외와 에러를 구별한다.<br />
-자바에서 에러는 "프로그램적으로 컨트롤 할 수 없는 에러"라고 보면 된다.<br />
-에러가 발생하면 프로그램은 종료된다.<br />
-에러가 발생하면 프로그래머가 할 수 있는 일이 거의 없다.<br />
-</dd>
-</dl>
+<img src="images/Collection_Framework.gif" alt="Collection Framework" /><br />
 
-<h2>예외를 컨트롤하는 코드</h2>
+Consider the following when choosing a collection class.<a href="#comments"><sup>1</sup></a>
+</p>
 
-예외 클래스들은 계층적인 구조를 가지는데, 이중 Exception클래스는 모든 예외 클래스의 최상위 클래스이다.
-다음은 예외를 다루는 예이다.<br />
+<ul>
+	<li>Set: It does not allow duplication and there is no order in it.</li>
+	<li>List: It does allow duplication and there is an order in it.</li>
+	<li>Map: It is stored in the form of key and value.</li>
+</ul>
 
-<pre class="prettyprint">
-try {
-   //A,B라는 예외가 발생할 수 있는 코드
-   //여기서 A는 계층적으로 B보다 위에 있다고 가정
-} catch (B익셉션클래스 e) { //e는 B익셉션 객체의 레퍼런스
-   //B예외가 발생했을 때 실행되는 코드
-} catch (A익셉션클래스 e) {
-   //A예외가 발생했을 때 실행되는 코드
-} finally {
-   //예외가 발생하던 안하던 무조건 실행되는 코드
-}
-</pre>
+<p>
+Here are the frequently used collection classes:<br />
+It shows 6 classes after Java 2 and 2 classes before Java 2.<br />
+</p>
 
-<dl class="note">
-<dt>try블록</dt>
-<dd>
-예외가 발생할 수 있는 코드를 감싸는 블록으로 단독으로 쓸 수 없다.<br />
-catch블록이나 finally블록과 함께 사용해야 한다.<br />
-</dd>
-<dt>catch블록</dt>
-<dd>
-에러와 마찬가지로 예외 역시 아무런 조치가 없다면 프로그램은 멈추게 된다.<br />
-try블록에서 발생한 예외를 핸들링하려면 catch블록을 코드내에 적절하게 사용해야 한다.<br />
-catch블록은 위에서처럼 여러개를 사용하여 발생한 익셉션에 따라 섬세한 컨트롤이 가능하다.<br />
-</dd>
-<dt>finally블록</dt>
-<dd>
-익셉션이 발생하든 발생하지 않든 무조건 실행되는 블록이다.<br />
-finally블록은 없거나 하나이다.<br />
-</dd>
-</dl>
-
-<h2>예외 매커니즘</h2>
-
-아래와 같이 메소드1에서 메소드2를 호출, 메소드2에서 메소드3를 호출한다고 가정한다.<br />
-
-<img src="https://lh3.googleusercontent.com/-e9lY9rAqJ3s/VYEg9RM3gqI/AAAAAAAACO4/DrD7J9FkFsk/s600-Ic42/exception-mechanism.gif" alt="익셉션 매커니즘" /><br />
-
-메소드3에서 익셉션이 발생했고 메소드3에서 발생한 익셉션을 잡는 catch문이 있다면 프로그램은 멈추지 않고 계속 진행된다.<br />
-메소드3에서 해당 익셉션을 잡는 catch문이 없다면 발생한 익셉션은 메소드3를 호출한 메소드2에 전달된다.<br />
-메소드2에서 해당 익셉션을 잡는 catch문이 없다면 메소드2를 호출한 메소드1으로 익셉션이 전달된다.<br />
-메인 메소드를 호출한 JVM까지 익셉션이 전달되면 프로그램은 종료된다.<br />
-이와같은 종료를 비정상적인 종료라 한다.<br />
-
-<h3>익셉션 클래스 계층 구조</h3>
-
-<img src="https://lh3.googleusercontent.com/-UKDWi65X4sRbRXolBLM9k1_vmUwPbTnOKUbl8z-z_jikNv49nsUz3C0ZG3qCTWSfxk5BsSu9jnYtEGH8HBobtqvBkWLRj2Msrsb9V6Rhiqld0InAAwKxc1Diqh7UT26dlZhncbimcfICGq9jV9OmZOsYq-7UZdoA33t79BUSi1rxOXLiWn3Yy9zRCmgpkejxBb6_9VtPe5AH_JaRMhBmFENZ6LgbZNNFEgv17MmRu1-CrjWG71TyIKWbPRkILuResDiCmTUHhyK6zG23_e6V5cf70_G3pOGPCpuS20CymlSQXtHEc0AEWAE6Prskk9omwPo7CSfM2zMAzLBv-CQmnkUjR6vxNwY3LKuQE4Sy0UzAKZ923rD9BzGiEoyL3WiIW_O3CTuqQvr2FqXQugM-Nqe1XgRywFtSsolCBy3xPfePCFwXAJa7Ya1MBWiah-HaRFXACypZ3s3ZdIrVuKj1SL15GT4DoGSboZ68hsHswcdKo9_EGkeCq6-gaMEMPeupsg5nyExUAQcpU6m2uu6-2lZ8E_EmQXfyJMF2-b6HKHgkNMWpLHaD26Solx9lcj6flomXeGuzx_I6AVbrAf8k8L8pEsOquM=w390-h141-no" alt="Exception API" /><br />
-
-<h3>자주 발생하는 익셉션</h3>
 <table class="table-in-article">
 <tr>
-	<th class="table-in-article-th">발생하는 익셉션</th>
-	<th class="table-in-article-th">예</th>
+	<th class="table-in-article-th">Interface</th>
+	<th class="table-in-article-th">Implementation(after Java 2)</th>
+	<th class="table-in-article-th">Implementation(before Java 2)</th>
 </tr>
 <tr>
-	<td class="table-in-article-td">ArithmeticException</td>
-	<td class="table-in-article-td">int a = 12/0;</td>
+	<td class="table-in-article-td" rowspan="2">Set</td>
+	<td class="table-in-article-td">HashSet</td>
+	<td class="table-in-article-td" rowspan="2"></td>
 </tr>
 <tr>
-	<td class="table-in-article-td">NullPointerException</td>
-	<td class="table-in-article-td">Integer d = null;<br />
-	int val = d.intValue();
-	</td>
+	<td class="table-in-article-td">TreeSet</td>
 </tr>
 <tr>
-	<td class="table-in-article-td">NegativeArraySizeException</td>
-	<td class="table-in-article-td">int arr = new int[-1];</td>
+	<td class="table-in-article-td" rowspan="2">List</td>
+	<td class="table-in-article-td">ArrayList</td>
+	<td class="table-in-article-td" rowspan="2">Vector</td>
 </tr>
 <tr>
-	<td class="table-in-article-td">ArrayIndexOutOfBoundException</td>
-	<td class="table-in-article-td">
-	int[] arr = new int[2];<br />
-	arr[2] = 1;
-	</td>
+	<td class="table-in-article-td">LinkedList</td>
+</tr>
+<tr>
+	<td class="table-in-article-td" rowspan="2">Map</td>
+	<td class="table-in-article-td">HashMap</td>
+	<td class="table-in-article-td" rowspan="2">Properties</td>
+</tr>
+<tr>
+	<td class="table-in-article-td">TreeMap</td>
 </tr>
 </table>
 
-<h3>메소드 선언부에 <em>throws 익셉션클래스</em> 가 쓰인 경우</h3>
+<p>
+These collection classes are treated as examples below.
+</p>
 
-메소드의 코드에서 throws다음에 나오는 익셉션이 발생할 수 있다는 것을 명시하는 것이다.<br />
-외부에서 이 메소드를 호출할 때 throws다음에 정의된 익셉션을 적절히 처리하는 코드를 추가하지 않으면 컴파일 에러를 만나게 된다.<br />
-적절히 익셉션을 처리하는 하는 방법은 다음과 같다.<br />
-첫번째 방법은,<br />
-이 메소드를 호출하는 메소드는 메소드 선언부에 throws키워드를 사용하여 전달받은 익셉션을 다시 자신을 호출한 메소드에 전달하도록 처리하는 것이다.<br />
-두번째 방법은,<br />
-전달받은 익셉션을 자신의 메소드 몸체에서 try ~ catch구문을 사용하여 직접 처리하는 것이다.<br />
-첫번째와 두번째 방법 그 어느것도 사용하지 않는다면 컴파일 에러가 만나게 된다.<br />
-여기에도 예외가 있는데, 발생하는 익셉션이 RuntimeException의 서브 클래스인 경우 메소드 선언부에 throws를 사용하지 않아도 컴파일이 된다.<a href="#comments"><sup>2</sup></a><br />
+<h2>Collection class examples</h2>
 
-<h3>익셉션 예제</h3>
+<h3>Set</h3>
 
-지금까지의 설명을 토대로 예제를 숙지한다.<br/>
-unchecked 익셉션 예부터 본다.<br/>
-다음과 같이 예제를 만든다.
+<p>
+The example shows the use of the Set interface.<br />
+Create a HashSet and add the name using the add method of the Set interface.<br />
+The following example attempts to add Bill in duplicate, but it can't.<br />
+Becease it is not allowed to add something to a Set in duplicate.<br />
+</p>
 
+<em class="filename">SetExample.java</em>
 <pre class="prettyprint">
-package net.java_school.exception;
+package net.java_school.collection;
 
-public class Test {
+import java.util.*;
 
-	public static void method1() {
-		method2();
+public class SetExample {
+	public static void main(String args[]) {
+	  
+		Set<strong>&lt;String&gt;</strong> set = new HashSet<strong>&lt;String&gt;</strong>();
+		set.add("Bill");
+		set.add("Elsa");
+		set.add("Debbie");
+		set.add("Alison");
+		set.add("Carol");
+		set.add("Bill");
+		    
+		System.out.println(set);//you can not add something in duplicate to a Set.
+		    
+		Set<strong>&lt;String&gt;</strong> sortedSet = new TreeSet<strong>&lt;String&gt;</strong>(set);
+		System.out.println(sortedSet);//the list is sorted.
 	}
-        
-	public static void method2() {
-		method3();
-	}
-
-	public static void method3() {
-		<strong>int a = 12 / 0;</strong>
-		System.out.println(a);
-	}
-        
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
 }
 </pre>
 
-예제를 실행한다.<br/>
-이 예제는 ArithmeticException 익셉션 객체가 JVM까지 도달했다.<br/>
-JVM은 아래처럼 익셉션이 발생한 스택을 위에서부터 차례로 출력한다.<br/>
-중요한 것은 정상적인 종료가 아니라는 사실이다.<br/>
-정상적인 종료라면 메인메소드 마지막 줄에 실행되어 "정상종료"라고 콘솔에 출력되어야만 한다.
-    
-<pre class="console"><strong class="console-result">Exception in thread "main" java.lang.ArithmeticException: / by zero
-	at net.java_school.exception.Test.method3(Test.java:14)
-	at net.java_school.exception.Test.method2(Test.java:10)
-	at net.java_school.exception.Test.method1(Test.java:6)
-	at net.java_school.exception.Test.main(Test.java:19)</strong></pre>
-
-이번에는 method3()에서 try ~ catch문을 사용하여 익셉션을 핸들링하는 코드이다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-
-	public static void method2() {
-		method3();
-	}
-
-	public static void method3() {
-		<strong>try {</strong>
-			int a = 12 / 0;
-			System.out.println(a);
-		<strong>} catch (ArithmeticException e) {
-			System.out.println(e.getMessage());
-		}</strong>
-	}
-
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");	
-	}
-
-}
-</pre>
-
-    System.out.println(e.getMessage());에 의해 / by zero 가 출력된다.
-    
-    
-<pre class="console"><strong class="console-result">/ by zero
-정상종료
-</strong></pre>
-
-
-
-코드를 되돌리고 method2()에서 try ~ catch블록으로 익셉션을 잡도록 수정한다.
-
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		<strong>try {</strong>
-			method3();
-		<strong>} catch (ArithmeticException e) {
-			System.out.println(e.getMessage());
-		}</strong>
-	}
-	
-	public static void method3() {
-		int a = 12 / 0;
-		System.out.println(a);
-	}
-	
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-    method3()에서 발생한 익셉션 객체가 method2()까지 전달된다.<br/>
-    반환값이 있는 메소드가 반환값을 반환하는것과 비슷하다.<br/>
-    
-    <pre class="console"><strong class="console-result">/ by zero
-정상종료
-</strong></pre>
-
-    코드를 되돌리고 이번에는 method1()에서 익셉션을 잡는다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		<strong>try {</strong>
-			method2();
-		<strong>} catch (ArithmeticException e) {
-			System.out.println(e.getMessage());
-		}</strong>
-	}
-	
-	public static void method2() {
-		method3();
-	}
-	
-	public static void method3() {
-		int a = 12 / 0;
-		System.out.println(a);
-	}
-	
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-   콘솔의 결과는 같지만 발생한 익셉션이 method1()까지 전달되고 method1()에서 익셉션을 제대로 잡았기 때문에 비정상적인 종료를 피할 수 있었다.
-    <pre class="console"><strong class="console-result">/ by zero
-정상종료
-</strong></pre>
-
-    코드를 되돌리고 이번에는 메인 메소드에서 익셉션을 핸들링한다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		method3();
-	}
-	
-	public static void method3() {
-		int a = 12 / 0;
-		System.out.println(a);
-	}
-	
-	public static void main(String[] args) {
-		<strong>try {</strong>
-			method1();
-		<strong>} catch (ArithmeticException e) {
-			System.out.println(e.getMessage());
-		}</strong>
-	
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-콘솔의 결과는 같지만 메인까지 익셉션이 전달되었고 메인에서 익셉션을 잡았기에 정상종료될 수 있었다.
-
-<pre class="console"><strong class="console-result">/ by zero
-정상종료
-</strong></pre>
-
-try블록과 대부분 같이 쓰이지만 catch블록은 필수는 아니다.<br/>
-    하지만 익셉션 객체를 잡을려면 반드시 필요하다.<br/>
-    다음 예제는 catch블록을 제거해 보았다.<br/>
-    try블록은 단독으로 쓰일 수 없으므로 대신 finally블록을 함께 사용했다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		method3();
-	}
-	
-	public static void method3() {
-		int a = 12 / 0;
-		System.out.println(a);
-	}
-	
-	public static void main(String[] args) {
-		try {
-			method1();
-		} <strong>finally</strong> {
-			System.out.println("finally블록 실행");
-		}
-		
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-finally블록은 실행되는 것이 보장된다.<br/>
-    하지만 catch블록이 없으니 익셉션 객체는 JVM까지 전달되게 되고 프로그램은 비정상적으로 종료된다.<br/>
-    실행하여 콘솔 화면에서 finally블록이 실행되고 익셉션이 JVM까지 전달되는 것을 확인한다.
-    
-<pre class="console"><strong class="console-result">finally블록 실행
-Exception in thread "main" java.lang.ArithmeticException: / by zero
-        at net.java_school.exception.Test.method3(Test.java:14)
-        at net.java_school.exception.Test.method2(Test.java:10)
-        at net.java_school.exception.Test.method1(Test.java:6)
-        at net.java_school.exception.Test.main(Test.java:20)
-</strong></pre>
-
-다시 catch블록을 사용했는데 이번에는 익셉션의 최상위에 있는 Exception타입으로 catch블록이 만들었다.<br/>
-    이러면 try블록안의 어떠한 익셉션이 발생해도 이 catch블록이 모두 잡을 수 있다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		method3();
-	}
-	
-	public static void method3() {
-		int a = 12 / 0;
-		System.out.println(a);
-	}
-	
-	public static void main(String[] args) {
-		try {
-			method1();
-		} catch (<strong>Exception</strong> e) {
-			System.out.println(e.getMessage());
-		} finally {
-			System.out.println("finally블록 실행");
-		}
-		
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-익셉션이 발생했기에 catch블록이 실행되고 finally블록이 실행된다.<br/>
-    catch블록에서 발생한 익셉션을 잡았기 때문에 익셉션은 더 이상 어디에도 전달되지 않는다.
-    
-<pre class="console"><strong class="console-result">/ by zero
-finally블록 실행
-정상종료
-</strong></pre>
-
-catch블록이 마치 if ~ else if문처럼 겹겹이 쓸 수 있다.<br/>
-    하지만 이때 익셉션 클래스의 계층관계에 주의해야 한다.<br/>
-    다음 코드는 컴파일이 되지 않는다.<br/>
-    익셉션이 try블록에서 발생하면 위에서 아래로 순서대로 catch블록이 해당 익셉션을 잡으려 하는데 먼저 나오는 익셉션이 나중에 나오는 익셉션에 비해 계층적으로 위에 있다면 아래까지 코드가 진행될 이유가 없다는 컴파일 에러이다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		method3();
-	}
-	
-	public static void method3() {
-		int a = 12 / 0;
-		System.out.println(a);
-	}
-	
-	public static void main(String[] args) {
-		try {
-			method1();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} catch (<strong>ArithmeticException</strong> e) { 
-			System.out.println(e.getMessage());
-		} finally {
-			System.out.println("finally블록 실행");
-		}
-		
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-catch블록의 순서를 아래처럼 바꾸면 컴파일이 된다.
-
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		method3();
-	}
-	
-	public static void method3() {
-		int a = 12 / 0;
-		System.out.println(a);
-	}
-	
-	public static void main(String[] args) {
-		try {
-			method1();
-		} catch (<strong>ArithmeticException</strong> e) {
-			System.out.println(e.getMessage());
-		} catch (<strong>Exception</strong> e) {
-			System.out.println(e.getMessage());
-		} finally {
-			System.out.println("finally블록 실행");
-		}
-		
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-실행하면 catch(ArithmeticException e) {.. }블록이 실행되고 이 블록의 e.getMessage()가 표준출력메소드를 통해 콘솔에 출력된다.<br/>
-    그 다음 finally블록이 실행되고 메인의 마지막 라인이 실행된다.
-    
-<pre class="console"><strong class="console-result">/ by zero
-finally블록 실행
-정상종료
-</strong></pre>
-
-같은 예제를  checked 익셉션 예제로 아래와 같이 수정한다.<br/>
-    강조된 부분에서 컴파일 에러가 날 것이다.<br/>
-    이클립스에서 확인하면 컴파일 에러 메시지는 Unhandled exception type ClassNotFoundException이다.<br/>
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		method3();
-	}
-	
-	public static void method3() {
-		<strong>Class.forName("java.lang.Boolean");</strong>
-	}
-	
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-Class.forName("문자열");은 새로운 자바문법이 아니다.<br/>
-    Class란 클래스가 있고 이 클래스의 forName()이라는 static메소드가 있는 것이다.<br/>
-    forName()메소드는 문자열을 인자로 받는데 이 문자열은 클래스 로더가 찾을 수 있는 곳에 있는 자바 클래스의 전체 이름이 온다.(FQCN)<br/>
-    forName()메소드는 문자열에 해당하는 클래스를 클래스 로더로 하여금 클래스 정보가 로딩하도록 한다.<br/>
-    만약 그와같은 클래스가 없다면 JVM은 ClassNotFoundException객체가 생성하고 Class.forName("");라인에 던질 것이다.<br/>
-    예제에서 forName()에 전달한 문자열인 java.lang.Boolean은 랩퍼 클래스로 자바API에 속한 클래스이니 별도의 환경설정 없이도 클래스 로더가 이 클래스를 찾을 수 있다.<br/>
-    이 예제에서 이 클래스의 용도는 중요하지 않다.<br/>
-    예제에서 중요한 얘기를 하자.<br/>
-    forName()이라는 메소드는 throws ClassNotFoundException이라고 선언되어 있고 이 ClassNotFoundException은 RuntimeException을 상속하지 않은 checked익셉션이므로<br/>
-    forName()을 호출하는 메소드는 이 익셉션을 핸들링하는 코드를 구현하지 않으면 컴파일 에러를 만나게 된다.<br/>
-    직접 핸들링 할 수 있겠지만 이클립스의 코드 어시스트 기능을 이용하자.<br/>
-    Class.forName()에 커서를 올리면 이클립스가 해결책을 제시하는데 두번째 방법을 클릭하면 코드는 아래와 같이 바뀌면서 컴파일 에러는 사라진다.<br/>
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		method3();
-	}
-	
-	public static void method3() {
-		<strong>try {
-			Class.forName("java.lang.Boolean");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}</strong>
-	}
-	
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-실행하면 어떠한 익셉션도 발생하지 않고 정상종료된다.<br/>
-    왜냐하면 java.lang.Boolean라는 클래스가 자바API에 존재하기 때문이다.
-    
-<pre class="console"><strong class="console-result">정상종료
-</strong></pre>
-
-코드를 되돌려서 이번에는 이클립스가 제시하는 첫번째 방법으로 익셉션을 핸들링한다.<br/>
-    그러면 method2()에서 method3();에 컴파일 에러가 발생할 것이다.<br/>
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	public static void method2() {
-		<strong>method3();</strong>
-	}
-	
-	public static void method3() <strong>throws ClassNotFoundException</strong> {
-		Class.forName("java.lang.Boolean");
-	}
-	
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
- 이클립스에서 컴파일 에러메시지를 확인하면 Unhandled exception type ClassNotFoundException이다.<br/>
-    method3()가 throws ClassNotFoundException로 선언되었기 때문에 method3()을 호출하는 메소드는 반드시 ClassNotFoundException을 핸들링해야 한다. <br/>
-    이번에도 컴파일 에러가 나는 부분에 커서를 두고 이클립스가 제시하는 해결책 중 두번째 방법을 클릭한다.<br/>
-    그러면 소스는 아래처럼 변경되고 컴파일 에러는 사라진다.<br/>
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		method2();
-	}
-	
-	<strong>public static void method2() {
-		try {
-			method3();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}</strong>
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("java.lang.Boolean");
-	}
-	
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-코드를 되돌리고 이번에는 이클립스가 제시하는 첫 번째 방법을 클릭한다.<br/>
-    그러면 소스는 아래처럼 변경되는데 method1()메소드의 method2();에서 컴파일 에러가 발생한다.<br/>
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		<strong>method2();</strong>
-	}
-	
-	public static void method2() <strong>throws ClassNotFoundException</strong> {
-		method3();
-	}
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("java.lang.Boolean");
-	}
-	
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-커서를 컴파일 에러가 발생하는 곳에 두고 이클립스가 제시하는 해결책 중 두번째 방법을 클릭한다.<br/>
-    코드는 아래처럼 변경된다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() {
-		<strong>try {
-			method2();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}</strong>
-	}
-	
-	public static void method2() throws ClassNotFoundException {
-		method3();
-	}
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("java.lang.Boolean");
-	}
-	
-	public static void main(String[] args) {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-어떤 익셉션도 발생하지 않고 정상적으로 종료되는 것을 확인할 수 있다.
-
-<pre class="console"><strong class="console-result">정상종료
-</strong></pre>
-
-코드를 되돌리고 method1()의 method2();에 커서를 대고 첫번째 방법을 클릭하면 다음과 같이 코드가 변경될 것이다.<br/>
-    소스가 아래처럼 변경되면서 메인 메소드에서 컴파일 에러가 생긴다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() <strong>throws ClassNotFoundException</strong> {
-		method2();
-	}
-	
-	public static void method2() throws ClassNotFoundException {
-		method3();
-	}
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("java.lang.Boolean");
-	}
-	
-	public static void main(String[] args) {
-		<strong>method1();</strong>
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-이번에는 메인 메소드에서 컴파일 에러가 발생하는 곳에 커서를 두고 첫번째 방법을 클릭한다.<br/>
-    그러면 소스는 다음과 같이 변경될 것이다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() throws ClassNotFoundException {
-		method2();
-	}
-	
-	public static void method2() throws ClassNotFoundException {
-		method3();
-	}
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("java.lang.Boolean");
-	}
-	
-	public static void main(String[] args) throws ClassNotFoundException {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-실행하면 어떤 익셉션도 없이 정상적으로 종료되는 것을 확인할 수 있다.
-
-<pre class="console"><strong class="console-result">정상종료
-</strong></pre>
-
-코드를 익셉션이 발생하도록 수정하겠다.<br/>
-    java.lang.Boolean2라는 클래스는 자바API에 존재하지 않기 때문이다.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() throws ClassNotFoundException {
-		method2();
-	}
-	
-	public static void method2() throws ClassNotFoundException {
-		method3();
-	}
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("<strong>java.lang.Boolean2</strong>");
-	}
-	
-	public static void main(String[] args) throws ClassNotFoundException {
-		method1();
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-실행하면 익셉션 객체가 메인까지 도달하고 메인에서도 익셉션을 잡지 않으므로 결국 JVM까지 전달된다.<br/>
-    그 결과 비정상적으로 프로그램은 종료된다.
-    
-<pre class="console"><strong class="console-result">Exception in thread "main" java.lang.ClassNotFoundException: java.lang.Boolean2
-        at java.net.URLClassLoader$1.run(URLClassLoader.java:217)
-        at java.security.AccessController.doPrivileged(Native Method)
-        at java.net.URLClassLoader.findClass(URLClassLoader.java:205)
-        at java.lang.ClassLoader.loadClass(ClassLoader.java:323)
-        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:294)
-        at java.lang.ClassLoader.loadClass(ClassLoader.java:268)
-        at java.lang.Class.forName0(Native Method)
-        at java.lang.Class.forName(Class.java:190)
-        at net.java_school.exception.Test.method3(Test.java:13)
-        at net.java_school.exception.Test.method2(Test.java:10)
-        at net.java_school.exception.Test.method1(Test.java:6)
-        at net.java_school.exception.Test.main(Test.java:18)
-</strong></pre>
-
-메인에서 익셉션을 잡는 코드로 변경한다.
-
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() throws ClassNotFoundException {
-		method2();
-	}
-	
-	public static void method2() throws ClassNotFoundException {
-		method3();
-	}
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("java.lang.Boolean2");
-	}
-	
-	<strong>public static void main(String[] args) {
-		try {
-			method1();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("정상종료");
-	}</strong>
-
-}
-</pre>
-
-실행하면 e.printStackTrace();메소드가 콘솔에 다음과 같이 출력되는 것을 확인할 있다.<br/>
-    이 메시지가 JVM이 출력해주는것과 같다고 해서 비정상적인 종료라고 오해해서는 안된다.<br/>
-    
-<pre class="console"><strong class="console-result">java.lang.ClassNotFoundException: java.lang.Boolean2
-        at java.net.URLClassLoader$1.run(URLClassLoader.java:217)
-        at java.security.AccessController.doPrivileged(Native Method)
-        at java.net.URLClassLoader.findClass(URLClassLoader.java:205)
-        at java.lang.ClassLoader.loadClass(ClassLoader.java:323)
-        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:294)
-        at java.lang.ClassLoader.loadClass(ClassLoader.java:268)
-        at java.lang.Class.forName0(Native Method)
-        at java.lang.Class.forName(Class.java:190)
-        at net.java_school.exception.Test.method3(Test.java:14)
-        at net.java_school.exception.Test.method2(Test.java:10)
-        at net.java_school.exception.Test.method1(Test.java:6)
-        at net.java_school.exception.Test.main(Test.java:19)
-정상종료
-</strong></pre>
-
-메인에서 다음과 같이 catch블록을 제거하면 컴파일 에러를 만난다.<br/>
-    ClassNotFoundException은 checked익셉션으로 익셉션을 잡는 catch블록이나 아니면 메소드를 throws 익셉션클래스로 선언하는 것 중 하나를 선택하지 않으면 컴파일 에러를 만나게 된다.<br/>
-    여기서 메소드 밖으로 checked익셉션이 나올려면 메소드가 throws 해당 익셉션 클래스로 선언되지 않으면 나올 수 없다는 사실을 기억하자.
-    
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() throws ClassNotFoundException {
-		method2();
-	}
-	
-	public static void method2() throws ClassNotFoundException {
-		method3();
-	}
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("java.lang.Boolean2");
-	}
-	
-	public static void main(String[] args) {
-		try {
-			<strong>method1();</strong>
-		} finally {
-			System.out.println("finally블록 실행");
-		}
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-코드에 다시 catch블록을 넣어 컴파일 에러를 피하도록 한다.<br/>
-
-<pre class="prettyprint">
-package net.java_school.exception;
-
-public class Test {
-
-	public static void method1() throws ClassNotFoundException {
-		method2();
-	}
-	
-	public static void method2() throws ClassNotFoundException {
-		method3();
-	}
-	
-	public static void method3() throws ClassNotFoundException {
-		Class.forName("java.lang.Boolean2");
-	}
-	
-	public static void main(String[] args) {
-		try {
-			method1();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			System.out.println("finally블록 실행");
-		}
-		System.out.println("정상종료");
-	}
-
-}
-</pre>
-
-실행하면 java.lang.Boolean2란 클래스는 없으므로 ClassNotFoundException익셉션이 발생하고 catch블록에서 e.printStackTrace();가 실행되고 finally블록이 실행되고 메인의 마지막 라인이 실행된다.
-
-<pre class="console"><strong class="console-result">java.lang.ClassNotFoundException: java.lang.Boolean2
-        at java.net.URLClassLoader$1.run(URLClassLoader.java:217)
-        at java.security.AccessController.doPrivileged(Native Method)
-        at java.net.URLClassLoader.findClass(URLClassLoader.java:205)
-        at java.lang.ClassLoader.loadClass(ClassLoader.java:323)
-        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:294)
-        at java.lang.ClassLoader.loadClass(ClassLoader.java:268)
-        at java.lang.Class.forName0(Native Method)
-        at java.lang.Class.forName(Class.java:190)
-        at net.java_school.exception.Test.method3(Test.java:14)
-        at net.java_school.exception.Test.method2(Test.java:10)
-        at net.java_school.exception.Test.method1(Test.java:6)
-        at net.java_school.exception.Test.main(Test.java:19)
-finally블록 실행
-정상종료
-</strong></pre>
-
-e.printStackTrace();가 출력하는 이런 형태의 메시지는 자주 보게 될 것이다.<br/>
-    이럴 때는 당황하지 말고 기본적인 자바 문법을 가지고 추측하면 대부분의 문제가 풀릴 것이다.<br/>
-    ClassNotFoundException은 클래스를 클래스 패스에서 클래스 로더가 찾지 못한다는 것이다.<br/>
-    경우에 따라서는 구글링이 답일 수 있다.
-    
-<h3>사용자 정의 익셉션</h3>
-
-익셉션이 발생할 상황이 되면 JVM이 자바 API의 익셉션 클래스로부터 익셉션 객체를 생성하고 익셉션이 발생한 코드에 던진다고 했다.
-그런데 이런 익셉션 클래스를 프로그래머가 필요에 따라 만들 수 있다.
-이를 "사용자 정의 익셉션" 이라고 부른다.
-아래 예는 사용자 정의 익셉션의 구현 방법이다.
-은행 프로그램에서 잔고가 부족한 예외 상황에서 사용될 익셉션이다.<a href="#comments"><sup>3</sup></a>
-
-<pre class="prettyprint">
-package net.java_school.bank;
-
-public class InsufficientBalanceException extends Exception {
-
-	public InsufficientBalanceException() {
-		super();
-	}
-	
-	public InsufficientBalanceException(String message, Throwable cause,
-		boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
-	
-	public InsufficientBalanceException(String message, Throwable cause) {
-		super(message, cause);
-	}
-	
-	public InsufficientBalanceException(String message) {
-		super(message);
-	}
-	
-	public InsufficientBalanceException(Throwable cause) {
-		super(cause);
-	}
-
-}
-</pre>
-
-사용자 정의 익셉션은 JVM이 객체를 만들어 던지지 않는다.
-그러므로 사용자 정의 익셉션은 코드로서 명시적으로 익셉션을 발생시켜야 한다.
-사용자 정의 익셉션으로 부터 익셉션 객체를 만들어 던지는 코드는 다음과 같다.
-
-<pre class="prettyprint">
-throw new InsufficientBalanceException("잔액이 부족합니다.");
-</pre>
-
-<h3>문제</h3>
-아래와 같이 실행되는 클래스를 작성한다.<br />
-
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">
-C:\java\Exception\bin&gt;java net.java_school.bank.Test
-1000원 입금: java net.java_school.bank.Test d 1000
-1000원 출금: java net.java_school.bank.Test w 1000
-
-C:\java\Exception\bin&gt;java net.java_school.bank.Test d 2100
-최대 잔고액을 넘게 입금할 수 없습니다.
-잔고는 1000
-
-C:\&gt;java net.java_school.bank.Test w 2100
-잔액이 부족합니다.
-잔고는 1000
+C:\java\Collection\bin&gt;java net.java_school.collection.SetExample
+[Elsa, Alison, Carol, Bill, Debbie]
+[Alison, Bill, Carol, Debbie, Elsa]
 </pre>
 
-메인메소드를 완성하시오.<br />
+<p>
+If you look in the Java documentation for the collection class covered in the example, 
+you can see the &lt;E&gt;, &lt;T&gt;, &lt;K,V&gt; in the class declaration.<br />
+These interfaces, abstract classes, and classes are called generic.<br />
+Generics have been added since JDK 1.5.<br />
+E means Element, T means Type, K means Key, and V means Value.<br />
+This symbol can be used to declare unspecified data types.<br />
+Unspecified data types are determined when an object is created from a generic.<br />
+The following example creates a generic account number for the account class.<br />
+</p>
 
 <pre class="prettyprint">
-package net.java_school.bank;
+package net.java_school.collection;
 
-public class Test {
-	public static void main(String[] args) {
-		int MAX_BALANCE = 3000; //최대 잔고금액
-		int balance = 1000; //초기 잔고
-		int amount = 0; //입금액 또는 출금액
-		
-		if (args.length &lt; 2) {
-		System.out.println("1000원 입금: java net.java_school.bank.Test d 1000");
-		System.out.println("1000원 출금: java net.java_school.bank.Test w 1000");
-		return;
-	}
+public class Account<strong>&lt;T&gt;</strong> {
 	
-	//구현부
+	private <strong>T</strong> accountNo;//AccountNo can be any type.
+	
+	public <strong>T</strong> getAccountNo() {
+		return accountNo;
+	}
 
-}        
+	public void setAccountNo(<strong>T</strong> accountNo) {
+		this.accountNo = accountNo;
+	}
+
+	public static void main(String[] args) {
+		Account<strong>&lt;String&gt;</strong> ac1 = null;
+		ac1 = new Account<strong>&lt;String&gt;</strong>();// The account number data type is determined by String.
+		ac1.setAccountNo("111-222-333");
+		
+		Account<strong>&lt;Integer&gt;</strong> ac2 = null;
+		ac2 = new Account<strong>&lt;Integer&gt;</strong>();// The account number data type is determined by Integer.
+		ac2.setAccountNo(111222333);// See below for the wrapper class
+	}
+
+}
 </pre>
 
-위의 문제에서 적절한 사용자 익셉션 클래스를 만들고 적용하시오.
+<h3>List</h3>
 
-<span id="comments">주석</span>
+<p>
+The List inherits the Collection interface, has an order, and allows duplicates.<br />
+The List has an index address starting from 0 like an array.<br />
+In the following example, the ArrayList is the most popular class in the List family.<br />
+</p>
+
+<em class="filename">ArrayListExample.java</em>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+import java.util.ArrayList;
+
+public class ArrayListExample {
+
+	public static void main(String[] args) {
+		ArrayList<strong>&lt;String&gt;</strong> a = new ArrayList<strong>&lt;String&gt;</strong>();
+		
+		a.add("Tom");
+		a.add("Jerry");
+		
+		String hong = <strong>a.get(1);</strong>
+		System.out.println(hong);
+		
+		//Enhanced For-Loops
+		for (<strong>String</strong> name : a) {
+			System.out.print(name +"\t");
+		}
+	}
+
+}
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\java\Collection\bin&gt;java net.java_school.collection.ArrayListExample
+Jerry
+Tom		Jerry
+</pre>
+
+<p>
+The following example compares the usage of ArrayList and LinkedList.
+</p>
+
+<em class="filename">ListExample.java</em>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+import java.util.*;
+
+public class ListExample {
+	public static void main(String args[]) {
+		List<strong>&lt;String&gt;</strong> list = new ArrayList<strong>&lt;String&gt;</strong>();
+		    
+		list.add("A");
+		list.add("B");
+		list.add("C");
+		list.add("D");
+		list.add("E");
+		
+		System.out.println(list);
+		System.out.println("2: " + list.get(2));
+		System.out.println("0: " + list.get(0));
+		
+		LinkedList<strong>&lt;String&gt;</strong> linkedList = new LinkedList<strong>&lt;String&gt;</strong>();
+		
+		linkedList.addFirst("A");
+		linkedList.addFirst("B");
+		linkedList.addFirst("C");
+		linkedList.addFirst("D");
+		linkedList.addFirst("E");
+		    
+		System.out.println(linkedList);
+		linkedList.removeLast();
+		linkedList.removeLast();
+		    
+		System.out.println(linkedList);
+	    
+	}
+}
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\java\Collection\bin&gt;java net.java_school.collection.ListExample
+[A, B, C, D, E]
+2: C
+0: A
+[E, D, C, B, A]
+[E, D, C]
+</pre>
+
+<h3>Map</h3>
+
+<p>
+Map stores data in pairs of keys and values.<br />
+The following example uses a HashMap.<br />
+At the end, change the HashMap to a TreeMap.<br />
+TreeMap sorts data by key value.<br />
+</p>
+
+<em class="filename">MapExample.java</em>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+import java.util.*;
+
+public class MapExample {
+	public static void main(String args[]) {
+	
+		Map<strong>&lt;String,String&gt;</strong> map = new HashMap<strong>&lt;String,String&gt;</strong>();
+		
+		map.put("1", "Bill");
+		map.put("2", "Elsa");
+		map.put("3", "Debbie");
+		map.put("4", "Alison");
+		map.put("5", "Carol");
+		
+		System.out.println(map);
+		System.out.println(map.get("4"));
+		
+		Map<strong>&lt;String,String&gt;</strong> sortedMap = new TreeMap<strong>&lt;String,String&gt;</strong>(map);
+		System.out.println(sortedMap);
+	
+	}
+}
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\java\Collection\bin&gt;java net.java_school.collection.MapExample
+{3=Debbie, 2=Elsa, 1=Bill, 5=Carol, 4=Alison}
+Alison
+{1=Bill, 2=Elsa, 3=Debbie, 4=Alison, 5=Carol}
+</pre>
+
+<p>
+I will modify the above example using a wrapper class.
+Integer is a Wrapper class corresponding to an int.
+If you give a key value of type Integer, the HashMap is also sorted.
+</p>
+
+<em class="filename">MapExample.java</em>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+import java.util.*;
+
+public class MapExample {
+	public static void main(String args[]) {
+	
+		Map<strong>&lt;Integer</strong>,String&gt; map = new HashMap<strong>&lt;Integer</strong>,String&gt;();
+		
+		map.put(1, "Bill");
+		map.put(2, "Elsa");
+		map.put(3, "Debbie");
+		map.put(4, "Alison");
+		map.put(5, "Carol");
+		
+		System.out.println(map);
+		System.out.println(map.get(4));
+		
+		Map<strong>&lt;Integer</strong>,String&gt; sortedMap = new TreeMap<strong>&lt;Integer</strong>,String&gt;(map);
+		System.out.println(sortedMap);
+	
+	}
+}
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\java\Collection\bin&gt;java net.java_school.collection.MapExample
+{1=Bill, 2=Elsa, 3=Debbie, 4=Alison, 5=Carol}
+Alison
+{1=Bill, 2=Elsa, 3=Debbie, 4=Alison, 5=Carol}
+</pre>
+
+
+<h3>Vector</h3>
+
+<p>
+The following example is an example of a vector that was used in the past.<br />
+Currently, ArrayList is used instead of Vector.<a href="#comments"><sup>4</sup></a>
+</p>
+
+<em class="filename">VectorExample.java</em>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+import java.util.*;
+
+public class VectorExample {
+	public static void main(String[] args) {
+	
+		Vector<strong>&lt;String&gt;</strong> v = new Vector<strong>&lt;String&gt;</strong>();
+	
+		for (int i = 0; i &lt; 10; i++) {
+			v.addElement(String.valueOf(Math.random() * 100));
+		}
+		
+		for (int i = 0; i &lt; 10; i++) {
+			System.out.println(v.elementAt(i));//String타입의  참조값 반환
+		}
+	}
+  
+}
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\java\Collection\bin&gt;java net.java_school.collection.VectorExample
+64.93767837163008
+1.7024404924644077
+56.445592597123806
+23.41304656773643
+92.55620070095163
+41.6525553754475
+47.39373268828609
+83.84855063525016
+67.34657837510855
+41.04715452201211
+</pre>
+
+<h3>Properties</h3>
+
+<p>
+Properties is a popular class for reading values from configuration files in Java.<br />
+Properties stores data in pairs of keys and values.<br />
+</p>
+
+<h4>PropertiesStore.java</h4>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+import java.util.*;
+import java.io.*;
+
+public class PropertiesStore {
+	public static void main(String[] args) {
+	
+		Properties prop = new Properties();
+		prop.<strong>put</strong>("title", "Back in Black");
+		prop.<strong>put</strong>("singer", "AC/DC");
+		
+		try {
+			prop.<strong>store</strong>(new FileOutputStream("test.properties"),"My Favorite Song");
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+</pre>
+
+<em class="filename">PropertiesLoad.java</em>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+import java.util.*;
+import java.io.*;
+
+public class PropertiesLoad {
+	public static void main(String[] args) {
+	
+		Properties prop = new Properties();
+		try {
+			prop.<strong>load</strong>(new FileInputStream("test.properties"));
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(prop.<strong>getProperty</strong>("title"));
+		System.out.println(prop.<strong>getProperty</strong>("singer"));
+	}
+}
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\java\Collection\bin&gt;java net.java_school.collection.PropertiesStore
+
+C:\java\Collection\bin&gt;java net.java_school.collection.PropertiesLoad
+Back in Black
+AC/DC
+</pre>
+
+<p>
+Running the PropertiesStore will create a test.properties file on the file system.<a href="#comments"><sup>5</sup></a><br />
+Open the file and it looks like this.<br />
+</p>
+
+<em class="filename">test.properties</em>
+<pre class="prettyprint">
+#My Favorite Song
+#Thu Apr 10 13:07:41 KST 2014
+singer=AC/DC
+title=Back in Black
+</pre>
+
+<h3>Enumeration</h3>
+
+<p>
+It is an interface that has the necessary methods for retrieving objects stored in enumerated form from beginning to end.<br />
+The interface has two methods:<br />
+</p>
+
+<pre class="prettyprint">
+hasMoreElements()
+nextElement()
+</pre>
+
+<p>
+The following code snippet prints all the elements of the Vector.
+</p>
+
+<pre class="prettyprint">
+for (Enumeration&lt;E&gt; e = v.elements(); e.hasMoreElements();) {
+  System.out.println(e.nextElement());
+}
+</pre>
+
+<p>
+The following is a modification of the previous vector example using Enumeration.<br />
+Performance is lower than the previous example.<br />
+</p>
+
+<em class="filename">VectorExample.java - 제네릭, Enumeration 사용</em>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+import java.util.*;
+
+public class VectorExample {
+	public static void main(String[] args) {
+	
+		Vector<strong>&lt;String&gt;</strong> v = new Vector<strong>&lt;String&gt;</strong>();
+	
+		for (int i = 0; i &lt; 10; i++) {
+			v.addElement(String.valueOf(Math.random() * 100));
+		}
+		
+		for (Enumeration<strong>&lt;String&gt;</strong> e = v.<strong>elements()</strong>; e.<strong>hasMoreElements()</strong>;) {
+			System.out.println(e.<strong>nextElement()</strong>);
+		}
+	}
+  
+}
+</pre>
+
+<h3>Iterator</h3>
+
+<p>
+The iterator() method of the Collection interface returns an Iterator.<a href="#comments"><sup>6</sup></a><br />
+The Iterator is similar to the Enumeration interface, but it is created later than the Enumeration.<br />
+Method names are simpler than Enumeration, and methods for deleting values have been added.<br />
+</p>
+
+<pre class="prettyprint">
+hasNext()
+next()
+remove()
+</pre>
+
+<h2>Wrapper</h2>
+
+<p>
+Unlike arrays, collections can contain only reference values.<br />
+The value of the primitive data type can not be stored in the collection.<br />
+The answer is to use the wrapper class to store the values of the primitive types in the collection.<br />
+There is a corresponding wrapper class for all primitive types.<br />
+A wrapper instance consists of a primitive datatype value and methods that manipulate that value.<br />
+</p>
+
+<table class="table-in-article">
+<tr>
+	<th class="table-in-article-th">Primitive Data Type</th>
+	<th class="table-in-article-th">Wrapper Class</th>
+</tr>
+<tr>
+	<td class="table-in-article-td">boolean</td>
+	<td class="table-in-article-td">Boolean</td>
+</tr>
+<tr>
+	<td class="table-in-article-td">byte</td>
+	<td class="table-in-article-td">Byte</td>
+</tr>
+<tr>
+	<td class="table-in-article-td">char</td>
+	<td class="table-in-article-td">Character</td>
+</tr>
+<tr>
+	<td class="table-in-article-td">short</td>
+	<td class="table-in-article-td">Short</td>
+</tr>
+<tr>
+	<td class="table-in-article-td">int</td>
+	<td class="table-in-article-td">Integer</td>
+</tr>
+<tr>
+	<td class="table-in-article-td">long</td>
+	<td class="table-in-article-td">Long</td>
+</tr>
+<tr>
+	<td class="table-in-article-td">float</td>
+	<td class="table-in-article-td">Float</td>
+</tr>
+<tr>
+	<td class="table-in-article-td">double</td>
+	<td class="table-in-article-td">Double</td>
+</tr>
+</table>
+
+<em class="filename">IntegerExample.java</em>
+<pre class="prettyprint">
+package net.java_school.collection;
+
+public class IntegerExample {
+
+	public static void main(String[] args) {
+		<strong>Integer a = new Integer(2000000000);</strong>
+		int intValue = a.<strong>intValue();</strong>
+		System.out.println(intValue);
+
+		byte byteValue = a.<strong>byteValue();</strong>
+		System.out.println(byteValue);
+		
+		short shortValue = a.<strong>shortValue();</strong>
+		System.out.println(shortValue);
+		
+		long longValue = a.<strong>longValue();</strong>
+		System.out.println(longValue);
+		
+		float floatValue = a.<strong>floatValue();</strong>
+		System.out.println(floatValue);
+		
+		double doubleValue = a.<strong>doubleValue();</strong>
+		System.out.println(doubleValue);
+		
+		String strValue = a.<strong>toString();</strong>
+		System.out.println(strValue);
+
+		System.out.println(<strong>Integer.MAX_VALUE</strong>);
+		System.out.println(<strong>Integer.MIN_VALUE</strong>);
+		System.out.println(<strong>Integer.parseInt("1004")</strong>);
+
+		/* 
+		* The following code is changed by the compiler to Integer b = new Integer(200000000); 
+		* This is called AutoBoxing.
+		* AutoBoxing is not a casting.
+		* There is no casting that converts a primitive datatype to a reference datatype.		  
+		*/
+		Integer b = 2000000000;
+		
+		/* 
+		 * == always asks if the values are the same. 
+		 * If it is a reference value, it is judged whether it is the same object or not.
+		*/
+		if (a == b) {
+			System.out.println("a == b true");
+		} else {
+			System.out.println("a == b false");
+		}
+		
+		/* 
+		 * To determine if a and b have the same int value, use the equals() method of Integer.
+		 * The equals() method of Integer overrides Object's equals method to determine if int values are equal.
+		 <em>if (obj instanceof Integer) {
+		    return value == ((Integer)obj).intValue();
+		 }
+		 return false;</em>  
+		 */
+		if (a.equals(b)) {
+			System.out.println("a.equals(b) true");
+		} else {
+			System.out.println("a.equals(b) false");
+		}
+		
+		
+		/*
+		 * Use the compareTo() method of Integer to determine the values of a and b in various ways. 
+		 */
+		int check = a.<strong>compareTo(b);</strong>
+		System.out.println(check);
+		if (check == 0) {
+			System.out.println("a(int) == b(int)");
+		} else if (check &lt; 0) {
+			System.out.println("a(int) &lt; b(int)");
+		} else {
+			System.out.println("a(int) &gt; b(int)");
+		}
+		
+		int c = 2000000000;
+		if (a.<strong>equals(c)</strong>) { // The compiler changes c to a reference to new Integer(c).
+			System.out.println("a.equals(c) true");
+		} else {
+			System.out.println("a.equals(c) false");
+		}
+		
+		
+		/*
+		 * It appears that a copy of the int value in the Integer object referenced by a is assigned to the variable d of the primitive type outside the object.
+		 * This is called AutoUnboxing.
+		 */
+		int d = a; //The compiler changes this code to int d = a.intValue();
+		System.out.println(d);
+		
+		/*
+		* obj is assigned a reference to an Integer object containing a 1.
+		* The fact is that the compiler modifies this code to Object obj = new Integer(1);
+		*/
+		Object obj = 1;
+		System.out.println(obj);
+		
+		/*
+		* You can not call an Integer's original method using a reference of type Object.
+		* Casting is necessary.
+		System.out.println((<strong>(Integer)obj</strong>).intValue());
+	}
+
+}
+
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\java\Collection\bin&gt;java net.java_school.collection.IntegerExample
+2000000000
+0
+-27648
+2000000000
+2.0E9
+2.0E9
+2000000000
+2147483647
+-2147483648
+1004
+a == b false
+a.equals(b) true
+0
+a(int) == b(int)
+a.equals(c) true
+2000000000
+1
+1
+</pre>
+
+<p>
+AutoBoxing and AutoUnboxing as shown in the examples are provided by the Java camp for ease of development.<br />
+You may have seen a magic trick where you put a coin through a glass and put a coin inside the box out of the box.<br />
+It is AutoBoxing to insert a coin into a box, and AutoUnboxing to take a coin out of a box.<br />
+</p>
+
+<span id="comments">Comments</span>
 <ol>
-	<li>블록이란 {로 시작해서 }로 끝나는 코드 단위를 의미한다.<br />
-	자바에선 블록안에서 선언된 변수는 블록안에서만 유효하다.</li>
-	<li>RuntimeException과 그 서브 클래스를 unchecked익셉션, 그 외 익셉션을 checked익셉션이라고 부른다.</li>
-	<li>InsufficientBalanceException사용자 정의 익셉션 클래스를 작성할 때 이클립스의 코드 어시스트 기능을 이용하면 쉽게 작성할 수 있다.<br />
-	팩키지와 클래스 선언부를 위에서처럼 작성한 후에 클래스 바디에 아무것도 없는 상황에서 클래스 바디에 커서를 위치하고 오른쪽 마우스를 클릭한 후 나타난 메뉴에서
-	Source, Generate constructor from superclass...를 차례로 선택하면 위와 같은 코드를 얻을 수 있다.<br />
+	<li>The collection class is either a Set interface implementation, a List interface implementation, or a Map interface implementation.</li>
+
+	<li>
+You can see how the toString () of the HashSet overrides the result.<br />
+Set has no method to return an index and return a value because the stored value is not in order.<br />
+To retrieve the saved value, you must use a method that returns an Enumeration or Iterator interface and use the returned Enumeration or Iterator implementation.<br />
 	</li>
+	
+	<li>
+ArrayList and the Vector is a big difference.<br />
+ArrayList does not thread-safe, whereas Vector is thread safe.<br />
+There are a lot of performance differences between thread-safe and non-thread-safe, so you need a good reason for choosing thread-safe ones.<br />
+In most cases, right to choose not thread-safe.<br />
+For reference, the JDBC connection pooling code covered in JDBC uses a thread-safe Vector.
+	</li>
+
+	<li>
+The location of the file is different when you run it in Eclipse or when you run it from the command prompt.<br />
+In the case of Eclipse, the file is created in the project directory.<br />
+If you think it is ambiguous, you can pass the full path of the file system to the constructor of FileOutputStream and FileInputStream in the above code as follows.<br />
+	new FileOutputStream("C:/java/Collection/test.properties"), new FileInputStream("C:/java/Collection/test.properties")
+	</li>
+	
+	<li>
+Every class that implements the Set or List interface must have an iterator () method.<br />
+This is because the Set and List interfaces inherit the Collection interface.<br />
+The iterator () method returns the Iterator interface type.<br />
+Of course, because the Iterator is an interface, the actual return is an object created from the implementation class that implements Iterator.<br />
+But we do not have to worry about what the implementation class is.<br />
+It is sufficient that the implementation class implements the Iterator interface.<br />
+	</li>      
 </ol>
 
-<span id="refer">참고</span>
+<span id="refer">References</span>
 <ul id="references">
-	<li><a href="http://java.sun.com/docs/books/tutorial/essential/exceptions/definition.html">http://java.sun.com/docs/books/tutorial/essential/exceptions/definition.html</a></li>
+	<li><a href="http://java.sun.com/developer/onlineTraining/collections/Collection.html">http://java.sun.com/developer/onlineTraining/collections/Collection.html</a></li>
 </ul>
 </article>

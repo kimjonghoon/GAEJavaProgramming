@@ -1,22 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<article>    
+
+<article>
 <div class="last-modified">Last Modified 2014.3.26</div>
 
-<h1>팩키지와 접근자</h1>
+<h1>Packages And Access Modifiers</h1>
 
-팩키지는 말 그대로 꾸러미이다.<br />
-쓰레기 분류 수거할 때에 사용하는 꾸러미를 생각해 보라.<br />
-자바는 비슷한 기능이나 비슷한 성격을 가진 클래스들을 관리하기 위해서 팩키지를 제공한다.<br />
-자바 API는 모두 특정 팩키지에 속해있다.(주로 java로 시작하는 이름의 팩키지이다.)<br />
-이제 우리가 만들 클래스가 특정 팩키지에 속하도록 하는 방법을 알아본다.<br />
+<h2>Packages</h2>
 
-<em class="filename">Account.java</em>
+<p>
+Think of the package you use when collecting garbage.<br />
+Java provides a package to manage classes with similar features and similar nature.<br />
+All of the Java APIs belong to a specific package (usually a package with names beginning with java).<br />
+Now let's look at how to make the class we want to create belong to a specific package.<br />
+</p>
+
+<em class="filename">BankAccount.java</em>
 <pre class="prettyprint">
 <strong>package javabank;</strong>
 
-public class Account {
-	private String accountNum;
+public class BankAccount {
+	private String accountNo;
 	private long balance;
 	
 	public void deposit(long amount) {
@@ -32,65 +36,70 @@ public class Account {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("팩키지 테스트");
+		System.out.println("Package Test!");
 	}
 }
 </pre>
 
-첫번째 라인의 <strong>package javabank;</strong> 의해서 Account 클래스는 
-javabank팩키지에 속하게 된다.<br />
-팩키지를 선언한 자바 소스를 컴파일 할 때는 반드시 -d 다음에 한칸 띄고 바이트 코드가 생성될 
-디렉토리를 지정해 주어야 한다. 만일 -d 옵션을 생략한다면 바이트 코드는 팩키지가 적용되지 않는다.<br />
-예제를 실행하기전에 아래 그림과 같은 디렉토리 구조를 갖도록 하고 Account.java소스 파일도 
-아래처럼 C:/javaApp/bank/src/javabank 디렉토리에 생성한다.<br />
+<p>
+The first code, package javabank; makes the BankAccount class belong to the javabank package.<br />
+When you compile a Java source that declares a package, you must specify a directory after -d followed by a byte code.<br />
+If the -d option is omitted, the bytecode is not applied to the package.<br />
+Create the BankAccount.java source file in the C:\javaApp\bank\src\javabank directory.<br />
 
-<img src="images/javabank_src_bin.gif" alt="팩키지 예제 디렉토리 구조" /><br />
+<img src="images/javabank_src_bin.gif" alt="팩키지 예제 디렉토리 구조" style="width: 191px;" /><br />
 
-bin디렉토리는 바이트 코드가 위치할 디렉토리이다.<br />
-src디렉토리는 자바 소스 파일이 위치할 디렉토리인데 만약 클래스에 팩키지가 선언되어 있다면 src에 팩키지명으로 
-서브 디렉토리를 만들고 해당 소스를 그곳에 위치하도록 한다.(대부분 이렇게 소스를 관리한다.)<br />
+The bin directory is the directory where the bytecode is located.<br />
+The src directory is the directory where the Java source files are located.<br />
+If you declare the package, create a subdirectory with the package name in src and place the source there.<br />
+Most developers manage the source this way.<br />
+</p>
 
 <dl class="note">
-<dt>팩키지 이름은 도메인 이름의 역순으로 짓는것이 일반적이다.</dt>
+<dt>Package names are usually in reverse order of domain name.</dt>
 <dd>
-팩키지명은 도메인 이름의 역순으로 짓는 것이 일반적이며 
-이름에는 .(도트)가 2개 이상 포함되는 것이 바람직하다.<br />
-팩키지가 적용된 자바 소스 파일을 파일 시스템에서 제대로 관리하려면 어떻게 해야 할까?<br />
-만일 Log라는 클래스에 net.java_school.commons 이라는 팩키지가 적용됬다면 src디렉토리 
-아래 .(도트)마다 서브 디렉토리를 만들고 마지막 서브 디렉토리 commons에 Log.java 소스를 
-위치시키면 된다.<br />
+Package names are usually in reverse order of domain name.<br />
+The package name preferably includes two or more dots.<br />
+If you have applied the net.java_school.commons package to the Log class, create the directory and place the source files as shown below.<br />
+
 <pre style="margin-left: 40px;">
 src
  └── net
       └── java_school
-              └── commons
+              └── commons: Log.java
 </pre>
 </dd>
 </dl>
 
-다시 Account.java로 돌아오자.<br />
-모든 준비가 되었다면 소스 파일이 있는 C:/javaApp/bank/src/javabank로 이동한 후 아래와 같이 
-컴파일한다.<br />
+<p>
+Let's get back to BankAccount.java.<br />
+Go to C:\javaApp\bank\src\javabank and compile as below.<br />
+</p>
 
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">
-C:\javaApp\bank\src\javabank&gt;javac -d C:/javaApp/bank/bin Account.java
+C:\javaApp\bank\src\javabank&gt;javac -d C:/javaApp/bank/bin BankAccount.java
 </pre>
 
--d 옵션다음의 경로 구분자는 윈도우 시스템이라도 /(슬래시)를 사용할 수 있다.<br />
-물론 윈도우 시스템의 경로 구분자 \(역슬래시)도 사용할 수 있다.<br />
-컴파일 후 C:/javaApp/bank/bin 디렉토리로 이동해서 Account의 바이트 코드가 생겼는지 
-확인한다.<br />
+<p>
+The path separator following the -d option can also use the / (slash), even on Windows systems.<br />
+Of course, you can also use the path separator in the Windows system \ (backslash).<br />
+After compiling, go to the C:\java App\bank\bin directory and check whether the bytecode of BankAccount is created.<br />
+</p>
 
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">
 C:\javaApp\bank\bin&gt;dir
-2008-03-07  오후 12:06    &lt;DIR&gt;          javabank
+2008-03-07  12:06  PM    &lt;DIR&gt;          javabank
 </pre>
 
-bin디렉토리에는 Account.class파일이 보이지 않고 대신 javabank라는 디렉토리가 보일 것이다.<br />
-Account.class파일은 javabank 서브 디렉토리에서 찾을 수 있다.<br />
-Accont.java를 컴파일할 때 -d 옵션으로 C:/javaApp/bank/bin 디렉토리를 지정하게 되면
-C:\javaApp\bank\bin디렉토리에는 팩키지로 설정한 이름과 같은 서브 디렉토리(javabank)가 생기고 
-그 안에 바이트 코드(Account.class)가 만들어 진다.<br />
+<p>
+You will not see the BankAccount.class file in the bin directory, instead you will see the javabank directory.<br />
+The BankAccount.class file can be found in this javabank subdirectory.<br />
+When you compile BankAccont.java, if you specify the C:\javaApp\bank\bin directory with the -d option.<br /> 
+a subdirectory with the same name as the package name is created in the C:\javaApp\bank\bin directory.<br />
+BankAccount.class is created in the javabank directory.
+</p>
 
 <div class="dtree">
 	<script type="text/javascript">
@@ -100,60 +109,66 @@ C:\javaApp\bank\bin디렉토리에는 팩키지로 설정한 이름과 같은 �
 		javabank.add(1,0,'bank','javascript:void(0);');
 		javabank.add(2,1,'bin','javascript:void(0);');
 		javabank.add(3,2,'javabank','javascript:void(0);');
-		javabank.add(4,3,'Account.class','src/Account.class');
+		javabank.add(4,3,'BankAccount.class','src/BankAccount.class');
 		javabank.add(5,1,'src','javascript:void(0);');
 		javabank.add(6,5,'javabank','javascript:void(0);');
-		javabank.add(7,6,'Account.java','src/Account.java');
+		javabank.add(7,6,'BankAccount.java','src/BankAccount.java');
 		document.write(javabank);
 		javabank.openAll();
 		//-->
 	</script>
 </div>
 
-JVM은 C:/javaApp/bank/bin디렉토리에 javabank.Account클래스가 있다고 이해한다.<br />
-팩키지가 적용된 클래스는 팩키지명.클래스명이 완전한 클래스명(Fully Qualified Class Name:FQCN)이다.<br />
-("길동"이 아닌 "홍길동"이 완전한 이름이듯이)<br />
-다른 클래스에서 Account클래스를 사용하려면 코드에서 javabank.Account로 써야 한다.<br />
-(자바 문서에서 "클래스"란 용어는 문맥에 따라 바이트 코드를 의미할 때가 있고 클래스 소스 파일을 의미할 때가 있다.)<br /> 
-클래스를 실행할 때도 마찬가지이다.<br />
-Account클래스를 실행하기 위해서는 C:/javaApp/javabank/bin디렉토리에서 
-java javabank.Account로 실행해야 한다.
-다시 한번 강조해서, JVM은 bin디렉토리에 javabank.Accont클래스가 있다고 이해하기 때문이다.<br />
+<p>
+The JVM understands that there is a javabank.BankAccount class in the C:\javaApp\bank\bin directory.<br />
+For a class that has a package applied, the fully qualified class name (FQCN) of the BankAccount class is javabank.BankAccount.<br />
+To use the BankAccount class in another class, you must write javabank.BankAccount in your code.<br />
+The same is true when you run classes.<br />
+To run the BankAccount class, you need to run java javabank.BankAccount in the C:\javaApp\javabank\bin directory.<br />
+This is because the JVM understands that there is a javabank.BankAccont class in the bin directory.<br />
+</p>
 
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">
-C:\javaApp\bank\bin&gt;java javabank.Account
-팩키지 테스트
+C:\javaApp\bank\bin&gt;java javabank.BankAccount
+Package Test!
 </pre>
 
-만약 클래스가 없는 디렉토리에서 실행하려면 어떻게 해야 할까?<br />
-이 경우 JVM에게 바이트 코드가 어디에 위치하는지 알려주어야 하는데,
-자바 인터프리터(java.exe)의 classpath<a href="#comments"><sup>1</sup></a>옵션을 사용하면 된다.<br />
-아래는 C:/Program Files 디렉토리에서 javabank.Account를 실행하는 방법을 보여주고 있다.<br />
+<p>
+To run a class in a directory that does not have a class, you need to tell the JVM where the class is located.<br />
+The way to tell the JVM that the class is located is to use the Java interpreter's classpath<a href="#comments"><sup>1</sup></a> option.<br />
+Below is running javabank.BankAccount in the C:\Program Files directory.<br />
+</p>
 
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">
-C:\Program Files&gt;java -classpath C:/javaApp/bank/bin javabank.Account
-팩키지 테스트
+C:\Program Files&gt;java -classpath C:/javaApp/bank/bin javabank.BankAccount
+Package Test!
 </pre>
 
--classpath다음에 한 칸 띄고 실행할 바이트 코드가 있는 곳을 절대 경로 또는 상대 경로로 지정한다.<br />
-위에서는 classpath 값을 절대 경로로 지정하고 있는데 상대 경로로 지정한다면 다음과 같다.<br />
+<p>
+-classpath followed by the path where the class is located.<br />
+In the above, classpath is an absolute path.<br />
+If the classpath is specified as a relative path, it is as follows.<br />
+</p>
 
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">
-C:\Program Files&gt;java -classpath ../javaApp/bank/bin javabank.Account
-팩키지 테스트
+C:\Program Files&gt;java -classpath ../javaApp/bank/bin javabank.BankAccount
+Package Test!
 </pre>
 
-.은 현재 디렉토리이고 ..은 한단계 위의 디렉토리를 의미한다.<br />
-<br />
-자바 컴파일러인 javac.exe도 classpath<a href="#comments"><sup>2</sup></a>옵션은 가지고 있다.<br />
-자바 컴파일러에서 이 옵션을 사용하는 경우는 클래스(컴파일하려는 자바 소스)에서 
-다른 사용자가 만든 클래스(바이트 코드)를 사용하는 코드가 있는 경우이다.<br />
-만일 다른 사용자가 만든 클래스(바이트 코드)가 C:/javaApp/commons/bin에 있다면 이 경로를 
-자바 컴파일러에게 알려주어야 한다.<br />
-왜냐하면 자바 컴파일러는 바이트 코드를 만들기 전에 소스에서 사용하는 클래스(바이트 코드)들을 
-제대로 사용되고 있는지 모두 검사하기 때문이다.<br />
-위 설명에 대한 예를 만들어 볼 것이다.<br />
-예를 위해서 새로운 클래스를 만들어야 하는데 아래와 같은 디렉토리 구조를 가지도록 하겠다.<br />
+<p>
+. Is the current directory.<br />
+.. refers to the directory one level above.<br />
+
+The Java compiler javac.exe also has a classpath<a href="#comments"><sup>2</sup></a> option.<br />
+The Java compiler uses this option if you have code that uses classes (bytecode) created by other users in the Java source you are trying to compile.<br />
+If the class (bytecode) created by another user is in C:\javaApp\commons\bin, you must tell the Java compiler this path.<br />
+This is because the Java compiler verifies that the bytecodes used by the source is being used properly.<br />
+I will make an example of the above explanation.<br />
+For example, we need to create a new class, so we have the following directory structure.<br />
+</p>
 
 <div class="dtree">
 	<script type="text/javascript">
@@ -177,148 +192,174 @@ C:\Program Files&gt;java -classpath ../javaApp/bank/bin javabank.Account
 	</script>
 </div>
 
-다음은 새로 만들 Log클래스<a href="#comments"><sup>3</sup></a>이다.<br />
-<em class="filename">Log.java</em>
+<p>
+The following is a new class to create.<br />
+</p>
+
+<em class="filename">Log.java</em><a href="#comments"><sup>3</sup></a>
 <pre class="prettyprint">
 package net.java_school.commons;
 
 public class Log {
 	public static void out(String msg) {
 		System.out.println(new java.util.Date() + " : " + msg);
-	}
+	}	
 }
 </pre>
 
-Log.java를 컴파일한다.<br />
+<p>
+Compile Log.java.<br />
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">C:\javaApp\commons\src\net\java_school\commons&gt;javac -d ^
 C:\javaApp\commons\bin Log.java</pre>
 
-다음으로 기존 Accont클래스가 Log클래스를 사용하도록 수정한다.<br />
-Log클래스는 net.java_school.commons 란 팩키지가 적용되었으므로 FQCN은 
-net.java_school.commons.Log 이므로 소스에서도 그대로 써야 한다.<br />
+<p>
+Next, modify the BankAccont class to use the Log class.<br />
+The FQCN of the Log class is net.java_school.commons.Log and should be written to the source as well.<br />
+</p>
 
 <pre class="prettyprint">
 public void deposit(long amount) {
 	balance = balance + amount;
-	<strong>net.java_school.commons.Log.out(amount + "원이 입금되었습니다.");
-	net.java_school.commons.Log.out("잔고는" + this.getBalance() + "원입니다.");</strong>
+	<strong>net.java_school.commons.Log.out(amount + " dollars have been deposited.");</strong>
+	<strong>net.java_school.commons.Log.out("Balance is $ " + this.getBalance());</strong>
 }
 
 public void withdraw(long amount) {
 	balance = balance - amount;
-	<strong>net.java_school.commons.Log.out(amount + "원이 출금되었습니다.");
-	net.java_school.commons.Log.out("잔고는 " + this.getBalance() +"원입니다.");</strong>
+	<strong>net.java_school.commons.Log.out(amount + " dollars have been withdrawn.");</strong>
+	<strong>net.java_school.commons.Log.out("Balance is " + this.getBalance());</strong>
 }
 
 public static void main(String[] args) {
-	<strong>Account hong = new Account();
-	hong.deposit(10000);
-	hong.withdraw(500);</strong>
+	<strong>BankAccount myAccount = new BankAccount();
+	myAccount.deposit(10000);
+	myAccount.withdraw(500);</strong>
 }
 </pre>
 
-Account.java를 수정했으니 다시 컴파일한다.<br />
+<p>
+Recompile BankAccount.java.<br />
+</p>
 
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">C:\javaApp\bank\src\javabank&gt;javac -d C:\javaApp\bank\bin ^
 -classpath C:\javaApp\commons\bin Account.java</pre>
 
-javabank.Account 클래스를 실행한다.<br />
+<p>
+Run the javabank.BankAccount.
+</p>
 
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">C:\javaApp\bank\bin&gt;java -classpath .;C:\javaApp\commons\bin ^
 javabank.Account</pre>
 
-우리가 만든 자바 프로그램은 모두 2개의 클래스로 구성되어 있다.<br />
-javabank.Account와 net.java_school.commons.Log 클래스가 그것이다.<br />
-이 두 클래스의 위치가 다르므로 자바 인터프리터의 classpath옵션으로 두 클래스의 위치를 지정해야 한다.<br />
-classpath옵션이 사용되면 JVM은 관련 클래스를 classpath로 설정된 곳에서만 찾는다.<br />
-그래서 현재 디렉토리를 의미하는 .(도트)가 클래스 패스에 포함된 것이다.<br />
+<p>
+Our Java programs consist of two classes.<br />
+These are the javabank.Account and net.java_school.commons.Log classes.<br />
+Because these two classes are located differently, you need to specify the location of the two classes with the classpath option of the Java interpreter.<br />
+When the classpath option is used, the JVM looks only for classes where the classpath is set.<br />
+So the dot (.), Which means the current directory, is included in the classpath.<br />
+</p>
 
-<h3>외부 자바 라이브러리를 자신의 프로그램에 추가하는 방법</h3>
-대부분 외부 자바 클래스는 jar형태의 압축파일로 제공된다.<br />
-Log클래스를 다른 자바 프로그래머가 사용하도록 배포하려면 jar.exe 를 이용한다.<br />
-Log바이트 코드가 있는 디렉토리로 이동하여 다음 멸령을 수행한다.<br />
+<h3>How to add an external Java library to your Java program</h3>
 
+<p>
+Most external Java classes are provided as jar-compressed files.<br />
+To deploy the Log class for use by other Java programmers, use jar.exe.<br />
+Execute the following command in the directory where Log bytecode is located.<br />
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">C:\javaApp\commons\bin&gt;jar cvf java-school-commons.jar .</pre>
 
-탐색기를 이용하여 commons에 생성된 java-school-commons.jar파일을 잘라내기 하여 
-C:\devLibs에 붙여넣는다.
-javabank.Account클래스를 실행하는데 이번에는 C:\devLibs에 있는 java-school-commons.jar파일속에 
-있는 Log클래스가 이용될 수 있도록 실행한다.
+<p>
+Using the explorer, cut the java-school-commons.jar file created in commons directory and paste it into C:\devLibs.<br />
+Run the javabank.Account class.<br />
+This time, use the Log class in the java-school-commons.jar file in C:\devLibs.<br />
+</p>
 
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
 <pre class="screen">C:\javaApp\bank\bin&gt;java -classpath ^
 .;C:\devLibs\java-school-commons.jar javabank.Account</pre> 
 
-이전과는 달리 jar파일명까지의 경로를 classpath에 지정해줘야 한다.<br /> 
+<p>
+The path to the java-school-commons.jar file must be specified in the classpath.<br />
+</p>
 
-<h2>접근자</h2>
-접근자는 외부에서 접근할 수 있는지 여부를 결정한다.<br />  
-접근자는 2단계 접근 제어를 제공한다.<br />
-1단계 접근 제어는 접근자가 클래스 선언부에 쓰일 때이다.<br />
+<h2>Access Modifiers</h2>
 
-<h3>public 접근자가 Account의 클래스 선언부에 쓰인 경우</h3>
+<p>
+The access modifiers decide whether it is accessible from the outside.<br />
+The access modifiers provides a two-step access control.<br />
+Level 1 access control is when the accessor is used in the class declaration.<br />
+</p>
+
+<h3>The public access modifier which used in the class declaration part of BankAccount</h3>
 
 <pre class="prettyprint">
 package javabank;
 
-<strong>public</strong> class Account {
-	// 구현부
+<strong>public</strong> class BankAccount {
+	//...
 } 
 </pre>
 
-<h3>디폴트 접근자가 Account의 클래스 선언부에 쓰인 경우</h3>
+<h3>The default access modifier which used in the class declaration part of BankAccount</h3>
 
 <pre class="prettyprint">
 package javabank;
 
 class Account {
-	// 구현부
+	//...
 } 
 </pre>
 
 <table class="table-in-article">
 <tr>
-	<th class="table-in-article-th" colspan="2">1단계 접근 제어 : 접근자가 클래스 선언부에 쓰일 경우</th>
+	<th class="table-in-article-th" colspan="2">Level 1 access control: when an access modifier is used in a class declaration</th>
 </tr>
 <tr>
 	<td class="table-in-article-td">public</td>
-	<td class="table-in-article-td">
-	모든 팩키지의 클래스에서 참조할 수 있다.<br /> 
-	</td>
+	<td class="table-in-article-td">It can be referenced in any package classes.</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">default</td>
-	<td class="table-in-article-td">
-	같은 팩키지에 있는 클래스에서만 참조할 수 있다.<br />
-	</td>
+	<td class="table-in-article-td">It can be referenced in same package classes.</td>
 </tr>
 </table>
 
-public 접근자가 적용된 Account의  클래스를 팩키지가 다른 클래스에서 Account 를 참조한 예이다.<br />
+<p>
+Below is an example of referring to the javabank.BankAccount class in the example.BankSystem class.<br />
+</p>
 
 <pre class="prettyprint">
-<strong>package example;</strong>//Account에 적용된 javabank와 다른 팩키지인 것에 주목!
+<strong>package example;</strong>
 
 public class BankSystem {
 
-	//javabank.Account타입의 매개변수를 선언할 수 있다.
-	public void deposit(<strong>javabank.Account</strong> account, long amount) {
-		account.deposit(amount);//deposit()메소드 선언부에 적용된 접근자가 적용된다.
+	//You can declare a parameter of type javabank.BankAccount.
+	public void deposit(<strong>javabank.BankAccount</strong> account, long amount) {
+		account.deposit(amount);//At this point, the access modifier used in the deposit () method declaration is applied.
 	}
 
 }
 </pre>
 
-아래 그림은 javabank 팩키지에 있는 클래스가 모두 클래스 선언부에 public 으로 접근자가 지정되어 있는 경우를 그린 것이다.
-(그림에서 +는 public을 의미한다.)<br />
+<p>
+The following figure shows that all the classes in the javabank package have public access modifiers specified in the class declaration section.<br />
+(+ Stands for public)
 
 <img src="images/access_test_public.gif" alt="PUBLIC 접근자 그림" style="width: 590px;" /><br />
 
-(Bank, Customer는 아직 없지만 Account와 같이 javabank란 이름의 팩키지로 만들었다고 가정하자.)<br />
-Bank, Customer, Account는 어떤 팩키지에 속한 클래스라도 참조할 수 있다.<br />
-그림에서 example 팩키지에 있는 BankSystem는 javabank팩키지의 모든 클래스를 접근할 수 있다.<br />
-이 말은 위의 BankSystem소스에서 볼수 있듯이 javabank.Account account;와 같이 변수 선언부의 
-데이터 타입으로 사용할 수 있고 메소드 매개변수의 타입으로 javabank.Account를 쓸 수 있다는 의미이다.<br />
-import문을 이용하면 클래스 바디에서 javabank.Account를 클래스 바디에서 Account로 줄여 쓸 수 있다.<br />
+Suppose you have created a Bank, Customer with a javabank package like BankAccount.<br />
+Any class that belongs to any package can reference Bank, Customer, and BankAccount.<br />
+As shown in the figure, the BankSystem in the example package can refer to all classes in the javabank package.<br />
+As you can see from the BankSystem source, it means you can declare variables like javabank.BankAccount account.<br />
+You can use the import statement to reduce javabank.BankAccount to BankAccount in the class body.<br />
+</p>
 
 <pre class="prettyprint">
 <strong>package example;</strong>
@@ -327,72 +368,77 @@ import문을 이용하면 클래스 바디에서 javabank.Account를 클래스 �
 
 public class BankSystem {
 
-	public void deposit(<strong>Account</strong> account, long amount) {
+	public void deposit(<strong>BankAccount account</strong>, long amount) {
 		account.deposit(amount);
 	}
 
 }
 </pre>
 
-이제는 Bank, Customer, Account의 클래스 선언부에  default접근자로 설정된 경우를 가정해 보자.<br />
+<p>
+Suppose you set a default access modifier in the class declaration of Bank, Customer, and BankAccount.<br />
 
 <img src="images/access_test_default.gif" alt="Default 접근자 그림" style="width: 590px;" /><br />
 
-이 경우 다른 팩키지에 있는 BankSystem클래스에서는 Bank, Customer, Account를 사용할 수 없다.<br />
-그림처럼 보이지 않는다고 생각하면 된다.<br />
-BankSystem에서 Bank, Customer, Account클래스를 참조하려 하면 컴파일 에러가 난다.<br />
+In this case, the BankSystem class can not refer to Bank, Customer, or Account.<br />
+If you try to reference the Bank, Customer, and BankAccount classes in BankSystem, you get a compile error.<br />
 
 <table class="table-in-article">
 <tr>
-	<th class="table-in-article-th" colspan="2">2단계 접근 제어 : 접근자가 필드나 메소드에 쓰일 경우</th>
+	<th class="table-in-article-th" colspan="2">Step 2 Access Control: When an access modifier is used in a field or method declaration</th>
 </tr>
 <tr>
 	<td class="table-in-article-td">public</td>
-	<td class="table-in-article-td">모든 팩키지에서 접근 가능하다.</td>
+	<td class="table-in-article-td">The field or method is accessible from all packages.</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">protected</td>
-	<td class="table-in-article-td">
-	같은 팩키지에서만 접근 가능하다.<br />
-	단, 다른 팩키지에 속해있는 자식 클래스에서 부모클래스의 protected접근자로 지정된 멤버는 접근 가능하다.
+	<td class="table-in-article-td">The field or method is only accessible from the same package.<br />
+	In addition, if the packages of the subclass and the superclass are different, the subclasses can access protected fields and methods of the superclass.
 	</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">default</td>
-	<td class="table-in-article-td">같은 팩키지에서만 접근 가능하다.</td>
+	<td class="table-in-article-td">The field or method is only accessible from the same package.</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">private</td>
-	<td class="table-in-article-td">외부에서 접근할 수 없다.</td>
+	<td class="table-in-article-td">It is not accessible from outside the class.</td>
 </tr>
 </table>
 
-자바에서 필드(Fields)란 클래스 바디에서 선언된 메소드가 아닌 모든 것을 의미한다.<br />
-멤버(members)는 객체의 속성을 저장하는 변수나 객체의 행위에 해당하는 메소드를 의미한다.<br />
-위의 표를 이해하기 쉽게 풀어 설명하도록 한다.<br />
-필드나 메소드에 적용되는 가장 쉬운 접근자는 public과 private이다.<br />
-public이면 모든 팩키지에서 접근할 수 있다.<br />
-private이면 외부에서 접근할 수 없다.<br />
-디폴트 접근자는 같은 팩키지에서만 접근할 수 있다.<br />
-protected는 디폴트 접근자보다 접근 허용범위가 더 넓다.<br />
-(사실 protected에 대해서는 상속을 공부한 후에 아래 설명을 다시 보는 것이 좋다.)<br />
-일단 디폴트 접근자처럼 같은 팩키지에서 접근할 수 있다.<br />
-여기에 추가하여, 부모와 팩키지가 다른 자식 클래스에서 부모클래스의 protected멤버는 접근할 수 있다.<br />
-(굳이 필드가 아닌 멤버라고 한 것을 주목해야 한다. 그림에서 #는 protected을 의미한다.)<br />
+<p>
+A field is a data structure declared in a class body.<br />
+It's easy to understand if you think everything is not a method in a class body.<br />
+A member is a variable that stores the property of an object or a method corresponding to an action of an object.<br />
+If public is applied to a field or method, it can be accessed from any package.<br />
+If the field or method is private, it can not be accessed from the outside.<br />
+The default access modifier is only accessible from the same package.<br />
+The protected access modifier is more accessible than the default access modifier.<br />
+For the protected access modifier, it's a good idea to review the description below after studying inheritance.<br />
+It can be accessed from the same package as the default accessor.<br />
+In addition, protected members of the parent class can be accessed from child classes that differ in package from parent.<br />
+It should be noted that it is a protected member, not a protected field or method.<br />
+In the figure below, # means protected.<br />
 
 <img src="images/access_test_protected.png" alt="Protected 접근자 예 그림" style="width: 590px;" /><br /> 
+</p>
 
-<h2>캡슐화 : 객체의 자료에 접근하려면 메소드를 통해야만 접근하도록 한다.</h2>
-클래스를 설계할 때는 아래 사항은 객체 지향 프로그래밍의 기본이므로 지키도록 한다.<br />
-이를 캡슐화라고 하는데 외부에서 볼 때 객체의 꼭 필요한 부분만 볼 수 있도록 해준다.<br />
+<h2>Encapsulation: To access the data of an object, access it only through a method.</h2>
+
+<p>
+When designing a class, the following should be kept as it is the basis of object-oriented programming.<br />
+This is called encapsulation, which allows you to see only the essential parts of the object when viewed from the outside.<br />
+</p>
 
 <ol>
-	<li>멤버변수를 private로 선언한다.</li>
-	<li>private 선언된 멤버변수에 대한 setter, getter를 만든다.</li>
+	<li>Declare the member variable as private.</li>
+	<li>Declare public setter and getter methods for private member variables</li>
 </ol>
 
-(getter,setter은 아래 예제를 보고 이해하자.)<br />
-만약 웹사이트의 회원 클래스를 캡슐화하여 구현한다면 아래와 같을 것이다.<br />
+<p>
+Let's encapsulate the member class of a website.
+</p>
 
 <em class="filename">User.java</em>
 
@@ -400,11 +446,12 @@ protected는 디폴트 접근자보다 접근 허용범위가 더 넓다.<br />
 package net.java_school.user;
 
 public class User {
-	private String username; //유저이름
-	private String password; //패스워드
-	private String fullName; //성명
-	private String email; //이메일
+	private String username;
+	private String password;
+	private String fullName;
+	private String email;
 	
+	//getters and setters
 	public String getUsername() {
 		return username;
 	}
@@ -433,134 +480,134 @@ public class User {
 }
 </pre>
 
-<h2>이클립스 설치</h2>
-다음장부터는 메모장이나 에디트플러스와 같은 에디터는 더 이상 사용하지 않을 것이다.<br />
-이후 모든 장의 예제는 이클립스를 사용하기로 한다.<br />
-이클립스를 사용하면 위에서 실습했던 디렉토리 구조로 소스를 관리하게 되면서
-클래스 패스에 대해서도 크게 신경쓰지 않아도 된다.<br />
+<h2>Eclipse</h2>
 
-<a href="http://www.eclipse.org/downloads/">http://www.eclipse.org/downloads/</a>
-에서 Eclipse IDE for Java EE Developers 선택하여 다운로드한다.<br />
-압축을 풀면 생기는 eclipse 폴더를 원하는 곳에 복사하는 것으로 설치가 끝난다.<br />
-여기서는 eclipse 폴더를 C:/ 에 붙여넣기했다고 가정하고 설명한다.<br />
+<p>
+Editors such as Notepad or Edit Plus will no longer be used.<br />
+All subsequent chapter examples will use Eclipse.<br />
+With Eclipse, you can manage your sources with the directory structure you have practiced above and you do not have to worry about the classpath when compiling.<br />
+Download the Eclipse IDE for Java EE Developers from <a href="http://www.eclipse.org/downloads/">http://www.eclipse.org/downloads/</a>.<br />
+Unzip and copy the generated eclipse folder and paste it to the desired location.<br />
+Assume that you have pasted the eclipse folder into C:\.<br />
+</p>
 
-<h3>실행</h3>
+<h3>Run</h3>
 
-C:/eclipse/eclipse.exe를 더블클릭하면 이클립스가 실행된다.<br />
-실행되면 먼저 이클립스는 워크스페이스(workspace)를 어디로 지정할 것인지를 묻는다.<br />
-
+<p>
+Run C:/eclipse/eclipse.exe to launch Eclipse.<br />
+Eclipse asks you where to specify your workspace.<br />
 <img src="https://lh6.googleusercontent.com/-KuW40dO62II/TjJ6CM4LOrI/AAAAAAAAAX0/yXp6FWCapbM/workspace_launcher.gif" alt="workspace launcher" /><br />
 
-워크스페이스(workspace)는 작업장이다.<br />
-이클립스에서 워크스페이스는 하나 이상의 프로젝트들을 담는 그룻이다.<br />
-위 그림과 같이 워크스페이스를 디폴트로 보여지는 디렉토리로 선택하지 않도록 한다.<br />
-또한 Use this as the default and do not ask again 에 체크 하지 말고 그대로 둔다.<br />
-서로 다른 성격의 프로젝트를 관리하려면 워크스페이스를 여러개 두면 편리한 경우가 있을 수 있기 때문이다.<br />
-여기서는 워크스페이스를 C:/javawork 로 지정했다.<br />
-지정을 하고 OK 버튼을 클릭하면 다음과 같은 환영메시지를 볼 수 있다.<br />
+Workspaces contain and manage one or more projects.<br />
+Do not select the workspace as the default directory as shown above.<br />
+Also, do not check Use this as default and do not ask again.<br />
+It may be convenient to have multiple workspaces to manage projects of different characteristics.<br />
+In this example, the workspace is set to C:\javawork.<br />
+If you specify it and click the OK button, you can see the following welcome message.<br />
 
 <img src="https://lh5.googleusercontent.com/-Ewvv_Kxiuis/TjJ6B5bj7FI/AAAAAAAAAXs/fulrpOzQ58I/welcome.gif" alt="welcome" /><br />
 
-환영 페이지에서 보이는 메뉴로<br />
-이클립스 소개, 튜토리얼, 샘플, 새로운 릴리즈에 추가된 내용을 볼 수 있다.<br />
-참고로 이 글은 환영 페이지의 튜토리얼을 정리한 것이다.<br />
-환영 페이지를 닫는다.<br />
-환영 페이지를 닫으면 아래와 같은 워크벤치(WorkBench)가 나타난다.<br />
+For reference, this article summarizes the welcome page tutorial.<br />
+Closes the welcome page.<br />
+the following workbench appears.<br />
 
 <img src="https://lh5.googleusercontent.com/-lHZAcz_vsOU/TjJ6Byjr2BI/AAAAAAAAAXw/6Gk1YbZ1ytk/workbench.gif" alt="workbench" />
-
-<h3>이클립스 용어</h3>
-
-<strong>워크벤치(workbench)</strong><br />
-<p style="padding-left: 14px;">
-이클립스에서 보이는 윈도우 전체를 말한다.<br />
-윈도우는 크게 4개로 나뉘어지는데 이 분리된 영역을 뷰(view)라고 부른다.<br />
 </p>
 
-<strong>perspective</strong><br />
-<p style="padding-left: 14px;">
-사전적 의미는 "관점"이다.<br />
-뷰를 모두 포함해서 퍼스펙티브(perspective)라고 부른다.<br />
-위 화면은 Java 퍼스펙티브이다.<br />
-이 퍼스펙티브는 자바 프로그램을 개발할 때 필요한 뷰들로 구성된다.<br />
-퍼스펙티브를 변경하려면 오른쪽 상단의 Open Perspective 메뉴바 버튼을 이용한다.<br />
+<h3>Eclipse Terminology</h3>
+
+<p>
+<strong>Workbench</strong><br />
 </p>
 
-<strong>Package Explorer 뷰</strong><br />
 <p style="padding-left: 14px;">
-왼쪽 상단의 뷰로 Java 프로젝트에 속한 리소스(패키지, 클래스, 외부 라이브러리)를 보여준다.<br />
+It refers to the entire window seen in Eclipse.<br />
+A window is divided into four areas, which are called views.<br />
 </p>
 
-<strong>Hierarchy 뷰</strong><br />
+<strong>Perspective</strong><br />
 <p style="padding-left: 14px;">
-왼쪽 상단의 뷰로 Java의 상속구조 보여준다.<br />
+Including all of the views is called a perspective.<br />
+The above screen is a Java perspective.<br />
+This perspective consists of the views needed to develop a Java program.<br />
+To change the perspective, use the Open Perspective menu bar button in the top right corner.<br />
 </p>
 
-<strong>Outline 뷰</strong><br />
+<strong>Package Explorer View</strong><br />
 <p style="padding-left: 14px;">
-오른쪽 상단의 뷰로 현재 에디터에 열려 있는 소스 파일의 구조를 보여준다.<br />
+The top left view shows the resources (packages, classes, external libraries) belonging to the Java project.
 </p>
 
-<strong>Editor 뷰</strong><br />
+<strong>Hierarchy View</strong><br />
 <p style="padding-left: 14px;">
-화면중앙에 위치하는 뷰로 소스 코드를 편집하는 데 사용된다.<br />
+The upper-left view shows Java's inheritance structure.
 </p>
 
-<strong>problems 뷰</strong><br />
+<strong>Outline View</strong><br />
 <p style="padding-left: 14px;">
-하단에 위치한 뷰로 컴파일 에러나 경고 표시한다.<br />
+The view at the top right shows the structure of the source file in the editor.
+</p>
+
+<strong>Editor View</strong><br />
+<p style="padding-left: 14px;">
+It is used to edit the source code in the view located in the center of the screen.
+</p>
+
+<strong>Problems View</strong><br />
+<p style="padding-left: 14px;">
+Show compilation errors or warnings at the bottom of the view.
 </p>
 
 
-<strong>Javadoc 뷰</strong><br />
+<strong>Javadoc View</strong><br />
 <p style="padding-left: 14px;">
-하단에 위치한 뷰로 Package Explorer나 Outline 뷰에서 선택한 부분에 대한 
-Javadoc 주석를 보여준다.<br />
+The view at the bottom shows the Java document for the selected part in the Package Explorer or Outline view.
 </p>
 
-<strong>Declaraion 뷰</strong><br />
+<strong>Declaraion View</strong><br />
 <p style="padding-left: 14px;">
-하단의 위치한 뷰로 에디터에서 선택된 부분이 어떻게 선언됐는지 간략히 보여준다.<br />
+The view at the bottom shows briefly how the selected part of the editor is declared.
 </p>	
 
-뷰의 위치는 마우스로 원하는 위치로 변경할 수 있다.<br />
-하지만 익숙해 질때까지는 그대로 두는 것이 좋다.<br />
+<p>
+You can change the position of the view to the desired position with the mouse.<br />
+But it is good to leave it until you get used to it.<br />
+</p>
 
+<h3>Practice the Java example using Eclipse</h3>
 
-<h3>자바 예제</h3>
-
-본 예제는 이클립스 환영 페이지의 샘플 메뉴의 내용을 편집한 것이다.<br />
-먼저 Java Perspective 인지 확인한다.<br />
-이클립스에서는 자바 소스는 반드시 프로젝트에 속해야만 한다.<br />
-자바 프로젝트를  생성하려면 메뉴바에서 File &gt; New &gt; Java Project 선택하거나<br /> 
-툴바 메뉴에서 가장 왼쪽을 클릭한다.<br />
+<p>
+Make sure it is a Java perspective.<br />
+In Eclipse, the Java source must belong to the project.<br />
+To create a Java project, select File - New - Java Project from the menu bar or click the leftmost button on the toolbar as shown below.<br />
 <img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" style="width: 73px;" /><br />
 
-프로젝트 이름을 HelloWorld 로 지정한다.<br />
-그 외 설정은 특별히 지정하지 않아도 된다.<br /> 
-이클립스는 소스는 src, 컴파일된 바이너리 파일은 bin 디렉토리에 저장하여 관리한다.<br />
-입력 후 Finish 클릭하면 HelloWorld 프로젝트가 생성되고 Package Explorer 에 표시된다<br />
+Name the project HelloWorld.<br />
+Other settings do not have to be specified.<br />
+Eclipse is managed by storing the source in the src directory and the compiled binaries in the bin directory.<br />
+Click Finish and the HelloWorld project will be created and displayed in the Package Explorer.<br />
 
 <img src="https://lh4.googleusercontent.com/-8Tx99HODIdg/TjJ6A_ribLI/AAAAAAAAAXc/5xSvGBauvwc/s576/project_wizard.gif" alt="project wizard" /><br />
 
-아래 툴바 메뉴에서 두번째를 클릭한다.<br /> 
+Click second on the toolbar menu below.<br />
 <img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" style="width: 73px;" /><br />
 
-팩키지 이름에 net.java_school.example 라고 입력하고 Finish 를 클릭한다.<br />
-이제 Package Explorer 뷰에서 팩키지가 보이게 된다.<br />
+Type net.java_school.example in the package name and click Finish.<br />
+You should now see the package in the Package Explorer view.<br />
 
 <img src="https://lh4.googleusercontent.com/-B5K99iKod5g/TjJ6AgcfJsI/AAAAAAAAAXY/yJU3KnGQQIU/package_wizard.gif" alt="package wizard" /><br />
 
-마우스로 Package Explorer 에서 net.java_school.example 팩키지를 선택한 상태에서 아래 툴바 메뉴 중 오른쪽 마지막 버튼을 클릭한다.<br />
+With the mouse selected in the Package Explorer in the net.java_school.example package, click the last button on the right of the toolbar menu below.<br />
 
 <img src="https://lh5.googleusercontent.com/-5W4KIyzc7G8/TjJ6Bg9McGI/AAAAAAAAAXo/p2kJo0YJEv4/toolbar.gif" alt="toolbar" style="width: 73px;" /><br />
 
-클래스 이름으로 HelloWorld 라고 입력한다.<br />
-메인 메소드가 필요하므로 public static void main(String[] args)에 체크한다.<br />
+Enter HelloWorld as the class name.<br />
+Check the public static void main (String [] args), because the main method is required.<br />
 
 <img src="https://lh5.googleusercontent.com/-zy_swhmGj48/TjJ6AklwKJI/AAAAAAAAAXQ/-GWHhhwRugA/class_wizard.gif" alt="class wizard" /><br />
 
-Finish 를 클릭한 후 에디터에서 main메소드를 아래와 같이 구현한다.<br />
+Click on Finish and implement the main method in the editor as shown below.<br />
+</p>
 
 <em class="filename">HelloWorld.java</em>
 <pre class="prettyprint">
@@ -575,28 +622,30 @@ public class HelloWorld {
 }
 </pre>
 
-저장하면 컴파일을 따로 할 필요가 없다.<br />
-이클립스가 백그라운드에서 계속해서 컴파일을 해주기 때문이다.<br />
-에디터에서 바로 컴파일 에러를 확인할 수 있는 이유가 여기에 있다.<br />
-실행하려면 Package Explorer 에서 HelloWorld 클래스를 선택한 상태에서 오른쪽 마우스를 클릭하고
-컨텍스트 메뉴를 띄운 후 아래 그림처럼 선택한다.<br />
+<p>
+If you save, you do not have to compile.<br />
+This is because Eclipse continues to compile in the background.<br />
+Here's why you can see compilation errors right from the editor.<br />
+To run the class, right-click the HelloWorld class in the Package Explorer, open the context menu, and select it as shown below.<br />
 
 <img src="https://lh4.googleusercontent.com/-GQgOXNx6En4/TjJ6BuiXmTI/AAAAAAAAAXk/k3fGHc_rrYs/run.gif" alt="run" /><br />
 
-console 뷰가 생기면서 Hello World !가 출력된다.<br />
+A console view is displayed and Hello World!
 
 <img src="https://lh5.googleusercontent.com/-xC4-RE1ObLk/TjJ6Atp4agI/AAAAAAAAAXU/9fcwiLYVlH4/console_view.gif" alt="console view" />
+</p>
 
-<span id="comments">주석</span>
+<hr />
+
+<span id="comments">Comments</span>
 <ol>
-	<li>자바 인터프리터(java)를 실행하면 클래스 로더(Class Loader)가
-	classpath에서 자바 프로그램을 구성하는 모든 클래스 정보를 찾아 메모리 공간에 로드(load)한다.
-	이때 단 하나의 클래스라도 못 찾는다면 실행에 실패하고 클래스를 못 찾았다는 에러 메시지를 출력한다.
-	classpath 옵션를 지정하지 않으면 클래스 로더는 현재 디렉토리에서 사용자가 만든 클래스를 찾는다.
-	java.lang.String 클래스나 java.lang.System 클래스와 같은 자바 API의 경로는 클래스 로더가 이미 알고 있으니 
-	classpath에 지정해 주지 않는다.</li>
-	<li>javac나 java의 classpath 옵션은 cp 옵션으로 대신할 수 있다.</li>
-	<li>Log 클래스에 대한 설명은 따로 하지 않는다. Log 클래스의 out 메소드는 static 메소드로 static 키워드에 대한 설명은 
-	<a href="Static">static</a>에서 다룬다.</li>
+	<li>When you run the Java interpreter (java), the class loader
+The classpath finds all the class information that makes up the Java program and loads it into the memory space.<br />
+At this time, if it can not find even one class, it prints an error message that the execution fails and the class can not be found.<br />
+If you do not specify the classpath option, the class loader looks for the class you created in the current directory.<br />
+The path to the Java API, such as the java.lang.String class or the java.lang.System class, is already known by the class loader
+It is not specified in the classpath.</li>
+	<li>The classpath option of javac or java can be replaced with the cp option.</li>
+	<li>The out method of the Log class is a static method, and the description of the static keyword is covered in <a href="Static">static</a>.</li>
 </ol>
 </article>

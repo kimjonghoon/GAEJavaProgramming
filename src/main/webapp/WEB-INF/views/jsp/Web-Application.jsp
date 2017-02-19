@@ -1,90 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2014.7.9</div>
-			
-<h1>웹 애플리케이션</h1>
+<div class="last-modified">Last Modified 2017.2.16</div>
 
-톰캣과 같은 서버를 서블릿 컨테이너라고 부른다.<br />
-서블릿 컨테이너가 담아서 관리하는 것이 바로 <strong>웹 애플리케이션</strong>이다.<br />
-서블릿 컨테이너는 웹 애플리케이션이 썬의 서블릿/JSP 스펙에 따라서 동작하는 것을 보장해야 한다.<br />
+<h1>What are Web Appliactions?</h1>
 
-<h2>웹 애플리케이션의 구성 요소</h2>
+<p>
+A server like Tomcat is called a servlet container.
+It is the web application that the servlet container carries and manages.
+The servlet container must ensure that the web application operates in accordance with Sun's Servlets/JSP Spec.
+</p>
 
-자바 진영에서 말하는 웹 애플리케이션은 다음과 같은 파일들로 구성된다.<br />
+<h2>Components of a web application</h2>
+
+<p>
+The web application in Java consists of the following files.
+</p>
 
 <ul>
-	<li>HTML, 이미지, CSS, 자바스크립트</li>
+	<li>HTML, Images, Style Sheets, JavaScript</li>
 	<li>JSP</li>
-	<li>서블릿</li>
-	<li>자바 클래스, 자바 아카이브 파일(jar)</li>
+	<li>Servlets</li>
+	<li>Java Classes, Java archive file(jar)</li>
 	<li>web.xml</li>
 </ul>
 
-위의 구성 요소 중 어떤 것은 위치해야 할 디렉토리가 정해져 있다.<br />
-서블릿과 자바 클래스는 WEB-INF/classes,<br />
-자바 아카이브 파일은 WEB-INF/lib,<br />
-web.xml 파일은 WEB-INF 에 두어야 한다.<br />
+<p>
+Some of the above components have a specified location.
+Servlets and Java classes should be placed in WEB-INF/classes.
+Java archive files should be placed in WEB-INF/lib.
+The web.xml file should be placed in WEB-INF.
+</p>
 
+<h2>Web application directory</h2>
 
-<h2>웹 애플리케이션 디렉토리</h2>
-
-톰캣에서 웹 애플리케이션의 디폴트 위치는 {톰캣홈}/webapps 이다.<br />
-새로운 웹 애플케이션을 추가하고자 한다면 {톰캣홈}/webapps 바로 아래 서브 디렉토리<sup><a href="#comments">1</a></sup>를 만들고,<br /> 
-서브 디렉토리안에 다음과 같은 폴더를 만든다.<br />
+<p>
+The default location for web applications in Tomcat is {TOMCAT_HOME}/webapps.
+If you want to add a new web application, create a subdirectory<sup><a href="#comments">1</a></sup> with the appropriate name in {TOMCAT_HOME}/webapps and create the following folder in that subdirectory.
+</p>
 
 <h3>WEB-INF</h3>
-웹 애플리케이션 배치 정의자, web.xml 이 위치한다.<br />
-WEB-INF 디렉토리 안에 있는 파일은 웹브라우저를 통해 직접 접근할 수 없다.<br />
+
+<p>
+This directory should contain the web application deployment descriptor, web.xml.
+Files in the WEB-INF directory can not be accessed directly through a web browser.
+</p>
 
 <h3>WEB-INF/classes</h3>
-서블릿을 포함한 자바 클래스 파일(바이트 코드)이 이곳에 위치한다.<br />
+
+<p>
+The Java class file (bytecode) should be here.
+</p>
 
 <h3>WEB-INF/lib</h3>
-자바 아카이브 파일(jar)이 이곳에 위치한다.<br /><br />
 
-똑같은 바이트 코드가 WEB-INF/classes 과 WEB-INF/lib 안의 자바 아카이브 파일 안에 동시에 있을 수 있다는 것에 유의해야 한다.<br />
-이런 경우, 톰캣 클래스 로더는 먼저 검색하는 WEB-INF/classes 를 뒤져서 클래스를 찾아 메모리에 로딩한다.<br /> 
-해당하는 클래스를 찾았으므로 WEB-INF/lib 에 있는 클래스는 당연히 무시된다.<br />
+<p>
+The Java archive file (jar) should be here.
+Note that the same bytecode can be found in the WEB-INF/classes and Java archive files in WEB-INF/lib.
+In this case, the Tomcat class loader first searches WEB-INF/classes, and loads the classes found in WEB-INF/classes into memory.
+The class in Java archive file are ignored and can not participate in the program.
+</p>
 
 <dl class="note">
-<dt>톰캣 클래스로더</dt>
+<dt>Tomcat Class Loader</dt>
 <dd>
-톰캣의 클래스로더는 환경변수 CLASSPATH 를 참조하지 않는다.<br />
-톰캣의 클래스로더는 아래 순서대로 클래스를 찾는다.<br />
-
+Tomcat class loader does not refer to the environment variable CLASSPATH.
+Tomcat class loader looks for classes in the following order:
 <ol>
-	<li>자바 코어 라이브러리</li>
-	<li>웹 애플리케이션 WEB-INF/classes</li>
-	<li>웹 애플리케이션 WEB-INF/lib</li>
-	<li>{톰캣홈}/lib</li>
+	<li>Java API</li>
+	<li>WEB-INF/classes directory of a web application</li>
+	<li>WEB-INF/lib directory of a web application</li>
+	<li>{TOMCAT_HOME}/lib</li>
 </ol>
 </dd>
 </dl>
 
 
-<h2>배치 정의자 (Deployment Descriptor): web.xml</h2>
+<h2>web.xml</h2>
 
-웹 애플리케이션의 심장은 배치 정의자 (Deployment Descriptor)라고 불리는 web.xml 파일이다.<br />
-배치 정의자 web.xml 은 WEB-INF 디렉토리에 위치한다.<br />
-배치 정의자는 웹 애플리케이션의 모든 설정 정보를 담는다.<br />	
+<p>
+The heart of the web application is the web.xml file, called the deployment descriptor.
+A web.xml should be in the WEB-INF/ directory.
+A web.xml contains all the configuration information on a web application.
+</p>
 
-<h3><a href="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">배치 정의자로 할 수 있는 주요 설정 항목</a></h3>
+<h3><a href="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">Main configuration items in web.xml</a></h3>
 <ul>
-	<li>서블릿컨텍스트 초기화 파라미터</li>
-	<li>필터</li>
-	<li>리스너</li>
-	<li>servlet 정의</li>
-	<li>servlet 초기화 파라미터</li>
-	<li>servlet 매핑</li>
-	<li>session 설정</li>
-	<li>welcome 파일 리스트</li>
-	<li>에러 페이지</li>
+	<li>ServletContext initialization parameter</li>
+	<li>Filter</li>
+	<li>Listener</li>
+	<li>Servlet Definition</li>
+	<li>Servlet Initialization parameters</li>
+	<li>Servlet Mapping</li>
+	<li>Session Configuration</li>
+	<li>welcome file list</li>
+	<li>error page</li>
 </ul>
 
-<h3>web.xml 파일의 예와 설명</h3>
-web.xml 파일을 새로 만들때는 {톰캣홈}/webapps 에서 디폴트로 설치되어 있는 
-다른 웹 애플케이션의 web.xml 파일을 복사하여 자신의 웹 애플리케이션의 WEB-INF에 붙여넣는다.<br />
-그런 다음 web.xml 파일을 열고 web-app 루트 엘리먼트안의 모든 내용을 지운후 사용한다.<br />
-아래 강조된 부분처럼 web-app 엘리먼트의 서브 엘리먼트가 웹 애플리케이션의 설정이 된다.<br />
+<h3>Example and description of web.xml</h3>
+
+<p>
+When creating the web.xml file, copy {TOMCAT_HOME}/webapps/ROOT/WEB-INF/web.xml file and paste it into WEB-INF / of your web application.
+Then open the web.xml file and delete everything in the web-app root element.
+You can configure your web application by adding sub elements of the web-app element, as highlighted below.
+</p>
 
 <em class="filename">web.xml<sup><a href="#comments">2</a></sup></em>
 <pre class="prettyprint">
@@ -135,49 +155,52 @@ web.xml 파일을 새로 만들때는 {톰캣홈}/webapps 에서 디폴트로 �
 &lt;/web-app&gt;
 </pre>
 
-servlet 엘리먼트는 서블릿 정의와 해당 서블릿의 초기 파라미터를 설정한다.<br />
-load-on-startup 엘리먼트의 값이 0이거나 양수이면 톰캣은 웹 애플리케이션이 시작하는 시점에 
-해당 서블릿 객체를 생성하고 init()메소드를 호출하여 바로 서비스를 할 수 있는 상태로 만든다.<br />
-servlet-mapping 엘리먼트는 서블릿과 URL 매핑을 하기 위해 사용한다.<br />
-위의 설정에 의해서 http://localhost:포트번호/컨텍스트패스<strong>/Test</strong>를 방문하면 net.java_school.TestServlet 서블릿이 응답한다.<br />
-session-timeout 엘리먼트는 HttpSession 객체의 라이프타임을 컨트롤한다.<br /> 
-session-timeout 이 30으로 설정되었다면 서블릿 컨테이너는 HttpSession 객체가 30분 동안 아무런 움직임이 없다면 소멸시킨다.<br /> 
+<p>
+The servlet element sets the servlet definition and the initial parameters of the servlet.
+If the value of the load-on-startup element is 0 or positive, Tomcat creates the servlet object at the start of the web application and calls the init () method to make the service available.
+The servlet-mapping element is used for servlet-to-URL mapping.
+As above, if you visit http://localhost:port/contextPath/<strong>Test</strong>, 
+the net.java_school.TestServlet servlet will respond.
+The session-timeout element controls the lifetime of the HttpSession object.
+If session-timeout is set to 30, the servlet container will destroy the HttpSession object if it has no action for 30 minutes.
+</p>
 
+<h2>Packing</h2>
 
-<h2>팩킹 (Packing)</h2>
-웹 애플리케이션은 jar 툴(jar.exe)로 하나의 파일로 만들 수 있다.<br />
-이 파일은  다양한 서블릿 컨테이너에서 작동할 수 있다.<br />
-개발이 완료되었다면 웹 애플리케이션을 번들화하여 다른 서블릿 컨테이너에 배포를 할 수 있다.<br />
-배포를 하기 위해서는 웹 애플리케이션의 루트 디렉토리에서 다음과 같은 명령을 내려 확장자가 war인 파일을 만들어야 한다.
-확장자가 jar 이 아닌 war 인 것에 주의한다.<br />
-새로 만든 웹 애플리케이션의 도큐먼트베이스가<br />
-
-<em class="path">C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\test</em> 라면
-아래와 같이 이동하여 jar cvf test.war . 명령을 수행한다.<br />
+<p>
+You can use the jar tool (jar.exe) to make your web application a single file.
+Once development is complete, you can bundle your web application and distribute it to other servlet containers.
+To do this, you need to create a file with the extension war. (Note that the extension is war rather than jar)
+If the web application's document base is C:\Program Files\Apache Software Foundation\Tomcat 8.0\webapps\test, go to the document base and run the following:
+</p>
 
 <pre>
 C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\test&gt;<strong>jar cvf test.war .</strong>
 </pre>
 
-생성된 test.war 파일은 다른 톰캣서버나 다른 벤더의 서블릿 컨테이너의 디폴트 웹 애플리케이션 폴더에 복사만 하면, 
-해당 서블릿 컨테이너가 자동으로 test 애플리케이션을 배치하고 로드한다.<br />
+<p>
+If you copy this test.war file to the default web application folder of another Tomcat server or another vendor's servlet container, 
+the servlet container will automatically deploy and load the test application.
+</p>
 
-<span id="comments">주석</span>
+<span id="comments">Comments</span>
 <ol>
-	<li>이 서브 디렉토리는 새로 만들 웹 애플리케이션의 루트 디렉토리이다.<br />
-	톰캣의 경우 이 디렉토리를 DocumentBase 라고 한다.<br />
-	DocumentBase 에는 주로 웹 애플리케이션의 구성 요소 중 정적인 요소가 위치하게 된다.<br />
-	DocumentBase 아래 css 서브디렉토리에는 스타일 시트 파일를, js 에는 자바스크립트 파일을, images 에는 이미지 파일을 두는 식이다.<br />
-	동적인 요소중 JSP는 DocumentBase 에 두어도 된다.<br />
-	하지만 정책상 WEB-INF 아래에 WEB-INF/jsp 와 같은 디렉토리를 만들어서 그곳에 위치시키는 경우가 많다.<br />
+	<li>
+This subdirectory is the root directory of the web application to be created.
+For Tomcat, this directory is called DocumentBase.
+The DocumentBase and DocumentBase subdirectories (Exclude WEB-INF/) contain static components of the web application.
+For example, you can place style sheets in the css subdirectory of DocumentBase, 
+JavaScript files in the js subdirectory of DocumentBase, and image files in the images subdirectory of DocumentBase.
+JSPs can also be placed in the DocumentBase and DocumentBase subdirectories.
+However, many web developers create a directory like WEB-INF/jsp and place the JSP file there.
 	</li>
-	<li>이 web.xml 파일의 설정대로 지금 테스트할 수 없다.<br />
-	테스트하려면 TestServlet를 만들어야 한다.<br />
-	서블릿 관련 예제는 <a href="Servlet">서블릿</a>에서 본격적으로 다룰 것이다.</li>
+	<li>
+To test a Web application that has this web.xml, you need to create a TestServlet.
+Servlet examples are covered in full in <a href="Servlet">Servlet</a> chapter.
+	</li>
 </ol>
 
-
-<span id="refer">참고</span>
+<span id="refer">References</span>
 <ul id="references">
 	<li><a href="http://stackoverflow.com/questions/809775/what-does-the-servlet-load-on-startup-value-of-0-zero-signify">http://stackoverflow.com/questions/809775/what-does-the-servlet-load-on-startup-value-of-0-zero-signify</a></li>
 </ul>

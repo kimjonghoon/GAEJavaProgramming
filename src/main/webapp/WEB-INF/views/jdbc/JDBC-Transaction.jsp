@@ -1,32 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2014.5.21</div>
+<div class="last-modified">Last Modified 2017.2.14</div>
 
-<h1>트랜잭션</h1>
+<h1>JDBC - Transaction</h1>
 
-트랜잭션 관리의 예는 계좌이체가 가장 좋은 예제이다.<br />
-A 계좌에서 B 계좌로 1000 원을 이체한다면 <br />
-<br />
-<strong>과정 1. A계좌에서 1000원을 뺀다.</strong><br />
-<strong>과정 2. B계좌에서 1000원을 더한다.</strong><br />
-<br />
-위와 같을 것이다.<br />
-만일 <strong>과정 1</strong>이 성공했는데 <strong>과정 2</strong>가 실패했다면 <strong>과정 1</strong>까지 
-취소하고 <strong>과정 1</strong>이전의 상태로 복구하는 것이 트랜잭션 관리의 목적이다.<br />
-트랜잭션 관리를 위해서 <strong>과정 1</strong>과 <strong>과정 2</strong>는 하나의 단위로 보는 것이 가장 중요하다.<br />
-이때 <strong>과정 1</strong>과 <strong>과정 2</strong>를 묶어서 트랜잭션의 단위라고 한다.<br />
-<br />
-JDBC 프로그램에서 얻은 커넥션은 기본적으로 자동 커밋 모드이다.<br />
-자동 커밋 모드는 SQL문장 하나 하나를 트랜잭션 단위로 보는 것이다.<br />
-이를 해제하기 위해서는 자동 커밋 모드를 false로 설정하고 프로그램상에서 커밋 시점을 정의하는 것이 트랙잭션 관리 코딩 방법이다.<br />
-<br />
-계좌이체에 적용하면,<br />
-<br />
-<em>con.setAutoCommit(false);</em><br />
-<strong>과정 1. A계좌에서 1000원을 뺀다.</strong><br />
-<strong>과정 2. B계좌에서 1000원을 더한다.</strong><br />
-<em>con.commit();</em><br />
-<br />
-트랜잭션 예제를 위해서 아래와 같이 scott계정에 ACCOUNT 테이블을 만들고 데이터를 인서트한다. 
+<p>
+Account transfer is the best example of a transaction.
+If you transfer $ 1500 from account A to account B, you have the following process:
+</p>
+
+<pre>
+Process 1. Subtract $ 1,500 from the A account. 
+Process 2. Add $ 1,500 from the B account.
+</pre>
+
+<p>
+If process 1 succeeds and process 2 fails, 
+the purpose of transaction management is to cancel process 1 and restore the state before process 1 is executed.
+For transaction management, it is most important to see Process 1 and Process 2 as one unit. 
+In this case, the bundle of process 1 and process 2 is called transaction unit.
+</p>
+
+<p>
+The connection is set to autocommit mode by default.
+Auto-commit mode sees each SQL statement in transaction units.
+Setting the auto commit mode to false and defining the commit time in the program is the coding that manages the transaction.
+The coding that manages the transaction is applied to the account transfer as follows.
+</p>
+
+<pre>
+con.setAutoCommit(false);
+Withdraw $ 1500 from Account A.
+Deposit $ 1500 in Account B.
+con.commit();
+</pre>
+
+<p>
+For the transaction example, create the ACCOUNT table in the scott account as shown below and insert the data for the test. 
+</p>
 
 <pre class="prettyprint">
 create table account (
@@ -40,18 +53,27 @@ insert into account values ('111', 3000)
 insert into account values ('222', 2000)
 /
 </pre>
-TransactionPairs.java의 메인 메소드에 아래 JDBC 프로그램 방법을 참조하여 작성한다.
+
+<p>
+Refer to the JDBC program procedure below and complete the main method of TransactionPairs.java.
+</p>
+
 <ol>
-	<li>JDBC 드라이버 로딩</li>
-	<li>Connection 맺기</li>
-	<li>SQL 실행</li>
-	<li>[SQL문이 select문이었다면 ResultSet을 이용한 처리]</li>
-	<li>자원 반환</li>
+	<li>Loading a JDBC Driver</li>
+	<li>Getting a Connection</li>
+	<li>Execute SQL</li>
+	<li>[If the SQL statement is a select statement, use the returned ResultSet to process the data.]</li>
+	<li>Returning Resources</li>
 </ol>
-우리의 목표는 <br />
-<em>update account set balance = balance - 1500 where accountno = '111'<br />
-update account set balance = balance + 1500 where accountno = '222'</em><br />
-을 실행하는 것이다.<br />
+
+<p>
+Our goal is to execute the following SQL:
+</p>
+
+<pre>
+UPDATE account SET balance = balance - 1500 WHERE accountno = '111'
+UPDATE account SET balance = balance + 1500 WHERE accountno = '222'
+</pre>
 
 <em class="filename">TransactionPairs.java</em>
 <pre class="prettyprint">
@@ -98,7 +120,7 @@ public class TransactionPairs {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {
-				<strong>con.rollback();</strong> //익셉션이 발생하면 롤백한다.
+				<strong>con.rollback();</strong>
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -119,9 +141,18 @@ public class TransactionPairs {
 }
 </pre>
 
-실행하고 SQL*PLUS로 결과를 확인한다.<br />
-<em>java.sql.SQLException: ORA-02290: 체크 제약조건(SCOTT.ACCOUNT_BALANCE_CK)이 위배되었습니다</em>
-라는 익셉션 메시지를 보게 될 것이다.<br />
-ACCOUNT 테이블의 BALANCE 컬럼은 0에서 3000까지의 수만 저장될 수 있기 때문이다.<br />
-그 결과 catch블록에서 롤백이 실행된다.<br />
+<p>
+Run it and check the results with SQL * PLUS.
+You will see an the following exception message.<br />
+</p>
+
+<pre>
+java.sql.SQLException: ORA-02290: check constraint (SCOTT.ACCOUNT_BALANCE_CK) is violated.
+</pre>
+
+<p>
+This is because the BALANCE column of the ACCOUNT table can only be stored from 0 to 3000.
+When an exception occurs, a rollback is executed in the catch block.
+</p>
+
 </article>

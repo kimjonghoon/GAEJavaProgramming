@@ -1,20 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2015.5.25</div>
+<div class="last-modified">Last Modified 2017.2.3</div>
 	
-<h1>자바은행 수정 (추상클래스 적용)</h1>
+<h1>Abstract class in JavaBank</h1>
 
-기존의 계좌 클래스를 추상 클래스로 수정하고, 일반 계좌와 마이너스 계좌를 추상 계좌 클래스를 상속하도록 결정했다.
-새로운 종류의 계좌가 필요하다면 추상 계좌 클래스를 상속하여 만들면 될 것이다.<br />
-<br />
-출금시 잔고가 부족할 때 발생시킬 사용자 정의 예외 클래스를 작성한다.<br />
-아래 그림처럼 RuntimeException을 상속하도록 InsufficientBalanceException.java를 작성하고 저장한다.<br />
+<p>
+Modify the existing account class to an abstract class, and modify the normal account and the minus account to inherit the abstract account class.
+If you need a new kind of account class, then this class will inherit the abstract account class.
+</p>
 
-<img alt="" src="https://lh3.googleusercontent.com/-k8W3Fdv4UsY/VWKmyB_TZaI/AAAAAAAACJM/Fth5yxSkTR8/s590/create-exception-with-eclipse.png"><br />
-
-에디터 뷰에서 마우스 오른쪽 버튼으로 컨텍스트 메뉴를 보이게 한 후,
-Source - Generate Constructors form SuperClass...를 차례로 선택하여 생성자를 만든다.<br />
-
-<img alt="" src="https://lh3.googleusercontent.com/-cghmWWIl6n0/VWKjEDyc0dI/AAAAAAAACIA/EkwIZL_GRmE/s720/source-Generate-Constructors-form-SuperClass.png"><br />
+<p>
+Let's create a custom exception class to use when there is insufficient amounts at the time of withdrawal.<br />
+Create and save InsufficientBalanceException class to inherit RuntimeException as shown below.<br />
+<img alt="Custom Exception 1" src="https://lh3.googleusercontent.com/RHaayx8aOaZZh4w-c2PbLBDtz3rF3yuzgnk5bqEea0ESShr0MpPwf_6TK-5TgJNbptz7JsbvzyEmc7PWG2CATUPddqQ9MdJJg5wEL74BroGVs6Ep7V-hDXDp65OlrMQUYV9xwbkNn2nbZMwFoGQAy9hUcqa3QfJtd52TDoGs8BgadnXmg_U0Tz0Sc6JVsUu7jSJkRJUxGt5Svb-PB4WAnmyE9MoCWcsROrMu1YOOHY7yybBwjTdskuw__EtBdIN1jtP0EVgofNjFldXCV17t3ovHYXxWxqlUI6q95YvEXR7UIslVgH0ASFnw7tdhD6odpdkYbU9HLPfoNrJ6PzkYOR8HagrGLCQjSK5I1aDwfPtxyMeT7FMuQNqWSyeHKGQdXCHreOC2KwCG7cHXTyV3k0qkduvplfXFXTBE07RMBgiOUZV7WCuMxRiqFqSEHFqMGIF-dyYVEkqPbgEPH7X45spA18QJeO2nRjVQ9enb4tY467m3jIbRNSM6pwchTwGpB4xaQltBMyt6oVJXD5AFTzh5SBFr5bgecC4PU35vvmKPl2rh1o1HovnvorpCFoZZrivbWN2Fd1LVhrl1kS2IIHwFox18U9wuRVhYSyUS4dkHt3-FkjT4=w543-h241-no" /><br />
+Right-click on an empty space in the Eclipse editor view to display the context menu.<br />
+Select <em>Source</em> and <em>Generate Constructors form SuperClass ...</em> to create the constructor.<br />
+<img alt="Custom Exception 2" src="https://lh3.googleusercontent.com/JODCdLiA47Ku4j9jumvMmOmqZ5vvdoW9hYKj4e-V8oSVfyKhlF2_d_18F7hznO7SHp9jypXZjZo9U0X1rGjWZD7vLQH50fASeTxb8iviVOy2V4Ahd2lmm4Wxfenhd9VT3t8SKHUqDhKQ6zT9fEugqS7GBQSf4RZRmUESW7Ro7FvJuNLRobpHZxxiNDfuM6SUqwbNC2OyVrgK7wTqOyVpzGaMHaVBs-ffvUogCQqOB_pwnt4O2DFyX3lE1St7lINaaUudbe3xE24qtRuc-xHR3x_NIH3MfNmUbEUwWjizo53C_p7NIT5n0r8Nt5U2_KFy7hT978w3_JLU6Z_iE9WJFL8j0zthHRFu6ccIXkYUMsFxqk15vfcIDfItktHDmyEQ5H6h9UPY3UztWojBQTXkwv-q1ov2VYVfEgrX8Okx2w2dk9z2A4EMomETf6m8AGJY-WmLezwajTYhzi4cH8s8M1hlLI0PifzgvIWHLObpI0Dfbdxp0IhNRA_xtamIwdoWXY0n18T9c2fKmK0S88uKDbgySh9VGQgAsNK6jfeuf1Leird4ajQhAcGN851Eiz5THbLjNIuPTscmTw9H3u4YuF3CucoHupg9c-HnUKtrgjtS-cGojX0s=w495-h704-no" /><br />
+</p>
 
 <em class="filename">InsufficientBalanceException.java</em>
 <pre class="prettyprint">
@@ -35,7 +39,7 @@ public class InsufficientBalanceException extends RuntimeException {
 	public InsufficientBalanceException(String message) {
 		super(message);
 	}
-<article>
+
 	public InsufficientBalanceException(Throwable cause) {
 		super(cause);
 	}
@@ -43,7 +47,9 @@ public class InsufficientBalanceException extends RuntimeException {
 }
 </pre>
 
-중복된 계좌를 등록하려 할 때 발생시킬 예외 클래스를 위와 동일한 방법으로 생성한다.<br />
+<p>
+Create an exception class to use when registering an account with an existing account number in the same way as above.
+</p>
 
 <em class="filename">DuplicateAccountException.java</em>
 <pre class="prettyprint">
@@ -72,22 +78,26 @@ public class DuplicateAccountException extends RuntimeException {
 }
 </pre>
 
-계좌(Account) 클래스를 추상 클래스로 변경한다.<br />
-출금 메서드 withdraw()를 추상 메서드로 변경한다.<br />
+<p>
+Change the existing account class to an abstract class.
+Change the withdraw () method to an abstract method.
+</p>
 
 <em class="filename">Account.java</em>
 <pre class="prettyprint">
 public <strong>abstract</strong> class Account {
 
-	//.. 기존 코드와 같다..
+	//.. Same as existing code ..
 		
 	<strong>public abstract void withdraw(long amount);</strong>
 	
-	//.. 기존 코드와 같다 .. 
+	//.. Same as existing code .. 
 }
 </pre>
 
-출금액이 잔고보다 클 수 없는 일반 계좌를 생성한다.<br />
+<p>
+Generate a normal account that can not be withdrawn larger than the balance.
+</p>
 
 <em class="filename">NormalAccount.java</em>
 <pre class="prettyprint">
@@ -111,7 +121,7 @@ public class NormalAccount extends Account {
 	@Override
 	public void withdraw(long amount)  {
 		<strong>if (amount &gt; balance) {
-			throw new InsufficientBalanceException("잔고가 부족합니다.");
+			throw new InsufficientBalanceException("There is not enough balance.");
 		}</strong>
 		balance = balance - amount;
 		Transaction transaction = new Transaction();
@@ -140,7 +150,7 @@ public class Bank {
 
 	public void addAccount(String accountNo, String name, String kind) {
 		Account account = getAccount(accountNo);
-		<strong>if (account != null) throw new DuplicateAccountException("중복된 계좌입니다.");</strong>
+		<strong>if (account != null) throw new DuplicateAccountException("Duplicated account.");</strong>
 		
 		if (Account.NORMAL.equals(kind)) {
 			accounts.add(new NormalAccount(accountNo, name, kind));
@@ -151,7 +161,7 @@ public class Bank {
 	
 	public void addAccount(String accountNo, String name, long balance, String kind) {
 		Account account = getAccount(accountNo);
-		<strong>if (account != null) throw new DuplicateAccountException("중복된 계좌입니다.");</strong>
+		<strong>if (account != null) throw new DuplicateAccountException("Duplicated account.");</strong>
 		
 		if (Account.NORMAL.equals(kind)) {
 			accounts.add(new NormalAccount(accountNo, name, balance, kind));
@@ -160,13 +170,9 @@ public class Bank {
 		}
 	}
 	
-	//.. 중간 생략 ..  
+	//.. Omitted ..  
 	
 }
 </pre>
 
-<span id="refer">참고</span>
-<ul id="references">
-	<li>New 알기쉬운 자바2(개정판) 저자: 김철회 출판사: 정보문화사</li> 
-</ul>
 </article>
