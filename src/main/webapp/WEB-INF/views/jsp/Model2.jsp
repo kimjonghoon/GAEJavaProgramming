@@ -1,21 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2014.7.22</div>
+<div class="last-modified">Last Modified 2017.4.28</div>
 
-			
-<h1>모델 2</h1>
+<h1>Model 2 BBS</h1>
 
-모델 1은 JSP 에서 자바빈즈를 사용하는 구조를 말한다.<br />
-모델 2는 모델 1에 컨트롤러가 추가된다.<br />
-컨트롤러는 뷰(JSP)와 비즈니스 로직을 담당하는 모델(자바빈즈) 사이에서 다리 역할을 한다.<br />
-모델 2의 프로세스를 정리하면 다음과 같다.
+<p>
+Model 1 is a program structure that uses JavaBeans in a JSP.
+Model 2 is a structure in which a controller is added to Model 1.
+The controller acts as a bridge between the view (JSP) and the model (JavaBeans) responsible for business logic.
+The process of Model 2 is summarized as follows.
+</p>
+
 <ol>
-	<li>모든 요청은 컨트롤러에 전달된다.</li>
-	<li>컨트롤러는 모델에 작업을 위임한다.(여기서 모델이란 비즈니스 로직을 담당하는 자바빈즈를 말한다.
-	작업을 위임할 때 요청객체를 모델에 전달하는데 여기에 클라이언트가 보낸 정보가 있기 때문이다.)</li>
-	<li>모델은 작업을 완료한 다음 컨트롤러에게 결과를 전달한다.(모델은 결과를 요청객체에 저장하는 것으로 이 역할을 수행한다.)</li>
-	<li>컨트롤러는 결과물을 JSP 전달하여 최종적으로 클라이언트의 요청에 서버스하도록 한다.(컨트롤러는 forward() 메소드를 사용하여 이 역할을 수행한다.)</li>
+	<li>All requests are received by the controller.</li>
+	<li>The controller delegates tasks to the model. The model is JavaBean, which is responsible for business logic. When the controller delegates tasks, it passes the request object to the model.</li>
+	<li>The model completes the task and passes the results to the controller. The model does this by storing the results in the request object.</li>
+	<li>The controller passes the output to the JSP, which ultimately serves the client's request. The controller uses the forward () method to perform this task.</li>
 </ol>
-다음 소스는 컨트롤러에 대한 힌트를 제공한다.
+
+<p>
+The following sources provide hints to the controller.
+</p>
 
 <em class="filename">ControllerServlet.java</em>
 <pre class="prettyprint">
@@ -27,14 +34,11 @@ import java.io.*;
 
 public class ControllerServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) 
-    	throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req,resp);
 	}
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
-    	throws ServletException, IOException {
-    
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uri = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String command = null;
@@ -44,13 +48,13 @@ public class ControllerServlet extends HttpServlet {
 		out.println(command);
 		out.close();
 	}
-	
 }
 </pre>
 
-새로운 서블릿을 만들었으니 web.xml 에 등록한다.
+<p>
+Add the following to web.xml:
+</p>
 
-<em class="filename">web.xml</em>
 <pre class="prettyprint">
 &lt;servlet&gt;
    &lt;servlet-name&gt;Controller&lt;/servlet-name&gt;
@@ -64,24 +68,34 @@ public class ControllerServlet extends HttpServlet {
 &lt;/servlet-mapping&gt;
 </pre>
 
-톰캣를 재시작한 다음<br />
-http://localhost:8989/list.do,<br />
-http://localhost:8989/board/list.do,<br />
-http://localhost:8989/board/view.do,<br />
-http://localhost:8989/write_form.do,<br />
-http://localhost:8989/modify_form.do를 차례로 방문하여 테스트한다.<br />
+<p>
+Restart Tomcat.
+Visit http://localhost:port/list.do,
+http://localhost:port/board/list.do,
+http://localhost:port/board/view.do,
+http://localhost:port/board/write_form.do,
+http://localhost:port/board/modify_form.do.
+When you visit, the request string will be output.
+Unlike before, the request string does not imply a specific component of the server.
+The controller will respond to the user's request by determining the model and view according to the request string. 
+</p>
 
-<h3>모델 만들기</h3>
-모델에 해당하는 클래스는 Action 으로 이름이 끝나도록 한다.<br />
-(Struts2 프레임워크가 모델에 이런 이름을 사용한다.)<br />
-게시판을 모델 2 게시판으로 수정할 것인데 여기서는 목록만 구현할 것이다.<br />
-나머지는 여러분의 몫이다.<br />
+<h3>Create Models</h3>
 
-게시판 목록에 대해서 모델이 해야 할 일은 
-페이지의 레코드에 프로그래밍적으로 붙여지는 번호,
-페이지에서 보일 결과셋과 [이전]에 해당하는 번호, 첫번째 페이지 번호, 마지막 페이지 번호, [다음]에 해당하는 번호를 구하는 것이다.<br />
-
-목록액션 클래스가 목록과 관련된 데이터를 구하는 메소드의 이름을 execute()라고 하겠다. 이 역시 Struts2 에서 액션 클래스에서 사용하는 이름이다.<br />
+<p>
+When you create a model class, let the class name end with Action.
+(This is the naming convention used by the Struts 2 framework)
+From now on, We will modify the model 1 bulletin board to the model 2 bulletin board.
+Let's modify it from the list.
+For the list, the model must do the following: 
+the list item number on the list page, 
+the result set to be displayed on the list page, 
+the page number corresponding to [&lt;],
+the page number corresponding to [&gt;], 
+the first page number, 
+the last page number.
+We will call the execute () method of the action class to generate the data mentioned above.(This is also the naming convention used in Struts 2)
+</p>
 
 <em class="filename">ListAction.java</em>
 <pre class="prettyprint">
@@ -96,65 +110,92 @@ public class ListAction {
 }
 </pre>
 
-execute()메소드의 구현부는 우리가 이미 구현한 소스를 참조하여 //TODO 를 완료한다.<br />
+<p>
+Complete the execute () method as follows:
+</p>
 
 <em class="filename">ListAction.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.java_school.commons.PagingHelper;
-
 public class ListAction {
-	public void execute(HttpServletRequest request) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
-		int page = (request.getParameter("page") == null  ? 1 : 
-			Integer.parseInt(request.getParameter("page")));
-		String keyword = request.getParameter("keyword");
-		if (keyword == null) keyword = "";
-		BoardDao dao = new BoardDao();
-		int totalRecord = dao.getTotalRecord(keyword);
-		PagingHelper pagingHelper = new PagingHelper(totalRecord,page,10,5);
-		int startRecord = pagingHelper.getStartRecord();
-		int endRecord = pagingHelper.getEndRecord();
-		ArrayList&lt;Article&gt; list = dao.getBoardList(startRecord, endRecord, keyword);
-		request.setAttribute("pagingHelper", pagingHelper);
-		request.setAttribute("list", list);
-	}
+    public void execute(HttpServletRequest request) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        
+        int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
+        String keyword = request.getParameter("keyword");
+        if (keyword == null) keyword = "";
+
+        BoardService service = new BoardService();
+        int totalRecord = service.getTotalRecord(keyword);
+        Map&lt;String, Integer&gt; numbers = service.getNumbersForPaging(totalRecord, curPage, 10, 5);
+        int startRecord = numbers.get("startRecord");
+        int endRecord = numbers.get("endRecord");
+        
+        List&lt;Article&gt; list = service.getBoardList(startRecord, endRecord, keyword);
+        
+        int listItemNo = numbers.get("listItemNo");
+        int prevPage = numbers.get("prevPage");
+        int nextPage = numbers.get("nextPage");
+        int firstPage = numbers.get("firstPage");
+        int lastPage = numbers.get("lastPage");
+        
+        request.setAttribute("list", list);
+        request.setAttribute("listItemNo", listItemNo);
+        request.setAttribute("prevPage", prevPage);
+        request.setAttribute("nextPage", nextPage);
+        request.setAttribute("firstPage", firstPage);
+        request.setAttribute("lastPage", lastPage);
+    }
 }
 </pre>
 
-request.setCharacterEncoding("UTF-8"); 이 부분의 코드는 컨트롤러에서 요청을 받은 다음에 수행하도록 하면 ListAction과 컨트롤러는 다음과 같이 변경된다.
+<p>
+If you modify the request.setCharacterEncoding ("UTF-8") to be performed by the controller, the ListAction and controller will change as follows:
+</p>
 
 <em class="filename">ListAction.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.java_school.commons.PagingHelper;
-
 public class ListAction {
-	public void execute(HttpServletRequest request) {
-		int page = (request.getParameter("page") == null  ? 1 : 
-			Integer.parseInt(request.getParameter("page")));
-		String keyword = request.getParameter("keyword");
-		if (keyword == null) keyword = "";
-		BoardDao dao = new BoardDao();
-		int totalRecord = dao.getTotalRecord(keyword);
-		PagingHelper pagingHelper = new PagingHelper(totalRecord,page,10,5);
-		int startRecord = pagingHelper.getStartRecord();
-		int endRecord = pagingHelper.getEndRecord();
-		ArrayList&lt;Article&gt; list = dao.getBoardList(startRecord, endRecord, keyword);
-		request.setAttribute("pagingHelper", pagingHelper);
-		request.setAttribute("list", list);
-	}
+    public void execute(HttpServletRequest request) {
+        int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
+        String keyword = request.getParameter("keyword");
+        if (keyword == null) keyword = "";
+
+        BoardService service = new BoardService();
+        int totalRecord = service.getTotalRecord(keyword);
+        Map&lt;String, Integer&gt; numbers = service.getNumbersForPaging(totalRecord, curPage, 10, 5);
+        int startRecord = numbers.get("startRecord");
+        int endRecord = numbers.get("endRecord");
+        
+        List&lt;Article&gt; list = service.getBoardList(startRecord, endRecord, keyword);
+        
+        int listItemNo = numbers.get("listItemNo");
+        int prevPage = numbers.get("prevPage");
+        int nextPage = numbers.get("nextPage");
+        int firstPage = numbers.get("firstPage");
+        int lastPage = numbers.get("lastPage");
+        
+        request.setAttribute("list", list);
+        request.setAttribute("listItemNo", listItemNo);
+        request.setAttribute("prevPage", prevPage);
+        request.setAttribute("nextPage", nextPage);
+        request.setAttribute("firstPage", firstPage);
+        request.setAttribute("lastPage", lastPage);
+    }
 }
 </pre>
 
@@ -168,14 +209,11 @@ import java.io.*;
 
 public class ControllerServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) 
-		throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req,resp);
 	}
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
-		throws ServletException, IOException {
-		
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		<strong>req.setCharacterEncoding("UTF-8");</strong>
 		String uri = req.getRequestURI();
 		String contextPath = req.getContextPath();
@@ -186,11 +224,12 @@ public class ControllerServlet extends HttpServlet {
 		out.println(command);
 		out.close();
 	}
-	
 }
 </pre>
 
-서블릿이 클라이언트의 게시판에 대한 목록 요청과 관련된 코드를 구현한다.
+<p>
+Let's add code to the control with the list request.
+</p>
 
 <em class="filename">ControllerServlet.java</em>
 <pre class="prettyprint">
@@ -202,28 +241,26 @@ import java.io.*;
 
 public class ControllerServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 4024375917229853991L;
-
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req,resp);
 	}
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-    
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		String uri = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String command = null;
 		command = uri.substring(contextPath.length());
 		<strong>
 		String view = null; //JSP
-		boolean isRedirect = false; //리다이렉트 또는 포워딩 여부
-		if (command.equals("/model2/list.do")) {
+		boolean isRedirect = false; //If false, forwarding
+
+		if (command.equals("/board/list.do")) {
 			ListAction listAction = new ListAction();
 			listAction.execute(req);
-			view = "/model2/list.jsp";
+			view = "/board/list.jsp";
 		}
+
 		if (isRedirect == false) {
 			ServletContext sc = this.getServletContext();
 			RequestDispatcher rd = sc.getRequestDispatcher(view);
@@ -233,82 +270,77 @@ public class ControllerServlet extends HttpServlet {
 		}
 		</strong>
 	}
-	
 }
 </pre>
 
-/model2 디렉토리를 만들고 /model1 디렉토리에 있는 모든 JSP 파일을  복사하여 붙여넣는다.
+<p>
+Modify the /board/list.jsp file as shown below.
+</p>
 
-/model2/list.jsp 파일을 변경한다.
-
-<em class="filename">/model2/list.jsp</em>
+<em class="filename">/board/list.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
 &lt;%@ page import="net.java_school.board.*" %&gt;
 &lt;%@ page import="java.util.*" %&gt;
 &lt;%
-String page = request.getParameter("page");
+String curPage = request.getParameter("curPage");
+if (curPage == null) curPage = "1";
 String keyword = request.getParameter("keyword");
-int bbsNo = (Integer) request.getAttribute("listNo");
-ArrayList&lt;Article&gt; list = (ArrayList&lt;Article&gt;) request.getAttribute("list");
-int prevLink = (Integer) request.getAttribute("prevLink");
-int nextLink = (Integer) request.getAttribute("nextLink");
+if (keyword == null) keyword = "";
+int listItemNo = (Integer) request.getAttribute("listItemNo");
+List&lt;Article&gt; list = (List&lt;Article&gt;) request.getAttribute("list");
+int prevPage = (Integer) request.getAttribute("prevPage");
+int nextPage = (Integer) request.getAttribute("nextPage");
 int firstPage = (Integer) request.getAttribute("firstPage");
 int lastPage = (Integer) request.getAttribute("lastPage");
 %&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-	"http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;목록&lt;/title&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;title&gt;List&lt;/title&gt;
 &lt;/head&gt;
 &lt;body style="font-size: 11px;"&gt;
-&lt;h1&gt;목록&lt;/h1&gt;
+&lt;h1&gt;List&lt;/h1&gt;
 &lt;%
-//int bbsNo = service.getListNo();
 for (int i = 0; i &lt; list.size(); i++) {
 	Article article = list.get(i);
 	int indent = article.getIndent();
 	for (int j = 0; j &lt; indent; j++) {
-		out.println("&nbsp;&nbsp;");
+		out.println("&amp;nbsp;&amp;nbsp;");
 	}
-	if(indent != 0) {
-		out.println("ㄴ");
+	if(indent != 1) {
+		out.println("&#8627;");
 	}
 %&gt;
-&lt;%=bbsNo %&gt;
-&lt;a href="view.do?no=&lt;%=article.getNo() %&gt;&amp;page=&lt;%=page %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;&lt;%=article.getTitle() %&gt;&lt;/a&gt;
-&lt;%=article.getWriteDate() %&gt;&lt;br /&gt;
+&lt;%=listItemNo %&gt;
+&lt;a href="view.do?no=&lt;%=article.getNo() %&gt;&amp;curPage=&lt;%=curPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;&lt;%=article.getTitle() %&gt;&lt;/a&gt;
+&lt;%=article.getWdate() %&gt;&lt;br /&gt;
 &lt;hr /&gt;
 &lt;%
-bbsNo--;
+listItemNo--;
 }
-//int prevLink = service.getPrevLink();
-if (prevLink != 0) {
+if (prevPage != 0) {
 %&gt;
-	&lt;a href="list.do?page=&lt;%=prevLink %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[이전]&lt;/a&gt;
+	&lt;a href="list.do?curPage=&lt;%=prevPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&lt;]&lt;/a&gt;
 &lt;%
 }
-//int firstPage = service.getFirstPage();
-//int lastPage = service.getLastPage();
 for (int i = firstPage; i &lt;= lastPage; i++) {
 %&gt;
-	&lt;a href="list.do?page=&lt;%=i %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&lt;%=i %&gt;]&lt;/a&gt;
+	&lt;a href="list.do?curPage=&lt;%=i %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&lt;%=i %&gt;]&lt;/a&gt;
 &lt;%
 }
-//int nextLink = service.getNextLink();
-if (nextLink != 0) {
+if (nextPage != 0) {
 %&gt;
-	&lt;a href="list.do?page=&lt;%=nextLink %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[다음]&lt;/a&gt;
+	&lt;a href="list.do?curPage=&lt;%=nextPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&gt;]&lt;/a&gt;
 &lt;%
 }
 %&gt;				
 &lt;p&gt;
-&lt;a href="write_form.do?page=&lt;%=page %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;글쓰기&lt;/a&gt;
+&lt;a href="write_form.do?curPage=&lt;%=curPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;New&lt;/a&gt;
 &lt;/p&gt;
-&lt;form action="list.do" method="post"&gt;
+&lt;form method="get"&gt;
 	&lt;input type="text" size="10" maxlength="30" name="keyword" /&gt;
 	&lt;input type="submit" value="Search" /&gt;
 &lt;/form&gt;	
@@ -316,57 +348,67 @@ if (nextLink != 0) {
 &lt;/html&gt;
 </pre>
 
-http://localhost:8989/model2/list.do를 방문하여 테스트한다.<br />
-
-먼저 만족스러운 코드가 되도록 수정해 보자.<br />
-list.jsp 코드는 이제 자신이 보여줄 결과물만을 전달받는다.<br />
-그런데 list.jsp 아래 부분의 코드가 마음에 들지 않는다.<br />
+<p>
+Go to http://localhost:port/board/list.do and test.
+The list.jsp no longer produces the numbers needed for paging, or does not work with the database.
+Instead, the list.jsp only receive and display the results produced by the model.
+But I still do not like the code in the next part of list.jsp.
+</p>
 
 <pre class="prettyprint">
-String page = request.getParameter("page");
-String keyword = request.getParameter("keyword");
-int bbsNo = (Integer) request.getAttribute("listNo");
-ArrayList&lt;Article&gt; list = (ArrayList&lt;Article&gt;) request.getAttribute("list");
-int prevLink = (Integer) request.getAttribute("prevLink");
-int nextLink = (Integer) request.getAttribute("nextLink");
+int listItemNo = (Integer) request.getAttribute("listItemNo");
+List&lt;Article&gt; list = (List&lt;Article&gt;) request.getAttribute("list");
+int prevPage = (Integer) request.getAttribute("prevPage");
+int nextPage = (Integer) request.getAttribute("nextPage");
 int firstPage = (Integer) request.getAttribute("firstPage");
 int lastPage = (Integer) request.getAttribute("lastPage");
 </pre>
 
-형변환도 까다롭다.
-그래서 모델은 결과 데이터를 저장하는 Value Object(VO) 나 Data Transter Object(DTO) 라고 불리는 패턴을 사용한다.
+<p>
+The problem with the above code is that you need to remember names like listItemNo, list, prevPage, nextPage, firstPage, lastPage as well as tricky conversion.
+So let's use a pattern called Value Object (VO) or Data Transfer Object (DTO) to store the transferred data.
+</p>
 
-<em class="filename">ListVo</em>
+<em class="filename">ListVo.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ListVo {	
-	private ArrayList&lt;Article&gt; list;
-	private int listNo;
-	private int prevLink;
+	private List&lt;Article&gt; list;
+	private int totalPage;
+	private int listItemNo;
 	private int firstPage;
 	private int lastPage;
-	private int nextLink;
+	private int prevPage;
+	private int nextPage;
+	private int startRecord;
+	private int endRecord;
 	
-	public ArrayList&lt;Article&gt; getList() {
+	public List&lt;Article&gt; getList() {
 		return list;
 	}
-	public void setList(ArrayList&lt;Article&gt; list) {
+	public void setList(List&lt;Article&gt; list) {
 		this.list = list;
 	}
-	public int getListNo() {
-		return listNo;
+	public int getTotalPage() {
+		return totalPage;
 	}
-	public void setListNo(int listNo) {
-		this.listNo = listNo;
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
 	}
-	public int getPrevLink() {
-		return prevLink;
+	public int getListItemNo() {
+		return listItemNo;
 	}
-	public void setPrevLink(int prevLink) {
-		this.prevLink = prevLink;
+	public void setListItemNo(int listItemNo) {
+		this.listItemNo = listItemNo;
+	}
+	public int getPrevPage() {
+		return prevPage;
+	}
+	public void setPrevPage(int prevPage) {
+		this.prevPage = prevPage;
 	}
 	public int getFirstPage() {
 		return firstPage;
@@ -380,124 +422,215 @@ public class ListVo {
 	public void setLastPage(int lastPage) {
 		this.lastPage = lastPage;
 	}
-	public int getNextLink() {
-		return nextLink;
+	public int getNextPage() {
+		return nextPage;
 	}
-	public void setNextLink(int nextLink) {
-		this.nextLink = nextLink;
+	public void setNextPage(int nextPage) {
+		this.nextPage = nextPage;
+	}
+	public int getStartRecord() {
+		return startRecord;
+	}
+	public void setStartRecord(int startRecord) {
+		this.startRecord = startRecord;
+	}
+	public int getEndRecord() {
+		return endRecord;
+	}
+	public void setEndRecord(int endRecord) {
+		this.endRecord = endRecord;
 	}
 	
 }
 </pre>
 
-ListAction이 방금 생성한 VO 를 사용하도록 코드를 수정한다.
+<p>
+Modify the BoardService to use the VO you just created.
+</p>
 
-<em class="filename">ListAction</em>
+<em class="filename">BoardService.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
-import java.util.ArrayList;
+import java.util.List;
+
+public class BoardService {
+
+	private BoardDao dao = new BoardDao();
+
+	public BoardService() {}
+
+	public ListVo getNumbersForPaging(int totalRecord, int curPage, int numPerPage, int pagePerBlock) {
+		int totalPage = totalRecord / numPerPage;
+		if (totalRecord % numPerPage != 0) totalPage++;
+		int totalBlock = totalPage / pagePerBlock;
+		if (totalPage % pagePerBlock != 0) totalBlock++;
+
+		int block = curPage / pagePerBlock;
+		if (curPage % pagePerBlock != 0) block++;
+
+		int firstPage = (block - 1) * pagePerBlock + 1;
+		int lastPage = block * pagePerBlock;
+
+		int prevPage = 0;
+		if (block &gt; 1) {
+			prevPage = firstPage - 1;
+		}
+
+		int nextPage = 0;
+		if (block &lt; totalBlock) {
+			nextPage = lastPage + 1;
+		}
+		if (block >= totalBlock) {
+			lastPage = totalPage;
+		}
+
+		int listItemNo = totalRecord - (curPage - 1) * numPerPage;
+		int startRecord = (curPage - 1) * numPerPage + 1;
+		int endRecord = curPage * numPerPage;
+<strong>
+		ListVo listVo = new ListVo();
+		
+		listVo.setTotalPage(totalPage);
+		listVo.setFirstPage(firstPage);
+		listVo.setLastPage(lastPage);
+		listVo.setPrevPage(prevPage);
+		listVo.setNextPage(nextPage);
+		listVo.setListItemNo(listItemNo);
+		listVo.setStartRecord(startRecord);
+		listVo.setEndRecord(endRecord);
+</strong>
+		return listVo;
+	}
+
+	public List&lt;Article&gt; getBoardList(int startRecord, int endRecord, String keyword) {
+		return dao.getBoardList(startRecord, endRecord, keyword);
+	}
+
+	public int getTotalRecord(String keyword) {
+		return dao.getTotalRecord(keyword);
+	}
+
+	public void write(Article article) {
+		dao.insert(article);
+	}
+
+	public Article getArticle(int no) {
+		return dao.selectOne(no);
+	}
+
+	public void modify(Article article) {
+		dao.update(article);
+	}
+
+	public void delete(int no) {
+		dao.delete(no);
+	}
+
+	public void reply(Article article) {
+		dao.reply(article);
+	}	
+}
+</pre>
+
+<em class="filename">ListAction.java</em>
+<pre class="prettyprint">
+package net.java_school.board;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class ListAction {
 	public void execute(HttpServletRequest request) {
-		int page = (request.getParameter("page") == null  ? 1 : 
-			Integer.parseInt(request.getParameter("page")));
+		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
 		String keyword = request.getParameter("keyword");
 		if (keyword == null) keyword = "";
-		BoardService service = new BoardService(page, keyword, 10, 5);
-		
-		ArrayList&lt;Article&gt; list = service.getBoardList();
-		int listNo = service.getListNo();
-		int prevLink = service.getPrevLink();
-		int firstPage = service.getFirstPage();
-		int lastPage = service.getLastPage();
-		int nextLink = service.getNextLink();
-		
-		ListVo vo = new ListVo();
+
+		BoardService service = new BoardService();
+		int totalRecord = service.getTotalRecord(keyword);
+<strong>		
+		ListVo vo = service.getNumbersForPaging(totalRecord, curPage, 10, 5);
+		int startRecord = vo.getStartRecord();
+		int endRecord = vo.getEndRecord();
+</strong>
+		List&lt;Article&gt; list = service.getBoardList(startRecord, endRecord, keyword);
+<strong>
 		vo.setList(list);
-		vo.setListNo(listNo);
-		vo.setPrevLink(prevLink);
-		vo.setNextLink(nextLink);
-		vo.setFirstPage(firstPage);
-		vo.setLastPage(lastPage);
-		
+
 		request.setAttribute("listVo", vo);
-		
+</strong>		
 	}
 }
 </pre>
 
-list.jsp 파일을 수정한다.
+<p>
+Modify the list.jsp file as follows:
+</p>
 
+<em class="filename">list.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
 &lt;%@ page import="net.java_school.board.*" %&gt;
 &lt;%@ page import="java.util.*" %&gt;
 &lt;%
-String page = request.getParameter("page");
-<strong>if (page == null) page = "1";</strong>
+String curPage = request.getParameter("curPage");
+if (curPage == null) curPage = "1";
 String keyword = request.getParameter("keyword");
-ListVo vo = (ListVo)request.getAttribute("listVo");
+if (keyword == null) keyword = "";
+ListVo vo = (ListVo) request.getAttribute("listVo");
 %&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-	"http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;목록&lt;/title&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;title&gt;List&lt;/title&gt;
 &lt;/head&gt;
 &lt;body style="font-size: 11px;"&gt;
-&lt;h1&gt;목록&lt;/h1&gt;
+&lt;h1&gt;List&lt;/h1&gt;
 &lt;%
-//int bbsNo = service.getListNo();
-int bbsNo = vo.getListNo();
-ArrayList&lt;Article&gt; list = vo.getList();
+int listItemNo = vo.getListItemNo();
+List&lt;Article&gt; list = vo.getList();
 for (int i = 0; i &lt; list.size(); i++) {
 	Article article = list.get(i);
 	int indent = article.getIndent();
 	for (int j = 0; j &lt; indent; j++) {
-		out.println("&nbsp;&nbsp;");
+		out.println("&amp;nbsp;&amp;nbsp;");
 	}
-	if(indent != 0) {
-		out.println("ㄴ");
+	if(indent != 1) {
+		out.println("&#8627;");
 	}
 %&gt;
-&lt;%=bbsNo %&gt;
-&lt;a href="view.do?no=&lt;%=article.getNo() %&gt;&amp;page=&lt;%=page %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;&lt;%=article.getTitle() %&gt;&lt;/a&gt;
-&lt;%=article.getWriteDate() %&gt;&lt;br /&gt;
+&lt;%=listItemNo %&gt;
+&lt;a href="view.do?no=&lt;%=article.getNo() %&gt;&amp;curPage=&lt;%=curPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;&lt;%=article.getTitle() %&gt;&lt;/a&gt;
+&lt;%=article.getWdate() %&gt;&lt;br /&gt;
 &lt;hr /&gt;
 &lt;%
-bbsNo--;
+listItemNo--;
 }
-//int prevLink = service.getPrevLink();
-int prevLink = vo.getPrevLink();
-if (prevLink != 0) {
+int prevPage = vo.getPrevPage();
+if (prevPage != 0) {
 %&gt;
-	&lt;a href="list.do?page=&lt;%=prevLink %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[이전]&lt;/a&gt;
+	&lt;a href="list.do?curPage=&lt;%=prevPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&lt;]&lt;/a&gt;
 &lt;%
 }
-//int firstPage = service.getFirstPage();
-//int lastPage = service.getLastPage();
 int firstPage = vo.getFirstPage();
 int lastPage = vo.getLastPage();
 for (int i = firstPage; i &lt;= lastPage; i++) {
 %&gt;
-	&lt;a href="list.do?page=&lt;%=i %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&lt;%=i %&gt;]&lt;/a&gt;
+	&lt;a href="list.do?curPage=&lt;%=i %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&lt;%=i %&gt;]&lt;/a&gt;
 &lt;%
 }
-//int nextLink = service.getNextLink();
-int nextLink = vo.getNextLink();
-if (nextLink != 0) {
+int nextPage = vo.getNextPage();
+if (nextPage != 0) {
 %&gt;
-	&lt;a href="list.do?page=&lt;%=nextLink %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[다음]&lt;/a&gt;
+	&lt;a href="list.do?curPage=&lt;%=nextPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&gt;]&lt;/a&gt;
 &lt;%
 }
 %&gt;				
 &lt;p&gt;
-&lt;a href="write_form.do?page=&lt;%=page %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;글쓰기&lt;/a&gt;
+&lt;a href="write_form.do?curPage=&lt;%=curPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;New&lt;/a&gt;
 &lt;/p&gt;
 &lt;form action="list.do" method="post"&gt;
 	&lt;input type="text" size="10" maxlength="30" name="keyword" /&gt;
@@ -507,11 +640,14 @@ if (nextLink != 0) {
 &lt;/html&gt;
 </pre>
 
-액션 인터페이스를 만들어서 액션 적용시키면 컨트롤러에서의 코드가 우아해 진다.
+<p>
+More action classes are needed.
+So when you create an action interface and apply it to an action, the controller's code becomes elegant.
+</p>
 
 <em class="filename">Action.java</em>
 <pre class="prettyprint">
-package net.java_school.action;
+package net.java_school.board;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -520,29 +656,31 @@ public interface Action {
 }
 </pre>
 
-액션 인터페이스를 구현하도록 ListAction 을 수정한다.
+<p>
+Modify the ListAction to implement the action interface.
+</p>
 
 <em class="filename">ListAction.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.java_school.action.Action;
-
-public class ListAction implements Action {
-	@Override
+public class ListAction <strong>implements Action</strong> {
+	<strong>@Override</strong>
 	public void execute(HttpServletRequest request) {
 	
-	//이하 코드는 이전과 같다.
+		//.. The code below is omitted because it is the same as before..
 	
 	}
 }
 </pre>
 
-컨트롤러를 수정한다.
+<p>
+Modify the controller as follows.
+</p>
 
 <em class="filename">ControllerServlet.java</em>
 <pre class="prettyprint">
@@ -550,8 +688,6 @@ package net.java_school.board;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
-
-import net.java_school.action.Action;
 
 import java.io.*;
 
@@ -566,16 +702,14 @@ public class ControllerServlet extends HttpServlet {
 	}
 
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req,resp);
 	}
 	
 	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-		req.setCharacterEncoding("UTF-8");//요청 캐릭터셋을 UTF-8로 설정하는 필터 예제가 동작한다면 주석처리한다.
+		req.setCharacterEncoding("UTF-8");
 		String uri = req.getRequestURI();	
 		String contextPath = req.getContextPath();
 		String command = null;
@@ -583,26 +717,26 @@ public class ControllerServlet extends HttpServlet {
 		
 		String view = null; //JSP
 		Action action = null;
-		boolean isRedirect = false; //true 면 리다이렉트, false 면 포워딩
-		if (command.equals("/model2/list.do")) {
+		boolean isRedirect = false; //if fasle, forwarding.
+		if (command.equals("/board/list.do")) {
 			action = new ListAction();
 			action.execute(req);
-			view = "/model2/list.jsp";
-		} else if (command.equals("/model2/write_form.do")) {
+			view = "/board/list.jsp";
+		} else if (command.equals("/board/write_form.do")) {
 			//TODO 1
-		} else if (command.equals("/model2/write.do")) {
+		} else if (command.equals("/board/write.do")) {
 			//TODO 2
-		} else if (command.equals("/model2/view.do")) {
+		} else if (command.equals("/board/view.do")) {
 			//TODO 3
-		} else if (command.equals("/model2/modify_form.do")) {
+		} else if (command.equals("/board/modify_form.do")) {
 			//TODO 4
-		} else if (command.equals("/model2/modify.do")) {
+		} else if (command.equals("/board/modify.do")) {
 			//TODO 5 
-		} else if (command.equals("/model2/del.do")) {
+		} else if (command.equals("/board/del.do")) {
 			//TODO 6
-		} else if (command.equals("/model2/reply_form.do")) {
+		} else if (command.equals("/board/reply_form.do")) {
 			//TODO 7
-		} else if (command.equals("/model2/reply.do")) {
+		} else if (command.equals("/board/reply.do")) {
 			//TODO 8
 		}
 		if (isRedirect == false) {
@@ -611,47 +745,43 @@ public class ControllerServlet extends HttpServlet {
 		} else {
 			resp.sendRedirect(view);
 		}
-		
 	}
-	
 }
 </pre>
 
-//TODO 를 작성한다.
-
 <h3>//TODO 1</h3>
-이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
-view = "/model2/write_form.jsp";
+view = "/board/write_form.jsp";
 </pre>
 
-글쓰기 화면인 write_form.jsp 로 단순히 포워딩하면 된다.<br />
-왜냐하면 write_form.jsp 포워딩하기 전에 전처리하여 전달하여야 할 데이터가 없기 때문이다.<br />
-write_form.jsp 파일을 열고 코드에 .jsp 를 모두 .do 로 수정한다.<br />
-목록을 방문한 후 글쓰기를 클릭하여 글쓰기 화면으로 이동하는지 확인한다.<br />
+<p>
+You can just forward it to write_form.jsp.
+This is because there is no data to be preprocessed before forwarding to write_form.jsp.
+Open the write_form.jsp file and change the .jsp in your code to .do.
+Visit the list and click New to see if you can go to write_form.jsp
+</p>
 
 <h3>//TODO 2</h3>
-이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
 action = new WriteAction();
 action.execute(req);
-view = "/model2/list.do";
+view = "/board/list.do";
 isRedirect = true;
 </pre>
 
-WriteAction.java 를 작성해야 한다.<br />
-이 모델은 글쓰기를 처리하는 로직을 담당해야 한다.<br />
-기존의 write.jsp 파일을 참고하여 만들면 된다.<br />
+<p>
+WriteAction.java should be created.
+This model should be responsible for the logic that processes the writing.
+You can refer to the existing write.jsp file.
+</p>
 
 <em class="filename">WriteAction.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.java_school.action.Action;
 
 public class WriteAction implements Action{
 
@@ -671,28 +801,28 @@ public class WriteAction implements Action{
 }
 </pre>
 
-글쓰기를 테스트한다.<br />
-테스트 후에 모델1에서 글쓰기 처리를 담당했던 write.jsp 파일은 필요없으니 /model2 디렉토리에서 삭제한다.<br />
-
+<p>
+Test new posting.
+If the test succeeds, the write.jsp file is not needed, so delete it.
+</p>
 
 <h3>//TODO 3</h3>
-이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
 action = new ViewAction();
 action.execute(req);
-view = "/model2/view.jsp";
+view = "/board/view.jsp";
 </pre>
 
-ViewAction.java 는 상세보기 로직을 담당해야 한다.<br />
+<p>
+ViewAction should handle the detail view logic.
+</p>
 
 <em class="filename">ViewAction.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.java_school.action.Action;
 
 public class ViewAction implements Action {
 
@@ -704,16 +834,16 @@ public class ViewAction implements Action {
 		Article article = service.getArticle(no);
 		
 		request.setAttribute("article", article);
-		
 	}
-
 }
 </pre>
 
-이제 뷰에 해당하는 view.jsp 를 수정한다.<br />
-뷰는 모델이 전처리한 후 전달한 데이터를 보여주는 역할만 하도록 수정해야 한다.<br />
-view.jsp 파일을 열고 코드에 있는 .jsp 를 모두 .do 로 수정한다.<br />
-또한 강조된 부분을 참고하여 수정한다.<br />
+<p>
+Now modify view.jsp.
+The view should be modified to only show the data that the model has preprocessed and delivered.
+Open the view.jsp file and change the .jsp to .do in your code.
+Also, refer to the emphasized part and correct it.
+</p>
 
 <em class="filename">view.jsp</em>
 <pre class="prettyprint">
@@ -722,62 +852,60 @@ view.jsp 파일을 열고 코드에 있는 .jsp 를 모두 .do 로 수정한다.
 &lt;%@ page import="net.java_school.board.*" %&gt;
 &lt;%
 int no = Integer.parseInt(request.getParameter("no"));
-String page = request.getParameter("page");
+String curPage = request.getParameter("curPage");
 String keyword = request.getParameter("keyword");
 if (keyword == null) keyword = "";
 <strong>Article article = (Article) request.getAttribute("article");</strong>
 %&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;상세보기&lt;/title&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;View&lt;/title&gt;
 &lt;script type="text/javascript"&gt;
-function goModify(no,page,keyword) {
-	location.href="modify_form.do?no=" + no + "&amp;page=" + page + "&amp;keyword=" + keyword;
+function goModify(no,curPage,keyword) {
+	location.href="modify_form.do?no=" + no + "&amp;curPage=" + curPage + "&amp;keyword=" + keyword;
 }
 
-function goDelete(no,page,keyword) {
-	var check = confirm("정말로 삭제하겠습니까?");
+function goDelete(no,curPage,keyword) {
+	var check = confirm("Are you sure you want to delete it?");
 	if (check) {
-		location.href="del.do?no=" + no + "&amp;page=" + page + "&amp;keyword=" + keyword;
+		location.href="del.do?no=" + no + "&amp;curPage=" + curPage + "&amp;keyword=" + keyword;
 	}
 }
 &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;상세보기&lt;/h1&gt;
-&lt;h2&gt;제목: &lt;%=article.getTitle() %&gt;, 작성일: &lt;%=article.getWriteDate() %&gt;&lt;/h2&gt;
+&lt;h1&gt;View&lt;/h1&gt;
+&lt;h2&gt;Title: &lt;%=article.getTitle() %&gt;, Date created: &lt;%=article.getWdate() %&gt;&lt;/h2&gt;
 &lt;p&gt;
 &lt;%=article.getHtmlContent() %&gt;
 &lt;/p&gt;
-&lt;a href="list.do?page=&lt;%=page %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;목록&lt;/a&gt;
-&lt;input type="button" value="수정" onclick="javascript:goModify('&lt;%=no %&gt;','&lt;%=page %&gt;','&lt;%=keyword %&gt;')"&gt;
-&lt;input type="button" value="삭제" onclick="javascript:goDelete('&lt;%=no %&gt;','&lt;%=page %&gt;','&lt;%=keyword %&gt;')"&gt;
-&lt;a href="reply_form.do?no=&lt;%=no %&gt;&amp;page=&lt;%=page %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;답변쓰기&lt;/a&gt;
+&lt;a href="list.do?curPage=&lt;%=curPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;List&lt;/a&gt;
+&lt;input type="button" value="Edit Post" onclick="javascript:goModify('&lt;%=no %&gt;','&lt;%=curPage %&gt;','&lt;%=keyword %&gt;')"&gt;
+&lt;input type="button" value="Delete" onclick="javascript:goDelete('&lt;%=no %&gt;','&lt;%=curPage %&gt;','&lt;%=keyword %&gt;')"&gt;
+&lt;a href="reply_form.do?no=&lt;%=no %&gt;&amp;curPage=&lt;%=curPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;Reply&lt;/a&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
 <h3>//TODO 4</h3>
-이부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
 action = new ModifyFormAction();
 action.execute(req);
-view = "/model2/modify_form.jsp";
+view = "/board/modify_form.jsp";
 </pre>
 
-ModifyFormAction.java 를 만든다.<br />
-modify_form.jsp 를 참고하여 만든다.<br />
+<p>
+Create ModifyFormAction.java as shown below.
+</p>
 
 <em class="filename">ModifyFormAction.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.java_school.action.Action;
 
 public class ModifyFormAction implements Action {
 
@@ -792,8 +920,10 @@ public class ModifyFormAction implements Action {
 }
 </pre>
 
-modify_form.jsp 파일을 열고 .jsp 를 모두 .do 로 수정한다.<br />
-그리고 강조된 부분을 참고하여 수정한다.<br />
+<p>
+Open the modify_form.jsp file and change the .jsp to .do in your code.
+Also, refer to the emphasized part and correct it.
+</p>
 
 <em class="filename">modify_form.jsp</em>
 <pre class="prettyprint">
@@ -803,26 +933,25 @@ modify_form.jsp 파일을 열고 .jsp 를 모두 .do 로 수정한다.<br />
 &lt;%@ page import="net.java_school.board.*" %&gt;
 &lt;%
 int no = Integer.parseInt(request.getParameter("no"));
-String page = request.getParameter("page");
+String curPage = request.getParameter("curPage");
 String keyword = request.getParameter("keyword");
 <strong>Article article = (Article) request.getAttribute("article");</strong>
 %&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;수정&lt;/title&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Edit Post&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;!-- 본문 시작 --&gt;
-&lt;h1&gt;수정&lt;/h1&gt;
+&lt;h1&gt;Edit Post&lt;/h1&gt;
 &lt;form action="modify.do" method="post"&gt;
 &lt;input type="hidden" name="no" value="&lt;%=no %&gt;"&gt;
-&lt;input type="hidden" name="page" value="&lt;%=page %&gt;"&gt;
+&lt;input type="hidden" name="curPage" value="&lt;%=curPage %&gt;"&gt;
 &lt;input type="hidden" name="keyword" value="&lt;%=keyword %&gt;"&gt;
 &lt;table&gt;
 &lt;tr&gt;
-	&lt;td&gt;제목&lt;/td&gt;
+	&lt;td&gt;Title&lt;/td&gt;
 	&lt;td&gt;&lt;input type="text" name="title" size="50" value="&lt;%=article.getTitle() %&gt;" /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -832,43 +961,40 @@ String keyword = request.getParameter("keyword");
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td colspan="2"&gt;
-		&lt;input type="submit" value="전송"&gt;
-		&lt;input type="reset" value="취소"&gt;
-		&lt;a href="view.do?no=&lt;%=no %&gt;&amp;page=&lt;%=page %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;상세보기&lt;/a&gt;
+		&lt;input type="submit" value="Submit"&gt;
+		&lt;input type="reset" value="Reset"&gt;
+		&lt;a href="view.do?no=&lt;%=no %&gt;&amp;curPage=&lt;%=curPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;View&lt;/a&gt;
 	&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/form&gt;
-&lt;!-- 본문 끝 --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
 <h5>//TODO 5</h5>
-이 부분은 다음가 같이 구현한다.<br />
 
 <pre class="prettyprint">
 action = new ModifyAction();
 action.execute(req);
 String no = req.getParameter("no");
-String page = req.getParameter("page");
+String curPage = req.getParameter("curPage");
 String keyword = req.getParameter("keyword");
 if (keyword == null) keyword = "";
 keyword = java.net.URLEncoder.encode(keyword, "UTF-8");
-view = "/model2/view.do?no=" + no + "&amp;page=" + page + "&amp;keyword=" + keyword;
+view = "/board/view.do?no=" + no + "&amp;curPage=" + curPage + "&amp;keyword=" + keyword;
 isRedirect = true;
 </pre>
 
-ModifyAction.java 를 만든다.<br />
-modify.jsp 파일을 참고한다.<br />
+<p>
+Create ModifyAction.java as follows.
+</p>
 
 <em class="filename">ModifyAction.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.java_school.action.Action;
 
 public class ModifyAction implements Action {
 
@@ -892,32 +1018,33 @@ public class ModifyAction implements Action {
 }
 </pre>
 
-수정을 테스트한다.<br />
-이젠 모델1의 modify.jsp 파일을 필요없으니 삭제한다.<br />
+<p>
+Test the post modification.
+If the test succeeds, delete the modify.jsp file so you do not need it.
+</p>
 
 <h3>//TODO 6</h3>
-이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
 action = new DeleteAction();
 action.execute(req);
-String page = req.getParameter("page");
+String curPage = req.getParameter("curPage");
 String keyword = req.getParameter("keyword");
 if (keyword == null) keyword = "";
 keyword = java.net.URLEncoder.encode(keyword, "UTF-8");
-view = "/model2/list.do?page=" + page + "&amp;keyword=" + keyword;
+view = "/board/list.do?curPage=" + curPage + "&amp;keyword=" + keyword;
 isRedirect = true;
 </pre>
 
-del.jsp 파일을 참고하여 DeleteAction.java 를 만든다.<br />
+<p>
+Create DeleteAction.java as follows.
+</p>
 
 <em class="filename">DeleteAction.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.java_school.action.Action;
 
 public class DeleteAction implements Action {
 
@@ -931,19 +1058,22 @@ public class DeleteAction implements Action {
 }
 </pre>
 
-삭제를 테스트한다.<br />
-모델1의 del.jsp 파일은 필요없으니 삭제한다.<br />
+<p>
+Test the post deletion. 
+If the test succeeds, delete the del.jsp.
+</p>
 
 <h3>//TODO 7</h3>
-이 부분은 다음과 같이 구현한다.<br />
 
 <pre class="prettyprint">
 action = new ReplyFormAction();
 action.execute(req);
-view = "/model2/reply_form.jsp";
+view = "/board/reply_form.jsp";
 </pre>
 
-reply_form.jsp 파일을 참고하여 ReplyFormAction.java 를 만든다.<br />
+<p>
+Create ReplyFormAction.java as follows.
+</p>
 
 <em class="filename">ReplyFormAction.java</em>
 <pre class="prettyprint">
@@ -951,7 +1081,7 @@ package net.java_school.board;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.java_school.action.Action;
+import net.java_school.commons.WebContants;
 
 public class ReplyFormAction implements Action {
 
@@ -961,13 +1091,13 @@ public class ReplyFormAction implements Action {
 		int no = Integer.parseInt(request.getParameter("no"));
 
 		BoardService service = new BoardService();
-		Article article = service.getArticle(no);	
+		Article article = service.getArticle(no);    
 		String content = article.getContent();
 
-		//부모글을  구별하기 위해 부모글의 각 행마다 &gt;가 추가되도록 한다.
-		content = content.replaceAll(Article.LINE_SEPARATOR, Article.LINE_SEPARATOR + "&gt;");
-		content = Article.LINE_SEPARATOR + Article.LINE_SEPARATOR + "&gt;" + content;
-		
+		//Add &gt; for each line of the parent content.
+		content = content.replaceAll(WebContants.lineSeparator.value , WebContants.lineSeparator.value + "&gt;");
+		content = WebContants.lineSeparator.value + WebContants.lineSeparator.value + "&gt;" + content;
+
 		article.setContent(content);
 		request.setAttribute("article", article);
 	}
@@ -975,8 +1105,10 @@ public class ReplyFormAction implements Action {
 }
 </pre>
 
-reply_form.jsp 파일을 열고 .jsp 를 .do 로 수정한다.<br />
-그다음 아래 강조된 부분을 참고하여 수정한다.<br />
+<p>
+Open the reply_form.jsp file and change .jsp to .do in your code.
+Also, refer to the emphasized part and correct it.
+</p>
 
 <em class="filename">reply_form.jsp</em>
 <pre class="prettyprint">
@@ -985,7 +1117,7 @@ reply_form.jsp 파일을 열고 .jsp 를 .do 로 수정한다.<br />
 &lt;%@ page import="net.java_school.board.*" %&gt;
 &lt;%
 int no = Integer.parseInt(request.getParameter("no"));
-String page = request.getParameter("page");
+String curPage = request.getParameter("curPage");
 String keyword = request.getParameter("keyword");
 
 <strong>Article article = (Article) request.getAttribute("article");</strong>
@@ -995,40 +1127,38 @@ String keyword = request.getParameter("keyword");
 &lt;/head&gt;
 &lt;body&gt;
 
-&lt;h1&gt;답변쓰기&lt;/h1&gt;
+&lt;h1&gt;Reply&lt;/h1&gt;
 
 &lt;form action="reply.do" method="post"&gt;
 &lt;input type="hidden" name="no" value="&lt;%=no %&gt;" /&gt;
-&lt;input type="hidden" name="family" value="&lt;%=article.getFamily() %&gt;" /&gt;
-&lt;input type="hidden" name="indent" value="&lt;%=article.getIndent() %&gt;" /&gt;
-&lt;input type="hidden" name="depth" value="&lt;%=article.getDepth() %&gt;" /&gt;
-&lt;input type="hidden" name="page" value="&lt;%=page %&gt;" /&gt;
+&lt;input type="hidden" name="curPage" value="&lt;%=curPage %&gt;" /&gt;
 &lt;input type="hidden" name="keyword" value="&lt;%=keyword %&gt;" /&gt;
-제목 : &lt;input type="text" name="title" size="45" value="&lt;%=article.getTitle() %&gt;" /&gt;&lt;br /&gt;
+Title : &lt;input type="text" name="title" size="45" value="&lt;%=article.getTitle() %&gt;" /&gt;&lt;br /&gt;
 &lt;textarea name="content" rows="10" cols="60"&gt;&lt;%=<strong>article.getContent()</strong> %&gt;&lt;/textarea&gt;&lt;br /&gt;
-&lt;input type="submit" value="전송" /&gt;
-&lt;input type="reset" value="취소" /&gt;&lt;br /&gt;
+&lt;input type="submit" value="Submit" /&gt;
+&lt;input type="reset" value="Reset" /&gt;&lt;br /&gt;
 &lt;/form&gt;
-&lt;a href="view.do?no=&lt;%=no %&gt;&amp;page=&lt;%=page %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;상세보기&lt;/a&gt;
+&lt;a href="view.do?no=&lt;%=no %&gt;&amp;curPage=&lt;%=curPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;View&lt;/a&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
 <h3>//TODO 8</h3>
-이 부분은 아래처럼 구현될 것이다.<br />
 
 <pre class="prettyprint">
 action = new ReplyAction();
 action.execute(req);
-String page = req.getParameter("page");
+String curPage = req.getParameter("curPage");
 String keyword = req.getParameter("keyword");
 if (keyword == null) keyword = "";
 keyword = java.net.URLEncoder.encode(keyword, "UTF-8");
-view = "/model2/list.do?page=" + page + "&amp;keyword=" + keyword;
+view = "/board/list.do?curPage=" + curPage + "&amp;keyword=" + keyword;
 isRedirect = true;
 </pre>
 
-reply.jsp 파일을 참고하여 ReplyAction.java 를 만든다.<br />
+<p>
+Create ReplyAction.java as follows.
+</p>
 
 <em class="filename">ReplyAction.java</em>
 <pre class="prettyprint">
@@ -1036,25 +1166,17 @@ package net.java_school.board;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.java_school.action.Action;
-
 public class ReplyAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request) {
-		// 파라미터를 받는다.
+
 		int parent = Integer.parseInt(request.getParameter("no"));
-		int family = Integer.parseInt(request.getParameter("family"));
-		int depth = Integer.parseInt(request.getParameter("depth"));
-		int indent = Integer.parseInt(request.getParameter("indent")) + 1;
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 
 		Article article = new Article();
 		article.setParent(parent);
-		article.setFamily(family);
-		article.setDepth(depth);
-		article.setIndent(indent);
 		article.setTitle(title);
 		article.setContent(content);
 
@@ -1065,6 +1187,9 @@ public class ReplyAction implements Action {
 }
 </pre>
 
-답변글을 작성해 본다.<br />
-reply.jsp 는 필요없으니 삭제한다.<br />
+<p>
+Test Reply.
+If the test succeeds, delete reply.jsp.
+</p>
+
 </article>

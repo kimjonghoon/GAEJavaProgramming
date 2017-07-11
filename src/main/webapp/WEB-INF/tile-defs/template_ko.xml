@@ -578,7 +578,7 @@
 		<put-attribute name="title" value="Servlets" />
 		<put-attribute name="keywords" value="Servlets Spec,init(),service(),destroy(),ServletConfig,GenericServlet,HttpServlet,Servlet mapping" />
 		<put-attribute name="description" value="This chapter describes about Servlets Spec" />
-		<put-attribute name="article" value="/WEB-INF/views/jsp/Servlets.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/jsp/Servlets_ko.jsp" />
 		<put-attribute name="next-link" value="JSP" />
 		<put-attribute name="next-title" value="JSP" />
 		<put-attribute name="prev-link" value="Web-Application-Directory-Structure" />
@@ -589,7 +589,7 @@
 		<put-attribute name="title" value="JSP" />
 		<put-attribute name="keywords" value="JSP Spec,Directives,Scriptlet,Declarations,EL,Actions,Implicit Objects" />
 		<put-attribute name="description" value="This chapter describes about JSP spec" />
-		<put-attribute name="article" value="/WEB-INF/views/jsp/JSP.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/jsp/JSP_ko.jsp" />
 		<put-attribute name="next-link" value="Accessing-database-from-JSP_Servlets" />
 		<put-attribute name="next-title" value="데이터베이스 연동" />
 		<put-attribute name="prev-link" value="Servlets" />
@@ -600,7 +600,7 @@
 		<put-attribute name="title" value="Accessing database from JSP and Servlets" />
 		<put-attribute name="keywords" value="Accessing database from JSP and Servlets" />
 		<put-attribute name="description" value="This chapter describes that how to access a database using JSP and Servlets" />
-		<put-attribute name="article" value="/WEB-INF/views/jsp/Accessing-database-from-JSP_Servlets.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/jsp/Accessing-database-from-JSP_Servlets_ko.jsp" />
 		<put-attribute name="next-link" value="BBS-Study" />
 		<put-attribute name="next-title" value="게시판" />
 		<put-attribute name="prev-link" value="JSP" />
@@ -611,7 +611,7 @@
 		<put-attribute name="title" value="BBS Study" />
 		<put-attribute name="keywords" value="BBS" />
 		<put-attribute name="description" value="This chapter describes about BBS" />
-		<put-attribute name="article" value="/WEB-INF/views/jsp/BBS-Study.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/jsp/BBS-Study_ko.jsp" />
 		<put-attribute name="next-link" value="Thread-BBS" />
 		<put-attribute name="next-title" value="계층형 게시판" />
 		<put-attribute name="prev-link" value="Accessing-database-from-JSP_Servlets" />
@@ -622,7 +622,7 @@
 		<put-attribute name="title" value="Thread BBS" />
 		<put-attribute name="keywords" value="Thread BBS" />
 		<put-attribute name="description" value="This chapter describes about Thread BBS" />
-		<put-attribute name="article" value="/WEB-INF/views/jsp/Thread-BBS.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/jsp/Thread-BBS_ko.jsp" />
 		<put-attribute name="next-link" value="BBS-Model1" />
 		<put-attribute name="next-title" value="모델 1 게시판" />
 		<put-attribute name="prev-link" value="BBS-Study" />
@@ -633,7 +633,7 @@
 		<put-attribute name="title" value="To create BBS in the Model1" />
 		<put-attribute name="keywords" value="Model1 BBS" />
 		<put-attribute name="description" value="This chapter describes that how to make a BBS using Model1" />
-		<put-attribute name="article" value="/WEB-INF/views/jsp/BBS-Model1.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/jsp/BBS-Model1_ko.jsp" />
 		<put-attribute name="next-link" value="DataSource" />
 		<put-attribute name="next-title" value="DataSource" />
 		<put-attribute name="prev-link" value="Thread-BBS" />
@@ -644,7 +644,7 @@
 		<put-attribute name="title" value="DataSource" />
 		<put-attribute name="keywords" value="DataSource,Set Up DataSource in Tomcat" />
 		<put-attribute name="description" value="This chapter describes about DataSource" />
-		<put-attribute name="article" value="/WEB-INF/views/jsp/DataSource.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/jsp/DataSource_ko.jsp" />
 		<put-attribute name="next-link" value="Model2" />
 		<put-attribute name="next-title" value="모델 2" />
 		<put-attribute name="prev-link" value="BBS-Model1" />
@@ -655,7 +655,7 @@
 		<put-attribute name="title" value="Model2" />
 		<put-attribute name="keywords" value="Model2,BBS,Model,View,Controller" />
 		<put-attribute name="description" value="This chapter describes about Model2" />
-		<put-attribute name="article" value="/WEB-INF/views/jsp/Model2.jsp" />
+		<put-attribute name="article" value="/WEB-INF/views/jsp/Model2_ko.jsp" />
 		<put-attribute name="prev-link" value="DataSource" />
 		<put-attribute name="prev-title" value="DataSource" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/jsp/jsp-sub_ko.jsp" />

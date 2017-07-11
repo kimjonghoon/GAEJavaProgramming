@@ -1,12 +1,13 @@
-#GAE Java Programming Example
+# GAE Java Programming Example
 
-##Spring Message Board Program with
+## Spring Message Board Program with
 * Spring MVC
 * MyBatis-Spring
 * i18n
 * Apache Tiles
 
-##Database Design
+## Database Design
+
 	mysql --user=root --password mysql
 	
 	create user 'java'@'%' identified by 'school';
@@ -62,10 +63,8 @@
 	insert into board values ('free','Free','자유 게시판');
 	commit;
 
-##How to Install
+## How to Install
 	mvn clean install
 
-##How to Run
+## How to Run (localhost)
 	mvn appengine:devserver
-
-

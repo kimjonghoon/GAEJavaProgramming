@@ -219,10 +219,10 @@ http://localhost:8989/namecard/list.jsp를 방문하여 테스트한다.<br />
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+&lt;meta charset=""UTF-8" /&gt;
 &lt;title&gt;<strong>명함 추가</strong>&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;

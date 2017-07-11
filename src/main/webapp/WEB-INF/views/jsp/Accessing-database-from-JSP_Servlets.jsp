@@ -1,51 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
 <article>
-<div class="last-modified">Last Modified 2014.7.15</div>
+<div class="last-modified">Last Modified 2017.3.8</div>
 
-<h1>데이터베이스 연동</h1>
-<strong>아래 나오는 모든 예제를 이클립스를 사용하여 ROOT 애플리케이션에 작성한다.<br />
-이클립스 설정은 <a href="Namecard-Webapp.php#3rd-Test">명함관리 웹 애플리케이션의 3번째 테스트</a>를 참고한다.</strong>
-<br />
-서블릿/JSP에 익숙하지 않은 바쁜 웹 프로그래머가 가장 궁금한 부분은 데이터베이스와 연동하는 방법일 것이다.<br />
-다음 순서로 진행한다.<br />
+<h1>Using the database with JSP</h1>
 
-<ol>
-	<li>서블릿과 JSP에서 데이터베이스 연동</li>
-	<li>성능향상을 위한 커넥션풀링 적용</li>
-	<li>사용자 정의 로그 파일 적용</li>
-</ol>
+<p>
+All of the examples below are written in the document base of the ROOT application using Eclipse.
+Build a working environment for your ROOT application in Eclipse with reference to <a href="Namecard-Webapp.php#3rd-Test">Namecard web application 3rd Test</a>.
+</p>
 
-여기서 실습하는 예제는 재사용과 유지보수 측면에서는 악몽이라고 표현되는 코드이다.<br />
-JDBC 코드를 포함하는 JSP나 서블릿은 직관적인 이해에는 도움이 되지만 이해한 후 버려야 한다.<br />
-결론적으로 말하면, JDBC 관련 코드는 JSP 빈즈에 있어야 한다.<br />
+<h2>Add Servlet API to BuildPath of ROOT application</h2>
 
-<h2>GetEmpServlet.java 서블릿</h2>
-이전에 실습했던 GetEmpServlet 서블릿을 이클립스에서 연다.<br />
-아마도 컴파일 에러를 잔뜩 만나게 될 것이다.<br />
-서블릿 API를 ROOT 애플리케이션의 빌드 패스에 추가해야 한다.<br />
-<br />
-아래와 같은 화면에서 Libraries 탭을 선택하고,<br />
-왼쪽의 Add External JARs..버튼을 클릭하여 <br />
-서블릿 API를 {톰캣홈}/lib 에서 찾아 추가한다.<br />
-<br /> 
-<img src="https://lh3.googleusercontent.com/LfjzoAb113QCQk9AqqcxY8hJWesV6w1iGr1ADWG1CYTC_1MezPKFpBqp5KPiQ4HEVznRM2RYBt9TAfUs43L4zRhIKRHmjXlgPryvjUF0ZlIhnewRkg8dsQ2oDMMqfO85Q15nbkRCJlmty5E0WTshV2WcMx9pb9fxFtqapyEgQfN48tJjZ0LTDVAdh9tiZHNO1tbNXkd16OBcu6-NCLkqOADzclE1AuPaXqiBG6gycOyfOriFRCjQ6i7YF2jRr30xqG-HYcdfzFotGPx5H_zUXNa-sY1e48dQHL8_i3CbUpy1UGVp5Atf8poCMQO8WQBaksdKaKJp2p4zOGdxLUBztpVn2lobVnofEIvBxLhBIhhI8z91AzOalH9Wk_aOFbuWDwzdTNhL1geqpK_Vb65FGyodA2E9Z38Zz_MKNxdrn0ZM50VAxIliYUtsvDZWMYZ_FGbTW9cBET6MtFvLyvlURodLfpfxKl4LNSwWKbCpyFtkstuaFdWPtvohW05dqP7Iiego9MZMQ9cRTWTD8msOerRtZw5tTHC0DTw_vVQCuWmd834gglb1IAnAMw8EozUP6lHsX-YXsRLpzzvRnQTh68p1KGOoNmg=w801-h470-no" alt="서블릿API를 ROOT애플리케이션의 빌드패스에 추가한다." /><br />
+<p>
+In Eclipse, open the GetEmpServlet servlet, which you had previously practiced. 
+You will encounter numerous compilation errors. 
+The reason for the error is that you did not add the servlet API to the ROOT application's BuildPath. 
+Select the Libraries tab as shown below and click the Add External JARs .. button to find and add the Servlet API in {TOMCAT_HOME}/lib.
+<img src="https://lh3.googleusercontent.com/P9Bme_jBrFYL8k3VN-Kzx38shbriZdHuHxC6cevfcChQbNsumwi4izmhZnpwy_SRyKYMc8OzgwjlAqCVPtqZ7xzZ9NDNZwTWVsu5AxRz16eWOdKyfbTV8MFUIf8-5_MDbjyO1-mxgUz9wc6gdrqKsBGXi26NijhHKU16V6MB-pu8eraPbXbMe8MQCZmJzEyWKixj00cMaQYxyy3mygyB2dj76LiYIKibFkDwcJY3NFx7q5W7hDxCHpKexgGd_FMwh8SSMjLrSUyC4TejCqZjiiUiBHsO_lbcscidIyYMs9st972RA7osjY9RZ0Y_VY8ZK8ZDvo5DiKOOMWTSE24h_JPGtT6fbyYGYDsUVf5MH3Z7LkVir2quhmNt0YrhZv_UF9sJEBfTpvHoTiSSZyrUA5EQ-zT1947ObJ1Y_qH44Q0DGxaetNZilNgXd1McFF5PjN2slR5O2-jRGCgU1stPGkdOG23q5K5FcI4EJwZGRKVTC8Pm9t7LcddMfnkGThI_n96tUUsWYRXZ7a0TW-o9g0xGG9yMRFbY-Z-dt-Sz9qvWs-F1mtwD-6JyPaTg8e1AW-z4xTOwxYc53B3luxhS2uQnc0g5_vyx_CHCu1RicR-Mz3T5KkbulJSg=w801-h470-no" alt="Add Servlet API to BuildPath of ROOT application" style="display: block;width: 100%;"/>
+</p>
 
-<h3>JSP에서 데이터베이스 연동</h3>
-이번에는 위의 서블릿을 JSP 로 바꾸는 예제이다.<br />
-getEmp1.jsp 파일을 ROOT 애플리케이션의 최상위 디렉토리에 만든다.<br />
+<h2>First JSP example</h2>
+
+<p>
+Create getEmp1.jsp in the ROOT application's document base as shown below.
+(This JSP is a JSP version of the <a href="Servlet#GetEmpServlet">GetEmpServlet servlet</a>)
+</p>
 
 <em class="filename">getEmp1.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
 &lt;%@ page import="java.sql.*" %&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;getEmp1&lt;/title&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;First JSP Example&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;%
@@ -80,7 +71,6 @@ try {
 		String comm = rs.getString(7);
 		String depno = rs.getString(8);
 		
-		//결과를 출력
 		out.println( empno + " : " + ename + " : " + job + " : " + mgr + 
 		" : " + hiredate + " : " + sal + " : " + comm + " : " + depno + "&lt;br /&gt;" );
 	}
@@ -119,58 +109,28 @@ try {
 &lt;/html&gt;
 </pre>
 
-JSP파일이므로 톰캣을 재실행할 필요가 없다.
-http://localhost:8989/getEmp1.jsp를 방문하여 테스트한다.<br />
-서블릿에서의 예제와 JSP 에서의 예제에서 구현코드에는 조금 차이가 있다.
-서블릿 예제에서는 init() 메소드 바디에서 JDBC 드라이버에 대한 설정을 했다.<br />
-"서블릿 문법"에서 보았듯이 init() 메소드는 서블릿이 인스턴스가 된 후 서블릿 컨테이너에 
-의해 단 한번 자동으로 호출된다.<br />
-JSP 에서도 서블릿의 init() 에 해당하는 메소드가 있다.<br />
-이 메소드에 드라이버 로딩부분을 담당하도록 하면 성능이 더 좋아질 것이다.<br />
-아래 링크에서 서블릿의 init()에 해당하는 JSP 메소드를 찾을 수 있다.<br />
-<a href="http://docs.oracle.com/javaee/7/api/javax/servlet/jsp/JspPage.html#jspInit()">http://docs.oracle.com/javaee/7/api/javax/servlet/jsp/JspPage.html#jspInit()</a>
+<p>
+You do not need to rerun Tomcat because it is a JSP file.
+Visit http://localhost:port/getEmp1.jsp and test it.
+</p>
 
-<h2>성능향상을 위한 커넥션풀링 기법 적용</h2>
-JDBC에서 Connection 객체를 획득하는 데에 시간이 많이 걸린다.<br />
-이에 대한 해결책으로 Connection Pooling 기법이 있는데, 이것은 
-Connection 을 미리 여러 개 만들어 저장해 두고 필요할 때마다 꺼내 쓰겠다는 아이디어를 
-구현한 것이다.<br />
+<h2>Second JSP example</h2>
 
-<h3>커넥션 풀링을 ROOT 애플리케이션에 적용하는 방법</h3>
-우리는 서블릿 예제에서 이미 커넥션풀링을 사용해 보았다.<br />
-다시 복습상 되돌아 보면 아래와 같은 작업을 했다.<br />
+<h3>Connection pooling</h3>
 
-<a href="../jdbc/Connection-Pool">Connection Pooling</a> 에서 참고하여 Log.java, DBConnectionPool.java,
-DBConnectionPoolManager.java, ConnectionManager.java, DBConnectionPoolManager,
-OracleConnectionManager.java, oracle.properties 을 웹 애플리케이션을 위한 소스 디렉토리에 
-복사했다.<br />
-그런 후에, Log.java 파일을 열어서 로그 파일이 쌓일 파일명과 파일 위치를 웹 애플리케이션에 맞게 수정했다.<br />
-참고로 유닉스 시스템에서는 로그 파일을 만들어 주고 권한 설정을 따로  해 주어야 한다.<br />
+<p>
+It takes a long time to acquire a connection object in JDBC.
+Connection pooling is the solution.
+Connection pooling is the idea of creating multiple connections in advance, storing them in collections like vectors, and popping them out whenever you need them.
+</p>
 
-<pre class="prettyprint">
-public String dbgFile = "C:/www/myapp/WEB-INF/debug.txt";
-</pre>
-
-오라클 커넥션 풀을 위한 설정 파일 oracle.properties 를, 어디든 괜찮으나 우리는 로그파일과 같이 WEB-INF/ 에 복사했다.<br /> 
-그런 후에 ConnectionManager.java 파일을 열고 oracle.properties 의 절대경로를 아래와 같이 수정했다.<br />
-
-<pre class="prettyprint">
-configFile = "C:/www/myapp/WEB-INF/"+poolName+".properties";
-</pre>
-
-내용이 바뀐 Log.java 와 ConnectionManager.java 소스 파일을 다시 컴파일 했다.<br />
-이것이 우리가 사용할 사용자 정의 커넥션풀 관련 소스의 사용법이다.<br />
-서블릿 예제를 모두 실습했다면 위 과정을 다시 할 필요는 없겠다.<br />
-
-<h3>커넥션 풀링을 사용하는 JSP테스트</h3>
-아래 코드에서 jsp:useBean 표준 액션을 사용하여 커넥션 풀링을 위한 
-OracleConnectionManager 객체의 레퍼런스를 획득한다.<br />
-이제 커넥션이 필요할 때마다 OracleConnectionManager 의 getConnection() 메소드를 호출하면 
-커넥션을 획득할 수 있다.<br />
-주의할 점은 커넥션을 사용하고 난 후 자원 반납할 때 기존과 같이 Connection의 
-close() 메소드를 사용하는 것이 아니라 OracleConnectionManager의 freeConnection() 메소드를 
-사용해서 커넥션을 돌려주어야 한다는 것이다.
-다음 getEmp2.jsp 파일을 ROOT 애플리케이션의 최상위 디렉토리에 생성한다.<br />
+<p>
+The next exercise is to modify getEmp1.jsp to get a connection through the connection pool.
+We have already added connection pooling to the ROOT application in the servlet chapter lab.
+(See: <a href="Servlet#Custom-ConnectionPool">Using Custom Connection Pool</a>)
+Open getEmp1.jsp.
+Use the Save As... menu to create getEmp2.jsp and modify it as shown below.
+</p>
 
 <em class="filename">getEmp2.jsp</em>
 <pre class="prettyprint">
@@ -180,11 +140,11 @@ close() 메소드를 사용하는 것이 아니라 OracleConnectionManager의 fr
 <strong>&lt;%@ page import="net.java_school.db.dbpool.*" %&gt;
 &lt;%@ page import="net.java_school.util.*" %&gt;
 &lt;jsp:useBean id="dbmgr" class="net.java_school.db.dbpool.OracleConnectionManager" scope="application" /&gt;</strong>
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;getEmp2&lt;/title&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Second JSP example&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;%
@@ -195,12 +155,8 @@ ResultSet rs = null;
 String sql = "select * from emp";
 
 try {
-	con = dbmgr.getConnection();
-  
-	//Statement를 가져온다.
+	con = <strong>dbmgr.getConnection();</strong>
 	stmt = con.createStatement();
-	
-	//SQL문을 실행합니다.
 	rs = stmt.executeQuery(sql);
 
 	while (rs.next()) {
@@ -213,7 +169,6 @@ try {
 		String comm = rs.getString(7);
 		String depno = rs.getString(8);
 		
-		//결과를 출력합니다.
 		out.println( empno + " : " + ename + " : " + job + " : " + mgr + 
 		" : " + hiredate + " : " + sal + " : " + comm + " : " + depno + "&lt;br /&gt;" );
 	}
@@ -249,20 +204,29 @@ try {
 &lt;/html&gt;
 </pre>
 
-<h2>사용자 정의 로그 파일 적용</h2>
-이제까지 예제에서는 로그 메시지를 출력하기 위해서 System.out.println()이라는 
-자바의 표준 출력 메소드를 이용했다.<br />
-만일 여러분이 윈도우 시스템에서 톰캣을 인스톨러를 포함한 버전을 설치했고, 
-Tomcat Monitor를 이용했다면 톰캣을 시작했다면 
-자바 표준 출력 메소드는 {톰캣 홈 디렉토리}/logs 디렉토리에서 stdout_로 시작하는 파일에 
-출력한다.<br />
-<br />
-개발할 때나 운영할 때 좀더 낳은 환경을 제공하기 위해서는 프로그래머나 운영자가 원하는 
-파일에 로그 메시지가 출력되도록 해야 한다.<br />
-로깅과 관련해서 좋은 오픈 소스가 있는데 Java Basic 에서 다루었던 log4j 가 대표적이다.<br />
-하지만 여기서는 예제를 간단하게 하기 위해 
-Connection Pooling 에 포함된 사용자 정의 로그 파일인 Log.java 을 이용하도록 한다.<br />
-다음 getEmp3.jsp 파일을 ROOT 애플리케이션의 최상위 디렉토리에 만든다.<br />
+<p>
+The second JSP uses the jsp: useBean action to obtain the OracleConnectionManager object reference.
+The second JSP can obtain a connection by calling the getConnection () method of the OracleConnectionManager whenever a connection is needed.
+One thing to keep in mind when using this custom connection pool is that you should use the freeConnection() method of the OracleConnectionManager instead of using the close() method of Connection after using the connection.
+If you use the close() of Connection, this custom connection pool will not work.
+</p>
+
+<h2>Third JSP Example</h2>
+
+<h3>Using custom log file</h3>
+
+<p>
+So far we have used System.out.println () to print a log message.
+If you install Tomcat with the installer on a Windows system, System.out.println () will print a message to the file starting with stdout_ in the {TOMCAT_HOME}/logs directory.
+
+To provide a better environment for development and operation, log messages need to be output to the file that the programmer or operator wants.
+
+There is a lot of open source about logging.
+However, we need to understand the basic concepts of logging, so let's use a custom log file, Log.java.
+
+Open the getEmp2.jsp file.
+Use the Save As ... menu to create the getEmp3.jsp file and modify it as follows:
+</p>
 
 <em class="filename">getEmp3.jsp</em>
 <pre class="prettyprint">
@@ -272,11 +236,11 @@ Connection Pooling 에 포함된 사용자 정의 로그 파일인 Log.java 을 
 &lt;%@ page import="net.java_school.db.dbpool.*" %&gt;
 &lt;%@ page import="net.java_school.util.*" %&gt;
 &lt;jsp:useBean id="dbmgr" class="net.java_school.db.dbpool.OracleConnectionManager" scope="application" /&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;getEmp3&lt;/title&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Third JSP Example&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;%
@@ -289,11 +253,7 @@ String sql = "select * from emp";
 
 try {
 	con = dbmgr.getConnection();
-  
-	//Statement를 가져온다.
 	stmt = con.createStatement();
-	
-	//SQL문을 실행합니다.
 	rs = stmt.executeQuery(sql);
 
 	while (rs.next()) {
@@ -306,7 +266,6 @@ try {
 		String comm = rs.getString(7);
 		String depno = rs.getString(8);
 		
-		//결과를 출력합니다.
 		out.println( empno + " : " + ename + " : " + job + " : " + mgr + 
 		" : " + hiredate + " : " + sal + " : " + comm + " : " + depno + "&lt;br /&gt;" );
 	}
@@ -343,16 +302,41 @@ try {
 &lt;/html&gt;
 </pre>
 
-고의적으로 에러가 발생하도록 소스를 고치고 로그 메시지를 확인하자<br />
-위 소스에서 String sql = "<strong>select * from emp" 를 select * fromemp</strong>" 로 
-고치고 다시 테스트한다.<br />
-로그파일은 Log.java 파일에서 지정한 파일에 다음과 같이 로그가 쌓이는 것을 확인할 수 있다.
+<p>
+The catch block must be executed to check the log message.
+In getemp3.jsp, modify the query to String sql = "<strong> select * fromemp </strong>".
+Visit http://localhost:port/getemp3.jsp.
+Check the log message in the file specified in Log.java.
+</p>
 
-<pre class="prettyprint">
+<pre class="code">
 Thu Jun 12 14:30:51 KST 2014 : Oracle Error Code : 923
 Thu Jun 12 14:30:51 KST 2014 : sql : select * fromemp
 Thu Jun 12 14:30:52 KST 2014 : Error Source:getEmp3.jsp : SQLException
 Thu Jun 12 14:30:52 KST 2014 : SQLState : 42000
 Thu Jun 12 14:30:52 KST 2014 : Message : ORA-00923: FROM keyword not found where expected
 </pre>
+
+<h2>Fourth JSP example</h2>
+
+<p>
+The GetEmpServlet servlet loaded the JDBC driver in the init() method.
+In the lesson entitled "Servlet",  you read that the init() method is called once by the servlet container after the servlet is instantiated.
+In JSP, there is a method corresponding to the init() of Servlet.
+
+if our JSP load the JDBC driver in sort of init() method, it will improve performance.
+
+The JSP method corresponding to the init() of Servlet can be found at:
+<a href="http://docs.oracle.com/javaee/7/api/javax/servlet/jsp/JspPage.html#jspInit()">http://docs.oracle.com/javaee/7/api/javax/servlet/jsp/JspPage.html#jspInit()</a>
+</p>
+
+<p>
+Open getEmp3.jsp.
+Use the Save As .. menu to create getEmp4.jsp.
+Modify getEmp4.jsp so that the JSP method corresponding to the init () of the servlet loads the JDBC driver.
+</p>
+
+<p>
+getEmp4.jsp is your challenge.
+</p>
 </article>

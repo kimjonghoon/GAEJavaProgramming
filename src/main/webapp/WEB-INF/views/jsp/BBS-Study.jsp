@@ -1,19 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <article>
-<div class="last-modified">Last Modified 2016.3.16</div>
+<div class="last-modified">Last Modified 2017.3.24</div>
 
-<h1>게시판</h1>
+<h1>Understanding the bulletin board program</h1>
 
-지금부터 서블릿과 JSP에서 다룬 내용을 토대로 ROOT 애플리케이션에 간단한 게시판을 만들어 보겠다.
-아래를 사용해서 테이블과 시퀀스를 생성한다.
+<p>
+After accessing the scott account with SQL*PLUS, use the following script to create the table and sequence for the bulletin board.
+</p>
 
-<h2>기본 기능</h2>
-게시판이라면 가져야 할 핵심적인 기능을 기본 기능이라 하자.
-(기본 기능에서 목록은 한 페이지에 모든 레코드를 출력한다)
-아래를 참고하여 테이블과 시퀀스를 생성한다.
-
-<em class="filename">board-schema.sql</em>
+<em class="filename"><a href="board-schema.sql">board-schema.sql</a></em>
 <pre class="prettyprint">
--- 게시판 테이블
 create table board(
  no number primary key,
  title varchar2(200) not null,
@@ -21,33 +19,137 @@ create table board(
  wdate date
 )
 /
--- 게시판 no 컬럼 값을 위한 시퀀스 
 create sequence board_no_seq
 start with 1
 increment by 1
 /
 </pre>
 
+<p>
+To use the board-schema.sql file, access SQL*PLUS with the scott account, 
+type @ followed by the full path to the board-schema.sql file.
+If there is a board-schema.sql file in C:\, execute it as follows.
+</p>
 
-board-schema.sql 파일을 이용하려면, scott 계정으로 SQL*PLUS에 접속한 후, @다음에 board-schema.sql 파일의 전체경로를 입력한다.
-board-schema.sql 파일이 <em class="path">C:\</em>에 저장했다면 다음과 같이 실행한다.
-
-<pre>
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
 SQL&gt;@C:\board-schema.sql
 </pre>
 
-테스트용 데이터를 인서트 하기 위해 100개의 인서트 문을 실행하거나 PL/SQL 문을 실행한다.
+<p>
+Run the following insert statement while logged in to SQL * PLUS with the scott account. 
+(A total of 100 insert statements are executed)
+</p>
 
-<em class="filename">100개의 인서트 문 실행</em>
+<em class="filename"><a href="board-data.sql">board-data.sql</a></em>
 <pre class="prettyprint">
 insert into board values (board_no_seq.nextval, '000001','',sysdate);
-..
-..
+insert into board values (board_no_seq.nextval, '000002','',sysdate);
+insert into board values (board_no_seq.nextval, '000003','',sysdate);
+insert into board values (board_no_seq.nextval, '000004','',sysdate);
+insert into board values (board_no_seq.nextval, '000005','',sysdate);
+insert into board values (board_no_seq.nextval, '000006','',sysdate);
+insert into board values (board_no_seq.nextval, '000007','',sysdate);
+insert into board values (board_no_seq.nextval, '000008','',sysdate);
+insert into board values (board_no_seq.nextval, '000009','',sysdate);
+insert into board values (board_no_seq.nextval, '000010','',sysdate);
+insert into board values (board_no_seq.nextval, '000011','',sysdate);
+insert into board values (board_no_seq.nextval, '000012','',sysdate);
+insert into board values (board_no_seq.nextval, '000013','',sysdate);
+insert into board values (board_no_seq.nextval, '000014','',sysdate);
+insert into board values (board_no_seq.nextval, '000015','',sysdate);
+insert into board values (board_no_seq.nextval, '000016','',sysdate);
+insert into board values (board_no_seq.nextval, '000017','',sysdate);
+insert into board values (board_no_seq.nextval, '000018','',sysdate);
+insert into board values (board_no_seq.nextval, '000019','',sysdate);
+insert into board values (board_no_seq.nextval, '000020','',sysdate);
+insert into board values (board_no_seq.nextval, '000021','',sysdate);
+insert into board values (board_no_seq.nextval, '000022','',sysdate);
+insert into board values (board_no_seq.nextval, '000023','',sysdate);
+insert into board values (board_no_seq.nextval, '000024','',sysdate);
+insert into board values (board_no_seq.nextval, '000025','',sysdate);
+insert into board values (board_no_seq.nextval, '000026','',sysdate);
+insert into board values (board_no_seq.nextval, '000027','',sysdate);
+insert into board values (board_no_seq.nextval, '000028','',sysdate);
+insert into board values (board_no_seq.nextval, '000029','',sysdate);
+insert into board values (board_no_seq.nextval, '000030','',sysdate);
+insert into board values (board_no_seq.nextval, '000031','',sysdate);
+insert into board values (board_no_seq.nextval, '000032','',sysdate);
+insert into board values (board_no_seq.nextval, '000033','',sysdate);
+insert into board values (board_no_seq.nextval, '000034','',sysdate);
+insert into board values (board_no_seq.nextval, '000035','',sysdate);
+insert into board values (board_no_seq.nextval, '000036','',sysdate);
+insert into board values (board_no_seq.nextval, '000037','',sysdate);
+insert into board values (board_no_seq.nextval, '000038','',sysdate);
+insert into board values (board_no_seq.nextval, '000039','',sysdate);
+insert into board values (board_no_seq.nextval, '000040','',sysdate);
+insert into board values (board_no_seq.nextval, '000041','',sysdate);
+insert into board values (board_no_seq.nextval, '000042','',sysdate);
+insert into board values (board_no_seq.nextval, '000043','',sysdate);
+insert into board values (board_no_seq.nextval, '000044','',sysdate);
+insert into board values (board_no_seq.nextval, '000045','',sysdate);
+insert into board values (board_no_seq.nextval, '000046','',sysdate);
+insert into board values (board_no_seq.nextval, '000047','',sysdate);
+insert into board values (board_no_seq.nextval, '000048','',sysdate);
+insert into board values (board_no_seq.nextval, '000049','',sysdate);
+insert into board values (board_no_seq.nextval, '000050','',sysdate);
+insert into board values (board_no_seq.nextval, '000051','',sysdate);
+insert into board values (board_no_seq.nextval, '000052','',sysdate);
+insert into board values (board_no_seq.nextval, '000053','',sysdate);
+insert into board values (board_no_seq.nextval, '000054','',sysdate);
+insert into board values (board_no_seq.nextval, '000055','',sysdate);
+insert into board values (board_no_seq.nextval, '000056','',sysdate);
+insert into board values (board_no_seq.nextval, '000057','',sysdate);
+insert into board values (board_no_seq.nextval, '000058','',sysdate);
+insert into board values (board_no_seq.nextval, '000059','',sysdate);
+insert into board values (board_no_seq.nextval, '000060','',sysdate);
+insert into board values (board_no_seq.nextval, '000061','',sysdate);
+insert into board values (board_no_seq.nextval, '000062','',sysdate);
+insert into board values (board_no_seq.nextval, '000063','',sysdate);
+insert into board values (board_no_seq.nextval, '000064','',sysdate);
+insert into board values (board_no_seq.nextval, '000065','',sysdate);
+insert into board values (board_no_seq.nextval, '000066','',sysdate);
+insert into board values (board_no_seq.nextval, '000067','',sysdate);
+insert into board values (board_no_seq.nextval, '000068','',sysdate);
+insert into board values (board_no_seq.nextval, '000069','',sysdate);
+insert into board values (board_no_seq.nextval, '000070','',sysdate);
+insert into board values (board_no_seq.nextval, '000071','',sysdate);
+insert into board values (board_no_seq.nextval, '000072','',sysdate);
+insert into board values (board_no_seq.nextval, '000073','',sysdate);
+insert into board values (board_no_seq.nextval, '000074','',sysdate);
+insert into board values (board_no_seq.nextval, '000075','',sysdate);
+insert into board values (board_no_seq.nextval, '000076','',sysdate);
+insert into board values (board_no_seq.nextval, '000077','',sysdate);
+insert into board values (board_no_seq.nextval, '000078','',sysdate);
+insert into board values (board_no_seq.nextval, '000079','',sysdate);
+insert into board values (board_no_seq.nextval, '000080','',sysdate);
+insert into board values (board_no_seq.nextval, '000081','',sysdate);
+insert into board values (board_no_seq.nextval, '000082','',sysdate);
+insert into board values (board_no_seq.nextval, '000083','',sysdate);
+insert into board values (board_no_seq.nextval, '000084','',sysdate);
+insert into board values (board_no_seq.nextval, '000085','',sysdate);
+insert into board values (board_no_seq.nextval, '000086','',sysdate);
+insert into board values (board_no_seq.nextval, '000087','',sysdate);
+insert into board values (board_no_seq.nextval, '000088','',sysdate);
+insert into board values (board_no_seq.nextval, '000089','',sysdate);
+insert into board values (board_no_seq.nextval, '000090','',sysdate);
+insert into board values (board_no_seq.nextval, '000091','',sysdate);
+insert into board values (board_no_seq.nextval, '000092','',sysdate);
+insert into board values (board_no_seq.nextval, '000093','',sysdate);
+insert into board values (board_no_seq.nextval, '000094','',sysdate);
+insert into board values (board_no_seq.nextval, '000095','',sysdate);
+insert into board values (board_no_seq.nextval, '000096','',sysdate);
+insert into board values (board_no_seq.nextval, '000097','',sysdate);
+insert into board values (board_no_seq.nextval, '000098','',sysdate);
+insert into board values (board_no_seq.nextval, '000099','',sysdate);
 insert into board values (board_no_seq.nextval, '000100','',sysdate);
 commit;
 </pre>
 
-<em class="filename">PL/SQL를 작성하여 데이터 인서트</em>
+<p>
+Or, execute the next PL/SQL statement.
+</p>
+
 <pre class="prettyprint">
 DECLARE
   counter INTEGER;
@@ -60,56 +162,77 @@ END;
 /
 </pre>
 
-다음은 게시판을 구현하기 위해 만들 파일이다. 연습을 위해 서블릿과 JSP를 섞어 놓았다.
+<p>
+The table below shows the list of files to be created to implement the bulletin board.
+</p>
 
 <table class="table-in-article">
-<caption class="table-in-article-caption">작성할 파일 리스트</caption>
+<caption class="table-in-article-caption">List of files to create</caption>
 <tr>
 	<td class="table-in-article-td">list.jsp</td>
 	<td class="table-in-article-td">
-	게시물의 목록을 보여주는 페이지<br />
-	(페이지분할, 페이지 직접 이동 링크, 검색)
+Shows list of posts
+(Step-by-step page break, search function will added)
 	</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">write_form.jsp</td>
-	<td class="table-in-article-td">새글 입력 폼을 제공하는 화면</td>
+	<td class="table-in-article-td">Post Writing Form</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">BoardWriter.java</td>
-	<td class="table-in-article-td">새글 입력을 처리하는 서블릿</td>
+	<td class="table-in-article-td">Servlet to insert a post into the database table</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">view.jsp</td>
-	<td class="table-in-article-td">해당 게시물의 상세 정보를 출력하는 페이지</td>
+	<td class="table-in-article-td">Show the details of the post</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">modify_form.jsp</td>
-	<td class="table-in-article-td">수정 입력 폼 화면</td>
+	<td class="table-in-article-td">Modify Form</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">BoardModifier.java</td>
-	<td class="table-in-article-td">수정을 위해 실제로 DB 테이블을 수정을 행하는 서블릿</td>
+	<td class="table-in-article-td">Servlet modifying the post</td>
 </tr>
 <tr>
 	<td class="table-in-article-td">BoardDeleter.java</td>
-	<td class="table-in-article-td">테이블에서 해당 레코드를 삭제하는 서블릿</td>
+	<td class="table-in-article-td">Servlet to delete the post</td>
 </tr>
 </table>
 
-게시판 프로그램의 흐름은 다음과 같다.
+<p>
+To review JSPs and servlets, JSP is used to show the screen, and Servlet that does not need a screen is adopted.
+The flow of the bulletin board program is as follows.
+</p>
 
-<pre style="line-height: 200%;border: 1px solid grey;">
-list.jsp &rarr; write_form.jsp &rarr; BoardWriter.java (insert 실행) &rarr; list.jsp
+<pre style="line-height: 200%;">
+list.jsp &rarr; write_form.jsp &rarr; BoardWriter.java (Run insert) &rarr; list.jsp
   └── view.jsp
-        └── modify_form.jsp &rarr; BoardModifier.java (update 실행) &rarr; view.jsp
-        └── BoardDeleter.java (delete 실행) &rarr; list.jsp
+        └── modify_form.jsp &rarr; BoardModifier.java (Rnu update) &rarr; view.jsp
+        └── BoardDeleter.java (Run delete) &rarr; list.jsp
 </pre>
 
-ROOT 애플리케이션의 최상위 디렉터리에 board라는 서브 디렉터리로 만든다.
-게시판 관련 JSP 파일은 이 디렉터리에 만들 것이다.
-이전 절인, <a href="Accessing-database-from-JSP_Servlets">데이터베이스 연동</a>을 실습했다면 커넥션 풀링 바이트 코드가 WEB-INF/classes에 있을 것이다.
-(<a href="Accessing-database-from-JSP_Servlets">데이터베이스 연동</a>을 실습해야 아래 코드를 테스트할 수 있다)
+<p>
+I will create a JSP file in the board subdirectory under the root directory of the ROOT application.
+If you've been practicing <a href="Accessing-database-from-JSP_Servlets">Using the databases in JSP</a>, 
+then custom connection pooling bytecode is created in WEB-INF/classes.
+(If you do not have custom connection pooling bytecode, you can not test the board below)
+</p>
+
+<dl class="note">
+<dt>MyServletContextListener.java</dt>
+<dd>
+We have already practiced a listener example that stores the OracleConnectionManager object in the ServletContext in the <a href="Servlet">Servlet</a> section when the web application is started. (MyServletContextListener.java)
+This listener is running in your ROOT application.
+</dd>
+</dl>
+
+<h2>List and Writing</h2>
+
+<p>
+The first step of the list page (list.jsp) shows all the records.
+</p>
 
 <em class="filename">/board/list.jsp</em>
 <pre class="prettyprint">
@@ -123,10 +246,10 @@ ROOT 애플리케이션의 최상위 디렉터리에 board라는 서브 디렉�
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-&lt;title&gt;목록&lt;/title&gt;
+&lt;title&gt;List&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;목록&lt;/h1&gt;
+&lt;h1&gt;List&lt;/h1&gt;
 &lt;%
 Log log = new Log();
 
@@ -134,7 +257,7 @@ Connection con = null;
 PreparedStatement stmt = null;
 ResultSet rs = null;
 
-String sql = "select no, title, wdate from board order by no desc";
+String sql = "SELECT no, title, wdate FROM board ORDER BY no DESC";
 
 try {
 	con = dbmgr.getConnection();
@@ -152,11 +275,11 @@ try {
 &lt;%
   }
 } catch(SQLException e) {
-	log.debug("Error Source : board/list.jsp : SQLException");
-	log.debug("SQLState : " + e.getSQLState());
-	log.debug("Message : " + e.getMessage());
-	log.debug("Oracle Error Code : " + e.getErrorCode());
-	log.debug("sql : " + sql);
+	log.debug("Error Source: board/list.jsp : SQLException");
+	log.debug("SQLState: " + e.getSQLState());
+	log.debug("Message: " + e.getMessage());
+	log.debug("Oracle Error Code: " + e.getErrorCode());
+	log.debug("sql: " + sql);
 } finally {
 	if (rs != null) {
 		try {
@@ -179,7 +302,7 @@ try {
 }
 %&gt;
 &lt;p&gt;
-&lt;a href="write_form.jsp"&gt;글쓰기&lt;/a&gt;
+&lt;a href="write_form.jsp"&gt;Add New Post&lt;/a&gt;
 &lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -193,16 +316,14 @@ try {
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-
-&lt;title&gt;글쓰기&lt;/title&gt;
+&lt;title&gt;Add New Post&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;!-- 본문 시작 --&gt;
-&lt;h1&gt;글쓰기&lt;/h1&gt;
+&lt;h1&gt;Add New Post&lt;/h1&gt;
 &lt;form action="../servlet/BoardWriter" method="post"&gt;
 &lt;table&gt;
 &lt;tr&gt;
-	&lt;td&gt;제목&lt;/td&gt;
+	&lt;td&gt;Title&lt;/td&gt;
 	&lt;td&gt;&lt;input type="text" name="title" size="50"&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -212,19 +333,16 @@ try {
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td colspan="2"&gt;
-		&lt;input type="submit" value="전송"&gt;
-		&lt;input type="reset" value="취소"&gt;
-		&lt;a href="list.jsp"&gt;목록&lt;/a&gt;
+		&lt;input type="submit" value="Submit"&gt;
+		&lt;input type="reset" value="Reset"&gt;
+		&lt;a href="list.jsp"&gt;List&lt;/a&gt;
 	&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/form&gt;  
-&lt;!-- 본문 끝 --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-
-글을 DB에 인서트하는 서블릿을 작성한다.
 
 <em class="filename">BoardWriter.java</em>
 <pre class="prettyprint">
@@ -263,20 +381,19 @@ public class BoardWriter extends HttpServlet {
 		
 		Connection con = dbmgr.getConnection();
 		PreparedStatement stmt = null;
-		//입력 순서: 시퀀스, 제목, 소개글, 본문
-		String sql = "insert into board values (board_no_seq.nextval,?,?,sysdate)";
+		String sql = "INSERT INTO board VALUES (board_no_seq.nextval, ?, ?, sysdate)";
 		
 		try {
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, title); //제목 부분
-			stmt.setString(2, content); //본분 부분
-			stmt.executeUpdate(); //쿼리 실행
+			stmt.setString(1, title);
+			stmt.setString(2, content);
+			stmt.executeUpdate();
 		} catch (SQLException e) {
-			log.debug("Error Source : BoardWriter.java : SQLException");
-			log.debug("SQLState : " + e.getSQLState());
-			log.debug("Message : " + e.getMessage());
-			log.debug("Oracle Error Code : " + e.getErrorCode());
-			log.debug("sql : " + sql);
+			log.debug("Error Source: BoardWriter.java: SQLException");
+			log.debug("SQLState: " + e.getSQLState());
+			log.debug("Message: " + e.getMessage());
+			log.debug("Oracle Error Code: " + e.getErrorCode());
+			log.debug("sql: " + sql);
 		} finally {
 			if (stmt != null) {
 				try {
@@ -293,22 +410,25 @@ public class BoardWriter extends HttpServlet {
 			resp.sendRedirect(path + "/board/list.jsp");
 		}
 	}
-
 }
 </pre>
 
-서블릿이므로 바이트 코드가 /WEB-INF/classes에 생기도록 컴파일한다.
-이 서블릿의 URI 매핑이 <strong>/servlet/BoardWriter</strong>가 되도록 web.xml를 편집한다.
+<p>
+Register this servlet in web.xml and set the URI mapping to <strong>/servlet/BoardWriter</strong>.
+</p>
 
-<h3>테스트</h3>
+<p>
+Test in the following order.
+</p>
+
 <ol>
-	<li>web.xml이 바뀌었으므로 톰캣 재실행</li>
-	<li>http://localhost:8989/board/list.jsp 방문</li>
-	<li>글쓰기 링크를 클릭하여 새글 입력 폼 페이지로 이동</li>
-	<li>글을 작성하고 등록되는지 테스트</li>
+	<li>Since web.xml has changed, rerun Tomcat.</li>
+	<li>Visit http://localhost:port/board/list.jsp</li>
+	<li>Click the New link to go to the add new post page.</li>
+	<li>Check if new articles are registered.</li>
 </ol>
 
-다음은 게시글의 상세내용을 보는 JSP를 작성한다.
+<h2>View Post</h2>
 
 <em class="filename">/board/view.jsp</em>
 <pre class="prettyprint">
@@ -322,14 +442,14 @@ public class BoardWriter extends HttpServlet {
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-&lt;title&gt;상세보기&lt;/title&gt;
+&lt;title&gt;View Post&lt;/title&gt;
 &lt;script type="text/javascript"&gt;
 function goModify(no) {
 	location.href="modify_form.jsp?no=" + no;
 }
 
 function goDelete(no) {
-	var check = confirm('정말로 삭제하시겠습니까?');
+	var check = confirm('Are you sure you want to delete it?');
 	if (check) {
 		location.href="../servlet/BoardDeleter?no=" + no;
 	}
@@ -337,14 +457,14 @@ function goDelete(no) {
 &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;상세보기&lt;/h1&gt;
+&lt;h1&gt;View Post&lt;/h1&gt;
 &lt;%
 int no = Integer.parseInt(request.getParameter("no"));
 Log log = new Log();
 Connection con = null;
 PreparedStatement stmt = null;
 ResultSet rs = null;
-String sql = "select no, title, content, wdate from board where no = ?";
+String sql = "SELECT no, title, content, wdate FROM board WHERE no = ?";
 try {
 	con = dbmgr.getConnection();
 	stmt = con.prepareStatement(sql);
@@ -357,18 +477,18 @@ try {
 		Date wdate = rs.getDate("wdate");
 		if (content == null) content = "";
 %&gt;
-&lt;h2&gt;제목: &lt;%=title %&gt;, 작성일: &lt;%=wdate.toString() %&gt;&lt;/h2&gt;
+&lt;h2&gt;Title: &lt;%=title %&gt;, Date Created: &lt;%=wdate.toString() %&gt;&lt;/h2&gt;
 &lt;p&gt;
 &lt;%=content = content.replaceAll(System.getProperty("line.separator"), "&lt;br /&gt;") %&gt;
 &lt;/p&gt;
 &lt;%
 	}
 } catch (SQLException e) {
-	log.debug("Error Source : board/view.jsp : SQLException");
-	log.debug("SQLState : " + e.getSQLState());
-	log.debug("Message : " + e.getMessage());
-	log.debug("Oracle Error Code : " + e.getErrorCode());
-	log.debug("sql : " + sql);
+	log.debug("Error Source : board/view.jsp: SQLException");
+	log.debug("SQLState: " + e.getSQLState());
+	log.debug("Message: " + e.getMessage());
+	log.debug("Oracle Error Code: " + e.getErrorCode());
+	log.debug("sql: " + sql);
 } finally {
 	if (rs != null) {
 		try {
@@ -391,29 +511,25 @@ try {
 	log.close();
 }
 %&gt;
-&lt;a href="list.jsp"&gt;목록&lt;/a&gt;
-&lt;input type="button" value="수정" onclick="javascript:goModify('&lt;%=no %&gt;')"&gt;
-&lt;input type="button" value="삭제" onclick="javascript:goDelete('&lt;%=no %&gt;')"&gt;
+&lt;a href="list.jsp"&gt;List&lt;/a&gt;
+&lt;input type="button" value="Edit Post" onclick="javascript:goModify('&lt;%=no %&gt;')"&gt;
+&lt;input type="button" value="Delete" onclick="javascript:goDelete('&lt;%=no %&gt;')"&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-<h3>테스트</h3>
+<p>
+Test in the following order.
+</p>
+
 <ol>
-	<li>web.xml이 변경되지 않았으므로 톰캣을 재실행할 필요 없음</li>
-	<li>목록에서 제목을 클릭하여 상세보기 페이지로 이동하는지 테스트</li>
+	<li>Since web.xml has not changed, you do not need to rerun Tomcat.</li>
+	<li>Click title in the list to visit the View Post page.</li>
 </ol>
 
-<dl class="note">
-<dt>MyServletContextListener.java</dt>
-<dd>
-<a href="Servlet">서블릿</a> 절에서 OracleConnectionManager 객체를 웹 애플리케이션이 시작될 때 서블릿 컨텍스트에 담도록 하는 예제(MyServletContextListener.java)가 있었다.
-이 예제가 지금 ROOT 애플리케이션에서 실행되고 있다면 게시판은 좀 더 훌륭해진다.
-</dd>
-</dl>
 
-다음은 상세보기 페이지에서 수정 버튼을 클릭하면 보여지는 수정 폼 JSP를 다음 내용으로 작성한다.<br />
- 
+<h2>Edit Post</h2>
+
 <em class="filename">/board/modify_form.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -433,7 +549,7 @@ ResultSet rs = null;
 
 String title = null;
 String content = null;
-String sql = "select title, content from board where no = ?";
+String sql = "SELECT title, content FROM board WHERE no = ?";
 
 try {
 	con = dbmgr.getConnection();
@@ -447,11 +563,11 @@ try {
 	    if (content == null) content = "";
 	}
 } catch (SQLException e) {
-	log.debug("Error Source : board/modify_form.jsp : SQLException");
-	log.debug("SQLState : " + e.getSQLState());
-	log.debug("Message : " + e.getMessage());
-	log.debug("Oracle Error Code : " + e.getErrorCode());
-	log.debug("sql : " + sql);
+	log.debug("Error Source: board/modify_form.jsp: SQLException");
+	log.debug("SQLState: " + e.getSQLState());
+	log.debug("Message: " + e.getMessage());
+	log.debug("Oracle Error Code: " + e.getErrorCode());
+	log.debug("sql: " + sql);
 } finally {
 	if (rs != null) {
 		try {
@@ -478,16 +594,15 @@ try {
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-&lt;title&gt;수정&lt;/title&gt;
+&lt;title&gt;Edit Post&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;!-- 본문 시작 --&gt;
-&lt;h1&gt;수정&lt;/h1&gt;
+&lt;h1&gt;Edit Post&lt;/h1&gt;
 &lt;form action="../servlet/BoardModifier" method="post"&gt;
 &lt;input type="hidden" name="no" value="&lt;%=no %&gt;"&gt;
 &lt;table&gt;
 &lt;tr&gt;
-	&lt;td&gt;제목&lt;/td&gt;
+	&lt;td&gt;Title&lt;/td&gt;
 	&lt;td&gt;&lt;input type="text" name="title" size="50" value="&lt;%=title %&gt;" /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -497,21 +612,17 @@ try {
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td colspan="2"&gt;
-		&lt;input type="submit" value="전송"&gt;
-		&lt;input type="reset" value="취소"&gt;
-		&lt;a href="view.jsp?no=&lt;%=no %&gt;"&gt;상세보기&lt;/a&gt;
+		&lt;input type="submit" value="Submit"&gt;
+		&lt;input type="reset" value="Reset"&gt;
+		&lt;a href="view.jsp?no=&lt;%=no %&gt;"&gt;View Post&lt;/a&gt;
 	&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/form&gt;
-&lt;!-- 본문 끝 --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-실제로 게시글의 업데이트를 수행하는 서블릿을 만든다.
-서블릿을 만든 후 web.xml에 이 서블릿의 URI 매핑이 /servlet/BoardModifier이 되도록 편집한다. 
- 
 <em class="filename">BoardModifier.java</em>
 <pre class="prettyprint">
 package net.java_school.board;
@@ -552,20 +663,20 @@ public class BoardModifier extends HttpServlet {
 		Connection con = dbmgr.getConnection();
 		PreparedStatement stmt = null;
 		
-		String sql = "update board set title = ?, content = ? where no = ?";
+		String sql = "UPDATE board SET title = ?, content = ? WHERE no = ?";
 		
 		try {
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, title); //제목 부분
-			stmt.setString(2, content); //본분 부분
-			stmt.setInt(3, no); //primary key
-			stmt.executeUpdate(); //쿼리 실행
+			stmt.setString(1, title);
+			stmt.setString(2, content);
+			stmt.setInt(3, no);
+			stmt.executeUpdate();
 		} catch (SQLException e) {
-			log.debug("Error Source : BoardModifier.java : SQLException");
-			log.debug("SQLState : " + e.getSQLState());
-			log.debug("Message : " + e.getMessage());
-			log.debug("Oracle Error Code : " + e.getErrorCode());
-			log.debug("sql : " + sql);
+			log.debug("Error Source: BoardModifier.java: SQLException");
+			log.debug("SQLState: " + e.getSQLState());
+			log.debug("Message: " + e.getMessage());
+			log.debug("Oracle Error Code: " + e.getErrorCode());
+			log.debug("sql: " + sql);
 		} finally {
 			if (stmt != null) {
 				try {
@@ -582,24 +693,28 @@ public class BoardModifier extends HttpServlet {
 			String path = req.getContextPath();
 			resp.sendRedirect( path + "/board/view.jsp?no=" + no);
 		}
-		
 	}
-	
 }
 </pre>
 
-<h3>테스트</h3>
+<p>
+Register this servlet in web.xml and set the URI mapping to <strong>/servlet/BoardModifier</strong>.
+</p>
+
+<p>
+Test in the following order.
+</p>
+
 <ol>
-	<li>톰캣 재실행</li>
-	<li>목록 방문</li>
-	<li>목록에서 제목을 클릭하여 상세보기로 이동</li>
-	<li>수정 버튼을 클릭하여 수정 폼 페이지로 이동</li>
-	<li>수정 폼에서 제목과 내용을 변경한 후 확인 버튼을 클릭</li>
-	<li>이동한 상세보기 페이지에서 제목과 내용이 변경되었는지 확인</li> 
+	<li>Rerun Tomcat.</li>
+	<li>Visit http://localhost:port/board/list.jsp</li>
+	<li>Click title in the list to visit the View Post page.</li>
+	<li>On the View Post page, click Edit Post to go to the edit post page.</li>
+	<li>On the edit Post page, change the title and content, and then click the Submit button.</li>
+	<li>On the View Post page that came back, check if the title and content have changed.</li> 
 </ol>
 
-게시글을 삭제하는 서블릿을 작성한다.<br />
-web.xml에서 이 서블릿의 URI 매핑을 /servlet/BoardDeleter로 한다.<br /> 
+<h2>Delete Post</h2>
 
 <em class="filename">BoardDeleter.java</em>
 <pre class="prettyprint">
@@ -649,13 +764,13 @@ public class BoardDeleter extends HttpServlet {
 		try {
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, no);
-			stmt.executeUpdate(); //쿼리 실행
+			stmt.executeUpdate();
 		} catch (SQLException e) {
-			log.debug("Error Source : BoardDeleter.java : SQLException");
-			log.debug("SQLState : " + e.getSQLState());
-			log.debug("Message : " + e.getMessage());
-			log.debug("Oracle Error Code : " + e.getErrorCode());
-			log.debug("sql : " + sql);
+			log.debug("Error Source: BoardDeleter.java: SQLException");
+			log.debug("SQLState: " + e.getSQLState());
+			log.debug("Message: " + e.getMessage());
+			log.debug("Oracle Error Code: " + e.getErrorCode());
+			log.debug("sql: " + sql);
 		} finally {
 			if (stmt != null) {
 				try {
@@ -671,32 +786,40 @@ public class BoardDeleter extends HttpServlet {
 			String path = req.getContextPath();
 			resp.sendRedirect(path + "/board/list.jsp");
 		}
-		
 	}
-	
 }
 </pre>
 
-<h3>테스트</h3>
+<p>
+Register this servlet in web.xml and set the URI mapping to <strong>/servlet/BoardDeleter</strong>.
+</p>
+
+<p>
+Test in the following order.
+</p>
+
 <ol>
-	<li>톰캣 재실행</li>
-	<li>목록 방문</li>
-	<li>목록에서 제목을 클릭하여 상세보기로 이동</li>
-	<li>상세보기에서 삭제 버튼을 클릭</li>
-	<li>목록에서 해당 게시글이 삭제되었는지 확인</li>
+	<li>Rerun Tomcat.</li>
+	<li>Visit http://localhost:port/board/list.jsp</li>
+	<li>Click title in the list to visit the View Post page.</li>
+	<li>On the View Post page, click the Delete button.</li>
+	<li>When you return to the list page, make sure that the post has been removed.</li>
 </ol>
 
 
-<h2>페이지 분할 기능</h2>
-게시판의 게시글 레코드가 10,000 개라면 list.jsp 안의 while 문은 10,000번 실행될 것이다.
-목록에서 한꺼번에 전체 레코드를 보여 주지 말고 레코드를 그룹으로 묶어서 여러 페이지로 나누어 보여주는 기능이 필요한데,
-이 기능을 여기서는<strong>"페이지 분할 기능"</strong>이라고 하겠다.
+<h2>Splitting a list page</h2>
 
-<h3>레코드를 그룹으로 묶기 위한 쿼리</h3>
-다음은 페이지 분할 기능을 위한 오라클 쿼리문으로, 
-레코드를 10개씩 묶는다면 각 그룹에 해당하는 레코드를 가져오는 쿼리문이다.
+<p>
+If you have a lot of data, you need to show the records in groups without showing all the records in the list.
+</p>
 
-<em class="filename">레코드 그룹 1에 해당하는 레코드</em>
+<h3>Queries for grouping records</h3>
+
+<p>
+If you are grouping records by 10, the Oracle query statement that fetches the records for each group is as follows:
+</p>
+
+<em class="filename">Records belonging to group 1</em>
 <pre class="prettyprint">
 SELECT no,title,wdate FROM (
 	SELECT ROWNUM R, A.* FROM (select no, title, wdate
@@ -704,7 +827,7 @@ SELECT no,title,wdate FROM (
 WHERE R BETWEEN 1 and 10;
 </pre>
 
-<em class="filename">레코드 그룹 2에 해당하는 레코드</em>
+<em class="filename">Records belonging to group 2</em>
 <pre class="prettyprint">
 SELECT no,title,wdate FROM (
 	SELECT ROWNUM R, A.* FROM (select no, title, wdate
@@ -712,7 +835,7 @@ SELECT no,title,wdate FROM (
 WHERE R BETWEEN 11 and 20;
 </pre>
 
-<em class="filename">레코드 그룹 3 에 해당하는 레코드</em>
+<em class="filename">Records belonging to group 3</em>
 <pre class="prettyprint">
 SELECT no,title,wdate FROM (
 	SELECT ROWNUM R, A.* FROM (select no, title, wdate
@@ -720,25 +843,27 @@ SELECT no,title,wdate FROM (
 WHERE R BETWEEN 21 and 30;
 </pre>
 
-ROWNUM은 오라클의 가상 컬럼으로 쿼리 문장에서 1부터 시작하여 순차적인 값을 가진다. 
-ROWNUM을 WHERE 절의 조건에 쓰면 보여줄 그룹에 해당하는 레코드를 추출할 수 있다. 
-list.jsp를 요청할 때 그룹 번호를 파라미터로 넘겨준다면 그룹에 해당하는 시작 레코드 번호와 
-마지막 레코드 번호를 구할 수 있을 것이다. 
-list.jsp에 전달할 레코드 그룹 번호에 해당하는 파라미터를 page라 한다면 
-페이지 분할 기능을 아래처럼 구현 할 수 있다. 
- 
+<p>
+The ROWNUM is a Pseudocolumn.
+In the query result, the ROWNUM returns a number indicating the order in which Oracle selects the row from a table.
+If you use ROWNUM in the condition of the WHERE clause, you can extract records corresponding to the group.
+When requesting list.jsp, if you pass the record group number as a parameter, you can get the starting record number and the last record number of ROWNUM corresponding to the group.
+Set the parameter corresponding to the record group number to be passed to list.jsp to curPage and modify list.jsp with reference to the following code.
+</p>
  
 <em class="filename">/board/list.jsp</em>
 <pre class="prettyprint">
 &lt;%
-// .. 중간생략 ..
-<strong>int page = (request.getParameter("page") == null) ? 1 : Integer.parseInt(request.getParameter("page"));</strong>
-// 시작 레코드 계산  
-<strong>int start = (page - 1) * 10 + 1;</strong>
-// 마지막 레코드 계산
+
+// .. Omit ..
+
+<strong>int curPage = (request.getParameter("curPage") == null) ? 1 : Integer.parseInt(request.getParameter("curPage"));</strong>
+// Start ROWNUM  
+<strong>int start = (curPage - 1) * 10 + 1;</strong>
+// End ROWNUM
 <strong>int end = start + 10 - 1;</strong>
 
-// ... 중간 생략 ...
+// .. Omit ..
 
 <strong>String sql = "SELECT no,title,wdate FROM (" + 
           	"SELECT ROWNUM R, A.* FROM (SELECT no, title, wdate " +
@@ -750,25 +875,31 @@ stmt = con.prepareStatement(sql);
 <strong>stmt.setInt(2, end);</strong>
 rs = pstmt.executeQuery();
 
-// ... 중간 생략 ...
+// .. Omit ..
+
 %&gt;
 </pre>
 
-이제 http://localhost:8989/board/list.jsp?page=1을 요청하면 그룹1의 레코드를 볼 수 있게 되었다.
-하지만 주소창에 일일히 쳐가며 방문하는 게시판은 없다.
-일반적인 게시판은 페이지를 이동할 수 있는 링크를 제공한다.
-<strong>&lt;a href=&quot;list.jsp?page=1&quot;&gt;[1]&lt;/a&gt;</strong><br />
-마지막 페이지 번호를 알아낸다면 1부터 마지막 페이지 번호까지 for 문을 이용해 위와 같은 링크를 만들 수 있다. 
-마지막 페이지는 어떻게 알 수 있을까?
-"마지막 페이지 번호"는 페이지가 1부터 시작하므로 "총 페이지 수"와 같다.
-총 페이지 수는 총 레코드 수를, 페이지 당 레코드 수인, 10으로 나누면 계산된다.
-이제 총 레코드 수를 계산하면 모든 문제가 풀릴 것이다. 
+<p>
+If you request http://localhost:port/board/list.jsp?curPage=1, you can see the records of group 1,
+If you request http://localhost:port/board/list.jsp?curPage=2, you can see the records of group 2.
+However, it is inconvenient to change the curPage parameter in the address bar of a web browser and move the page.
+A typical bulletin board we know of provides a link to move the page as shown below.
+</p>
+<pre class="prettyprint no-border">
+&lt;a href=&quot;list.jsp?curPage=1&quot;&gt;[1]&lt;/a&gt;
+</pre>
 
-<h3>총 레코드 수</h3>
-list.jsp의 적당한 위치에 아래 코드를 추가한다.
+<p>
+If you know the last page number, you can make the link like this from 1 to the last page number using the for statement.
+How do I know the last page?
+Since the page number starts at 1, the "last page number" is equal to the "total number of pages".
+The total number of pages is calculated by dividing the total number of records by 10, which is the number of records per page.
+Add the following code to the appropriate location in list.jsp.
+</p>
 
 <pre class="prettyprint">
-int totalRecord = 0; //총 레코드 수를 저장할 변수
+int totalRecord = 0;
 String sql = "SELECT count(*) FROM board";
 stmt = con.prepareStatement(sql);
 rs = pstmt.executeQuery();
@@ -776,70 +907,77 @@ rs.next();
 totalRecord = rs.getInt(1);
 </pre>
 
-list.jsp에 총 레코드 수 구하는 코드 아래, 적당한 위치에 아래를 추가한다.
-
+<p>
+Add the following to the appropriate location under the code to get the total number of records in list.jsp.
+</p>
 
 <pre class="prettyprint">
-int totalPage = 0; //총 페이지 수를 저장할 변수
+int totalPage = 0;
 
 if (totalRecord != 0) {
-   if (totalRecord % 10 == 0) {
-      totalPage = totalRecord / 10;
-   } else {
-      totalPage = totalRecord / 10 + 1;
-   }
+	if (totalRecord % 10 == 0) {
+		totalPage = totalRecord / 10;
+	} else {
+		totalPage = totalRecord / 10 + 1;
+	}
 }
 </pre>
 
-이제 총 페이지 수, 즉 마지막 페이지 번호를 구할 수 있다.
-여기서 코드를 좀 더 우아하게 해 보자.
-페이지 당 레코드 수를 저장하기 위한 변수 numPerPage를 선언하면,
-list.jsp의 시작 레코드와 마지막 레코드 번호를 계산하는 코드는 아래와 같이 변경된다.
+<p>
+Now we get the total number of pages, the last page number.
+At this point, I will refine the code to get the ROWNUM start and end records more elegantly.
+Declare the variable numPerPage to store the number of records per page, and modify the code in list.jsp referring to the code below.
+</p>
 
 <pre class="prettyprint">
-int numPerPage = 10; //페이지당 레코드 수
-int start = (page - 1) * numPerPage + 1; //시작 레코드
-int end = start + numPerPage - 1; //마지막 레코드
+int numPerPage = 10; //the number of records per page
+int start = (curPage - 1) * numPerPage + 1; //the ROWNUM start record
+int end = start + numPerPage - 1; //the ROWNUM end record
 </pre>
 
-총 페이지를 구하는 코드 역시 변경해야 한다.
+<p>
+You also need to change the code to get the total number of pages.
+</p>
 
 <pre class="prettyprint">
 int totalPage = 0;
 if (totalRecord != 0) {
-  if (totalRecord % <strong>numPerPage</strong> == 0) {
-    totalPage = totalRecord / <strong>numPerPage</strong>;
-  } else {
-    totalPage = totalRecord / <strong>numPerPage</strong> + 1;
-  }	
+	if (totalRecord % <strong>numPerPage</strong> == 0) {
+		totalPage = totalRecord / <strong>numPerPage</strong>;
+	} else {
+		totalPage = totalRecord / <strong>numPerPage</strong> + 1;
+	}	
 }
 </pre>
 
-<h3>페이지 직접 이동 링크 생성</h3>
-
-총 페이지 수를 구했으므로 아래와 같이 페이지 직접 이동 링크를 생성하는 코드를 list.jsp에 작성할 수 있다.
+<p>
+Add the following code that creates the page move link to the bottom of list.jsp.
+</p>
 
 <pre class="prettyprint">
 &lt;%
 for (int i = 1; i &lt;= totalPage; i++) {
 %&gt;
-   &lt;a href="list.jsp?page=&lt;%=i%&gt;"&gt;[&lt;%=i%&gt;]&lt;/a&gt;
+	&lt;a href="list.jsp?curPage=&lt;%=i%&gt;"&gt;[&lt;%=i%&gt;]&lt;/a&gt;
 &lt;%
 }
 %&gt;
 </pre>
 
-<h3>목록 페이지에 페이지 분할 기능 적용</h3>
-다음은 이제까지 구현한 페이지 분할 기능 알고리즘을 정리한 것이다.
+<p>
+The page partitioning algorithm is summarized as follows.
+</p>
 
 <ol>
-	<li>총 레코드 수를 구한다.</li>
-	<li>페이지당 보일 레코드 수를 결정하고 총페이지 수를 구한다.</li>
-	<li>첫번째 레코드 번호와 마지막 레코드 번호를 구하고 레코드를 출력한다.</li> 
-	<li>페이지 직접 이동 링크를 만든다.</li> 
+	<li>Get the total number of records.</li>
+	<li>Set the number of records per page and obtain the total number of pages.</li>
+	<li>Find the first ROWNUM number and the last ROWNUM number of the group.</li>
+	<li>Create page links.</li>
 </ol>
 
-위 알고리즘을 기존의 list.jsp 파일에 적용한다.
+<p>
+The following is a list.jsp with page partitioning function.
+</p>
 
 <em class="filename">/board/list.jsp</em>
 <pre class="prettyprint">
@@ -853,10 +991,10 @@ for (int i = 1; i &lt;= totalPage; i++) {
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-&lt;title&gt;목록&lt;/title&gt;
+&lt;title&gt;List &lt;%=curPage %&gt; page&lt;/title&gt;
 &lt;/head&gt;
 &lt;body style="font-size: 11px;"&gt;
-&lt;h1&gt;목록&lt;/h1&gt;
+&lt;h1&gt;List &lt;%=curPage %&gt; page&lt;/h1&gt;
 &lt;%
 Log log = new Log();
 
@@ -866,7 +1004,7 @@ ResultSet rs = null;
 
 String sql = null;
 
-//1.총레코드 수를 구한다.
+//1. Get the total number of records.
 int totalRecord = 0;
 try {
 	con = dbmgr.getConnection();
@@ -896,9 +1034,9 @@ try {
 	}	
 }
 
-//2.페이지당 보일 레코드 수를 결정하고 총 페이지 수를 구한다.
-int numPerPage = 10; //한 페이지에서 보일 레코드 수
-int totalPage = 0; //총 페이지수
+//2. Set the number of records per page and obtain the total number of pages.
+int numPerPage = 10; //Set the number of records per page
+int totalPage = 0;
 if (totalRecord != 0) {
 	if (totalRecord % numPerPage == 0) {
 		totalPage = totalRecord / numPerPage;
@@ -907,14 +1045,13 @@ if (totalRecord != 0) {
 	}
 }
 
-//3.첫번째 레코드 번호와 마지막 레코드 번호를 구한다.
-int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+//3. Find the first ROWNUM number and the last ROWNUM number of the group.
+int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
 
-//시작 레코드 계산
-int start = (page - 1) * numPerPage + 1;
-//마지막 레코드 계산
+//first ROWNUM 
+int start = (curPage - 1) * numPerPage + 1;
+//last ROWNUM
 int end = start + numPerPage - 1;
-//해당 페이지의 레코드 셋을 구한 후 출력한다.
 
 try {
 	con = dbmgr.getConnection();
@@ -938,11 +1075,11 @@ try {
 &lt;%
   }
 } catch(SQLException e) {
-	log.debug("Error Source : board/list.jsp : SQLException");
-	log.debug("SQLState : " + e.getSQLState());
-	log.debug("Message : " + e.getMessage());
-	log.debug("Oracle Error Code : " + e.getErrorCode());
-	log.debug("sql : " + sql);
+	log.debug("Error Source: board/list.jsp's SQLException");
+	log.debug("SQLState: " + e.getSQLState());
+	log.debug("Message: " + e.getMessage());
+	log.debug("Oracle Error Code: " + e.getErrorCode());
+	log.debug("sql: " + sql);
 } finally {
 	if (rs != null) {
 		try {
@@ -964,44 +1101,47 @@ try {
 	log.close();
 }
 
-//4.각 페이지에 대한 직접 이동 링크를 만든다.
+//4. Create page links.
 for (int i = 1; i &lt;= totalPage; i++) {
 %&gt;
-	&lt;a href="list.jsp?page=&lt;%=i %&gt;"&gt;[&lt;%=i %&gt;]&lt;/a&gt;
+	&lt;a href="list.jsp?curPage=&lt;%=i %&gt;"&gt;[&lt;%=i %&gt;]&lt;/a&gt;
 &lt;%
 }
 %&gt;
 &lt;p&gt;
-&lt;a href="write_form.jsp?page=&lt;%=page %&gt;"&gt;글쓰기&lt;/a&gt;
+&lt;a href="write_form.jsp?curPage=&lt;%=curPage %&gt;"&gt;Add New Post&lt;/a&gt;
 &lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-목록을 방문하여, 하단 페이지 직접 이동 링크를 클릭한다.
+<p>
+Visit the list page and click the page link to test it.
+</p>
 
 <dl class="note">
-<dt>JSP에서 page란 변수를 쓸 수 없는 이유</dt>
+<dt>Why can not we use page variables in JSP scripting?</dt>
 <dd>
-JSP에는 page라는 내재객체가 있다.
-이것은 JSP가 서블릿으로 변환될 때 서블릿 코드에 다음과 같은 코드가 생성되어 추가되기 때문이다.<br /> 
-<strong>Object page = this;</strong><br />
-결론적으로 page란 이름의 변수를 JSP에서 사용할 수 없다.
+When the JSP is converted to a servlet, the following code is generated and added to the servlet code.
+<pre class="prettyprint no-border"><strong>Object page = this;</strong></pre>
+In conclusion, you can not use a variable named page in JSP scripting.
 </dd>
 </dl>
 
-<h3>Oracle 11g의 rank() 함수</h3>
+<h3>Oracle 11g's rank() function</h3>
 
-11g부터 rank()함수를 이용할 수 있다.
-이 함수를 이용하면 위의 게시판 목록에 해당하는 쿼리문을 조금 간단하게 줄일 수 있다.
-먼저 원리를 알기 위해 쉬운 예제부터 살펴보자.
-다음은 scott 계정의 emp 테이블에서 급여순으로 정렬하는 쿼리문이다.
+<p>
+You can use the rank () function from Oracle 11g.
+The following is a query statement that sorts the employee data in salary order in the emp table of the scott account.
+</p>
 
 <pre class="prettyprint">
 SELECT empno,ename,sal,rank() over (order by sal desc) as rank FROM emp;
 </pre>
 
-이제 위의 게시판 목록를 구하는 쿼리문을 rank() 함수를 이용하는 것으로 바꾸어 보자.<br />
+<p>
+With this function, you can change the query statement corresponding to the bulletin board list as follows.
+</p>
 
 <pre class="prettyprint">
 SELECT no,title,wdate 
@@ -1011,188 +1151,188 @@ FROM (
 WHERE R BETWEEN 1 and 10;
 </pre>
 
+<h2>Limiting the number of pages link.</h2>
 
-<h2>페이지 직접 이동 링크 수 제한 기능</h2>
-완벽하게 보이는 페이지 분할 기능은 문제점이 있다.
-레코드가 10,000 개이고 numPerPage가 10이라면 하단의 페이지 직접 이동 링크는 [1] [2] [3] ...... [999] [1000]까지 생긴다.
-즉 1,000 개의 링크가 만들어진다는 얘기다.
-1,000 개의 페이지 직접 이동 링크는 웹 디자이너가 만든 예쁜 디자인을 헤집어 놓을 것이다.
-해결책은 레코드를 그룹화한 것과 마찬가지로 페이지를 그룹화하는 것이다.
-이 기능을 여기서는 <strong>"페이지 직접 이동 링크 수 제한 기능"</strong>이라고 부르도록 하겠다. 
+<p>
+There is also a problem with the page partitioning function.
+If there are 10000 records and numPerPage is 10, 1000 page links are generated as [1] [2] [3] ...... [999] [1000].
+A 1000 page link will ruin the web design.
+The solution is to divide the page links into groups as well.
+I'll call this feature <strong>"Limit the number of page links"</strong>.
+</p>
 
-<h3>페이지를 그룹화하기</h3>
-페이지 직접 이동 링크의 수를 제한하기 위해서는 페이지를 그룹으로 나누어야 한다.<sup>1</sup>
-만약 그룹당 페이지 수를 5로 정했다면, 다시 말해 페이지 직접 이동 링크수를 5개만 보이도록 제한한다면
-하단에 보이는 [1] [2] [3] [4] [5] 링크는 그룹 1에 속한다.
-[6] [7] [8] [9] [10]는 그룹 2에 속한다.<br />
+<h3>Divide page links into groups</h3>
 
-<img src="https://lh3.googleusercontent.com/ulUUomivFb4v8w2v9yqoA7VcR48i-adOy48WnNc0dRCoR8FpQ0EuYU9BwRM7sx2C_EeRs_8kM1oh9Rqcf41Bhtw4as9K_9vARuetxuElsNDmdieN2V0jc69S5bskwyyIuRPUF3A6hiIL8g6TPDmLRbEGPw_PL46pJdbawRst6-5hd3JQy7CKcu4gXNrhgGeZ5U5wLEvPaw45x5bmEhHRTvLDf7yYgHa222jjuS9bNmUv_JZRyrLgzXwBMBoq-BvAxw7lFnJrXEGW_ZcVzefsMu1Dkw9WZtywKX_RkhRd-7kXMoHrekLrHLy7QyibSGKzKz-Yy6c9gucJNozBKSpFTuNtERLYXVruYudBe9RhaqTNcjo_cZU1HTdq1ZiLn-sLBzW-jVP34HP07tPjjp8I6XSuHOchTpbdEQ3SDX2n6mPMDHVTFPaBQBlvr5xTqenY9y2x4iqootZhsRYcKhvt_HgSGlo7O76zKPmMDV1QMA4wubW6Bo4H4rvCbW7hAD1iydPgY-s1U0qde4UEFFxSmCju70T9BdrmxzqchK_Mx1g0Kuu8xGADNFoZ8Lanns5lVf1WaKH_Cx_-JYs3EBZWt1JHq1yZpus=w366-h405-no" alt="페이지 링크 그룹화" /><br />
+<p>
+Pages must be grouped to limit the number of links.
+If you restrict the number of links to 5 pages to be visible, then links [1] [2] [3] [4] [5] will belong to group 1, and links [6] [7] [8] [9] [10]  will belong to group 2.
 
-page가 어느 그룹에 속하는지는 다음 코드로 구할 수 있다.
-페이지를 그룹화할 때 그룹 번호를 저장할 변수를 block라고 하겠다.
-페이지를 그룹으로 묶을 때 묶는 단위를 pagePerBlock라고 하겠다.
-즉, block은 페이지 그룹 번호를 저장하고, pagePerBlock은 block 당 페이지 수를 저장한다.<br />
+<img src="https://lh3.googleusercontent.com/Cbp7bPD4AJmZw_mBKbRTqRIm5QxjwNkeus_Z5Y_40WERLtbMdK_C-vnUT31IMepPG2zj_geFXXxm0apwtK2KpqTjiCi_qptnLX_EkE8AWV56pfVbisRp2iMr6iPydQncSkOh4jd_m1qSDUYwq9cDDbKsKohkClP1q_dMw5_q8YPBez6SIIWnj-NScDhlmtKSD07dM4Gg7BQRS32YYW8sd-dbMC0hi9168t-dTcRDnQCs_wiGcrUjbD1sboIkZRM7okFDN_j6Bg9btSFFcwdbLrWmm5saK94pO3ZET37U86FXW9ejaDXrNHgEZ-JzHefdlrvZ_0hvQk5e6sdDg6wxYpFmfjGuRIeNfJaQWtCabuu8Cp7FS7CGPhR1zMTTyp-SrQsbQSiN_jl0KfVeJ24GITyH-xR8wtophQlc_GnxCc9TX_8q_Xui_M0ol54G8M8pxShhCBsjlmcyf_OUo16LDphoUY7GZ2GPGrFK8aMxlVBqZ0lbzOIjAXTYz6GASk6_cvep8rwE5iEvdmDJ36dCOZLsbWbKVLw0aQhG6redjNG0cCELle9sJXJhrIcSm_fQcmrxN9UHPWXH9ZB1GKy-rYcipiY1YXP92IgbsyOZtneWxqp1nqaSYFJi=w366-h357-no" alt="Divide page links into groups" style="display: block;" />
 
-<em class="filename">page가 속한 block 구하기</em>
+If the page group unit is called pagePerBlock and the number of the page group to which curPage belongs is stored in a variable called block, the block can be obtained by the following code.
+</p>
+
+<em class="filename">Obtaining the block to which curPage belongs.</em>
 <pre class="prettyprint">
-//페이지 그룹 번호를 저장할 변수 선언과 초기화
+//Declaring and initializing variables to store the number of the group to which curPage belongs.
 int block = 1;
 
-//블록 당 페이지 수를 저장할 변수와 초기화
+//Declaring and initializing variables to store the number of page links per page link group.
 int pagePerBlock = 5;
 
-if (page % pagePerBlock == 0) {
-   block = page / pagePerBlock;
+if (curPage % pagePerBlock == 0) {
+	block = curPage / pagePerBlock;
 } else {
-   block = page / pagePerBlock + 1;
+	block = curPage / pagePerBlock + 1;
 }
 </pre>
 
-현재 페이지가 속한 그룹 번호 block을 구했다면 block에 속한 첫 번째 페이지와 마지막 페이지 번호를 다음 코드로 구할 수 있다.
+<p>
+The first page and last page number belonging to block can be obtained by the following code.
+</p>
 
 <pre class="prettyprint">
-// block 에 속한 첫번째 페이지 계산 
+//The first page belonging to block 
 int firstPage = (block - 1) * pagePerBlock + 1;
 
-// block 에 속한 마지막 페이지 계산
+//The last page belonging to block
 int lastPage =  block * pagePerBlock;
 </pre>
 
-루프 문을 이용해서 첫번째 페이지부터 마지막 페이지까지 링크를 만든다.
+<p>
+Use the loop statement to create a link from the first page to the last page.
+</p>
 
 <pre class="prettyprint">
 &lt;%
 for (int i = firstPage; i &lt;= lastPage; i++) {
 %&gt;
-   &lt;a href="list.jsp?page=&lt;%=i%&gt;"&gt;[&lt;%=i%&gt;]&lt;/a&gt;
+	&lt;a href="list.jsp?curPage=&lt;%=i%&gt;"&gt;[&lt;%=i%&gt;]&lt;/a&gt;
 &lt;%
 }
 %&gt;
 </pre>
 
+<p>
+If you modify list.jsp as described above, you get the following results.
 
-위의 코드를 참고하여 기존의 list.jsp를 수정하고 테스트한다.<br />
+<img src="https://lh3.googleusercontent.com/zk88YMFPxv1fewDNDdm8aCXi5kCG3U9A_ltOAnL-HAc_zX5cO8r9RdfCb2B2_PHGxTxV09e8g7-6Z9dYi3W7aJcggr84XU_jOVz8JQmwkEvvbO-CorNMZCnxBFmzJ4PVanwDAaduRKyMIpaSbLuHCWVLyKOK58GKZMddWQpQFwu-ONRUSj-BtLBO_YlrLAsOXRrQI8uhwr07mAqRa7wOe9PQpp9uyppnoxz35DxbRC1TbH8uGJ__jQQciqWa42cH4IW1cOhJuBYGaNqGDiiCNO7e11fb-nfyw0SZNAlvDUl7NJ5fd9YwezBrKQN2gtgTolM4ez7q5qU2WpQtdjL8_MlIUI-0g675of9FbW0e3rlroBR2seAaEX2xrBqlEjHqn5FDJucQTJRrueZJ2NBgb23AlQg9TzSdMRuotG2-0Jbsg6ydBfBvdKTlTeED7wYQsEtTKoDnrH1ucPGN6nlzEVWTGM_IndnqeUlllG8lULoBa6mvHogFBBKBTRBQXldz3kMBryThmfpPa8sL5WuglVBQAnQOGNBmtqrLIsMZ5pQq1Z6HofvQHQHTvSfzuOyBQ5X-TZ9qVV8W97gbJdYl8KnxlxWDKFEtMswO5iPuBzTEtYDJbJy8e-r8=w363-h340-no" alt="Group page links" style="display: block;" />
 
-<img src="https://lh3.googleusercontent.com/XfSjkWt4U17J_pdYXK99COdUsVaPC42hwkmcxsY-qYzphiA9NFUYSwIMUZ6zmQXPOd0kkB5KLqOk24WZOPCIrrRDV4F85p5pprWALpOkndDP9OCjK2VJYEP887ZfKwBh9oVHEjLwJZ3Gw60cIq4JkYaGLDhQtC2kycUzwoBXCYYc6S5eMiurpc7HkWRpiR_Lg2BMQpzfWTu3seffhU41-2iiXa4j_gxpC5YCiuFKFAndmzEWoWxT_vDqoJa_EN5IX94iaV340e67FRwt51cwUfHmbzfYyNYRBt35s6-IUlOy518UXc9fs6QpekveUlwK-yWqkLL4e53e4DRSSnDgrWxHZTJ0tmUkKyVy_xLIX9Sqcr5WrJR-IKS9Z6clKIoxLskojLEG1zCGwcg7jYNwb2qD4qHEB67GGLXm2vA-ts1j8P3b3tJMTFxsuBh_Zxqw9oYp9ItSM7zcJZ6b6r5O4jtkO7Lba_kfPyBwdwBzp9ux85KBMdXPVAM5jFCNf0CusVm9J1-HaqORJABpqx1dmVhdwBA995NjR4cOoSjvxwjyy3i1DfRVdmTz7I5LCzcADVPZfMePnUJ3higcc2KBmbh-B_YlIZk=w363-h393-no" alt="페이지 링크 그룹화" /><br />
+Obtaining the page group to which the current page belongs and showing only pages belonging to that page group succeeded.
+But there is no way to move to another page group.
+The most common solution is to create a link so that you can move to an adjacent page group.
+If the block is greater than 1, Creates a [&lt;] link and link "list.jsp?curPage=&lt;%=firstPage-1 %&gt;" to that. 
+If the block is smaller than the total number of blocks (the total number of blocks is equal to the last block number), Create a [&gt;] link and link "list.jsp?curPage=&lt;%=lastPage+1 %&gt;"to that.
+This allows you to navigate to adjacent page groups using the [&lt;] [&gt;] link.
+To create a [&gt;] link, you need additional code to get the total number of blocks, or the last block number.
+</p>
 
-현재 페이지가 속한 block을 구해서 그 block에 속한 페이지만 보여주는 것은 성공했다.
-하지만 문제가 있는데 블록에서 블록으로 이동할 수 없다는 것이다.
-가장 많이 사용되는 해결책은 다음과 같다. 
-block이 1 보다 크면 [이전] 링크를 만들어서 firstPage - 1인 페이지로 링크시키고, 
-block이 총 블록 수(총 블록 수는 마지막 블록 번호와 같다)보다 작으면 [다음] 링크를 만들고 lastPage + 1인 페이지로 링크시킨다. 
-[이전] [다음] 링크를 이용하면 "인접한" 블록으로 이동할 수 있다.
-
-<em class="filename">총 블록 수 구하기 (마지막 블록 구하기)</em>
 <pre class="prettyprint">
-//총 블록 수를 저장할 변수 선언과 초기화 
 int totalBlock = 0;
 
 if (totalPage &gt; 0) { 
-  if (totalPage % pagePerBlock == 0) {
-    totalBlock = totalPage / pagePerBlock;
-  } else {
-    totalBlock = totalPage / pagePerBlock + 1;
-  }
+	if (totalPage % pagePerBlock == 0) {
+		totalBlock = totalPage / pagePerBlock;
+	} else {
+		totalBlock = totalPage / pagePerBlock + 1;
+	}
 }
 </pre>
 
-<em class="filename">[이전] 링크 생성 코드</em>
+<p>
+You can generate the [&lt;] and [&gt;] links with the following code.
+</p>
+
 <pre class="prettyprint">
 &lt;%
-//현재 block &gt; 1 면 [이전] 링크를 만들고 firstPage - 1 페이지로 링크
 int prevPage = 0;
 if(block &gt; 1) {
-  prevPage = firstPage - 1;
+	prevPage = firstPage - 1;
 %&gt;
- &lt;a href="list.jsp?page=&lt;%=prevPage %&gt;"&gt;[이전]&lt;/a&gt;
+	&lt;a href="list.jsp?curPage=&lt;%=prevPage %&gt;"&gt;[&lt;]&lt;/a&gt;
 &lt;%
 }
+%&gt;
 </pre>
 
-<em class="filename">[다음] 링크 생성 코드</em>
 <pre class="prettyprint">
 &lt;%
-//block &lt; totalBlock 면 [다음]링크를 만들고  lastPage + 1 를 페이지번호로 링크 
 if(block &lt; totalBlock) {
-  int nextPage = lastPage + 1;
+	int nextPage = lastPage + 1;
 %&gt;
-  &lt;a href="list.jsp?page=&lt;%=nextPage %&gt;"&gt;[다음]&lt;/a&gt;
+	&lt;a href="list.jsp?curPage=&lt;%=nextPage %&gt;"&gt;[&gt;]&lt;/a&gt;
 &lt;%
 }
 %&gt;
 </pre>
 
-위 코드를 참고하여 list.jsp를 수정한 후 목록을 테스트한다.<br />
+<p>
+Modify the list.jsp as described above.
+</p>
 
-<img src="https://lh3.googleusercontent.com/Jn0RxOB1g52tbd0npx3H7x6Vo_2D_DKXvzUexC_QOiztm4STkGvobiOa3tYlWi4jwXpiL4ybvJ1iP-0j35HYei4fKdHy7fJ9gAGBbNeAIktlRzcndHpDSzlojkXNDLvWiVaFaFtgA6Sa68AggeIlwG4cihlWHHfX9G1viLPhpEXe_eDJW7YcH7Bjn4fOsNvCIVm23Zao3vjY6nG8TZHhYeVP2cUG-NOOFdH1ynRLcj2d3J6xTGKxwWsOIXI-duT4SRzxIVpy7LjqHHsdl0DkR2tbrhZ0gr2zGXo4NoI5dochxlJeRI3b7LAzzAgRs5RnxzFAYAxkPmMmVznS3vB1slnxlZFVYFf2fcFiM4k168l68ND_olweCZuF_K3-UBjpny_nVSS2IApf6G2VCyDJgsLrt4wGe9PAG1bk7OoSdgnGxh1ANVH4ac4p07TLmy7oA8zbXRE5II9hMkypSMg_jo5TgRLA7i6r2OKXsrRuBqy4JM7ReJYnLrzZ5a5xczviMUom0lgdj_fxFh7_n3wxd8kXRXEPLVKLYJP-Cf3hDwHmYU_CLYt9-ewK-Nt4z_q-sZiFoItvPZDV9_sy3DQQNq_HU4KLUuA=w364-h400-no" alt="페이지 그룹화" /><br />
+<p>
+The following is a list after modification.
+You can see the links [&lt;] and [&gt;] to move to adjacent page groups.
+<img src="https://lh3.googleusercontent.com/M2JdgNTMDvNzvdYnHNRUuOceaxUI85ukmUiDjEboGVRgzR8g-vNdtLLzVXeOR6Zl_krJdOv1VZfqQNBIIbfNvhU393Z768pLJkQvozE3-SlQSpXrDuY0dwkZe9hcOww1cb2TpDFOgmaVwsQiybMIt2Sk2fovc8ZP_qA6BojPtNlNQpca_f3ujhhrC8krW-GdiGCfER48_xscK0no64nEfiOF725JvnBPDUZWcEfIBI1ozkUt3iY_U4nykVqPIZyBwzMvxEnEUgbXTkbk-im12niR1XqDcbOJbofVoEP3owXtdgPdVwyJguQ9wX0HUzvnHuXhxvC55ytYMcwfv1eES-YcUsjCZzsnoNNNIJeVxhxaI7-KXO8evOB4j9-In_EpqNjDsWBzYpP_W_3DU9p2TXgUbKAi0Z5vTOg88vnObTFL4_T20ZhtBRzBM0XgNyoZDUZjYpft9smxFnttbM0GP6SvTERLTg3-hAC3h-W0BIuotWCQDocavx4sMn_HrEWvPhXBwmO0CdZzuGxGRU4KMLvKrw4HnXyDXMnxBtLasgQFb5cLvZ-D7r8_-3i6FJs8wZbuAZMdBXXJUjb_VvlndI77bCWfM4HU5p6A8MDSkBjoQI5AUc_jAEKq=w212-h296-no" alt="Group pages" style="display: block;" />
+<img src="https://lh3.googleusercontent.com/OaInFDlgr7ttlx3F6cOYUq58S5DF4jyYvhHGB50HF1sKSLJC2ve0946BJ-jT6u4hC3Qf080c98ajrpDxMyhs2an5qv75iTxR7rv_S47LGuFlcMjIBWqRkKNEKo4WDNzpiBFzeQazJtMuG5ScaRt1BUYx315Gi0YLjrcrzfphvceKKrhA6LwZwbO7W4sCTWYsOVNYAJf_NL5NUM2DKshKCs8---AJ44ia_88Q7BwritlpUwNSax6Fy0VQhSBkm9idmvP2P8pQvc2iNvpMX4zB1nUGs-qwa130SnWQIQnVjaPgEPdK9IXjca-rk9ah-J015hLwcqhgyhoKUJsEl-Ab5aMMZPDvIV1569Mw7YKrfBQGfe1VFBCNbx9EirEXt39RceUwS9XVNnz-lHOMVIl_Y91AAJ19nafRoxZ3zgNqbCsR3EpN4jWheshnF4zOeaAO5-t_Owzqm74O1rB9G3cNDNe7itgDpFxnSsT8gm4c8vbu5a_CF30c47LI7JZCmbWNBDO9s5TjAe9IhY2XRyerC_GwZGxqj2cvLGJOwHDujONcj1vs0SIxt0vypka5J2JJUcLzMt6bukarQcLLGGgHFrAXyAV_HRB_HBEpsLn8jiPu4VUS_MFNZWKi=w212-h287-no" alt="Group pages" style="display: block;" />
+</p>
 
-[다음] 버튼을 클릭하여 테스트한다.<br />
+<p>
+There seems to be no problem, but there are still bugs.
+After adding the records so that the total number of records is 101, move to the last block using the [&gt;] link.
+<img src="https://lh3.googleusercontent.com/7t5Cv7nxxsjbNmRAvyMphWR74Jo3bFiDLQsqr6Qb7I-VKgFCfmL-p9_mpng0gru-i9IsaYn4PxsS4I1WCS03rUXih9nA23kBTWd9sS_pKCNxB9W1Po2R5xakx3cFs_KAb33LYMD4f_FW1uG3HHxaiO0jE0tjHvvnsWj8_7S0IwfK_gzU2RKP4IUpBaPb-g6OJz4xGgNXLtCWlyEXSWdA0izg8qfu5OmUYSMH44jqMIJYCV0j0gsRbvhCqphH6vkSzMe-Q3lFYTROpq12KyPqrOYsmd-4rXqsM-jq-6onQodyBFdt_IZBUv3lw8AI39_XE6MvqlGrrBPWRmzux7jSoUulKoU6y3Z2NUzvTyl4ifdmlJT8DNG-NU4RnJ0TCEpGfZCadOA8Be6MFYheVZGl_X021Ld7KRogsE-rOrzq9wJ5Ow8hMKD-3sc0JwqFs0W22JcpRudcq9VwOkD-DRQoyaM3KTisx_gTUVBheloFdkpZFUn85U6TErIRYnSy3PYjws2CyH5CaDO4S9fuJPUERY8HQR3kanRwkT3QQOYqjqDyfB-S2r0QGmACtblUCULJDCU6c2llKlyh4HW4NW-MHLh9TYttHYkIOo_EVnq6Gj8225arir_ai91v=w452-h68-no" alt="Group pages" style="display: block;" />
 
-<img src="https://lh3.googleusercontent.com/p-G8yrws_oJbQ5NTge3FVMreJCaQs6Eg3-hgHm57zhDwGjR-FdAIbjT3L8rNMbkRVzctCshIhNlGwVfH3fxInRG398-9fgazbcZwCBM085lHDgaxS5HctcIAumH9_b-XJoN8SVdovGDK4sKobUXvEBZW9c-mfVXeSTfuc-HfYzntmz5DrnTc0Ff9HNW_IkuZ35Xi5b-S3zSW6HLTtOV-49G6MztqaKv_d7klI6YeYryzCClFm1EwNzm6zT_lLPEXcM2Y5KciPIeeqYDjnNM63knBp5Y3JXJ52my9-PIqUs6KaetyhTUId1L1uVJsQ67PCZR23rk2rPB37-R8RPedaJC4Dxkvo36KKC7fgzHETCjO2or-Wp7nw4BlDWEoYT7LuIMf_9mjlb-96dicbXJFAf0C-jLUsNpNZ4RzWb8rwA141NC7SJOrgZ1zdQUMigMAjHPxhT1WfwCk_VpV08cYmnk7avhIfPgOijoe2qkwhu8TSWTzuZ7lgWWzpoa0Df7LRab6K7I2NWa40qf60bT2tuElxnaSz-SmAQTgXIwDOwBKKsFNfI5kajtl1IMA76EXYdxqj8aDxiu7Mqnaj2wXqf0Z5bL_PbE=w452-h398-no" alt="페이지 그룹화" /><br />
-
-[이전] 버튼을 클릭하여 테스트한다.<br />
-<br />
-
-테스트 결과 이상이 없어 보인다.
-디자인에 따라서 pagePerBlock을 조절하면 디자인에 영향을 미치지 않게 할 수 있다.
-레코드가 101 개가 되도록 한다.
-[다음] 링크를 클릭하여 마지막 블록으로 이동한다.
-문제가 없는가?<br />
-
-<img src="https://lh3.googleusercontent.com/Zl7usmdCXfNXldDNKC06qpO2HO5jNL2ZiK62v2G89qG3Mx-zio23mi5_6VxVSpSuPfpAgPmD6F9JpDmKDGy-JnPANd7bhuGOInV9-xU2pidupwJYkjx4_WQPKuhnjjt-rVGnLXham9sI5Yizlu_zGwBh26xer5n9Mky2iP6VeKmyF-fvsmIqoUjfdXeXpR-1cWoPGPAgA6nprsSedC_1HRtkbIq5Vko0yPq3bFmJK8pBShFzU09ZrL1ipDecPgxK-C00efQwWT4N-pC04YSVDMCccGinCC4T9KQr728L-BVi8AjLAAb4LWinYHS--HCx9mWA-wjNnX_d4_LGybxBakaGx1h-q-sc7t_pulEUZE-ApRvy0c0epjrKNzHK6ESnBOlOMdT9JGYceue-65laQWa5efW_mDvIq_KyseHDNOC6nagrj8TUBh8oKs5zEV0NB4syzhINIhBffoj6UUkVPyQagtCpi57vF-hmTAy9J-SU1ga6vjcfBn72S3OAUuc_MFC4GPHYPpFo8eGNirOu8bYrFmR3loKDckxOczh0KhFaQyz1FlPVFfNm4AlKzdkMgA2nbuhnSrXs9XBk3xC5QLXVut_7KUw=w452-h174-no" alt="페이지 그룹화" /><br />
-
-마지막 블록에 불필요한 페이지가 생성되어 있는 것을 확인할 수 있다.
-레코드가 101 개일때 numPerPage가 10이면 totalPage는 11이 된다.
-이때 pagePerBlock가 5라면 totalBlock는 3으로 계산된다.
-3 블록에 속하는 마지막 페이지 번호는 15로 계산되어 
-3 블록에 실제로 있지 않은 [12] [13] [14] [15] 링크가 만들어지게 된다.
-불필요한 페이지 번호가 생성되는 것을 막기 위해서는 
-마지막 블록일 때 마지막 페이지 번호는 총 페이지 수로 설정해야 한다.
-총 페이지 수는 마지막 페이지 번호와 같기 때문이다.
-아래 코드를 페이지 직접 이동 링크를 출력하는 for 문 앞에 추가한다.
+It can be confirmed that unnecessary page links ([12] [13] [14] [15]) are generated in the last block.
+If numPerPage is 10 when the record is 101, totalPage is 11.
+And if pagePerBlock is 5, then totalBlock is 3.
+The last page number in the block 3 is calculated as 15, so that unnecessary links [12] [13] [14] [15] are created.
+To prevent unnecessary page links from being created, the last page number in the last block should be set to the total number of pages (this is the same as the last page number).
+Add the following code before the for statement that prints the pagination link:
+</p>
 
 <pre class="prettyprint">
 if (block &gt;= totalBlock) {
-  lastPage = totalPage;
+	lastPage = totalPage;
 }
 </pre>
 
-
-위 코드를 참고하여 list.jsp를 수정한 후 테스트한다.<br />
-
-<h3>페이지 링크수를 제한하는 알고리즘 정리</h3>
+<h3>Final page segmentation algorithm</h3>
 <ol>
-	<li>블록당 페이지 직접 이동 링크수를 정한다.</li>
-	<li>총 블록 수를 계산하다.</li>
-	<li>현재 페이지를 가지고 현재 블록을 계산한다.</li>
-	<li>현재 블록에서 링크할 첫번째 페이지와 마지막 페이지를 계산한다.</li>
-	<li>현재 블록에 속한 불필요한 페이지를 제거한다.</li>
-	<li>block &gt; 1이면 firstPage - 1로 [이전] 링크를 만든다.</li>
-	<li>루프 문을 사용해여 첫 번째 페이지부터 마지막 페이지까지 링크를 만든다.</li>
-	<li>block &lt; total_blcok이면 lastPage + 1로 [다음] 링크를 만든다.</li>
+	<li>Sets the number of page links per block.</li>
+	<li>Calculate the total number of blocks.</li>
+	<li>Calculate the block to which the current page belongs.</li>
+	<li>Calculate the first and last page to link in the block.</li>
+	<li>Remove unnecessary pages from the block.</li>
+	<li>If block &gt; 1, create a [&lt;] link to go to firstPage - 1.</li>
+	<li>Use the loop statement to create a link from the first page of the block to the last page of the block.</li>
+	<li>If block &gt; totalBlcok, creates a [&gt;] link go to lastPage + 1.</li>
 </ol>
 
-이제는 다른 서버측 컴포넌트(JSP 와 Servlets)와 함께 테스트한다.
-list.jsp?page=5에서 view.jsp을 방문한 후 view.jsp의 목록 링크를 클릭하면 list.jsp로 방문하게 된다.
-즉, 5 페이지에서 상세보기를 보고 다시 목록으로 돌아오는데 1 페이지로 돌아온 것이다.
-이에 대한 정상적인 기대는 목록 5 페이지에서 상세보기를 보고 목록 링크를 클릭하면 5 페이지의 목록으로 돌아가는 것이다.
-이 문제를 해결하려면 "새글쓰기 처리 서블릿"을 제외한 게시판 관련된 모든 컴포넌트에 page 파라미터를 전달해야 하고 전달받은 컴포넌트는 
-이 page 파라미터를 이용해서 다른 컴포넌트로 이동할 때 이 파라미터를 전달하도록 해야 한다.
-/board/list.jsp 파일을 열고 아래를 참고하여 다른 컴포넌트로의 링크 부분을 수정한다.
+<h3>Modify the board component other than list.jsp</h3>
 
-<em class="filename">list.jsp 에서 view.jsp 로 이동시 page 파라미터 전달</em>
+<p>
+After visiting view.jsp from list.jsp?curPage=5 and clicking the "List" link in view.jsp, you will be visiting list.jsp.
+In other words, I saw the View Post on page 5 and came back to page 1.
+It is common sense to see the View Post on page 5 and go back to page 5 when you click the "List" link.
+To do so, you must pass the curPage parameter to all the components associated with the bulletin board, except for the "servlet that handles new writing", and the component that passed the curPage must add this parameter to the query string of the link to move to the other component.
+Open the /board/list.jsp file and modify the query string of the link as shown below.
+</p>
+
+<em class="filename">Pass curPage parameter when moving from list.jsp to view.jsp</em>
 <pre class="prettyprint">
-&lt;a href="view.jsp?no=&lt;%=no %&gt;&amp;page=&lt;%=page %&gt;"&gt;&lt;%=title %&gt;&lt;/a&gt; &lt;%= wdate.toString() %&gt;
+&lt;a href="view.jsp?no=&lt;%=no %&gt;<strong>&amp;curPage=&lt;%=curPage %&gt;</strong>"&gt;&lt;%=title %&gt;&lt;/a&gt; &lt;%= wdate.toString() %&gt;
 </pre>
 
-<em class="filename">list.jsp 에서 write_form.jsp 로 이동시 page 파라미터 전달</em>
+<em class="filename">Pass curPage parameter when moving from list.jsp to write_form.jsp</em>
 <pre class="prettyprint">
-&lt;a href="write_form.jsp?page=&lt;%=page %&gt;"&gt;글쓰기&lt;/a&gt;
+&lt;a href="write_form.jsp?<strong>curPage=&lt;%=curPage %&gt;</strong>"&gt;Add New Post&lt;/a&gt;
 </pre>
 
-다음으로 /board/view.jsp 파일을 열고 아래를 참고하여 다른 컴포넌트로의 이동 부분의 코드를 수정한다.
+<p>
+Open the /board/view.jsp file and modify the query string for the move link to other components.
+</p>
 
-<em class="filename">/board/view.jsp 수정</em>
+<em class="filename">/board/view.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
@@ -1201,66 +1341,66 @@ list.jsp?page=5에서 view.jsp을 방문한 후 view.jsp의 목록 링크를 클
 &lt;%@ page import="net.java_school.db.dbpool.*" %&gt;
 &lt;%
 int no = Integer.parseInt(request.getParameter("no"));
-<strong>String page = request.getParameter("page");</strong>
+<strong>String curPage = request.getParameter("curPage");</strong>
 %&gt;
 &lt;jsp:useBean id="dbmgr" scope="application" class="net.java_school.db.dbpool.OracleConnectionManager" /&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-&lt;title&gt;상세보기&lt;/title&gt;
+&lt;title&gt;View Post&lt;/title&gt;
 &lt;script type="text/javascript"&gt;
-function goModify(no,<strong>page</strong>) {
-	location.href="modify_form.jsp?no=" + no + <strong>"&amp;page=" + page</strong>;
+function goModify(no,<strong>curPage</strong>) {
+	location.href="modify_form.jsp?no=" + no + <strong>"&amp;curPage=" + curPage</strong>;
 }
 
-function goDelete(no,page) {
-	var check = confirm('정말로 삭제하시겠습니까?');
+function goDelete(no,curPage) {
+	var check = confirm('Are you sure you want to delete it?');
 	if (check) {
-		location.href="../servlet/BoardDeleter?no=" + no + <strong>"&amp;page=" + page</strong>;
+		location.href="../servlet/BoardDeleter?no=" + no + <strong>"&amp;curPage=" + curPage</strong>;
 	}
 }
 &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;상세보기&lt;/h1&gt;
+&lt;h1&gt;View Post&lt;/h1&gt;
 
-..중간 생략 ..
+.. Omit ..
 
-&lt;a href="list.jsp<strong>?page=&lt;%=page %&gt;</strong>"&gt;목록&lt;/a&gt;
-&lt;input type="button" value="수정" onclick="javascript:goModify('&lt;%=no %&gt;',<strong>'&lt;%=page %&gt;'</strong>)"&gt;
-&lt;input type="button" value="삭제" onclick="javascript:goDelete('&lt;%=no %&gt;',<strong>'&lt;%=page %&gt;'</strong>)"&gt;
+&lt;a href="list.jsp<strong>?curPage=&lt;%=curPage %&gt;</strong>"&gt;List&lt;/a&gt;
+&lt;input type="button" value="Edit Post" onclick="javascript:goModify('&lt;%=no %&gt;',<strong>'&lt;%=curPage %&gt;'</strong>)"&gt;
+&lt;input type="button" value="Delete Post" onclick="javascript:goDelete('&lt;%=no %&gt;',<strong>'&lt;%=curPage %&gt;'</strong>)"&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-/board/write_form.jsp 파일을 열고 목록으로 돌아가는 부분의 코드를 수정한다.
-폼 액션 속성값에 ../servlet/BoardWriter?page=&lt;%=page %&gt;와 같이 page 파라미터를 전달해서는 안된다.
-새글은 언제나 첫번째 페이지로 돌아가야 확인할 수 있기 때문이다.
-5 페이지에서 글쓰기를 클릭하여 새글을 등록했는데 다시 5 페이지로 돌아간다면 
-자신이 작성한 새글을 확인하기 위해서 하단의 [1] 링크를 클릭해야 하는 수고를 해야 한다.
-그래서 새글은 등록하면 1페이지로 이동하는 것이 맞는 동작이다.
+<p>
+Open the /board/write_form.jsp file and modify the code to return to the list.
+However, you should not change the form action property to ../servlet/BoardWriter?curPage=&lt;%=curPage%>.
+Why? New articles are always visible on the first page of the list.
+I registered a new article on page 5, but if I go back to page 5, I can not see the new article I wrote.
+Therefore, if you register a new article, it is correct to go to the first page of the list.
+</p>
 
-<em class="filename">/board/write_form.jsp 수정</em>
+<em class="filename">/board/write_form.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
 &lt;%
-<strong>String page = request.getParameter("page");</strong>
+<strong>String curPage = request.getParameter("curPage");</strong>
 %&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-&lt;title&gt;글쓰기&lt;/title&gt;
+&lt;title&gt;Add New Post&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;!-- 본문 시작 --&gt;
-&lt;h1&gt;글쓰기&lt;/h1&gt;
+&lt;h1&gt;Add New Post&lt;/h1&gt;
 &lt;form action="../servlet/BoardWriter" method="post"&gt;
 &lt;table&gt;
 &lt;tr&gt;
-	&lt;td&gt;제목&lt;/td&gt;
+	&lt;td&gt;Title&lt;/td&gt;
 	&lt;td&gt;&lt;input type="text" name="title" size="50"&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -1270,19 +1410,18 @@ function goDelete(no,page) {
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td colspan="2"&gt;
-		&lt;input type="submit" value="전송"&gt;
-		&lt;input type="reset" value="취소"&gt;
-		&lt;a href="list.jsp<strong>?page=&lt;%=page %&gt;</strong>"&gt;목록&lt;/a&gt;
+		&lt;input type="submit" value="Submit"&gt;
+		&lt;input type="reset" value="Reset"&gt;
+		&lt;a href="list.jsp<strong>?curPage=&lt;%=curPage %&gt;</strong>"&gt;List&lt;/a&gt;
 	&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/form&gt;  
-&lt;!-- 본문 끝 --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-<em class="filename">/board/modify_form.jsp 수정</em>
+<em class="filename">/board/modify_form.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
@@ -1292,29 +1431,28 @@ function goDelete(no,page) {
 &lt;jsp:useBean id="dbmgr" scope="application" class="net.java_school.db.dbpool.OracleConnectionManager" /&gt;
 &lt;%
 int no = Integer.parseInt(request.getParameter("no"));
-<strong>String page = request.getParameter("page");</strong>
+<strong>String curPage = request.getParameter("curPage");</strong>
 
 Log log = new Log();
 
 
-//.. 중간 생략 ..
+//.. Omit ..
 
 %&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-&lt;title&gt;수정&lt;/title&gt;
+&lt;title&gt;Edit Post&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;!-- 본문 시작 --&gt;
-&lt;h1&gt;수정&lt;/h1&gt;
+&lt;h1&gt;Edit Post&lt;/h1&gt;
 &lt;form action="../servlet/BoardModifier" method="post"&gt;
 &lt;input type="hidden" name="no" value="&lt;%=no %&gt;"&gt;
-<strong>&lt;input type="hidden" name="page" value="&lt;%=page %&gt;"&gt;</strong>
+<strong>&lt;input type="hidden" name="curPage" value="&lt;%=curPage %&gt;"&gt;</strong>
 &lt;table&gt;
 &lt;tr&gt;
-	&lt;td&gt;제목&lt;/td&gt;
+	&lt;td&gt;Title&lt;/td&gt;
 	&lt;td&gt;&lt;input type="text" name="title" size="50" value="&lt;%=title %&gt;" /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -1324,19 +1462,18 @@ Log log = new Log();
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td colspan="2"&gt;
-		&lt;input type="submit" value="전송"&gt;
-		&lt;input type="reset" value="취소"&gt;
-		&lt;a href="view.jsp?no=&lt;%=no %&gt;<strong>&amp;page=&lt;%=page %&gt;</strong>"&gt;상세보기&lt;/a&gt;
+		&lt;input type="submit" value="Submit"&gt;
+		&lt;input type="reset" value="Reset"&gt;
+		&lt;a href="view.jsp?no=&lt;%=no %&gt;<strong>&amp;curPage=&lt;%=curPage %&gt;</strong>"&gt;View Post&lt;/a&gt;
 	&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/form&gt;
-&lt;!-- 본문 끝 --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-<em class="filename">BoardModifier 서블릿 수정</em>
+<em class="filename">BoardModifier</em>
 <pre class="prettyprint">
 @Override
 public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -1346,17 +1483,17 @@ public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	Log log = new Log();
 	
 	int no = Integer.parseInt(req.getParameter("no"));
-	<strong>String page = req.getParameter("page");</strong>
+	<strong>String curPage = req.getParameter("curPage");</strong>
 	
-	//..중간 생략 ..
+	//.. Omit ..
 				
 	String path = req.getContextPath();
-	resp.sendRedirect(path + "/board/view.jsp?no=" + no + <strong>"&amp;page=" + page</strong>);
+	resp.sendRedirect(path + "/board/view.jsp?no=" + no + <strong>"&amp;curPage=" + curPage</strong>);
 	
 }
 </pre>
 
-<em class="filename">BoardDeleter 서블릿 수정</em>
+<em class="filename">BoardDeleter</em>
 <pre class="prettyprint">
 @Override
 public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -1366,24 +1503,27 @@ public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	Log log = new Log();
 	
 	int no = Integer.parseInt(req.getParameter("no"));
-	<strong>String page = req.getParameter("page");</strong>
+	<strong>String curPage = req.getParameter("curPage");</strong>
 		
-	//..중간 생략 ..
+	//.. Omit ..
 	
 	String path = req.getContextPath();
-	resp.sendRedirect(path + "/board/list.jsp<strong>?page=" + page</strong>);
+	resp.sendRedirect(path + "/board/list.jsp<strong>?curPage=" + curPage</strong>);
 	
 }
 </pre>
 
-페이징은 웹 프로그래머라면 반드시 익혀야 한다.
-구현과 충분한 테스트를 통해서 페이징에 대한 완벽한 이해를 해야 한다.
+<p>
+Web programmers should be familiar with paging.
+You should have a thorough understanding of paging through implementation and sufficient testing.
+</p>
 
+<h2>Search</h2>
 
-<h2>검색 기능</h2>
-
-게시글이 많아지면 필요해지는 기능이 검색 기능이다.
-다음 코드를 list.jsp의 가장 아래에 추가한다.
+<p>
+If you have a lot of posts, you need a search function.
+Add the following code at the bottom of list.jsp.
+</p>
 
 <pre class="prettyprint">
 &lt;form action="list.jsp" method="post"&gt;
@@ -1392,28 +1532,35 @@ public void doPost(HttpServletRequest req, HttpServletResponse resp)
 &lt;/form&gt;
 </pre>
 
-list.jsp에 page 외에 keyword 파라미터도 함께 전달해야 한다.
-전달받은 keyword 파라미터가 널인 경우 "" 문자로 바꾸어 주는 것이 좋다.
-다음 코드를 list.jsp의 적당한 위치에 추가한다.
+<p>
+Now you need to pass list.jsp with a keyword parameter in addition to curPage.
+If the received keyword parameter is null, it is recommended to replace it with the character "".
+Add the following code to the appropriate location in list.jsp.
+</p>
 
 <pre class="prettyprint">
 String keyword = request.getParameter("keyword");
 if (keyword == null) keyword = "";
 </pre>
 
-검색 기능이 추가되면 검색 조건에 따라서 총 레코드 수가 변화하기 때문에 list.jsp의 총 레코드 수 구하는 부분을 수정한다.
+<p>
+When a search is added, the total number of records changes according to the search condition.
+Therefore, modify the part of the list.jsp to obtain the total number of records as follows.
+</p>
 
 <pre class="prettyprint">
 if (keyword.equals("")) {
 	sql = "SELECT count(*) FROM board";
 } else {
 	sql = "SELECT count(*) FROM board " +
-          "WHERE title LIKE '%" + keyword + "%' " + 
-          	"OR content LIKE '%" + keyword + "%'";
+		"WHERE title LIKE '%" + keyword + "%' " + 
+		"OR content LIKE '%" + keyword + "%'";
 }
 </pre>
 
-해당 페이지의 레코드을 가져오는 쿼리를 수정한다.
+<p>
+Modify the query to retrieve the records for that page.
+</p>
 
 <pre class="prettyprint">
 if (keyword.equals("")) {
@@ -1424,45 +1571,50 @@ if (keyword.equals("")) {
 } else {
 	sql = "SELECT no,title,wdate " +
 		"FROM (SELECT ROWNUM R, A.* FROM (" +
-		"SELECT no,title,wdate FROM board " + 
+		"SELECT no,title,wdate FROM board " +
 		"WHERE title LIKE '%" + keyword + "%' OR content LIKE '%" + keyword + "%' " +
 		"ORDER BY no DESC) A) " +
 		"WHERE R BETWEEN ? AND ?";
 }
 </pre>
 
-list.jsp 파일을 열고 list.jsp로의 링크에 keyword 파라미터가 전달되도록 수정한다.
-결색 결과의 5 페이지를 목록을 보고 있다가 상세보기를 하고 다시 목록보기를 했는데, 검색 결과가 아닌 5 페이지로 돌아가면 사용자는 당황할 것이다.
+<p>
+When you click the 5th page link at the bottom of the list page of search results, you should not go to the 5th page of the unscanned list.
+Open the list.jsp file and modify it to pass the keyword parameter to the link to list.jsp.
+</p>
 
 <pre class="prettyprint">
-&lt;a href="list.jsp?page=&lt;%=prevPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[이전]&lt;/a&gt;
+&lt;a href="list.jsp?curPage=&lt;%=prevPage %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;[&lt;]&lt;/a&gt;
 </pre>
 
 <pre class="prettyprint">
-&lt;a href="list.jsp?page=&lt;%=i %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[&lt;%=i %&gt;]&lt;/a&gt;
+&lt;a href="list.jsp?curPage=&lt;%=i %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;[&lt;%=i %&gt;]&lt;/a&gt;
 </pre>
 
 <pre class="prettyprint">
-&lt;a href="list.jsp?page=&lt;%=nextPage %&gt;&amp;keyword=&lt;%=keyword %&gt;"&gt;[다음]&lt;/a&gt;
+&lt;a href="list.jsp?curPage=&lt;%=nextPage %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;[&gt;]&lt;/a&gt;
 </pre>
 
-list.jsp를 방문한 후 검색을 테스트한다.
-검색 후 목록에서 상세보기로 이동한 후 다시 목록으로 돌아오면 검색된 목록으로 돌아오지 못한다.
-view.jsp 요청할 때 page 외에 keyword란 파라미터를 전달해야 다시 검색 목록으로 돌아갈 수 있다.
-list.jsp 파일을 열고 아래를 참조하여 상세보기와 글쓰기에 대한 링크를 수정한다.
+<p>
+If you move to the View Post from the list of search results and then use the [List] link to return to the list, you will not be able to return to the list that was searched.
+When you request view.jsp, you need to pass a parameter called keyword in addition to curPage to get back to the search list.
+Open the list.jsp file and see below to modify the link to View Post and Add New Post.
+</p>
 
 <pre class="prettyprint">
-&lt;a href="view.jsp?no=&lt;%=no %&gt;&amp;page=&lt;%=page %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;&lt;%=title %&gt;&lt;/a&gt; &lt;%= wdate.toString() %&gt;
+&lt;a href="view.jsp?no=&lt;%=no %&gt;&amp;curPage=&lt;%=curPage %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;&lt;%=title %&gt;&lt;/a&gt; &lt;%= wdate.toString() %&gt;
 </pre>
 
 <pre class="prettyprint">
-&lt;a href="write_form.jsp?page=&lt;%=page %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;글쓰기&lt;/a&gt;
+&lt;a href="write_form.jsp?curPage=&lt;%=curPage %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;Add New Post&lt;/a&gt;
 </pre>
 
-view.jsp에는 page와 keyword 파라미터를 수신하고 list.jsp로 돌아갈 때는 이 파라미터를 이용하도록 코드를 수정한다.
-글쓰기를 제외한 게시판의 다른 컴포넌트 역시 keyword 파라미터를 수신하고 코드에서 다른 컴포넌트로의 링크를 수정한다.
+<p>
+Modify the code so that view.jsp receives the curPage and keyword parameters, and then uses the curPage and keyword parameters when returning to list.jsp.
+Other components of the bulletin board, except for the writing process servlet, also receive the keyword parameter and modify it so that the keyword parameter is added to the link from the code to the other component.
+</p>
 
-<em class="filename">/board/view.jsp 수정</em>
+<em class="filename">/board/view.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
@@ -1472,7 +1624,7 @@ view.jsp에는 page와 keyword 파라미터를 수신하고 list.jsp로 돌아�
 &lt;%
 <strong>request.setCharacterEncoding("UTF-8");</strong>
 int no = Integer.parseInt(request.getParameter("no"));
-String page = request.getParameter("page");
+String curPage = request.getParameter("curPage");
 String keyword = request.getParameter("keyword");
 %&gt;
 &lt;jsp:useBean id="dbmgr" scope="application" class="net.java_school.db.dbpool.OracleConnectionManager" /&gt;
@@ -1480,57 +1632,58 @@ String keyword = request.getParameter("keyword");
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8" /&gt;
-&lt;title&gt;상세보기&lt;/title&gt;
+&lt;title&gt;View Post&lt;/title&gt;
 &lt;script type="text/javascript"&gt;
-function goModify(no,page,keyword) {
-	location.href="modify_form.jsp?no=" + no + "&amp;page=" + page + <strong>"&amp;keyword=" + keyword</strong>;
+function goModify(no,curPage,keyword) {
+	location.href="modify_form.jsp?no=" + no + "&amp;curPage=" + curPage + <strong>"&amp;keyword=" + keyword</strong>;
 }
 
-function goDelete(no,page,keyword) {
-	var check = confirm('정말로 삭제하시겠습니까?');
+function goDelete(no,curPage,keyword) {
+	var check = confirm('Are you sure you want to delete it?');
 	if (check) {
-		location.href="../servlet/BoardDeleter?no=" + no + "&amp;page=" + page + <strong>"&amp;keyword=" + keyword</strong>;
+		location.href="../servlet/BoardDeleter?no=" + no + "&amp;curPage=" + curPage + <strong>"&amp;keyword=" + keyword</strong>;
 	}
 }
 &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;상세보기&lt;/h1&gt;
+&lt;h1&gt;View Post&lt;/h1&gt;
 
-..중간 생략 ..
+.. Omit ..
 
-&lt;a href="list.jsp?page=&lt;%=page %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;목록&lt;/a&gt;
-&lt;input type="button" value="수정" onclick="javascript:goModify('&lt;%=no %&gt;','&lt;%=page %&gt;',<strong>'&lt;%=keyword %&gt;'</strong>)"&gt;
-&lt;input type="button" value="삭제" onclick="javascript:goDelete('&lt;%=no %&gt;','&lt;%=page %&gt;',<strong>'&lt;%=keyword %&gt;'</strong>)"&gt;
+&lt;a href="list.jsp?curPage=&lt;%=curPage %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;List&lt;/a&gt;
+&lt;input type="button" value="Edit Post" onclick="javascript:goModify('&lt;%=no %&gt;','&lt;%=curPage %&gt;',<strong>'&lt;%=keyword %&gt;'</strong>)"&gt;
+&lt;input type="button" value="Delete Post" onclick="javascript:goDelete('&lt;%=no %&gt;','&lt;%=curPage %&gt;',<strong>'&lt;%=keyword %&gt;'</strong>)"&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-아래 컴포넌트도 위와 같은 이유로 수정한다.
-이때 BoardWriter.java는 수정할 필요가 없다.
+<p>
+Modify the following components for the same reason as above.
+However, BoardWriter.java does not need to be modified.
+</p>
 
-<em class="filename">/board/write_form.jsp 수정</em>
+<em class="filename">/board/write_form.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
 &lt;%
 <strong>request.setCharacterEncoding("UTF-8");</strong>
-String page = request.getParameter("page");
+String curPage = request.getParameter("curPage");
 <strong>String keyword = request.getParameter("keyword");</strong>
 %&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8"&gt;
-&lt;title&gt;글쓰기&lt;/title&gt;
+&lt;title&gt;Add New Post&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;!-- 본문 시작 --&gt;
-&lt;h1&gt;글쓰기&lt;/h1&gt;
+&lt;h1&gt;Add New Post&lt;/h1&gt;
 &lt;form action="../servlet/BoardWriter" method="post"&gt;
 &lt;table&gt;
 &lt;tr&gt;
-	&lt;td&gt;제목&lt;/td&gt;
+	&lt;td&gt;Title&lt;/td&gt;
 	&lt;td&gt;&lt;input type="text" name="title" size="50"&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -1540,19 +1693,18 @@ String page = request.getParameter("page");
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td colspan="2"&gt;
-		&lt;input type="submit" value="전송"&gt;
-		&lt;input type="reset" value="취소"&gt;
-		&lt;a href="list.jsp?page=&lt;%=page %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;목록&lt;/a&gt;
+		&lt;input type="submit" value="Submit"&gt;
+		&lt;input type="reset" value="Reset"&gt;
+		&lt;a href="list.jsp?curPage=&lt;%=curPage %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;List&lt;/a&gt;
 	&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/form&gt;  
-&lt;!-- 본문 끝 --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-<em class="filename">/board/modify_form.jsp 수정</em>
+<em class="filename">/board/modify_form.jsp</em>
 <pre class="prettyprint">
 &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
@@ -1563,30 +1715,28 @@ String page = request.getParameter("page");
 &lt;%
 <strong>request.setCharacterEncoding("UTF-8");</strong>
 String no = request.getParameter("no");
-String page = request.getParameter("page");
+String curPage = request.getParameter("curPage");
 <strong>String keyword = request.getParameter("keyword");</strong>
 Log log = new Log();
 
-
-//.. 중간 생략 ..
+//.. Omit ..
 
 %&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta charset="UTF-8"&gt;
-&lt;title&gt;수정&lt;/title&gt;
+&lt;title&gt;Edit Post&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;!-- 본문 시작 --&gt;
-&lt;h1&gt;수정&lt;/h1&gt;
+&lt;h1&gt;Edit Post&lt;/h1&gt;
 &lt;form action="../servlet/BoardModifier" method="post"&gt;
 &lt;input type="hidden" name="no" value="&lt;%=no %&gt;"&gt;
-&lt;input type="hidden" name="page" value="&lt;%=page %&gt;"&gt;
+&lt;input type="hidden" name="curPage" value="&lt;%=curPage %&gt;"&gt;
 <strong>&lt;input type="hidden" name="keyword" value="&lt;%=keyword %&gt;"&gt;</strong>
 &lt;table&gt;
 &lt;tr&gt;
-	&lt;td&gt;제목&lt;/td&gt;
+	&lt;td&gt;Title&lt;/td&gt;
 	&lt;td&gt;&lt;input type="text" name="title" size="50" value="&lt;%=title %&gt;" /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -1596,19 +1746,18 @@ Log log = new Log();
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td colspan="2"&gt;
-		&lt;input type="submit" value="전송"&gt;
-		&lt;input type="reset" value="취소"&gt;
-		&lt;a href="view.jsp?no=&lt;%=no %&gt;&amp;page=&lt;%=page %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;상세보기&lt;/a&gt;
+		&lt;input type="submit" value="Submit"&gt;
+		&lt;input type="reset" value="Reset"&gt;
+		&lt;a href="view.jsp?no=&lt;%=no %&gt;&amp;curPage=&lt;%=curPage %&gt;<strong>&amp;keyword=&lt;%=keyword %&gt;</strong>"&gt;View Post&lt;/a&gt;
 	&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/form&gt;
-&lt;!-- 본문 끝 --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
 
-<em class="filename">BoardModifier 서블릿 수정</em>
+<em class="filename">BoardModifier</em>
 <pre class="prettyprint">@Override
 public void doPost(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException {
@@ -1617,20 +1766,20 @@ public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	Log log = new Log();
 	
 	int no = Integer.parseInt(req.getParameter("no"));
-	String page = req.getParameter("page");
+	String curPage = req.getParameter("curPage");
 	<strong>String keyword = req.getParameter("keyword");</strong>
 	
-	//..중간 생략 ..
+	//.. Omit ..
 				
 	String path = req.getContextPath();
 	<strong>keyword = java.net.URLEncoder.encode(keyword,"UTF-8");</strong>
-	resp.sendRedirect(path + "/board/view.jsp?no=" + no + "&amp;page=" + page + <strong>"&amp;keyword=" + keyword</strong>);
+	resp.sendRedirect(path + "/board/view.jsp?no=" + no + "&amp;curPage=" + curPage + <strong>"&amp;keyword=" + keyword</strong>);
 	
 }
 </pre>
 
 
-<em class="filename">BoardDeleter 서블릿 수정</em>
+<em class="filename">BoardDeleter</em>
 <pre class="prettyprint">@Override
 public void doPost(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException {
@@ -1639,29 +1788,27 @@ public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	Log log = new Log();
 	
 	int no = Integer.parseInt(req.getParameter("no"));
-	String page = req.getParameter("page");
+	String curPage = req.getParameter("curPage");
 	<strong>String keyword = req.getParameter("keyword");</strong>
 		
-	//..중간 생략 ..
+	//.. Omit ..
 	
 	String path = req.getContextPath();
 	<strong>keyword = java.net.URLEncoder.encode(keyword,"UTF-8");</strong>
-	resp.sendRedirect(path + "/board/list.jsp?page=" + page + <strong>"&amp;keyword=" + keyword</strong>);
+	resp.sendRedirect(path + "/board/list.jsp?curPage=" + curPage + <strong>"&amp;keyword=" + keyword</strong>);
 
 }
 </pre>
 
- 
-<strong>keyword = java.net.URLEncoder.encode(keyword,"UTF-8");</strong>
-코드가 필요한 이유는 HttpServletResponse 의 sendRedirect() 메소드의 인자가 자바 문자열인데 자바 문자열과 URL 주소 문자의 인코딩이 서로 다르기 때문이다.
-URLEncoder의 encode() 메소드는 한글과 같은 문자에 대한 바이트 값을 얻을 수 있게 한다.
-<!-- Translates a string into application/x-www-form-urlencoded format using a specific encoding scheme. 
-This method uses the supplied encoding scheme to obtain the bytes for unsafe characters. 
--->
-이 코드가 우리가 원하는 방식으로 동작하려면 서버 설정을 건드려야 한다.
-{톰캣홈}/conf/server.xml 파일을 열고 Connector 엘리먼트 중 port 속성값이 8080인(우리는 8989로 바꿔야 했다) 
-Connector 엘리먼트에 URIEncoding 속성을 다음과 같이 UTF-8인지를 확인한다.
-URIEncoding 속성이 없다면 아래처럼 추가한다.
+<h3>keyword = java.net.URLEncoder.encode(keyword,"UTF-8");</h3>
+
+<p> 
+The reason for the keyword = java.net.URLEncoder.encode (keyword, "UTF-8") code is that the encoding of the Java string and the URL address character, which are arguments to the sendRedirect () method of HttpServletResponse, are different.
+The URLEncoder encode () method allows you to get the byte value for non-English characters.
+This code needs to modify the server settings to work the way we want.
+Open the {TOMCAT_HOME}/conf/server.xml file and make sure that the Connector element has the URIEncoding attribute set to UTF-8, as shown below, with the Connector element having the port attribute value of 8080 (we had to change it to 8989).
+If there is no URIEncoding attribute, add it as follows.
+</p>
 
 <pre class="prettyprint">
 &lt;Connector port="8080" protocol="HTTP/1.1" 
@@ -1670,72 +1817,20 @@ URIEncoding 속성이 없다면 아래처럼 추가한다.
 	redirectPort="8443" /&gt;
 </pre>
 
-톰캣은 쿼리 스트링을 포함한 URL의 디폴트 캐릭터 인코딩으로 ISO-8859-1을 사용한다.
-즉, GET 파라미터의 인코딩은 ISO-8859-1을 사용한다.
-<strong>URIEncoding="UTF-8"</strong> 설정은 URL에 대한 캐릭터 인코딩을 UTF-8로 변경한다.
-이렇게 설정하면 값이 한글인 파라미터를 GET 방식으로 깨지지 않게 전송할 수 있다. 
-톰캣을 재실행한다.
-아래 파일을 ROOT 애플리케이션의 도큐먼트베이스에 생성한다.
+<p>
+Tomcat uses ISO-8859-1 as the default character encoding for URLs that contain query strings.
+In other words, the encoding of GET parameters is ISO-8859-1.
+URIEncoding="UTF-8" setting changes the character encoding for the URL to UTF-8.
+With this setting, it is possible to transmit a parameter whose value are in non-english characters by the GET method.
+To apply this setting, rerun Tomcat.
+For English-only sites, the above settings may not be necessary.
+</p>
 
-<em class="filename">/sender.jsp</em>
-<pre class="prettyprint">
-&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-	"http://www.w3.org/TR/html4/loose.dtd"&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
-&lt;title&gt;Insert title here&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;%
-String name = "홍길동";
-%&gt;
-&lt;form id="test" action="taker.jsp?name=&lt;%=name %&gt;" method="post"&gt;
-	&lt;input type="hidden" name="nickname" value="의적" /&gt;
-	&lt;input type="submit" /&gt;
-&lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</pre>
 
-<em class="filename">/taker.jsp</em>
-<pre class="prettyprint">
-&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-	"http://www.w3.org/TR/html4/loose.dtd"&gt;
-&lt;%
-request.setCharacterEncoding("UTF-8");
-String name = request.getParameter("name");
-String nickname = request.getParameter("nickname");
-%&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
-&lt;title&gt;Insert title here&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;%=name %&gt;&lt;br /&gt;
-&lt;%=nickname %&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</pre>
-
-http://localhost:8989/sender.jsp를 방문하고 서밋 버튼을 클릭한다.
-이동한 taker.jsp에서 한글이 깨지지 않고 모두 출력되는지 확인한다.
-list.jsp에서 검색폼의 method 속성을 method="post" 에서 method="get"으로 변경한 후 한글 검색이 되는지 확인한다.
-검색 기능이 추가된 게시판이 완성되었다.
-철저한 테스트를 통해서 게시판의 기능을 익히는 것이 앞으로의 학습에 도움이 될 것이다.
-
-<span id="comments">주석</span>
-<ol>
-	<li>"페이지 분할 기능"에서 그룹화의 대상은 레코드이고, 레코드 그룹 번호를 저장하는 변수는 page이다.</li>
-</ol>
-
-<span id="refer">참고</span>
+<span id="refer">References</span>
 <ul id="references">
+	<li><a href="https://docs.oracle.com/cd/B28359_01/server.111/b28286/pseudocolumns009.htm#SQLRF00255">https://docs.oracle.com/cd/B28359_01/server.111/b28286/pseudocolumns009.htm#SQLRF00255</a></li>
 	<li><a href="http://wiki.apache.org/tomcat/FAQ/CharacterEncoding">http://wiki.apache.org/tomcat/FAQ/CharacterEncoding</a></li>
+	<li><a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">https://en.wikipedia.org/wiki/Create,_read,_update_and_delete</a>
 </ul>
 </article>
