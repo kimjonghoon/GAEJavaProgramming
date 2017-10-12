@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <article>
 
 <div class="last-modified">Last Modified 2015.5.22</div>
@@ -66,7 +68,7 @@ public String signUp(<strong>Model model</strong>) {
 
 @RequestMapping(value="/signUp", method=RequestMethod.POST)
 public String signUp(<strong>@Valid</strong> User user, <strong>BindingResult bindingResult</strong>) {
-    <strong>//유효성 검사<article>
+    <strong>//유효성 검사
     if (bindingResult.hasErrors()) {
         return "users/signUp";
     }</strong>

@@ -185,7 +185,7 @@ public class Account {
 		return accountNo;
 	}
 
-	public void setAccountNo(String accountNo) {<article>
+	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
 	}
 

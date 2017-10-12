@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <article>
 <div class="last-modified">Last Modified 2014.7.31</div>
 <h1>주요 엘리먼트 배치</h1>
@@ -109,7 +111,7 @@ clear 프로퍼티의 값은 left, right, both 가 있다.<br />
 <img src="https://lh3.googleusercontent.com/-3dIp3C9coOM/VYIykEsPWWI/AAAAAAAACYM/ObzhAYQ7yns/s789/a-float-left-b-float-right-c-clear-right.png" alt="A float:left,B float:right,C clear:right" /><br />
 
 
-<em class="filename" style="clear: both;">clear: both;</em><article>
+<em class="filename" style="clear: both;">clear: both;</em>
 <pre class="prettyprint">
 &lt;style type="text/css"&gt;
 	#A {

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page isELIgnored="true" %>
 
 <article>
@@ -100,7 +102,7 @@ http의 use-expressions의 속성 기본값이 false에서 true로 변경되었�
 &lt;c:if test="${param.error != null }"&gt;
         &lt;h2&gt;Username/Password not corrrect&lt;/h2&gt;
 &lt;/c:if&gt;
-&lt;c:url var="loginUrl" value="<strong>/login</strong>" /&gt;<article>
+&lt;c:url var="loginUrl" value="<strong>/login</strong>" /&gt;
 &lt;form action="<strong>${loginUrl }</strong>" method="post"&gt;
 &lt;p style="margin:0; padding: 0;"&gt;
 <strong>&lt;input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /&gt;</strong>

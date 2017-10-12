@@ -1,6 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<article>
 <div class="last-modified">Last Modified 2014.7.31</div>
 
-<article>
 <h1>서브 메뉴</h1>
 
 왼쪽 sidebar 에 부메뉴를 디자인한다.<br />
@@ -56,7 +58,7 @@
 
 <img src="https://lh3.googleusercontent.com/-VFFA-Zm6DSY/VYJuJCETf_I/AAAAAAAACbw/EFwxwl7XMBg/s300/sub-menu-02.png" alt="예제보기 2" /><br />
 
-<h3>#sidebar ul</h3><article>
+<h3>#sidebar ul</h3>
 서브 메뉴에 해당하는 #sidebar ul을 추가하고 스타일을 지정한다.<br />
 
 <pre class="prettyprint">
@@ -113,4 +115,4 @@ a는 인라인(inline) 엘리먼트지만 display: block으로 설정하면 상�
 <ul id="references">
 	<li><a href="http://www.alistapart.com/articles/holygrail/">http://www.alistapart.com/articles/holygrail/</a></li>
 </ul>
-<article>
+</article>

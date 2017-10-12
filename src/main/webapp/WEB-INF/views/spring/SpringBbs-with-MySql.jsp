@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page isELIgnored="true" %>
 <article>
 <div class="last-modified">Last Modified 2015.7.29</div>

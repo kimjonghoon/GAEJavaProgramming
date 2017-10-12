@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <article>
 <script type="text/javascript" src="/resources/js/script-result-display.js"></script>
 <div class="last-modified">Last Modified 2014.1.16</div>

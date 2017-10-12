@@ -38,7 +38,7 @@ public class InsufficientBalanceException extends RuntimeException {
 	public InsufficientBalanceException(String message) {
 		super(message);
 	}
-<article>
+
 	public InsufficientBalanceException(Throwable cause) {
 		super(cause);
 	}

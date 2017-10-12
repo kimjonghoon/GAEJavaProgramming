@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page isELIgnored="true" %>
 
 <article>
@@ -84,7 +86,7 @@ public String modify(@Valid Article article,
 </pre>
 
 
-<span id="refer">참고</span><article>
+<span id="refer">참고</span>
 <ul id="references">
 	<li><a href="http://hibernate.org/validator/documentation/getting-started/">Getting started with Hibernate Validator</a></li>
 	<li><a href="http://forum.spring.io/forum/spring-projects/web/80192-validation-empty-int-field">Validation - Empty int field</a></li>

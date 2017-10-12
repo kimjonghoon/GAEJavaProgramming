@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page isELIgnored="true" %>
 
 <article>
@@ -128,7 +130,7 @@ worker.worker1.port=8009</strong>
 <h3>jk.conf 파일에서 JkWorkersFile의 경로를 아래처럼 수정한다.</h3>
 <pre class="commandLine">sudo gedit /etc/apache2/mods-available/jk.conf</pre>
 
-<pre class="prettyprint"><article>
+<pre class="prettyprint">
 JkWorkersFile <strong>/etc/apache2/workers.properties</strong>
 </pre>
 
