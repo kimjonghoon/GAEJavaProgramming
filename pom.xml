@@ -18,16 +18,16 @@
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 		<archiveClasses>true</archiveClasses>
-		<spring.version>4.3.9.RELEASE</spring.version>
+		<spring.version>5.0.0.RELEASE</spring.version>
 		<spring.security.version>4.2.3.RELEASE</spring.security.version>
 	</properties>
 
 	<prerequisites>
-		<maven>3.3.9</maven>
+		<maven>3.5.0</maven>
 	</prerequisites>
 
 	<dependencies>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>1.9.54</version>
+			<version>1.9.57</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -140,13 +140,13 @@
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
-			<version>1.9.54</version>
+			<version>1.9.57</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
-			<version>1.9.54</version>
+			<version>1.9.57</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -173,7 +173,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
+				<version>3.0.0</version>
 				<configuration>
 					<archiveClasses>true</archiveClasses>
 					<webResources>
@@ -190,7 +190,7 @@
 			<plugin>
 				<groupId>com.google.appengine</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.9.54</version>
+				<version>1.9.57</version>
 				<configuration>
 				</configuration>
 			</plugin>
