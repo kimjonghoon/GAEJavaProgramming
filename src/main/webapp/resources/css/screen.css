@@ -100,7 +100,7 @@ a:hover {
 	margin: 0;
 	padding: 0;
 }
-#content > p > img {
+article > p > img {
 	display: block;
 	width: 100%;
 }

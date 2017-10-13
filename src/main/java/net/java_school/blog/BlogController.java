@@ -67,7 +67,7 @@ public class BlogController {
 				.order("order")
 				.list();
 		model.addAttribute("articles", articles);
-		log.info("HomePage");
+		//log.info("HomePage");
 		return "/";
 	}
 	@RequestMapping(value="blog/new", method=RequestMethod.GET)

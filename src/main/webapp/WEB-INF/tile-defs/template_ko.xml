@@ -94,13 +94,6 @@
 		<put-attribute name="article" value="/WEB-INF/views/bbs/blob.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
-	<definition name="/" extends="defaultTemplate">
-		<put-attribute name="title" value="홈페이지" />
-		<put-attribute name="keywords" value="홈페이지" />
-		<put-attribute name="description" value="자바스쿨에 오신 것을 환영합니다." />
-		<put-attribute name="article" value="/WEB-INF/views/index_ko.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
-	</definition>
 	<definition name="403" extends="defaultTemplate">
 		<put-attribute name="title" value="에러 403" />
 		<put-attribute name="keywords" value="에러 403" />
@@ -108,8 +101,15 @@
 		<put-attribute name="article" value="/WEB-INF/views/403.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
 	</definition>
+	<definition name="/" extends="defaultTemplate">
+		<put-attribute name="title" value="윈도 시스템에 자바 8 설치" />
+		<put-attribute name="keywords" value="윈도 시스템,JDK 8 설치,windows 10,java 8,jdk 8" />
+		<put-attribute name="description" value="윈도 시스템에 자바 8 설치를 설명합니다." />
+		<put-attribute name="article" value="/WEB-INF/views/index_ko.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
+	</definition>
 	<definition name="java/Features" extends="lecture">
-		<put-attribute name="title" value="Features" />
+		<put-attribute name="title" value="자바의 특징" />
 		<put-attribute name="keywords" value="자바의 특징,JVM,OOP" />
 		<put-attribute name="description" value="자바 언어의 특징을 설명합니다." />
 		<put-attribute name="article" value="/WEB-INF/views/java/Features_ko.jsp" />
@@ -118,9 +118,9 @@
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_ko.jsp" />
 	</definition>
 	<definition name="java/Class-Object" extends="lecture">
-		<put-attribute name="title" value="Class and Object" />
-		<put-attribute name="keywords" value="Class, Object" />
-		<put-attribute name="description" value="Class and Object" />
+		<put-attribute name="title" value="객체와 클래스" />
+		<put-attribute name="keywords" value="클래스, 객체, Class, Object" />
+		<put-attribute name="description" value="객체와 클래스를 설명합니다." />
 		<put-attribute name="article" value="/WEB-INF/views/java/Class_Object_ko.jsp" />
 		<put-attribute name="next-link" value="Keyword_Indentifiers_Comment" />
 		<put-attribute name="next-title" value="키워드, 식별자, 주석" />

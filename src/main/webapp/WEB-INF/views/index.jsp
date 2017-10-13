@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <article>
+
 <div class="last-modified">Last Modified 2015.11.11</div>
+
 <h1>JDK Install</h1>
 
 <h2>Downloading the JDK installer</h2>
 
+<p>
 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a><br />
 
 <img src="https://lh3.googleusercontent.com/-CttJ26edXQ8/Vjq0aKA0REI/AAAAAAAACqc/s8PKICr8Lyc/s533-Ic42/JavaSEDevelopmentKit.png" alt="64bit windows Java SE" /><br />
@@ -18,10 +21,11 @@ If your system is 32-bit Windows, download the Windows x86.<br />
 
 Installation can be completed simply by clicking the "Next" button.<br />
 JDK is locate at "C:\Program Files\Java\jdk1.8.0_&lt;version&gt;"<br />
-
+</p>
 
 <h3>Updating the PATH Environment Variable</h3>
 
+<p>
 Click Start, then Control Panel, then System.<br />
 Click Advanced, then Environment Variables.<br />
 Add the location of the bin folder of the JDK installation for the PATH variable in System Variables.<br />
@@ -43,6 +47,7 @@ Click on the "Edit" button.<br />
 Add the ";%JAVA_HOME%\bin" behind currnet PATH variable.<br />
 
 <img src="https://lh3.googleusercontent.com/-iOuENrZbFAc/VYDNqqHl9zI/AAAAAAAACMg/BhZ60DJrp1EjfSclW23kNc6-y7fCzcAEgCCo/s493-Ic42/add-jdk-bin-path.png" alt="%JAVA_HOME%\bin added in Path" /><br />
+</p>
  
 <dl class="note">
 <dt>
@@ -63,7 +68,7 @@ Run <b>echo %PATH%</b> in command prompt to confirm the PATH variable.<br />
 
 <h2>Test</h2>
 
-<em class="filename">Test.java</em>
+<p><em class="filename">Test.java</em></p>
 <pre class="prettyprint">
 public class Test {
     public static void main(String[] args) {
@@ -99,7 +104,15 @@ it is necessary to use the -cp option of java.exe, such as:<br />
 
 <h2>Editor</h2>
 
+<p>
 Until "Package and Modifiers", 
 it is better to use a simple editor such as <a href="https://www.editplus.com/">editPlus</a>.<br />
 After you finish the Package and Modifiers, We recommend that you install the eclipse.<br />
+</p>
+
+<p><span id="refer">References</span></p>
+<ul id="references">
+	<li><a href="http://windows.microsoft.com/en-us/windows/32-bit-and-64-bit-windows#1TC=windows-7">32-bit and 64-bit Windows: frequently asked questions</a></li>
+	<li><a href="http://www.editplus.com">editplus</a></li>
+</ul>
 </article>

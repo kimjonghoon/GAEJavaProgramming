@@ -113,13 +113,6 @@
 		<put-attribute name="article" value="/WEB-INF/views/bbs/blob.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
-	<definition name="/" extends="defaultTemplate">
-		<put-attribute name="title" value="Homepage" />
-		<put-attribute name="keywords" value="Homepage" />
-		<put-attribute name="description" value="Welcome to My Homepage" />
-		<put-attribute name="article" value="/WEB-INF/views/index.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
-	</definition>
 	<definition name="403" extends="defaultTemplate">
 		<put-attribute name="title" value="Error 403" />
 		<put-attribute name="keywords" value="Error 403" />
@@ -127,11 +120,17 @@
 		<put-attribute name="article" value="/WEB-INF/views/403.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
 	</definition>
+	<definition name="/" extends="defaultTemplate">
+		<put-attribute name="title" value="Java 8 Install" />
+		<put-attribute name="keywords" value="Java 8,Windows 10,JDK 8" />
+		<put-attribute name="description" value="How to Install Java 8 on Windows 10" />
+		<put-attribute name="article" value="/WEB-INF/views/index.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
+	</definition>
 	<definition name="java/Features" extends="lecture">
 		<put-attribute name="title" value="Features" />
 		<put-attribute name="keywords" value="Java Features,JVM,OOP" />
-		<put-attribute name="description"
-			value="This Chapter dicusses Java Features" />
+		<put-attribute name="description" value="This Chapter dicusses Java Features" />
 		<put-attribute name="article" value="/WEB-INF/views/java/Features.jsp" />
 		<put-attribute name="next-link" value="Class-Object" />
 		<put-attribute name="next-title" value="Class and Object" />
