@@ -5,7 +5,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <article>
-<h1>${boardName }</h1>
+
+<h1 class="bbs-heading">${boardName }</h1>
 
 <table class="bbs-table">
 <tr>

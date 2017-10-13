@@ -125,7 +125,8 @@ function goList(page) {
 </script>
 
 <article>
-<h1>${boardName }</h1>
+
+<h1 class="bbs-heading">${boardName }</h1>
 
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
 	<security:authorize access="isAuthenticated() and (#owner == principal.email or hasRole('ROLE_ADMIN'))">
@@ -147,7 +148,7 @@ function goList(page) {
 </div>
 <table class="bbs-table">
 <tr>
-    <th style="width: 37px;text-align: left;">TITLE</th>
+    <th style="width: 50px;text-align: left;">TITLE</th>
     <th style="text-align: left;color: #555;">${title }</th>
 </tr>
 </table>
@@ -155,7 +156,7 @@ function goList(page) {
 	<fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${regdate }" />
 	by ${nickname } hit ${hit }
 </div>
-<p>${content }</p>
+<div style="font-size: 0.9em;text-align: justify;">${content }</div>
 <p id="file-list" style="text-align: right">
 <c:forEach var="file" items="${attachFileList }" varStatus="status">
 	<a href="#" title="${file.filekey }" class="download">${file.filename }</a>
@@ -249,7 +250,7 @@ function goList(page) {
 	<td style="text-align: center;">
 	<c:choose>
 		<c:when test="${param.articleNo == article.articleNo }">	
-		<img src="/resources/images/arrow-current.gif" alt="Current Post" style="width: 7px;" />
+		<img src="/resources/images/arrow-current.gif" alt="Current Post" />
 		</c:when>
 		<c:otherwise>
 		${listItemNo - status.index }

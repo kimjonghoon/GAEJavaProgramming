@@ -8,10 +8,18 @@ html, body {
 	font-family: "Noto Sans KR", "Liberation Sans", Helvetica, "돋움", dotum, sans-serif;
 	font-size: 1em;
 }
+p {
+	margin: 0;
+	padding: 0;
+	font-size: 0.9em;
+	color: #2f2f2f;
+}
+li {
+	font-size: 0.9em;
+}
 pre {
-	font-family: "Liberation Mono", "돋움", dotum, monospace;	
-	font-size: 0.93em;
-	line-height: 1.3;
+	margin: 0 0 0.7em 0;
+	font-family: Consolas, "Noto Sans KR", dotum, "Liberation Mono", Courier, monospace;	
 }
 table {
 	border-collapse: collapse;
@@ -21,9 +29,16 @@ form {
 	padding: 0;
 }
 input, select, textarea, td, th {
-	color: #646464;
-	font-family: "Noto Sans KR", "돋움", dotum, sans-serif;
+	color: #333;
+}
+input, select, td {
+	font-size: 0.87em;
+}
+textarea {
 	font-size: 12px;
+} 
+pre, th {
+	font-size: 0.9em;
 }
 a:link {
 	color: #2C80D0;
@@ -84,9 +99,10 @@ a:hover {
 #content {
 	margin: 0;
 	padding: 0;
-	font-size: 1em;
-	line-height: 1.5;
-	color: #2f2f2f;
+}
+#content > p > img {
+	display: block;
+	width: 100%;
 }
 #sidebar {
 	font-family: Verdana, sans-serif;
@@ -139,7 +155,6 @@ a:hover {
 aside {
 	display: none;
 }
-
 .bbs-table {
 	width: 100%;
 }
@@ -354,11 +369,17 @@ article > h5 {
 	margin-bottom: 0;
 	font-size: 0.94em;
 }
+.bbs-heading {
+	margin: 0 0 0.7em 0;
+	padding: 0;
+	color: #333;
+	font-size: 1.2em;
+}
 .filename {
+	margin: 0.7em 0 0 0;
 	display: block;
 	font-style: normal;
-	position: relative;
-	top: 1em;
+	font-size: 0.8em;
 }
 #refer {
 	display: block;
@@ -435,7 +456,7 @@ footer > ul > li {
 	padding: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	font-size: 0.95em;
+	font-size: 0.9em;
 }
 .note > dt {
 	margin: 0;
@@ -562,7 +583,7 @@ footer > ul > li {
 	margin: 0;
 	padding: 0 3px 3px 3px;
 	color: #555;
-	font-size: 11px;
+	font-size: 0.9em;
 }
 #add-comments {
     margin-bottom: 5px;
@@ -688,7 +709,7 @@ article > h5 {
 		float: right;
 		margin: 0;
 		padding: 3px 0 0 0;
-		width: 50%;
+		width: 30%;
 	}
 	.cse .gsc-control-cse, .gsc-control-cse {
 		margin: 0 !important;
