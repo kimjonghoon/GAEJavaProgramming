@@ -25,7 +25,6 @@ $(document).ready(function() {
 });
 </script>
 
-<article>
 <h1 class="bbs-heading">${boardName }</h1>
 <p style="text-transform: capitalize;"><spring:message code="bbs.write" /></p>
 <form id="writeForm" action="<%=blobstoreService.createUploadUrl("/bbs/write")%>?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
@@ -65,4 +64,3 @@ $(document).ready(function() {
 </c:choose>
 </div>
 </form>
-</article>

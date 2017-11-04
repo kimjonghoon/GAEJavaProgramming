@@ -157,6 +157,7 @@ aside {
 }
 .bbs-table {
 	width: 100%;
+	margin: 1em 0;
 }
 .bbs-table th {
 	color: #92B91C;
@@ -166,6 +167,7 @@ aside {
 .bbs-table td {
 	padding: 3px 0;
 	border-bottom: 1px solid silver;
+	line-height: 1.45em;
 }
 .bbs-table td a {
 	color: #555;
@@ -204,9 +206,7 @@ aside {
 #search {
 	text-align: center;
 }
-.bbs-table {
-	margin-bottom: 7px;
-}
+
 #search {
 	text-align: center;
 	padding-bottom: 15px;
@@ -422,28 +422,28 @@ footer > ul > li {
 	margin: 0;
 	padding: 0;
 }
-.table-in-article {
+article table {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 100%;
 }
-.table-in-article-td {
+article td {
 	padding: 5px 6px 3px 6px;
 	border: silver 1px solid;
 }
-.table-in-article-th {
+article th {
 	padding: 5px 6px 3px 6px;
 	border: silver 1px solid;
 	text-align: left;
 	border: silver 1px solid;
 }
-.table-in-article-caption {
+article caption {
 	margin: 0;
 	padding: 0;
 	font-weight: bold;
 	text-align: left;
 }
-#prev-next {
+#next-prev {
 	margin-top: 10px;
 	padding: 1em 1em 1em 0;
 	border: silver 1px solid;

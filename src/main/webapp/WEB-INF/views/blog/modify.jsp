@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<article>
 <form action="modify" method="post">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   <input type="hidden" name="webSafeString" value="${article.keyString }"/>
@@ -12,4 +11,3 @@
   <div><textarea name="content" style="width: 99%;height: 300px;">${article.content }</textarea></div>
   <div><input type="submit" value="<spring:message code="blog.modify" />" /></div>
 </form>
-</article>

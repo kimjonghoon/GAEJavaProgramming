@@ -5,10 +5,8 @@
 	<strong>Home</strong>
 	<ul id="sub-menu">
 		<li class="sub-section-title">Github</li>
-		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/JSPProject">JSP Project</a></li>
 		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/model2">model2</a></li>
 		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/SpringBbs">SpringBbs</a></li>
-		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/SpringBbsMySql">SpringBbsMySql</a></li>
 		<li class="sub-menu-item"><a href="https://github.com/kimjonghoon/GAEJavaProgramming">GAEJavaProgramming</a></li>
 	</ul>
 </nav>

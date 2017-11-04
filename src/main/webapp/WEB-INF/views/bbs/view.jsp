@@ -124,8 +124,6 @@ function goList(page) {
 }
 </script>
 
-<article>
-
 <h1 class="bbs-heading">${boardName }</h1>
 
 <div class="view-menu" style="height: 32px;margin-bottom: 5px;">
@@ -367,4 +365,3 @@ function goList(page) {
     <p><input type="hidden" name="filekey" /></p>
     </form>
 </div>
-</article>
