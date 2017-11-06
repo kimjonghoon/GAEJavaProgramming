@@ -43,10 +43,6 @@ UserService userService = UserServiceFactory.getUserService();
 %>
 <a href="${english }">English</a> <a href="${korean }">Korean</a>
 
-<security:authorize access="hasRole('ROLE_ADMIN')">    
-	<a href="/blog/list"><spring:message code="blog.manage" /></a>
-</security:authorize>
-
 <security:authorize access="isAuthenticated()">
     <security:authentication property="principal.userId" var="userIdCheck" />
     <security:authentication property="principal.email" var="emailCheck" />

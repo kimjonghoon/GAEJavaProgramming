@@ -53,7 +53,15 @@
 	
 	<bean id="guestbookController" class="com.google.guestbook.GuestbookController" />
 	
-	<bean id="blogController" class="net.java_school.blog.BlogController" />
+	<bean id="blogController" class="net.java_school.controller.BlogController" />
+	
+	<bean id="datastoreBlogController" class="net.java_school.controller.DatastoreBlogController" />
+	
+	<bean id="downloadController" class="net.java_school.controller.DownloadController" />
+	
+	<bean id="homeController" class="net.java_school.controller.HomeController" />
+	
+	<bean id="lectureController" class="net.java_school.controller.LectureController" />
 	
 	<bean id="blobDownloadController" class="net.java_school.controller.BlobDownloadController" />
 	

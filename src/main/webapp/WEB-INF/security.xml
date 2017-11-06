@@ -17,7 +17,6 @@
 		<intercept-url pattern="/bbs/list" access="permitAll" />
 		<intercept-url pattern="/bbs/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/blog/**" access="hasRole('ROLE_ADMIN')" />
 		<custom-filter position="PRE_AUTH_FILTER" ref="gaeFilter" />
 	</http>
 
