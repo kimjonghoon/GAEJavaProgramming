@@ -38,6 +38,7 @@
 		<put-attribute name="login" value="/WEB-INF/views/inc/login.jsp" />
 		<put-attribute name="aside" value="/WEB-INF/views/inc/aside.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+		<put-attribute name="footer-ad" value="/WEB-INF/views/inc/footer-ad.jsp" />
 	</definition>
 	<!-- 에러 페이지 -->
 	<definition name="403" extends="defaultTemplate">
@@ -1144,7 +1145,7 @@
 		<put-attribute name="sidebar" value="/WEB-INF/views/spring/spring-sub_ko.jsp" />
 	</definition>
 	<!-- JavaScript -->
-	<definition name="javascript/introd/bloguction" extends="lectureTemplate">
+	<definition name="javascript/introduction" extends="lectureTemplate">
 		<put-attribute name="title" value="JavaScript Introduction" />
 		<put-attribute name="keywords" value="javascript" />
 		<put-attribute name="description" value="javascript" />
@@ -1324,8 +1325,8 @@
 		<put-attribute name="sidebar" value="/WEB-INF/views/javascript/javascript-sub_ko.jsp" />
 	</definition>
 	<definition name="datastore/*/*" extends="datastoreBlog">
-		<put-attribute name="content" value="/WEB-INF/views/blog/content.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/views/{1}/{1}-sub_ko.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/datastore/content.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/{1}/{1}-sub.jsp" />
 	</definition>
 	<!-- Blogs -->
 	<definition name="blog" extends="blogTemplate">
