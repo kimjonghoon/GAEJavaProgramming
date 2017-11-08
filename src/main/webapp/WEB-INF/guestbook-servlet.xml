@@ -59,6 +59,8 @@
 	
 	<bean id="downloadController" class="net.java_school.controller.DownloadController" />
 	
+	<bean id="exampleController" class="net.java_school.controller.ExampleController" />
+	
 	<bean id="homeController" class="net.java_school.controller.HomeController" />
 	
 	<bean id="lectureController" class="net.java_school.controller.LectureController" />
