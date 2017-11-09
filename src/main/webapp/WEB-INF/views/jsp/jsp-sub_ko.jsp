@@ -9,7 +9,7 @@
 		<li class="sub-menu-item"><a href="/jsp/Namecard-Webapp">명함관리 웹 애플리케이션</a></li>
 		<li class="sub-menu-item"><a href="/jsp/Web-Application">웹 애플리케이션</a></li>
 		<li class="sub-menu-item"><a href="/jsp/Web-Application-Directory-Structure">웹 애플리케이션 작성 실습</a></li>
-		<li class="sub-menu-item"><a href="/jsp/Servlets">서블릿</a></li>
+		<li class="sub-menu-item"><a href="/jsp/Servlet">서블릿</a></li>
 		<li class="sub-menu-item"><a href="/jsp/JSP">JSP</a></li>
 		<li class="sub-menu-item"><a href="/jsp/Accessing-database-from-JSP_Servlets">데이터베이스 연동</a></li>
 		<li class="sub-section-title">게시판</li>	

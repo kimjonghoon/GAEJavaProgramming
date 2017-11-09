@@ -9,7 +9,7 @@
 		<li class="sub-menu-item"><a href="/jsp/Namecard-Webapp">Namecard Webapp</a></li>
 		<li class="sub-menu-item"><a href="/jsp/Web-Application">What are web applications?</a></li>
 		<li class="sub-menu-item"><a href="/jsp/Web-Application-Directory-Structure">Web application directory structure</a></li>
-		<li class="sub-menu-item"><a href="/jsp/Servlets">Servlet</a></li>
+		<li class="sub-menu-item"><a href="/jsp/Servlet">Servlet</a></li>
 		<li class="sub-menu-item"><a href="/jsp/JSP">JSP</a></li>
 		<li class="sub-menu-item"><a href="/jsp/Accessing-database-from-JSP_Servlets">Using a database in web applications</a></li>
 		<li class="sub-section-title">BBS</li>	
