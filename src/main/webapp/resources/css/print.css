@@ -56,15 +56,6 @@ a:hover {
 	border: silver 2px dotted;
 	background-color: #FAF9F4;
 }
-
-.screen {
-	margin-bottom: 10px;
-	padding: 5px;
-	font-weight: bold;
-	color: #666;
-	border: 1px solid silver;
-}
-
 .shell-prompt {
 	padding: 5px;
 	color: #000;
@@ -361,4 +352,38 @@ footer {
 .no-border {
 	border: none !important;
 	margin: 0.4em 0;
+}
+h6 {
+	margin: 0;
+	padding: 0;
+}
+.dir {
+	color: #999;
+	font-size: 0.8em;
+}
+.src {
+	margin: 0.7em 0 0 0;
+	font-weight: normal;
+	font-size: 0.9em;
+}
+.screen-header {
+	margin-top: 1em;
+	padding: 3px 5px;
+	display: block;
+	color: black;
+	border-top: 2px solid silver;
+	border-right: 2px solid silver;
+	border-left: 2px solid silver;
+	font-size: 0.9em;
+}
+.screen-header > b {
+	background: #FFF;
+	color: #000;
+}
+.screen {
+	padding: 0.2em;
+	color: #666;
+	border: 2px solid silver;
+	background: #FFF;
+	font-weight: bold;
 }

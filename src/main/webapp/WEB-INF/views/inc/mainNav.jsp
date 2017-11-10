@@ -13,6 +13,7 @@
 	<li class="main-menu-item"><a href="/jsp-pjt/Dynamic-Web-Project-Set-Up">JSP Project</a></li>
 	<li class="main-menu-item"><a href="/spring/building-java-projects-with-maven">Spring</a></li>
 	<li class="main-menu-item"><a href="/javascript/introduction">JavaScript</a></li>
+	<li class="main-menu-item"><a href="/google-app-engine/building-gae-projects-with-maven">Google App Engine</a>
 	<li class="main-menu-item"><a href="/blog">Blog</a></li>
 	<li class="main-menu-item"><a href="/bbs/list?boardCd=free&page=1">BBS</a>
 <security:authorize access="hasRole('ROLE_ADMIN')">	

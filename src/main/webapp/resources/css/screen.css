@@ -305,23 +305,6 @@ aside {
 	border: silver 2px dotted;
 	background-color: #FAF9F4;
 }
-.screen {
-	margin-top: 20px;
-	margin-bottom: 10px;
-	padding: 5px;
-	padding-top: 32px;
-	font-weight: bold;
-	color: #C0C0C0;
-	border: 1px solid silver;
-	background-image: url("../images/Command-Prompt.png");
-	background-position: 0% 0%;
-	background-size: 100% auto;
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-origin: padding-box;
-	background-clip: border-box;
-	background-color: #000;
-}
 .shell-prompt {
 	padding: 5px;
 	color: #FFF;
@@ -649,6 +632,40 @@ article > h5 {
 }
 #footer-ad {
 	display: none;
+}
+h6 {
+	margin: 0;
+	padding: 0;
+}
+.dir {
+	color: #999;
+	font-size: 0.8em;
+}
+.src {
+	margin: 0.7em 0 0 0;
+	font-weight: normal;
+	font-size: 0.9em;
+}
+.screen-header {
+	margin-top: 1em;
+	padding: 3px 5px;
+	display: block;
+	color: black;
+	border-top: 2px solid silver;
+	border-right: 2px solid silver;
+	border-left: 2px solid silver;
+	font-size: 0.9em;
+}
+.screen-header > b {
+	background: #000;
+	color: #FFF;
+}
+.screen {
+	padding: 0.2em;
+	color: #C0C0C0;
+	border: 2px solid silver;
+	background: #000;
+	font-weight: bold;
 }
 @media (min-width : 768px) {
 	#wrap {
