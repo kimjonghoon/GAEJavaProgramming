@@ -151,13 +151,6 @@ article {
 	font-size: 1em;
 }
 
-.filename {
-	display: block;
-	font-style: normal;
-	position: relative;
-	top: 1em;
-}
-
 #refer {
 	display: block;
 	margin-top: 15px;
@@ -356,10 +349,6 @@ footer {
 h6 {
 	margin: 0;
 	padding: 0;
-}
-.dir {
-	color: #999;
-	font-size: 0.8em;
 }
 .src {
 	margin: 0.7em 0 0 0;
