@@ -111,17 +111,17 @@
 		<put-attribute name="keywords" value="Class,클래스,Object,객체,속성,행위,유일성,클래스 만드는 법,메인 메소드,new,System.out.println(),System.out.prnt()" />
 		<put-attribute name="description" value="객체와 클래스에 대해 설명합니다." />
 		<put-attribute name="content" value="0030-Class_Object" />
-		<put-attribute name="next-article" value="java#Keyword_Indentifiers_Comment" />
+		<put-attribute name="next-article" value="java#Keyword_Identifiers_Comment" />
 		<put-attribute name="next-article-title" value="키워드, 식별자, 주석" />
 		<put-attribute name="prev-article" value="java#Features" />
 		<put-attribute name="prev-article-title" value="자바의 특징" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_ko.jsp" />
 	</definition>
-	<definition name="java/Keyword_Indentifiers_Comment" extends="lectureTemplate">
+	<definition name="java/Keyword_Identifiers_Comment" extends="lectureTemplate">
 		<put-attribute name="title" value="키워드, 식별자, 주석" />
-		<put-attribute name="keywords" value="Keyword,키워드,Indentifiers,식별자,Comment,주석,//,/* ~ */,/** ~ */,자바 작명 관례," />
+		<put-attribute name="keywords" value="Keyword,키워드,Identifiers,식별자,Comment,주석,//,/* ~ */,/** ~ */,자바 작명 관례," />
 		<put-attribute name="description" value="키워드와 주석, 식별자를 만드는 방법을 설명합니다." />
-		<put-attribute name="content" value="0040-Keyword_Indentifiers_Comment" />
+		<put-attribute name="content" value="0040-Keyword_Identifiers_Comment" />
 		<put-attribute name="next-article" value="java#DataType_Casting" />
 		<put-attribute name="next-article-title" value="자료형과 형변환" />
 		<put-attribute name="prev-article" value="java#Class-Object" />
@@ -135,7 +135,7 @@
 		<put-attribute name="content" value="0050-DataType_Casting" />
 		<put-attribute name="next-article" value="java#Arrays" />
 		<put-attribute name="next-article-title" value="배열" />
-		<put-attribute name="prev-article" value="java#Keyword_Indentifiers_Comment" />
+		<put-attribute name="prev-article" value="java#Keyword_Identifiers_Comment" />
 		<put-attribute name="prev-article-title" value="키워드, 식별자, 주석" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub_ko.jsp" />
 	</definition>

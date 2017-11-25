@@ -111,17 +111,17 @@
 		<put-attribute name="keywords" value="Class, Object" />
 		<put-attribute name="description" value="Class and Object" />
 		<put-attribute name="content" value="0030-Class_Object_en" />
-		<put-attribute name="next-article" value="java#Keyword_Indentifiers_Comment" />
-		<put-attribute name="next-article-title" value="Keyword, Indentifiers, Comment" />
+		<put-attribute name="next-article" value="java#Keyword_Identifiers_Comment" />
+		<put-attribute name="next-article-title" value="Keyword, Identifiers, Comment" />
 		<put-attribute name="prev-article" value="java#Features" />
 		<put-attribute name="prev-article-title" value="Java Features" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
-	<definition name="java/Keyword_Indentifiers_Comment" extends="lectureTemplate">
-		<put-attribute name="title" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="keywords" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="description" value="Keyword, Indentifiers, Comment" />
-		<put-attribute name="content" value="0040-Keyword_Indentifiers_Comment_en" />
+	<definition name="java/Keyword_Identifiers_Comment" extends="lectureTemplate">
+		<put-attribute name="title" value="Keyword, Identifiers, Comment" />
+		<put-attribute name="keywords" value="Keyword, Identifiers, Comment" />
+		<put-attribute name="description" value="Keyword, Identifiers, Comment" />
+		<put-attribute name="content" value="0040-Keyword_Identifiers_Comment_en" />
 		<put-attribute name="next-article" value="java#DataType_Casting" />
 		<put-attribute name="next-article-title" value="Data Type and Type Casting" />
 		<put-attribute name="prev-article" value="java#Class-Object" />
@@ -135,8 +135,8 @@
 		<put-attribute name="content" value="0050-DataType_Casting_en" />
 		<put-attribute name="next-article" value="java#Arrays" />
 		<put-attribute name="next-article-title" value="Arrays" />
-		<put-attribute name="prev-article" value="java#Keyword_Indentifiers_Comment" />
-		<put-attribute name="prev-article-title" value="Keyword, Indentifiers, Comment" />
+		<put-attribute name="prev-article" value="java#Keyword_Identifiers_Comment" />
+		<put-attribute name="prev-article-title" value="Keyword, Identifiers, Comment" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/java/java-sub.jsp" />
 	</definition>
 	<definition name="java/Arrays" extends="lectureTemplate">

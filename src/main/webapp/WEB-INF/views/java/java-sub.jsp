@@ -8,7 +8,7 @@
 		<li class="sub-menu-item"><a href="/java/Features">Java Features</a></li>
 		<li class="sub-menu-item"><a href="/java/Class-Object">Class and Object</a></li>
 		<li class="sub-section-title">Java Basic</li>
-		<li class="sub-menu-item"><a href="/java/Keyword_Indentifiers_Comment">Indentifiers</a></li>
+		<li class="sub-menu-item"><a href="/java/Keyword_Identifiers_Comment">Identifiers</a></li>
 		<li class="sub-menu-item"><a href="/java/DataType_Casting">Data Type</a></li>
 		<li class="sub-menu-item"><a href="/java/Arrays">Arrays</a></li>
 		<li class="sub-menu-item"><a href="/java/Operators_if_loops">Operators, if, loops, switch</a></li>

@@ -8,7 +8,7 @@
 		<li class="sub-menu-item"><a href="/java/Features">자바의 특징</a></li>
 		<li class="sub-menu-item"><a href="/java/Class-Object">객체와 클래스</a></li>
 		<li class="sub-section-title">자바 기초</li>
-		<li class="sub-menu-item"><a href="/java/Keyword_Indentifiers_Comment">키워드, 식별자, 주석</a></li>
+		<li class="sub-menu-item"><a href="/java/Keyword_Identifiers_Comment">키워드, 식별자, 주석</a></li>
 		<li class="sub-menu-item"><a href="/java/DataType_Casting">자료형과 형변환</a></li>
 		<li class="sub-menu-item"><a href="/java/Arrays">배열</a></li>
 		<li class="sub-menu-item"><a href="/java/Operators_if_loops">연산자, if, 반복문, 스위치문</a></li>
