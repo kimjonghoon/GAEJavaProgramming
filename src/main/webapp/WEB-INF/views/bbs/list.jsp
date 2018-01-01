@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<h1 class="bbs-heading">${boardName }</h1>
+<div id="url-navi">${boardName }</div>
 
 <table class="bbs-table">
 <tr>

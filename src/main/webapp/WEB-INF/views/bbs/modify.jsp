@@ -18,7 +18,7 @@ $(document).ready(function() {
 });
 </script>
 
-<h1 class="bbs-heading">${boardName }</h1>
+<div id="url-navi">${boardName }</div>
 <p style="text-transform: capitalize;"><spring:message code="bbs.modify" /></p>
 <form id="writeForm" action="<%=blobstoreService.createUploadUrl("/bbs/modify")%>?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 <p style="margin: 0; padding: 0;">

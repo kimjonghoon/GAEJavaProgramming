@@ -643,6 +643,16 @@ h6 {
     padding: 5px;
     border: 1px solid grey;
 }
+.view-menu {
+        height: 22px;
+}
+#url-navi {
+    margin: 0;
+    padding-top: 10px;
+    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    font-size: 11px;
+    color: #666;
+}
 @media (min-width : 768px) {
 	#wrap {
 		margin: 0 auto;

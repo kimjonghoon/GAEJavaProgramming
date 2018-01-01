@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
-
 <script>
 $(document).ready(function() {
 	$('#file-list a.download').click(function() {
@@ -124,9 +123,9 @@ function goList(page) {
 }
 </script>
 
-<h1 class="bbs-heading">${boardName }</h1>
+<div id="url-navi">${boardName }</div>
 
-<div class="view-menu" style="height: 32px;margin-bottom: 5px;">
+<div class="view-menu" style="margin-top: 15px;margin-bottom: 5px;">
 	<security:authorize access="isAuthenticated() and (#owner == principal.email or hasRole('ROLE_ADMIN'))">
     <div style="float: left;">
         <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
@@ -146,8 +145,8 @@ function goList(page) {
 </div>
 <table class="bbs-table">
 <tr>
-    <th style="width: 50px;text-align: left;">TITLE</th>
-    <th style="text-align: left;color: #555;">${title }</th>
+    <th style="width: 47px;text-align: left;vertical-align: top;font-size: 1em;">TITLE</th>
+    <th style="text-align: left;color: #555;font-size: 1em;">${title }</th>
 </tr>
 </table>
 <div id="date-writer-read">
@@ -218,7 +217,7 @@ function goList(page) {
     <p><spring:message code="bbs.prev" /> : <a href="#" title="${prevArticle.articleNo }">${prevArticle.title }</a></p>
     </c:if>
 </div>
-<div class="view-menu" style="height: 32px;margin-bottom: 5px;">
+<div class="view-menu" style="margin-bottom: 47px;">
 	<security:authorize access="isAuthenticated() and (#owner == principal.email or hasRole('ROLE_ADMIN'))">
     <div style="float: left;">
         <input type="button" value="<spring:message code="bbs.modify" />" class="goModify" />
