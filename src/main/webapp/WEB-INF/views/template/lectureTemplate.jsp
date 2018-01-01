@@ -23,22 +23,7 @@
 <script src="/resources/js/jquery-3.2.1.min.js"></script>
 <script src="/resources/js/prettify.js"></script>
 <script src="/resources/js/commons.js"></script>
-<script>
-$(document).ready(function() {
-	var url = $('#main-article').attr('title');
-	$('#main-article').load('/resources/articles/' + url + '.html', function() {
-		runAfterLoadArticle();
-	});
- 	$('#next-prev a').click(function(e) {
-		e.preventDefault();
-		var url = "/" + this.title;
-		url = url.replace('#','/');
-		$("#lectureForm").attr("action", url);
-		$('#lectureForm').submit();
-	});
-});
-</script>
-</head>
+<script src="/resources/js/loadArticle.js"></script>
 <body>
 <div id="wrap">
 	<header>
@@ -56,9 +41,9 @@ $(document).ready(function() {
 			<div id="next-prev">
 			<ul>
 				<li><spring:message code="next" /> : 
-				<a href="#" title="<tiles:insertAttribute name="next-article" />"><tiles:insertAttribute name="next-article-title" /></a></li>
+				<a href="<tiles:insertAttribute name="next-article" />"><tiles:insertAttribute name="next-article-title" /></a></li>
 				<li><spring:message code="prev" /> : 
-				<a href="#" title="<tiles:insertAttribute name="prev-article" />"><tiles:insertAttribute name="prev-article-title" /></a></li>
+				<a href="<tiles:insertAttribute name="prev-article" />"><tiles:insertAttribute name="prev-article-title" /></a></li>
 			</ul>
 			</div>
 		</div>
@@ -76,9 +61,4 @@ $(document).ready(function() {
 		</div>
 	</footer>
 </div>
-<div style="display:none;">
-	<form id="lectureForm">
-	</form>
-</div>
-</body>
 </html>

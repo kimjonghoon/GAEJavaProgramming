@@ -22,8 +22,8 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 		<archiveClasses>true</archiveClasses>
-		<spring.version>5.0.1.RELEASE</spring.version>
-		<spring.security.version>4.2.3.RELEASE</spring.security.version>
+		<spring.version>5.0.2.RELEASE</spring.version>
+		<spring.security.version>5.0.0.RELEASE</spring.security.version>
 	</properties>
 
 	<prerequisites>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>1.9.57</version>
+			<version>1.9.60</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -140,13 +140,13 @@
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
-			<version>1.9.57</version>
+			<version>1.9.60</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
-			<version>1.9.57</version>
+			<version>1.9.60</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -190,7 +190,7 @@
 			<plugin>
 				<groupId>com.google.appengine</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.9.57</version>
+				<version>1.9.60</version>
 				<configuration>
 				</configuration>
 			</plugin>

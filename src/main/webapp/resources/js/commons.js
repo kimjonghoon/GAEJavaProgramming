@@ -18,3 +18,15 @@ function selectRange(obj) {
 		range.select();
 	}
 }
+function displayJavaScriptResult() {
+    $('pre.script-result-display').each(function(index) {
+        var $result = "";
+        function println(str) {
+            $result += str + "\n";
+        }
+        var $convert = $(this).text().replace(/alert/g,"println");
+        eval($convert);
+        $(this).after('<pre class="result">' + $result + '</pre>');
+    });
+}
+
