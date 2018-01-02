@@ -9,7 +9,7 @@ html, body {
 }
 pre {
 	margin: 0 0 0.7em 0;
-	font-family: Consolas, "Noto Sans KR", dotum, "Liberation Mono", Courier, monospace;	
+	font-family: Consolas, "Noto Sans KR", dotum, "Liberation Mono", Courier, monospace;
 }
 input, select, textarea, td, th {
 	color: #333;
@@ -18,6 +18,9 @@ input, select, textarea, td, th {
 }
 table {
 	border-collapse: collapse;
+}
+img {
+	border: 0; 
 }
 form {
 	margin: 0;
@@ -652,6 +655,10 @@ h6 {
     font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
     font-size: 11px;
     color: #666;
+}
+#content {
+	font-size: 0.9em;
+	line-height: 1.6;
 }
 @media (min-width : 768px) {
 	#wrap {
