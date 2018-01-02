@@ -1324,5 +1324,12 @@
 		<put-attribute name="description" value="DownloadController Example" />
 		<put-attribute name="content" value="2017/downloadController" />
 		<put-attribute name="sidebar" value="" />
+	<definition name="blog/2017/ajax-fileupload" extends="blogTemplate">
+		<put-attribute name="title" value="에이잭스 파일 업로드" />
+		<put-attribute name="keywords" value="에이잭스 파일 업로드" />
+		<put-attribute name="description" value="에이젝스를 사용해 파일 업로드하는 방법 설명" />
+		<put-attribute name="content" value="2017/ajax-fileupload" />
+		<put-attribute name="sidebar" value="" />
+	</definition>
 	</definition>		
 </tiles-definitions>

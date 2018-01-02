@@ -660,6 +660,20 @@ h6 {
 	font-size: 0.9em;
 	line-height: 1.6;
 }
+article > ul {
+	list-style-type: none;
+}
+article > ul > li {
+	padding: 0.2em 0 0.2em 0.5em;
+	background: url('../images/circle.gif') no-repeat 0% 50%;
+}
+#next-prev > ul {
+	list-style-type: none;
+}
+#next-prev > ul > li {
+	padding: 0.2em 0 0.2em 0.5em;
+	background: url('../images/circle.gif') no-repeat 0% 50%;
+}
 @media (min-width : 768px) {
 	#wrap {
 		margin: 0 auto;
