@@ -32,26 +32,29 @@
 </c:forEach>
 </table>
 
-<c:if test="${prevPage > 0 }">
-	<a href="list?boardCd=${param.boardCd }&page=${prevPage }&searchWord=${param.searchWord }">[<spring:message code="prev" />]</a>
-</c:if>
 
 <div id="paging">
-	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
-		<c:choose>
-			<c:when test="${param.page == i }">
-				<strong class="current-page">${i }</strong>
-			</c:when>
-			<c:otherwise>
-				<a href="list?boardCd=${param.boardCd }&page=${i }&searchWord=${param.searchWord }">[${i }]</a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
+    <c:if test="${prevPage > 0 }">
+	<a href="list?boardCd=${param.boardCd }&page=${prevPage }&searchWord=${param.searchWord }">[ <spring:message code="prev" /> ]</a>
+    </c:if>
+
+    <c:forEach var="i" begin="${firstPage }" end="${lastPage }">
+        <c:choose>
+            <c:when test="${param.page == i }">
+                <strong class="current-page"> ${i } </strong>
+            </c:when>
+            <c:otherwise>
+                <a href="list?boardCd=${param.boardCd }&page=${i }&searchWord=${param.searchWord }">[ ${i } ]</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+
+    <c:if test="${nextPage > 0 }">
+        <a href="list?boardCd=${param.boardCd }&page=${nextPage }&searchWord=${param.searchWord }">[ <spring:message code="next" /> ]</a>
+    </c:if>
+
 </div>
 
-<c:if test="${nextPage > 0 }">
-	<a href="list?boardCd=${param.boardCd }&page=${nextPage }&searchWord=${param.searchWord }">[<spring:message code="next" />]</a>
-</c:if>
 
 <div id="list-menu">
 	<input type="button" value="<spring:message code="bbs.write" />" onclick="location.href='write?boardCd=${param.boardCd}&page=${param.page }&searchWord=${param.searchWord }'" />

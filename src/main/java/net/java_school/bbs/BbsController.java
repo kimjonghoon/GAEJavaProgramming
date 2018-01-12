@@ -56,7 +56,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
 		String boardName = this.getBoardName(boardCd, lang);
 
-		int numPerPage = 10;
+		int numPerPage = 20;
 		int pagePerBlock = 10;
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
 		NumbersForPaging ints = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
@@ -122,7 +122,7 @@ public class BbsController extends NumberGeneratorForPaging {
 		model.addAttribute("commentsList", commentsList);
 
 		//목록관련
-		int numPerPage = 10;//페이지당 레코드 수
+		int numPerPage = 20;//페이지당 레코드 수
 		int pagePerBlock = 10;//블록당 페이지 링크수
 		int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
 		NumbersForPaging ints = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
