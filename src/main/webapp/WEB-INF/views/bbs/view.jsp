@@ -270,7 +270,8 @@ function goList(page) {
 </table>
 <div id="paging">
 	<c:if test="${prevPage > 0 }">
-		<a href="#" title="${prevPage }">[ <spring:message code="prev" /> ]</a>
+            <a href="#" title="1">[ <spring:message code="first" /> ]</a>
+            <a href="#" title="${prevPage }">[ <spring:message code="prev" /> ]</a>
 	</c:if>
 	<c:forEach var="i" begin="${firstPage }" end="${lastPage }">
 		<c:choose>
@@ -283,7 +284,8 @@ function goList(page) {
 		</c:choose>
 	</c:forEach>
 	<c:if test="${nextPage > 0 }">
-		<a href="#" title="${nextPage }">[ <spring:message code="next" /> ]</a>
+            <a href="#" title="${nextPage }">[ <spring:message code="next" /> ]</a>
+            <a href="#" title="${totalPage }">[ <spring:message code="last" /> ]</a>
 	</c:if>
 </div>
 <div id="list-menu">

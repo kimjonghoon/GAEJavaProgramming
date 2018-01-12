@@ -35,7 +35,8 @@
 
 <div id="paging">
     <c:if test="${prevPage > 0 }">
-	<a href="list?boardCd=${param.boardCd }&page=${prevPage }&searchWord=${param.searchWord }">[ <spring:message code="prev" /> ]</a>
+	<a href="list?boardCd=${param.boardCd }&page=1&searchWord=${param.searchWord }">[ <spring:message code="first" /> ]</a>
+        <a href="list?boardCd=${param.boardCd }&page=${prevPage }&searchWord=${param.searchWord }">[ <spring:message code="prev" /> ]</a>
     </c:if>
 
     <c:forEach var="i" begin="${firstPage }" end="${lastPage }">
@@ -51,6 +52,7 @@
 
     <c:if test="${nextPage > 0 }">
         <a href="list?boardCd=${param.boardCd }&page=${nextPage }&searchWord=${param.searchWord }">[ <spring:message code="next" /> ]</a>
+        <a href="list?boardCd=${param.boardCd }&page=${totalPage }&searchWord=${param.searchWord }">[ <spring:message code="last" /> ]</a>
     </c:if>
 
 </div>
