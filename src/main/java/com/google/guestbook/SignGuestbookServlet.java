@@ -29,7 +29,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.googlecode.objectify.ObjectifyService;
 
 public class SignGuestbookServlet extends HttpServlet {
-  @Override
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6047747408596738392L;
+
+@Override
   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     Greeting greeting;
 

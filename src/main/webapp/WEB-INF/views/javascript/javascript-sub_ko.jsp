@@ -4,13 +4,13 @@
 <nav id="secondaryNav">
 	<strong>JavaScript</strong>
 	<ul id="sub-menu">
-		<li class="sub-section-title">JavaScript Basic</li>
+		<li class="sub-section-title">기초</li>
 		<li class="sub-menu-item"><a href="/javascript/introduction">자바스크립트 소개</a></li>
 		<li class="sub-menu-item"><a href="/javascript/dataType">기본 데이터 타입</a></li>
 		<li class="sub-menu-item"><a href="/javascript/handling-select-items">select 엘리먼트 다루기</a></li>
 		<li class="sub-menu-item"><a href="/javascript/difference-between-javascript-and-java">자바와 다른점</a></li>
 		
-		<li class="sub-section-title">JavaScript Objects</li>	
+		<li class="sub-section-title">자바스크립트 객체</li>	
 		<li class="sub-menu-item"><a href="/javascript/Number">Number</a></li>
 		<li class="sub-menu-item"><a href="/javascript/String">String</a></li>
 		<li class="sub-menu-item"><a href="/javascript/RegExp">정규표현식</a></li>

@@ -28,7 +28,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GuestbookServlet extends HttpServlet {
-  @Override
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7848087425367864671L;
+
+@Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws IOException {
     if (req.getParameter("testing") != null) {

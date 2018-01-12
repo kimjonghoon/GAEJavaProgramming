@@ -4,7 +4,7 @@
 <nav id="secondaryNav">
 	<strong>JavaScript</strong>
 	<ul id="sub-menu">
-		<li class="sub-section-title">JavaScript Basic</li>
+		<li class="sub-section-title">Basic</li>
 		<li class="sub-menu-item"><a href="/javascript/introduction">Introduction</a></li>
 		<li class="sub-menu-item"><a href="/javascript/dataType">Data Type</a></li>
 		<li class="sub-menu-item"><a href="/javascript/handling-select-items">Handling select items</a></li>
@@ -22,7 +22,7 @@
 		<li class="sub-section-title">Lab</li>	
 		<li class="sub-menu-item"><a href="/javascript/javascript-form-validation">Form Validation</a></li>
 		<li class="sub-menu-item"><a href="/javascript/Cookie">Cookie</a></li>
-		<li class="sub-menu-item"><a href="/javascript/decoupling-html-and-javascript">Decoupling HTML &amp: JavaScript</a></li>
+		<li class="sub-menu-item"><a href="/javascript/decoupling-html-and-javascript">Decoupling HTML and JavaScript</a></li>
 		
 		<li class="sub-section-title">Blogs in Datastore</li>
 <c:forEach var="i" items="${articles }" varStatus="status">
