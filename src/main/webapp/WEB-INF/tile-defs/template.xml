@@ -1331,4 +1331,11 @@
 		<put-attribute name="content" value="2017/ajax-fileupload" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
+	<definition name="blog/2018/ajax-like" extends="blogTemplate">
+		<put-attribute name="title" value="Ajax Like" />
+		<put-attribute name="keywords" value="ajax like" />
+		<put-attribute name="description" value="like using ajax" />
+		<put-attribute name="content" value="2018/ajax-like" />
+		<put-attribute name="sidebar" value="" />
+	</definition>        
  </tiles-definitions>

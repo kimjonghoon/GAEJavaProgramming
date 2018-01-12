@@ -25,7 +25,7 @@
 	display: none;
 }
 #content {
-	margin-left: 0;
+	margin-left: 0.5em;
 }
 </style>
 <script src="/resources/js/prettify.js"></script>
