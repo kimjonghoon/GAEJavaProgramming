@@ -67,4 +67,4 @@
 	mvn clean install
 
 ## How to Run (localhost)
-	mvn appengine:devserver
+	mvn appengine:run
