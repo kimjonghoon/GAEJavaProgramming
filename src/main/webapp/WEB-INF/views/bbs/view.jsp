@@ -121,6 +121,18 @@ function goList(page) {
 	$('#listForm input[name*=page]').val(page);
 	$('#listForm').submit();
 }
+$(document).ready(function () {
+    var originWidth = $('#board-content > iframe').width();
+    var originHeight = $('#board-content > iframe').height();
+
+    var width = $('#board-content').width();
+    var height = originHeight * width / originWidth;
+
+    $('#board-content > iframe').attr('width', width);
+    $('#board-content > iframe').attr('height', height);
+
+    $('#board-content > iframe').attr('allowFullScreen', '');
+});
 </script>
 
 <div id="url-navi">${boardName }</div>
@@ -153,15 +165,17 @@ function goList(page) {
 	<fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${regdate }" />
 	by ${nickname } hit ${hit }
 </div>
-<div style="font-size: 0.9em;text-align: justify;">${content }</div>
-<p id="file-list" style="text-align: right">
-<c:forEach var="file" items="${attachFileList }" varStatus="status">
-	<a href="#" title="${file.filekey }" class="download">${file.filename }</a>
-	<security:authorize access="isAuthenticated() and (#owner == principal.email or hasRole('ROLE_ADMIN'))">
-	<a href="#" title="${file.filekey }">x</a><br />
-	</security:authorize>
+<div id="board-content" style="font-size: 0.9em;text-align: justify;">${content }</div>
+<div id="file-list">
+	<c:forEach var="file" items="${attachFileList }" varStatus="status">
+	<div style="text-align: right;">
+		<a href="#" title="${file.filekey }" class="download">${file.filename }</a>
+		<security:authorize access="isAuthenticated() and (#owner == principal.email or hasRole('ROLE_ADMIN'))">
+		<a href="#" title="${file.filekey }">x</a>
+		</security:authorize>
+	</div>
 </c:forEach>
-</p>
+</div>
 <form id="addCommentForm" action="addComments" method="post" style="margin-bottom: 5px;">
 	<p style="margin: 0;padding: 0">
 		<input type="hidden" name="articleNo" value="${param.articleNo }" />
