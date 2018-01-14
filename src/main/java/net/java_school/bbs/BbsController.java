@@ -73,6 +73,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
         model.addAttribute("list", list);
         model.addAttribute("boardName", boardName);
+        model.addAttribute("title", boardName);
         model.addAttribute("listItemNo", listItemNo);
         model.addAttribute("prevPage", prevPage);
         model.addAttribute("nextPage", nextPage);
@@ -158,6 +159,7 @@ public class BbsController extends NumberGeneratorForPaging {
         String boardName = this.getBoardName(boardCd, lang);
         model.addAttribute("boards", boards);
         model.addAttribute("boardName", boardName);
+        model.addAttribute("title", boardName);
 
         return "bbs/write";
     }
@@ -301,6 +303,7 @@ public class BbsController extends NumberGeneratorForPaging {
         //수정페이지에서의 보일 게시글 정보
         model.addAttribute("article", article);
         model.addAttribute("boardName", boardName);
+        model.addAttribute("title", boardName);
 
         return "bbs/modify";
     }
@@ -386,13 +389,4 @@ public class BbsController extends NumberGeneratorForPaging {
         return "bbs/blob";
     }
 
-    /*	@RequestMapping(value="/deleteFile", method=RequestMethod.POST)
-	public String deleteAttachFile(String filekey) throws Exception {
-		BlobKey blobKey = new BlobKey(filekey);
-		blobstoreService.delete(blobKey);
-		AttachFile currentAttachFile = boardService.getAttachFile(filekey);
-		boardService.removeAttachFile(currentAttachFile);
-		return "redirect:/bbs/blob?blob-key=" + blobKey.getKeyString();
-	}
-     */
 }
