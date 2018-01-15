@@ -63,6 +63,9 @@
 	insert into board values ('free','Free','자유 게시판');
 	commit;
 
+## Have to do
+    Install Google Cloud SDK
+
 ## How to Install
 	mvn clean install
 
