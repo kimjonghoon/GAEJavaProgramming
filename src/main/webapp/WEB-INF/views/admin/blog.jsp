@@ -7,7 +7,7 @@
 	function goModify(str) {
 		var form = document.getElementById("form");
 		form.webSafeString.value = str;
-		form.action = "modify";
+		form.action = "/admin/modify";
 		form.method = "get";
 		form.submit();
 	}
@@ -16,7 +16,7 @@
 		if (chk) {
 			var form = document.getElementById("form");
 			form.webSafeString.value = str;
-			form.action = "delete";
+			form.action = "/admin/delete";
 			form.method = "post";
 			form.submit();
 		}

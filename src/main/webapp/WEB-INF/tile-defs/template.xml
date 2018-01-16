@@ -23,7 +23,6 @@
         <put-attribute name="footer-ad" value="/WEB-INF/views/inc/footer-ad.jsp" />
     </definition>	
     <definition name="datastoreBlog" template="/WEB-INF/views/template/datastoreBlog.jsp">
-        <put-attribute name="title-keywords-description" value="/WEB-INF/views/inc/title-keywords-description.jsp" />
         <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
         <put-attribute name="mainNav" value="/WEB-INF/views/inc/mainNav.jsp" />
         <put-attribute name="login" value="/WEB-INF/views/inc/login.jsp" />

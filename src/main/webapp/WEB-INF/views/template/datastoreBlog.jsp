@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<tiles:insertAttribute name="title-keywords-description" />
+<title>${title}</title>
+<meta name="Keywords" content="${keywords}" />
+<meta name="Description" content="${description}" />
 <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen"/>
 <link rel="stylesheet" href="/resources/css/print.css" type="text/css" media="print" />
 <link rel="stylesheet" href="/resources/css/prettify.css" type="text/css" />
