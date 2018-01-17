@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+<tiles:importAttribute name="styles"/>
+<tiles:importAttribute name="javascripts"/>
+
 <!DOCTYPE html> 
 <html>
     <head>
@@ -11,10 +17,19 @@
         <meta name="Description" content="<tiles:insertAttribute name="description" />" />
         <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="/resources/css/print.css" type="text/css" media="print" />
-        <link rel="stylesheet" href="/resources/css/prettify.css" type="text/css" />
-        <script src="/resources/js/prettify.js"></script>
-        <script src="/resources/js/jquery-3.2.1.min.js"></script>
-        <script src="/resources/js/commons.js"></script>
+        <c:forEach var="style" items="${styles}">
+            <link rel="stylesheet" href="<c:url value="${style}"/>" type="text/css" />
+        </c:forEach>
+        <script async="async" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-1447532017929181",
+                enable_page_level_ads: true
+        });
+        </script>
+        <c:forEach var="script" items="${javascripts}">
+            <script src="<c:url value="${script}"/>"></script>
+        </c:forEach>
     </head>
     <body>
         <div id="wrap">
@@ -40,6 +55,9 @@
             </aside>
             <footer>
                 <tiles:insertAttribute name="footer" />
+                <div id="footer-ad">
+			<tiles:insertAttribute name="footer-ad" />
+		</div>
             </footer>
         </div>
     </body>
