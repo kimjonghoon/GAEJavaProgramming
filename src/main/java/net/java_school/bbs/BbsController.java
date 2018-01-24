@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.java_school.bbs.BoardService;
 import net.java_school.commons.NumbersForPaging;
 import net.java_school.commons.NumberGeneratorForPaging;
 import net.java_school.spring.security.GaeUserAuthentication;
@@ -29,7 +28,7 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 @RequestMapping("/bbs")
 public class BbsController extends NumberGeneratorForPaging {
 
-    private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    private final BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     private BoardService boardService;
 
     public void setBoardService(BoardService boardService) {
@@ -185,11 +184,10 @@ public class BbsController extends NumberGeneratorForPaging {
 
         if (blobKeys != null && !blobKeys.isEmpty()) {
             BlobInfoFactory blobInfoFactory = new BlobInfoFactory();
-            BlobInfo blobInfo = null;
             int size = blobKeys.size();
 
             for (int i = 0; i < size; i++) {
-                blobInfo = blobInfoFactory.loadBlobInfo(blobKeys.get(i));
+                BlobInfo blobInfo = blobInfoFactory.loadBlobInfo(blobKeys.get(i));
                 AttachFile attachFile = new AttachFile();
                 String filekey = blobKeys.get(i).getKeyString();
                 attachFile.setFilekey(filekey);
@@ -322,11 +320,10 @@ public class BbsController extends NumberGeneratorForPaging {
 
         if (blobKeys != null && !blobKeys.isEmpty()) {
             BlobInfoFactory blobInfoFactory = new BlobInfoFactory();
-            BlobInfo blobInfo = null;
             int size = blobKeys.size();
 
             for (int i = 0; i < size; i++) {
-                blobInfo = blobInfoFactory.loadBlobInfo(blobKeys.get(i));
+                BlobInfo blobInfo = blobInfoFactory.loadBlobInfo(blobKeys.get(i));
                 AttachFile attachFile = new AttachFile();
                 String filekey = blobKeys.get(i).getKeyString();
                 attachFile.setFilekey(filekey);

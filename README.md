@@ -33,7 +33,7 @@
 	    owner varchar(60),
 	    hit bigint,    
 	    regdate datetime,
-	    nickname varchar(20),
+	    nickname varchar(60),
 	    constraint PK_ARTICLE PRIMARY KEY(articleno),
 	    constraint FK_ARTICLE FOREIGN KEY(boardcd) REFERENCES board(boardcd)
 	);
@@ -44,7 +44,7 @@
 	    owner varchar(60),    
 	    memo varchar(4000) NOT NULL,
 	    regdate datetime,
-	    nickname varchar(20), 
+	    nickname varchar(60), 
 	    constraint PK_COMMENTS PRIMARY KEY(commentno)
 	);
 	
