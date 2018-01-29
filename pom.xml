@@ -21,7 +21,7 @@
         <objectify.version>5.1.21</objectify.version>
         <guava.version>23.0</guava.version>
         <spring.version>5.0.3.RELEASE</spring.version>
-        <spring.security.version>5.0.0.RELEASE</spring.security.version>
+        <spring.security.version>5.0.1.RELEASE</spring.security.version>
     </properties>
 
     <prerequisites>
