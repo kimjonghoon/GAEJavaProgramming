@@ -7,39 +7,43 @@
 <%
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 %>
-<script>
-$(document).ready(function () {
-    $('#writeForm').submit(function(){
-        var title = $('#writeForm input[name*=title]').val();
-        var content = $('#writeForm textarea').val();
-        title = $.trim(title);
-        content = $.trim(content);
-        if (title.length === 0) {
-            alert('<spring:message code="title.empty" />');
-            $('#writeForm input[name*=title]').val('');
-            return false;
-        }
-        if (content.length === 0) {
-            alert('<spring:message code="content.empty" />');
-            $('#writeForm textarea').val('');
-            return false;
-        }
-        $('#writeForm input[name*=title]').val(title);
-        $('#writeForm textarea').val(content);
-    });
-    //list button
-    $('.goList').click(function () {
-        $('#writeForm').attr("action", "list");
-        $('#writeForm').attr("method", "get");
-        $('#writeForm').submit();
-    });
-    //viwe button
-    $('.goView').click(function () {
-        $('#writeForm').attr("action", "view");
-        $('#writeForm').attr("method", "get");
-        $('#writeForm').submit();
-    });
-});
+<script>    
+    window.onload = initPage;
+    
+    function initPage() {
+        var writeForm = document.getElementById('writeForm');
+        writeForm.onsubmit = function() {
+            var title = writeForm.title.value;
+            var content = writeForm.content.value;
+            title = title.trim();
+            content = content.trim();
+            if (title.length === 0) {
+                alert('<spring:message code="title.empty" />');
+                writeForm.title.value = '';
+                return false;
+            }
+            if (content.length === 0) {
+                alert('<spring:message code="content.empty" />');
+                writeForm.content.value = '';
+                return false;
+            }
+            writeForm.title.value = title;
+            writeForm.content.value = content;
+            return true;
+        };
+        var listBtn = document.getElementById('goList');
+        listBtn.onclick = function() {
+            writeForm.action = "list";
+            writeForm.method = "get";
+            writeForm.submit();
+        };
+        var viewBtn = document.getElementById('goView');
+        viewBtn.onclick = function() {
+            writeForm.action = "view";
+            writeForm.method = "get";
+            writeForm.submit();
+        };
+    }
 </script>
 <div id="url-navi">${boardName }</div>
 <p style="text-transform: capitalize;"><spring:message code="bbs.write" /></p>
@@ -65,13 +69,9 @@ $(document).ready(function () {
     </table>
     <div style="text-align: center; padding-top: 15px;">
         <input type="submit" value="<spring:message code="bbs.submit" />" />
-        <c:choose>
-            <c:when test="${empty param.articleNo }">
-                <input type="button" value="<spring:message code="bbs.list" />" class="goList" />
-            </c:when>
-            <c:otherwise>
-                <input type="button" value="<spring:message code="bbs.view" />" class="goView" />
-            </c:otherwise>
-        </c:choose>
+        <input type="button" value="<spring:message code="bbs.list" />" id="goList" />
+        <c:if test="${not empty param.articleNo }">
+            <input type="button" value="<spring:message code="bbs.view" />" id="goView" />
+        </c:if>
     </div>
 </form>
