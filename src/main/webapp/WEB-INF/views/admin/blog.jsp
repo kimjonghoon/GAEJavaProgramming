@@ -4,39 +4,27 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <script>
-    window.onload = initPage;
-    
-    function initPage() {
-        var blog_list = document.getElementById("blog-list");
-        var blogLinks = blog_list.getElementsByTagName("a");
-        for (var i = 0; i < blogLinks.length; i++) {
-            var blogLink = blogLinks[i];
-            if (blogLink.className === "blog-modify-link") {
-                blogLink.onclick = function() {
-                    var webSafeString = this.title;
-                    var form = document.getElementById("form");
-                    form.webSafeString.value = webSafeString;
-                    form.action = "/admin/modify";
-                    form.method = "get";
-                    form.submit();
-                    return false;
-                };
-            } else if (blogLink.className === 'blog-delete-link') {
-                blogLink.onclick = function() {
-                    var chk = confirm('<spring:message code="delete.confirm" />');
-                    if (chk) {
-                        var webSafeString = this.title;
-                        var form = document.getElementById("form");
-                        form.webSafeString.value = webSafeString;
-                        form.action = "/admin/delete";
-                        form.method = "post";
-                        form.submit();
-                        return false;
-                    }
-                };
+    $(document).ready(function () {
+        $('.blog-modify-link').click(function (e) {
+            e.preventDefault();
+            var webSafeString = this.title;
+            $('#form input[name*=webSafeString]').val(webSafeString);
+            $('#form').attr('action', '/admin/modify');
+            $('#form').attr('method', 'get');
+            $('#form').submit();
+        });
+        $('.blog-delete-link').click(function (e) {
+            e.preventDefault();
+            var chk = confirm('<spring:message code="delete.confirm" />');
+            if (chk === true) {
+                var webSafeString = this.title;
+                $('#form input[name*=webSafeString]').val(webSafeString);
+                $('#form').attr('action', '/admin/delete');
+                $('#form').attr('method', 'post');
+                $('#form').submit();
             }
-        }        
-    }
+        });
+    });
 </script>
 
 <h3><spring:message code="blog.list" /></h3>

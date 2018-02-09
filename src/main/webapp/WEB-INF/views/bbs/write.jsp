@@ -7,43 +7,33 @@
 <%
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 %>
-<script>    
-    window.onload = initPage;
-    
-    function initPage() {
-        var writeForm = document.getElementById('writeForm');
-        writeForm.onsubmit = function() {
-            var title = writeForm.title.value;
-            var content = writeForm.content.value;
-            title = title.trim();
-            content = content.trim();
+<script>
+    $(document).ready(function () {
+        $('#writeForm').submit(function () {
+            var title = $('#writeForm input[name*=title]').val();
+            var content = $('#writeForm-ta').val();
+            title = $.trim(title);
+            content = $.trim(content);
             if (title.length === 0) {
                 alert('<spring:message code="title.empty" />');
-                writeForm.title.value = '';
+                $('#writeForm input[name*=title]').val('');
                 return false;
             }
             if (content.length === 0) {
                 alert('<spring:message code="content.empty" />');
-                writeForm.content.value = '';
+                $('#writeForm-ta').val('');
                 return false;
             }
-            writeForm.title.value = title;
-            writeForm.content.value = content;
-            return true;
-        };
-        var listBtn = document.getElementById('goList');
-        listBtn.onclick = function() {
-            writeForm.action = "list";
-            writeForm.method = "get";
-            writeForm.submit();
-        };
-        var viewBtn = document.getElementById('goView');
-        viewBtn.onclick = function() {
-            writeForm.action = "view";
-            writeForm.method = "get";
-            writeForm.submit();
-        };
-    }
+            $('#writeForm input[name*=title]').val(title);
+            $('#writeForm-ta').val(content);
+        });
+        $('#goList').click(function () {
+            $('#listForm').submit();
+        });
+        $('#goView').click(function () {
+            $('#viewForm').submit();
+        });
+    });
 </script>
 <div id="url-navi">${boardName }</div>
 <p style="text-transform: capitalize;"><spring:message code="bbs.write" /></p>
@@ -60,7 +50,7 @@
             <td><input type="text" name="title" style="width: 90%;" /></td>
         </tr>
         <tr>
-            <td colspan="2"><textarea name="content" style="width: 98%; height: 200px;"></textarea></td>
+            <td colspan="2"><textarea name="content" style="width: 98%; height: 200px;" id="writeForm-ta"></textarea></td>
         </tr>
         <tr>
             <td><spring:message code="bbs.file" /></td>
@@ -75,3 +65,16 @@
         </c:if>
     </div>
 </form>
+<div style="display: none;">
+    <form id="listForm" action="list" method="get">
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
+    </form>
+    <form id="viewForm" action="view" method="get">
+        <input type="hidden" name="articleNo" value="${param.articleNo }" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
+    </form>
+</div>        

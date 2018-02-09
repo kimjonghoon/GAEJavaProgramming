@@ -6,23 +6,24 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <script>
     $(document).ready(function () {
-        $('#file-list a.download').click(function () {
+        $('#file-list a.download').click(function (e) {
+            e.preventDefault();
             var $filekey = this.title;
             $('#downForm input[name*=filekey]').val($filekey);
             $('#downForm').submit();
-            return false;
         });
-        $('#file-list a:not(.download)').click(function () {
+        $('#file-list a:not(.download)').click(function (e) {
+            e.preventDefault();
             var chk = confirm('<spring:message code="delete.confirm" />');
             if (chk === true) {
                 var $filekey = this.title;
                 $('#deleteAttachFileForm input[name*=filekey]').val($filekey);
                 $('#deleteAttachFileForm').submit();
             }
-            return false;
         });
         //comments
         $('.comments').click(function (e) {
+            e.preventDefault();
             if ($(e.target).is('.comments-toggle')) {
                 var $form = $(e.target).parent().parent().find('.comments-modify-form');
                 var $p = $(e.target).parent().parent().find('.comments-content');
@@ -33,7 +34,6 @@
                     $form.hide();
                     $p.show();
                 }
-                return false;
             } else if ($(e.target).is('.comments-delete')) {
                 var chk = confirm("<spring:message code="delete.confirm" />");
                 if (chk === true) {
@@ -41,16 +41,16 @@
                     $('#deleteCommentsForm input[name*=commentNo]').val($commentNo);
                     $('#deleteCommentsForm').submit();
                 }
-                return false;
             }
         });
         //modify comments link in form
         $('.comments-modify-form a.comments-modify-submit').click(function (e) {
+            e.preventDefault();
             $(e.target).parent().parent().submit();
-            return false;
         });
         //cancel link in form
         $('.comments-modify-form a:contains("<spring:message code="cancel" />")').click(function (e) {
+            e.preventDefault();
             var $form = $(e.target).parent().parent();
             var $p = $(e.target).parent().parent().parent().find('.comments-content');
             if ($form.is(':hidden') === true) {
@@ -60,12 +60,12 @@
                 $form.hide();
                 $p.show();
             }
-            return false;
         });
-        $('.next-prev a').click(function () {
-            var $articleNo = this.title;
-            goView($articleNo);
-            return false;
+        $('.next-prev a').click(function (e) {
+            e.preventDeafult();
+            var articleNo = this.title;
+            $('#viewForm input[name*=articleNo]').val(articleNo);
+            $('#viewForm').submit();
         });
         //modify button
         $('.goModify').click(function () {
@@ -80,13 +80,15 @@
         });
         //Next Post button
         $('.next-article').click(function () {
-            var $articleNo = this.title;
-            goView($articleNo);
+            var articleNo = this.title;
+            $('#viewForm input[name*=articleNo]').val(articleNo);
+            $('#viewForm').submit();            
         });
         //Prev Post button
         $('.prev-article').click(function () {
-            var $articleNo = this.title;
-            goView($articleNo);
+            var articleNo = this.title;
+            $('#viewForm input[name*=articleNo]').val(articleNo);
+            $('#viewForm').submit();
         });
         //list button
         $('.goList').click(function () {
@@ -97,31 +99,24 @@
             $('#writeForm').submit();
         });
         //list title link in view
-        $('#list-table a').click(function () {
-            var $articleNo = this.title;
-            goView($articleNo);
-            return false;
+        $('#list-table a').click(function (e) {
+            e.preventDefault();
+            var articleNo = this.title;
+            $('#viewForm input[name*=articleNo]').val(articleNo);
+            $('#viewForm').submit();
         });
         //paging
-        $('#paging a').click(function () {
-            var $page = this.title;
-            goList($page);
-            return false;
+        $('#paging a').click(function (e) {
+            e.preventDefault();
+            var page = this.title;
+            $('#listForm input[name*=page]').val(page);
+            $('#listForm').submit();
         });
         //write button 
         $('#list-menu input').click(function () {
             $('#writeForm').submit();
         });
-    });
-    function goView(articleNo) {
-        $('#viewForm input[name*=articleNo]').val(articleNo);
-        $('#viewForm').submit();
-    }
-    function goList(page) {
-        $('#listForm input[name*=page]').val(page);
-        $('#listForm').submit();
-    }
-    $(document).ready(function () {
+        //#board-content > iframe resize
         var originWidth = $('#board-content > iframe').width();
         var originHeight = $('#board-content > iframe').height();
 
@@ -307,76 +302,60 @@
 </div>
 <div id="search">
     <form action="list" method="get">
-        <p style="margin: 0;padding: 0;">
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="text" name="searchWord" size="15" maxlength="${param.searchWord }" />
-            <input type="submit" value="<spring:message code="search" />" />
-        </p>
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="text" name="searchWord" size="15" maxlength="${param.searchWord }" />
+        <input type="submit" value="<spring:message code="search" />" />
     </form>
 </div>
 <div id="form-group" style="display: none">
     <form id="listForm" action="list" method="get">
-        <p>
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="hidden" name="searchWord" value="${param.searchWord }" />
-        </p>
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </form>
     <form id="viewForm" action="view" method="get">
-        <p>
-            <input type="hidden" name="articleNo" />
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="hidden" name="searchWord" value="${param.searchWord }" />
-        </p>
+        <input type="hidden" name="articleNo" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </form>
     <form id="writeForm" action="write" method="get">
-        <p>
-            <input type="hidden" name="articleNo" value="${param.articleNo }" />
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="hidden" name="searchWord" value="${param.searchWord }" />
-        </p>
+        <input type="hidden" name="articleNo" value="${param.articleNo }" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </form>
     <form id="modifyForm" action="modify" method="get">
-        <p>
-            <input type="hidden" name="articleNo" value="${param.articleNo }" />
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="hidden" name="searchWord" value="${param.searchWord }" />
-        </p>
+        <input type="hidden" name="articleNo" value="${param.articleNo }" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
     </form>
     <form id="delForm" action="deleteArticle" method="post">
-        <p>
-            <input type="hidden" name="articleNo" value="${param.articleNo }" />
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="hidden" name="searchWord" value="${param.searchWord }" />
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        </p>
+        <input type="hidden" name="articleNo" value="${param.articleNo }" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
     <form id="deleteCommentsForm" action="deleteComments" method="post">
-        <p>
-            <input type="hidden" name="commentNo" />
-            <input type="hidden" name="articleNo" value="${param.articleNo }" />
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="hidden" name="searchWord" value="${param.searchWord }" />
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        </p>
+        <input type="hidden" name="commentNo" />
+        <input type="hidden" name="articleNo" value="${param.articleNo }" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
     <form id="deleteAttachFileForm" action="deleteAttachFile" method="post">
-        <p>
-            <input type="hidden" name="filekey" />
-            <input type="hidden" name="articleNo" value="${param.articleNo }" />
-            <input type="hidden" name="boardCd" value="${param.boardCd }" />
-            <input type="hidden" name="page" value="${param.page }" />
-            <input type="hidden" name="searchWord" value="${param.searchWord }" />
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        </p>
+        <input type="hidden" name="filekey" />
+        <input type="hidden" name="articleNo" value="${param.articleNo }" />
+        <input type="hidden" name="boardCd" value="${param.boardCd }" />
+        <input type="hidden" name="page" value="${param.page }" />
+        <input type="hidden" name="searchWord" value="${param.searchWord }" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
     <form id="downForm" action="../serve" method="get">
-        <p><input type="hidden" name="filekey" /></p>
+        <input type="hidden" name="filekey" />
     </form>
 </div>
