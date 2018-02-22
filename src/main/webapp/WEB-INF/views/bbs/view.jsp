@@ -6,6 +6,24 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <script>
     $(document).ready(function () {
+
+        prettyPrint();
+        $('pre.prettyprint').html(function () {
+            return this.innerHTML.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+        });
+        $('pre.prettyprint').dblclick(function () {
+            selectRange(this);
+        });
+        $('pre.script-result-display').each(function () {
+            var $result = "";
+            function println(str) {
+                $result += str + "\n";
+            }
+            var $convert = $(this).text().replace(/alert/g, "println");
+            eval($convert);
+            $(this).after('<pre class="result">' + $result + '</pre>');
+        });
+
         $('#file-list a.download').click(function (e) {
             e.preventDefault();
             var $filekey = this.title;
@@ -82,7 +100,7 @@
         $('.next-article').click(function () {
             var articleNo = this.title;
             $('#viewForm input[name*=articleNo]').val(articleNo);
-            $('#viewForm').submit();            
+            $('#viewForm').submit();
         });
         //Prev Post button
         $('.prev-article').click(function () {
@@ -161,9 +179,9 @@
     by ${nickname } hit ${hit }
 </div>
 <div id="board-content" style="font-size: 0.9em;text-align: justify;">${content }</div>
-<div id="file-list">
+<div id="file-list" style="text-align: right;">
     <c:forEach var="file" items="${attachFileList }" varStatus="status">
-        <div style="text-align: right;">
+        <div class="attach-file">
             <a href="#" title="${file.filekey }" class="download">${file.filename }</a>
             <security:authorize access="isAuthenticated() and (#owner == principal.email or hasRole('ROLE_ADMIN'))">
                 <a href="#" title="${file.filekey }">x</a>
@@ -172,13 +190,11 @@
     </c:forEach>
 </div>
 <form id="addCommentForm" action="addComments" method="post" style="margin-bottom: 5px;">
-    <p style="margin: 0;padding: 0">
-        <input type="hidden" name="articleNo" value="${param.articleNo }" />
-        <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="page" value="${param.page }" />
-        <input type="hidden" name="searchWord" value="${param.searchWord }" />
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    </p>
+    <input type="hidden" name="articleNo" value="${param.articleNo }" />
+    <input type="hidden" name="boardCd" value="${param.boardCd }" />
+    <input type="hidden" name="page" value="${param.page }" />
+    <input type="hidden" name="searchWord" value="${param.searchWord }" />
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <div id="add-comments">
         <textarea name="memo" rows="7" cols="50"></textarea>
     </div>

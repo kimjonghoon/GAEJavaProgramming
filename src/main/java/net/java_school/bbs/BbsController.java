@@ -107,7 +107,6 @@ public class BbsController extends NumberGeneratorForPaging {
         //상세보기에서 볼 게시글 관련 정보
         String title = article.getTitle();//제목
         String content = article.getContent();//내용
-        content = content.replaceAll(System.getProperty("line.separator"), "<br />");
         int hit = article.getHit();//조회수
         String nickname = article.getNickname();//작성자 이름
         String owner = article.getOwner();//작성자
