@@ -17,7 +17,7 @@
         
     <mvc:resources mapping="/resources/**" location="/resources/" />
 	
-    <mvc:annotation-driven />
+    <mvc:annotation-driven validator="validator" />
 	
     <context:annotation-config />
 	
@@ -75,5 +75,8 @@
     <bean id="boardService" class="net.java_school.bbs.BoardServiceImpl">
         <property name="boardMapper" ref="boardMapper" />
     </bean>
-	
+    
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource" />
+    </bean>	
 </beans>

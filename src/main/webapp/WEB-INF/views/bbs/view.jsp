@@ -316,14 +316,15 @@
 <div id="list-menu">
     <input type="button" value="<spring:message code="bbs.write" />" />
 </div>
-<div id="search">
-    <form action="list" method="get">
-        <input type="hidden" name="boardCd" value="${param.boardCd }" />
-        <input type="hidden" name="page" value="${param.page }" />
+<form action="list" method="get">
+    <input type="hidden" name="boardCd" value="${param.boardCd }" />
+    <input type="hidden" name="page" value="${param.page }" />
+    <div id="search">
         <input type="text" name="searchWord" size="15" maxlength="${param.searchWord }" />
         <input type="submit" value="<spring:message code="search" />" />
-    </form>
-</div>
+    </div>
+</form>
+
 <div id="form-group" style="display: none">
     <form id="listForm" action="list" method="get">
         <input type="hidden" name="boardCd" value="${param.boardCd }" />

@@ -2,10 +2,13 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
 <%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
 <%
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    String uploadUrl = blobstoreService.createUploadUrl("/bbs/write");
+    pageContext.setAttribute("uploadUrl", uploadUrl);
 %>
 <script>
     $(document).ready(function () {
@@ -36,21 +39,28 @@
     });
 </script>
 <div id="url-navi">${boardName }</div>
-<p style="text-transform: capitalize;"><spring:message code="bbs.write" /></p>
-<form id="writeForm" action="<%=blobstoreService.createUploadUrl("/bbs/write")%>?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+<h3 style="text-transform: capitalize;"><spring:message code="bbs.write" /></h3>
+<form:form id="writeForm" action="${uploadUrl}?${_csrf.parameterName}=${_csrf.token}" modelAttribute="article" method="post" enctype="multipart/form-data">
     <c:if test="${not empty param.articleNo }">
         <input type="hidden" name="articleNo" value="${param.articleNo }" />
     </c:if>
     <input type="hidden" name="boardCd" value="${param.boardCd }" />
     <input type="hidden" name="page" value="${param.page }" />
     <input type="hidden" name="searchWord" value="${param.searchWord }" />
+    <form:errors path="*" cssClass="error" />
     <table style="width: 98%">
         <tr>
             <td><spring:message code="bbs.title" /></td>
-            <td><input type="text" name="title" style="width: 90%;" /></td>
+            <td>
+                <form:input path="title" style="width: 90%;" /><br />
+                <form:errors path="title" cssClass="error" />
+            </td>
         </tr>
         <tr>
-            <td colspan="2"><textarea name="content" style="width: 98%; height: 200px;" id="writeForm-ta"></textarea></td>
+            <td colspan="2">
+                <textarea name="content" style="width: 98%; height: 200px;" id="writeForm-ta"></textarea><br />
+                <form:errors path="content" cssClass="error" />
+            </td>
         </tr>
         <tr>
             <td><spring:message code="bbs.file" /></td>
@@ -64,7 +74,7 @@
             <input type="button" value="<spring:message code="bbs.view" />" id="goView" />
         </c:if>
     </div>
-</form>
+</form:form>
 <div style="display: none;">
     <form id="listForm" action="list" method="get">
         <input type="hidden" name="boardCd" value="${param.boardCd }" />

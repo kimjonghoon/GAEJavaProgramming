@@ -62,13 +62,11 @@
     <input type="button" value="<spring:message code="bbs.write" />" onclick="location.href = 'write?boardCd=${param.boardCd}&page=${param.page }&searchWord=${param.searchWord }'" />
 </div>
 
-<div id="search">
-    <form method="get">
-        <div>
-            <input type="hidden" name="boardCd" value="${param.boardCd }" /> 
-            <input type="hidden" name="page" value="1" /> 
-            <input type="text" name="searchWord" size="15" maxlength="30" /> 
-            <input type="submit" value="<spring:message code="search" />" />
-        </div>
-    </form>
-</div>
+<form method="get">
+    <input type="hidden" name="boardCd" value="${param.boardCd }" /> 
+    <input type="hidden" name="page" value="1" /> 
+    <div id="search">
+        <input type="text" name="searchWord" size="15" maxlength="30" /> 
+        <input type="submit" value="<spring:message code="search" />" />
+    </div>
+</form>

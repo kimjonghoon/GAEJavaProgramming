@@ -1,12 +1,22 @@
 package net.java_school.bbs;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class Article {
-    private int articleNo;
+
+    private Integer articleNo;
     private String boardCd;
+
+    @NotNull
+    @Size(min = 1, max = 100, message = "{bbs.title.validation.error}")
     private String title;
+
+    @NotNull
+    @Size(min = 2, message = "{bbs.content.validation.error}")
     private String content;
+
     private String owner;
     private String nickname;
     private int hit;
@@ -14,11 +24,11 @@ public class Article {
     private int attachFileNum;
     private int commentNum;
 
-    public int getArticleNo() {
+    public Integer getArticleNo() {
         return articleNo;
     }
 
-    public void setArticleNo(int articleNo) {
+    public void setArticleNo(Integer articleNo) {
         this.articleNo = articleNo;
     }
 

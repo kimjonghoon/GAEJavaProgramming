@@ -23,6 +23,8 @@ import com.google.appengine.api.blobstore.BlobInfoFactory;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @Controller
 @RequestMapping("/bbs")
@@ -158,17 +160,32 @@ public class BbsController extends NumberGeneratorForPaging {
         model.addAttribute("boards", boards);
         model.addAttribute("boardName", boardName);
         model.addAttribute("title", boardName);
+        model.addAttribute("article", new Article());
 
         return "bbs/write";
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.POST)
-    public String write(Article article,
+    public String write(@Valid Article article,
+            BindingResult bindingResult,
             String page,
             String searchWord,
+            Locale locale,
             Model model,
             GaeUserAuthentication gaeUserAuthentication,
             HttpServletRequest req) {
+        
+        //검증 통과 못하면
+        if (bindingResult.hasErrors()) {
+            String lang = locale.getLanguage();
+            List<Board> boards = boardService.getAllBoards();
+            String boardName = this.getBoardName(article.getBoardCd(), lang);
+            model.addAttribute("boards", boards);
+            model.addAttribute("boardName", boardName);
+            model.addAttribute("title", boardName);
+            
+            return "bbs/write";
+        }
 
         GaeUser gaeUser = (GaeUser) gaeUserAuthentication.getPrincipal();
 
@@ -306,7 +323,25 @@ public class BbsController extends NumberGeneratorForPaging {
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public String modify(Article article, Integer page, String searchWord, Model model, HttpServletRequest req) throws Exception {
+    public String modify(@Valid Article article,
+            BindingResult bindingResult,
+            Integer page, 
+            String searchWord,
+            Locale locale,
+            Model model, 
+            HttpServletRequest req) throws Exception {
+        
+        if (bindingResult.hasErrors()) {
+            List<Board> boards = boardService.getAllBoards();
+            model.addAttribute("boards", boards);
+            String boardName = this.getBoardName(article.getBoardCd(), locale.getLanguage());
+            model.addAttribute("article", article);
+            model.addAttribute("boardName", boardName);
+            model.addAttribute("title", boardName);
+
+            return "bbs/modify";            
+        }
+        
         Article currentArticle = boardService.getArticle(article.getArticleNo());
 
         currentArticle.setTitle(article.getTitle());
