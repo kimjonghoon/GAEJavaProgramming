@@ -134,6 +134,12 @@
         $('#list-menu input').click(function () {
             $('#writeForm').submit();
         });
+        //searchForm submit
+        $('#searchForm').submit(function () {
+            var searchWord = $('#searchForm input[name*=searchWord]').val();
+            searchWord = $.trim(searchWord);
+            $('#searchForm input[name*=searchWord]').val(searchWord);
+        });
         //#board-content > iframe resize
         var originWidth = $('#board-content > iframe').width();
         var originHeight = $('#board-content > iframe').height();
@@ -316,7 +322,7 @@
 <div id="list-menu">
     <input type="button" value="<spring:message code="bbs.write" />" />
 </div>
-<form action="list" method="get">
+<form id="searchForm" action="list" method="get">
     <input type="hidden" name="boardCd" value="${param.boardCd }" />
     <input type="hidden" name="page" value="${param.page }" />
     <div id="search">

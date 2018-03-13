@@ -3,7 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<script>
+    $(document).ready(function() {
+        $('#searchForm').submit(function() {
+           var searchWord = $('#searchForm input[name*=searchWord]').val();
+           searchWord = $.trim(searchWord);
+           $('#searchForm input[name*=searchWord]').val(searchWord);
+        });
+    });
+</script>
 <div id="url-navi">${boardName }</div>
 
 <table class="bbs-table">
@@ -62,7 +70,7 @@
     <input type="button" value="<spring:message code="bbs.write" />" onclick="location.href = 'write?boardCd=${param.boardCd}&page=${param.page }&searchWord=${param.searchWord }'" />
 </div>
 
-<form method="get">
+<form id="searchForm" method="get">
     <input type="hidden" name="boardCd" value="${param.boardCd }" /> 
     <input type="hidden" name="page" value="1" /> 
     <div id="search">
