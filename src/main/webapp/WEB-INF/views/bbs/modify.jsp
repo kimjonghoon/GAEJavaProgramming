@@ -3,13 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
-<%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
-<%
-    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-    String uploadUrl = blobstoreService.createUploadUrl("/bbs/modify");
-    pageContext.setAttribute("uploadUrl", uploadUrl);
-%>
 <script>
     $(document).ready(function () {
         $('#writeForm').submit(function () {
@@ -37,7 +30,7 @@
 </script>
 <div id="url-navi">${boardName }</div>
 <h3 style="text-transform: capitalize;"><spring:message code="bbs.modify" /></h3>
-<form:form id="writeForm" action="${uploadUrl}?${_csrf.parameterName}=${_csrf.token}" modelAttribute="article" method="post" enctype="multipart/form-data">
+<form:form id="writeForm" action="/bbs/modify" modelAttribute="article" method="post">
     <input type="hidden" name="articleNo" value="${param.articleNo }" />
     <input type="hidden" name="boardCd" value="${param.boardCd }" />
     <input type="hidden" name="page" value="${param.page }" />
@@ -56,10 +49,6 @@
                 <textarea name="content" style="width: 98%; height: 200px;" id="writeForm-ta">${article.content }</textarea>
                 <form:errors path="content" cssClass="error" />
             </td>
-        </tr>
-        <tr>
-            <td><spring:message code="bbs.file" /></td>
-            <td><input type="file" name="attachFile" /></td>
         </tr>
     </table>
     <div style="text-align: center; padding-top: 15px;">

@@ -4,6 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreService"%>
+<%
+    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    String uploadUrl = blobstoreService.createUploadUrl("/bbs/upload");
+    pageContext.setAttribute("uploadUrl", uploadUrl);
+%>
 <script>
     $(document).ready(function () {
 
@@ -195,6 +202,16 @@
         </div>
     </c:forEach>
 </div>
+<form id="uploadForm" action="${uploadUrl}?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="articleNo" value="${param.articleNo }" />
+    <input type="hidden" name="boardCd" value="${param.boardCd }" />
+    <input type="hidden" name="page" value="${param.page }" />
+    <input type="hidden" name="searchWord" value="${param.searchWord }" />
+    <div>
+        <input type="file" name="attachFile" />
+        <input type="submit" value="<spring:message code="bbs.submit" />" />
+    </div>
+</form>
 <form id="addCommentForm" action="addComments" method="post" style="margin-bottom: 5px;">
     <input type="hidden" name="articleNo" value="${param.articleNo }" />
     <input type="hidden" name="boardCd" value="${param.boardCd }" />

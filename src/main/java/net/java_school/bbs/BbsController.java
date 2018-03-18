@@ -16,7 +16,6 @@ import net.java_school.user.GaeUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
@@ -25,6 +24,8 @@ import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/bbs")
@@ -50,7 +51,7 @@ public class BbsController extends NumberGeneratorForPaging {
         }
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping("/list")
     public String list(String boardCd, Integer page, String searchWord, Locale locale, Model model) {
         String lang = locale.getLanguage();
         List<Board> boards = boardService.getAllBoards();
@@ -85,7 +86,7 @@ public class BbsController extends NumberGeneratorForPaging {
         return "bbs/list";
     }
 
-    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    @GetMapping("/view")
     public String view(Integer articleNo,
             String boardCd,
             Integer page,
@@ -99,20 +100,20 @@ public class BbsController extends NumberGeneratorForPaging {
 
         boardService.increaseHit(articleNo);
 
-        Article article = boardService.getArticle(articleNo);//상세보기에서 볼 게시글
+        Article article = boardService.getArticle(articleNo);//article in the view.jsp
         List<AttachFile> attachFileList = boardService.getAttachFileList(articleNo);
         Article nextArticle = boardService.getNextArticle(articleNo, boardCd, searchWord);
         Article prevArticle = boardService.getPrevArticle(articleNo, boardCd, searchWord);
         List<Comments> commentsList = boardService.getCommentsList(articleNo);
         String boardName = this.getBoardName(boardCd, lang);
 
-        //상세보기에서 볼 게시글 관련 정보
-        String title = article.getTitle();//제목
-        String content = article.getContent();//내용
-        int hit = article.getHit();//조회수
-        String nickname = article.getNickname();//작성자 이름
-        String owner = article.getOwner();//작성자
-        Date regdate = article.getRegdate();//작성일
+        //Informations in the view.jsp
+        String title = article.getTitle();
+        String content = article.getContent();
+        int hit = article.getHit();
+        String nickname = article.getNickname();
+        String owner = article.getOwner();
+        Date regdate = article.getRegdate();
 
         model.addAttribute("title", title);
         model.addAttribute("content", content);
@@ -125,9 +126,9 @@ public class BbsController extends NumberGeneratorForPaging {
         model.addAttribute("prevArticle", prevArticle);
         model.addAttribute("commentsList", commentsList);
 
-        //목록관련
-        int numPerPage = 20;//페이지당 레코드 수
-        int pagePerBlock = 10;//블록당 페이지 링크수
+        //list
+        int numPerPage = 20;//record number per page
+        int pagePerBlock = 10;//page number per block
         int totalRecord = boardService.getTotalRecord(boardCd, searchWord);
         NumbersForPaging ints = this.getNumbersForPaging(totalRecord, page, numPerPage, pagePerBlock);
         Integer offset = ints.getOffset();
@@ -152,7 +153,7 @@ public class BbsController extends NumberGeneratorForPaging {
         return "bbs/view";
     }
 
-    @RequestMapping(value = "/write", method = RequestMethod.GET)
+    @GetMapping("/write")
     public String write(String boardCd, Locale locale, Model model) {
         String lang = locale.getLanguage();
         List<Board> boards = boardService.getAllBoards();
@@ -165,7 +166,7 @@ public class BbsController extends NumberGeneratorForPaging {
         return "bbs/write";
     }
 
-    @RequestMapping(value = "/write", method = RequestMethod.POST)
+    @PostMapping("/write")
     public String write(@Valid Article article,
             BindingResult bindingResult,
             String page,
@@ -175,7 +176,6 @@ public class BbsController extends NumberGeneratorForPaging {
             GaeUserAuthentication gaeUserAuthentication,
             HttpServletRequest req) {
         
-        //검증 통과 못하면
         if (bindingResult.hasErrors()) {
             String lang = locale.getLanguage();
             List<Board> boards = boardService.getAllBoards();
@@ -195,6 +195,12 @@ public class BbsController extends NumberGeneratorForPaging {
 
         boardService.addArticle(article);
 
+        return "redirect:/bbs/list?boardCd=" + article.getBoardCd()
+                + "&page=1&searchWord=";
+    }
+
+    @PostMapping("/upload")
+    public String upload(Integer articleNo, String boardCd, Integer page, String searchWord, GaeUserAuthentication gaeUserAuthentication, HttpServletRequest req) {
         Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
         List<BlobKey> blobKeys = blobs.get("attachFile");
 
@@ -211,18 +217,21 @@ public class BbsController extends NumberGeneratorForPaging {
                 attachFile.setFiletype(blobInfo.getContentType());
                 attachFile.setFilesize(blobInfo.getSize());
                 attachFile.setCreation(blobInfo.getCreation());
-                attachFile.setArticleNo(article.getArticleNo());
+                attachFile.setArticleNo(articleNo);
+                GaeUser gaeUser = (GaeUser) gaeUserAuthentication.getPrincipal();
                 attachFile.setOwner(gaeUser.getEmail());
                 boardService.addAttachFile(attachFile);
             }
-
         }
 
-        return "redirect:/bbs/list?boardCd=" + article.getBoardCd()
-                + "&page=1&searchWord=";
+        return "redirect:/bbs/view?articleNo=" + articleNo
+                + "&boardCd=" + boardCd
+                + "&page=" + page
+                + "&searchWord=" + searchWord;
+        
     }
-
-    @RequestMapping(value = "/deleteAttachFile", method = RequestMethod.POST)
+    
+    @PostMapping("/deleteAttachFile")
     public String deleteAttachFile(String filekey,
             Integer articleNo,
             String boardCd,
@@ -244,7 +253,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
     }
 
-    @RequestMapping(value = "/deleteComments", method = RequestMethod.POST)
+    @PostMapping("/deleteComments")
     public String deleteComments(Integer commentNo,
             Integer articleNo,
             String boardCd,
@@ -264,7 +273,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
     }
 
-    @RequestMapping(value = "/addComments", method = RequestMethod.POST)
+    @PostMapping("/addComments")
     public String addComment(Comments comments,
             String boardCd,
             Integer page,
@@ -286,7 +295,7 @@ public class BbsController extends NumberGeneratorForPaging {
                 + "&searchWord=" + searchWord;
     }
 
-    @RequestMapping(value = "/modifyComments", method = RequestMethod.POST)
+    @PostMapping("/modifyComments")
     public String updateComment(Comments comments,
             String boardCd,
             Integer page,
@@ -304,8 +313,7 @@ public class BbsController extends NumberGeneratorForPaging {
                 + "&searchWord=" + searchWord;
     }
 
-    //글 수정
-    @RequestMapping(value = "/modify", method = RequestMethod.GET)
+    @GetMapping("/modify")
     public String modify(Integer articleNo, String boardCd, Locale locale, Model model) {
         Article article = boardService.getArticle(articleNo);
 
@@ -314,7 +322,6 @@ public class BbsController extends NumberGeneratorForPaging {
 
         String boardName = this.getBoardName(boardCd, locale.getLanguage());
 
-        //수정페이지에서의 보일 게시글 정보
         model.addAttribute("article", article);
         model.addAttribute("boardName", boardName);
         model.addAttribute("title", boardName);
@@ -322,7 +329,7 @@ public class BbsController extends NumberGeneratorForPaging {
         return "bbs/modify";
     }
 
-    @RequestMapping(value = "/modify", method = RequestMethod.POST)
+    @PostMapping("/modify")
     public String modify(@Valid Article article,
             BindingResult bindingResult,
             Integer page, 
@@ -349,29 +356,6 @@ public class BbsController extends NumberGeneratorForPaging {
 
         boardService.modifyArticle(currentArticle);
 
-        Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
-        List<BlobKey> blobKeys = blobs.get("attachFile");
-
-        if (blobKeys != null && !blobKeys.isEmpty()) {
-            BlobInfoFactory blobInfoFactory = new BlobInfoFactory();
-            int size = blobKeys.size();
-
-            for (int i = 0; i < size; i++) {
-                BlobInfo blobInfo = blobInfoFactory.loadBlobInfo(blobKeys.get(i));
-                AttachFile attachFile = new AttachFile();
-                String filekey = blobKeys.get(i).getKeyString();
-                attachFile.setFilekey(filekey);
-                attachFile.setFilename(blobInfo.getFilename());
-                attachFile.setFiletype(blobInfo.getContentType());
-                attachFile.setFilesize(blobInfo.getSize());
-                attachFile.setCreation(blobInfo.getCreation());
-                attachFile.setArticleNo(article.getArticleNo());
-                attachFile.setOwner(currentArticle.getOwner());
-                boardService.addAttachFile(attachFile);
-            }
-
-        }
-
         searchWord = URLEncoder.encode(searchWord, "UTF-8");
 
         return "redirect:/bbs/view?articleNo=" + article.getArticleNo()
@@ -381,7 +365,7 @@ public class BbsController extends NumberGeneratorForPaging {
 
     }
 
-    @RequestMapping(value = "/deleteArticle", method = RequestMethod.POST)
+    @PostMapping("/deleteArticle")
     public String del(Integer articleNo,
             String boardCd,
             Integer page,
@@ -398,13 +382,8 @@ public class BbsController extends NumberGeneratorForPaging {
                 + "&searchWord=" + searchWord;
     }
 
-    /* 아래 메서드는 Blobstore 예제로 게시판이 완성되면 삭제하는 것이 좋다. */
-    @RequestMapping(value = "/upload", method = RequestMethod.GET)
-    public String uploadForm() {
-        return "bbs/upload";
-    }
-
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    /*
+    @PostMapping("/upload")
     public String upload(HttpServletRequest req) {
         Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
         List<BlobKey> blobKeys = blobs.get("attachFile");
@@ -414,10 +393,6 @@ public class BbsController extends NumberGeneratorForPaging {
             return "redirect:/bbs/blob?blob-key=" + blobKeys.get(0).getKeyString();
         }
     }
-
-    @RequestMapping(value = "/blob", method = RequestMethod.GET)
-    public String blob() {
-        return "bbs/blob";
-    }
+    */
 
 }
