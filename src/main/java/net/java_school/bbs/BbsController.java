@@ -200,7 +200,7 @@ public class BbsController extends NumberGeneratorForPaging {
     }
 
     @PostMapping("/upload")
-    public String upload(Integer articleNo, String boardCd, Integer page, String searchWord, GaeUserAuthentication gaeUserAuthentication, HttpServletRequest req) {
+    public String upload(Integer articleNo, String boardCd, Integer page, String searchWord, HttpServletRequest req) {
         Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
         List<BlobKey> blobKeys = blobs.get("attachFile");
 
@@ -218,8 +218,8 @@ public class BbsController extends NumberGeneratorForPaging {
                 attachFile.setFilesize(blobInfo.getSize());
                 attachFile.setCreation(blobInfo.getCreation());
                 attachFile.setArticleNo(articleNo);
-                GaeUser gaeUser = (GaeUser) gaeUserAuthentication.getPrincipal();
-                attachFile.setOwner(gaeUser.getEmail());
+                Article article = boardService.getArticle(articleNo);
+                attachFile.setOwner(article.getOwner());
                 boardService.addAttachFile(attachFile);
             }
         }

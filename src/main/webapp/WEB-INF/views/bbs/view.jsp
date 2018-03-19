@@ -202,6 +202,7 @@
         </div>
     </c:forEach>
 </div>
+<security:authorize access="isAuthenticated() and (#owner == principal.email or hasRole('ROLE_ADMIN'))">
 <form id="uploadForm" action="${uploadUrl}?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
     <input type="hidden" name="articleNo" value="${param.articleNo }" />
     <input type="hidden" name="boardCd" value="${param.boardCd }" />
@@ -212,6 +213,7 @@
         <input type="submit" value="<spring:message code="bbs.submit" />" />
     </div>
 </form>
+</security:authorize>    
 <form id="addCommentForm" action="addComments" method="post" style="margin-bottom: 5px;">
     <input type="hidden" name="articleNo" value="${param.articleNo }" />
     <input type="hidden" name="boardCd" value="${param.boardCd }" />
