@@ -127,7 +127,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.0.8.Final</version>
+            <version>6.0.9.Final</version>
         </dependency>
         <!-- Test Dependencies -->
         <dependency>
