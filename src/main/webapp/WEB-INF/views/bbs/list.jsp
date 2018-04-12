@@ -12,7 +12,7 @@
         });
     });
 </script>
-<div id="url-navi">${boardName }</div>
+<div id="content-categories">${boardName }</div>
 
 <table class="bbs-table">
     <tr>

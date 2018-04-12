@@ -28,7 +28,7 @@
         });
     });
 </script>
-<div id="url-navi">${boardName }</div>
+<div id="content-categories">${boardName }</div>
 <h3 style="text-transform: capitalize;"><spring:message code="bbs.modify" /></h3>
 <form:form id="writeForm" action="/bbs/modify" modelAttribute="article" method="post">
     <input type="hidden" name="articleNo" value="${param.articleNo }" />

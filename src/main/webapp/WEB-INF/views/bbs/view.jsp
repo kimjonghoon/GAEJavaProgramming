@@ -161,7 +161,7 @@
     });
 </script>
 
-<div id="url-navi">${boardName }</div>
+<div id="content-categories">${boardName }</div>
 
 <div class="view-menu" style="margin-top: 15px;margin-bottom: 5px;">
     <security:authorize access="isAuthenticated() and (#owner == principal.email or hasRole('ROLE_ADMIN'))">

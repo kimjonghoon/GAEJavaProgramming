@@ -31,7 +31,7 @@
         });
     });
 </script>
-<div id="url-navi">${boardName }</div>
+<div id="content-categories">${boardName }</div>
 <h3 style="text-transform: capitalize;"><spring:message code="bbs.write" /></h3>
 <form:form id="writeForm" action="/bbs/write" modelAttribute="article" method="post">
     <c:if test="${not empty param.articleNo }">
