@@ -9,7 +9,7 @@
 
 <!DOCTYPE html> 
 <html>
-    <head>
+    <head lang="<tiles:insertAttribute name="lang" defaultValue="en" defaultValueType="string" />">
         <meta charset="UTF-8" />
         <title><tiles:insertAttribute name="title" /></title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
