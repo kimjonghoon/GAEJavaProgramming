@@ -1,0 +1,235 @@
+<article>
+
+<h2>RegExp</h2>
+
+<p>
+The literal for a regular expression object is / ~ /. (Not both "/ ~ /" and "/ ~ /")<br />
+Regular expression objects have test () and exec() methods.<br />
+test() returns a boolean value by determining whether the string passed as an argument matches the regular expression.<br />
+exec() finds and returns a string that matches the regular expression in the string that was input as an argument.
+</p>
+
+<pre class="prettyprint script-result-display">
+var regExp = /Java/;
+var testStr = "www.java-school.net is the best site to learn Java";
+var retArr = regExp.exec(testStr);
+alert(retArr[0]);
+</pre>
+
+<h3>i flag</h3>
+
+<p>
+The string after the / at the end of the regular expression object is a flag.<br />
+If the i flag is added, it is not case sensitive.
+</p>
+
+<pre class="prettyprint script-result-display">
+var regExp = /Java/i;
+var testStr = "www.java-school.net is the best site to learn Java";
+var retArr = regExp.exec(testStr);
+alert(retArr[0]);
+</pre>
+
+<h3>g flag</h3>
+
+<p>
+If you use the g flag, you remember the last matching location, and the next time exec() is called, it will find the matching location from the next location.
+</p>
+
+<pre class="prettyprint script-result-display">
+var regExp = new RegExp('Java', 'gi'); // /Java/gi
+var testStr = "www.java-school.net is the best site to learn Java";
+var retArr = regExp.exec(testStr);
+retArr = regExp.exec(testStr);
+alert(retArr[0]);
+</pre>
+
+<h3>The character between / and /</h3>
+<table class="table-in-article">
+<tr>
+	<th class="table-in-article-th" colspan="2">Number of times</th>
+</tr>
+<tr>
+	<th class="table-in-article-th" style="width: 90px;">*</th>
+	<td class="table-in-article-td">0 times or more</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">+</th>
+	<td class="table-in-article-td">More than once</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">?</th>
+	<td class="table-in-article-td">0 or 1 time</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">.</th>
+	<td class="table-in-article-td">Exactly once</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">{}</th>
+	<td class="table-in-article-td">
+Curly braces are used to specify the number of times a character is repeated.(s{2} means ss)
+	</td>
+</tr>	
+</table>
+
+<pre class="prettyprint script-result-display">
+var regExp = /Java-*/gi;
+var testStr = "www.java-school.net is the best site to learn Java";
+var retArr = regExp.exec(testStr);
+retArr = regExp.exec(testStr);
+alert(retArr[0]);
+</pre>
+
+
+<table class="table-in-article">
+<tr>
+	<th class="table-in-article-th" colspan="2">
+\ following ordinary characters are treated as promised special characters.<br />
+\ following special characters are treated as characters themselves.
+	</th>
+</tr>
+<tr>
+	<th class="table-in-article-th" style="width: 90px;">\w</th>
+	<td class="table-in-article-td">It means a word, exactly alphabets, numbers and _.</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">\W</th>
+	<td class="table-in-article-td">Opposite \w</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">\d</th>
+	<td class="table-in-article-td">Numbers</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">\D</th>
+	<td class="table-in-article-td">Opposite \d, \D* means zero or more characters.</td>
+</tr>
+<tr>
+	<th class="table-in-article-th"><em class="path">\s</em></th>
+	<td class="table-in-article-td">Space character</td>
+</tr>
+</table>
+
+<pre class="prettyprint script-result-display">
+var regExp = /\s\*/g;
+var testStr = "www.java-school.net *is *the *best *site *to *learn *JAVA";
+var retStr = testStr.replace(regExp,'-');
+alert(retStr);
+</pre>
+
+<p>
+The following is a form for membership.
+</p>
+
+<pre class="prettyprint">
+&lt;form id="signUp" action="signUp" method="post" onsubmit="return check()"&gt;
+    Name &lt;input type="text" name="name" /&gt;
+	
+    &lt;!-- omit --&gt;
+
+&lt;/form&gt;
+</pre>
+
+<p>
+Write the JavaScript code to check that the value for the name is only a whitespace character.
+</p>
+
+<pre class="prettyprint">
+function check() {
+	var regExp = /\s/g;
+	var form = document.getElementById("signUp");
+	var name = form.name.value;
+	name = name.replace(regExp,"");
+	if (name.length == 0) {
+		alert("Invalid Name");
+		return false;
+	}
+	return true;
+}
+</pre>
+
+<table class="table-in-article">
+<tr>
+	<th class="table-in-article-th" colspan="2">Start (^) and End ($)</th>
+</tr>
+<tr>
+	<th class="table-in-article-th" style="width: 90px;">^</th>
+	<td class="table-in-article-td">Means start, /^JAVA/ finds JAVA at the beginning.</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">$</th>
+	<td class="table-in-article-td">$ Means end, /school$/ finds school at end.</td>
+</tr>
+</table>
+
+<table class="table-in-article">
+<tr>
+	<th class="table-in-article-th" colspan="2">If you want to match multiple characters, list them in []</th>
+</tr>
+<tr>
+	<th class="table-in-article-th" style="width: 90px;">[a-zA-Z]</th>
+	<td class="table-in-article-td">Find the alphabet</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">[0-9]</th>
+	<td class="table-in-article-td">Find the number</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">^ in []</th>
+	<td class="table-in-article-td">If ^ is used in [], it means to exclude ~. [^0-9] is the same as \D</td>
+</tr>
+</table>
+
+<table class="table-in-article">
+<tr>
+	<th class="table-in-article-th" style="width: 90px;">()</th>
+	<td class="table-in-article-td">
+Patterns enclosed in parentheses are matched and then remembered and their values are stored as an array.<br />
+The stored substrings are stored in $ 1, $ 2, ....
+	</td>
+</tr>
+<tr>
+	<th class="table-in-article-th">|</th>
+	<td class="table-in-article-td">
+Means "or"<br />
+a|b is a or b, a|b|c is a or b or c
+	</td>
+</tr>
+</table>
+
+<p>
+You can get regular expressions for emails at <a href="http://regexlib.com">http://regexlib.com</a><br />
+In the above site, find a regular expression, and create a JavaScript function that checks email and dates for validity.
+</p>
+
+<pre class="prettyprint script-result-display" style="white-space: pre-wrap">
+var emailRegExp = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
+var dateRegExp = /^\d{4}\/\d{2}\/\d{2}/;
+
+var email = "johndoe@gmail.org";
+var signUpDate = "2018/4/21";
+
+var check = emailRegExp.test(email);
+
+if (check) {
+	alert("Valid email");
+} else {
+	alert("Invalid email");
+}
+
+check = dateRegExp.test(signUpDate);
+
+if (check) {
+	alert("Valid registration date");
+} else {
+	alert("InValid registration date");
+}
+</pre>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://www.w3schools.com/jsref/jsref_obj_regexp.asp">http://www.w3schools.com/jsref/jsref_obj_regexp.asp</a></li>
+	<li><a href="http://regexlib.com">http://regexlib.com</a></li>
+</ul>
+</article>

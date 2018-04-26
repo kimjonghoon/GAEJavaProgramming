@@ -1,0 +1,104 @@
+<article>
+
+<h2>Modify Article</h2>
+
+<h6 class="src">BbsController.java</h6>
+<pre class="prettyprint">
+@RequestMapping(value="/modify", method=RequestMethod.GET)
+public String modifyForm(Integer articleNo, String boardCd, Model model) {
+	
+	Article article = boardService.getArticle(articleNo);
+	String boardNm = boardService.getBoardNm(article.getBoardCd());
+
+	<strong>model.addAttribute("article", article);</strong>
+	model.addAttribute("boardNm", boardNm);
+	
+	return "bbs/modify";
+}
+
+@RequestMapping(value="/modify", method=RequestMethod.POST)
+public String modify(<strong>@Valid Article article, BindingResult bindingResult,</strong>
+		Integer page,
+		String searchWord,
+		Model model,
+		MultipartHttpServletRequest mpRequest) throws Exception {
+
+	if (bindingResult.hasErrors()) {
+		String boardNm = boardService.getBoardNm(article.getBoardCd());
+		model.addAttribute("boardNm", boardNm);
+		return "bbs/modify";
+    }
+
+	String email = boardService.getArticle(article.getArticleNo()).getEmail();
+	article.setEmail(email);
+
+	boardService.modifyArticle(article);
+
+	//..omit..
+
+	//Modified setArticleNo(articleNo) to setArticleNo(article.getArticleNo()) in file information insert code
+
+	searchWord = URLEncoder.encode(searchWord, "UTF-8");
+    
+	return "redirect:/bbs/view?articleNo=" + article.getArticleNo() +
+		"&amp;boardCd=" + article.getBoardCd() +
+		"&amp;page=" + page +
+		"&amp;searchWord=" + searchWord
+}
+</pre>
+
+<h6 class="src">modify.jsp</h6>
+<pre class="prettyprint">
+<strong>&lt;%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %&gt;
+
+&lt;sf:form id="modifyForm" action="modify" method="post" modelAttribute="article" 
+        enctype="multipart/form-data" onsubmit="return check()"&gt;</strong>
+    &lt;input type="hidden" name="articleNo" value="${param.articleNo }" /&gt;
+    &lt;input type="hidden" name="boardCd" value="${param.boardCd }" /&gt;
+    &lt;input type="hidden" name="page" value="${param.page }" /&gt;
+    &lt;input type="hidden" name="searchWord" value="${param.searchWord }" /&gt;
+<strong>&lt;sf:errors path="*" cssClass="error" /&gt;</strong>
+&lt;table id="write-form"&gt;
+&lt;tr&gt;
+    &lt;td&gt;Title&lt;/td&gt;
+    &lt;td&gt;
+        <strong>&lt;sf:input path="title" style="width: 90%" value="${article.title }" /&gt;&lt;br /&gt;
+        &lt;sf:errors path="title" cssClass="error" /&gt;</strong>
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td colspan="2"&gt;
+        &lt;textarea name="content" rows="17" cols="50"&gt;${article.content }&lt;/textarea&gt;&lt;br /&gt;
+        <strong>&lt;sf:errors path="content" cssClass="error" /&gt;</strong>
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;Attach File&lt;/td&gt;
+    &lt;td&gt;&lt;input type="file" name="attachFile" /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;div style="text-align: center;padding-bottom: 15px;"&gt;
+    &lt;input type="submit" value="Submit" /&gt;
+    &lt;input type="button" value="Detailed view" onclick="goView()" /&gt;
+&lt;/div&gt;
+<strong>&lt;/sf:form&gt;</strong>
+</pre>
+
+<p>
+On the edit screen, clear all the input fields and click the Submit button.<br /> 
+<img alt="Modify article test 1" src="https://lh3.googleusercontent.com/QSyWTPqSgIDJolT-y50FQLTyn0OD_Cwb413jW6CCFDfKwnUWiENatpPHuE96m4HLBEnWW92lvWwqy5p9L9BpyKakA-wQPyTsCpclBeqw-Osl4E7a4hMy64IEl_BAogtnV4IwqsrC_sqDRArjO2m1JrWxQy8uaGq4B_mW_QHySBY9vh7ZCLorpVb9fO-cOKk9JNtULfkxT8E9PgbZMoUrqB0F0V8CYeLwrXnypnBDAwnqc6QTLrejSTd3HSSqNTv1q4sIEAt5NrAe6QmYua7HzFhQStuVdHcHhdjo7sO6Y5WCfZeiPM6ITZK3g9IJ0LEwzmZRcwpsGkKgUgTBF_kcnCTfXrtm-hpqtwphnuIWuVHnVChjZd_M-jVdfooOJS0fitRu6bgsI-PIIMlpUAU_uLOYU8maCcpoA86HkDF7MOOqRqKRw4bgljEosWMIwfjTj3LGVubboz1Cwl8XdyU3sIvxZ9YAn82RNts7qTkkLkk4ooa63RxOtRfqeeSK0SMDsmJhwqn9LplAdZigRnqPqlXLUqVc4JCSH6Y6sfgLakRFc2jpODuD0aDxcMG-HLAOJc4wcWnWO2XcMd5iDynR1QvhGZ8GSVJEsf6AWp7Jm9_OofWUXWD2MBhh=w602-h445-no" /><br />
+<img alt="Modify article test 2" src="https://lh3.googleusercontent.com/Hs7WgyDMEAd0OyhIgUraGqf7p0DggcA-dOci-GQWzokXYYq4Ef3WHOwyPBlVj4FrYsa4RCsGjc6AiWxB_o7MPNou8gz-g5ZZ1s5Y5I6VZfiQ6McjJ11oHdPLKJXcqpbgq6aOBfRSMFmUVWpPDYrs9nNSxsTGgOWGvxnE15CsxpW22B6VfZ4DA4vaHdajYGa9NGPAwwbW0qldHcPMgUhyMl4Fefdmo2EN-ZqKY6fPVRqNvHbREmG6jWWQ_SzFZQ01cq3TNWTtJWn1aimv8bmbdbXVlOqwUMfAiHxonBnUnxKBczt8_A9hYtqhUWn0Z6gXX9Rxm2NY3NnKu3xhfMMvc_uCFhllC0j8R9IeRRS-kfobSLxaM-sWOzozLoaUKDZ2zDTVvhMHYRS8QpEcEgK1weDPckUQBLkHwpzGmjim6hkYwEYO7Nfv5tRgduaNR2qDJsH5UxrHdoZU4fkF8U9FvCjdqJozsmF0jHv_tLiHtClTMUxNtu1vioki7vXNIesgLhdh6NdXbcmHlrAJiGz_XxaDlHtHdbTHIVY1udx4s-m1427vex2YVRG_-0lR_vpD0bX0FW1vlKJaFyamyMWXdYpTdhR7HyhRW70FkA61M9APhtClVXb9oFkm=w602-h523-no" /><br />
+</p>
+
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://hibernate.org/validator/documentation/getting-started/">Getting started with Hibernate Validator</a></li>
+	<li><a href="http://forum.spring.io/forum/spring-projects/web/80192-validation-empty-int-field">Validation - Empty int field</a></li>
+	<li><a href="http://stackoverflow.com/questions/14715248/simple-springmvc-3-login-doesnt-work">http://stackoverflow.com/questions/14715248/simple-springmvc-3-login-doesnt-work</a></li>
+	<li><a href="http://stackoverflow.com/questions/6227547/spring-3-validation-not-working">http://stackoverflow.com/questions/6227547/spring-3-validation-not-working</a></li>
+	<li><a href="http://stackoverflow.com/questions/8909482/spring-mvc-3-ambiguous-mapping-found">http://stackoverflow.com/questions/8909482/spring-mvc-3-ambiguous-mapping-found</a></li>
+	<li><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/pdf/">spring-framework-reference.pdf</a></li>
+	<li><a href="http://mybatis.github.io/mybatis-3/getting-started.html">MyBatis Getting started</a></li>
+</ul>
+</article>

@@ -1,0 +1,238 @@
+<article>
+
+<h1>Spring AOP</h1>
+
+<p>
+Add the following to pom.xml.
+</p>
+
+<pre class="prettyprint">
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-aspects&lt;/artifactId&gt;
+	&lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver --&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+	&lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+	&lt;version&gt;1.8.13&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+Create TestLogger.java as shown below.
+</p>
+
+<h6 class="src">TestLogger.java</h6>
+<pre class="prettyprint">
+package net.java_school.commons;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Aspect
+public class TestLogger {
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@AfterReturning("execution(* net.java_school.bank.BankDao.deposit(..))")
+	public void depositLog(JoinPoint point) {
+		Object[] a = point.getArgs();
+		String accountNo = (String) a[0];
+		Long amount = (Long) a[1];
+		String methodName = point.getSignature().getName();
+		logger.debug("{}|{}|{}", methodName, accountNo, amount);
+	}
+	
+	@AfterReturning("execution(* withdraw(..)) &amp;&amp; args(accountNo, amount)")
+	public void withdrawLog(String accountNo, long amount) {
+		logger.debug("WITHDRAW|{}|{}", accountNo, amount);
+	}
+	
+}
+</pre>
+
+<p>
+Remove log code from all Java sources.
+</p>
+
+<h6 class="src">ShinhanBankDao.java</h6>
+<pre class="prettyprint">
+package net.java_school.bank;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShinhanBankDao implements BankDao {
+	static final String URL = "jdbc:oracle:thin:@127.0.0.1:1521:XE";
+	static final String USER = "scott";
+	static final String PASSWORD = "tiger";
+	
+	//..omit..
+	
+	@Override
+	public void deposit(String accountNo, long amount) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE bankaccount " +
+				"SET balance = balance + ? " +
+				"WHERE accountNo = ?";
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, amount);
+			pstmt.setString(2, accountNo);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(null, pstmt, con);
+		}
+		
+	}
+
+	@Override
+	public void withdraw(String accountNo, long amount) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE bankaccount " +
+				"SET balance = balance - ? " +
+				"WHERE accountNo = ?";
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, amount);
+			pstmt.setString(2, accountNo);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(null, pstmt, con);
+		}
+		
+	}
+	
+	//..omit..
+	
+}	
+</pre>
+
+<h3>XML configuration</h3>
+
+<h6 class="src">applicationContext.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	<strong>xmlns:aop="http://www.springframework.org/schema/aop"</strong> 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		<strong>http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd</strong>"&gt;
+	<strong>
+	&lt;aop:aspectj-autoproxy /&gt;
+
+	&lt;bean id="testLogger" class="net.java_school.commons.TestLogger" /&gt;
+    </strong>
+	
+    &lt;bean id="bankUi" class="net.java_school.bank.BankUi"&gt;
+	    &lt;property name="stream" value="#{T(System).out}" /&gt;
+	    &lt;property name="bank" ref="shinhanBank" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="shinhanBank" class="net.java_school.bank.ShinhanBank"&gt;
+	    &lt;property name="dao" ref="shinhanBankDao" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="shinhanBankDao" class="net.java_school.bank.ShinhanBankDao"&gt;
+    &lt;/bean&gt;
+		
+&lt;/beans&gt;
+</pre>
+
+<p>
+Modify the main method of BankUi.java as follows.
+</p>
+
+<pre class="prettyprint">
+ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml"); //XML
+//AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BankConfig.class); //JavaConfig
+</pre>
+
+
+<h3>JavaConfig configuration</h3>
+
+<h6 class="src">BankConfig.java</h6>
+<pre class="prettyprint">
+package net.java_school.bank;
+
+<strong>import net.java_school.commons.TestLogger;</strong>
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+<strong>import org.springframework.context.annotation.EnableAspectJAutoProxy;</strong>
+
+@Configuration
+<strong>@EnableAspectJAutoProxy</strong>
+public class BankConfig {
+	
+	<strong>@Bean
+	public TestLogger testLogger() {
+		return new TestLogger();
+	}</strong>
+
+	@Bean
+	public BankDao shinhanBankDao() {
+		return new ShinhanBankDao();
+	}
+
+	@Bean
+	public Bank shinhanBank() {
+		Bank bank = new ShinhanBank();
+		bank.setDao(shinhanBankDao());
+		return bank;
+	}
+
+	@Bean
+	public BankUi bankUi() {
+		BankUi ui = new BankUi();
+		ui.setBank(shinhanBank());
+		ui.setStream(System.out);
+		return ui;
+	}
+	
+}	
+</pre>
+
+<p>
+First of all, comment out all the settings in applicationContext.xml.<br />
+Modify the main method of BankUi.java as follows.
+</p>
+
+<pre class="prettyprint">
+//ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml"); //XML
+AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BankConfig.class); //JavaConfig
+</pre>
+
+
+<p>
+<a href="examples/aop.zip">Download example</a>
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html">http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html</a></li>
+</ul>
+</article>

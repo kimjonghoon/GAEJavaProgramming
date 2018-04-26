@@ -1,0 +1,114 @@
+<article>
+
+<h1>Difference from JavaScript and Java</h1>
+
+<ol>
+	<li>Use var when declaring variables.</li>
+	<li>The number of primitive data types is floating point and the result of division is floating point.</li>
+	<li>You can use a string in () of switch(). (Since JDK 1.7, that is available in Java)</li>
+	<li>Creating an ordinary array that can access elements using indexes</li>
+	<li>An associative array is an array of key: value. Associative arrays can not access an element with an index. Java has no associative array.</li>
+	<li>for in statement</li>
+	<li>JavaScript can pass a function as an argument to a function. (Since JDK 1.8, Java can also pass a lambda expression as an argument)</li>
+</ol>
+
+<p>
+1,2 have already confirmed.
+</p>
+
+<h3>3. switch("string")</h3>
+
+<pre class="prettyprint script-result-display">
+var str = "A";
+
+switch (str) {
+case "A":
+	alert("A");
+	break;
+case "B":
+	alert("B");
+	break;
+case "C":
+	alert("C");
+	break;
+case "D":
+	alert("D");
+	break;
+default:
+	alert("F");
+}
+</pre>
+
+<h3>4. Create ordinary array</h3>
+
+<h4>Using []</h4>
+
+<p>
+An array created using [] can access an element using an index.
+</p>
+
+<pre class="prettyprint script-result-display">
+var arr = [1, 2, 3, 4, 5];
+var sum = 0;
+for (var i = 0; i &lt; arr.length; i++) {
+	sum = sum + arr[i];
+}
+alert('SUM:' + sum);
+</pre>
+
+<h4>Using Array object</h4>
+
+<p>
+An array created using an Array object can also be accessed using an index.
+</p>
+
+<pre class="prettyprint script-result-display">
+var arr = new Array(1, 2, 3, 4, 5);
+var sum = 0;
+for (var i = 0; i &lt; arr.length; i++) {
+	sum = sum + arr[i];
+}
+alert('SUM:' + sum);
+</pre>
+
+<h3>5. Associative array</h3>
+
+<p>
+Associative arrays are created using {}.
+</p>
+
+<pre class="prettyprint script-result-display">
+var person = {"name":"El Draque", "job":"pirate"};
+alert(person.name);
+alert(person["name"]);
+alert(person.job);
+alert(person["job"]);
+</pre>
+
+<h3>6. You can access all the elements of the associative array with the for in loop.</h3>
+
+<pre class="prettyprint script-result-display">
+var person = {"name":"Barbadosed", "job":"pirate"};
+var result = "";
+for(var property in person) {
+	result += person[property];
+}
+alert(result);
+</pre>
+
+<h3>7. JavaScript can pass a function as an argument to a function.</h3>
+
+<pre class="prettyprint script-result-display">
+function x(a, y) {
+    var ret = y(a);
+    alert(ret);
+}
+
+function z(a) {
+    return a * a
+}
+
+x(2, z);
+</pre>
+
+</article>

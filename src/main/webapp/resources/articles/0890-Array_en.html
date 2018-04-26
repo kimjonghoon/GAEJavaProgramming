@@ -1,0 +1,106 @@
+<article>
+
+<h2>Array</h2>
+
+<p>
+In JavaScript, you can also add array elements during program execution.
+</p>
+
+<pre class="prettyprint script-result-display">
+var cities = ["Sochi", "New York"];
+alert("cities.length=" + cities.length);
+
+var years = new Array(1969, 1970);
+years[46] = 2015; //You can add array elements in this way.
+alert("years.length=" + years.length);
+
+alert("years=" + years);
+
+for (var idx in years) {
+	alert(years[idx]);
+}
+</pre>
+
+<h4>Array's methods</h4>
+<ul>
+	<li>splice(): Remove specific elements from an array and create a new array with that elements. when you create a new array, you can add other elements.</li>
+	<li>slice(): Returns a new array of parts of the array.</li>
+	<li>concat(): Combines two or more arrays and returns a copy of the combined array.</li>
+	<li>reverse(): Flips the order of the array.</li>
+</ul>
+
+<p>
+concat () and slice () do not change the original array and return the result as a new array.<br />
+The JavaScript engine converts the array into a string separated by a comma (,).
+</p>
+
+<pre class="prettyprint script-result-display">
+var words = new Array('A','B','C','D','E');
+var s1 = words.splice(2,2,'c','d');//Remove 2 from index 2 and add 2 elements 
+
+alert(words);
+alert(s1);
+
+var s2 = words.slice(2,4);//Returns a new array from index 2 to index 3 (not including index 4).
+alert(s2);
+alert(words);
+</pre>
+ 
+<h4>for .. in</h4>
+<pre class="prettyprint script-result-display">
+var lang = ["C", "JAVA", "javascript"];
+for (var idx in lang) {
+	alert(lang[idx]);
+}
+</pre>
+
+<h4>Associative arrays</h4>
+
+<p>
+Associative arrays can not access an element using an index.<br />
+When you create an associative array, you typically use Object.<br />
+The array is automatically expanded whenever a new element is added.
+</p>
+
+<pre class="prettyprint script-result-display">
+var account = new Object();
+
+account["accountNo"] = "1111-2222-3333";
+account["name"] = "John Doe";
+account["balance"] = 30000;
+
+alert(account["name"]);
+alert(account.balance);
+</pre>
+
+<p>
+The following shows how to access an element in an associative array.
+</p>
+
+<pre class="prettyprint">
+//Access the getElementsByTagName () element of the associative array document.
+document.getElementsByTagName('a');
+//Access the element ceil() of the associative array Math.
+Math.ceil(175);
+</pre>
+
+<p>
+The following for statement prints all elements of the document object.
+</p>
+
+<pre class="prettyprint script-result-display">
+for (var property in document) {
+	alert(property + ":" + document[property]);
+}
+</pre>
+
+<p>
+The above example has different results for different browsers.<br />
+A JavaScript object is an associative array.
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://www.w3schools.com/jsref/jsref_obj_array.asp">http://www.w3schools.com/jsref/jsref_obj_array.asp</a></li>
+</ul>
+</article>

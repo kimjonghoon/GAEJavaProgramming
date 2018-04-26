@@ -8,7 +8,7 @@
 		<li class="sub-menu-item"><a href="/javascript/introduction">Introduction</a></li>
 		<li class="sub-menu-item"><a href="/javascript/dataType">Data Type</a></li>
 		<li class="sub-menu-item"><a href="/javascript/handling-select-items">Handling select items</a></li>
-		<li class="sub-menu-item"><a href="/javascript/difference-between-javascript-and-java">Differenct between JavaScript &amp; Java</a></li>
+		<li class="sub-menu-item"><a href="/javascript/difference-between-javascript-and-java">Difference between JavaScript &amp; Java</a></li>
 		
 		<li class="sub-section-title">JavaScript Objects</li>	
 		<li class="sub-menu-item"><a href="/javascript/Number">Number</a></li>

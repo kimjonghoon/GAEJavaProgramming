@@ -1,0 +1,502 @@
+<article>
+
+<h1>Building Java Projects with Maven</h1>
+
+<p style="clear: both;font-style: italic;font-weight: bold;padding: 10px 30px;font-size: 14px;">
+Original <a href="http://spring.io/guides/gs/maven/">http://spring.io/guides/gs/maven/</a>
+</p>
+
+<h2 id="Install-Maven">Maven Install</h2>
+
+<ol>
+	<li>Download the latest binary file from <a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a>.</li>
+	<li>Unzip and move the generated directory to the desired location.</li>
+	<li>Add the Maven bin directory to the Path.</li>
+	<li>Make sure you have the JAVA_HOME environment variable. Because Maven refers to the JAVA_HOME environment variable, it should be created if it does not exist.<br />
+	(See <a href="/">JDK Install</a>)</li>
+</ol>
+
+<p>
+Open a command prompt and check the Maven version with the following command:
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">C:\Users\kim&gt; mvn -v
+Apache Maven 3.5.0
+Maven home: C:\Program Files\apache-maven-3.5.0\bin\..
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: C:\Program Files\Java\jdk1.8.0_131\jre
+..
+</pre>
+
+<h2>Set up the project</h2>
+
+<p>
+There are two ways to create a Maven project.<br />
+The first is to manually create the maven project directory structure and the pom.xml file.<br />
+The second is to use the mvn archetype: generate command.
+</p>
+
+<h3>1. Create the directory structure</h3>
+
+<p>
+In a project directory of your choosing, create the following subdirectory structure
+</p>
+
+<pre class="code">
+HelloWorld (root directory)
+   └── src
+        └── main
+             └── java
+                  └── hello
+</pre>
+
+
+<p>
+Create a file named pom.xml at the root of the project
+</p>
+
+<h6 class="src">pom.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+                       
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+	&lt;groupId&gt;org.springframework.gs&lt;/groupId&gt;
+	&lt;artifactId&gt;gs-maven-initial&lt;/artifactId&gt;
+	&lt;version&gt;0.1.0&lt;/version&gt;
+	&lt;packaging&gt;jar&lt;/packaging&gt;
+	
+&lt;/project&gt;
+</pre>
+
+<ul>
+	<li>&lt;modelVersion&gt; POM model version (always 4.0.0).</li>
+	<li>&lt;groupId&gt; Group or organization that the project belongs to. Often expressed as an inverted domain name.</li>
+	<li>&lt;artifactId&gt; Name to be given to the project’s library artifact (for example, the name of its JAR or WAR file).</li>
+	<li>&lt;version&gt; Version of the project that is being built.</li>
+	<li>&lt;packaging&gt; How the project should be packaged. Defaults to "jar" for JAR file packaging. Use "war" for WAR file packaging.</li>
+</ul>
+
+
+<p>
+Within the src/main/java/hello directory, create these two classes: HelloWorld.java and Greeter.java.
+</p>
+
+<h6 class="src">HelloWorld/src/main/java/hello/HelloWorld.java</h6>
+<pre class="prettyprint">
+package hello;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        Greeter greeter = new Greeter();
+        System.out.println(greeter.sayHello());
+    }
+}
+</pre>
+
+<h6 class="src">HelloWorld/src/main/java/hello/Greeter.java</h6>
+<pre class="prettyprint">
+package hello;
+
+public class Greeter {
+    public String sayHello() {
+        return "Hello world!";
+    }
+}
+</pre>
+
+
+<h3>Build Java code</h3>
+
+<p>
+To try out the build, issue the following at the command line:
+</p>
+
+<pre class="screen">mvn compile</pre>
+
+<p>
+This will run Maven, telling it to execute the compile goal. When it’s finished, you should find the compiled .class files in the target/classes directory.<br />
+<img alt="mvn compile" src="https://lh3.googleusercontent.com/1x82DkXPiOrW_fJSNV19zo47lTOeCNSv5Bmj_pCefvAg_k3HA5HVLii6CGLfB87LH3eFBMQOhkxX1DWDCCjRslJwGEEGWINPH5EeMIixo5TjgJbV9LmErzjcoo6wsSinwcwqy3W4dv7QiUra_3yYQQAUvykoLR0OTDAYsxKI4zwXBSUNDzdvi73koycw_tPTk7Dd_pRgCCiVskFLX_iuJCG2NntS4tPai_0teNqGN-4xEPIKIghN2ipRygTS8R5J8Z3zJZd_KU51jVhpDz0Tk8XIp1AHRl0urayqVEZY1TsIUB0T1VNyJL3XzKBN020qlfo2dtFjHMLzFukYOm9l3cWwniosgHkau84LKcCt9-EKLQ0vfDzAFuZnf_3zpqAJOlWKKHM5AHLnfsR0lYf1UR7n4VljjN25YcIBnG3nmtFN92aoCw4CQ8eMLyS29ZVD0a7V55GcaKm2FEbztngzay4T3YZEu7RqrW6W7HtDhgd3PBToUr2M3Fo6DzHqO-LHfEmtN_im4uBwrKf09c5Qb6Yc1t-H6bMIWHbNEOTJ0sKsGnT_da3YKjMqkkEgY2jAPjaydtN1t5E_jNgAgPygUoGe2JZJptsaqUdWPEp63kgaRdcNwh3l=w523-h121-no" style="display: block;" />
+</p>
+
+<p>
+Since it’s unlikely that you’ll want to distribute or work with .class files directly, you’ll probably want to run the package goal instead:
+</p>
+
+<pre class="screen">mvn package</pre>
+
+<p>
+Compile the Java code, test it, bundle it in a package (jar or war), and save it in the target directory.<br />
+According to the pom.xml configuration above, a file named gs-maven-initial-0.1.0.jar is created in the target directory.<br />
+<img alt="mvn package" src="https://lh3.googleusercontent.com/838OsscY8Fm6fv8YiK-KfDH7RewhJYJwSPj7EyqYnKHErDnEy2pSKfCCgBWQV_LSNXRrmZG4WnQb95ExDU9r6S5BIkh9DeCo4Ib_qKLyNoniWopdh6CvtMABtiSgNMH8zEZreHPAZ0lgx8-WfnEi_cd3gF-USpEroTJjcpn2sLAIIVA2SlBcAFRub7km5hkFa0njZy2iDopOGfqtspX9J7b-YkTYbrk0EQnFmMjxaytZEP1-dZlvchLV2K92_oYmwyRb_iUe1at7eATuiTXD6y_yBOnNHlz615-L9EIls-dQ1A192UpcmVZwgOGugjkQ1arzqVh5prwnykxrKBcKHhnVA-aTdnznvbVgv_VaNuByF_Xs1C9_KFODl0mL8iThxe-IoupCK8QWva_JRW3GHmBam-MQsS74P6TTZkHhGpRy45lwl_MluVXbwW1ukw72CgxsD6tn5Zy0gphWWpWBnWTi-CU0hQKM4DPZgV4Dl8BAVukEbXXLT8IVfLnasT-eslPH6BJMH1KrleqpuuX36BunEBe50Sz9J2zk-UZ10LfzbU6D3oZiwN_bxplg6IQF4tLNNne7n1yynS-nx4k-shDwtlbbm88UYEwhtD72ZzGMN1jYMpW8=w540-h175-no" style="display: block;" />
+</p>
+
+<p>
+Maven also maintains a repository of dependencies on your local machine (usually in a .m2/repository directory in your home directory) for quick access to project dependencies.
+If you’d like to install your project’s JAR file to that local repository, then you should invoke the install goal:
+</p>
+
+<pre class="screen">mvn install</pre>
+
+<p>
+The above command saves the packaged jar file in the local repository.<br />
+<img alt="mvn install" src="https://lh3.googleusercontent.com/0XDB0SuXO3F2L3VZDPgjI3oENZawp8pXcd1Ahngbqsm-NCKs7hdhPL5wWEa7hsrQ-CtqsI8PQMd615nwc8Ap6hdjoQCzD1RK4ajRW_T4i9aLR6SYsmFb91feV4zH7cZYyTJykoMmtQAORycTcDrCw-xJtEVYcg_v1sfnA6C-Bgs9eJ8pgEgmqKp3_TtMP_GZuGFGLArmoKaBBPI-qB5ZJke3KCLY6A_6MgiGaT4Ccl2-p4UXRpeXwhEj5WEvYobSRuoLEj9eDo0QnZ1k4uV1M3z2XsZYPDqPyjxurY-5KrgPzs1eidE-ajetkNl_ZQ0J6PEYx2MHm2m-5gq6kJrwSxzZ_VNm31pgGfFxwYRs9IC3Pme5Jw36bmcAJrJXMhlwM2vU0aeMBf3i_eH1CToxWolHDE91tQ7XmaX89BDv_mkvE0PWLmQkwOrh75iKG_0_xWr-XWlJIz_lu0hinZP4n0Vz452U2y8hNTzHu909wff2FQ2VZianRJ-YB4N1qkDZYvcvqbsg1QKewhQViv7SfO4kryeLjk1XSI5siC5xafrBlKEOXXgl1RFzM4JcF18oCvKpAvVan_9RNS75Fvw-7lTZNnkU8Qm40abfa_oIXH6pVmGzEsVK=w677-h149-no" style="display: block;" /> 
+</p>
+
+<pre class="screen">mvn clean</pre>
+
+<p>
+The above command deletes all artifacts generated by the build.<br />
+<img alt="mvn clean" src="https://lh3.googleusercontent.com/Uo3NNCIhcjg2RDAPY85kBCMnQ9LIbyziEOeYRD7XJK1wky0JKySTNXlh5KjJV8s6lYGJb5KrujLbk9gS-lywzpFtJ5NDrS2mM9K0InClY52UwFzoVuPrPB941X0GrBuar5tMX8iUoU-zjSVFwAt1XIDSeVvZ5GDcLNyimqKYrQFy-wEP2g7zPv3k_G-ttM1rslg_GrIuVaeVtX_vmFfe_TLEcGKxlbdKSs38gZxW4LFlFm1XuYkj1cjt0dkwcKOx02tRoFcHm2Jq1U7Qm3l7EnKITzrjVM6veBwB6iMpO9wcs1oe6SHDdur8318xxYP-USEh5XNADR1dhiCHtYFKz-zfkObm1zlmMctZpWeXKOClUcANHEKjiqEURg1JJZXVVm7qVkMCtRs5_jhFGtCku5gbKw5eAt9PWqzoRLWkHFfxdlaFNiuj1fCq3JxhvReOfx6Y40zzvKhNIE--_1iXIl87J43PGScI-bp4WpC8kcKOxiyNM2F0sINUz1Et1JgoEcfLvgeAF1dZNkkLuylIAjyz2oPitBU-LapA0gI8kL_yMe5dK9U1EfUQmpl-hqX5tMdq7E3a7bYJ_dpR32QFIhpIijXvoeBZIrWutzShYSrDkfGXw5tS=w542-h144-no" style="display: block;" />
+</p>
+
+<p>
+You can invoke multiple goals as follows:
+</p>
+
+<pre class="screen">mvn clean compile</pre>
+
+<p>
+You can run the HelloWorld program with the following command: 
+</p>
+
+<pre class="screen">mvn exec:java -Dexec.mainClass=hello.HelloWorld</pre>
+
+
+<h3>Declare Dependencies</h3>
+
+<p>
+Most applications depend on external libraries.<br />
+Modify HelloWorld.java as follows.
+</p>
+
+<h6 class="src">HelloWorld/src/main/java/hello/HelloWorld.java</h6>
+<pre class="prettyprint">
+package hello;
+
+import org.joda.time.LocalTime;
+
+public class HelloWorld {
+  public static void main(String[] args) {
+    LocalTime currentTime = new LocalTime();
+    System.out.println("The current local time is: " + currentTime);
+
+    Greeter greeter = new Greeter();
+    System.out.println(greeter.sayHello());
+  }
+}
+</pre>
+
+<p>
+Here HelloWorld uses Joda Time’s LocalTime class to get and print the current time.<br />
+If you were to run mvn compile to build the project now, the build would fail because you’ve not declared Joda Time as a compile dependency in the build.<br />
+Modify pom.xml as shown below.
+</p>
+
+<h6 class="src">pom.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;gs-maven&lt;/artifactId&gt;
+    &lt;version&gt;0.1.0&lt;/version&gt;
+    &lt;packaging&gt;jar&lt;/packaging&gt;
+    <strong>
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;joda-time&lt;/groupId&gt;
+            &lt;artifactId&gt;joda-time&lt;/artifactId&gt;
+            &lt;version&gt;2.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+	</strong>
+&lt;/project&gt;
+</pre>
+
+<p>
+The scope element can be added as a sub-element of dependency.<br />
+The value of scope is either compile, provided, or test.<br />
+(The default value is compile)
+</p>
+
+<ul>
+	<li>provided: Required at compile time but provided by the container at runtime (eg Servlet API)</li>
+	<li>test: Required for compilation and testing, but not needed for build or run.</li>
+</ul>
+
+<p>
+If you add the dependency and run mvn compile again, it succeeds.
+</p>
+
+<h3>2. Creating a Maven project using mvn archetype:generate</h3>
+
+<p>
+mvn archetype: generate allows you to interactively create a maven project.<br />
+(Archetype has a lexical meaning of prototype, which in Java stands for project prototype)<br />
+This method automatically creates the maven directory and the pom.xml file, as well as the prototypes of various Java projects.<br />
+From the C:\maven directory, run:
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\maven&gt; mvn archetype:generate
+</pre>
+
+<p>
+In the screen below, press enter to select maven-archetype-quickstart.
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 990: 
+</pre>
+
+<p>
+In the screen below, press enter to select the latest version.
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+Choose org.apache.maven.archetypes:maven-archetype-quickstart version:
+1: 1.0-alpha-1
+2: 1.0-alpha-2
+3: 1.0-alpha-3
+4: 1.0-alpha-4
+5: 1.0
+6: 1.1
+Choose a number: 6:
+</pre>
+
+<p>
+Give groupId and artifactId the values shown below. (for version and package, press enter to accept the default)
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+Define value for property 'groupId': : <strong>org.springframework.gs</strong>
+Define value for property 'artifactId': : <strong>gs-maven-initial</strong>
+Define value for property 'version':  1.0-SNAPSHOT: :
+Define value for property 'package':  org.springframework.gs: :
+</pre>
+
+<p>
+On the screen below, press the Enter key.
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+Confirm properties configuration:
+groupId: org.springframework.gs
+artifactId: gs-maven-initial
+version: 1.0-SNAPSHOT
+package: org.springframework.gs
+ Y: :
+</pre>
+
+<p>
+The gs-maven-initial directory, such as the artifactId value, is created and the pom.xml file and maven directory are created in this directory.<br />
+(C:\maven\gs-maven-initial is the root directory) 
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\maven&gt;cd gs-maven-initial
+C:\maven\gs-maven-initial&gt;
+</pre>
+
+<h2>Spring framework Quick Start</h2>
+
+<p style="clear: both;font-style: italic;font-weight: bold;padding: 10px 30px;font-size: 14px;">
+Original <a href="http://projects.spring.io/spring-framework/#quick-start">http://projects.spring.io/spring-framework/#quick-start</a>
+</p>
+
+<p>
+Create a directory for the Maven project as shown below.
+</p>
+
+<pre class="code">
+quick-start
+   └── src
+        └── main
+             └── java
+                  └── hello
+</pre>
+
+<p>
+Create a pom.xml file in the root directory.<br />
+(Check the latest release version at <a href="http://projects.spring.io/spring-framework/">http://projects.spring.io/spring-framework/</a>)
+</p>
+ 
+<h6 class="src">pom.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+	&lt;groupId&gt;net.java_school&lt;/groupId&gt;
+	&lt;artifactId&gt;quick-start&lt;/artifactId&gt;
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+	&lt;packaging&gt;jar&lt;/packaging&gt;
+
+	&lt;name&gt;quick-start&lt;/name&gt;
+	&lt;url&gt;http://maven.apache.org&lt;/url&gt;
+
+	&lt;properties&gt;
+		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+	&lt;/properties&gt;
+
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;junit&lt;/groupId&gt;
+			&lt;artifactId&gt;junit&lt;/artifactId&gt;
+			&lt;version&gt;3.8.1&lt;/version&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+		<strong>
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+			&lt;version&gt;5.0.5.RELEASE&lt;/version&gt;
+		&lt;/dependency&gt;
+		</strong>
+	&lt;/dependencies&gt;
+	
+&lt;/project&gt;
+</pre>
+
+<p>
+Spring is the key to the bean container's ability to manage beans.<br />
+Spring-context dependencies have been added to pom.xml.<br />
+Here is a brief description of Maven's dependency management features:<br />
+If the project relies on the A library and A depends on B, then Maven will store both A and B in the repository with only the A dependency configuration.<br />
+Thus, even if only the spring-context is added, other libraries dependent on spring-context are also stored in the repository.<br />
+</p>
+
+<p>
+At the command prompt, run Notepad to create the MessageService.java, MessagePrinter.java, and Application.java files in the hello folder as shown below.
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\maven\quick-start\src\main\java\hello&gt;notepad MessageService.java
+</pre>
+
+<h6 class="src">MessageService.java</h6>
+<pre class="prettyprint">
+package hello;
+
+public interface MessageService {
+    String getMessage();
+}
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\maven\quick-start\src\main\java\hello&gt;notepad MessagePrinter.java
+</pre>
+
+
+<h6 class="src">MessagePrinter.java</h6>
+<pre class="prettyprint">
+package hello;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MessagePrinter {
+
+    @Autowired
+    private MessageService service;
+
+    public void printMessage() {
+        System.out.println(this.service.getMessage());
+    }
+}
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\maven\quick-start\src\main\java\hello&gt;notepad Application.java
+</pre>
+
+<h6 class="src">Application.java</h6>
+<pre class="prettyprint">
+package hello;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.*;
+
+@Configuration
+@ComponentScan
+public class Application {
+
+	@Bean
+	MessageService mockMessageService() {
+		return new MessageService() {
+			public String getMessage() {
+				return "Hello World!";
+			}
+		};
+	}
+
+	public static void main(String[] args) {
+		ApplicationContext context = 
+			new AnnotationConfigApplicationContext(Application.class);
+		MessagePrinter printer = context.getBean(MessagePrinter.class);
+		printer.printMessage();
+	}
+}
+</pre>
+
+<p>
+Run the following commands in order.
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+mvn compile
+mvn exec:java -Dexec.mainClass=hello.Application
+</pre>
+
+<p>
+In the code, MessagePrinter and MessageService are not combined.<br />
+But Spring Framework combines them.
+</p>
+
+<p>
+Check which libraries are stored in Maven's local repository.
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\Users\kim\.m2\repository\org\springframework&gt;dir /w
+
+[spring-aop]  [spring-beans]  [spring-context]  [spring-core]  
+
+[spring-expression]
+
+</pre>
+
+<p>
+The spring-aop, spring-beans, spring-core, and spring-expression dependent on spring-context are also installed.
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://spring.io/guides/gs/maven/">Building Java Projects with Maven</a></li>
+	<li><a href="http://projects.spring.io/spring-framework/#quick-start">http://projects.spring.io/spring-framework/#quick-start</a></li>
+</ul>
+</article>

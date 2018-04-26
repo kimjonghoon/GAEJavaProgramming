@@ -1,0 +1,86 @@
+<article>
+
+<h1>View layer security</h1>
+
+<p>
+Users who are not the owner of the post on the detailed view page should not see the menu highlighted.<br />
+<img alt="Before applying spring security at viewlayer" src="https://lh3.googleusercontent.com/Wdf7wwF1RPB-tPcmTFuvxe5fYdhLwQih-Q9t5EaNF0E15wBaM7BKUNruYCczilLV5D3QavWUib_m-5z8_BXLzlyqaJiajQr2MZqVuxmUqx3dLUSZi8zK7DVNgvuU_AzgBuWsfkNhPNBICZXTds6BbSnWDikQuKmIelTsDirLauhuaOturKv-Rm4DetWAfPArPWfTJYU_NUg09p1cLU7MLZ5aVr6zsbueS0EE_vuYSaJKlK6fPJOmmdBQl1qoEao40dhNqI9i_Q9OTdBY7yLPxjY_uY3X9j9eRuSt-sMyhbbrddaDjLtHrkKIqBRTtI_DBrpIGapyA2GAbEPSIpFSlX801M0SQiTFQVVUzit8RfJzPjPxETLTrmpw1eYeYxjb_30eiJwtg0h_Fw7HKNR0DqnKL0bZ0XDASEzb1rpwKV1U0tIQtId-y722cxPoyO6c-woxf4fBJ6GZ8digUNsHq653W9q8rnQpkdd-i1zPoHGRfJmqmHqZUO07Uj5pqmqXUHvEAjNeG8HpJol6_ANrDa-dOFogUQrYM0KDFzOm33m01Cc8URNO98jJGsfizhb9q4G4TRfnuwbajvGW8eyxmd_Cdwb_xZoC5k_afY4=w612-h507-no">
+</p>
+
+<h6 class="src">/WEB-INF/views/bbs/view.jsp</h6>
+<pre class="prettyprint">
+&lt;!-- omit --&gt;
+
+<strong>&lt;%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %&gt;</strong>
+
+&lt;!-- omit --&gt;
+
+&lt;div class="view-menu" .. &gt;
+    <strong>&lt;security:authorize access="#email == principal.username or hasRole('ROLE_ADMIN')"&gt;</strong>
+    &lt;div class="fl"&gt;
+        &lt;input type="button" value="수정" onclick="goModify();" /&gt;
+        &lt;input type="button" value="삭제" onclick="goDelete()" /&gt;
+    &lt;/div&gt;
+    <strong>&lt;/security:authorize&gt;</strong>
+
+
+&lt;!-- omit --&gt;
+
+&lt;div id="detail"&gt;
+    &lt;div id="date-writer-hit"&gt;edited ${regdate } by ${name } hit ${hit }&lt;/div&gt;
+    &lt;div id="article-content"&gt;${content }&lt;/div&gt;
+    &lt;div id="file-list" style="text-align: right;"&gt;
+        &lt;div id="file-list" style="text-align: right;"&gt;
+        &lt;c:forEach var="file" items="${attachFileList }" varStatus="status"&gt;
+            &lt;div class="attach-file"&gt;			
+                &lt;a href="javascript:download('${file.filename }')"&gt;${file.filename }&lt;/a&gt;
+                <strong>&lt;security:authorize access="#email == principal.username or hasRole('ROLE_ADMIN')"&gt;</strong>
+                &lt;a href="javascript:deleteAttachFile('${file.attachFileNo }')"&gt;삭제&lt;/a&gt;
+                <strong>&lt;/security:authorize&gt;</strong>
+            &lt;/div&gt;
+        &lt;/c:forEach&gt;	
+        &lt;/div&gt;
+    &lt;/p&gt;		
+&lt;/div&gt;
+
+&lt;c:forEach var="comment" items="${commentList }" varStatus="status"&gt;	
+&lt;div class="comments"&gt;
+    &lt;span class="writer"&gt;${comment.name }&lt;/span&gt;
+    &lt;span class="date"&gt;${comment.regdate }&lt;/span&gt;
+    <strong>&lt;security:authorize access="#comment.email == principal.username or hasRole('ROLE_ADMIN')"&gt;</strong>
+    &lt;span class="modify-del"&gt;
+        &lt;a href="javascript:updateComment('${comment.commentNo }')"&gt;Modify&lt;/a&gt; |
+        &lt;a href="javascript:deleteComment('${comment.commentNo }')"&gt;Del&lt;/a&gt;
+    &lt;/span&gt;
+    <strong>&lt;/security:authorize&gt;</strong>
+
+&lt;!-- omit --&gt;
+</pre>
+
+<p>
+The header.jsp file that has already been modified will also be rendered selectively using the Spring Security tag.
+</p>
+
+<h6 class="src">/WEB-INF/views/inc/header.jsp</h6>
+<pre class="prettyprint">
+&lt;!-- omit --&gt;
+
+<strong>&lt;%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %&gt;</strong>
+
+&lt;!-- omit --&gt;
+
+<strong>&lt;security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"&gt;
+    &lt;security:authentication property="principal.username" var="<strong>check</strong>" /&gt;
+&lt;/security:authorize&gt;</strong>
+
+&lt;!-- omit --&gt;
+</pre>
+
+
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://stackoverflow.com/questions/10421588/spring-security-not-working-what-am-i-doing-wrong">Spring Security not working. What am I doing wrong?</a></li>
+	<li><a href="http://static.springsource.org/spring-security/site/faq/faq.html#faq-method-security-in-web-context">https://docs.spring.io/spring-security/site/faq/faq.html#faq-method-security-in-web-context</a></li>
+</ul>
+</article>

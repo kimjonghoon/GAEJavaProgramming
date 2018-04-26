@@ -1,0 +1,349 @@
+<article>
+
+<h1>Objectify</h1>
+
+<p>
+Objectify is a Java API created for the datastore.<br />
+The datastore is the official repository of Google's cloud.<br />
+Let's understand the data store as a hash map of a hash map.
+</p>
+
+
+<h2>Add Objectify dependencies to pom.xml</h2>
+
+<p>
+Add the following property to pom.xml.
+</p>
+
+<pre class="prettyprint">
+&lt;objectify.version&gt;5.1.21&lt;/objectify.version&gt;
+&lt;guava.version&gt;23.0&lt;/guava.version&gt;
+</pre>
+
+<p>
+Add Objectify dependencies to pom.xml
+</p>
+
+<pre class="prettyprint">
+&lt;dependency&gt;
+    &lt;groupId&gt;com.google.guava&lt;/groupId&gt;
+    &lt;artifactId&gt;guava&lt;/artifactId&gt;
+    &lt;version&gt;${guava.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.googlecode.objectify&lt;/groupId&gt;
+    &lt;artifactId&gt;objectify&lt;/artifactId&gt;
+    &lt;version&gt;${objectify.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+The guestbook project is using Objectify, so the above configuration already exists.
+</p>
+
+
+<h2>Add Delete function</h2>
+
+<p>
+Let's look at the Objectify code.
+</p>
+
+<h6 class="src">Fetch List</h6>
+<pre class="prettyprint">
+List&lt;Greeting&gt; greetings = ObjectifyService.ofy()
+	.load()
+	.type(Greeting.class) // We want only Greetings
+	.ancestor(theBook)    // Anyone in this book
+	.order("-date")       // Most recent first - date is indexed.
+	.limit(5)             // Only show 5 of them.
+	.list();
+</pre>
+
+<h6 class="src">Save Entity</h6>
+<pre class="prettyprint">
+ObjectifyService.ofy().save().entity(greeting).now();
+</pre>
+
+<p>
+Here's the code to use to delete the entity.
+</p>
+
+<h6 class="src">Delete Entity</h6>
+<pre class="prettyprint">
+ObjectifyService.ofy().delete().key(<em>key</em>).now();
+</pre>
+
+<p>
+Where key is the unique key of the entity. The unique key is obtained with the following code.
+</p>
+
+<pre class="prettyprint">
+Key.create(theBook, Greeting.class, id);
+</pre>
+
+<p>
+Using this code, you can get the unique key for each Greeting object in guestbook.jsp.<br />
+To do this, first add a method in Greeting.java that returns its own key as follows:
+</p>
+
+<pre class="prettyprint">
+public Key getKey() {
+	return Key.create(theBook, Greeting.class, id);
+}
+</pre>
+
+<p>
+Here the type of Key is com.googlecode.objectify.Key.<br />
+Key has toWebSafeString (), a method that returns a String that can be restored to itself.<br />
+Therefore, Greeting's key string can be obtained as follows.
+</p>
+
+<pre class="prettyprint">
+// Look at all of our greetings
+for (Greeting greeting : greetings) {
+	pageContext.setAttribute("greeting_content", greeting.content);
+	<strong>pageContext.setAttribute("keyString", greeting.getKey().toWebSafeString());</strong>
+		
+	//..omit..
+
+</pre>
+
+<p>
+Using the keyString stored in pageContext, you can create a link that passes the keyString to the JavaScript function.<br />
+(Javascript and the required form tags will be covered soon) 
+</p>
+
+<pre class="prettyprint">
+&lt;p&gt;&lt;b&gt;${fn:escapeXml(greeting_user)}&lt;/b&gt; wrote:&lt;/p&gt;
+&lt;blockquote&gt;${fn:escapeXml(greeting_content)}&lt;/blockquote&gt;
+<strong>&lt;blockquote&gt;&lt;a href="javascript:del('${keyString }')"&gt;Del&lt;/a&gt;&lt;/blockquote&gt;</strong>
+</pre>
+
+<p>
+If you implement the above, the user can delete the article, not the author.
+Even non-logged-in users can delete posts.
+Spring security tags allow you to selectively render views based on permissions.
+To compare a login user with an author, you need to store the author ID in the pageContext. (See highlighted below)
+</p>
+
+<pre class="prettyprint">
+// Look at all of our greetings
+for (Greeting greeting : greetings) {
+    pageContext.setAttribute("greeting_content", greeting.content);
+    pageContext.setAttribute("keyString", greeting.getKey().toWebSafeString());
+    String author;
+    <strong>String author_id = null;</strong>
+    if (greeting.author_email == null) {
+        author = "An anonymous person";
+    } else {
+        author = greeting.author_email;
+        author_id = greeting.author_id;
+        if (user != null &amp;&amp; user.getUserId().equals(author_id)) {
+            author += " (You)";
+        }
+    }
+    pageContext.setAttribute("greeting_user", author);
+    <strong>pageContext.setAttribute("author_id", author_id);</strong>
+    
+    //..omit..
+</pre>
+
+<p>
+You are all ready to compare the login user with the author.<br />
+Implement a link to pass the keyString to the JavaScript function as shown below.
+</p>
+
+<pre class="prettyprint">
+&lt;p&gt;&lt;b&gt;${fn:escapeXml(greeting_user)}&lt;/b&gt; wrote:&lt;/p&gt;
+&lt;blockquote&gt;${fn:escapeXml(greeting_content)}&lt;/blockquote&gt;
+<strong>&lt;security:authorize access="isAuthenticated() and (#author_id == principal.userId or hasRole('ROLE_ADMIN'))"&gt;
+	&lt;blockquote&gt;&lt;a href="javascript:del('${keyString }')"&gt;Del&lt;/a&gt;&lt;/blockquote&gt;
+&lt;/security:authorize&gt;</strong>
+</pre>
+
+<p>
+To use the Spring Security tag, add the Spring Security tag library directive to guestbook.jsp.
+</p>
+
+<pre class="prettyprint">
+&lt;%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %&gt;
+</pre>
+
+<p>
+The following Spring Security tag shows the delete link to the author or administrator of the login user.
+</p>
+
+<pre class="prettyprint">
+&lt;security:authorize access="isAuthenticated() and (#author_id == principal.userId or hasRole('ROLE_ADMIN'))"&gt;
+</pre>
+
+
+<h3>Adding a JavaScript function</h3>
+
+<pre class="prettyprint">
+&lt;script type="text/javascript"&gt;
+function del(key) {
+	var check = confirm('Are you sure you want to delete this greeting?');
+	if (check) {
+    	var form = document.getElementById("delForm");
+    	form.keyString.value = key;
+    	form.submit();
+	}
+}
+&lt;/script&gt;
+</pre>
+
+<h3>Add a form tag</h3>
+
+<pre class="prettyprint">
+&lt;form id="delForm" action="/guestbook/del" method="post" style="display: none;"&gt;
+	&lt;input type="hidden" name="keyString" /&gt;
+	&lt;input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/&gt;
+	&lt;input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /&gt;
+&lt;/form&gt;
+</pre>
+
+<h3>Add a handler for the "/guestbook/del" request to the controller</h3>
+
+<p>
+Add a handler to the GuestbookController that handles the "/guestbook/del" request as shown below.
+</p>
+
+<pre class="prettyprint">
+@RequestMapping(value="/guestbook/del", method=RequestMethod.POST)
+public String del(String guestbookName, String keyString) {
+	Key&lt;Greeting&gt; key = Key.create(keyString);//고유 키 복원
+	ofy().delete().key(key).now();
+	return "redirect:/guestbook/?guestbookName=" + guestbookName;
+}
+</pre>
+
+<p>
+No user verification is done on the server side.
+On the server side, use Spring Security's method security to implement a check to see if the login user is the author.
+Spring official documentation recommends implementing method security in the service layer.
+</p>
+
+<h6 class="src">GuestbookService.java</h6>
+<pre class="prettyprint">
+package net.java_school.guestbook;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public interface GuestbookService {
+	public void sign(Greeting greeting);
+	public void del(Greeting greeting);
+}
+</pre>
+
+<h6 class="src">GuestbookServiceImpl.java</h6>
+<pre class="prettyprint">
+package net.java_school.guestbook;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
+
+import com.googlecode.objectify.Key;
+import static com.googlecode.objectify.ObjectifyService.ofy;<b><span>//</span>1.</b>
+
+@Service
+public class GuestbookServiceImpl implements GuestbookService{
+	public void sign(Greeting greeting) {
+		ofy().save().entity(greeting).now();<b><span>//</span>1.</b>
+	}
+
+	<strong>@PreAuthorize("isAuthenticated() and (#greeting.author_id == principal.userId or hasRole('ROLE_ADMIN'))")</strong><b><span>//</span>2.</b>
+	public void del(Greeting greeting) {
+		Key&lt;Greeting&gt; key = greeting.getKey();
+		ofy().delete().key(key).now();<b><span>//</span>1.</b>
+	}
+}
+</pre>
+
+<p>
+1. import static com.googlecode.objectify.ObjectifyService.ofy; has been added.
+The Ojectify code is used as follows.
+</p>
+
+<pre class="prettyprint">
+ofy().save().entity(greeting).now();
+ofy().delete().key(key).now();
+</pre>
+
+<p>
+2. In the annotation of the del() method, #greeting.author_id calls the getAuthor_id() method of the greeting instance.<br />
+So you need to add the following getter to Greeting.java:
+</p>
+
+<h6 class="src">Greeting.java</h6>
+<pre class="prettyprint">
+public String getAuthor_id() {
+	return author_id;
+}
+</pre>
+
+<h3>Modify Controller</h3>
+
+<h6 class="src">GuestbookController.java</h6>
+<pre class="prettyprint">
+//..omit..
+<strong>
+@Autowired
+private GuestbookService guestbookService;
+</strong>
+//..omit..
+
+@RequestMapping(value="/guestbook/sign", method=RequestMethod.POST)
+public String sign(String guestbookName, String content, GaeUserAuthentication gaeUserAuthentication) {
+	Greeting greeting = null;
+
+	if (gaeUserAuthentication != null) {
+		GaeUser gaeUser = (GaeUser) gaeUserAuthentication.getPrincipal();
+		greeting = new Greeting(guestbookName, content, gaeUser.getUserId(), gaeUser.getEmail());
+	} else {
+		greeting = new Greeting(guestbookName, content);
+	}
+	
+	guestbookService.sign(greeting);
+	
+	return "redirect:/guestbook/?guestbookName=" + guestbookName;
+}
+
+@RequestMapping(value="/guestbook/del", method=RequestMethod.POST)
+public String del(String guestbookName, String keyString) {
+	Key&lt;Greeting&gt; key = Key.create(keyString);
+	Greeting greeting = ofy().load().key(key).now();
+	guestbookService.del(greeting);
+	return "redirect:/guestbook/?guestbookName=" + guestbookName;
+}
+</pre>
+
+<h3>Local Test</h3>
+
+<pre class="screen">
+mvn clean
+mvn appengine:run
+</pre>
+
+<p>
+When a user who is not logged in visits the guestbook, they can not see the Del link.<br />
+<img src="https://lh3.googleusercontent.com/Y6J9Qd40NaGUTxLNIWZ8E83M7_fmWj1-Kq5dMRDSPDnr8-5i7fzT3W5a1D0ttYP0sA-y0NtNZacJ6gewrEq5kww4q2LlcwWzUy6QARgcMLSLiPSE4LBFy7m_VaRNHNdFZI3oGB6208ckmcaAKIt7WHw4ljmN8EWzo-FDEoQ7pHtrJwDL0uX7qp-Yv5_zlk5r8zKwUWVVxD4ebjOFgQYo5ref6LeoCmMy6V0AQfVckKWePr04X52X6lqRgGbM9jTXbqGdTCo0AGwkUxoVDpyeepNEGap0VioGoikFKDblfOAj7GBO8BBiBes3G3YStGTZ7lbs1NnMr61j0hziEkQFUCUrtRHQjTaWKzlie3cpccv2PLy9fzg53lFjrGKswFh2hMSN2_b7puHcudQEeTLOfK0hrjZp_noTIYO9Q0pVkD52Oml6icGWe837cDMYXnpgL2Yu7h8gSfBk07lDJ3K4-kg83FFMo1zukzL8GGbcdkf_pHq_6o-cpxG4Fx-4qQ2XcOE_CpwUUg6uLECRqmY4_vtA7E6_fWnJRZlgfdDmXvKZoZgsNGkQntkl9LuXsDVnQk8DUnAqa7EwEsfquKuGiPmNxxv4edfpi30ObKWYcF5qYP8o_M8o0rLC=w442-h417-no" alt="not login" style="display: block;" />
+Log in as a normal user.<br />
+<img src="https://lh3.googleusercontent.com/JFIPDnglJq8KtPG5Pv4KMWthG4fUPhGgv2NAYaACQQMxyDzgxKe87titAJKBoTvY-GtcHodBFEZ3C_1u3G6VPuUPqrw65pnxAdxQysd5IP3YCf9FHPBWIOBFHgM6xqb6E87Nm1qQvacYg5kmZg3DUIcydZOwad4JcgFAbNaUmYnnhPG2P95BxyYXqEpAwPXw4BFvJNc0TU36-O3kw2g1mA3ahx9FxbV3AfGdFW-RaTkEKa6NeLlzCehZg7iOWrRw5BXEbTsXkWven_HYHd0PtLrB_Wa1_1qQ7t29OoXL1ox-2HzlkPZNLhqtUmcuVM4JV1OBRQ9efsgne896L2I2i2MdBZffAzWLFLCglvzabSsYhFJ1E-8y8ZFAkylraWxq7MF_cy7jpdHUsaxCLEo6Zgp_uSYc4aO2O88eWrlJIr7pJhlCDy4st8q7XLCeD2LStxEkePbkqKOUBSYpb_wrbsN11N15FpXE67rezkz6J2Dno-5e54JQspx_o3ujA4DZU25iHpgZIwSv3G9lAo0mRz_wWW6zPx7sTZRduMF4fDlA1jEDwUpy1avu89m5xhTT8PESM1hngBxHQIN3GCPRDeQFdqKg6TMuOKMYjsN-_6IV-M5dxPqlIHVZ=w451-h275-no" alt="Normal user login screen" style="display: block;" />
+User can see links to delete his posts.<br /> 
+<img src="https://lh3.googleusercontent.com/G0a6f8GgQ4UQJqm9e5TTXIkp-rcViRwt6amF5I0qUtnMx2k0NZfiLDsR8dSFLcDIbKbTYVvBQMbxD91XCHG9vS-QdlorJoV0d2b9l4BShXC9iigRLjR4ZBTdKW1Ecy4uEdm34_S0l08jdJLAiox4eVt-tXqB2g99S2PXb07a6ZWSWeWOUZ09tm6zdsH0Ra8CiHeUHODiMGSZN0khIQIIgGYMYh44ohLm56nDLVs3HaP2NCFFtBlFCa0wKj5zYMk2ZaXRdYYSJRKkSyibwzdQUmKjQ76CpTBzMOCXd2UspMoR6jEkqgQiNr1_F-nKhhcI1117ss_sODQKbGDymaEa__GJj84zAR95YoCzYjf9kSH078CpcCRC7W5mo40qwuQh3LTQbw0tqJZtkl_hg7mQly4r-omP62C1yMRRA6gjDiiR4yRVra6bjrHPY61RbaaxaH8EkdcP2XmykXdASI4ikdbUof-gG1swB_8ZNtRw104NKLPs_kYVIG58szVb6R_NFzGHwNisaqhZoNO8jyZrvCS1J3AIZ_PZLnht6NJjNz7ZQHwcYpEWjka-URrKzOFBwxN0Da1T9brmaM-JAV5EnZYuJrwN67ZEx8vM69NGHFW-VVGHVg3Oenlu=w384-h439-no" alt="Normal user login" style="display: block;" />
+Log out and log in as an administrator.<br />
+<img src="https://lh3.googleusercontent.com/njUdDdcv3eSIj9LTF1ApHIJ6XgpJLSKKIttSNDJQHDCDLkdDWtzG9nGcFGKwKfl_f8d-rrXSo6KRliovQ7a4haZSjjZKTgpqqftWlXtppbDYJOwFErv4GqgWf3iWE5-eXZovYMBiL5FtRV4sre9JiBNIOk80DZ5RSchiXqICdNOjAeI09lO_IonI6CMNWXgAc21w4LJ2n6k-xlktrfdAK4p73gzesBmTCjpA8-bibwgubs95ym0S1CznUS5MuV2X2sE2rsw9Va6bZWfgdlr8jEYs4vgddmW8m2jMXMcD8qxxLRGhh3KaPl7ofZQsSNtOPkpxi3ybXAjUMX4I4nvWIBJ2orwetlr2ZpKBRZmFNC5Z6XSaEfIeXL0WJT0LNKbEDQz3bku0rmTcz1zI9b9xYhzDFP-wk-ig9qkDXXjFPmwXr5NB2fGNC0cuH-NjX11KZ2hfcltGhuBO9DW5gryVjXcda1Em-2iboPpRuwJNmlmJrvCKVW1dIswuQA8I8MLCfIp8Mb0io-vWYMj-Id90fr_K5r17Q0C-SUabGMJIydxSmsAUgXPLOwUW07bO_4xFIIcqqVzcCO2absJGYgpkSgGv6qnwH4wKBuK5L4Ytu1xG7M5aQ07eBx83=w419-h319-no" alt="Admin user login screen"  style="display: block;" />
+Administrator can see the Delete link for all posts.<br />
+Delete an article written by an anonymous user.<br />
+<img src="https://lh3.googleusercontent.com/ctnX35ER0KHhSB_PDCIGtwA71EOlWuPMvpBSQxgbXQ4D33BP-QtH3qgNLQcBuBNTIEBMsM-x-CqlPvzQNE51EP1Rs41IojCjv1qaY0cX2TKH1sj8hP7YblahI3X1KDDDb7h4jqx-6RBUgVrHpRIeJ8fb82jQPlwnuUSLWlQLHTDWU_PWlMAnRbx9_PSAkchzrYMs1by4e6Dlod7w75gv7AMNTOz9-bLshBGxS_lVhX5iPPHYsdwbSsIgOaeJM8QddR7bvq-AYrbFImNaCumP0Jth2bpIyQC3tbwgHCeLPzPjroXJNdIHTcWUe913WvreuqFSfQnixLEZweTlr84wUivwOo8ZOdPicg-MMpnH0IYoCgdZArHjEpgviXpG1zjfcQS0GFg8HUAl8LV-yf9g7wyoavUQUktqaBFEKAFw8emPwhbPJcpmq1NbKJSHSJuB6QGpftgmtCsdnp53Ss9At-658EczNN7QVkLr1IYpP_HFjD5-ebLj_MKSdVS_ycAM8NoWL0GQGHWD2vI4Ako6-QyXlb0C5Wqjkt5OVsNuEcGq2lwuZmvELeTaNsuS4Ub5yd9mN_NFgkVo5LwXnkOQgBWskwdvIu3pzb7idIqGCTMT7JsSeMlXlWwD=w441-h504-no" alt="Admin login" style="display: block;" />
+Confirm that the article written by the anonymous user has been deleted.<br />
+<img src="https://lh3.googleusercontent.com/uIo5pSF4T3-zg8Tndd881s21vj4bUtxQzlQWv8TstMovPWnFHpwP0Kt4XePrssZuL43K2dFBB3uSqsOINBYc6B2CW-hzy7e-Yui_63HpEVW7QH-BX_pJr0HEWaVi2XtD48EjG_hwGWPSANSf5kYPHp0b7LRtVKv4fNFrmDXZz8B1pe27UskkResudM3sjfNSB_zC3zfTDMEWnTnQ_R4SbKmZFzXLpQcxh3J2RoX3LFYNWzIJn6IfYtIBKfiP3yXblbquUkKT_kzkooM4HDl8CS5GBxGdrBPKrzCMg4diqAAqfIYbAF2Wsp-Dm1_cwM8jORaK-guqlyHnrWGXIFm6yyimT3nS01fIlYtWGf4UW8He761T231BqW5RDSigeIxoW7UdVe8Hl7axKciXMLg_wmxUxFmw9dh_m-TCdifS0W7uRkZ4GjGelan4LLRsziQ8V6Ud5jg8Ho9YZsBLFpD87_oCcUCYpuUT0zFNYT_88FprwnKXKARW02YNg9oGD5OgWPffOx4Gt8MdYc8zMgTjS1sFaQLF2m7pcK_seOwo41XRBuRRPtPACckckNFlgL4Mf_QNAWiv9hkXFuGzmpX1Bvq1L484xiifOsowqjUR0ba3QERyzpxlMoQt=w510-h380-no" alt="delete Anomynous user's greeting" style="display: block;" />
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="https://github.com/objectify/objectify/wiki">https://github.com/objectify/objectify/wiki</a></li>
+</ul>
+</article>

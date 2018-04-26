@@ -1,0 +1,467 @@
+<article>
+
+<h1>Spring DI</h1>
+
+<p style="color: #777;">
+The following article assumes that your workspace is C:\java.
+</p>
+
+<h2>Set up the project</h2>
+
+<p>
+Execute the following command in C:\java.<br />
+(↵ is an indication to press the enter key, just press the enter key to select the default value)
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\java&gt;<span class="prompt-selection">mvn archetype:generate</span>
+
+Choose a number or apply filter 
+    (format: [groupId:]artifactId, case sensitive contains): 888: ↵
+
+Choose org.apache.maven.archetypes:maven-archetype-quickstart version: 
+1: 1.0-alpha-1
+2: 1.0-alpha-2
+3: 1.0-alpha-3
+4: 1.0-alpha-4
+5: 1.0
+6: 1.1
+Choose a number: 6: ↵
+Define value for property 'groupId': : <span class="prompt-selection">net.java_school</span>
+Define value for property 'artifactId': : <span class="prompt-selection">bank</span>
+Define value for property 'version':  1.0-SNAPSHOT: : ↵
+Define value for property 'package':  net.java_school: : ↵
+Confirm properties configuration:
+groupId: net.java_school
+artifactId: bank
+version: 1.0-SNAPSHOT
+package: net.java_school
+ Y: : ↵
+</pre>
+
+<p>
+Access the scott account with SQL * PLUS.<br />
+Create the following table.
+</p>
+
+<pre class="prettyprint">
+create table bankaccount (
+    accountno varchar2(50),
+    owner varchar2(20) not null,
+    balance number,
+    kind varchar2(10),
+    constraint PK_BANKACCOUNT primary key(accountno),
+    constraint CK_BANKACCOUNT_NORMAL 
+        CHECK (balance >= CASE WHEN kind='NORMAL' THEN 0 END),
+    constraint CK_BANKACCOUNT_KIND CHECK (kind in ('NORMAL', 'MINUS'))
+);  
+create table transaction (
+    transactiondate timestamp,
+    kind varchar2(10),
+    amount number,
+    balance number,
+    accountno varchar2(50),
+    constraint FK_TRANSACTION FOREIGN KEY(accountno)
+        REFERENCES bankaccount(accountno)
+);
+</pre>
+
+<p>
+Create a trigger that inserts data into a transaction table when depositing or withdrawing. 
+</p>
+
+<pre class="prettyprint">
+create or replace trigger bank_trigger
+after insert or update of balance on bankaccount
+for each row
+begin
+    if :new.balance &gt; :old.balance then
+        insert into transaction 
+        values 
+        (
+            systimestamp,
+            'DEPOSIT',
+            :new.balance - :old.balance,
+            :new.balance,
+            :old.accountno
+        );
+    end if;
+    if :new.balance &lt; :old.balance then
+        insert into transaction 
+        values 
+        (
+            systimestamp,
+            'WITHDRAW',
+            :old.balance - :new.balance,
+            :new.balance,
+            :old.accountno
+        );
+    end if;
+end;
+/
+</pre>
+
+
+<p>
+Copy <a href="../jdbc/JavaBank">JavaBank</a> sources and paste them to the following locations:
+</p>
+
+<pre class="code">C:\java\bank
+   └── src
+        └── main
+             └── java
+                  └── net
+                       └── java_school
+                               └── bank
+                                        - <a href="/jdbc/examples/Account.java">Account.java</a>
+                                        - <a href="/jdbc/examples/Bank.java">Bank.java</a>
+                                        - <a href="/jdbc/examples/BankDao.java">BankDao.java</a>
+                                        - <a href="/jdbc/examples/BankUi.java">BankUi.java</a>
+                                        - <a href="/jdbc/examples/ShinhanBank.java">ShinhanBank.java</a>
+                                        - <a href="/jdbc/examples/ShinhanBankDao.java">ShinhanBankDao.java</a>
+                                        - <a href="/jdbc/examples/Transaction.java">Transaction.java</a>
+</pre>
+
+<h3 id="Oralce-JDBC-Driver-Dependency">Installing the Oracle JDBC driver in local storage</h3>
+
+<p>
+The Oracle JDBC driver is not provided by the Maven repository.<br />
+Therefore, you need to install the Oracle JDBC driver in your local repository and set the dependency on pom.xml.<br />
+Go to the directory where the ojdbc6.jar file is located, and run the following from the command prompt:
+</p>
+
+<pre>
+mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.2.0 -Dpackaging=jar
+</pre>
+
+<p>
+Add the following dependencies to pom.xml as the information is stored in the local repository:
+</p>
+
+<pre class="prettyprint">
+&lt;dependency&gt;
+	&lt;groupId&gt;com.oracle&lt;/groupId&gt;
+	&lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;
+	&lt;version&gt;11.2.0.2.0&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+Edit pom.xml as shown below.
+</p>
+
+<h6 class="src">pom.xml</h6>
+<pre class="prettyprint">
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                        http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+                        
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;net.java_school&lt;/groupId&gt;
+  &lt;artifactId&gt;bank&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+
+  &lt;name&gt;bank&lt;/name&gt;
+  &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+
+  &lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    <strong>&lt;spring.version&gt;5.0.2.RELEASE&lt;/spring.version&gt;
+    &lt;jdk.version&gt;1.8&lt;/jdk.version&gt;</strong>
+  &lt;/properties&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;3.8.1&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    <strong>&lt;!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+      &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+      &lt;version&gt;1.7.25&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+      &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+      &lt;version&gt;1.2.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+      &lt;version&gt;${spring.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.oracle&lt;/groupId&gt;
+      &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;
+      &lt;version&gt;11.2.0.2.0&lt;/version&gt;
+    &lt;/dependency&gt;</strong>
+  &lt;/dependencies&gt;
+  <strong>
+  &lt;build&gt;
+    &lt;finalName&gt;bank&lt;/finalName&gt;
+      &lt;pluginManagement&gt;
+        &lt;plugins&gt;
+          &lt;plugin&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.1&lt;/version&gt;
+            &lt;configuration&gt;
+              &lt;source&gt;${jdk.version}&lt;/source&gt;
+              &lt;target&gt;${jdk.version}&lt;/target&gt;
+              &lt;compilerArgument&gt;&lt;/compilerArgument&gt;
+              &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+            &lt;/configuration&gt;
+          &lt;/plugin&gt;
+        &lt;/plugins&gt;
+      &lt;/pluginManagement&gt;
+  &lt;/build&gt;
+  </strong>
+&lt;/project&gt;
+</pre>
+
+<p>
+Build and run.
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">C:\java\bank&gt;<span class="prompt-selection">mvn clean compile</span>
+
+C:\java\bank&gt;<span class="prompt-selection">mvn exec:java -Dexec.mainClass=net.java_school.bank.BankUi</span>
+</pre>
+
+<h3>Migrating to Spring project</h3>
+
+<p>
+Modify the following:
+</p>
+
+<h6 class="src">Bank.java</h6>
+<pre class="prettyprint">
+public void setDao(BankDao dao);//added
+</pre>
+
+<h6 class="src">ShinahanBank.java</h6>
+<pre class="prettyprint">
+//private BankDao dao = new ShinhanBankDao();
+
+//added
+private BankDao dao;
+
+public void setDao(BankDao dao) {
+    this.dao = dao;
+}
+</pre>
+
+<h6 class="src">BankUi.java</h6>
+<pre class="prettyprint">
+//..omit..
+
+import java.io.PrintStream;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+//..omit..
+//private Bank bank = new ShinhanBank();
+private Bank bank;
+
+public void setBank(Bank bank) {
+    this.bank = bank;
+}
+
+private PrintStream stream;
+
+public void setStream(PrintStream stream) {
+    this.stream = stream;
+}
+
+/* 
+Modify System.out.println() to stream.println(), System.out.print() to stream.print().
+*/
+
+//..omit..
+
+public static void main(String[] args) {
+	ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+	BankUi ui = ctx.getBean(BankUi.class);
+	ui.startWork();
+	ctx.close();
+}
+
+</pre>
+
+<p>
+Create src/main/resources folder. (This is also the Maven project directory)<br />
+Copy logback.xml in <a href="../java/Logging">Logging</a> and paste it into resources folder.<br />
+Create an applicationContext.xml in the resources folder.
+</p>
+
+<pre class="code">C:\java\bank
+   └── src
+        └── main
+             └── resources
+                           - logback.xml
+                           - applicationContext.xml
+                     
+</pre>
+
+<p>
+Edit the appliactionContext.xml file as follows.
+</p>
+
+<h6 class="src">applicationContext.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+    &lt;bean id="bankUi" class="net.java_school.bank.BankUi"&gt;
+        &lt;property name="stream" value="#{T(System).out}" /&gt;
+        &lt;property name="bank" ref="shinhanBank" /&gt;
+    &lt;/bean&gt;
+    
+    &lt;bean id="shinhanBank" class="net.java_school.bank.ShinhanBank"&gt;
+        &lt;property name="dao" ref="shinhanBankDao" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="shinhanBankDao" class="net.java_school.bank.ShinhanBankDao"&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</pre>
+
+
+<p>
+Build and run.
+</p>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">C:\java\bank&gt;<span class="prompt-selection">mvn clean compile</span>
+
+C:\java\bank&gt;<span class="prompt-selection">mvn exec:java -Dexec.mainClass=net.java_school.bank.BankUi</span>
+</pre>
+
+<h2>Set up the project in Eclipse</h2>
+
+<p>
+Start Eclipse. (It does not matter where your workspace is)<br />
+In the Project Explorer view, use the right mouse button to display the context menu.<br />
+Import the JavaBank project into Eclipse as shown below.<br />
+<img alt="Open Import menu in context menu" src="https://lh3.googleusercontent.com/-VjWpQCEiqes/VYYV3b2GPFI/AAAAAAAACh0/-KoRbgI8nn0/s590/maven-project-import.png"><br />
+<img alt="Import the JavaBank project" src="https://lh3.googleusercontent.com/-uDuAOI41Aj4/VYYV3Pmo4qI/AAAAAAAAChw/m4HA61kOVbE/s610/eclipse-with-maven.png"><br />
+Synchronize Eclipse with pom.xml as follows.<br />
+With the project selected in the Package Explorer, open the context menu with the right mouse button.<br />
+Select Maven, then Update Project Configuration.<br />
+<br />
+If pom.xml changes afterwards, you should synchronize with Eclipse.
+</p>
+
+<h2>JavaConfig</h2>
+
+<p>
+It is now possible to make bean settings with Java classes instead of XML files nowdays.
+You can write a bean configuration class that uses @Configuration and @Bean annotations.
+In a bean configuration class, the method name annotated with @Bean becomes an bean object.
+</p>
+
+<p>
+To test the bean configuration class, comment out all settings in applicationContext.xml.
+</p>
+
+<h6 class="src">applicationContext.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+&lt;!-- 
+    &lt;bean id="bankUi" class="net.java_school.bank.BankUi"&gt;
+        &lt;property name="stream" value="#{T(System).out}" /&gt;
+        &lt;property name="bank" ref="shinhanBank" /&gt;
+    &lt;/bean&gt;
+    
+    &lt;bean id="shinhanBank" class="net.java_school.bank.ShinhanBank"&gt;
+        &lt;property name="dao" ref="shinhanBankDao" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="shinhanBankDao" class="net.java_school.bank.ShinhanBankDao"&gt;
+    &lt;/bean&gt;
+--&gt;
+&lt;/beans&gt;
+</pre>
+
+<p>
+Create the bean configuration class as follows:
+</p>
+
+<h6 class="src">BankConfig.java</h6>
+<pre class="prettyprint">
+package net.java_school.bank;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class BankConfig {
+	
+	@Bean
+	public BankDao shinhanBankDao() {
+		return new ShinhanBankDao();
+	}
+	
+	@Bean
+	public Bank shinhanBank() {
+		Bank bank = new ShinhanBank();
+		bank.setDao(shinhanBankDao());
+		return bank;
+	}
+	
+	@Bean
+	public BankUi bankUi() {
+		BankUi ui = new BankUi();
+		ui.setBank(shinhanBank());
+		ui.setStream(System.out);
+		return ui;
+	}
+	
+}
+</pre>
+
+<p>
+Modify the main method of the BankUi class as shown below.
+</p>
+
+<h6 class="src">BankUi.java</h6>
+<pre class="prettyprint">
+//the following import statement is added
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+//..omit..
+
+public static void main(String[] args) {
+	//ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BankConfig.class);
+	BankUi ui = ctx.getBean(BankUi.class);
+	ui.startWork();
+	ctx.close();
+}
+</pre>
+
+<p>
+<a href="examples/di.zip">Download example</a>
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="../jdbc/JavaBank">Java Bank</a></li>
+	<li><a href="../java/Logging">Logging</a></li>
+</ul>
+
+</article>

@@ -1,0 +1,268 @@
+<article>
+
+<h1>Introduction to JavaScript</h1>
+
+<p>
+JavaScript is a scripting language that runs in a web browser.<br />
+The web browser has a JavaScript engine.<br />
+But because the engine is not the same, you should test your JavaScript code in a typical web browser.<br />
+<a href="http://www.ecma-international.org">Ecma International</a> is responsible for standardizing the JavaScript engine.
+</p>
+
+<h3>JavaScript Usages</h3>
+<ol>
+	<li>Validation</li>
+	<li>Event handler</li> 
+	<li>Create dynamic menu</li>
+	<li>Change CSS properties dynamically</li>
+	<li>Add web page content</li>
+</ol>
+
+<h3>1. Validation</h3>
+
+<p>
+signUp.html is the subscription form page.<br />
+This is an example of checking that the value entered by the user is valid before sending the parameters to the server.
+</p>
+
+<h6 class="src">signUp.html</h6>
+<pre class="prettyprint">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;title&gt;JavaScript Example&lt;/title&gt;
+&lt;script type="text/javascript"&gt;
+function check() {
+	var form = document.getElementById("signUpForm");
+	var id = form.id.value;
+	id = trim(id);
+	if (id.length == 0) {
+		alert("Invalid ID");
+		return false;
+	}
+	var pass = form.passwd.value;
+	pass = trim(pass);
+	if (pass.length == 0) {
+		alert("Invalid Password");
+		return false;
+	}
+	var name = form.name.value;
+	name = trim(name);
+	if (name.length == 0) {
+		alert("Invalid Name");
+		return false;
+	}
+	var email = form.email.value;
+	var chk = emailCheck(email);
+	if (chk == false) {
+		alert("Invalid Email");
+		return false;
+	}
+	var mobile = form.mobile.value;
+	mobile = trim(mobile);
+	if (mobile.length == 0) {
+		alert("Invalid Mobile");
+		return false;
+	}
+	chk = beAllowStr(mobile,"0123456789-");
+	if (chk == false) {
+		alert("Invalid Mobile");
+		return false;
+	}
+	
+	return true;
+}
+function <strong>trim(str)</strong> {
+	for (var i = str.length - 1; i &gt;= 0; i--) {
+		if (str[i] == " ") {
+			str = str.substring(0, i);
+		} else {
+			break;
+		}
+	}
+	for (var i = 0; i &lt; str.length; i++) {
+		if (str[i] == " ") {
+			str = str.substring(i+1, str.length);
+		}	
+	}
+	return str;
+}
+function beAllowStr(str, allowStr) {
+	for (var i = 0;i &lt; str.length; i++) {
+		var ch = str.charAt(i);
+		if (allowStr.indexOf(ch) &lt; 0) {
+			return false;
+		}
+	}
+	return true;
+}
+function <strong>emailCheck(email)</strong> {
+	var allowStr = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@.-_";
+	if (beAllowStr(email, allowStr) == false) {
+		return false;
+	}
+	var golbang = 0;
+	var dot = 0;
+	if (email.length &lt; 5) {
+		return false;
+	}
+	if (email.indexOf("@") == -1) {
+		return false;
+	}
+	if (email.indexOf(".") == -1) {
+		return false;
+	}
+	if (email.indexOf(" ") != -1) {
+		return false;
+	}
+	for (var i = 0;i &lt; email.length; i++) {
+		if (email.charAt(i) == "@") {
+			golbang++;
+		}
+		if (email.charAt(i) == ".") {
+			dot++;
+		}
+	}
+	if (golbang != 1 || dot &gt; 3) {
+		return false;
+	}
+	if (email.indexOf("@") &gt; email.indexOf(".")) {
+		return false;
+	}
+	if (email.indexOf("@") == 0  || email.indexOf(".") == email.length - 1) {
+		return false;
+	}
+	return true;
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Sign Up&lt;/h1&gt;
+&lt;form id="signUpForm" action="signUp_proc.jsp" method="post" onsubmit="return check();"&gt;
+ID: &lt;input type="text" name="id" value="heist" /&gt;&lt;br /&gt;
+Password: &lt;input type="password" name="passwd" value="1440" /&gt;&lt;br /&gt;
+Name: &lt;input type="text" name="name" value="John Doe" /&gt;&lt;br /&gt;
+Email: &lt;input type="text" name="email" /&gt;&lt;br /&gt;
+Mobile: &lt;input type="text" name="mobile" /&gt;&lt;br /&gt;
+&lt;input type="submit" value="Submit" /&gt;
+&lt;input type="reset" value="Reset" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>
+<a href="examples/signUp.html">Run the example</a><br />
+The above code is old JavaScript code.<br />
+It is desirable to use regular expressions for functions that check whether an email is valid.<br />
+Modify the emailCheck () and trim () functions to use regular expressions.
+</p>
+ 
+<pre class="prettyprint" style="white-space: pre-wrap">
+function emailCheck(email) { 
+	var re = /^(([^&lt;&gt;()[\]\\.,;:\s@\"]+(\.[^&lt;&gt;()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(email);
+}
+function trim(str) {
+	return str.replace(/(^\s*)|(\s*$)/gi, "");
+}
+</pre>
+
+<p>
+Create the function to validate the mobile number as shown below.
+</p>
+
+<pre class="prettyprint">
+function mobileCheck(mobile) {
+	var re = /\d+-\d+-\d+/;
+	return re.test(mobile);
+}
+</pre>
+
+<p>
+Create signUp2.html to validate using the above three functions.<br />
+<a href="examples/signUp2.html">Run the example</a><br />
+SignUp.html and signUp2.html differ in mobile validation criteria.<br />
+signUp.html determines that the string consisting of numbers and dashes is a valid mobile number.<br />
+The mobileCheck () function in signUp2.html determines that the format 'one or more numbers - one or more numbers - one or more numbers' is a valid mobile number.<br />
+For reference, there are several sites that provide regular expressions.
+</p>
+
+<h3>2. Event handler</h3>
+
+<p>
+<input type="button" value="Button" onclick="alert('Click Button!');" /><br />
+The code for this button is:
+</p>
+
+<pre class="prettyprint">
+&lt;input type="button" value="Button" <strong>onclick="alert('Click Button!');"</strong> /&gt;
+</pre>
+
+<p>
+When you click the button, the alert () function is executed.<br />
+You can place a user-defined function in place of alert ().<br />
+The user-defined function used here is called an event handler.<br />
+<br />
+Links, summit buttons, and reset buttons have default behavior for events.<br />
+In other words, links, summit buttons, and reset buttons work without JavaScript.<br />
+<br />
+But for a button, it does not do anything without an event handler.<br />
+<br />
+In the subscription example, the check() function works before performing the basic operation of the Summit button.(&lt;form .. onsubmit="return check();"&gt;)<br />
+The check () function must be implemented to return a boolean value.<br />
+Returning true will do the default for sending parameters to the server, 
+returning false will disable the default behavior, so after the check () function, the summit button will not do anything.
+</p>
+
+<h3>3. Create dynamic menu</h3>
+
+<p>
+Visit the link below to experience the dTree JavaScript menu in the Example at the bottom of the page.<br />
+<a href="http://destroydrop.com/javascripts/tree/default.html">dTree</a><br />
+Dynamic means moving in response to a user.
+</p>
+
+<h3>4. Change CSS properties dynamically</h3>
+
+<p>
+JavaScript allows you to change the CSS properties of an element when an event occurs.<br />
+Open the signUp2.html.<br />
+Add the following JavaScript function under &lt;script type="text/javascript"&gt; and create the signUp3.html file using the Save As menu.
+</p>
+
+<pre class="prettyprint">
+function testCss() {
+	var inputs = document.getElementsByTagName("input");
+	for (var i = 0; i &lt; inputs.length; i++) {
+		inputs[i].style.background="yellow";
+	}
+}
+</pre>
+
+<p>
+Add the onload attribute to the body element.<br />
+The onload event of the body element occurs when all elements of the document are downloaded and available.
+</p>
+
+<pre class="prettyprint">
+&lt;body onload="testCss()"&gt;
+</pre>
+
+<p>
+<a href="examples/signUp3.html">Run the example</a>
+</p>
+
+<h3>5. Add web page content</h3>
+
+<p>
+Facebook comments are a good example of adding web page content using JavaScript.<br />
+<img src="https://lh3.googleusercontent.com/-DgDUW8mTzpo/VxSeUsGHQBI/AAAAAAAACu8/8EcrNLXCUoMJweJuASm-Ogo_G2XDv7nvgCCo/s636-Ic42/facebook-comments-examples.png" alt="facebook comments">
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://stackoverflow.com/questions/46155/validate-email-address-in-javascript">http://stackoverflow.com/questions/46155/validate-email-address-in-javascript</a></li>
+</ul>						
+</article>

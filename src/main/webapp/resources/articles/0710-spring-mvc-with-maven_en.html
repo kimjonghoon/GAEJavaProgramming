@@ -1,0 +1,752 @@
+<article>
+
+<h1>Building Spring MVC with maven</h1>
+
+<p style="color: 777;">
+This article assumes that your workspace is C:\www.
+</p>
+
+<h2>Generating archetype</h2>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\www&gt;<span class="prompt-selection">mvn archetype:generate -Dfilter=maven-archetype-webapp</span>
+Choose archetype:
+1: remote -> org.apache.maven.archetypes:maven-archetype-webapp 
+(An archetype which contains a sample Maven Webapp project.)
+Choose a number or apply filter 
+(format: [groupId:]artifactId, case sensitive contains): : <span class="prompt-selection">1</span>
+1: 1.0-alpha-1
+2: 1.0-alpha-2
+3: 1.0-alpha-3
+4: 1.0-alpha-4
+5: 1.0
+Choose a number: 5: ↵
+Define value for property 'groupId': : <span class="prompt-selection">net.java_school</span>
+Define value for property 'artifactId': : <span class="prompt-selection">spring-bbs</span>
+Define value for property 'version':  1.0-SNAPSHOT: : ↵
+Define value for property 'package':  net.java_school: : ↵
+Confirm properties configuration:
+groupId: net.java_school
+artifactId: spring-bbs
+version: 1.0-SNAPSHOT
+package: net.java_school
+ Y: : ↵
+</pre>
+
+<p>
+When the build is complete, the spring-bbs folder is created at C:\www.<br />
+C:\www\spring-bbs is the root directory of the Maven project.
+</p>
+
+<p>
+Since src/main/webapp right above WEB-INF is the documentbase, create the Tomcat context file as below.
+</p>
+
+<h6 class="src">spring-bbs.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Context
+    docBase="C:/www/spring-bbs/<strong>src/main/webapp</strong>"
+    reloadable="true"&gt;
+&lt;/Context&gt;
+</pre>
+
+<p>
+Copy the spring-bbs.xml file to the CATALINA_HOME/conf/Catalina/localhost folder.<br />
+After restart Tomcat, visit http://localhost:port/spring-bbs to see the web application is working.
+</p>
+
+<h2>Spring MVC Test</h2> 
+
+<p>
+Modify pom.xml as shown below.
+</p>
+ 
+<h6 class="src">pom.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+    http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+    
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;net.java_school&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-bbs&lt;/artifactId&gt;
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;name&gt;spring-bbs Maven Webapp&lt;/name&gt;
+  &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+  &lt;properties&gt;
+    &lt;spring.version&gt;5.0.5.RELEASE&lt;/spring.version&gt;
+    &lt;jdk.version&gt;1.8&lt;/jdk.version&gt;
+  &lt;/properties&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;3.8.1&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+      &lt;version&gt;${spring.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+      &lt;version&gt;${spring.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+      &lt;version&gt;${spring.version}&lt;/version&gt;
+    &lt;/dependency&gt;    
+    &lt;!-- Oracle JDBC Driver --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.oracle&lt;/groupId&gt;
+      &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;
+      &lt;version&gt;11.2.0.2.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+      &lt;version&gt;1.3.2&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+      &lt;version&gt;3.4.6&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;commons-dbcp&lt;/groupId&gt;
+      &lt;artifactId&gt;commons-dbcp&lt;/artifactId&gt;
+      &lt;version&gt;1.4&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- Logging --&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+        &lt;artifactId&gt;log4j-api&lt;/artifactId&gt;
+        &lt;version&gt;2.11.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+        &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;
+        &lt;version&gt;2.11.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-jcl --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+        &lt;artifactId&gt;log4j-jcl&lt;/artifactId&gt;
+        &lt;version&gt;2.11.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/commons-io/commons-io --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;commons-io&lt;/groupId&gt;
+      &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
+      &lt;version&gt;2.6&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
+      &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
+      &lt;version&gt;1.3.3&lt;/version&gt;
+    &lt;/dependency&gt;    
+    &lt;!-- Servlet JSP JSTL --&gt;
+    &lt;!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+      &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+      &lt;version&gt;3.1.0&lt;/version&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;
+      &lt;artifactId&gt;javax.servlet.jsp-api&lt;/artifactId&gt;
+      &lt;version&gt;2.3.1&lt;/version&gt;
+      &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/jstl/jstl --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;jstl&lt;/groupId&gt;
+      &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+      &lt;version&gt;1.2&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+  &lt;build&gt;
+    &lt;finalName&gt;spring-bbs&lt;/finalName&gt;
+    &lt;pluginManagement&gt;
+      &lt;plugins&gt;
+	      &lt;plugin&gt;
+		      &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+		      &lt;version&gt;3.1&lt;/version&gt;
+		      &lt;configuration&gt;
+			      &lt;source&gt;${jdk.version}&lt;/source&gt;
+			      &lt;target&gt;${jdk.version}&lt;/target&gt;
+			      &lt;compilerArgument&gt;&lt;/compilerArgument&gt;
+			      &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+		      &lt;/configuration&gt;
+	      &lt;/plugin&gt;
+	      &lt;plugin&gt;
+		      &lt;artifactId&gt;maven-clean-plugin&lt;/artifactId&gt;
+		      &lt;version&gt;2.4.1&lt;/version&gt;
+		      &lt;configuration&gt;
+			      &lt;filesets&gt;
+				      &lt;fileset&gt;
+					      &lt;directory&gt;src/main/webapp/WEB-INF/classes&lt;/directory&gt;
+				      &lt;/fileset&gt;
+				      &lt;fileset&gt;
+					      &lt;directory&gt;src/main/webapp/WEB-INF/lib&lt;/directory&gt;
+				      &lt;/fileset&gt;
+			      &lt;/filesets&gt;
+		      &lt;/configuration&gt;
+	      &lt;/plugin&gt;
+      &lt;/plugins&gt;
+    &lt;/pluginManagement&gt;
+  &lt;/build&gt;
+&lt;/project&gt;
+</pre>
+
+<p>
+Oracle JDBC is not provided by the Maven repository.<br />
+Therefore, you should save ojdbc6.jar to the local repository with the following command.
+</p>
+
+<pre>
+mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.2.0 -Dpackaging=jar
+</pre>
+
+<p>
+You can download ojdbc6.jar from <a href="http://www.oracle.com/technetwork/apps-tech/jdbc-112010-090769.html">http://www.oracle.com/technetwork/apps-tech/jdbc-112010-090769.html</a>.
+</p>
+
+<p>
+Modify web.xml as shown below.
+</p>
+
+<h6 class="src">web.xml</h6> 
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1"
+  metadata-complete="true"&gt;
+    
+  &lt;display-name&gt;Spring BBS&lt;/display-name&gt;
+<strong>	
+  &lt;filter&gt;
+    &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;encoding&lt;/param-name&gt;
+        &lt;param-value&gt;UTF-8&lt;/param-value&gt;
+      &lt;/init-param&gt;
+      &lt;init-param&gt;
+      &lt;param-name&gt;forceEncoding&lt;/param-name&gt;
+      &lt;param-value&gt;true&lt;/param-value&gt;
+    &lt;/init-param&gt;
+  &lt;/filter&gt;
+        
+  &lt;filter-mapping&gt;
+    &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+  &lt;/filter-mapping&gt;
+    
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;spring-bbs&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+    
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;spring-bbs&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  
+  &lt;error-page&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt;
+    &lt;location&gt;/WEB-INF/views/400.jsp&lt;/location&gt;
+  &lt;/error-page&gt;
+
+  &lt;error-page&gt;
+    &lt;error-code&gt;500&lt;/error-code&gt;
+    &lt;location&gt;/WEB-INF/views/500.jsp&lt;/location&gt;
+  &lt;/error-page&gt; 
+</strong> 
+&lt;/web-app&gt;
+</pre>
+
+<p>
+A filter that calls setCharacterEncoding ("UTF-8") for every request is required for non-English language Web sites, and it must be declared before any other filters.
+</p>
+
+<p>
+Spring MVC's DispatcherServlet servlet is declared and mapped.<br />
+Because the name of the DispatcherServlet is spring-bbs, the name of the Spring configuration file is determined by sprng-bbs-servlet.xml.<br />
+Create a spring-bbs-servlet.xml file in the WEB-INF folder as shown below.
+</p>
+
+<h6 class="src">spring-bbs-servlet.xml</h6> 
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd"&gt;
+	
+&lt;/beans&gt;
+</pre>
+
+<p>
+Create the following Java source for testing.
+</p>
+ 
+<h6 class="src">Player.java</h6>
+<pre class="prettyprint">
+package net.java_school.soccer;
+
+public class Player {
+	private String id;
+	private String passwd;
+	private String name;
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}
+</pre>
+
+<h6 class="src">PlayerDao.java</h6>
+<pre class="prettyprint">
+package net.java_school.soccer;
+
+public class PlayerDao {
+
+	public Player selectOne(String id) {
+		Player player = new Player();
+		if (id != null &amp;&amp; id.equals("1")) {
+			player.setName("Lionel Messi");
+		} else if (id != null &amp;&amp; id.equals("2")) {
+			player.setName("Cristiano Ronaldo");
+		} else {
+			player.setName("Neymar");
+		}
+		return player;
+	}
+
+}
+</pre>
+
+<h6 class="src">PlayerService.java</h6>
+<pre class="prettyprint">
+package net.java_school.soccer;
+
+public class PlayerService {
+	private PlayerDao dao;
+	
+	public void setDao(PlayerDao dao) {
+		this.dao = dao;
+	}
+
+	public Player getPlayer(String id) {
+		return dao.selectOne(id);
+	}
+	
+}
+</pre>
+
+<h6 class="src">PlayerController.java</h6>
+<pre class="prettyprint">
+package net.java_school.soccer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+public class PlayerController implements Controller {
+	
+	private PlayerService service;
+	
+	public void setService(PlayerService service) {
+		this.service = service;
+	}
+	
+	public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		String id = req.getParameter("id");
+		Player player = service.getPlayer(id);
+		
+		Map&lt;String, Object&gt; model = new HashMap&lt;String, Object&gt;();
+		model.put("player", player);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/WEB-INF/views/player/test.jsp");
+		modelAndView.addAllObjects(model);
+		
+		return modelAndView;
+	}
+	
+}
+</pre>
+
+<p>
+Create test.jsp as shown below.
+</p>
+
+<h6 class="src">/src/main/webapp/WEB-INF/views/player/test.jsp</h6>
+<pre class="prettyprint">
+&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;title&gt;TEST&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+${player.name }
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<strong class="screen-header"><b>C:\</b> Command Prompt</strong>
+<pre class="screen">
+C:\www\sprng-bbs&gt;<span class="prompt-selection">mvn clean compile war:inplace</span>
+</pre>
+
+<p>
+Restart Tomcat and visit http://localhost:8080/spring-bbs/player/test?id=1.
+</p>
+
+<h3>SimpleUrlHandlerMapping</h3>
+
+<p>
+Change the handler mapping to use SimpleUrlHandlerMapping.<br />
+Open the spring-bbs-servlet.xml file and modify it as shown below.<br />
+</p>
+
+<h6 class="src">spring-bbs-servlet.xml</h6>
+<pre class="prettyprint">
+&lt;!-- omit --&gt;
+
+&lt;!-- HandlerMapping --&gt;
+&lt;bean id="handlerMapping" 
+  class="<strong>org.springframework.web.servlet.handler.SimpleUrlHandlerMapping</strong>"&gt;
+	
+  &lt;property name="mappings"&gt;
+    &lt;value&gt;
+	<strong>/player/test=playerController</strong>
+    &lt;/value&gt;
+  &lt;/property&gt;
+	
+&lt;/bean&gt;
+
+&lt;bean id="playerController" 
+  class="net.java_school.soccer.PlayerController"
+  p:service-ref="playerService" /&gt;
+	
+&lt;!-- omit --&gt;
+</pre>
+
+<p>
+The name attribute of the playerController element must be removed.<br />
+</p>
+<pre>&lt;bean id="playerController" <span style="color: red;text-decoration: line-through">name="/player/test"</span></pre>
+
+<p>
+Restart Tomcat and visit http://localhost:port/spring-bbs/player/test?id=1.
+</p>
+
+<h3>InternalResourceViewResolver</h3>
+
+<p>
+InternalResourceViewResolver is an intuitive and easy to understand view resolver.<br />
+Open the spring-bbs-servlet.xml file and add the following to the &lt;!-- ViewResolver --&gt; section.
+</p>
+
+<h6 class="src">spring-bbs-servlet.xml</h6> 
+<pre class="prettyprint">
+&lt;!-- ViewResolver --&gt;
+&lt;bean id="internalResourceViewResolver" 
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+	&lt;property name="viewClass"&gt;
+		&lt;value&gt;org.springframework.web.servlet.view.JstlView&lt;/value&gt;
+	&lt;/property&gt;
+	&lt;property name="prefix"&gt;
+		&lt;value&gt;/WEB-INF/views/&lt;/value&gt;
+	&lt;/property&gt;
+	&lt;property name="suffix"&gt;
+		&lt;value&gt;.jsp&lt;/value&gt;
+	&lt;/property&gt;
+&lt;/bean&gt;
+</pre>
+
+<p>
+Modify PlayerController.java as shown below.
+</p>
+
+<h6 class="src">PlayerController.java</h6>
+<pre class="prettyprint">
+ModelAndView modelAndView = new ModelAndView();
+modelAndView.setViewName("<strong>player/test</strong>");
+modelAndView.addAllObjects(model);
+
+return modelAndView;
+</pre>
+
+<p>
+With the InternalResourceViewResolver setting, player/test will be interpreted as /WEB-INF/views/player/test.jsp.<br />
+Since the Java source has changed, rebuild it.<br />
+Restart Tomcat and visit http://localhost:port/spring-bbs/player/test?id=1.
+</p>
+
+<h3>RequestMappingHandlerMapping</h3>
+
+<p>
+SimpleUrlHandlerMapping requires one controller per request.<br />
+With RequestMappingHandlerMapping, you can place a controller by use case.<br />
+RequestMappingHandlerMapping uses annotations and auto-scans for handler mappings.<br />
+Open the spring-bbs-servlet.xml file and remove the &lt;! - HandlerMapping - &gt;.<br />
+Modify spring-bbs-servlet.xml as shown below.
+</p>
+
+<h6 class="src">spring-bbs-servlet.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"<strong>
+	xmlns:context="http://www.springframework.org/schema/context"</strong>
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd<strong>
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd</strong>
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd"&gt;
+	<strong>
+	&lt;mvc:annotation-driven /&gt;
+		
+	&lt;context:component-scan
+		base-package="net.java_school.soccer" /&gt;
+	</strong>
+	&lt;!-- ViewResolver --&gt;
+	&lt;bean id="internalResourceViewResolver" 
+		    class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+		&lt;property name="viewClass"&gt;
+			&lt;value&gt;org.springframework.web.servlet.view.JstlView&lt;/value&gt;
+		&lt;/property&gt;
+		&lt;property name="prefix"&gt;
+			&lt;value&gt;/WEB-INF/views/&lt;/value&gt;
+		&lt;/property&gt;
+		&lt;property name="suffix"&gt;
+			&lt;value&gt;.jsp&lt;/value&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	
+	&lt;bean id="playerService" class="net.java_school.soccer.PlayerService"&gt;
+		&lt;property name="dao" ref="playerDao" /&gt;
+	&lt;/bean&gt;
+	
+	&lt;bean id="playerDao" class="net.java_school.soccer.PlayerDao" /&gt;
+	
+&lt;/beans&gt;
+</pre>
+
+<p>
+&lt;context:component-scan base-package="net.java_school.soccer" /&gt; allows Spring to automatically find and register the annotated component.<br />
+(the component means Dao, Service, Controller)<br />
+With this setting, you can omit specific handler mapping settings from the Spring configuration file.<br />
+&lt;mvc: annotation-driven /&gt; makes all the annotation-based features available.<br />
+&lt;context:component-scan /&gt; does not work without &lt;mvc:annotation-driven / &gt;.<br />
+You need to annotate the controller to find the controller.<br />
+Modify the PlayerController.java file as follows:<br />
+</p>
+
+<h6 class="src">PlayerController.java</h6>
+<pre class="prettyprint">
+package net.java_school.soccer;
+<strong>
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;</strong>
+<strong>
+@Controller
+@RequestMapping("/player")</strong>
+public class PlayerController {
+	<strong>
+	@Autowired</strong>
+	private PlayerService service;
+	<strong>
+	@RequestMapping(value="/test", method={RequestMethod.GET, RequestMethod.POST})</strong>
+	public String pickPlayer(String id, Model model) {
+		Player player = service.getPlayer(id);
+		model.addAttribute("player", player);
+		return "player/test";
+	}
+}
+</pre>
+
+<p>
+After Bulid, restart Tomcat and visit http://localhost:8080/spring-bbs/player/test?id=1.
+</p>
+
+<dl class="note">
+<dt>Annotations in PlayerController.java</dt>
+<dd>
+@Controller in the class declaration indicates that the class is a controller component.<br />
+@RequestMapping("/player") in the class declaration indicates that the controller is responsible for all requests involving "/player".<br />
+@RequestMapping(value="/test",method={RequestMethod.GET,RequestMethod.POST}) in the method declaration indicates that the method is called in the "/player/test" request of GET or POST method.<br />
+@Autowired in the variable declaration causes the dependent object to be injected without a setter.<br />
+Even if the accessor of the variable is private, it is injected.
+</dd>
+</dl>
+
+<p>
+Component scan is running.<br />
+So if you apply annotations to services and Dao, you can omit these settings in spring-bbs-servlet.xml.
+</p>
+
+<h6 class="src">PlayerDao.java</h6>
+<pre class="prettyprint">
+package net.java_school.soccer;
+<strong>
+import org.springframework.stereotype.Repository;
+
+@Repository</strong>
+public class PlayerDao {
+
+	public Player selectOne(String id) {
+		Player player = new Player();
+		if (id != null &amp;&amp; id.equals("1")) {
+			player.setName("Lionel Messi");
+		} else if (id != null &amp;&amp; id.equals("2")) {
+			player.setName("Cristiano Ronaldo");
+		} else {
+			player.setName("Neymar");
+		}
+		return player;
+	}
+
+}
+</pre>
+
+<h6 class="src">PlayerService.java</h6>
+<pre class="prettyprint">
+package net.java_school.soccer;
+<strong>
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Service</strong>
+public class PlayerService {
+	@Autowired
+	private PlayerDao dao;
+	
+	public Player getPlayer(String id) {
+		return dao.selectOne(id);
+	}
+	
+}
+</pre>
+
+<p>
+The Spring configuration file is simplified as follows:
+</p>
+
+<h6 class="src">spring-bbs-servlet.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd"&gt;
+
+	&lt;mvc:annotation-driven /&gt;
+		
+	&lt;context:component-scan
+		base-package="net.java_school.soccer" /&gt;
+		
+	&lt;!-- ViewResolver --&gt;
+	&lt;bean id="internalResourceViewResolver" 
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+		&lt;property name="viewClass"&gt;
+			&lt;value&gt;org.springframework.web.servlet.view.JstlView&lt;/value&gt;
+		&lt;/property&gt;
+		&lt;property name="prefix"&gt;
+			&lt;value&gt;/WEB-INF/views/&lt;/value&gt;
+		&lt;/property&gt;
+		&lt;property name="suffix"&gt;
+			&lt;value&gt;.jsp&lt;/value&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	
+&lt;/beans&gt;
+</pre>
+
+<h2>Set up the project in eclipse</h2>
+
+<p>
+Start Eclipse and select your workspace as C:\www.<br />
+In the Project Explorer view, use the right mouse button to display the context menu.<br />
+Import the spring-bbs project into Eclipse.<br />
+<img alt="Context menu Import" src="https://lh3.googleusercontent.com/-VjWpQCEiqes/VYYV3b2GPFI/AAAAAAAACh0/-KoRbgI8nn0/s590/maven-project-import.png" /><br />
+<img alt="Maven Project Import" src="https://lh3.googleusercontent.com/-uDuAOI41Aj4/VYYV3Pmo4qI/AAAAAAAAChw/m4HA61kOVbE/s610/eclipse-with-maven.png" /><br />
+If the pom.xml file changes, you need to synchronize pom.xml with Eclipse.<br />
+<img alt="eclipse and pom.xml synchronized" src="https://lh3.googleusercontent.com/-CB-gDjPd5BQ/VYYdFhRh0WI/AAAAAAAACiE/GDH5LExU4FI/s640/maven-update-project-configuration.png" /><br />
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://stackoverflow.com/questions/14004308/spring-autowiring-not-able-to-hit-my-dao-class-method">http://stackoverflow.com/questions/14004308/spring-autowiring-not-able-to-hit-my-dao-class-method</a></li>
+	<li><a href="http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/">http://static.springsource.org/spring/docs/current/spring-framework-reference/pdf/</a></li>
+	<li><a href="https://maven.apache.org/guides/mini/guide-naming-conventions.html">Guide to naming conventions on groupId, artifactId and version</a></li>
+	<li><a href="http://maven.apache.org/plugins/maven-war-plugin/usage.html">4 ways to use the WAR Plugin</a></li>
+	<li><a href="https://github.com/spring-projects/spring-mvc-showcase/blob/master/pom.xml">https://github.com/spring-projects/spring-mvc-showcase/blob/master/pom.xml</a></li>
+	<li><a href="http://stackoverflow.com/questions/793983/jsp-el-expression-is-not-evaluated">https://stackoverflow.com/questions/793983/jsp-el-expression-is-not-evaluated</a></li>
+</ul>
+</article>

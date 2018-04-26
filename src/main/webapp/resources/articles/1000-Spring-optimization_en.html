@@ -1,0 +1,92 @@
+<article>
+
+<h1>Spring Optimization in Google Cloud</h1>
+
+<p>
+500 errors occur when application initialization time is long in Google cloud.<br />
+Spring component scans and autowired are the main causes of increased initialization time.<br />
+Let's modify the configuration file by defining beans one by one instead of component scanning and Otouwide as recommended in the official document.
+</p>
+
+<h6 class="src">guestbook-servlet.xml</h6>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd"&gt;
+        
+	&lt;security:global-method-security pre-post-annotations="enabled" /&gt;
+	    
+	&lt;mvc:resources mapping="/resources/**" location="/resources/" /&gt;
+	
+	&lt;mvc:annotation-driven /&gt;
+	
+	&lt;!-- &lt;context:component-scan base-package="net.java_school.guestbook" /&gt; --&gt;
+	<strong>&lt;context:annotation-config /&gt;</strong>
+	
+	&lt;bean id="internalResourceViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+		&lt;property name="viewClass"&gt;
+			&lt;value&gt;org.springframework.web.servlet.view.JstlView&lt;/value&gt;
+		&lt;/property&gt;
+		&lt;property name="prefix"&gt;
+			&lt;value&gt;/WEB-INF/views/&lt;/value&gt;
+		&lt;/property&gt;
+		&lt;property name="suffix"&gt;
+			&lt;value&gt;.jsp&lt;/value&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	<strong>
+	&lt;bean id="guestbookController" class="net.java_school.guestbook.GuestbookController"&gt;
+		&lt;property name="guestbookService" ref="guestbookService" /&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="guestbookService" class="net.java_school.guestbook.GuestbookServiceImpl" /&gt;
+	</strong>
+&lt;/beans&gt;
+</pre>
+
+<p>
+The annotation-config added in place of component-scan allows an annotation declared in a bean to function when a Spring container registers a bean.<br />
+For example, if an @Controller annotation is declared in a bean, Spring registers the bean as a controller.<br />
+context:annotation-config also needs mvc:annotation-driven configuration.
+</p>
+
+<p>
+Remove the @Autowired annotation from the GuestbookController and add the setter as follows.
+</p>
+
+<pre class="prettyprint">
+@Controller
+public class GuestbookController {
+  
+	private GuestbookService guestbookService;
+	<strong>
+	public void setGuestbookService(GuestbookService guestbookService) {
+		this.guestbookService = guestbookService;
+	}
+	</strong>
+	//.. omit ..
+	
+}
+</pre>
+
+<p>
+<a href="examples/java-school-guestbook.zip">Download Final source</a>
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="https://cloud.google.com/appengine/articles/spring_optimization">https://cloud.google.com/appengine/articles/spring_optimization</a></li>
+</ul>
+</article>

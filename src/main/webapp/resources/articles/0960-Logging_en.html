@@ -1,0 +1,83 @@
+<article>
+
+<h1>How to log in to Google Cloud Project</h1>
+
+<p>
+Appengine-web.xml should have the following added:
+</p>
+
+<pre class="prettyprint">
+&lt;system-properties&gt;
+	&lt;property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/&gt;
+&lt;/system-properties&gt;
+</pre>
+
+<p>
+Open the logging.properties file and change .level = WARNING to .level = INFO.
+</p>
+
+<p>
+In your code, use java.util.logging.Logger as shown below.
+</p>
+
+<pre class="prettyprint">
+import java.util.logging.Logger;
+
+public class MyClass {
+    private static final Logger log = Logger.getLogger(MyClass.class.getName());
+    log.info("log message");
+    ...
+}
+</pre>
+
+<p>
+You can view the log at <a href="https://console.cloud.google.com/logs">https://console.cloud.google.com/logs</a>.<br />
+For reference, you can not use Google Cloud's file system. Therefore, you can not use the code to load the log into a file.
+</p>
+
+<h3>Using logs in the Guestbook example</h3>
+
+<pre class="prettyprint">
+//.. omit ..
+
+<strong>import java.util.logging.Logger;</strong>
+
+public class SignGuestbookServlet extends HttpServlet {
+	<strong>private static final Logger log = Logger.getLogger(SignGuestbookServlet.class.getName());</strong>
+	
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Greeting greeting;
+
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		String guestbookName = req.getParameter("guestbookName");
+		String content = req.getParameter("content");
+		if (user != null) {
+			<strong>log.info("Google User: " + user.getUserId() + ":" + user.getEmail() + ":" + user.getNickname());</strong>
+			greeting = new Greeting(guestbookName, content, user.getUserId(), user.getEmail());
+		} else { 
+			greeting = new Greeting(guestbookName, content);
+		}
+		// Use Objectify to save the greeting and now() is used to make the call synchronously as we
+		// will immediately get a new page using redirect and we want the data to be present.
+		ObjectifyService.ofy().save().entity(greeting).now();
+
+		resp.sendRedirect("/guestbook.jsp?guestbookName=" + guestbookName);
+	}
+}
+</pre>
+
+<p>
+Visit https://<em>your-app-id</em>.appspot.com/guestbook.jsp?guestbookName=default.<br />
+Click Sign In to log in to your Google account and post it.<br />
+Visit <a href="https://console.cloud.google.com/logs">https://console.cloud.google.com/logs</a> to see the logs.<br />
+<img src="https://lh3.googleusercontent.com/ORkdmlC7df9fezjzsZkN1GF-i9h7oIlXjU9V4LdGqoKN9t9vsY5AIBi5hj3VocMJKdZsJ1NLnco5K58WsH40cMRAJAnGNxRuK7HzgoLMjRmwqNZxGSFYKDnnolmepDsIpKIhUmelrsJWMn0kjpRmS7Y_dthFCJ-g844s5lp5Ax40NvyJ75JWaXPIuHKISqsP_dkgK0k_Sf7kC3RDvWMGXK0MhEKOpGZOKNjk2sVVNaIWNSwaYCrYcfvfp-eMhdmaymi39fehTMcivf5KI15lOB-Q0d6cwvsMv4hOia-whP2IGQx8Mz9KtEJ4mT3YKfmfUQyqz4YNiqmX6dxzOb2h4qNhUXlYH0JTcNSeRLvgEZ-t2TeoY3pVJBEYCwidQdlODWl_SsLHCp-dQExsfbnUZwbBd_ILgFpQ2aCA4VCTjrk21kMRX3Iwjku9tKdjfp8a6MFShpv6rEMTFwBNwU-ZIGEWy3xeHBW1BluDqetqCDOFqlgmNm6Qw_ppBN3emX5twcTGg68R3OBL_mDbMleZPVQ2BtUCz-ii5qz-2avUl1i-o9cbMYztxZAauah9LXnjn7KEP-xljKYxSm1IDd4WQmHPq09zgo7KbTcIZ0-H8yR3uUDeOcOzXTjV=w1256-h313-no" alt="GAE Logging Test" style="display: block;width: 100%;" /><br />
+For local tests, the log message is printed at the command prompt.
+</p>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="https://cloud.google.com/appengine/docs/standard/java/logs/">https://cloud.google.com/appengine/docs/standard/java/logs/</a></li>
+</ul>
+</article>

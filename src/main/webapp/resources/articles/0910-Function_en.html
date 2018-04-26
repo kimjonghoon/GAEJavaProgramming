@@ -1,0 +1,513 @@
+<article>
+
+<h2>Function</h2>
+
+<p>
+In JavaScript, functions are divided into declarative functions and anonymous functions.
+</p>
+ 
+<h3>Declarative function</h3>
+
+<p>
+Declarative functions are interpreted only once when the page is loaded.
+Once interpreted, the function is executed each time it is called.
+A declarative function creates the function keyword, function name, argument list, and function body with the following syntax:
+</p>
+
+<pre class="prettyprint">
+function functionName (arg1, arg2,,,argN) {
+	//Execution syntax
+}
+</pre>
+
+<pre class="prettyprint script-result-display">
+function add(a,b) {
+	return a + b;
+}
+alert(add(3,4));
+</pre>
+
+<h3>Anonymous function</h3>
+
+<p>
+An anonymous function is a function that is created dynamically at runtime.
+</p>
+
+<pre class="prettyprint script-result-display">
+var multiply = function(a, b) {
+	return a * b
+};
+alert(multiply(3,4));
+</pre>
+
+<p>
+You can create an anonymous function using the Function's constructor.
+But it is not used often.
+</p>
+
+<pre class="prettyprint script-result-display">
+var minus = new Function('a','b', 'return a - b');
+alert(minus(3,4));
+</pre>
+
+<h3>Self-Executing Anonymous Functions</h3>
+
+<p>
+If you enclose the function with '(' and ')();', the function in parentheses is executed immediately.<br />
+Self-Executing Anonymous Functions are often found in JavaScript library code, such as jQuery.
+</p>
+
+<pre class="prettyprint script-result-display">
+(function() {
+	alert("Hello World!");
+})();
+</pre>
+
+<pre class="prettyprint script-result-display">
+(function(whom) {
+	alert("Hello " + whom);
+})('John Doe');
+</pre>
+
+<pre class="prettyprint script-result-display">
+(function(a, b) {
+	alert(a + b);
+})(2,5);
+</pre>
+
+<h3>Scoping and Hoisting</h3>
+
+<p>
+Scoping is a rule that determines the effective area of a variable.<br />
+Understanding scoping requires an understanding of hoisting.<br />
+Hoisting refers to the action of a JavaScript interpreter to 'raise a declared variable or function to the top of the current execution area'.<br />
+<br />
+The assignment statement is not subject to hoisting because it is done during runtime.<br />
+For reference, hoisting is not an official term in JavaScript.<br />
+<br />
+In Java, variables declared in a block are valid only within a block.<br />
+In JavaScript, however, such variables can only be created within a function.<br />
+In JavaScript, you can not create variables that are valid only in the {} and if statement blocks.<br />
+<br />
+Predict the results of the following code.
+</p>
+
+<pre class="prettyprint script-result-display">
+var x = 1;
+function fn() {
+	if (true) {
+		var x = 10;
+	}
+	alert(x);
+}
+fn();
+</pre>
+
+<pre class="prettyprint script-result-display">
+var x = 1;
+function fn() {
+	x = 10;
+	return;
+}
+fn();
+alert(x);
+</pre>
+
+<pre class="prettyprint script-result-display">
+var x = 1;
+function fn() {
+	x = 10;
+	return;
+	function x() {}
+}
+fn();
+alert(x);
+</pre>
+
+<p>
+The identifier x of the fn() function is valid only within the fn() function.<br />
+Exactly the above source is interpreted as follows.
+</p>
+
+<pre class="prettyprint script-result-display">
+var x = 1;
+function fn() {
+	function x() {}
+	x = 10;
+	return;
+}
+fn();
+alert(x);
+</pre>
+
+
+<pre class="prettyprint script-result-display">
+var x = 1;
+function fn() {
+	function x() {}
+	x = 10;
+	return x;
+}
+var retVal = fn();
+alert(retVal);
+alert(x);
+</pre>
+
+<p>
+In JavaScript, you can not create variables that are valid only in the {} and if statement blocks.
+</p>
+
+<pre class="prettyprint script-result-display">
+var x = 1;
+alert(x);
+if (true) {
+	var x = 2;
+	alert(x);
+	x++;
+}
+alert(x);
+</pre>
+
+<pre class="prettyprint script-result-display">
+function foo() {
+	var x = 1;
+	if (x) {
+		(<strong>function () {
+			var x = 2;</strong>
+			alert(x);
+		<strong>}</strong>());
+	}
+	alert(x);
+}
+foo();
+</pre>
+
+<p>
+The above example declares var x = 2; in the function.<br />
+This x variable is a new variable with a valid region only within the function, and has no relation to the variable x (var x = 1;) outside the function. 
+</p>
+
+<pre class="prettyprint script-result-display">
+var x = 10;
+function fn() {
+	alert(x);
+	var x = 20;
+	alert(x);
+}
+fn();
+alert(x);
+</pre>
+
+<p>
+The above code is hoisted and interpreted as follows.
+</p>
+
+<pre class="prettyprint script-result-display">
+var x = 10;
+function fn() {
+	var x;
+	alert(x);
+	x = 20;
+	alert(x);
+}
+fn();
+alert(x);
+</pre>
+
+<p>
+In the above code, comment out the var x declared in the function fn () to see how the result will change.
+</p>
+
+<pre class="prettyprint script-result-display">
+sayHo(); //SayHo() comes first in the code.
+function sayHo() { 
+	alert("Ho");
+}
+</pre>
+
+<p>
+The above code is hoisted and interpreted as follows.
+</p>
+
+<pre class="prettyprint script-result-display">
+function sayHo() { 
+	alert("Ho");
+}
+sayHo();
+</pre>
+
+<p>
+The following code, which looks similar, throws an error.
+</p>
+
+<pre class="typeError">
+sayHo(); //TypeError: sayHo is not a function
+var sayHo = function() {
+	alert("Ho");
+}
+</pre>
+
+<p>
+The following is a more difficult example.
+</p>
+
+<pre class="prettyprint script-result-display">
+function bumpInto() {
+	function greet() {
+		alert("How You Doin?");
+	}
+	return greet();
+	function greet() {
+		alert("What's Up?");
+	}
+}
+bumpInto();
+</pre>
+
+<p>
+The above code is hoisted and interpreted as follows.
+</p>
+
+<pre class="prettyprint script-result-display">
+function bumpInto() {
+	function greet() {
+		alert("How You Doin?");
+	}
+	function greet() {
+		alert("What's Up?");
+	}
+	return greet();
+}
+bumpInto();
+</pre>
+
+<p>
+If the parameter list is different, will it overload as Java?
+</p>
+
+<pre class="prettyprint script-result-display">
+function bumpInto() {
+	function greet() {
+		alert("How You Doin?");
+	}
+	function greet(whom) { //Greet function with parameters
+		alert("What's Up?");
+	}
+	return greet();
+}
+bumpInto();
+</pre>
+
+<p>
+JavaScript functions are not overloaded like Java.<br />
+The greet (whom) function declared later is executed.<br />
+<br />
+The assignment statement is said to be non-hoisting because it is done during runtime.<br />
+Consider the following example.
+</p>
+
+<pre class="prettyprint script-result-display">
+function bumpInto() {
+	var greet = function () {
+		alert("How You Doin?");
+	}
+	return greet();
+	var greet = function (whom) {
+		alert("What's Up?");
+	}
+}
+bumpInto();
+</pre>
+
+<p>
+The above code is hoisted and interpreted as follows.
+</p>
+
+<pre class="prettyprint script-result-display">
+function bumpInto() {
+	var greet;
+	var greet;
+	greet = function () {
+		alert("How You Doin?");
+	}
+	return greet();
+	greet = function (whom) {
+		alert("What's Up?");
+	}
+}
+bumpInto();
+</pre>
+
+<p>
+The greet() function that prints "What's Up?" after the return statement has no chance to execute.
+</p>
+
+<h3>Closures</h3>
+
+<h4>Inner function</h4>
+
+<p>
+JavaScript supports inner functions.<br />
+An inner function can use a variable declared in an outer function (wrapping inner function).
+</p>
+
+<pre class="prettyprint script-result-display">
+function fn() {
+	var balance = 0; //outside variable
+	function deposit(money) { //inner function
+		balance += money;
+		alert(balance);
+	}
+	deposit(100);
+}
+fn();
+</pre>
+
+<p>
+There is no way to call an internal function directly outside the parent function, but there is a way to execute the internal function outside the parent function.<br />
+"A JavaScript function is basically a function object, so you can assign a function to a variable or pass it as an argument to another function."<br />
+The code returns a reference to the inner function so that it can be referenced outside the parent function.<br />
+By returning a reference to the inner function in the above example, you can change it to be able to reference it outside of the parent function.
+</p>
+
+<pre class="prettyprint script-result-display">
+function fn() {
+	var balance = 0; //outside variable
+	function deposit(money) { //inner function
+		balance += money;
+		alert(balance);
+	}
+	<strong>alert("The fn () function is executed.");</strong>
+	<strong>return deposit;</strong>
+}
+var retFn = fn();//If the function fn does not return, retFn is undefined.
+retFn(200);
+</pre>
+
+<p>
+The fact that this code runs without problems makes the Java programmer uncomfortable.<br />
+In Java, local variables defined in a method disappear when the method terminates.<br />
+Likewise, when the fn () function is terminated, the local variables defined within the function should be removed, but the variable balance is still valid even though the fn () function returns a return value.<br />
+balance is still valid because retFn has a closure.<br />
+A closure is a special object made up of two.<br />
+The first is the function and the second is the environment in which the function was created.<br />
+Here, the environment is a variable that can be used when a function is created.<br />
+"retFn has a closure containing the deposit function and the balance variable."
+</p>
+
+<pre class="prettyprint script-result-display">
+function fn() {
+	var balance = 0;
+	function deposit(money) {
+		balance += money;
+		alert(balance);
+	}
+	return deposit;
+}
+
+var ac1 = fn();
+alert("---ac1---");
+ac1(50);
+ac1(450);
+
+var ac2 = fn();
+alert("---ac2---");
+ac2(2000);
+ac2(500);
+</pre>
+
+<p>
+A closure is created when a function's internal functions are referenced outside the function.<br />
+The fact that an inner function can be called through a reference beyond its scope means that the function can still be called in the future, so JavaScript must keep the function.<br />
+If a variable is a local variable of a parent function, the inner function inherits the scope of the parent and can reference the variable.<br />
+If you call deposit () twice with the same reference variable, you can see that the value of the balance variable is accumulated.<br />
+ac1 (50); ac1 450;<br />
+ac2 (200); ac2 (500);<br />
+Also, in calls to the deposit () function that use different reference variables (ac1 and ac2), the balance variables increase independently of each other.
+</p>
+
+<h4>Shared variable between closures</h4>
+
+<pre class="prettyprint script-result-display">
+function account(accountNo) {
+	var balance = 0;
+	
+	function getAccountNo() {
+		return accountNo;
+	}
+	function deposit(money) {
+		balance += money;
+	}
+	function withdraw(money) {
+		balance -= money;
+	}
+	function getBalance() {
+		return balance;
+	}
+	return {
+		"getAccountNo": getAccountNo,
+		"deposit": deposit,
+		"withdraw": withdraw,
+		"getBalance": getBalance
+	};
+}
+
+var ac1 = account('111');
+ac1.deposit(1000);
+ac1.withdraw(500);
+alert(ac1.getAccountNo() + ': ' + ac1.getBalance());
+
+var ac2 = account('222');
+ac2.deposit(3000);
+ac2.withdraw(1000);
+alert(ac2.getAccountNo() + ': ' + ac2.getBalance());
+</pre>
+
+<p>
+The four internal functions refer to the same local variables and share the same scope of variables.<br />
+If the deposit () function increments the balance by 1000, the value of the increased balance will be the new starting value when withdraw () is called again.<br />
+When account() is called again like <b>var ac2 = account('222');</b>, a new instance of the closure with the same closed environment is created.
+</p>
+
+<h3>Object-oriented coding in JavaScript</h3>
+
+<p>
+In JavaScript, the following is similar to a class in Java.
+</p>
+
+<pre class="prettyprint script-result-display">
+function Account(accountNo,balance) {
+	this.accountNo = accountNo.toString();
+	this.balance = balance;
+}
+Account.prototype.getAccountNo = function () {
+	return this.accountNo;
+};
+Account.prototype.getBalance = function () {
+	return this.balance;
+};
+Account.prototype.deposit = function (money) {
+	this.balance += money;
+};
+Account.prototype.withdraw = function (money) {
+	this.balance -= money;
+};
+
+var ac1 = new Account('111',500);
+ac1.deposit(1000);
+ac1.withdraw(500);
+alert(ac1.getAccountNo() + ': ' + ac1.getBalance());
+
+var ac2 = new Account('222',1000);
+ac2.deposit(3000);
+ac2.withdraw(1000);
+alert(ac2.getAccountNo() + ': ' + ac2.getBalance());
+</pre>
+
+<span id="refer">References</span>
+<ul id="references">
+	<li><a href="http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html">JavaScript Scoping and Hoisting</a></li>
+	<li><a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">ECMAScript 2017 Language Specification</a></li>
+	<li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects">Introducing JavaScript objects</a></li>
+</ul>
+</article>
