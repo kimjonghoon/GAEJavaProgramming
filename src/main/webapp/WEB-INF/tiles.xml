@@ -11,6 +11,9 @@
         <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
         <put-attribute name="footer-ad" value="/WEB-INF/views/inc/footer-ad.jsp" />
         <put-list-attribute name="styles">
+        	<add-attribute value="/resources/css/english.css" />
+        	<add-attribute value="/resources/css/screen.css" />
+			<add-attribute value="/resources/css/print.css" />
         </put-list-attribute>
         <put-list-attribute name="javascripts">
             <add-attribute value="/resources/js/jquery-3.2.1.min.js" />
@@ -106,6 +109,9 @@
         <put-attribute name="next-article" value="/java/Features" type="string" cascade="true" />
         <put-attribute name="next-article-title" value="Java Features" cascade="true" />
         <put-attribute name="sidebar" value="/WEB-INF/views/home/home-sub.jsp" />
+        <put-list-attribute name="styles" inherit="true">
+            <add-attribute value="/resources/css/windows.css" />
+        </put-list-attribute>
     </definition>
     <!-- Java Web Programming Lectures -->
     <definition name="java/Features" extends="app.lecture">

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:security="http://www.springframework.org/schema/security"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" 
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd
@@ -12,71 +12,74 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-	
-    <security:global-method-security pre-post-annotations="enabled" />
-        
-    <mvc:resources mapping="/resources/**" location="/resources/" />
-	
-    <mvc:annotation-driven validator="validator" />
-	
-    <context:annotation-config />
-	
-    <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
-    </bean>
-	
-    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles.xml</value>
-            </list>
-        </property>
-    </bean>
-	
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="WEB-INF/classes/messages" />
-        <property name="defaultEncoding" value="UTF-8" />
-    </bean>
-	
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <property name="defaultLocale" value="en" />
-    </bean>
-	
-    <mvc:interceptors>
-        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-            <property name="paramName" value="lang" />
-        </bean>
-    </mvc:interceptors>
 
-    <bean id="adminController" class="net.java_school.controller.AdminController">
-        <property name="boardService" ref="boardService" />
-    </bean>
+	<security:global-method-security pre-post-annotations="enabled" />
+
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources location="/examples/" mapping="/examples/**" />
+	<mvc:resources location="/favicon.ico" 	mapping="/favicon.ico" />
+
+	<mvc:annotation-driven validator="validator" />
+
+	<context:annotation-config />
+
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+	</bean>
+
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="WEB-INF/classes/messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+	</mvc:interceptors>
+
+	<bean id="adminController" class="net.java_school.controller.AdminController">
+		<property name="boardService" ref="boardService" />
+	</bean>
+
+	<bean id="guestbookController" class="com.google.guestbook.GuestbookController" />
+
+	<bean id="blogController" class="net.java_school.controller.BlogController" />
+
+	<bean id="datastoreBlogController" class="net.java_school.controller.DatastoreBlogController" />
+
+	<bean id="downloadController" class="net.java_school.controller.DownloadController" />
+
+	<bean id="exampleController" class="net.java_school.controller.ExampleController" />
+
+	<bean id="homeController" class="net.java_school.controller.HomeController" />
+
+	<bean id="lectureController" class="net.java_school.controller.LectureController" />
+
+	<bean id="blobDownloadController" class="net.java_school.controller.BlobDownloadController" />
+
+	<bean id="bbsController" class="net.java_school.bbs.BbsController">
+		<property name="boardService" ref="boardService" />
+	</bean>
+
+	<bean id="boardService" class="net.java_school.bbs.BoardServiceImpl">
+		<property name="boardMapper" ref="boardMapper" />
+	</bean>
+
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
 	
-    <bean id="guestbookController" class="com.google.guestbook.GuestbookController" />
-	
-    <bean id="blogController" class="net.java_school.controller.BlogController" />
-	
-    <bean id="datastoreBlogController" class="net.java_school.controller.DatastoreBlogController" />
-	
-    <bean id="downloadController" class="net.java_school.controller.DownloadController" />
-	
-    <bean id="exampleController" class="net.java_school.controller.ExampleController" />
-	
-    <bean id="homeController" class="net.java_school.controller.HomeController" />
-	
-    <bean id="lectureController" class="net.java_school.controller.LectureController" />
-	
-    <bean id="blobDownloadController" class="net.java_school.controller.BlobDownloadController" />
-	
-    <bean id="bbsController" class="net.java_school.bbs.BbsController">
-        <property name="boardService" ref="boardService" />
-    </bean>
-	
-    <bean id="boardService" class="net.java_school.bbs.BoardServiceImpl">
-        <property name="boardMapper" ref="boardMapper" />
-    </bean>
-    
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-        <property name="validationMessageSource" ref="messageSource" />
-    </bean>	
 </beans>
