@@ -665,7 +665,7 @@
 	    color: red;
 	}
 }
-@media (min-width : 768px) {
+@media only screen and (min-width : 768px) {
     #wrap {
         margin: 0 auto;
         width: 1004px;
