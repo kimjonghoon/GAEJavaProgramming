@@ -212,7 +212,7 @@ Add a handler to the GuestbookController that handles the "/guestbook/del" reque
 <pre class="prettyprint">
 @RequestMapping(value="/guestbook/del", method=RequestMethod.POST)
 public String del(String guestbookName, String keyString) {
-	Key&lt;Greeting&gt; key = Key.create(keyString);//고유 키 복원
+	Key&lt;Greeting&gt; key = Key.create(keyString);
 	ofy().delete().key(key).now();
 	return "redirect:/guestbook/?guestbookName=" + guestbookName;
 }
