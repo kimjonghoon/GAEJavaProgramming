@@ -20,8 +20,8 @@
         <archiveClasses>true</archiveClasses>
         <objectify.version>5.1.21</objectify.version>
         <guava.version>23.0</guava.version>
-        <spring.version>5.0.8.RELEASE</spring.version>
-        <spring.security.version>5.0.7.RELEASE</spring.security.version>
+        <spring.version>5.1.2.RELEASE</spring.version>
+        <spring.security.version>5.1.1.RELEASE</spring.security.version>
     </properties>
 
     <prerequisites>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>1.9.64</version>
+            <version>1.9.67</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.45</version>
+            <version>5.1.46</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
         <dependency>
@@ -127,7 +127,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.0.10.Final</version>
+            <version>6.0.13.Final</version>
         </dependency>
         <!-- Test Dependencies -->
         <dependency>
@@ -145,13 +145,13 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-testing</artifactId>
-            <version>1.9.64</version>
+            <version>1.9.67</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-stubs</artifactId>
-            <version>1.9.64</version>
+            <version>1.9.67</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
