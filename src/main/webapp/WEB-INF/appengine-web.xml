@@ -11,6 +11,8 @@
 	  </include>
 	  <include path="/examples/**.zip" >
 	  </include>
+	  <include path="/examples/**.txt" >
+	  </include>
 	  <include path="/examples/**.html" >
 	  </include>
 	  <include path="/examples/**.js" >
